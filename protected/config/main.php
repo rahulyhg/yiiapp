@@ -40,9 +40,8 @@ return array(
 		
 		'urlManager'=>array(
 			'urlFormat'=>'path',
-		 	//'showScriptName' => false,
+		 	'showScriptName' => false,
 			'rules'=>array(
-				'home' => 'default/index',
 				'<controller:\w+>/<id:\d+>'=>'<controller>/view',
 				'<controller:\w+>/<action:\w+>/<id:\d+>'=>'<controller>/<action>',
 				'<controller:\w+>/<action:\w+>'=>'<controller>/<action>',
@@ -89,5 +88,6 @@ return array(
 	'params'=>array(
 		// this is used in contact page
 		'adminEmail'=>'webmaster@example.com',
+		'cssUrl' => 'http://scripts.marrydoor.com',
 	),
 );

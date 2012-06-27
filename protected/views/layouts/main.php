@@ -5,8 +5,8 @@
 	<meta name="language" content="en" />
 
 	<!-- blueprint CSS framework -->
-	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/css-new.css"/>
-	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/rollover.css"/>
+	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->params['cssUrl']; ?>/css/css-new.css"/>
+	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->params['cssUrl']; ?>/css/rollover.css"/>
 	<!--[if lt IE 8]>
 	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/ie.css" media="screen, projection" />
 	<![endif]-->
