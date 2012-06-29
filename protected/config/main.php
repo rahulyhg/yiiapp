@@ -88,6 +88,6 @@ return array(
 	'params'=>array(
 		// this is used in contact page
 		'adminEmail'=>'webmaster@example.com',
-		'cssUrl' => 'http://scripts.marrydoor.com',
+		'resourceUrl' => 'http://scripts.marrydoor.com',
 	),
 );

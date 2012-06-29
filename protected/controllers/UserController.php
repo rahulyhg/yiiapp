@@ -4,9 +4,9 @@ class UserController extends Controller
 {
 	public function actionRegister()
 	{
-		//$model = new UserForm();
-		$model = new SearchForm();
-		$this->render('//user/search',array('model'=>$model));
+		$searchModel = new SearchForm();
+		$model = new UserForm();
+		$this->render('//user/register',array('model'=>$model,'searchModel' =>$searchModel));
 	}
 
 	// Uncomment the following methods and override them if needed
