@@ -18,6 +18,8 @@
 
 <?php $form=$this->beginWidget('CActiveForm', array(
 	'id'=>'users-register-form',
+	'action' => Yii::app()->createUrl('user/register'),
+ 	'focus'=>array($model,'name'),
 	'enableAjaxValidation'=>false,
 )); ?>
 
@@ -55,7 +57,7 @@
 	<div class="memo-sub_right"><!--memo-sub_right-->
 	<?php $records = Religion::model()->findAll("active = 1");
 		$list = CHtml::listData($records, 'religionId', 'name');
-		echo CHtml::dropDownList('religion',null,$list,array('empty' => 'Religion'),array('class'=>'index_select_drop')); ?>
+		echo CHtml::dropDownList('religion',null,$list,array('empty' => 'Religion','class'=>'index_select_drop')); ?>
 		<?php echo $form->error($model,'religion'); ?>
 	</div>	
 
@@ -65,7 +67,7 @@
 	<div class="memo-sub_right"><!--memo-sub_right-->
 		<?php $records = Languages::model()->findAll("active = 1");
 		$list = CHtml::listData($records, 'languageId', 'name');
-		echo CHtml::dropDownList('motherTounge',null,$list,array('empty' => 'Mother Tounge'),array('class'=>'index_select_drop')); ?>
+		echo CHtml::dropDownList('motherTounge',null,$list,array('empty' => 'Language','class'=>'index_select_drop')); ?>
 		<?php echo $form->error($model,'motherTounge'); ?>
 	</div>
 	<div class="memo-sub_left">
@@ -74,7 +76,7 @@
 	<div class="memo-sub_right"><!--memo-sub_right-->
 	<?php $records = Caste::model()->findAll("active = 1");
 		$list = CHtml::listData($records, 'casteId', 'name');
-		echo CHtml::dropDownList('caste',null,$list,array('empty' => 'Caste'),array('class'=>'index_select_drop')); ?>
+		echo CHtml::dropDownList('caste',null,$list,array('empty' => 'Caste','class'=>'index_select_drop')); ?>
 		<?php echo $form->error($model,'caste'); ?>
 	</div>	
 	
@@ -84,7 +86,7 @@
 	<div class="memo-sub_right"><!--memo-sub_right-->
 	<?php $records = Country::model()->findAll("active = 1");
 		$list = CHtml::listData($records, 'countryId', 'name');
-		echo CHtml::dropDownList('country',null,$list,array('empty' => 'Country'),array('class'=>'index_select_drop')); ?>
+		echo CHtml::dropDownList('country',null,$list,array('empty' => 'Country','class'=>'index_select_drop')); ?>
 		<?php echo $form->error($model,'country'); ?>
 	</div>
 	
@@ -94,7 +96,7 @@
 	<div class="memo-sub_right"><!--memo-sub_right-->
 		<?php $records = States::model()->findAll("active = 1");
 		$list = CHtml::listData($records, 'stateId', 'name');
-		echo CHtml::dropDownList('state',null,$list,array('empty' => 'State'),array('class'=>'index_select_drop')); ?>
+		echo CHtml::dropDownList('state',null,$list,array('empty' => 'State','class'=>'index_select_drop')); ?>
 		<?php echo $form->error($model,'state'); ?>
 	</div>
 	
@@ -164,6 +166,7 @@
 
 <?php $searchForm=$this->beginWidget('CActiveForm', array(
 	'id'=>'users-search-searchForm',
+	'action' => Yii::app()->createUrl('search/basic'),
 	'enableAjaxValidation'=>false,
 )); ?>	
 
@@ -195,7 +198,7 @@
 <div class="memo-sub_right_small"><!--memo-sub_right_small-->
 		<?php $records = Religion::model()->findAll("active = 1");
 		$list = CHtml::listData($records, 'religionId', 'name');
-		echo CHtml::dropDownList('religion',null,$list,array('empty' => 'Religion'),array('class'=>'index_254_memo')); ?>
+		echo CHtml::dropDownList('religion',null,$list,array('empty' => 'Religion','class'=>'index_254_memo')); ?>
 		<?php echo $searchForm->error($searchModel,'religion'); ?>
 	</div>
 		
@@ -205,7 +208,7 @@
 <div class="memo-sub_right_small"><!--memo-sub_right_small-->
 	<?php $records = Languages::model()->findAll("active = 1");
 		$list = CHtml::listData($records, 'languageId', 'name');
-		echo CHtml::dropDownList('motherTounge',null,$list,array('empty' => 'Mother Tounge'),array('class'=>'index_254_memo')); ?>
+		echo CHtml::dropDownList('motherTounge',null,$list,array('empty' => 'Language','class'=>'index_254_memo')); ?>
 		<?php echo $searchForm->error($searchModel,'motherTounge'); ?>
 	</div>
 	
@@ -215,7 +218,7 @@
 <div class="memo-sub_left_small"><!--memo-sub_left_small-->
 		<?php $records = Caste::model()->findAll("active = 1");
 		$list = CHtml::listData($records, 'casteId', 'name');
-		echo CHtml::dropDownList('caste',null,$list,array('empty' => 'Caste'),array('class'=>'index_254_memo')); ?>
+		echo CHtml::dropDownList('caste',null,$list,array('empty' => 'Caste','class'=>'index_254_memo')); ?>
 		<?php echo $searchForm->error($searchModel,'caste'); ?>
 	</div>	
 
@@ -225,7 +228,7 @@
 <div class="memo-sub_left_small"><!--memo-sub_left_small-->
 		<?php $records = States::model()->findAll("active = 1");
 		$list = CHtml::listData($records, 'stateId', 'name');
-		echo CHtml::dropDownList('state',null,$list,array('empty' => 'State'),array('class'=>'index_254_memo')); ?>
+		echo CHtml::dropDownList('state',null,$list,array('empty' => 'State','class'=>'index_254_memo')); ?>
 		<?php echo $searchForm->error($searchModel,'state'); ?>
 	</div>
 	
@@ -235,7 +238,7 @@
 <div class="memo-sub_left_small"><!--memo-sub_left_small-->
 		<?php $records = Districts::model()->findAll("active = 1");
 		$list = CHtml::listData($records, 'districtId', 'name');
-		echo CHtml::dropDownList('state',null,$list,array('empty' => 'State'),array('class'=>'index_254_memo')); ?>
+		echo CHtml::dropDownList('state',null,$list,array('empty' => 'State','class'=>'index_254_memo')); ?>
 		<?php echo $searchForm->error($searchModel,'district'); ?>
 	</div>
 	
@@ -318,14 +321,18 @@
 
 <div class="memo-box-three"><!--memo-box-three-->
 
-<form>
+<?php $searchForm=$this->beginWidget('CActiveForm', array(
+	'id'=>'users-search-searchID',
+	'action' => Yii::app()->createUrl('search/keyword'),
+	'enableAjaxValidation'=>false,
+)); ?>
 
 <input type="text" value="Search By ID / Keyword" class="text_normal_small">
 
 
 <a onmouseover="MM_swapImage('Image21','','<?php echo Yii::app()->params['resourceUrl']; ?>/images/search_btn_sm.jpg',1)" onmouseout="MM_swapImgRestore()" href="search.html"><img width="49" border="0" height="22" class="search_add_sub" id="Image21" name="Image21" src="<?php echo Yii::app()->params['resourceUrl']; ?>/images/search_btn_ash_sm.jpg"></a>
 
- </form>
+<?php $this->endWidget(); ?>
 
 <div class="memo-4">
 <img src="<?php echo Yii::app()->params['resourceUrl']; ?>/images/problem.jpg">

@@ -38,6 +38,13 @@ return array(
 		),
 		// uncomment the following to enable URLs in path-format
 		
+		'applicationSession'=> array(
+			'class' => 'CHttpSession',
+			'autoStart' => 'false',
+			'timeout' => 300,
+		
+		),
+		
 		'urlManager'=>array(
 			'urlFormat'=>'path',
 		 	'showScriptName' => false,

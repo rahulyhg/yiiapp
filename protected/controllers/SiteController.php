@@ -27,9 +27,9 @@ class SiteController extends Controller
 	 */
 	public function actionIndex()
 	{
-		// renders the view file 'protected/views/site/index.php'
-		// using the default layout 'protected/views/layouts/main.php'
-		$this->render('index');
+		$searchModel = new SearchForm();
+		$model = new UserForm();
+		$this->render('//user/register',array('model'=>$model,'searchModel' =>$searchModel));
 	}
 
 	/**
@@ -85,11 +85,11 @@ class SiteController extends Controller
 		{
 			$model->attributes=$_POST['LoginForm'];
 			// validate user input and redirect to the previous page if valid
-			if($model->validate() && $model->login())
+			if($model->login())
 				$this->redirect(Yii::app()->user->returnUrl);
 		}
 		// display the login form
-		$this->render('login',array('model'=>$model));
+		$this->render('index');
 	}
 
 	/**
@@ -98,6 +98,9 @@ class SiteController extends Controller
 	public function actionLogout()
 	{
 		Yii::app()->user->logout();
+		Yii::app()->session->clear();
+		Yii::app()->session->destroy();
+		Yii::app()->end();
 		$this->redirect(Yii::app()->homeUrl);
 	}
 }
