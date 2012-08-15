@@ -40,7 +40,7 @@ return array(
 		
 		'applicationSession'=> array(
 			'class' => 'CHttpSession',
-			'autoStart' => 'false',
+			'autoStart' => 'true',
 			'timeout' => 300,
 		
 		),

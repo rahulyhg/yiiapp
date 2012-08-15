@@ -33,6 +33,8 @@ class UserForm extends CFormModel
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
+			array('name,date,month,year,gender,religion,motherTounge,caste,country,state,mobileNo,landNo,emailId,password','required'),
+			array('emailId','email'),
 			array('mobileNo', 'numerical', 'integerOnly'=>true),
 			array('marryId, emailId, password', 'length', 'max'=>100),
 			array('name', 'length', 'max'=>250),

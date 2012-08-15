@@ -14,7 +14,7 @@
 		<div id="wrapper">
 		
 	<div id="head-my">
-	<a href="home-viewed-by-member.html"> <img src="images/logo.jpg"
+	<a href="home-viewed-by-member.html"> <img src="<?php echo Yii::app()->params['resourceUrl']; ?>/images/logo.jpg"
 		class="logo" border="0" /> </a>
 		<div class="mgn_top">
 		<!-- Dropdown menu -->

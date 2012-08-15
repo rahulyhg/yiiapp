@@ -25,13 +25,19 @@ class UserIdentity extends CUserIdentity
 		else if(isset($this->username) && isset($this->password))
 		{
 			$record = Users::model()->find('name = ? AND password = ?',array($this->name,md5($this->password)));
+			
+			if(isset($record) && $record['emailId'] != null)
+			{
 			//User::model()->findAll('first_name=? AND last_name=?', array('Paul', 'Smith'));
 			$mail = $record['emailId'];
 			$this->_id = $record['userId'];
 			$this->setState('user', $record['name']);
 			$session=new CHttpSession;//modified
 			$session->open();
-			Yii::app()->session->add('user',$record['name']);
+			Yii::app()->session->add('username',$record['name']);
+			Yii::app()->session->add('user',$record);
+			}
+			return ;
 		}			
 		else
 			$this->errorCode=self::ERROR_NONE;

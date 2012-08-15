@@ -81,7 +81,7 @@
 	</div>	
 	
 	<div class="memo-sub_left">
-		<?php echo $form->labelEx($model,'caste',array('class'=>'txt_rg_index')); ?>
+		<?php echo $form->labelEx($model,'country',array('class'=>'txt_rg_index')); ?>
 	</div>
 	<div class="memo-sub_right"><!--memo-sub_right-->
 	<?php $records = Country::model()->findAll("active = 1");
@@ -129,7 +129,7 @@
 		<?php echo $form->labelEx($model,'password',array('class'=>'txt_rg_index')); ?>
 	</div>
 	<div class="memo-sub_right">
-		<?php echo $form->textField($model,'password',array('class'=>'index_form_1')); ?>
+		<?php echo $form->passwordField($model,'password',array('class'=>'index_form_1')); ?>
 		<?php echo $form->error($model,'password'); ?>
 	</div>
 
@@ -361,3 +361,10 @@
 <div class="pay-ment-box-three"><img src="<?php echo Yii::app()->params['resourceUrl']; ?>/images/bank-transfer.jpg"></div>
 
 </div>
+<script type="text/javascript">
+jQuery(document).ready(function(){
+    	// binds form submission and fields to the validation engine
+    	jQuery(".users-register-form").validationEngine();
+    	jQuery(".users-search-searchForm").validationEngine();
+	});
+</script>	
