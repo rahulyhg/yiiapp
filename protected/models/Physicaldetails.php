@@ -102,4 +102,18 @@ class Physicaldetails extends CActiveRecord
 			'criteria'=>$criteria,
 		));
 	}
+	
+		public function beforeSave()
+        {
+                if(parent::beforeSave())
+                {
+                      if( !empty($this->heightId) || !empty($this->weight) || !empty($this->bodyType) || !empty($this->complexion) || !empty($this->physicalStatus))
+                      return true;
+                      else
+                      return false;
+                }
+                else
+        		return true;
+        }
+	
 }

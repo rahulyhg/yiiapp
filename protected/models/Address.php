@@ -115,4 +115,19 @@ class Address extends CActiveRecord
 			'criteria'=>$criteria,
 		));
 	}
+	
+		public function beforeSave()
+        {
+                if(parent::beforeSave())
+                {
+                      if( !empty($this->houseName) || !empty($this->place) || !empty($this->city) || !empty($this->postoffice) || !empty($this->district) || !empty($this->pincode) || !empty($this->state)|| !empty($this->country))
+                      return true;
+                      else
+                      return false;
+                      
+                      
+                }
+                else
+        		return true;
+        }
 }

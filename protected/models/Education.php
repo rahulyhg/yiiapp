@@ -100,4 +100,20 @@ class Education extends CActiveRecord
 			'criteria'=>$criteria,
 		));
 	}
+	
+	
+		public function beforeSave()
+        {
+                if(parent::beforeSave())
+                {
+                      if( !empty($this->educationId) || !empty($this->occupationId) || !empty($this->employedIn) || !empty($this->yearlyIncome))
+                      return true;
+                      else
+                      return false;
+                      
+                      
+                }
+                else
+        		return true;
+        }
 }

@@ -120,4 +120,5 @@ class Userpersonaldetails extends CActiveRecord
 			'criteria'=>$criteria,
 		));
 	}
+	
 }

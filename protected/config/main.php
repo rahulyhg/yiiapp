@@ -38,12 +38,15 @@ return array(
 		),
 		// uncomment the following to enable URLs in path-format
 		
-		'applicationSession'=> array(
-			'class' => 'CHttpSession',
-			'autoStart' => 'true',
-			'timeout' => 300,
-		
-		),
+		'session' => array(
+        'savePath' => 'C:\TEMP',
+        'cookieMode' => 'allow',
+        'cookieParams' => array(
+            'path' => '/',
+            'domain' => '.marrydoor.com',
+            'httpOnly' => true,
+        ),
+    	),
 		
 		'urlManager'=>array(
 			'urlFormat'=>'path',

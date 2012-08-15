@@ -122,4 +122,20 @@ class Familyprofile extends CActiveRecord
 			'criteria'=>$criteria,
 		));
 	}
+	
+		public function beforeSave()
+        {
+                if(parent::beforeSave())
+                {
+                      if( !empty($this->familyStatus) || !empty($this->familyType) || !empty($this->familyValues) || !empty($this->familyDesc)|| !empty($this->userDesc) || !empty($this->brotherMarried) || !empty($this->brothers)|| !empty($this->SisterMarried) || !empty($this->sisters))
+                      return true;
+                      else
+                      return false;
+                      
+                      
+                }
+                else
+        		return true;
+        }
+	
 }

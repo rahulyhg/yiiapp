@@ -17,6 +17,15 @@ class MypageController extends Controller
 {
 	public function actionIndex()
 	{
+		$physical = new Physicaldetails();
+		$physical->userId = 2;
+		$physical->heightId = 23;
+		$physical->weight = 15;
+		$physical->bodyType =  0;
+		$physical->complexion = 0;
+		$physical->physicalStatus = 1;
+		$physical->save();
+	
 		$this->render('index');
 	}
 	

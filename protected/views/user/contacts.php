@@ -121,7 +121,7 @@
 						<span class="txt_12"> &nbsp;<?php echo $religion->name?> - <?php echo $caste->name?>
 						</span>
 					</div>
-					<span class="back"><a href="#">Edit</a> </span>
+					
 				</div>
 
 			</div>
@@ -168,7 +168,6 @@
 					<div class="div_150">
 						<span class="txt_12"><?php echo $country->name?> </span>
 					</div>
-					<span class="back"><a href="#">Edit</a> </span>
 				</div>
 			</div>
 
@@ -349,7 +348,6 @@
 					<div class="div_150">
 						<span class="txt_12"><?php echo $userPersonal->mobilePhone; ?> </span>
 					</div>
-					<span class="back"><a href="#">Edit</a> </span>
 				</div>
 
 			</div>
@@ -364,7 +362,6 @@
 						<span class="txt_12"><?php 
 						echo $userPersonal->landPhone ?> </span>
 					</div>
-					<span class="back"><a href="#">Edit</a> </span>
 				</div>
 
 			</div>
