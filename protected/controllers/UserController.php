@@ -182,9 +182,81 @@ class UserController extends Controller
 		$family->userDesc = $_POST['myDesc'];
 		$family->save();
 			
-		$url = Yii::app()->createUrl('mypage/index');
-		$this->redirect($url);
+		//$url = Yii::app()->createUrl('mypage/index');
+		//$this->redirect($url);
+		$this->render('hobbies');
 	}
+	public function actionHobby()
+	{
+		$user = Yii::app()->session->get('user');
+		$userHobby  = new Hobiesandinterests();
+		$userHobby->userId = $user->userId;
+		if(isset($_POST['hobby']))
+		{
+			$userHobby->hobies = implode(",", $_POST['hobby']);
+		}
+		if(isset($_POST['interest']))
+		{
+			$userHobby->interests = implode(",", $_POST['interest']);
+		}
+		if(isset($_POST['sports']))
+		{
+			$userHobby->activities = implode(",", $_POST['sports']);
+		}
+		if(isset($_POST['read']))
+		{
+			$userHobby->reading = implode(",", $_POST['read']);
+		}
+		if(isset($_POST['movies']))
+		{
+			$userHobby->movies = implode(",", $_POST['movies']);
+		}
+		if(isset($_POST['music']))
+		{
+			$userHobby->musics = implode(",", $_POST['music']);
+		}
+		if(isset($_POST['cuisine']))
+		{
+			$userHobby->cuisine = implode(",", $_POST['cuisine']);
+		}
+		if(isset($_POST['language']))
+		{
+			$userHobby->languages = implode(",", $_POST['language']);
+		}
+		if(isset($_POST['othersLanguage'])&& isset($_POST['otherLanguage']))
+		{
+			$userHobby->languageOther= $_POST['otherLanguage'];
+		}
+		$userHobby->save();
+		
+		
+		$this->render('horoscope',array('model' => new Horoscopes()));
+	}
+	
+	public function actionHoro()
+	{
+		$user = Yii::app()->session->get('user');
+		$horoscope = new Horoscopes();
+	 		$horoscope->horoscopeFile=CUploadedFile::getInstance($horoscope,'horoscopeFile');
+            if($horoscope->save())
+            {
+                $horoscope->horoscopeFile->saveAs(Yii::getPathOfAlias('webroot').'/files/'.$horoscope->horoscopeFile);
+                // redirect to success page
+            }
+		
+		$this->render("partner");
+	}
+	public function actionHoroupload()
+	{
+		$user = Yii::app()->session->get('user');
+		$horoscope = new Horoscopes();
+	 		$file = CUploadedFile::getInstance($horoscope,'horoscopeFile');
+             $file->saveAs(Yii::getPathOfAlias('webroot').'/files/'.$file->name);
+                // redirect to success page
+		
+		$this->render("partner");
+	}
+	
 	public function actionIndex()
 	{
 		$user = Users::model()->findByPk(2);
@@ -192,7 +264,9 @@ class UserController extends Controller
 		Yii::app()->session->add('user',$user);
 
 		$userPersonal = Userpersonaldetails::model()->findByAttributes(array('userId'=>2));
-		$this->render('contacts',array('user'=>$user,'userPersonal'=>$userPersonal));
+		//$this->render('contacts',array('user'=>$user,'userPersonal'=>$userPersonal));
+		
+		$this->render('horoscope',array('model' => new Horoscopes()));
 	}
 
 

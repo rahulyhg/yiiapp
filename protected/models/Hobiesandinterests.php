@@ -115,4 +115,18 @@ class Hobiesandinterests extends CActiveRecord
 			'criteria'=>$criteria,
 		));
 	}
+		public function beforeSave()
+        {
+                if(parent::beforeSave())
+                {
+                      if( !empty($this->hobies) || !empty($this->interests) || !empty($this->musics) || !empty($this->movies)
+                       || !empty($this->reading) || !empty($this->activities) || !empty($this->cuisine) || !empty($this->languages) || !empty($this->languageOther))
+                      return true;
+                      else
+                      return false;
+                }
+                else
+        		return true;
+        }
+	
 }

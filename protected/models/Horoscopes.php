@@ -104,6 +104,9 @@ class Horoscopes extends CActiveRecord
 		$criteria->compare('visibility',$this->visibility);
 		$criteria->compare('dosham',$this->dosham);
 		$criteria->compare('sudham',$this->sudham);
+		$criteria->compare('state',$this->state);
+		$criteria->compare('country',$this->country);
+		$criteria->compare('city',$this->city);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
