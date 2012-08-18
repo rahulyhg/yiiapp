@@ -1,18 +1,17 @@
 <?php
 
-class PrivacyController extends Controller
+class GuestController extends Controller
 {
 	public function actionIndex()
 	{
-		$this->render('index');
-	}
-
-	public function actionForget()
-	{
 		$this->layout= '//layouts/single';
-		$this->render('forgot');
+		$this->render('guest');
 	}
 	
+	public function actionGuest()
+	{
+		
+	}
 	// Uncomment the following methods and override them if needed
 	/*
 	public function filters()
