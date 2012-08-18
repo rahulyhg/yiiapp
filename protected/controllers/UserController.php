@@ -236,13 +236,7 @@ class UserController extends Controller
 	public function actionHoro()
 	{
 		$user = Yii::app()->session->get('user');
-		$horoscope = new Horoscopes();
-	 		$horoscope->horoscopeFile=CUploadedFile::getInstance($horoscope,'horoscopeFile');
-            if($horoscope->save())
-            {
-                $horoscope->horoscopeFile->saveAs(Yii::getPathOfAlias('webroot').'/files/'.$horoscope->horoscopeFile);
-                // redirect to success page
-            }
+		$horoscope = Horoscopes::model()->findByAttributes(array('userId'=>$user->userId));
 		
 		$this->render("partner");
 	}
@@ -250,11 +244,109 @@ class UserController extends Controller
 	{
 		$user = Yii::app()->session->get('user');
 		$horoscope = new Horoscopes();
-	 		$file = CUploadedFile::getInstance($horoscope,'horoscopeFile');
-             $file->saveAs(Yii::getPathOfAlias('webroot').'/files/'.$file->name);
-                // redirect to success page
+		$horoscope->userId = $user->userId;
+		$horoscope->astrodate = $_POST['year'].'-'.$_POST['month'].'-'.$_POST['date'];
+		if(isset($_POST['city']))
+		$horoscope->city = $_POST['city'];
+		if(isset($_POST['state']))
+		$horoscope->state = $_POST['state'];
+		if(isset($_POST['country']))
+		$horoscope->country = $_POST['country'];
+		if(isset($_POST['time']))
+		$horoscope->time = $_POST['time'];
+		if(isset($_POST['chova']))
+		$horoscope->dosham = $_POST['chova'];
+		if(isset($_POST['sudha']))
+		$horoscope->sudham = $_POST['sudha'];
+		if(isset($_POST['sign']))
+		$horoscope->sign = $_POST['sign'];
 		
+			if(isset($_POST['Horoscopes']['horoscopeFile'])){
+			$file = CUploadedFile::getInstance($horoscope,'horoscopeFile');
+			if(isset($file) && !empty($file->name))
+			{
+			$file->saveAs(Yii::getPathOfAlias('webroot').'/files/'.$user->marryId.'-'.$file->name);
+            Yii::app()->session->add('grahaNila',$file->name);
+            $horoscope->horoscopeFile = $user->marryId.'-'.$file->name;
+			}
+			}
+
+		$horoscope->save();
+	 		    // redirect to success page
+		
+		$reference = new Reference();
+		$reference->userId = $user->userId;
+		if(isset($_POST['relation0']))
+		$reference->relation = $_POST['relation0'];
+		if(isset($_POST['name0']))
+		$reference->referName = $_POST['name0'];
+		if(isset($_POST['house0']))
+		$reference->referHouseName = $_POST['house0'];
+		if(isset($_POST['place0']))
+		$reference->referPlace = $_POST['place0'];
+		if(isset($_POST['city0']))
+		$reference->referCity = $_POST['city0'];
+		if(isset($_POST['state0']))
+		$reference->referState = $_POST['state0'];
+		if(isset($_POST['pin0']))
+		$reference->referPostcode = $_POST['pin0'];
+		if(isset($_POST['post0']))
+		$reference->referPostOffice = $_POST['post0'];
+		if(isset($_POST['district0']))
+		$reference->referDistrict = $_POST['district0'];
+		if(isset($_POST['country0']))
+		$reference->referCountry = $_POST['country0'];
+		if(isset($_POST['email0']))
+		$reference->referEmail = $_POST['email0'];
+		if(isset($_POST['occupation0']))
+		$reference->referOccupation = $_POST['occupation0'];
+		if(isset($_POST['timeFrom0']) && isset($_POST['fromA0']) && isset($_POST['timeTo0']) && isset($_POST['toA0'])){
+		$time = $_POST['timeFrom0'].':'.$_POST['fromA0'].'-'.$_POST['timeTo0'].':'.$_POST['toA0'];
+		$reference->referCallFrom  = $time;
+		}
+		
+		$reference->save();
+
+		$reference1 = new Reference();
+		$reference1->userId = $user->userId;
+		if(isset($_POST['relation1']))
+		$reference1->relation = $_POST['relation1'];
+		if(isset($_POST['name1']))
+		$reference1->referName = $_POST['name1'];
+		if(isset($_POST['house1']))
+		$reference1->referHouseName = $_POST['house1'];
+		if(isset($_POST['place1']))
+		$reference1->referPlace = $_POST['place1'];
+		if(isset($_POST['city1']))
+		$reference1->referCity = $_POST['city1'];
+		if(isset($_POST['state1']))
+		$reference1->referState = $_POST['state1'];
+		if(isset($_POST['pin1']))
+		$reference1->referPostcode = $_POST['pin1'];
+		if(isset($_POST['post1']))
+		$reference1->referPostOffice = $_POST['post1'];
+		if(isset($_POST['district1']))
+		$reference1->referDistrict = $_POST['district1'];
+		if(isset($_POST['country1']))
+		$reference1->referCountry = $_POST['country1'];
+		if(isset($_POST['email1']))
+		$reference1->referEmail = $_POST['email1'];
+		if(isset($_POST['occupation1']))
+		$reference1->referOccupation = $_POST['occupation1'];
+		if(isset($_POST['timeFrom1']) && isset($_POST['fromA1']) && isset($_POST['timeTo1']) && isset($_POST['toA1'])){
+		$time = $_POST['timeFrom1'].':'.$_POST['fromA1'].'-'.$_POST['timeTo1'].':'.$_POST['toA1'];
+		$reference1->referCallFrom  = $time;
+		}
+
+		
+		$reference1->save();
 		$this->render("partner");
+		
+	}
+	
+	public function actionPartner()
+	{
+		
 	}
 	
 	public function actionIndex()
@@ -269,7 +361,7 @@ class UserController extends Controller
 		$this->render('horoscope',array('model' => new Horoscopes()));
 	}
 
-
+	
 	// Uncomment the following methods and override them if needed
 	/*
 	public function filters()

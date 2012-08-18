@@ -7,7 +7,11 @@
  * @property string $horoscopeId
  * @property string $userId
  * @property integer $sign
+ * @property string $time
  * @property integer $astrodate
+ * @property string $country
+ * @property string $state
+ * @property string $city
  * @property string $horoscopeFile
  * @property string $grahanilaFile
  * @property integer $visibility
@@ -45,12 +49,12 @@ class Horoscopes extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('sign, astrodate, visibility, dosham, sudham', 'numerical', 'integerOnly'=>true),
+			
 			array('userId', 'length', 'max'=>20),
-			array('horoscopeFile, grahanilaFile', 'length', 'max'=>100),
+			array('time, country, state, city', 'length', 'max'=>250),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('horoscopeId, userId, sign, astrodate, horoscopeFile, grahanilaFile, visibility, dosham, sudham', 'safe', 'on'=>'search'),
+			array('horoscopeId, userId, sign, time, astrodate, country, state, city, horoscopeFile, dosham, sudham', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -75,7 +79,11 @@ class Horoscopes extends CActiveRecord
 			'horoscopeId' => 'Horoscope',
 			'userId' => 'User',
 			'sign' => 'Sign',
+			'time' => 'Time',
 			'astrodate' => 'Astrodate',
+			'country' => 'Country',
+			'state' => 'State',
+			'city' => 'City',
 			'horoscopeFile' => 'Horoscope File',
 			'grahanilaFile' => 'Grahanila File',
 			'visibility' => 'Visibility',
@@ -98,18 +106,21 @@ class Horoscopes extends CActiveRecord
 		$criteria->compare('horoscopeId',$this->horoscopeId,true);
 		$criteria->compare('userId',$this->userId,true);
 		$criteria->compare('sign',$this->sign);
+		$criteria->compare('time',$this->time,true);
 		$criteria->compare('astrodate',$this->astrodate);
+		$criteria->compare('country',$this->country,true);
+		$criteria->compare('state',$this->state,true);
+		$criteria->compare('city',$this->city,true);
 		$criteria->compare('horoscopeFile',$this->horoscopeFile,true);
 		$criteria->compare('grahanilaFile',$this->grahanilaFile,true);
 		$criteria->compare('visibility',$this->visibility);
 		$criteria->compare('dosham',$this->dosham);
 		$criteria->compare('sudham',$this->sudham);
-		$criteria->compare('state',$this->state);
-		$criteria->compare('country',$this->country);
-		$criteria->compare('city',$this->city);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
 		));
 	}
+	
+	
 }

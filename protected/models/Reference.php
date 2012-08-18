@@ -54,10 +54,6 @@ class Reference extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('referPostcode, referCallFrom, referCallTo, visibility', 'numerical', 'integerOnly'=>true),
-			array('userId', 'length', 'max'=>20),
-			array('relation, referName, referHouseName, referPlace, referCity, referState, referPostOffice, referDistrict, referCountry, referEmail, referOccupation', 'length', 'max'=>250),
-			array('referCallTime', 'length', 'max'=>2),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
 			array('referenceId, userId, relation, referName, referHouseName, referPlace, referCity, referState, referPostcode, referPostOffice, referDistrict, referCountry, referEmail, referOccupation, referCallFrom, referCallTo, referCallTime, visibility', 'safe', 'on'=>'search'),
@@ -137,4 +133,6 @@ class Reference extends CActiveRecord
 			'criteria'=>$criteria,
 		));
 	}
+	
+	
 }
