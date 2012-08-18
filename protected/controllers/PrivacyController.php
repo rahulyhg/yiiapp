@@ -1,30 +1,10 @@
 <?php
 
-class SearchController extends Controller
+class PrivacyController extends Controller
 {
-	public function actionSearch()
+	public function actionIndex()
 	{
-		$this->render('search');
-	}
-	
-	public function actionRegular()
-	{
-		$this->render('regular');
-	}
-	
-	public function actionQuick(){
-		$this->render('regular');
-	}
-	
-	public function actionAdvance(){
-		$this->render('advance');
-	}
-	public function actionByid(){
-		$this->render('byid');
-	}
-	public function actionKeyword()
-	{
-		$this->render('keyword');
+		$this->render('index');
 	}
 
 	// Uncomment the following methods and override them if needed

@@ -406,6 +406,19 @@ class UserController extends Controller
 		$this->render("partner");
 	}
 	
+	
+	public function actionPassword()
+	{
+		
+	}
+	public function actionDelete()
+	{
+		
+	}
+	public function actionDeactivate()
+	{
+		
+	}
 	public function actionIndex()
 	{
 		$user = Users::model()->findByPk(2);
