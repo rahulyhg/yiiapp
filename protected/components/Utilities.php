@@ -58,6 +58,36 @@ class Utilities
 		return array('1'=>'1','2'=>'2','3'=>'3','4'=>'4','5'=>'5','6'=>'6','7'=>'7','8'=>'8','9'=>'9','10'=>'10','11'=>'11','12'=>'12');
 	}
 	
+	public static function getHeights()
+	{
+		$height = array();
+		foreach( range(150,200) as $cm){
+			$feet = $cm*0.3937008/12;
+    		$ft = (int)$feet;
+    		$inc = ceil(($feet-$ft)*12);
+			$height[strval($cm)] = strval($cm.' - '.$ft.'ft '.$inc.'in');
+    	}
+		return $height;	
+	}
+	
+	public static function getAge()
+	{
+		$days = array();
+    	foreach( range(18,50) as $day){
+			$days[$day] = $day;
+    	}
+    	return $days;	
+	}
+	
+	public static function getAnnualSalary()
+	{
+		$salary = array();
+    	foreach( range(18,50) as $day){
+			$days[$day] = $day;
+    	}
+    	return $days;
+	}
+	
 	public static function getMeridiem()
 	{
 		return array('am' => 'AM','pm' =>'PM');

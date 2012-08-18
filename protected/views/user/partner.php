@@ -20,7 +20,7 @@
             	<!--left-content-->
   <div id="content-left-4">
                 	
-                    
+  <form id="userPartner"  name="userPartner" method="post"  action="/user/partner">
                     
  <p class="text_pink-hd">Share your partner Preference with us</p>
  <div class="clear"></div>
@@ -33,20 +33,10 @@
                     <p class="txt_bld">Preferred Age</p>
                     </div>
 		<div class="list_class-6">
-       	  <form method="get">
-                         <select class="select_45">
-                         <option>20</option>
-                         <option>21</option>
-                         <option>22</option>
-                         </select>
-                         <span class="txt_bldleft">&nbsp;&nbsp;To&nbsp;&nbsp;</span> 
-                      	<select name="select6" class="select_45">
-                        <option>20</option>
-                        <option>21</option>
-                        <option>22</option>
-                      </select><span class="txt_bldleft">&nbsp;&nbsp;Years&nbsp;&nbsp;</span>
-          </form>
-                    </p>
+		
+		<?php echo CHtml::dropDownList('ageFrom',null,Utilities::getAge(),array('class'=>'select_45')); ?>
+       	                 <span class="txt_bldleft">&nbsp;&nbsp;To&nbsp;&nbsp;</span> 
+        <?php echo CHtml::dropDownList('ageTo',null,Utilities::getAge(),array('class'=>'select_45')); ?>
         </div>
                     
                     <div class="clear"></div>
@@ -54,11 +44,11 @@
                     <p class="txt_bld"><span class="txt_bld_new">Marital Status</span></p>
                     </div> 
         <div class="list_class-6">
-                    		<span class="check_box"><INPUT type="checkbox" name="selection">&nbsp;&nbsp;Any&nbsp;&nbsp;</span>
-                            <span class="check_box"><INPUT type="checkbox" name="selection">&nbsp;&nbsp;Unmarried&nbsp;&nbsp;</span>
-                            <span class="check_box"><INPUT type="checkbox" name="selection">&nbsp;&nbsp;Widow/Widower&nbsp;&nbsp;</span> 
-                            <span class="check_box"><INPUT type="checkbox" name="selection">&nbsp;&nbsp;Divorced&nbsp;&nbsp;</span> 
-                            <span class="check_box"><INPUT type="checkbox" name="selection">&nbsp;&nbsp;Awaiting divorce&nbsp;&nbsp;</span> 
+                    		<span class="check_box"><INPUT type="checkbox" value="4" name="maritial[]">&nbsp;&nbsp;Any&nbsp;&nbsp;</span>
+                            <span class="check_box"><INPUT type="checkbox" value="0" name="maritial[]">&nbsp;&nbsp;Unmarried&nbsp;&nbsp;</span>
+                            <span class="check_box"><INPUT type="checkbox" value="1" name="maritial[]">&nbsp;&nbsp;Widow/Widower&nbsp;&nbsp;</span> 
+                            <span class="check_box"><INPUT type="checkbox" value="2" name="maritial[]">&nbsp;&nbsp;Divorced&nbsp;&nbsp;</span> 
+                            <span class="check_box"><INPUT type="checkbox" value="3" name="maritial[]">&nbsp;&nbsp;Awaiting divorce&nbsp;&nbsp;</span> 
         </div>     
                     
                                      <div class="clear"></div>
@@ -68,13 +58,13 @@
                    
         <div class="list_class-6">
                    	<p class="radio_110">
-                    <input type="radio" name="child" value="myself">&nbsp;&nbsp;Doesn't matter</p>
+                    <input type="radio" name="child" value="0">&nbsp;&nbsp;Doesn't matter</p>
                     <p class="radio_145">
-                    <input type="radio" name="child" value="son">&nbsp;&nbsp;Yes. living together</p>
+                    <input type="radio" name="child" value="1">&nbsp;&nbsp;Yes. living together</p>
                     <p class="radio_155">
-                    <input type="radio" name="child" value="brother">&nbsp;&nbsp;Yes. not living together</p>
+                    <input type="radio" name="child" value="2">&nbsp;&nbsp;Yes. not living together</p>
                     <p class="radio_135">
-                    <input type="radio" name="child" value="relative">&nbsp;&nbsp;No</p>
+                    <input type="radio" name="child" value="3">&nbsp;&nbsp;No</p>
         </div>
 
         <div class="clear"></div>
@@ -83,25 +73,11 @@
         </div>
 
 <div class="list_class-6">
-  <div class="list_class-textfield-smallest">
-    <form method="get">
-      <select name="select7" class="select_small">
-        <option>4 ft - 121 cm</option>
-        <option>4 ft - 121 cm</option>
-        <option>4 ft - 121 cm</option>
-      </select>
-    </form>
-  </div>
-  <p class="left">To &nbsp;&nbsp;&nbsp;</p>
-          <div class="list_class-textfield-small">
-    <form method="get">
-      <select name="select7" class="select_small">
-        <option>4 ft - 121 cm</option>
-        <option>4 ft - 121 cm</option>
-        <option>4 ft - 121 cm</option>
-      </select>
-    </form>
-  </div>
+  
+  <?php echo CHtml::dropDownList('heightFrom',null,Utilities::getHeights(),array('class'=>'select_small')); ?>
+  <span class="txt_bldleft">&nbsp;&nbsp;To&nbsp;&nbsp;</span>
+  <?php echo CHtml::dropDownList('heightTo',null,Utilities::getHeights(),array('class'=>'select_small')); ?>
+  
 </div>
         <div class="clear"></div>
         <div class="list_class-5">
@@ -110,78 +86,58 @@
 
 <div class="list_class-6">
                    	<p class="radio_110">
-                    <input type="radio" name="status" value="myself">&nbsp;&nbsp;Normal</p>
+                    <input type="radio" name="status" value="0">&nbsp;&nbsp;Normal</p>
                    <p class="radio_145">
-                    <input type="radio" name="status" value="son">&nbsp;&nbsp;Disabled</p>
+                    <input type="radio" name="status" value="1">&nbsp;&nbsp;Disabled</p>
                    <p class="radio_145">
-                    <input type="radio" name="status" value="brother">&nbsp;&nbsp;Doesn't matter</p>
+                    <input type="radio" name="status" value="2">&nbsp;&nbsp;Doesn't matter</p>
         </div>
         <div class="clear"></div>
         <div class="list_class-5">
-          <p class="txt_bld">Religion and caste</p>
+          <p class="txt_bld">Religion</p>
         </div>
 <div class="list_class-6">
-  <div class="list_class-textfield-small">
-    <form method="get">
-      <select name="select7" class="select_small">
-        <option>Hindu - Ezhzva</option>
-        <option>4 ft - 121 cm</option>
-        <option>4 ft - 121 cm</option>
-      </select>
-    </form>
-  </div>
-  </div>
+    <?php $records = Religion::model()->findAll("active = 1");
+  
+		$list = CHtml::listData($records, 'religionId', 'name');
+		echo CHtml::dropDownList('religion',null,$list,array('empty' => 'Religion','class'=>'select_small')); ?>
+	<span class="txt_bldleft">&nbsp;&nbsp;Caste&nbsp;&nbsp;</span>
+  
+  <?php $records = Caste::model()->findAll("active = 1");
+		$list = CHtml::listData($records, 'casteId', 'name');
+		echo CHtml::dropDownList('caste',null,$list,array('empty' => 'Caste','class'=>'select_small')); ?>
+</div> 
 <!--add and remove-1-->
-
-
- 
- 
- 
- 
                     <p class="clear"></p>
                     <div class="list_class-5">
                       <p class="txt_bld">Sub Cast </p>
                     </div>
                     
                     	<div class="list_class-6">
-                        <div class="tab_200">
-                        <p class="txt_tab">
-                       <span class="select_txt"> Bretheren</span><br />
-                        Church of South India<br />
-                        Evangelist<br />
-                        Jacobite<br />
-                        Knanaya Catholic<br />
-                        Latin Catholic<br />
-                        Marthoma<br />                        
+                        <div>
+                        <?php $records = Subcaste::model()->findAll("active = 1");
+							$list = CHtml::listData($records, 'subcasteId', 'name');
+						    echo CHtml::dropDownList('subcaste',null,$list,array('class'=>'tab_200','multiple'=>'multiple')); ?>
                         </div>                        
         
                         
                         <div class="list_div_mdl">
+                        					<p class="ad-rm">
+                        					<a class="ad-rm" href="#" onclick="return add('subcaste','subcaste1')">Add</a>
+                                           </p>
+   											<p class="space-5px">&nbsp;</p>
+                                     		<a class="ad-rm" href="#" onclick="return add('subcaste1','subcaste')">Remove</a>
+						</div>
                         
-                                           <a class="ad-rm" href="#">Add</a>
-
-   <p class="space-5px">&nbsp;</p>
-                                     <a class="ad-rm" href="#">Remove</a>
-
-
-</div>
-                        
-                        <div class="tab_200">
-                        <p class="txt_tab">Pentaost<br />
-                        Roman Catholic<br />
-                        Seventh-day-Adventist<br />                        
+                        <div>
+                        <select class="tab_200" id="subcaste1" name="subcaste1[]" multiple="multiple">
+                        </select>
                         </div>
                         </div>
                         
 					<!--closing add and remove-1-->
         <div class="clear"></div>
         
-           <div class="list_class-5">
-                            <p class="txt_bld">Others</p>
-                	</div> 
-                    <div class="list_class-6">
-                <input type="text" name="input2" id="input2" class="addres_form_medium" placeholder="" />
-              </div> 
             
             
            <div class="clear"></div>  
@@ -197,12 +153,12 @@
         </div>
 <div class="list_class-6">
                    	<p class="radio-2">
-                    <input type="radio" name="jathakam" value="myself">&nbsp;&nbsp;Yes</p>
+                    <input type="radio" name="jathakam" value="1">&nbsp;&nbsp;Yes</p>
                     <p class="radio-2">
-                    <input type="radio" name="jathakam" value="son">
+                    <input type="radio" name="jathakam" value="0">
                     &nbsp;&nbsp;No</p>
                     <p class="radio-2">
-                    <input type="radio" name="jathakam" value="brother">&nbsp;&nbsp;Don’t Know</p>
+                    <input type="radio" name="jathakam" value="2">&nbsp;&nbsp;Don't Know</p>
         </div>
         <div class="clear"></div>
         <div class="list_class-5">
@@ -210,12 +166,12 @@
         </div>
 <div class="list_class-6">
                    	<p class="radio-2">
-                    <input type="radio" name="dhosham" value="myself">&nbsp;&nbsp;Yes</p>
+                    <input type="radio" name="dhosham" value="1">&nbsp;&nbsp;Yes</p>
                     <p class="radio-2">
-                    <input type="radio" name="dhosham" value="son">
+                    <input type="radio" name="dhosham" value="0">
                     &nbsp;&nbsp;No</p>
                     <p class="radio-2">
-                    <input type="radio" name="dhosham" value="brother">&nbsp;&nbsp;Don’t Know</p>
+                    <input type="radio" name="dhosham" value="2">&nbsp;&nbsp;Don’t Know</p>
         </div>        
 
 
@@ -226,32 +182,26 @@
                     </div>
                     
                     	<div class="list_class-6">
-                        <div class="tab_200">
-                        <p class="txt_tab">Anizham<br />
-Aswathi <br />
-Atham <br />
-Ayilyam <br />
-Chadayam <br />
-Maakayiram <br />
-Pooruttathi <br />                        
+                        <div>
+                        <?php $records = SignsMaster::model()->findAll("active = 1");
+							$list = CHtml::listData($records, 'signId', 'name');
+						    echo CHtml::dropDownList('star',null,$list,array('class'=>'tab_200','multiple'=>'multiple')); ?>
                         </div>                        
         
                         
                         <div class="list_div_mdl">
-                      
-                      
-                        <a class="ad-rm" href="#">Add</a>
-
-   <p class="space-5px">&nbsp;</p>
-                                     <a class="ad-rm" href="#">Remove</a></div>
+                        					<p class="ad-rm">
+                        					<a class="ad-rm" href="#" onclick="return add('star','star1')">Add</a>
+                                           </p>
+   											<p class="space-5px">&nbsp;</p>
+                                     		<a class="ad-rm" href="#" onclick="return add('star1','star')">Remove</a>
+						</div>
                         
-                        <div class="tab_200">
-                        <p class="txt_tab">Thiruvonam<br />
-Uthradam <br />
-Uthrattathi <br />                        
+                        <div>
+                        <select class="tab_200" id="star1" name="star1[]" multiple="multiple">
+                        </select>
                         </div>
-                        </div>
-                        
+                        </div>                        
 					<!--closing add and remove-Star-->
 
                                   
@@ -272,20 +222,20 @@ Uthrattathi <br />
 <div class="list_class-6">
 <div class="checkbox_130">
   <p class="radio-2">
-    <input type="checkbox" name="register3" value="brother"  />
+    <input type="checkbox" name="eat[]" value="4"  />
     &nbsp;&nbsp;Doesn't matter</p></div>
     
     <div class="checkbox_125">
         <span class="radio-2">
-        <input type="checkbox" name="register4" value="brother" />
+        <input type="checkbox" name="eat[]" value="1" />
         &nbsp;&nbsp;Non Vegetarian</span>
         </div>
         <div class="checkbox_150">
         <span class="radio-2">
-        <input type="checkbox" name="register5" value="brother" />
+        <input type="checkbox" name="eat[]" value="2" />
         &nbsp;&nbsp;Eggetarian</span></div>
         <span class="radio-2">
-        <input type="checkbox" name="register6" value="brother" />
+        <input type="checkbox" name="eat[]" value="0" />
         &nbsp;&nbsp;Vegetarian</span></div>
 
         <div class="clear"></div>
@@ -296,20 +246,20 @@ Uthrattathi <br />
 <div class="list_class-6">
 <div class="checkbox_130">
   <p class="radio-2">
-    <input type="checkbox" name="register3" value="brother" />
+    <input type="checkbox" name="drink[]" value="4" />
     &nbsp;&nbsp;Doesn't matter </p></div>
     
     <div class="checkbox_125">
         <span class="radio-2">
-        <input type="checkbox" name="register4" value="brother" />
+        <input type="checkbox" name="drink[]" value="0" />
         &nbsp;&nbsp;Non drinker</span></div>
         <div class="checkbox_150">
         <span class="radio-2">
-        <input type="checkbox" name="register5" value="brother" />
+        <input type="checkbox" name="drink[]" value="1" />
         &nbsp;&nbsp;Light/Social drinker</span></div>
         
         <div class="checkbox_125"><span class="radio-2">
-        <input type="checkbox" name="register6" value="brother" />
+        <input type="checkbox" name="drink[]" value="2" />
         &nbsp;&nbsp;Regular drinker</span></div></div>
         
         <div class="clear"></div>
@@ -321,17 +271,17 @@ Uthrattathi <br />
 
 <div class="checkbox_130">
   <p class="radio-2">
-    <input type="checkbox" name="register3" value="brother" />
+    <input type="checkbox" name="smoke[]" value="4" />
     &nbsp;&nbsp;Doesn't matter </p></div>
     <div class="checkbox_125">
         <span class="radio-2">
-        <input type="checkbox" name="register4" value="brother" />
+        <input type="checkbox" name="smoke[]" value="0" />
         &nbsp;&nbsp;Non smoker</span></div>
         <div class="checkbox_150"><span class="radio-2">
-        <input type="checkbox" name="register5" value="brother" />
+        <input type="checkbox" name="smoke[]" value="1" />
         &nbsp;&nbsp;Light/Social&nbsp;smoker</span></div>
         <div class="checkbox_129"><span class="radio-2">
-        <input type="checkbox" name="register6" value="brother" />
+        <input type="checkbox" name="smoke[]" value="2" />
         &nbsp;&nbsp;Regular smoker</span></div></div>
 
 
@@ -343,39 +293,32 @@ Uthrattathi <br />
  <div class="clear"></div> 
  <div class="space"><br /></div> 
  
- 
+ 					<p class="clear"></p>
                     <div class="list_class-5">
-                      <p class="txt_bld">Country Living in</p>
-        </div>
+                      <p class="txt_bld">Country </p>
+                    </div>
                     
-                    	<div class="list_class-6">
-                        <div class="tab_200">
-                        <p class="txt_tab">Afganisthan<br />
-Belizet<br />
-Botswana <br />
-Angiras <br />
-Attarashi <br />
-Badarayana <br />
-Baijvayas <br />                        
+                    <div class="list_class-6">
+                        <div>
+                        <?php $records = Country::model()->findAll("active = 1");
+							$list = CHtml::listData($records, 'countryId', 'name');
+						    echo CHtml::dropDownList('country',null,$list,array('class'=>'tab_200','multiple'=>'multiple')); ?>
                         </div>                        
         
                         
                         <div class="list_div_mdl">
-                  
-                           <a class="ad-rm" href="#">Add</a>
-
-   <p class="space-5px">&nbsp;</p>
-                                     <a class="ad-rm" href="#">Remove</a>
-                                     </div>
+                        					<p class="ad-rm">
+                        					<a class="ad-rm" href="#" onclick="return add('country','country1')">Add</a>
+                                           </p>
+   											<p class="space-5px">&nbsp;</p>
+                                     		<a class="ad-rm" href="#" onclick="return add('country1','country')">Remove</a>
+						</div>
                         
-                        <div class="tab_200">
-                        <p class="txt_tab">Jaiminyas<br />
-Kalapangeerasa <br />
-Kapishthalas <br />
-<br />                        
+                        <div>
+                        <select class="tab_200" id="country1" name="country1[]" multiple="multiple">
+                        </select>
                         </div>
-                        </div>
-                        
+                        </div>                        
 					<!--closing add and remove-Country Living in-->
                     
                     
@@ -387,30 +330,25 @@ Kapishthalas <br />
                       <p class="txt_bld">Residing State</p>
         </div>
                     
-                    	<div class="list_class-6">
-                        <div class="tab_200">
-                        <p class="txt_tab">Afganisthan<br />
-Belizet<br />
-Botswana <br />
-Angiras <br />
-Attarashi <br />
-Badarayana <br />
-Baijvayas <br />                        
+<div class="list_class-6">
+                        <div>
+                        <?php $records = States::model()->findAll("active = 1");
+							$list = CHtml::listData($records, 'stateId', 'name');
+						    echo CHtml::dropDownList('state',null,$list,array('class'=>'tab_200','multiple'=>'multiple')); ?>
                         </div>                        
         
                         
                         <div class="list_div_mdl">
-                          <a class="ad-rm" href="#">Add</a>
-
-   <p class="space-5px">&nbsp;</p>
-                                     <a class="ad-rm" href="#">Remove</a>
-                                     </div>
+                        					<p class="ad-rm">
+                        					<a class="ad-rm" href="#" onclick="return add('state','state1')">Add</a>
+                                           </p>
+   											<p class="space-5px">&nbsp;</p>
+                                     		<a class="ad-rm" href="#" onclick="return add('state1','state')">Remove</a>
+						</div>
                         
-                        <div class="tab_200">
-                        <p class="txt_tab">Jaiminyas<br />
-Kalapangeerasa <br />
-Kapishthalas <br />
-<br />                        
+                        <div>
+                        <select class="tab_200" id="state1" name="state1[]" multiple="multiple">
+                        </select>
                         </div>
                         </div>
                         
@@ -423,30 +361,25 @@ Kapishthalas <br />
                       <p class="txt_bld">District</p>
         </div>
                     
-                    	<div class="list_class-6">
-                        <div class="tab_200">
-                        <p class="txt_tab">Afganisthan<br />
-Belizet<br />
-Botswana <br />
-Angiras <br />
-Attarashi <br />
-Badarayana <br />
-Baijvayas <br />                        
+<div class="list_class-6">
+                        <div>
+                        <?php $records = Districts::model()->findAll("active = 1");
+							$list = CHtml::listData($records, 'districtId', 'name');
+						    echo CHtml::dropDownList('district',null,$list,array('class'=>'tab_200','multiple'=>'multiple')); ?>
                         </div>                        
         
                         
                         <div class="list_div_mdl">
-                           <a class="ad-rm" href="#">Add</a>
-
-   <p class="space-5px">&nbsp;</p>
-                                     <a class="ad-rm" href="#">Remove</a>
-                                     </div>
+                        					<p class="ad-rm">
+                        					<a class="ad-rm" href="#" onclick="return add('district','district1')">Add</a>
+                                           </p>
+   											<p class="space-5px">&nbsp;</p>
+                                     		<a class="ad-rm" href="#" onclick="return add('district1','district')">Remove</a>
+						</div>
                         
-                        <div class="tab_200">
-                        <p class="txt_tab">Jaiminyas<br />
-Kalapangeerasa <br />
-Kapishthalas <br />
-<br />                        
+                        <div>
+                        <select class="tab_200" id="district1" name="district1[]" multiple="multiple">
+                        </select>
                         </div>
                         </div>
                         
@@ -459,31 +392,25 @@ Kapishthalas <br />
                       <p class="txt_bld">Panchayath/Municipality<br />
   Corperation</p></p>
         </div>
-                    
-                    	<div class="list_class-6">
-                        <div class="tab_200">
-                        <p class="txt_tab">Afganisthan<br />
-Belizet<br />
-Botswana <br />
-Angiras <br />
-Attarashi <br />
-Badarayana <br />
-Baijvayas <br />                        
+                    <div class="list_class-6">
+                        <div>
+                        <?php $records = Places::model()->findAll("active = 1");
+							$list = CHtml::listData($records, 'placeId', 'name');
+						    echo CHtml::dropDownList('place',null,$list,array('class'=>'tab_200','multiple'=>'multiple')); ?>
                         </div>                        
         
                         
                         <div class="list_div_mdl">
-                           <a class="ad-rm" href="#">Add</a>
-
-   <p class="space-5px">&nbsp;</p>
-                                     <a class="ad-rm" href="#">Remove</a>
-                                     </div>
+                        					<p class="ad-rm">
+                        					<a class="ad-rm" href="#" onclick="return add('place','place1')">Add</a>
+                                           </p>
+   											<p class="space-5px">&nbsp;</p>
+                                     		<a class="ad-rm" href="#" onclick="return add('place1','place')">Remove</a>
+						</div>
                         
-                        <div class="tab_200">
-                        <p class="txt_tab">Jaiminyas<br />
-Kalapangeerasa <br />
-Kapishthalas <br />
-<br />                        
+                        <div>
+                        <select class="tab_200" id="place1" name="place1[]" multiple="multiple">
+                        </select>
                         </div>
                         </div>
                         
@@ -499,28 +426,24 @@ Kapishthalas <br />
         </div>
                     
                     	<div class="list_class-6">
-                        <div class="tab_200">
-                        <p class="txt_tab">Aatharvas<br />
-Agasthi<br />
-Alampayana <br />
-Angiras<br />
-Attarishi<br />
-Badarayana<br />
-Bajvayas<br />                        
+                        <div>
+                        <?php $records = Languages::model()->findAll("active = 1");
+							$list = CHtml::listData($records, 'languageId', 'name');
+						    echo CHtml::dropDownList('language',null,$list,array('class'=>'tab_200','multiple'=>'multiple')); ?>
                         </div>                        
         
                         
                         <div class="list_div_mdl">
-                             <a class="ad-rm" href="#">Add</a>
-
-   <p class="space-5px">&nbsp;</p>
-                                     <a class="ad-rm" href="#">Remove</a>
-                                     </div>
-                        <div class="tab_200">
-                        <p class="txt_tab">Jaiminyas<br />
-Kalapangeerasa <br />
-Kapishthalas <br />
-<br />                        
+                        					<p class="ad-rm">
+                        					<a class="ad-rm" href="#" onclick="return add('language','language1')">Add</a>
+                                           </p>
+   											<p class="space-5px">&nbsp;</p>
+                                     		<a class="ad-rm" href="#" onclick="return add('language1','language')">Remove</a>
+						</div>
+                        
+                        <div>
+                        <select class="tab_200" id="language1" name="language1[]" multiple="multiple">
+                        </select>
                         </div>
                         </div>
                         
@@ -542,30 +465,25 @@ Kapishthalas <br />
                       <p class="txt_bld">Citizenship</p>
         </div>
                     
-                    	<div class="list_class-6">
-                        <div class="tab_200">
-                        <p class="txt_tab">Afganisthan<br />
-Belizet<br />
-Botswana <br />
-Angiras <br />
-Attarashi <br />
-Badarayana <br />
-Baijvayas <br />                        
+                    <div class="list_class-6">
+                        <div>
+                        <?php $records = Country::model()->findAll("active = 1");
+							$list = CHtml::listData($records, 'countryId', 'name');
+						    echo CHtml::dropDownList('citizen',null,$list,array('class'=>'tab_200','multiple'=>'multiple')); ?>
                         </div>                        
         
                         
                         <div class="list_div_mdl">
-                         <a class="ad-rm" href="#">Add</a>
-
-   <p class="space-5px">&nbsp;</p>
-                                     <a class="ad-rm" href="#">Remove</a>
-                                     </div>
+                        					<p class="ad-rm">
+                        					<a class="ad-rm" href="#" onclick="return add('citizen','citizen1')">Add</a>
+                                           </p>
+   											<p class="space-5px">&nbsp;</p>
+                                     		<a class="ad-rm" href="#" onclick="return add('citizen1','citizen')">Remove</a>
+						</div>
                         
-                        <div class="tab_200">
-                        <p class="txt_tab">Jaiminyas<br />
-Kalapangeerasa <br />
-Kapishthalas <br />
-<br />                        
+                        <div>
+                        <select class="tab_200" id="citizen1" name="citizen1[]" multiple="multiple">
+                        </select>
                         </div>
                         </div>
                         
@@ -578,30 +496,25 @@ Kapishthalas <br />
                       <p class="txt_bld">Occupation</p>
         </div>
                     
-                    	<div class="list_class-6">
-                        <div class="tab_200">
-                        <p class="txt_tab">Afganisthan<br />
-Belizet<br />
-Botswana <br />
-Angiras <br />
-Attarashi <br />
-Badarayana <br />
-Baijvayas <br />                        
+                    <div class="list_class-6">
+                        <div>
+                        <?php $records = OccupationMaster::model()->findAll("active = 1");
+							$list = CHtml::listData($records, 'occupationId', 'name');
+						    echo CHtml::dropDownList('occupation',null,$list,array('class'=>'tab_200','multiple'=>'multiple')); ?>
                         </div>                        
         
                         
                         <div class="list_div_mdl">
-                       <a class="ad-rm" href="#">Add</a>
-
-   <p class="space-5px">&nbsp;</p>
-                                     <a class="ad-rm" href="#">Remove</a>
-                                     </div>
+                        					<p class="ad-rm">
+                        					<a class="ad-rm" href="#" onclick="return add('occupation','occupation1')">Add</a>
+                                           </p>
+   											<p class="space-5px">&nbsp;</p>
+                                     		<a class="ad-rm" href="#" onclick="return add('occupation1','occupation')">Remove</a>
+						</div>
                         
-                        <div class="tab_200">
-                        <p class="txt_tab">Jaiminyas<br />
-Kalapangeerasa <br />
-Kapishthalas <br />
-<br />                        
+                        <div>
+                        <select class="tab_200" id="occupation1" name="occupation1[]" multiple="multiple">
+                        </select>
                         </div>
                         </div>
                         
@@ -619,35 +532,19 @@ Kapishthalas <br />
                             <p class="txt_bld">Annual Income</p>
                 	</div> 
                     <div class="list_class-6">
-                    <form method="get">
-                     <select class="select_small">
-                     <option>1,00,000</option>
-                     <option>1,01,000</option>
-                     <option>1,02,000</option>
-                     </select>
-                    </form> 
+                  <input type="text" class="small_form_1" id="income" name="income" placeholder="Use Rupees" />   
               </div> 
+              <div class="clear"></div>
               
-              
-              
-   <div class="rr_class-6">           
-         
-                <div class="clear"></div>
+        
         <div class="list_class-5">
           <p class="txt_bldl"> Partner Description</p></div>
-       
-
-  
-  
-  <textarea rows="2" cols="20" class="tab_300c">
-
-</textarea>   
-
- <div class="div_rr_nm-1">
-                    <p class="txt_rr-10">We are only allowed verification of Indian Landline or Mobile numbers, If you are a Non Recidence Indian.</p>
-          </div>      
-                         
-</div>
+                <div class="clear"></div>
+             
+    <div class="list_class-6">           
+  <textarea name="partnerDesc" rows="2" cols="20" class="tab_300c">
+	</textarea>   
+	</div>
 
 
 
@@ -658,8 +555,8 @@ Kapishthalas <br />
 <div class="clear"></div>
 <div class="right-50">
 
-<input type="reset" value="Reset" name="yt1" class="reset_sub"> <input
-						type="submit" value="Submit" name="yt0" class="reset_sub">
+						<input type="reset" value="Reset" name="yt1" class="reset_sub"> 
+						<input type="submit" value="Submit" name="yt0" class="reset_sub">
                    
 
 
@@ -668,7 +565,7 @@ Kapishthalas <br />
 <div class="clear"></div>
 <div class="space-25px"><p>&nbsp;</p></div>
 
-
+</form>
 
         <!--personal details closing-->
   </div>
@@ -732,8 +629,7 @@ Choose any one for you Only for</p>
 </p>
 
 
-<p class="text_20_blue">SUBSCRIBE NOW!</a>
-</p>
+<p class="text_20_blue">SUBSCRIBE NOW!</p>
 </div>
                     
                     
@@ -745,4 +641,5 @@ Choose any one for you Only for</p>
                 <!--right-content closing-->
             </div>
             <!--main-content closing-->
-        </div>
+        
+        

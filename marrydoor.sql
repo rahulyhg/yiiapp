@@ -60,7 +60,7 @@ create table hobiesAndInterests(hobiesId BIGINT UNIQUE NOT NULL AUTO_INCREMENT, 
 
 -- -------Table for partnerPreferences--------
 
-create table partnerPreferences(preferenceId BIGINT UNIQUE NOT NULL AUTO_INCREMENT, userId BIGINT NOT NULL,ageFrom INT(10) NOT NULL DEFAULT 0, ageTo INT(10) NOT NULL DEFAULT 0, maritalStatus TINYINT NOT NULL DEFAULT 0, haveChildren TINYINT NOT NULL DEFAULT 0, heightFrom TINYINT NOT NULL DEFAULT 0, heightTo TINYINT NOT NULL DEFAULT 0, physicalStatus TINYINT NOT NULL DEFAULT 0, religion INT(10) NOT NULL DEFAULT 0, caste TEXT NOT NULL, manglik TINYINT NOT NULL DEFAULT 0, star TEXT NOT NULL, eatingHabits TEXT NOT NULL, drinkingHabits TEXT NOT NULL, smokingHabits TEXT NOT NULL, languages TEXT NOT NULL, countries TEXT NOT NULL, states TEXT NOT NULL, districts TEXT NOT NULL, places TEXT NOT NULL, citizenship TEXT NOT NULL, occupation TEXT NOT NULL, annualIncome INT NOT NULL DEFAULT 0, partnerDescription TEXT NOT NULL, PRIMARY KEY(preferenceId), FOREIGN KEY (userId) REFERENCES users(userId))ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;
+create table partnerPreferences(preferenceId BIGINT UNIQUE NOT NULL AUTO_INCREMENT, userId BIGINT NOT NULL,ageFrom INT(10) NOT NULL DEFAULT 0, ageTo INT(10) NOT NULL DEFAULT 0, maritalStatus TINYINT NOT NULL DEFAULT 0, haveChildren TINYINT NOT NULL DEFAULT 0, heightFrom INT(10) NOT NULL DEFAULT 0,heightTo INT(10) NOT NULL DEFAULT 0, physicalStatus TINYINT NOT NULL DEFAULT 0, religion INT(10) NOT NULL DEFAULT 0,caste INT(10) NOT NULL DEFAULT 0,subcaste TEXT NOT NULL, manglik TINYINT NOT NULL DEFAULT 0,dosham INT(100) NOT NULL DEFAULT 0, sudham INT(100) NOT NULL DEFAULT 0,star TEXT NOT NULL, eatingHabits TEXT NOT NULL, drinkingHabits TEXT NOT NULL, smokingHabits TEXT NOT NULL, languages TEXT NOT NULL, countries TEXT NOT NULL, states TEXT NOT NULL, districts TEXT NOT NULL, places TEXT NOT NULL, citizenship TEXT NOT NULL, occupation TEXT NOT NULL, annualIncome INT NOT NULL DEFAULT 0, partnerDescription TEXT NOT NULL, PRIMARY KEY(preferenceId), FOREIGN KEY (userId) REFERENCES users(userId))ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;
 
 
 -- ----Table for photos-----
@@ -128,6 +128,11 @@ create table religion(religionId BIGINT UNIQUE NOT NULL AUTO_INCREMENT, name VAR
 -- -table for caste----
 
 create table caste(casteId BIGINT UNIQUE NOT NULL AUTO_INCREMENT, religionId BIGINT NOT NULL, name VARCHAR(250) NOT NULL, active BIGINT NOT NULL DEFAULT 1, PRIMARY KEY(casteId), FOREIGN KEY (religionId) REFERENCES religion(religionId))ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;
+
+-- -table for sub caste----
+
+create table subcaste(subcasteId BIGINT UNIQUE NOT NULL AUTO_INCREMENT,casteId BIGINT NOT NULL, name VARCHAR(250) NOT NULL, active BIGINT NOT NULL DEFAULT 1, PRIMARY KEY(subcasteId), FOREIGN KEY (casteId) REFERENCES caste(casteId))ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;
+
 
 -- -table for education_master---
 

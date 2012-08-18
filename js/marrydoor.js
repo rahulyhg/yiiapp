@@ -1,4 +1,10 @@
-	$(document).ready(function(){
+	
+		function add(select1,select2)
+		{
+			$('#'+select1+' option:selected').appendTo('#'+select2);
+			return false;
+		}		
+		$(document).ready(function(){
    		//toggle the request dropdown 
    		
    		$("#requestIcon").click(function(){
@@ -158,6 +164,8 @@
    			$("#paymentOptionsContainer").slideToggle();
    			
    		});
+   		
+   		
    		
    		// detect the mouse click on the document
    		

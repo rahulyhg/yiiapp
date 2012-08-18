@@ -14,8 +14,11 @@
  * @property integer $heightTo
  * @property integer $physicalStatus
  * @property integer $religion
- * @property string $caste
+ * @property integer $caste
+ * @property string $subcaste
  * @property integer $manglik
+ * @property integer $dosham
+ * @property integer $sudham
  * @property string $star
  * @property string $eatingHabits
  * @property string $drinkingHabits
@@ -61,12 +64,12 @@ class Partnerpreferences extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('ageFrom, ageTo, maritalStatus, haveChildren, heightFrom, heightTo, physicalStatus, religion, manglik, annualIncome', 'numerical', 'integerOnly'=>true),
+			array('ageFrom, ageTo, maritalStatus, haveChildren, heightFrom, heightTo, physicalStatus, religion, caste, manglik, dosham, sudham, annualIncome', 'numerical', 'integerOnly'=>true),
 			array('userId', 'length', 'max'=>20),
-			array('caste, star, eatingHabits, drinkingHabits, smokingHabits, languages, countries, states, districts, places, citizenship, occupation, partnerDescription', 'safe'),
+			array('subcaste, star, eatingHabits, drinkingHabits, smokingHabits, languages, countries, states, districts, places, citizenship, occupation, partnerDescription', 'safe'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('preferenceId, userId, ageFrom, ageTo, maritalStatus, haveChildren, heightFrom, heightTo, physicalStatus, religion, caste, manglik, star, eatingHabits, drinkingHabits, smokingHabits, languages, countries, states, districts, places, citizenship, occupation, annualIncome, partnerDescription', 'safe', 'on'=>'search'),
+			array('preferenceId, userId, ageFrom, ageTo, maritalStatus, haveChildren, heightFrom, heightTo, physicalStatus, religion, caste, subcaste, manglik, dosham, sudham, star, eatingHabits, drinkingHabits, smokingHabits, languages, countries, states, districts, places, citizenship, occupation, annualIncome, partnerDescription', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -99,7 +102,10 @@ class Partnerpreferences extends CActiveRecord
 			'physicalStatus' => 'Physical Status',
 			'religion' => 'Religion',
 			'caste' => 'Caste',
+			'subcaste' => 'Subcaste',
 			'manglik' => 'Manglik',
+			'dosham' => 'Dosham',
+			'sudham' => 'Sudham',
 			'star' => 'Star',
 			'eatingHabits' => 'Eating Habits',
 			'drinkingHabits' => 'Drinking Habits',
@@ -137,8 +143,11 @@ class Partnerpreferences extends CActiveRecord
 		$criteria->compare('heightTo',$this->heightTo);
 		$criteria->compare('physicalStatus',$this->physicalStatus);
 		$criteria->compare('religion',$this->religion);
-		$criteria->compare('caste',$this->caste,true);
+		$criteria->compare('caste',$this->caste);
+		$criteria->compare('subcaste',$this->subcaste,true);
 		$criteria->compare('manglik',$this->manglik);
+		$criteria->compare('dosham',$this->dosham);
+		$criteria->compare('sudham',$this->sudham);
 		$criteria->compare('star',$this->star,true);
 		$criteria->compare('eatingHabits',$this->eatingHabits,true);
 		$criteria->compare('drinkingHabits',$this->drinkingHabits,true);
