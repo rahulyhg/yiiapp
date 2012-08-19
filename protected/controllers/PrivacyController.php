@@ -6,6 +6,11 @@ class PrivacyController extends Controller
 	{
 		$this->render('index');
 	}
+	
+	public function actionUpdate()
+	{
+		
+	}
 
 	public function actionForget()
 	{

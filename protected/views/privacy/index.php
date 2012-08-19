@@ -139,13 +139,13 @@
 
 		<p class="txt_bld_top">My Album</p>
 </div><!--/div_mdl_space_left-->
-
+<form id="updateAlbum"  name="updateAlbum" method="post"  action="/privacy/update">
 		  <div class="div_mdl_space_ff"><!--div_mdl_space_mdl-->
-
-				<p class="check_box"><INPUT type="checkbox" name="selection">&nbsp;All</p>
-					<p class="check_box"><INPUT type="checkbox" name="selection">&nbsp;Subscribers</p>
-						<p class="check_box"><INPUT type="checkbox" name="selection">&nbsp;Loged members</p> 
-		    <p class="check_box"><INPUT type="checkbox" name="selection">&nbsp;By requeste</p> 
+			
+				<p class="check_box"><INPUT type="checkbox" name="album[]" value="all">&nbsp;All</p>
+					<p class="check_box"><INPUT type="checkbox" name="album[]" value="subscribers">&nbsp;Subscribers</p>
+						<p class="check_box"><INPUT type="checkbox" name="album[]" value="member">&nbsp;Loged members</p> 
+		    <p class="check_box"><INPUT type="checkbox" name="album[]" value="request">&nbsp;By requeste</p> 
 							<p class="txt_lft_300">23 Album Request Decliened</p>
                             
                              
@@ -160,12 +160,13 @@
 
 
 					<div class="div_mdl_space_rgt"><!--div_mdl_space_rgt-->
-			<p class="log_color_in_sub"><a href="#">Edit</a></p>
+			<p class="log_color_in_sub"><a href="javascript:updateAlbum.submit();" class="srch-sub-bottom">Update</a></p>
+			
             
             
 
 	</div><!--/div_mdl_space_rgt-->
-
+</form>
 </div><!--/div_mdl_space_22-->
 
 
@@ -182,13 +183,13 @@
 		<p class="txt_bld_top">My Family Album
 </p>
 </div><!--/div_mdl_space_left-->
-
+		<form id="updateFamily"  name="updateFamily" method="post"  action="/privacy/update">
 		  <div class="div_mdl_space_ff"><!--div_mdl_space_mdl-->
 
-				<p class="check_box"><INPUT type="checkbox" name="selection">&nbsp;All</p>
-					<p class="check_box"><INPUT type="checkbox" name="selection">&nbsp;Subscribers</p>
-						<p class="check_box"><INPUT type="checkbox" name="selection">&nbsp;Loged members</p> 
-			<p class="check_box"><INPUT type="checkbox" name="selection">&nbsp;By requeste</p> 
+				<p class="check_box"><INPUT type="checkbox" name="family[]" value="all">&nbsp;All</p>
+					<p class="check_box"><INPUT type="checkbox" name="family[]" value="subscribers">&nbsp;Subscribers</p>
+						<p class="check_box"><INPUT type="checkbox" name="family[]" value="member">&nbsp;Loged members</p> 
+			<p class="check_box"><INPUT type="checkbox" name="family[]" value="request">&nbsp;By requeste</p> 
 							 <p class="txt_lft_300">23 Family Album Request Decliened</p>
                             
                              
@@ -204,10 +205,10 @@
 
 
 					<div class="div_mdl_space_rgt"><!--div_mdl_space_rgt-->
-			<p class="log_color_in_sub"><a href="#">Edit</a></p>
+			<p class="log_color_in_sub"><a href="javascript:updateFamily.submit();" class="srch-sub-bottom">Update</a></p>
             
-
 	</div><!--/div_mdl_space_rgt-->
+	</form>
 
 </div><!--/div_mdl_space_22-->
 
@@ -227,13 +228,13 @@
 		<p class="txt_bld_top">My Documents
 </p>
 </div><!--/div_mdl_space_left-->
-
+<form id="updateDoc"  name="updateDoc" method="post"  action="/privacy/update">
 		  <div class="div_mdl_space_ff"><!--div_mdl_space_mdl-->
 
  <p class="radio_x">
-          <input type="radio" name="registeruu" value="myself">&nbsp;Subscribers</p>
+          <input type="checkbox" name="documents[]" value="subscribers">&nbsp;Subscribers</p>
                             <p class="radio">
-                            <input type="radio" name="registeruu" value="son">&nbsp;By request</p>
+                            <input type="checkbox" name="documents[]" value="request">&nbsp;By request</p>
 
 <div class="clear"></div>
  	 <p class="txt_lft_300"><span class="txt_lft_1px">23 Document Request Decliened</span> &nbsp;&nbsp;&nbsp;</p>
@@ -249,10 +250,10 @@
 
 
 					<div class="div_mdl_space_rgt"><!--div_mdl_space_rgt-->
-			<p class="log_color_in_sub"><a href="#">Edit</a></p>
+			<p class="log_color_in_sub"><a href="javascript:updateDoc.submit();" class="srch-sub-bottom">Update</a></p>
 
 	</div><!--/div_mdl_space_rgt-->
-    
+    </form>
 
 </div><!--/div_mdl_space_22--><!--/list_class-new_div_1--><!--/list_class-new_div_2--><!--/div_mdl_space_rgt-->
     
@@ -269,13 +270,13 @@
 		<p class="txt_bld_top">My Astro Details
 </p>
 </div><!--/div_mdl_space_left-->
-
+<form id="updateAstro"  name="updateAstro" method="post"  action="/privacy/update">
 		  <div class="div_mdl_space_ff"><!--div_mdl_space_mdl-->
 
-				<p class="check_box"><INPUT type="checkbox" name="selection">&nbsp;All</p>
-					<p class="check_box"><INPUT type="checkbox" name="selection">&nbsp;Subscribers</p>
-						<p class="check_box"><INPUT type="checkbox" name="selection">&nbsp;Loged members</p> 
-			<p class="check_box"><INPUT type="checkbox" name="selection">&nbsp;By requeste</p> 
+				<p class="check_box"><INPUT type="checkbox" name="astro[]" value="all">&nbsp;All</p>
+					<p class="check_box"><INPUT type="checkbox" name="astro[]" value="subscribers">&nbsp;Subscribers</p>
+						<p class="check_box"><INPUT type="checkbox" name="astro[]" value="member">&nbsp;Loged members</p> 
+			<p class="check_box"><INPUT type="checkbox" name="astro[]" value="request">&nbsp;By requeste</p> 
 	 	   	 <p class="txt_lft_300"><span class="txt_lft_1px">23 Astro DetailsRequest Decliened</span></p>
                             
                              
@@ -289,10 +290,10 @@
 
 
 					<div class="div_mdl_space_rgt"><!--div_mdl_space_rgt-->
-			<p class="log_color_in_sub"><a href="#">Edit</a></p>
+			<p class="log_color_in_sub"><a href="javascript:updateAstro.submit();" class="srch-sub-bottom">Update</a></p>
 
 	</div><!--/div_mdl_space_rgt-->
-
+</form>
 </div><!--/div_mdl_space_22-->
   <div class="clear"></div>
   
@@ -307,14 +308,14 @@
 		<p class="txt_bld_top">My Reference
 </p>
 </div><!--/div_mdl_space_left-->
-
+<form id="updateReference"  name="updateReference" method="post"  action="/privacy/update">
 		  <div class="div_mdl_space_ff"><!--div_mdl_space_mdl-->
 
 				
  <p class="radio_x">
-          <input type="radio" name="registeruu" value="myself">&nbsp;Subscribers</p>
+          <input type="checkbox" name="reference[]" value="subscribers">&nbsp;Subscribers</p>
                             <p class="radio">
-                            <input type="radio" name="registeruu" value="son">&nbsp;By request</p> 
+                            <input type="checkbox" name="reference[]" value="request">&nbsp;By request</p> 
             <div class="clear"></div>
             
 								<p class="txt_lft_300"><span class="txt_lft_1px">23 Refference Request Decliened</span> &nbsp;&nbsp;</p>
@@ -331,7 +332,7 @@
 
 
 					<div class="div_mdl_space_rgt"><!--div_mdl_space_rgt-->
-			<p class="log_color_in_sub"><a href="#">Edit</a></p>
+			<p class="log_color_in_sub"><a href="javascript:updateFamily.submit();" class="srch-sub-bottom">Update</a></p>
             
             
 
@@ -343,7 +344,7 @@
   
 <div class="space-10px"><p>&nbsp;</p></div>
 
-
+</form>
 
 				
 
@@ -356,15 +357,15 @@
 		<p class="txt_bld_top">My Contact
 </p>
 </div><!--/div_mdl_space_left-->
-
+<form id="updateContact"  name="updateContact" method="post"  action="/privacy/update">
 		  <div class="div_mdl_space_ff"><!--div_mdl_space_mdl-->
 
 				
  <p class="radio_x">
-   <input type="radio" name="registeruu" value="myself" />
+   <input type="checkbox" name="contact[]" value="subscribers" />
    &nbsp;Subscribers</p>
                             <p class="radio">
-            <input type="radio" name="registeruu" value="son">&nbsp;By request</p> 
+            <input type="radio" name="contact[]" value="request">&nbsp;By request</p> 
             <div class="clear"></div>
 			 <p class="txt_lft_300"><span class="txt_lft_1px">23 Contact Request Decliened</span></p>
                             
@@ -381,10 +382,10 @@
 
 
 					<div class="div_mdl_space_rgt"><!--div_mdl_space_rgt-->
-			<p class="log_color_in_sub"><a href="#">Edit</a></p>
+			<p class="log_color_in_sub"><a href="javascript:updateContact.submit();" class="srch-sub-bottom">Update</a></p>
 
 	</div><!--/div_mdl_space_rgt-->
-
+</form>
 </div><!--/div_mdl_space_22-->
 
 
