@@ -413,12 +413,35 @@ class UserController extends Controller
 	}
 	public function actionDelete()
 	{
-		
+		$user = Yii::app()->session->get('user');
+		if(isset($_POST['delete']))
+		{
+			$this->redirect(array("//site"));
+		}	
+		else 
+		{
+			$this->layout= '//layouts/single';
+			$this->render('delete');
+		}
 	}
 	public function actionDeactivate()
 	{
 		
+		$user = Yii::app()->session->get('user');
+		if(isset($_POST['deactivate']))
+		{
+			//deactivate the user and return to the home page
+			$this->redirect(array("//site"));
+			
+		}
+		else 
+		{
+			$this->layout= '//layouts/single';
+			$this->render('deactivate');
+		}
+			
 	}
+	
 	public function actionIndex()
 	{
 		$user = Users::model()->findByPk(2);
