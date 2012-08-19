@@ -210,7 +210,8 @@ create table bodyType_master(id BIGINT UNIQUE NOT NULL AUTO_INCREMENT, name VARC
 create table complexion_master(id BIGINT UNIQUE NOT NULL AUTO_INCREMENT, name VARCHAR(250) NOT NULL, active BIGINT NOT NULL DEFAULT 1, PRIMARY KEY(id))ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;
 
 -- table for privacy
-create table privacy (id BIGINT UNIQUE NOT NULL AUTO_INCREMENT, items ENUM('album', 'family', 'documents','astro','reference','contact'),privacy SET('all', 'subscribers', 'member', 'request'), PRIMARY KEY(id))ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8
+create table privacy (id BIGINT UNIQUE NOT NULL AUTO_INCREMENT, userId BIGINT NOT NULL,items ENUM('album', 'family', 'documents','astro','reference','contact'),privacy SET('all', 'subscribers', 'member', 'request'), PRIMARY KEY(id),FOREIGN KEY (userId) REFERENCES users(userId))ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8
+
 
 
 

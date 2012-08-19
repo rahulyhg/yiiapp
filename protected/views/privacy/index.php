@@ -8,12 +8,12 @@
         	<div class="profile_200">
  
  
-     <a href="my-album.html"><img src="images/model_1.jpg" border="0" class="mrgn_5top" /></a>
+     <a href="my-album.html"><img src="<?php echo Yii::app()->params['resourceUrl']; ?>/images/model_1.jpg" border="0" class="mrgn_5top" /></a>
 	      <p class="mrgn_25"><span class="text_pink_13"><a href="my-page.html">Biju George</a></span></p>
                 <div class="clear"></div>
                 <div class="line"></div>
                 <div class="div_ww">
-                <img src="images/img_03more.jpg" class="left" width="100%" /> </div>
+                <img src="<?php echo Yii::app()->params['resourceUrl']; ?>/images/img_03more.jpg" class="left" width="100%" /> </div>
                 
                     
         <p class="text_blue_15">REMAINING. <a href="#">RE-CHARGE&nbsp;NOW</a></p>    
@@ -28,14 +28,14 @@
                   <span  class="innersidelinks-l"><a href="my-privacy-settings.html">My Settings</a></span>
               <div class="clear"></div>
                 <div class="line_sm"></div>
-                <p class="txt_bld-15"><img src="images/arrow_small_right.jpg" />&nbsp;&nbsp;&nbsp;Messages</p>
+                <p class="txt_bld-15"><img src="<?php echo Yii::app()->params['resourceUrl']; ?>/images/arrow_small_right.jpg" />&nbsp;&nbsp;&nbsp;Messages</p>
                 	<p class="bullettext"><a href="messages.html">Inbox 25</a></p>
                 	<p class="bullettext"><a href="messages-sent.html">Outbox 35</a></p>
                 	<p class="bullettext"><a href="#">Delivery Report 3</a></p>
                 </ul>    
 <div class="clear"></div>
                 <div class="line_sm"></div>
-                <p class="txt_bld-15"><img src="images/arrow_small_right.jpg" />&nbsp;&nbsp;&nbsp;Interest</p>
+                <p class="txt_bld-15"><img src="<?php echo Yii::app()->params['resourceUrl']; ?>/images/arrow_small_right.jpg" />&nbsp;&nbsp;&nbsp;Interest</p>
                 <p class="bullettext"><a href="interest-sent.html">Sent 35</a></p>
                 
                 	<p class="bullettext"><a href="interest-recived.html">Recived 12</a></p>
@@ -43,7 +43,7 @@
                 	<p class="bullettext"><a href="#">Decliened 7</a></p>
                 	<p class="bullettext"><a href="interest-acceped-you.html">Accepted by me 1</a>                </p>
                	<div class="line_sm"></div>
-                <p class="txt_bld-15"><img src="images/arrow_small_right.jpg" />&nbsp;&nbsp;&nbsp;Album</p>
+                <p class="txt_bld-15"><img src="<?php echo Yii::app()->params['resourceUrl']; ?>/images/arrow_small_right.jpg" />&nbsp;&nbsp;&nbsp;Album</p>
               
               
               
@@ -54,7 +54,7 @@
                 	<p class="bullettext"><a href="request-declined.html">Declined 3</a></p>
 <p class="bullettext"><a href="request-accepted.html">Accepted by me 1</a>              </p>
 <div class="line_sm"></div>
-                <p class="txt_bld-15"><img src="images/arrow_small_right.jpg" />&nbsp;&nbsp;&nbsp;Documents</p>
+                <p class="txt_bld-15"><img src="<?php echo Yii::app()->params['resourceUrl']; ?>/images/arrow_small_right.jpg" />&nbsp;&nbsp;&nbsp;Documents</p>
                 
                 
                 
@@ -63,7 +63,7 @@
                <p class="bullettext"><a href="request-declined.html">Declined 3</a></p>
                <p class="bullettext"><a href="request-accepted.html">Accepted by me 1</a></p>
 <div class="line_sm"></div>
-                <p class="txt_bld-15"><img src="images/arrow_small_right.jpg" />&nbsp;&nbsp;&nbsp;Contacts</p>
+                <p class="txt_bld-15"><img src="<?php echo Yii::app()->params['resourceUrl']; ?>/images/arrow_small_right.jpg" />&nbsp;&nbsp;&nbsp;Contacts</p>
                 
                 
                <p class="bullettext"><a href="request-sent.html">Sent 35</a></p>
@@ -71,7 +71,7 @@
                <p class="bullettext"><a href="request-declined.html">Declined 3</a></p>
                <p class="bullettext"><a href="request-accepted.html">Accepted by me 1</a></p>
 <div class="line_sm"></div>
-                <p class="txt_bld-15"><img src="images/arrow_small_right.jpg" />&nbsp;&nbsp;&nbsp;Famili album</p>
+                <p class="txt_bld-15"><img src="<?php echo Yii::app()->params['resourceUrl']; ?>/images/arrow_small_right.jpg" />&nbsp;&nbsp;&nbsp;Famili album</p>
                 <p class="bullettext"><a href="request-sent.html">Sent 35</a></p>
                 <p class="bullettext"><a href="request-acceped-recived.html">Recived 12</a></p>
                 <p class="bullettext"><a href="request-declined.html">Declined 3</a></p>
@@ -99,12 +99,12 @@
   <div class="clear"></div>
                 <div class="line_sm"></div>                
                 <div class="div_ww" > 
-                <img src="images/img_advert.jpg" class="left" width="100%" /> </div>
+                <img src="<?php echo Yii::app()->params['resourceUrl']; ?>/images/img_advert.jpg" class="left" width="100%" /> </div>
                 
                 <div class="clear"></div>
                 <div class="line_sm"></div>
                 <div class="div_ww" > 
-                <img src="images/do-you-like.jpg" class="left" width="100%" /> </div>
+                <img src="<?php echo Yii::app()->params['resourceUrl']; ?>/images/do-you-like.jpg" class="left" width="100%" /> </div>
                 
                 <div class="clear"></div>
                 <p class="txt_bld">Suggest to a friend</p>
@@ -141,12 +141,12 @@
 </div><!--/div_mdl_space_left-->
 <form id="updateAlbum"  name="updateAlbum" method="post"  action="/privacy/update">
 		  <div class="div_mdl_space_ff"><!--div_mdl_space_mdl-->
-			
-				<p class="check_box"><INPUT type="checkbox" name="album[]" value="all">&nbsp;All</p>
-					<p class="check_box"><INPUT type="checkbox" name="album[]" value="subscribers">&nbsp;Subscribers</p>
-						<p class="check_box"><INPUT type="checkbox" name="album[]" value="member">&nbsp;Loged members</p> 
-		    <p class="check_box"><INPUT type="checkbox" name="album[]" value="request">&nbsp;By requeste</p> 
+				<p class="check_box">
+				<?php echo CHtml::checkBoxList('album',$album,array('all'=>'All','subscribers'=>'Subscribers','member'=> 'Logged Members','request' => 'By Request')); ?>
+				</p>			
 							<p class="txt_lft_300">23 Album Request Decliened</p>
+							
+							
                             
                              
                          
@@ -186,15 +186,11 @@
 		<form id="updateFamily"  name="updateFamily" method="post"  action="/privacy/update">
 		  <div class="div_mdl_space_ff"><!--div_mdl_space_mdl-->
 
-				<p class="check_box"><INPUT type="checkbox" name="family[]" value="all">&nbsp;All</p>
-					<p class="check_box"><INPUT type="checkbox" name="family[]" value="subscribers">&nbsp;Subscribers</p>
-						<p class="check_box"><INPUT type="checkbox" name="family[]" value="member">&nbsp;Loged members</p> 
-			<p class="check_box"><INPUT type="checkbox" name="family[]" value="request">&nbsp;By requeste</p> 
+			<p class="check_box">
+				<?php echo CHtml::checkBoxList('family',$family,array('all'=>'All','subscribers'=>'Subscribers','member'=> 'Logged Members','request' => 'By Request')); ?>
+				</p>
+
 							 <p class="txt_lft_300">23 Family Album Request Decliened</p>
-                            
-                             
-                        
-                            
                              <p class="txt_lft_300">10 Family Album Request Accepted </p>
                              
                 
@@ -230,12 +226,11 @@
 </div><!--/div_mdl_space_left-->
 <form id="updateDoc"  name="updateDoc" method="post"  action="/privacy/update">
 		  <div class="div_mdl_space_ff"><!--div_mdl_space_mdl-->
-
- <p class="radio_x">
-          <input type="checkbox" name="documents[]" value="subscribers">&nbsp;Subscribers</p>
-                            <p class="radio">
-                            <input type="checkbox" name="documents[]" value="request">&nbsp;By request</p>
-
+		
+					<p class="check_box">
+				<?php echo CHtml::checkBoxList('documents',$documents,array('subscribers'=>'Subscribers','request' => 'By Request')); ?>
+				</p>
+		
 <div class="clear"></div>
  	 <p class="txt_lft_300"><span class="txt_lft_1px">23 Document Request Decliened</span> &nbsp;&nbsp;&nbsp;</p>
                             
@@ -273,16 +268,12 @@
 <form id="updateAstro"  name="updateAstro" method="post"  action="/privacy/update">
 		  <div class="div_mdl_space_ff"><!--div_mdl_space_mdl-->
 
-				<p class="check_box"><INPUT type="checkbox" name="astro[]" value="all">&nbsp;All</p>
-					<p class="check_box"><INPUT type="checkbox" name="astro[]" value="subscribers">&nbsp;Subscribers</p>
-						<p class="check_box"><INPUT type="checkbox" name="astro[]" value="member">&nbsp;Loged members</p> 
-			<p class="check_box"><INPUT type="checkbox" name="astro[]" value="request">&nbsp;By requeste</p> 
+			<p class="check_box">
+				<?php echo CHtml::checkBoxList('astro',$astro,array('all'=>'All','subscribers'=>'Subscribers','member'=> 'Logged Members','request' => 'By Request')); ?>
+				</p>
+
 	 	   	 <p class="txt_lft_300"><span class="txt_lft_1px">23 Astro DetailsRequest Decliened</span></p>
-                            
-                             
-                         
-                            
-                             <p class="txt_lft_300"><span class="txt_lft_1px">10  Astro Details Request Accepted</span></p>
+              <p class="txt_lft_300"><span class="txt_lft_1px">10  Astro Details Request Accepted</span></p>
                              
                  
                          
@@ -311,11 +302,10 @@
 <form id="updateReference"  name="updateReference" method="post"  action="/privacy/update">
 		  <div class="div_mdl_space_ff"><!--div_mdl_space_mdl-->
 
+							<p class="check_box">
+				<?php echo CHtml::checkBoxList('reference',$reference,array('subscribers'=>'Subscribers','request' => 'By Request')); ?>
+				</p>
 				
- <p class="radio_x">
-          <input type="checkbox" name="reference[]" value="subscribers">&nbsp;Subscribers</p>
-                            <p class="radio">
-                            <input type="checkbox" name="reference[]" value="request">&nbsp;By request</p> 
             <div class="clear"></div>
             
 								<p class="txt_lft_300"><span class="txt_lft_1px">23 Refference Request Decliened</span> &nbsp;&nbsp;</p>
@@ -332,7 +322,7 @@
 
 
 					<div class="div_mdl_space_rgt"><!--div_mdl_space_rgt-->
-			<p class="log_color_in_sub"><a href="javascript:updateFamily.submit();" class="srch-sub-bottom">Update</a></p>
+			<p class="log_color_in_sub"><a href="javascript:updateReference.submit();" class="srch-sub-bottom">Update</a></p>
             
             
 
@@ -360,12 +350,10 @@
 <form id="updateContact"  name="updateContact" method="post"  action="/privacy/update">
 		  <div class="div_mdl_space_ff"><!--div_mdl_space_mdl-->
 
-				
- <p class="radio_x">
-   <input type="checkbox" name="contact[]" value="subscribers" />
-   &nbsp;Subscribers</p>
-                            <p class="radio">
-            <input type="radio" name="contact[]" value="request">&nbsp;By request</p> 
+			<p class="check_box">
+				<?php echo CHtml::checkBoxList('contact',$contact,array('subscribers'=>'Subscribers','request' => 'By Request')); ?>
+				</p>
+
             <div class="clear"></div>
 			 <p class="txt_lft_300"><span class="txt_lft_1px">23 Contact Request Decliened</span></p>
                             
@@ -420,7 +408,7 @@
 <p class="text_20_gery"><a href="payment_benefits.html">Subscribe Now!</a><br />
 Only for</p>
 
-<img src="images/img_200.jpg" class="left" width="100%"  border="0"/>
+<img src="<?php echo Yii::app()->params['resourceUrl']; ?>/images/img_200.jpg" class="left" width="100%"  border="0"/>
 
 
 <p class="text_20_gery">For 3 Months</p>

@@ -5,8 +5,12 @@
  *
  * The followings are the available columns in table 'privacy':
  * @property string $id
+ * @property string $userId
  * @property string $items
  * @property string $privacy
+ *
+ * The followings are the available model relations:
+ * @property Users $user
  */
 class Privacy extends CActiveRecord
 {
@@ -36,11 +40,12 @@ class Privacy extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
+			array('userId', 'length', 'max'=>20),
 			array('items', 'length', 'max'=>9),
 			array('privacy', 'safe'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, items, privacy', 'safe', 'on'=>'search'),
+			array('id, userId, items, privacy', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -52,6 +57,7 @@ class Privacy extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
+			'user' => array(self::BELONGS_TO, 'Users', 'userId'),
 		);
 	}
 
@@ -62,6 +68,7 @@ class Privacy extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
+			'userId' => 'User',
 			'items' => 'Items',
 			'privacy' => 'Privacy',
 		);
@@ -79,6 +86,7 @@ class Privacy extends CActiveRecord
 		$criteria=new CDbCriteria;
 
 		$criteria->compare('id',$this->id,true);
+		$criteria->compare('userId',$this->userId,true);
 		$criteria->compare('items',$this->items,true);
 		$criteria->compare('privacy',$this->privacy,true);
 
