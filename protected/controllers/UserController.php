@@ -454,7 +454,14 @@ class UserController extends Controller
 		$this->render('horoscope',array('model' => new Horoscopes()));
 	}
 
-	
+	public function actionProfilepicture()
+	{
+		$user = Users::model()->findByPk(2);
+  		Yii::app()->session->add('username',$user->name);
+  		Yii::app()->session->add('user',$user);
+  		$path = Utilities::getDirectory('images',array('profile',$user['marryId']));
+		$this->render('profilepicture');
+	}
 	// Uncomment the following methods and override them if needed
 	/*
 	public function filters()
