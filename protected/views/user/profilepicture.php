@@ -88,14 +88,18 @@
 
 <div class="list_div_2"><!--list_div_2-->
 
-<form action="" method="get">
- <input type="file" name="datafile" size="19"/>
- </form>
- <br />
+<form action="<?php echo Yii::app()->params['homeUrl'] ?>/user/profilepicture" method="post" enctype="multipart/form-data">
+ <input type="file" name="profilePhoto" id="profilePhoto"  class="fileStyle"/>
 
-  <a class="focus" href="#">Add More</a>
-                <a class="focus" href="#">Upload</a>
-                </div>
+ <br />
+  <div>
+  <input type="button" name="morephoto" id="morephoto" class="btnStyle" value="Add more" /></div>
+	<div class="clearSpace"></div>
+  <div>
+  <input type="submit" name="uploadphoto" id="uploadphoto" class="btnStyle" value="Upload" /></div>
+
+  </form>
+ </div>
 <!--/list_div_2-->
 
 

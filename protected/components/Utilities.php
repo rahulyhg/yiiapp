@@ -158,4 +158,31 @@ class Utilities
 		return $returnPath;
    }
 	
+   public static function getExtension($file) {  
+		$position = strrpos($file,".");  
+		if (!$position) { return ""; } 
+		$length = strlen($file) - $position;  
+		$extension = substr($file,$position+1,$length);  
+		return $extension;  
+	} 
+	
+	public static function getFullFilePath($path,$fileName){
+		return $path.self::DS.$fileName;
+	}
+	
+	public static function isValidImageExtension($extension){
+		if(in_array($extension,array('jpg','jpeg','gif','png'))){
+			return true;
+		}else{
+			return false;
+		}
+	}
+	
+	public static function uploadFile($fileName,$path){
+		if(move_uploaded_file($fileName, $path)) { 
+				return true;
+			} else{  
+				 return false;  
+			} 
+	}
 }

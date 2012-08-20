@@ -1030,12 +1030,53 @@
 	float:right;
 	}
 	
+/*rewritten styles by developers*/
+
+.btnStyle{
+	width:67px;
+	height:27px;
+	display: block;
+	font-size : 12px;
+	color :#876099;
+	text-decoration : none;
+	background :#e6e7e8;
+	font:Lucida Grande;
+	font-family:Arial, Helvetica, sans-serif;
+	border:none;
+	font-weight:normal;
+	cursor:pointer;
+	float:left;
+	}
+		 
+	 .btnStyle:hover{
+	color :#fff;
+	background :#876099;
+	 }
+	 .clearSpace{
+	 	width:10px;
+	 	float:left;
+	 	border:1px solid white;
+	 }
+		 
+ .fileStyle{
+	width:220px;
+	height:25px;
+	display: block;
+	font-size : 12px;
+	color :#876099;
+	text-decoration : none;
+	background :#e6e7e8;
+	font:Lucida Grande;
+	font-family:Arial, Helvetica, sans-serif;
+	border:none;
+	font-weight:normal;
+	cursor:pointer;
+	}	 
 	
-		 
-	
-		 
-		 
-		 
+	.fileStyle:hover{
+	color :#fff;
+	background :#876099;
+	 }	 
 		 
 		 
 		 

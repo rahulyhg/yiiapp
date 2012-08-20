@@ -459,33 +459,23 @@ class UserController extends Controller
 		$user = Users::model()->findByPk(2);
   		Yii::app()->session->add('username',$user->name);
   		Yii::app()->session->add('user',$user);
-  		$path = Utilities::getDirectory('images',array('profile',$user['marryId']));
+  		$file = $_FILES['profilePhoto'];  
+		if (!empty($_FILES['profilePhoto']['tmp_name'])){  
+			$fileName=basename( $_FILES['profilePhoto']['name']);   
+			$extension = strtolower(Utilities::getExtension($fileName));  
+			if(Utilities::isValidImageExtension($extension)){         
+			 	$path = Utilities::getDirectory('images',array('profile',$user['marryId'])); 
+			 	$fileName = $user['marryId'].date("his").".".$extension; 
+				$targetPath = Utilities::getFullFilePath($path, $fileName);
+				if(Utilities::uploadFile($_FILES['profilePhoto']['tmp_name'], $targetPath)) {
+					//code to insert to db
+				}else{
+					echo "There was an error uploading the file, please try again!";
+				}				
+			}	
+				
+		}
 		$this->render('profilepicture');
 	}
-	// Uncomment the following methods and override them if needed
-	/*
-	public function filters()
-	{
-	// return the filter configuration for this controller, e.g.:
-	return array(
-	'inlineFilterName',
-	array(
-	'class'=>'path.to.FilterClass',
-	'propertyName'=>'propertyValue',
-	),
-	);
-	}
 
-	public function actions()
-	{
-	// return external action classes, e.g.:
-	return array(
-	'action1'=>'path.to.ActionClass',
-	'action2'=>array(
-	'class'=>'path.to.AnotherActionClass',
-	'propertyName'=>'propertyValue',
-	),
-	);
-	}
-	*/
 }
