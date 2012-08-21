@@ -83,18 +83,18 @@ class Users extends CActiveRecord
 		return array(
 			'addresses' => array(self::HAS_MANY, 'Address', 'userId'),
 			'documents' => array(self::HAS_MANY, 'Documents', 'userId'),
-			'educations' => array(self::HAS_MANY, 'Education', 'userId'),
-			'familyprofiles' => array(self::HAS_MANY, 'Familyprofile', 'userId'),
-			'habits' => array(self::HAS_MANY, 'Habit', 'userId'),
-			'hobiesandinterests' => array(self::HAS_MANY, 'Hobiesandinterests', 'userId'),
+			'educations' => array(self::HAS_ONE, 'Education', 'userId'),
+			'familyprofiles' => array(self::HAS_ONE, 'Familyprofile', 'userId'),
+			'habits' => array(self::HAS_ONE, 'Habit', 'userId'),
+			'hobiesandinterests' => array(self::HAS_ONE, 'Hobiesandinterests', 'userId'),
 			'horoscopes' => array(self::HAS_MANY, 'Horoscopes', 'userId'),
-			'partnerpreferences' => array(self::HAS_MANY, 'Partnerpreferences', 'userId'),
+			'partnerpreferences' => array(self::HAS_ONE, 'Partnerpreferences', 'userId'),
 			'photoses' => array(self::HAS_MANY, 'Photos', 'userId'),
-			'physicaldetails' => array(self::HAS_MANY, 'Physicaldetails', 'userId'),
+			'physicaldetails' => array(self::HAS_ONE, 'Physicaldetails', 'userId'),
 			'references' => array(self::HAS_MANY, 'Reference', 'userId'),
-			'usercontactdetails' => array(self::HAS_MANY, 'Usercontactdetails', 'userId'),
+			'usercontactdetails' => array(self::HAS_ONE, 'Usercontactdetails', 'userId'),
 			'userloggeddetails' => array(self::HAS_MANY, 'Userloggeddetails', 'userId'),
-			'userpersonaldetails' => array(self::HAS_MANY, 'Userpersonaldetails', 'userId'),
+			'userpersonaldetails' => array(self::HAS_ONE, 'Userpersonaldetails', 'userId'),
 		);
 	}
 

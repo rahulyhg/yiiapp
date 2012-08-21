@@ -24,7 +24,7 @@ class UserIdentity extends CUserIdentity
 			$this->errorCode=self::ERROR_USERNAME_INVALID;
 		else if(isset($this->username) && isset($this->password))
 		{
-			$record = Users::model()->find('email = ? AND password = ?',array($this->name,md5($this->password)));
+			$record = Users::model()->find('emailId = ? AND password = ?',array($this->username,md5($this->password)));
 			
 			if(isset($record) && $record['emailId'] != null)
 			{
@@ -32,10 +32,12 @@ class UserIdentity extends CUserIdentity
 			$mail = $record['emailId'];
 			$this->_id = $record['userId'];
 			$this->setState('user', $record['name']);
+			$this->setState('id',$this->_id);
 			Yii::app()->session->add('username',$record['name']);
 			Yii::app()->session->add('user',$record);
+			return true;
 			}
-			return ;
+			return false ;
 		}			
 		else
 			$this->errorCode=self::ERROR_NONE;

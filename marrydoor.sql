@@ -83,12 +83,14 @@ create table reference(referenceId BIGINT UNIQUE NOT NULL AUTO_INCREMENT, userId
 
 -- --TABLE FOR messages
 
-create table messages(messageId BIGINT UNIQUE NOT NULL AUTO_INCREMENT, senderId BIGINT NOT NULL, receiverId BIGINT NOT NULL, message TEXT NOT NULL, status TINYINT NOT NULL DEFAULT 0, sendDate DATE NOT NULL, PRIMARY KEY(messageId))ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;
+create table messages(messageId BIGINT UNIQUE NOT NULL AUTO_INCREMENT, senderId BIGINT NOT NULL, receiverId BIGINT NOT NULL, message TEXT NOT NULL,
+ status TINYINT NOT NULL DEFAULT 0, sendDate DATE NOT NULL, PRIMARY KEY(messageId),FOREIGN KEY (senderId) REFERENCES users(userId), FOREIGN KEY (receiverId) REFERENCES users(userID))ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;
+ 
 
 
 -- ---table for interests------
 
-create table interests(interestId BIGINT UNIQUE NOT NULL AUTO_INCREMENT, senderId BIGINT NOT NULL, receiverId BIGINT NOT NULL, status TINYINT NOT NULL DEFAULT 0, sendDate DATE NOT NULL, PRIMARY KEY(interestId))ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;
+ create table interests (interestId BIGINT UNIQUE NOT NULL AUTO_INCREMENT, senderId BIGINT NOT NULL, receiverId BIGINT NOT NULL, status TINYINT NOT NULL DEFAULT 0, sendDate DATE NOT NULL, PRIMARY KEY(interestId),FOREIGN KEY (senderId) REFERENCES users(userId), FOREIGN KEY (receiverId) REFERENCES users(userID))ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;
 
 
 
@@ -212,6 +214,57 @@ create table complexion_master(id BIGINT UNIQUE NOT NULL AUTO_INCREMENT, name VA
 -- table for privacy
 create table privacy (id BIGINT UNIQUE NOT NULL AUTO_INCREMENT, userId BIGINT NOT NULL,items ENUM('album', 'family', 'documents','astro','reference','contact'),privacy SET('all', 'subscribers', 'member', 'request'), PRIMARY KEY(id),FOREIGN KEY (userId) REFERENCES users(userId))ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8
 
+-- TABLE FOR album
 
+create table album(albumId BIGINT UNIQUE NOT NULL AUTO_INCREMENT, senderId BIGINT NOT NULL, receiverId BIGINT NOT NULL, status TINYINT NOT NULL DEFAULT 0, sendDate DATE NOT NULL, PRIMARY KEY(albumId), FOREIGN KEY (senderId) REFERENCES users(userId), FOREIGN KEY (receiverId) REFERENCES users(userID))ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;
+
+-- Table for documentRequest
+
+create table documentRequest(documentRequestId BIGINT UNIQUE NOT NULL AUTO_INCREMENT, senderId BIGINT NOT NULL, receiverId BIGINT NOT NULL, status TINYINT NOT NULL DEFAULT 0, sendDate DATE NOT NULL, PRIMARY KEY(documentRequestId), FOREIGN KEY (senderId) REFERENCES users(userId), FOREIGN KEY (receiverId) REFERENCES users(userID))ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;
+
+-- Table for contactRequest
+
+create table contactRequest(contactRequestId BIGINT UNIQUE NOT NULL AUTO_INCREMENT, senderId BIGINT NOT NULL, receiverId BIGINT NOT NULL, status TINYINT NOT NULL DEFAULT 0, sendDate DATE NOT NULL, PRIMARY KEY(contactRequestId), FOREIGN KEY (senderId) REFERENCES users(userId), FOREIGN KEY (receiverId) REFERENCES users(userID))ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;
+
+-- Table for familyAlbum
+
+create table familyAlbum(familyAlbumId BIGINT UNIQUE NOT NULL AUTO_INCREMENT, senderId BIGINT NOT NULL, receiverId BIGINT NOT NULL, status TINYINT NOT NULL DEFAULT 0, sendDate DATE NOT NULL, PRIMARY KEY(familyAlbumId), FOREIGN KEY (senderId) REFERENCES users(userId), FOREIGN KEY (receiverId) REFERENCES users(userID))ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;
+
+
+
+
+
+CREATE VIEW view_users AS SELECT U.*,UC.mobileNo,UC.landLine,UC.alternativeNo,UC.facebookUrl,UC.skypeId,UC.googleIM,UC.yahooIM,UC.visibility,
+UP.casteId as casteId,C.name as caste,UP.religion as religionId, R.name as religion,UP.countryId,CO.name as country,UP.stateId,S.name as state,UP.distictId,D.name as district,UP.place as placeId, PL.name as place,UP.mobilePhone,UP.landPhone,UP.intercasteable,UP.createdBy,UP.maritalStatus,
+P.heightId,P.weight,P.bodyType,P.complexion,P.physicalStatus,
+PP.ageFrom,PP.ageTo,PP.maritalStatus as partnerStatus,PP.haveChildren,PP.heightFrom,PP.heightTo,PP.physicalStatus as partnerPhysicalStatus,PP.religion as partnerReligion,PP.caste partnerCaste,PP.manglik,PP.star,PP.eatingHabits,PP.drinkingHabits,PP.smokingHabits,PP.languages,PP.countries,PP.states,PP.districts,PP.places,PP.citizenship,PP.occupation,PP.annualIncome,PP.partnerDescription
+FROM users U
+JOIN usercontactdetails UC ON U.userId = UC.userId
+JOIN userpersonaldetails UP ON U.userId = UP.userId
+JOIN physicaldetails p ON U.userId = P.userId
+JOIN partnerpreferences PP ON U.userId = PP.userId
+LEFT JOIN caste C ON UP.casteId = C.casteId
+LEFT JOIN religion R ON UP.religion = R.religionId
+LEFT JOIN country CO ON UP.countryId = CO.countryId
+LEFT JOIN states S ON UP.stateId = S.stateId
+LEFT JOIN districts D ON UP.distictId = D.districtId
+LEFT JOIN places PL ON UP.place = PL.placeId
+
+
+-- TABLE FOR album
+
+create table album(albumId BIGINT UNIQUE NOT NULL AUTO_INCREMENT, senderId BIGINT NOT NULL, receiverId BIGINT NOT NULL, status TINYINT NOT NULL DEFAULT 0, sendDate DATE NOT NULL, PRIMARY KEY(albumId), FOREIGN KEY (senderId) REFERENCES users(userId), FOREIGN KEY (receiverId) REFERENCES users(userID))ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;
+
+-- Table for documentRequest
+
+create table documentRequest(documentRequestId BIGINT UNIQUE NOT NULL AUTO_INCREMENT, senderId BIGINT NOT NULL, receiverId BIGINT NOT NULL, status TINYINT NOT NULL DEFAULT 0, sendDate DATE NOT NULL, PRIMARY KEY(documentRequestId), FOREIGN KEY (senderId) REFERENCES users(userId), FOREIGN KEY (receiverId) REFERENCES users(userID))ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;
+
+-- Table for contactRequest
+
+create table contactRequest(contactRequestId BIGINT UNIQUE NOT NULL AUTO_INCREMENT, senderId BIGINT NOT NULL, receiverId BIGINT NOT NULL, status TINYINT NOT NULL DEFAULT 0, sendDate DATE NOT NULL, PRIMARY KEY(contactRequestId), FOREIGN KEY (senderId) REFERENCES users(userId), FOREIGN KEY (receiverId) REFERENCES users(userID))ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;
+
+-- Table for familyAlbum
+
+create table familyAlbum(familyAlbumId BIGINT UNIQUE NOT NULL AUTO_INCREMENT, senderId BIGINT NOT NULL, receiverId BIGINT NOT NULL, status TINYINT NOT NULL DEFAULT 0, sendDate DATE NOT NULL, PRIMARY KEY(familyAlbumId), FOREIGN KEY (senderId) REFERENCES users(userId), FOREIGN KEY (receiverId) REFERENCES users(userID))ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;
 
 

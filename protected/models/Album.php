@@ -1,22 +1,25 @@
 <?php
 
 /**
- * This is the model class for table "messages".
+ * This is the model class for table "album".
  *
- * The followings are the available columns in table 'messages':
- * @property string $messageId
+ * The followings are the available columns in table 'album':
+ * @property string $albumId
  * @property string $senderId
  * @property string $receiverId
- * @property string $message
  * @property integer $status
  * @property string $sendDate
+ *
+ * The followings are the available model relations:
+ * @property Users $sender
+ * @property Users $receiver
  */
-class Messages extends CActiveRecord
+class Album extends CActiveRecord
 {
 	/**
 	 * Returns the static model of the specified AR class.
 	 * @param string $className active record class name.
-	 * @return Messages the static model class
+	 * @return Album the static model class
 	 */
 	public static function model($className=__CLASS__)
 	{
@@ -28,7 +31,7 @@ class Messages extends CActiveRecord
 	 */
 	public function tableName()
 	{
-		return 'messages';
+		return 'album';
 	}
 
 	/**
@@ -41,10 +44,10 @@ class Messages extends CActiveRecord
 		return array(
 			array('status', 'numerical', 'integerOnly'=>true),
 			array('senderId, receiverId', 'length', 'max'=>20),
-			array('message, sendDate', 'safe'),
+			array('sendDate', 'safe'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('messageId, senderId, receiverId, message, status, sendDate', 'safe', 'on'=>'search'),
+			array('albumId, senderId, receiverId, status, sendDate', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -67,10 +70,9 @@ class Messages extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'messageId' => 'Message',
+			'albumId' => 'Album',
 			'senderId' => 'Sender',
 			'receiverId' => 'Receiver',
-			'message' => 'Message',
 			'status' => 'Status',
 			'sendDate' => 'Send Date',
 		);
@@ -87,10 +89,9 @@ class Messages extends CActiveRecord
 
 		$criteria=new CDbCriteria;
 
-		$criteria->compare('messageId',$this->messageId,true);
+		$criteria->compare('albumId',$this->albumId,true);
 		$criteria->compare('senderId',$this->senderId,true);
 		$criteria->compare('receiverId',$this->receiverId,true);
-		$criteria->compare('message',$this->message,true);
 		$criteria->compare('status',$this->status);
 		$criteria->compare('sendDate',$this->sendDate,true);
 

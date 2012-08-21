@@ -86,10 +86,10 @@ class SiteController extends Controller
 			$model->attributes=$_POST['LoginForm'];
 			// validate user input and redirect to the previous page if valid
 			if($model->login())
-				$this->redirect(Yii::app()->user->returnUrl);
+				$this->redirect("//user/mypage");
 		}
 		// display the login form
-		$this->render('index');
+		$this->actionIndex();
 	}
 
 	/**
@@ -101,6 +101,6 @@ class SiteController extends Controller
 		Yii::app()->session->clear();
 		Yii::app()->session->destroy();
 		Yii::app()->end();
-		$this->redirect(Yii::app()->homeUrl);
+		$this->actionIndex();
 	}
 }
