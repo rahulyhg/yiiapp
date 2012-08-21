@@ -68,7 +68,7 @@ return array(
 			'connectionString' => 'mysql:host=localhost;dbname=marrydoor',
 			'emulatePrepare' => true,
 			'username' => 'root',
-			'password' => '',
+			'password' => 'Aditi01*',
 			'charset' => 'utf8',
 		),
 		
@@ -99,7 +99,7 @@ return array(
 		// this is used in contact page
 		'adminEmail'=>'webmaster@example.com',
 		'resourceUrl' => 'http://scripts.marrydoor.com',
-		'homeUrl' => 'http://local.marrydoor.com',
+		'homeUrl' => 'http://marrydoor.com',
 		'mediaUrl' => 'http://scripts.marrydoor.com/images',
 		'ftpPath' => 'E:\project\marrydoor',
 	),
