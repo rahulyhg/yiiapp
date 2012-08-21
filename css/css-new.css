@@ -370,7 +370,7 @@ margin: 0 auto -4em;
 
 	font-size:12px;	
 	float:left;
-	
+	width:100%;
 }
 .left_mgn10 {
 	color:#939598;
@@ -3785,7 +3785,7 @@ color:#22b9f1;
 	}
 /*--------------guest-------------*/
 .memo-box-one{
-	width:43%;
+	width:42%;
 	float:left;
 	margin-right:5px;
 	min-height:475px;
@@ -4636,7 +4636,7 @@ color:#22b9f1;
 }
 
 #memo-box-two {
-	width:32%;
+	width:31%;
 	float:left;
 	margin-left:4px;
 	margin-right:5px;
@@ -4779,7 +4779,7 @@ color:#22b9f1;
 	}
 		
 .memo-box-three{
-	width:23%;
+	width:25%;
 	float:right;
 	margin-bottom:20px;
 	}
