@@ -253,7 +253,7 @@
 </div>
 
 <div class="memo-sub_left_small"><!--memo-sub_left_small-->
-		<?php echo CHtml::dropDownList('heightStart',null,Utilities::getRegDays(),array('class'=>'index_254_memo')); ?>
+		<?php echo CHtml::dropDownList('heightStart',null,Utilities::getHeights(),array('class'=>'index_254_memo')); ?>
 		<?php echo $searchForm->error($searchModel,'name'); ?>
 	</div>
 
@@ -274,23 +274,23 @@
 
 		<div class="memo-sub_right_small"><!--memo-sub_right_small-->
 
-	<?php echo CHtml::dropDownList('heightLimit',null,Utilities::getRegDays(),array('class'=>'index_254_memo')); ?>	
+	<?php echo CHtml::dropDownList('heightLimit',null,Utilities::getHeights(),array('class'=>'index_254_memo')); ?>	
 	</div>
 	
 <div class="memo-sub_left_small"><!--memo-sub_left_small-->
 		<?php echo $searchForm->labelEx($searchModel,'bodyType',array('class'=>'txt_rg_index')); ?>
 </div>
 <div class="memo-sub_right_small"><!--memo-sub_right_small-->
-		<?php echo CHtml::dropDownList('bodyType',null,Utilities::getRegDays(),array('class'=>'index_254_memo')); ?>
+		<?php echo CHtml::dropDownList('bodyType',null,Utilities::getBodyType(),array('class'=>'index_254_memo')); ?>
 		<?php echo $searchForm->error($searchModel,'name'); ?>
 	</div>		
 		
 	<div class="memo-sub_left_small"><!--memo-sub_left_small-->
-		<p class="txt_rg_index"></p>
+		<?php echo $searchForm->labelEx($searchModel,'bodyColor',array('class'=>'txt_rg_index')); ?>
 
 	</div><!--/memo-sub_left-->
 		<div class="memo-sub_right_small"><!--memo-sub_right_small-->
-		<?php echo CHtml::dropDownList('bodyColor',null,Utilities::getRegDays(),array('class'=>'index_254_memo')); ?>
+		<?php echo CHtml::dropDownList('bodyColor',null,Utilities::getBodyColor(),array('class'=>'index_254_memo')); ?>
 	</div>
 	
 	<div class="memo-sub_left_small"><!--memo-sub_left_small-->

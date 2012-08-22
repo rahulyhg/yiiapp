@@ -5,7 +5,8 @@ class PrivacyController extends Controller
 	public function actionIndex()
 	{
 		$user = Yii::app()->session->get('user');
-		$privacy = Privacy::model()->findAllByAttributes(array('userId'=>$user->userId));
+		
+		$privacy = $user->privacy;
 
 		$alValue = array();
 		$fValue = array();

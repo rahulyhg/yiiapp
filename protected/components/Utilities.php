@@ -94,6 +94,15 @@ class Utilities
   return array('am' => 'AM','pm' =>'PM');
  }
  
+ public static function getBodyType()
+ {
+ 	return array('0'=>'Average','1'=>'Athletic','2'=>'Slim','3'=>'Heavy');
+ }
+public static function getBodyColor()
+ {
+ 	return array('0'=>'Very Fair','1'=>'Fair','2'=>'Wheatish','3'=>'Wheatish Brown','4'=>'Dark');
+ }
+ 
  public static function getYears()
  {
   $yearNow = self::currentYear();

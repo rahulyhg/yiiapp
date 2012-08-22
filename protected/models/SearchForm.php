@@ -56,6 +56,7 @@ class SearchForm extends CFormModel
 			'heightStart' => 'Height',
 			'photo' => 'Only with Photo',
 			 'bodyType' => 'Body Type',
+			'bodyColor' => 'Body Color',
 			'landNo' => 'Landline No',
 			'emailId' => 'E-mail',
 			'password' => 'password',
