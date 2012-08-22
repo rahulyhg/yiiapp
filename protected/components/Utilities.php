@@ -194,4 +194,12 @@ public static function getBodyColor()
 				 return false;  
 			} 
 	}
+	
+	public static function getProfileImage($marryId,$imageName){
+		if($imageName != ''){
+			return Yii::app()->params['mediaUrl']."/profile/".$marryId."/".$imageName;
+		}else{
+			return Yii::app()->params['mediaUrl']."/profile/noimage.jpg";
+		}
+	}
 }
