@@ -460,10 +460,10 @@ class UserController extends Controller
   		Yii::app()->session->add('username',$user->name);
   		Yii::app()->session->add('user',$user);
   		$photos = new Photos();
-  		
-  		//Upload the profile photo
-  		$file = $_FILES['profilePhoto'];  
+  		$documents = new Documents();
+  		//Upload the profile photo  		  
 		if (!empty($_FILES['profilePhoto']['tmp_name'])){  
+			$file = $_FILES['profilePhoto'];
 			$fileName=basename( $_FILES['profilePhoto']['name']);   
 			$extension = strtolower(Utilities::getExtension($fileName));  
 			if(Utilities::isValidImageExtension($extension)){         
@@ -489,6 +489,8 @@ class UserController extends Controller
 			if($user->userId == $userId){
 				$photos->updateAll(array('profileImage'=>0),'userId='.$userId);  // unset the existing
 				$photos->updateAll(array('profileImage'=>1),'photoId='.$photoId);  // set the new image
+				$this->redirect(Yii::app()->params['homeUrl']."/user/profilepicture");
+				Yii::app()->end();
 			}
 		}elseif(isset($_GET['r']) && $_GET['r'] == 'deleteimage'){   // delete the image
 			$photoId = (int)trim($_GET['pId']);
@@ -502,11 +504,50 @@ class UserController extends Controller
 					if(unlink($targetFile)){
 						$photos->deleteByPk($photoId);
 					}
-				}	
+				}
+				$this->redirect(Yii::app()->params['homeUrl']."/user/profilepicture");
+				Yii::app()->end();	
+			}
+		}elseif (!empty($_FILES['profileDocument']['tmp_name'])){   // upload the documents
+			$file = $_FILES['profileDocument'];
+			$documentType = trim($_POST['documentType']);
+			$fileName=basename( $_FILES['profileDocument']['name']);   
+			$extension = strtolower(Utilities::getExtension($fileName));  
+			if(Utilities::isValidDocumentExtension($extension)){         
+			 	$path = Utilities::getDirectory('images',array('documents',$user->marryId)); 
+			 	$fileName = $user->marryId.date("his").".".$extension; 
+				$targetPath = Utilities::getFullFilePath($path, $fileName);
+				if(Utilities::uploadFile($_FILES['profileDocument']['tmp_name'], $targetPath)) {
+					//code to insert to db
+					$documents->userId = $user->userId;
+					$documents->documentName = $fileName;
+					$documents->documentType = $documentType;
+					$documents->save();
+				}else{
+					echo "There was an error uploading the file, please try again!";
+				}				
+			}	
+				
+		}elseif(isset($_GET['r']) && $_GET['r'] == 'deletedocument'){   // delete the document
+			$documentId = (int)trim($_GET['dId']);
+			$userId = (int)trim($_GET['uId']);
+			$user = Yii::app()->session->get('user');
+			if($user->userId == $userId){
+				$document = $documents->find('documentId='.$documentId);
+				$path = Utilities::getDirectory('images',array('documents',$user->marryId));
+				$targetFile = Utilities::getFullFilePath($path, $document->documentName);
+				if(file_exists($targetFile)){
+					if(unlink($targetFile)){
+						$documents->deleteByPk($documentId);
+					}
+				}
+				$this->redirect(Yii::app()->params['homeUrl']."/user/profilepicture");
+				Yii::app()->end();	
 			}
 		}
 		$photosList = $photos->findAll('userId='.$user->userId);
-		$this->render('profilepicture',array('photos'=>$photosList,'user'=>$user));
+		$documentList = $documents->findAll('userId='.$user->userId);
+		$this->render('profilepicture',array('photos'=>$photosList,'user'=>$user,'documents'=>$documentList));
 	}
 
 }

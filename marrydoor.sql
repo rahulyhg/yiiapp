@@ -232,17 +232,17 @@ create table familyAlbum(familyAlbumId BIGINT UNIQUE NOT NULL AUTO_INCREMENT, se
 
 
 
-
+DROP VIEW IF EXISTS marrydoor.view_users;
 
 CREATE VIEW view_users AS SELECT U.*,UC.mobileNo,UC.landLine,UC.alternativeNo,UC.facebookUrl,UC.skypeId,UC.googleIM,UC.yahooIM,UC.visibility,
 UP.casteId as casteId,C.name as caste,UP.religion as religionId, R.name as religion,UP.countryId,CO.name as country,UP.stateId,S.name as state,UP.distictId,D.name as district,UP.place as placeId, PL.name as place,UP.mobilePhone,UP.landPhone,UP.intercasteable,UP.createdBy,UP.maritalStatus,
 P.heightId,P.weight,P.bodyType,P.complexion,P.physicalStatus,
 PP.ageFrom,PP.ageTo,PP.maritalStatus as partnerStatus,PP.haveChildren,PP.heightFrom,PP.heightTo,PP.physicalStatus as partnerPhysicalStatus,PP.religion as partnerReligion,PP.caste partnerCaste,PP.manglik,PP.star,PP.eatingHabits,PP.drinkingHabits,PP.smokingHabits,PP.languages,PP.countries,PP.states,PP.districts,PP.places,PP.citizenship,PP.occupation,PP.annualIncome,PP.partnerDescription
 FROM users U
-JOIN usercontactdetails UC ON U.userId = UC.userId
-JOIN userpersonaldetails UP ON U.userId = UP.userId
-JOIN physicaldetails p ON U.userId = P.userId
-JOIN partnerpreferences PP ON U.userId = PP.userId
+LEFT JOIN usercontactdetails UC ON U.userId = UC.userId
+LEFT JOIN userpersonaldetails UP ON U.userId = UP.userId
+LEFT JOIN physicaldetails p ON U.userId = P.userId
+LEFT JOIN partnerpreferences PP ON U.userId = PP.userId
 LEFT JOIN caste C ON UP.casteId = C.casteId
 LEFT JOIN religion R ON UP.religion = R.religionId
 LEFT JOIN country CO ON UP.countryId = CO.countryId
@@ -266,5 +266,17 @@ create table contactRequest(contactRequestId BIGINT UNIQUE NOT NULL AUTO_INCREME
 -- Table for familyAlbum
 
 create table familyAlbum(familyAlbumId BIGINT UNIQUE NOT NULL AUTO_INCREMENT, senderId BIGINT NOT NULL, receiverId BIGINT NOT NULL, status TINYINT NOT NULL DEFAULT 0, sendDate DATE NOT NULL, PRIMARY KEY(familyAlbumId), FOREIGN KEY (senderId) REFERENCES users(userId), FOREIGN KEY (receiverId) REFERENCES users(userID))ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;
+
+-- alter the photos table
+
+ALTER TABLE marrydoor.photos ADD active TINYINT(4) DEFAULT 0 AFTER profileImage;
+
+-- alter the documents table
+
+ALTER TABLE marrydoor.documents ADD active TINYINT(4) DEFAULT 0 AFTER documentType;
+
+
+
+
 
 

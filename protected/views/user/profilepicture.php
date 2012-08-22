@@ -135,49 +135,20 @@
 
 <div class="space"><br /></div>
 
-
-
-
-<div class="image_13"><!--image_12-->
-
-<a href="#">
-<img src="<?php echo Yii::app()->params['mediaUrl']; ?>/photo_2_blank.jpg" class="image" border="o" /></a>
- <p class="txt_bld-10">
-<br />
-<a href="#" class="txt_link">Delete</a></p>
-
-</div><!--/image_12-->
-
+<?php if(!empty($documents)):?>
+<!-- list of documents starts -->
+<div class="line"></div>
+<?php foreach($documents as $document):?>
 <div class="image_13"><!--image_12-->
 
 <a href="#">
 <img src="<?php echo Yii::app()->params['mediaUrl']; ?>/photo_2_blank.jpg" class="image" border="0" /></a>
 
  <p class="txt_bld-10"><br />
-<a href="#" class="txt_link">Delete</a></p>
+<a href="<?php echo Yii::app()->params['homeUrl']?>/user/profilepicture/r/deletedocument/dId/<?php echo $document->documentId?>/uId/<?php echo $user->userId?>" class="txt_link">Delete</a></p>
 
 </div><!--/image_12-->
-
-<div class="image_13"><!--image_12-->
-
-<a href="#">
-<img src="<?php echo Yii::app()->params['mediaUrl']; ?>/photo_3_blank.jpg" class="image" border="0" /></a>
- <p class="txt_bld-10"><br />
-<a href="#" class="txt_link">Delete</a></p>
-
-</div><!--/image_12-->
-
-
-<div class="image_13"><!--image_12-->
-
-<a href="#">
-<img src="<?php echo Yii::app()->params['mediaUrl']; ?>/photo_2_blank.jpg" class="image" border="0" /></a>
-
- <p class="txt_bld-10"><br />
-<a href="#" class="txt_link">Delete</a></p>
-
-</div><!--/image_12-->
-
+<?php endforeach; ?>
 
 <div class="clear"></div>
 
@@ -185,8 +156,8 @@
 
 <div class="space"><br /></div>
 <div class="line"></div>
-
-
+<!-- documents list ends here -->
+<?php endif; ?>
 <p class="txt_rg">You can add one more photo in this album</p>
 
 
@@ -210,10 +181,9 @@
 
 <div class="list_div_2"><!--list_div_2-->
 
-<form action="" method="get">
- <input type="file" name="datafile" size="19" 
- />
- </form>
+<form action="<?php echo Yii::app()->params['homeUrl'] ?>/user/profilepicture" method="post" enctype="multipart/form-data">
+ <input type="file" name="profileDocument" id="profileDocument" size="19" class="fileStyle" />
+
  <br />
 
               
@@ -230,15 +200,12 @@
 
 <div class="list_div_3b">
 
-<form action="" method="get">
-
- <select class="select_small_140">
- <option>Passport</option>
- <option>Passport</option>
- <option>Passport</option>
+ <select class="select_small_140" id="documentType" name="documentType">
+ <option value="1">Passport</option>
+ <option value="2">Voters ID</option>
+ <option value="3">PAN Card</option>
  </select>
 
- </form>
 
  <div class="space"><p></p></div>
  
@@ -254,8 +221,12 @@
  <div class="div_ww">
  <div class="div_rr" style="width:100%;">
 
- <a class="focus" style="float:right;" href="#">Add More</a>
-                <a class="focus"  style="float:right;" href="#">Upload</a>
+                  <div>
+  <input type="button" name="moredocuments" id="moredocuments" class="btnStyle" value="Add more" /></div>
+	<div class="clearSpace"></div>
+  <div>
+  <input type="submit" name="uploaddocuments" id="uploaddocuments" class="btnStyle" value="Upload" /></div>
+  </form>
                 
 </div>  
 </div>

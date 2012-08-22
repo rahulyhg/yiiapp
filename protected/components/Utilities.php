@@ -202,4 +202,12 @@ public static function getBodyColor()
 			return Yii::app()->params['mediaUrl']."/profile/noimage.jpg";
 		}
 	}
+	
+	public static function isValidDocumentExtension($extension){
+		if(in_array($extension,array('txt','doc','docx','pdf','rft','jpg','jpeg','png'))){
+			return true;
+		}else{
+			return false;
+		}
+	}
 }
