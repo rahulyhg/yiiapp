@@ -1,19 +1,19 @@
 <?php
 
 /**
- * This is the model class for table "profileviews".
+ * This is the model class for table "profileViews".
  *
- * The followings are the available columns in table 'profileviews':
+ * The followings are the available columns in table 'profileViews':
  * @property string $profileViewId
  * @property string $userID
  * @property string $visitedId
  */
-class Profileviews extends CActiveRecord
+class ProfileViews extends CActiveRecord
 {
 	/**
 	 * Returns the static model of the specified AR class.
 	 * @param string $className active record class name.
-	 * @return Profileviews the static model class
+	 * @return ProfileViews the static model class
 	 */
 	public static function model($className=__CLASS__)
 	{
@@ -25,7 +25,7 @@ class Profileviews extends CActiveRecord
 	 */
 	public function tableName()
 	{
-		return 'profileviews';
+		return 'profileViews';
 	}
 
 	/**

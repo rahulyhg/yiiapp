@@ -137,9 +137,10 @@
 
 	<div class="memo-sub_right_btn">
 	<div class="right">
-		<?php echo CHtml::submitButton('Submit',array('class'=>'reset_sub')); ?>
-		
-		<?php echo CHtml::resetButton('Reset',array('class' =>'reset_sub')); ?>
+	
+		<?php echo CHtml::submitButton('Submit',array('class'=>'btnStyle')); ?>
+			&nbsp;&nbsp;	
+		<?php echo CHtml::resetButton('Reset',array('class' =>'btnStyle')); ?>
 	</div>
 	</div>
 
@@ -178,8 +179,12 @@
 		<?php echo $searchForm->labelEx($searchModel,'bride',array('class'=>'txt_rg_index')); ?>
 </div>
 	<div class="memo-sub_right_small"><!--memo-sub_right_small-->		
-		<?php echo $searchForm->checkBox($searchModel,'bride', array('value'=>1, 'uncheckValue'=>0),array('class'=>'radio-new')); ?>Bride
-		<?php echo $searchForm->checkBox($searchModel,'groom', array('value'=>1, 'uncheckValue'=>0),array('class'=>'radio-new_size')); ?>Groom
+	<p class="radio-new">
+		<?php echo $searchForm->radioButton($searchModel,'bride', array('value'=>'female')); ?>Bride
+	 </p>	
+	 <p class="radio-new_size">
+		<?php echo $searchForm->radioButton($searchModel,'groom', array('value'=>'male')); ?>Groom
+	 </p>
 		<?php echo $searchForm->error($searchModel,'name'); ?>
 	</div>
 	
@@ -306,9 +311,9 @@
         
         <div class="right">
 
-		<?php echo CHtml::submitButton('Search',array('class'=>'reset_sub')); ?>
+		<?php echo CHtml::submitButton('Search',array('class'=>'btnStyle')); ?>
 		
-		<?php echo CHtml::resetButton('Reset',array('class'=>'reset_sub')); ?>
+		<?php echo CHtml::resetButton('Reset',array('class'=>'btnStyle')); ?>
 	</div>
 	</div>
 	<p class="space-0px">&nbsp;</p>
@@ -327,7 +332,7 @@
 	'enableAjaxValidation'=>false,
 )); ?>
 
-<input type="text" value="Search By ID / Keyword" class="text_normal_small">
+<input type="text" name="keyword" value="Search By ID / Keyword" class="text_normal_small">
 
 
 <a onmouseover="MM_swapImage('Image21','','<?php echo Yii::app()->params['resourceUrl']; ?>/images/search_btn_sm.jpg',1)" onmouseout="MM_swapImgRestore()" href="search.html"><img width="49" border="0" height="22" class="search_add_sub" id="Image21" name="Image21" src="<?php echo Yii::app()->params['resourceUrl']; ?>/images/search_btn_ash_sm.jpg"></a>

@@ -55,6 +55,8 @@ class DocumentRequest extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
+			'sender' => array(self::BELONGS_TO, 'Users', 'senderId'),
+			'receiver' => array(self::BELONGS_TO, 'Users', 'receiverId'),
 		);
 	}
 

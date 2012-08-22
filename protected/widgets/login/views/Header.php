@@ -20,7 +20,7 @@
 
 </div>
 <div class="right">
-<?php echo CHtml::submitButton('Login',array('class'=>'reset_sub','tabindex'=>'3')); ?>
+<?php echo CHtml::submitButton('Login',array('class'=>'btnStyle','tabindex'=>'3')); ?>
 </div>
 <?php echo CHtml::endForm(); ?>
 </div>

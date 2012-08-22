@@ -96,7 +96,7 @@ create table messages(messageId BIGINT UNIQUE NOT NULL AUTO_INCREMENT, senderId 
 
 -- --table for shortlist----
 
-create table shortlist(shortlistId BIGINT UNIQUE NOT NULL AUTO_INCREMENT, userID BIGINT NOT NULL, profileID BIGINT NOT NULL, PRIMARY KEY(shortlistId))ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;
+create table shortlist(shortlistId BIGINT UNIQUE NOT NULL AUTO_INCREMENT, userID BIGINT NOT NULL, profileID BIGINT NOT NULL, PRIMARY KEY(shortlistId),FOREIGN KEY (profileID) REFERENCES users(userId))ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;
 
 -- --table for profileViews---
 
@@ -104,85 +104,85 @@ create table profileViews(profileViewId BIGINT UNIQUE NOT NULL AUTO_INCREMENT, u
 
 -- --table for country
 
-create table country(countryId BIGINT UNIQUE NOT NULL AUTO_INCREMENT, name VARCHAR(250) NOT NULL, active BIGINT NOT NULL DEFAULT 1, PRIMARY KEY(countryId))ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;	
+create table country(countryId BIGINT UNIQUE NOT NULL AUTO_INCREMENT, name VARCHAR(250) NOT NULL, active BIGINT NOT NULL DEFAULT 1, PRIMARY KEY(countryId))ENGINE=InnoDB DEFAULT CHARSET=utf8;	
 
 -- -table for states----
 
-create table states(stateId BIGINT UNIQUE NOT NULL AUTO_INCREMENT, countryId BIGINT NOT NULL, name VARCHAR(250) NOT NULL, active BIGINT NOT NULL DEFAULT 1, PRIMARY KEY(stateId), FOREIGN KEY (countryId) REFERENCES country(countryId))ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;
+create table states(stateId BIGINT UNIQUE NOT NULL AUTO_INCREMENT, countryId BIGINT NOT NULL, name VARCHAR(250) NOT NULL, active BIGINT NOT NULL DEFAULT 1, PRIMARY KEY(stateId), FOREIGN KEY (countryId) REFERENCES country(countryId))ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- -table for districts---
 
 
-create table districts(districtId BIGINT UNIQUE NOT NULL AUTO_INCREMENT, stateId BIGINT NOT NULL, name VARCHAR(250) NOT NULL, active BIGINT NOT NULL DEFAULT 1, PRIMARY KEY(districtId), FOREIGN KEY (stateId) REFERENCES states(stateId))ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;
+create table districts(districtId BIGINT UNIQUE NOT NULL AUTO_INCREMENT, stateId BIGINT NOT NULL, name VARCHAR(250) NOT NULL, active BIGINT NOT NULL DEFAULT 1, PRIMARY KEY(districtId), FOREIGN KEY (stateId) REFERENCES states(stateId))ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- -table for places---
 
-create table places(placeId BIGINT UNIQUE NOT NULL AUTO_INCREMENT, districtId BIGINT NOT NULL, name VARCHAR(250) NOT NULL, type BIGINT NOT NULL DEFAULT 0, active BIGINT NOT NULL DEFAULT 1, PRIMARY KEY(placeId), FOREIGN KEY (districtId) REFERENCES districts(districtId))ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;
+create table places(placeId BIGINT UNIQUE NOT NULL AUTO_INCREMENT, districtId BIGINT NOT NULL, name VARCHAR(250) NOT NULL, type BIGINT NOT NULL DEFAULT 0, active BIGINT NOT NULL DEFAULT 1, PRIMARY KEY(placeId), FOREIGN KEY (districtId) REFERENCES districts(districtId))ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- -table for languages--
 
-create table languages(languageId BIGINT UNIQUE NOT NULL AUTO_INCREMENT, name VARCHAR(250) NOT NULL, active BIGINT NOT NULL DEFAULT 1, PRIMARY KEY(languageId))ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;
+create table languages(languageId BIGINT UNIQUE NOT NULL AUTO_INCREMENT, name VARCHAR(250) NOT NULL, active BIGINT NOT NULL DEFAULT 1, PRIMARY KEY(languageId))ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- -table for religion---
 
-create table religion(religionId BIGINT UNIQUE NOT NULL AUTO_INCREMENT, name VARCHAR(250) NOT NULL, active BIGINT NOT NULL DEFAULT 1, PRIMARY KEY(religionId))ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;
+create table religion(religionId BIGINT UNIQUE NOT NULL AUTO_INCREMENT, name VARCHAR(250) NOT NULL, active BIGINT NOT NULL DEFAULT 1, PRIMARY KEY(religionId))ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- -table for caste----
 
-create table caste(casteId BIGINT UNIQUE NOT NULL AUTO_INCREMENT, religionId BIGINT NOT NULL, name VARCHAR(250) NOT NULL, active BIGINT NOT NULL DEFAULT 1, PRIMARY KEY(casteId), FOREIGN KEY (religionId) REFERENCES religion(religionId))ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;
+create table caste(casteId BIGINT UNIQUE NOT NULL AUTO_INCREMENT, religionId BIGINT NOT NULL, name VARCHAR(250) NOT NULL, active BIGINT NOT NULL DEFAULT 1, PRIMARY KEY(casteId), FOREIGN KEY (religionId) REFERENCES religion(religionId))ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- -table for sub caste----
 
-create table subcaste(subcasteId BIGINT UNIQUE NOT NULL AUTO_INCREMENT,casteId BIGINT NOT NULL, name VARCHAR(250) NOT NULL, active BIGINT NOT NULL DEFAULT 1, PRIMARY KEY(subcasteId), FOREIGN KEY (casteId) REFERENCES caste(casteId))ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;
+create table subcaste(subcasteId BIGINT UNIQUE NOT NULL AUTO_INCREMENT,casteId BIGINT NOT NULL, name VARCHAR(250) NOT NULL, active BIGINT NOT NULL DEFAULT 1, PRIMARY KEY(subcasteId), FOREIGN KEY (casteId) REFERENCES caste(casteId))ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
 -- -table for education_master---
 
-create table education_master(educationId BIGINT UNIQUE NOT NULL AUTO_INCREMENT, name VARCHAR(250) NOT NULL, active BIGINT NOT NULL DEFAULT 1, PRIMARY KEY(educationId))ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;
+create table education_master(educationId BIGINT UNIQUE NOT NULL AUTO_INCREMENT, name VARCHAR(250) NOT NULL, active BIGINT NOT NULL DEFAULT 1, PRIMARY KEY(educationId))ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
 
 -- --table for occupation_master---
 
-create table occupation_master(occupationId BIGINT UNIQUE NOT NULL AUTO_INCREMENT, name VARCHAR(250) NOT NULL, active BIGINT NOT NULL DEFAULT 1, PRIMARY KEY(occupationId))ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;
+create table occupation_master(occupationId BIGINT UNIQUE NOT NULL AUTO_INCREMENT, name VARCHAR(250) NOT NULL, active BIGINT NOT NULL DEFAULT 1, PRIMARY KEY(occupationId))ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --table for hobies_master---
 
-create table hobies_master(hobiesId BIGINT UNIQUE NOT NULL AUTO_INCREMENT, name VARCHAR(250) NOT NULL, active BIGINT NOT NULL DEFAULT 1, PRIMARY KEY(hobiesId))ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;
+create table hobies_master(hobiesId BIGINT UNIQUE NOT NULL AUTO_INCREMENT, name VARCHAR(250) NOT NULL, active BIGINT NOT NULL DEFAULT 1, PRIMARY KEY(hobiesId))ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
 -- ---table for interests_master---
 
-create table interests_master(interestId BIGINT UNIQUE NOT NULL AUTO_INCREMENT, name VARCHAR(250) NOT NULL, active BIGINT NOT NULL DEFAULT 1, PRIMARY KEY(interestId))ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;
+create table interests_master(interestId BIGINT UNIQUE NOT NULL AUTO_INCREMENT, name VARCHAR(250) NOT NULL, active BIGINT NOT NULL DEFAULT 1, PRIMARY KEY(interestId))ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- -table for musics_master---
 
-create table musics_master(musicId BIGINT UNIQUE NOT NULL AUTO_INCREMENT, name VARCHAR(250) NOT NULL, active BIGINT NOT NULL DEFAULT 1, PRIMARY KEY(musicId))ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;
+create table musics_master(musicId BIGINT UNIQUE NOT NULL AUTO_INCREMENT, name VARCHAR(250) NOT NULL, active BIGINT NOT NULL DEFAULT 1, PRIMARY KEY(musicId))ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- -table for reading_master----
 
-create table reading_master(musicId BIGINT UNIQUE NOT NULL AUTO_INCREMENT, name VARCHAR(250) NOT NULL, active BIGINT NOT NULL DEFAULT 1, PRIMARY KEY(musicId))ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;
+create table reading_master(musicId BIGINT UNIQUE NOT NULL AUTO_INCREMENT, name VARCHAR(250) NOT NULL, active BIGINT NOT NULL DEFAULT 1, PRIMARY KEY(musicId))ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- -table for movies_master---
 
-create table movies_master(moviesId BIGINT UNIQUE NOT NULL AUTO_INCREMENT, name VARCHAR(250) NOT NULL, active BIGINT NOT NULL DEFAULT 1, PRIMARY KEY(moviesId))ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;
+create table movies_master(moviesId BIGINT UNIQUE NOT NULL AUTO_INCREMENT, name VARCHAR(250) NOT NULL, active BIGINT NOT NULL DEFAULT 1, PRIMARY KEY(moviesId))ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- -table for activities_master---
 
-create table activities_master(activitiesId BIGINT UNIQUE NOT NULL AUTO_INCREMENT, name VARCHAR(250) NOT NULL, active BIGINT NOT NULL DEFAULT 1, PRIMARY KEY(activitiesId))ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;
+create table activities_master(activitiesId BIGINT UNIQUE NOT NULL AUTO_INCREMENT, name VARCHAR(250) NOT NULL, active BIGINT NOT NULL DEFAULT 1, PRIMARY KEY(activitiesId))ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- -tables for cuisines_master---
 
-create table cuisines_master(cuisineId BIGINT UNIQUE NOT NULL AUTO_INCREMENT, name VARCHAR(250) NOT NULL, active BIGINT NOT NULL DEFAULT 1, PRIMARY KEY(cuisineId))ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;
+create table cuisines_master(cuisineId BIGINT UNIQUE NOT NULL AUTO_INCREMENT, name VARCHAR(250) NOT NULL, active BIGINT NOT NULL DEFAULT 1, PRIMARY KEY(cuisineId))ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- tables for signs_master---
 
-create table signs_master(signId BIGINT UNIQUE NOT NULL AUTO_INCREMENT, name VARCHAR(250) NOT NULL, image VARCHAR(250) NOT NULL, active BIGINT NOT NULL DEFAULT 1, PRIMARY KEY(signId))ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;
+create table signs_master(signId BIGINT UNIQUE NOT NULL AUTO_INCREMENT, name VARCHAR(250) NOT NULL, image VARCHAR(250) NOT NULL, active BIGINT NOT NULL DEFAULT 1, PRIMARY KEY(signId))ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
 -- -table for astrodate_master---
 
-create table astrodate_master(astrodateId BIGINT UNIQUE NOT NULL AUTO_INCREMENT, name VARCHAR(250) NOT NULL, active BIGINT NOT NULL DEFAULT 1, PRIMARY KEY(astrodateId))ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;
+create table astrodate_master(astrodateId BIGINT UNIQUE NOT NULL AUTO_INCREMENT, name VARCHAR(250) NOT NULL, active BIGINT NOT NULL DEFAULT 1, PRIMARY KEY(astrodateId))ENGINE=InnoDB  DEFAULT CHARSET=utf8;
 
 
 -- -table for admin_users---
