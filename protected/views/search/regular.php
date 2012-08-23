@@ -275,7 +275,7 @@
   <div class="list_class-textfield-small">
   <?php $records = Religion::model()->findAll("active = 1");
 		$list = CHtml::listData($records, 'religionId', 'name');
-		echo CHtml::dropDownList('religion',null,$list,array('empty' => 'Religion','class'=>'select7')); ?>
+		echo CHtml::dropDownList('religion',null,$list,array('empty' => 'Religion','class'=>'select_small')); ?>
   </div>
   </div>
         <div class="clear"></div>

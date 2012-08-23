@@ -139,7 +139,7 @@
 	<div class="right">
 	
 		<?php echo CHtml::submitButton('Submit',array('class'=>'btnStyle')); ?>
-			&nbsp;&nbsp;	
+			<div class="clearSpace"></div>
 		<?php echo CHtml::resetButton('Reset',array('class' =>'btnStyle')); ?>
 	</div>
 	</div>
@@ -312,7 +312,7 @@
         <div class="right">
 
 		<?php echo CHtml::submitButton('Search',array('class'=>'btnStyle')); ?>
-		
+		<div class="clearSpace"></div>
 		<?php echo CHtml::resetButton('Reset',array('class'=>'btnStyle')); ?>
 	</div>
 	</div>
