@@ -227,11 +227,17 @@
    
    <div class="list_class-5">
   
-   <p class="txt_bld">Keyword search</p>
+   <p class="txt_bld">Searcy by ID</p>
    </div>   
 <div class="list_class-6">
-<form id="idSearch"  name="idSearch" method="post"  action="/search/byid">
-<input type="text" name="keyword" id="keyword" class="addres_form-new_l"  />
+<?php if(isset($model))
+{
+	echo $model;
+}
+
+?>
+<form id="idSearch"  name="idSearch" method="get"  action="/search/byid">
+<input type="text" name="id" id="id" class="addres_form-new_l"  />
                    <a class="view-button" href="javascript:idSearch.submit();">View Profile</a>
                    <a class="view-reset" href="javascript:idSearch.reset();">Reset</a>
 

@@ -13,6 +13,19 @@ class SearchController extends Controller
 	}
 	
 	public function actionQuick(){
+		
+		if(isset($_POST['gender']))
+		$gender = $_POST['gender'];
+		if(isset($_POST['ageFrom']))
+		$ageFrom = $_POST['ageFrom'];
+		if(isset($_POST['ageTo']))
+		$ageTo = $_POST['ageTo'];
+		if(isset($_POST['religion']))
+		$religion = $_POST['religion'];
+		
+		if(isset($_POST['caste']))
+		$caste = $_POST['caste'];
+		
 		$this->render('regular');
 	}
 	
@@ -20,7 +33,24 @@ class SearchController extends Controller
 		$this->render('advance');
 	}
 	public function actionByid(){
-		$this->render('byid');
+		if(isset($_GET['id']))
+		{
+			$user = Users::model()->findByAttributes(array('marryId'=>$_GET['id']));
+
+			if(isset($user->name))
+			{
+				$this->render('idProfile',array('model'=>$user));
+			}
+			else
+			{
+				$model = "Please enter valid ID";
+				$this->render('byid',array('model' => $model));
+			}
+		}
+		else
+		{
+			$this->render('byid');
+		}
 	}
 	public function actionKeyword()
 	{

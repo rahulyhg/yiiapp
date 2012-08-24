@@ -36,7 +36,7 @@ class UserController extends Controller
 				//user personal details table
 				$userPersonal->userId = $user->primaryKey;
 				$userPersonal->casteId = $_POST['caste'];
-				$userPersonal->religion  = $_POST['religion'];
+				$userPersonal->religionId  = $_POST['religion'];
 				$userPersonal->countryId = $_POST['country'];
 				$userPersonal->stateId = $_POST['state'];
 				$userPersonal->mobilePhone = $_POST['UserForm']['mobileNo'];
@@ -84,7 +84,7 @@ class UserController extends Controller
 		if(isset($_POST['distictId']))
 		$userPersonal->distictId = $_POST['district'];
 		if(isset($_POST['place']))
-		$userPersonal->place = $_POST['place'];
+		$userPersonal->placeId = $_POST['place'];
 		$userPersonal->save();
 			
 		$address->userId = $user->userId;
