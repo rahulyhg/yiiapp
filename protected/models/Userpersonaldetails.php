@@ -66,9 +66,11 @@ class Userpersonaldetails extends CActiveRecord
 		// class name for the relations automatically generated below.
 		return array(
 			'user' => array(self::BELONGS_TO, 'Users', 'userId'),
-			'religion' => array(self::HAS_MANY, 'Religion', 'religionId'),
-			'country' => array(self::HAS_MANY, 'Country', 'countryId'),
-			'place' => array(self::HAS_MANY, 'Places', 'placeId'),
+			'religion' => array(self::HAS_ONE, 'Religion', 'religionId'),
+			'country' => array(self::HAS_ONE, 'Country', 'countryId'),
+			'place' => array(self::HAS_ONE, 'Places', 'placeId'),
+			'caste' => array(self::HAS_ONE, 'Caste', 'casteId'),
+			'state' => array(self::HAS_ONE, 'States', 'stateId'),
 		
 		);
 	}

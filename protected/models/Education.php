@@ -60,6 +60,9 @@ class Education extends CActiveRecord
 		// class name for the relations automatically generated below.
 		return array(
 			'user' => array(self::BELONGS_TO, 'Users', 'userId'),
+			'education' => array(self::HAS_ONE, 'EducationMaster', 'educationId'),
+		'occupation' => array(self::HAS_ONE, 'OccupationMaster', 'occupationId'),
+		
 		);
 	}
 

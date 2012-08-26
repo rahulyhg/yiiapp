@@ -58,3 +58,28 @@ insert into languages(name) values ("Hindi"), ("Bengali"),("Telugu"), ("Marathi"
 
 -- occupation master data
 insert into occupation_master(name) values ("Any"), ("Accounts/Finance Professional"),("Advertising/PR professionals"), ("Agriculture & Farming Professionals"), ("Air Hostess"), ("Airforce") , ("Airline Professional") , ("Architect") , ("Army") , ("Arts & Craftman"), ("Auditor"), ("Banking service Professional"), ("CEO/President, Director,Chairman"), ("Civil Services(IAS,IPS,IRS,IES,IFS)"), ("Clerk"), ("Company Secratary"), ("Consultant"), ("Customer care professional"), ("Doctor"), ("Education professional"), ("Engineer- Non IT"), ("Entertainment Professional"), ("Event Management Proffesional"), ("Executive"), ("Fashion Designer"), ("Hardware Professional"), ("Health care Professional"), ("Hotel- Hospitality Professional"), ("Interior Designer") ,("Journilist"), ("Law enforcement Officer"), ("Manager"), ("Mariner/Mergent Navy"), ("Marketing Professiona"), ("Media professional"), ("Navy"), ("Nurse"), ("Officer"), ("Paramedical Professional"), ("Professor/Lecturer"), ("Sales Professional"), ("Scientists/ Resercher"), ("Social Worker"), ("Software Professional"), ("Sportsman"), ("Supervisor"), ("Teaching/Academician"), ("Technician"), ("Human Resources professional"), ("Financial Analyst/Planing"), ("Designer- IT & Engineering"), ("Designer- Media & Entertainment"), ("Student"), ("Librarian"), ("Financial Accountant"), ("Business Analyst"), ("Others"), ("Business"), ("Not Working");
+
+-- education_master table
+
+insert into education_master(name) values ("Any"), ("Bachelors- Engineering, Computers"),("Masters- Engineering, Computers"), ("Bachelors- 
+
+Arts/Science/commerce/B phil"), ("Masters- Arts/Science/Commerce/M phil"), ("Management- BBA/MBA") , ("Medicine- General/Dental/Surgeon") , ("Legal- 
+
+BL/ML/LLB/CCM") , ("Finanace- ICWAI/CA/CS") , ("Service- IAS/IPS/IRS/IES/IFS"), ("PHD"), ("Diploma"), ("Higher Secondary, Secondary");
+
+
+-- signs_master table
+
+insert into signs_master(name) values ("Aries"), ("Taurus"),("Gemini"), ("Cancer"), ("Leo"), ("Virgo") , ("Libra") , ("Scorpio") , ("Sagittarius") , 
+
+("Capricon"), ("Aquarius"), ("Pisces");
+
+
+-- astrodate_master table
+
+insert into astrodate_master(name) values ("Aswathi"), ("Bharani"),("Karthika"), ("Rohini"), ("Makayiram"), ("Management- BBA/MBA") , ("Thiruvathira") , 
+
+("Punartham") , ("Pooyam") , ("Ayilyam"), ("Magam"), ("Pooram"), ("Uthram"),("Atham"), ("Chithira"), ("Chothi"), ("Vishakham"), ("Anizham"), ("Ketta"), 
+
+("Moolam"), ("Thiruvonam"), ("Avittam"), ("Chadayam"), ("Pooruttathi"), ("Uthirattathi"), ("Revathi");
+

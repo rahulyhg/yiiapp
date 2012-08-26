@@ -62,14 +62,30 @@ class UserController extends Controller
 
 	public function actionContact()
 	{
-		$userPersonal = Userpersonaldetails::model()->findByAttributes(array('userId'=>2));
-		$address = new Address();
-		$contact = new Usercontactdetails();
-		$physical = new Physicaldetails();
-		$education = new Education();
-		$habit = new Habit();
-		$family = new Familyprofile();
 		$user = Yii::app()->session->get('user');
+		$userPersonal = $user->userpersonaldetails;
+		$address = new Address();
+		if(!empty($user->usercontactdetails))
+			$contact = $user->usercontactdetails;
+		else
+			$contact = new Usercontactdetails();
+		if(!empty($user->physicaldetails))
+		$physical = $user->physicaldetails;
+		else 
+			$physical = new Physicaldetails();
+		
+		if(!empty($user->educations))
+			$education = $user->educations;
+		else
+			$education = new Education();
+		if(!empty($user->habits))	
+		$habit = $user->habits;
+		else
+		$habit = new Habit();
+		if(!empty($user->familyprofiles))
+		$family = $user->familyprofiles;
+		else
+		$family = new Familyprofile();
 
 		//Will fetch this from session
 		$userPersonal->userId = $user->userId;
@@ -106,7 +122,7 @@ class UserController extends Controller
 		$address->country  = $_POST['country'];
 		$address->save();
 			
-			
+		//contact details	
 		$contact->userId = $user->userId;
 		if(isset($_POST['alterMobile']))
 		$contact->alternativeNo = $_POST['alterMobile'];
@@ -122,7 +138,7 @@ class UserController extends Controller
 		$contact->yahooIM = $_POST['yahoo'];
 		$contact->save();
 			
-			
+		//physical details
 		$physical->userId = $user->userId;
 		if(isset($_POST['height']))
 		$physical->heightId = $_POST['height'];
@@ -136,6 +152,8 @@ class UserController extends Controller
 		$physical->physicalStatus = $_POST['physical'];
 		$physical->save();
 			
+		
+		//education details
 		$education->userId = $user->userId;
 		if(isset($_POST['education']))
 		$education->educationId = $_POST['education'];
@@ -143,7 +161,7 @@ class UserController extends Controller
 		$education->occupationId = $_POST['occupation'];
 		if(isset($_POST['employed']))
 		$education->employedIn = $_POST['employed'];
-		if(isset($_POST['income']))
+		if(isset($_POST['income']) && !empty($_POST['income']))
 		{
 		if(isset($_POST['ctc']) && $_POST['ctc'] == '12')
 		$education->yearlyIncome = intval($_POST['income']);
@@ -152,6 +170,7 @@ class UserController extends Controller
 		}
 		$education->save();
 			
+		//habits
 		$habit->userId = $user->userId;
 		if(isset($_POST['food']))
 		$habit->food = $_POST['food'];
@@ -161,6 +180,8 @@ class UserController extends Controller
 		$habit->drinking = $_POST['drink'];
 		$habit->save();
 			
+		
+		//family details
 		$family->userId = $user->userId;
 		if(isset($_POST['status']))
 		$family->familyStatus = $_POST['status'];
@@ -235,10 +256,10 @@ class UserController extends Controller
 	
 	public function actionHoro()
 	{
-		$user = Yii::app()->session->get('user');
-		$horoscope = Horoscopes::model()->findByAttributes(array('userId'=>$user->userId));
 		
-		$this->render("partner");
+		//$horoscope = Horoscopes::model()->findByAttributes(array('userId'=>$user->userId));
+		
+		$this->render("contacts",array('user'=>$user));
 	}
 	public function actionHoroupload()
 	{
@@ -444,14 +465,14 @@ class UserController extends Controller
 	
 	public function actionIndex()
 	{
-		$user = Users::model()->findByPk(2);
-		Yii::app()->session->add('username',$user->name);
-		Yii::app()->session->add('user',$user);
-
-		$userPersonal = Userpersonaldetails::model()->findByAttributes(array('userId'=>2));
-		//$this->render('contacts',array('user'=>$user,'userPersonal'=>$userPersonal));
 		
-		$this->render('horoscope',array('model' => new Horoscopes()));
+		
+		$user = Yii::app()->session->get('user');
+
+		
+		$this->render('contacts',array('user'=>$user));
+		
+		//$this->render('horoscope',array('model' => new Horoscopes()));
 	}
 
 	public function actionProfilepicture()

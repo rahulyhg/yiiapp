@@ -86,7 +86,14 @@ class SiteController extends Controller
 			$model->attributes=$_POST['LoginForm'];
 			// validate user input and redirect to the previous page if valid
 			if($model->login())
+			{
+			$user = Yii::app()->session->get('user');
+				$userloggeddetails = new Userloggeddetails();
+				$userloggeddetails->userId = $user->userId;
+				$userloggeddetails->loggedIn = date('Y-m-d H:i:s');
+				$userloggeddetails->save();
 				$this->redirect("//user/mypage");
+			}	
 		}
 		// display the login form
 		$this->actionIndex();

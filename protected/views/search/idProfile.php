@@ -66,16 +66,17 @@ Activity status	<br />
 </div>
 
 <div class="list_div_3"><!--list_div_3-->
+<?php $heightArray = Utilities::getHeights()?>
 <p class="txt_rg_raj">
 :    <span class="txt_level"><strong><?php echo $model->name?>(<?php echo $model->marryId ?>)</strong></span><br />
 		<?php if(!empty($model->userpersonaldetails->religion)){?>
-:    <span class="txt_level"><?php $religion = $model->userpersonaldetails->religion;echo $religion[0]->name?></span><br />
+:    <span class="txt_level"><?php echo $model->userpersonaldetails->religion->name ?>/ <?php echo $model->userpersonaldetails->caste->name ?></span><br />
  			<?php }?>
 :    <span class="txt_level">29 Years </span><br />
-:    <span class="txt_level">5’ 4’’, 167 cm</span><br />
-:    <span class="txt_level">Ankamaly, Kerala, India</span><br />
-:    <span class="txt_level">Bsc Chemistry</span><br />
-:    <span class="txt_level">Actor</span><br />
+:    <span class="txt_level"><?php echo $heightArray[$model->physicaldetails->heightId]; ?></span><br />
+:    <span class="txt_level"><?php echo $model->userpersonaldetails->place->name ?>, <?php echo $model->userpersonaldetails->state->name ?>, <?php echo $model->userpersonaldetails->country->name ?></span><br />
+	<span class="txt_level"><?php echo $model->educations->education->name ?></span><br />
+:    <span class="txt_level"><?php echo $model->educations->occupation->name ?></span><br />
   
 :   <span class="txt_level">2 days beefore</span><br />
 &nbsp;
@@ -463,10 +464,11 @@ Residing City<br />
 </p>
 
 </div>
+<?php $partner = $model->partnerpreferences?>
 <div class="row_three">
 <p class="txt_rg">
-:<span class="txt_level">   24 - 28 Years</span><br />	
-:<span class="txt_level">   5 Ft 9 In - 6 Ft 2 In / 175 Cms - 188 Cms</span><br />	
+:<span class="txt_level">   <?php echo $partner->ageFrom.' - '.$partner->ageTo.' Years'; ?></span><br />	
+:<span class="txt_level">  <?php echo $heightArray[$partner->heightTo]; ?> / <?php echo $heightArray[$partner->heightFrom]; ?></span><br />	
 :<span class="txt_level">   Unmarried</span> <br />
 :<span class="txt_level">    Normal</span> <br />
 :<span class="txt_level">   5Malayalam</span> <br />

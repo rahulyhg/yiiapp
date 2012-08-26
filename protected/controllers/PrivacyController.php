@@ -6,7 +6,10 @@ class PrivacyController extends Controller
 	{
 		$user = Yii::app()->session->get('user');
 		
+		if(!empty($user->privacy))
 		$privacy = $user->privacy;
+		else 
+		$privacy = new Privacy();
 
 		$alValue = array();
 		$fValue = array();

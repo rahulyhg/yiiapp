@@ -114,8 +114,9 @@
 
 				<div class="list_class-8b">
 				<?php
-				$religion = Religion::model()->findByPk($userPersonal->religion);
-				$caste = Caste::model()->findByPk($userPersonal->casteId);
+				$userPersonal = $user->userpersonaldetails;
+				$religion = $user->userpersonaldetails->religion;
+				$caste = $user->userpersonaldetails->caste;
 				?>
 					<div class="div_150">
 						<span class="txt_12"> &nbsp;<?php echo $religion->name?> - <?php echo $caste->name?>
@@ -162,7 +163,7 @@
 			</div>
 			<div class="list_class-6">
 			<?php
-			$country = Country::model()->findByPk($userPersonal->countryId);
+			$country = $religion = $user->userpersonaldetails->country;
 			?>
 				<div class="list_class-8b">
 					<div class="div_150">
@@ -184,7 +185,7 @@
 
 			$records = States::model()->findAll("active = 1");
 			$list = CHtml::listData($records, 'stateId', 'name');
-			echo CHtml::dropDownList('state',$userPersonal->stateId,$list,array('empty' => 'State','class'=>'select_small_h22')); ?>
+			echo CHtml::dropDownList('state',$user->userpersonaldetails->stateId,$list,array('empty' => 'State','class'=>'select_small_h22')); ?>
 
 			</div>
 			<!--closing personal details-section-5-->
