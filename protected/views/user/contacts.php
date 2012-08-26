@@ -19,7 +19,7 @@
 	<!--left-content-->
 
 	<div id="content-left-1">
-		<form id="userContact" name="userContact" method="post" action="/user/contact">
+		<form id="userContact" enctype="multipart/form-data" name="userContact" method="post" action="/user/contact">
 			<p class="text_pink-hd">You're just a step away from discovering a
 				life partner</p>
 			<div class="clear"></div>
@@ -394,6 +394,18 @@
 
 			</div>
 			<div class="clear"></div>
+			<div class="clear"></div>
+        <div class="list_ss-7">
+        <p class="txt_bldn"><span class="txt_bld_new">Who can view above detals</span></p>
+        </div> 
+        <div class="list_class-8"><p class="radio-4">
+          <input type="radio" name="pcontact" value="subscribers">&nbsp;Subscribers</p>
+                            <p class="radio-4">
+                            <input type="radio" name="pcontact" value="request">&nbsp;By request</p>
+                            
+           
+                            
+        </div>
 			<!--closing personal contact details-section-3-->
 			<div class="clear"></div>
 			<p class="space-15px">&nbsp;</p>
@@ -413,9 +425,8 @@
 				<div class="clear"></div>
 			</div>
 
-
-
 			<!--closing personal contact details-section-1-->
+
 			<!--personal contact details-section-2-->
 			<div style="float: left; width: 100%;">
 				<div class="list_class">
@@ -817,7 +828,30 @@
 					</div>
 				</div>
 
+		 <div class="clear"></div>
+        <div class="list_class-5">
+          <p class="txt_bldl">Upload Family Photo</p>
+        </div>
+<div class="list_class-6">
+          <div class="list_class-textfield_age-1">
+           <?php echo CHtml::activeFileField($model, 'familyAlbum'); ?>
+                  </div>
+</div>
 
+  <div class="clear"></div>
+  
+   <div class="div_ww"> 
+        <div class="list_class">
+          <p class="txt_bldl">Who can view my photo</p>
+        </div>
+<div class="list_xx">
+<p class="radio-2b">
+          <?php echo CHtml::checkBoxList('family',null,array('all'=>'All','subscribers'=>'Subscribers','member'=> 'Logged Members','request' => 'By Request')); ?>
+          </p> </div>
+
+
+
+		
 
 
 
@@ -863,6 +897,7 @@
 						<textarea rows="2" cols="20" name="myDesc" class="tab_300b">
 
 </textarea>
+					</div>
 					</div>
 				</div>
 			</div>

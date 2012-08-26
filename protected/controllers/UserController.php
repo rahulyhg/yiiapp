@@ -60,6 +60,10 @@ class UserController extends Controller
 		$this->render('success',array('user'=>$user,'userPersonal'=>$userPersonal));
 	}
 
+	public function actionFamilyPic(){
+		
+	}
+	
 	public function actionContact()
 	{
 		$user = Yii::app()->session->get('user');
@@ -201,8 +205,42 @@ class UserController extends Controller
 		$family->familyDesc = $_POST['familyDesc'];
 		if(isset($_POST['myDesc']))
 		$family->userDesc = $_POST['myDesc'];
+		
+			if(isset($_POST['Familyprofile']['familyAlbum'])){
+				
+			$file = CUploadedFile::getInstance($family,'familyAlbum');
+			if(isset($file) && !empty($file->name))
+			{
+			$extension = strtolower(Utilities::getExtension($file->name));  
+			if(Utilities::isValidImageExtension($extension)){         
+			$path = Utilities::getDirectory('images',array('familyAlbum',$user->marryId)); 
+			
+			
+			$file->saveAs($path.$user->marryId.'-'.$file->name);
+            $family->familyPic = $user->marryId.'-'.$file->name;
+			}
+			}
+			}
+		
 		$family->save();
 			
+		
+		if(isset($_POST['pcontact']))
+		{
+				$privacy = new Privacy();
+				$privacy->userId = $user->userId;
+				$privacy->items = 'contact';
+				$privacy->privacy = $_POST['pcontact'];
+				$privacy->save();	
+		}
+		if(isset($_POST['family']))
+		{
+		$privacy = new Privacy();
+				$privacy->userId = $user->userId;
+				$privacy->items = 'family';
+				$privacy->privacy = implode(',', $_POST['family']);
+				$privacy->save();
+		}
 		//$url = Yii::app()->createUrl('mypage/index');
 		//$this->redirect($url);
 		$this->render('hobbies');
@@ -256,10 +294,10 @@ class UserController extends Controller
 	
 	public function actionHoro()
 	{
-		
-		//$horoscope = Horoscopes::model()->findByAttributes(array('userId'=>$user->userId));
-		
-		$this->render("contacts",array('user'=>$user));
+		$user = Yii::app()->session->get('user');
+		$horoscope = Horoscopes::model()->findByAttributes(array('userId'=>$user->userId));
+		$family = new Familyprofile();
+		$this->render("horoscope",array('user'=>$user,'model'=>$horoscope));
 	}
 	public function actionHoroupload()
 	{
@@ -286,14 +324,28 @@ class UserController extends Controller
 			$file = CUploadedFile::getInstance($horoscope,'horoscopeFile');
 			if(isset($file) && !empty($file->name))
 			{
-			$file->saveAs(Yii::getPathOfAlias('webroot').'/files/'.$user->marryId.'-'.$file->name);
-            Yii::app()->session->add('grahaNila',$file->name);
+			$extension = strtolower(Utilities::getExtension($file->name));  
+			if(Utilities::isValidImageExtension($extension)){         
+			$path = Utilities::getDirectory('images',array('horoscope',$user->marryId)); 	
+			$file->saveAs($path.$user->marryId.'-'.$file->name);
             $horoscope->horoscopeFile = $user->marryId.'-'.$file->name;
 			}
 			}
-
+			}
 		$horoscope->save();
 	 		    // redirect to success page
+		
+		
+	if(isset($_POST['astro']))
+		{
+				$privacy = new Privacy();
+				$privacy->userId = $user->userId;
+				$privacy->items = 'contact';
+				$privacy->items = 'astro';
+				$privacy->privacy = implode(",", $_POST['astro']);
+				$privacy->save();	
+		}
+		
 		
 		$reference = new Reference();
 		$reference->userId = $user->userId;
@@ -358,7 +410,14 @@ class UserController extends Controller
 		$time = $_POST['timeFrom1'].':'.$_POST['fromA1'].'-'.$_POST['timeTo1'].':'.$_POST['toA1'];
 		$reference1->referCallFrom  = $time;
 		}
-
+		if(isset($_POST['reference']))
+		{
+				$privacy = new Privacy();
+				$privacy->userId = $user->userId;
+				$privacy->items = 'reference';
+				$privacy->privacy =  $_POST['reference'];
+				$privacy->save();
+		}
 		
 		$reference1->save();
 		$this->render("partner");

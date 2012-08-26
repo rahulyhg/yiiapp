@@ -131,6 +131,28 @@
  <div class="space-15px"><p>&nbsp;</p></div>     
     <div class="line"></div>
 <p class="space-15px">&nbsp;</p>
+
+                             
+  <div class="list_class-new_div_1"><!--list_class-new_div_1-->
+  <p class="txt_bld">Who can view Astro details</p>
+  </div><!--/list_class-new_div_1--> 
+  
+<!--list_class-new_div_2-->
+    
+				    <div class="list_class-6x">
+      
+      
+        <p class="check_box">
+				<?php echo CHtml::checkBoxList('astro',null,array('all'=>'All','subscribers'=>'Subscribers','member'=> 'Logged Members','request' => 'By Request')); ?>
+				</p>
+  
+  
+ 
+ </div>
+ <!--/list_class-new_div_3-->                 
+                    
+
+
 <div class="clear"></div> 
     <div class="space-15px"><p>&nbsp;</p></div>
               <div class="line"></div>
@@ -373,6 +395,41 @@
                     <p class="space-15px">&nbsp;</p>      
               		<div class="line"></div>
               		<p class="space-10px">&nbsp;</p>
+              		
+              		
+              		
+              		                 
+  <div class="list_class-new_div_1"><!--list_class-new_div_1-->
+  <p class="txt_bld">Who can view reference detail</p>
+  </div><!--/list_class-new_div_1--> 
+  
+    <div class="list_class-new_div_2"><!--list_class-new_div_2-->
+  
+  
+ <p class="radio_x">
+          <input type="radio" name="reference" value="subscribers">&nbsp;Subscribers</p>
+          <p class="radio">
+                            <input type="radio" name="reference" value="request">&nbsp;By request</p>
+                            
+  </div><!--/list_class-new_div_2--><!--/list_class-new_div_3-->                 
+                    
+  
+              		
+     
+              		<p class="space-10px">&nbsp;</p>
+              		
+              		<p class="space-15px">&nbsp;</p>
+              		        		<div class="clear"></div>
+<div class="clear"></div>	
+
+ 
+
+ 
+    
+       	
+  <div class="clear"></div>	      
+<div class="space-15px"><p>&nbsp;</p></div>      
+        
 <div class="clear"></div>
                    <!--closing personal contact details-section-2-->
                   <!--personal contact details-section-3--> 
