@@ -72,10 +72,10 @@ Activity status	<br />
 		<?php if(!empty($model->userpersonaldetails->religion)){?>
 :    <span class="txt_level"><?php echo $model->userpersonaldetails->religion->name ?>/ <?php echo $model->userpersonaldetails->caste->name ?></span><br />
  			<?php }?>
-:    <span class="txt_level">29 Years </span><br />
+:    <span class="txt_level"><?php echo Utilities::getAgeFromDateofBirth($model->dob)?> Years </span><br />
 :    <span class="txt_level"><?php echo $heightArray[$model->physicaldetails->heightId]; ?></span><br />
 :    <span class="txt_level"><?php echo $model->userpersonaldetails->place->name ?>, <?php echo $model->userpersonaldetails->state->name ?>, <?php echo $model->userpersonaldetails->country->name ?></span><br />
-	<span class="txt_level"><?php echo $model->educations->education->name ?></span><br />
+:	<span class="txt_level"><?php echo $model->educations->education->name ?></span><br />
 :    <span class="txt_level"><?php echo $model->educations->occupation->name ?></span><br />
   
 :   <span class="txt_level">2 days beefore</span><br />
@@ -134,7 +134,7 @@ Activity status	<br />
                 <p class="space-15px">&nbsp;</p>
                 
                 
-<p class="txt_rg">completed MBA,medium complexion,out going with good family values. in search for a moderately religious,well educated partner. completed MBA,medium complexion,out going with good family values. in search for a moderately religious,well educated partner. completed MBA,medium complexion,out going with good family values. in search for a moderately religious,well educated partner.</p>
+<p class="txt_rg"><?php echo $model->familyprofiles->userDesc  ?></p>
 <br />
 <div class="clear"></div>
   <p class="text_pink-hd">Basic details</p>
@@ -155,10 +155,10 @@ Marital Status
 </div>
 <div class="row_two">
 <p class="txt_rg">
-:<span class="txt_level">   Lilly Joseph</span><br />	
-:<span class="txt_level">   23 Years</span><br />	
-:<span class="txt_level">   5 Ft 5  In / 165 Cms</span> <br />	
-:<span class="txt_level">   Malayalam</span><br />	
+:<span class="txt_level"><?php echo $model->name ?></span><br />	
+:<span class="txt_level">  <?php echo Utilities::getAgeFromDateofBirth($model->dob)?> Years</span><br />	
+:<span class="txt_level">   <?php echo $heightArray[$model->physicaldetails->heightId]; ?></span> <br />	
+:<span class="txt_level">   <?php echo $model->?></span><br />	
 :<span class="txt_level">   Unmarried</span>
 </p>
 </div>

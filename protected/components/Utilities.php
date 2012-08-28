@@ -137,6 +137,11 @@ class Utilities
   }
   return $arrYears;
  }
+
+ public static function getAgeFromDateofBirth($dob)
+ {
+    return floor((time() - strtotime($dob)) / 31556926);
+ }
  
  /**
   * Get the current year
