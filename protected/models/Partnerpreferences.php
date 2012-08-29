@@ -82,6 +82,8 @@ class Partnerpreferences extends CActiveRecord
 		// class name for the relations automatically generated below.
 		return array(
 			'user' => array(self::BELONGS_TO, 'Users', 'userId'),
+			'religionData' => array(self::HAS_ONE, 'Religion', 'religionId'),
+			'casteData' => array(self::HAS_ONE, 'Caste', 'casteId'),
 		);
 	}
 

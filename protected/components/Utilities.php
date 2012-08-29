@@ -102,10 +102,9 @@ class Utilities
  {
  	return array('0'=>'Very Fair','1'=>'Fair','2'=>'Wheatish','3'=>'Wheatish Brown','4'=>'Dark');
  }
- 
  public static function getMaritalStatus()
  {
- 	return array('0'=>'Very Fair','1'=>'Fair','2'=>'Wheatish','3'=>'Wheatish Brown','4'=>'Dark');
+ 	return array('0'=>'Unmarried','1'=>'widower','2'=>'Divorced','3'=>'Awating divorce');
  }
  
  public static function getProfileCreated()
@@ -117,14 +116,79 @@ class Utilities
  	
  }
  
- public static function physicalStatus()
+ public static function getFamilyStatus()
  {
- 	
+ 	return array('0'=>'lower middle class','1'=>'middle class','2'=>'upper middle class','3'=>'rich','4'=>'affluent');
+ } 
+ 
+ public static function getFamilyType()
+ {
+ 	return  array('0'=>'joint','1'=>'nuclear');
+ }
+ 
+ public static function getFamilyValues()
+ {
+ 	return array('0'=>'orthodox','1'=>'traditional','2'=>'moderate','3'=>'liberal');
+ }
+ 
+
+ public static function getValueForIds($model,$ids,$param)
+ {
+ 	$valuString = "";
+ 	$arrayIds = explode(",", $ids);
+   	$result = $model->findAllByAttributes(array($param=>$arrayIds));
+   	if(sizeof($result) > 0)
+   	{
+   	foreach ($result as $value) {
+   		$valuString = $valuString.','. $value->name;
+   	}
+ 	return $valuString;
+   	}
+   	else
+   	return 'Not specified';
+ }
+ 
+ public static function getArrayValues($arrayToFetch,$indexes)
+ {
+ 	$stringValue = "";
+ 	$arrayIds = explode(",", $indexes);
+ 	if(sizeof($arrayIds)> 0)
+ 	{
+ 	foreach ($arrayIds as $value) {
+		$stringValue = $stringValue.','.$arrayToFetch[$value];
+ 	}
+	return $stringValue; 	
+ 	}
+ 	else 
+ 	return "Not specified";
  }
  
  
+ public static function getJob()
+ {
+ 	return array('0'=>'Goverment','1'=>'private','2'=>'Business','3'=>'Defence','4'=>'self','5'=>'NRI');
+ }
  
+ public static function physicalStatus()
+ {
+ 	return array('0'=>'Normal','1'=> 'physically challenged');
+ }
  
+ public static function getFood()
+ {
+ 	return array('0'=>'Vegetarian','1'=>'Non-Vegetarian','2'=>'Eggetarian');
+ }
+ 
+ public static function getDrink()
+ {
+ 	return array('0'=>'Non-Drinker','1'=> 'Occasinoaly','2'=>'Drinker');
+ }
+ 
+	public static function getSmoke()
+	{
+		return array('0'=>'Non-smoker','1'=> 'Occasinoaly','2'=>'Smoker');
+	} 
+
  public static function getYears()
  {
   $yearNow = self::currentYear();

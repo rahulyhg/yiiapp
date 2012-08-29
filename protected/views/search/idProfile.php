@@ -158,8 +158,8 @@ Marital Status
 :<span class="txt_level"><?php echo $model->name ?></span><br />	
 :<span class="txt_level">  <?php echo Utilities::getAgeFromDateofBirth($model->dob)?> Years</span><br />	
 :<span class="txt_level">   <?php echo $heightArray[$model->physicaldetails->heightId]; ?></span> <br />	
-:<span class="txt_level">   <?php echo $model->?></span><br />	
-:<span class="txt_level">   Unmarried</span>
+:<span class="txt_level">   Language </span><br />	
+:<span class="txt_level">   <?php $marry = Utilities::getMaritalStatus(); echo $marry[$model->userpersonaldetails->maritalStatus]?></span>
 </p>
 </div>
 
@@ -176,9 +176,10 @@ Blood Groupe
 </div>
 <div class="row_two">
 <p class="txt_rg">
-:<span class="txt_level">   Average / Wheatish brown</span><br />	
-:<span class="txt_level">   Normal</span><br />	
-:<span class="txt_level">   64 Kgs / 141 lbs </span> <br />	
+<?php $bodyType = Utilities::getBodyType(); $bodyColor = Utilities::getBodyColor();$physicalStatus = Utilities::physicalStatus()?>
+:<span class="txt_level">    <?php echo $bodyType[$model->physicaldetails->bodyType]?>/<?php echo $bodyType[$model->physicaldetails->complexion]?></span><br />	
+:<span class="txt_level">   <?php echo $physicalStatus[$model->physicaldetails->physicalStatus]?></span><br />	
+:<span class="txt_level">   <?php echo $model->physicaldetails->weight?> Kgs</span> <br />	
 :<span class="txt_level">   Not Specified</span><br />	
 </p>
 </div>
@@ -209,9 +210,9 @@ Horoscope Match<br />
 </div>
 <div class="row_two">
 <p class="txt_rg">
-:<span class="txt_level">  Muslim - Others</span><br />	
+:<span class="txt_level">  <?php echo $model->userpersonaldetails->religion->name ?></span><br />	
 :<span class="txt_level">  Muslim - Others / Not</span> <br />
-<span class="txt_level">&nbsp;&nbsp;Specified</span><br />	
+<span class="txt_level">&nbsp;&nbsp;<?php echo $model->userpersonaldetails->caste->name ?></span><br />	
 :<span class="txt_level">   Doesn't matter</span> <br />	
 :<span class="txt_level">   Not Specified</span><br />	
 </div>
@@ -236,12 +237,16 @@ Horoscope Match<br />
 Smoking habits<br />			
 Caste / Sub Caste<br />			
 </p>
+<?php $food = Utilities::getFood();
+$smoke = Utilities::getSmoke();
+$drink= Utilities::getDrink();
 
+?>
 </div>
 <div class="row_two">
 <p class="txt_rg">
-:<span class="txt_level"></span> Non Vegetarian <br />	
-:<span class="txt_level">   Non-smoker</span><br />	
+:<span class="txt_level"></span><?php echo $food[$model->habits->food]?><br />	
+:<span class="txt_level">   <?php echo $smoke[$model->habits->smoking]?></span><br />	
 :<span class="txt_level">   Doesn't matter</span> <br />	
 </p>
 </div>
@@ -256,7 +261,7 @@ Caste / Sub Caste<br />
 
 <div class="row_two">
 <p class="txt_rg">
-:<span class="txt_level">   Non-drinker</span><br />	
+:<span class="txt_level">   <?php echo $drink[$model->habits->drinking]?></span><br />	
 </p>
 </div>
 
@@ -290,9 +295,9 @@ Citizenship<br />
 </div>
 <div class="row_two">
 <p class="txt_rg">
-:<span class="txt_level">   India</span><br />	
-:<span class="txt_level">   Kerala</span><br />	
-:<span class="txt_level"> India</span><br />	
+:<span class="txt_level"> <?php echo $model->userpersonaldetails->country->name ?>  India</span><br />	
+:<span class="txt_level"> <?php echo $model->userpersonaldetails->state->name ?> </span><br />	
+:<span class="txt_level">  </span><br />	
 </p>
 </div>
 
@@ -311,7 +316,7 @@ Resident Status<br />
 
 <div class="row_two">
 <p class="txt_rg">
-:<span class="txt_level">   Kochi</span><br />	
+:<span class="txt_level">   <?php echo $model->userpersonaldetails->place->name ?></span><br />	
 :<span class="txt_level">   Citizen</span><br />	
 </p>
 </div>
@@ -343,16 +348,16 @@ Employed in<br />
 Annual Income		
 			
 </p>
-
+<?php $job = Utilities::getJob()?>
 </div>
 <div class="row_two">
 <p class="txt_rg">
-:<span class="txt_level">   MBA / PGDM </span><br />	
-:<span class="txt_level">   Not working </span><br />	
+:<span class="txt_level">   <?php echo $model->educations->education->name ?></span><br />	
+:<span class="txt_level">   <?php echo $model->educations->occupation->name ?></span><br />	
 :<span class="txt_level">   completed MBA </span> <br />
 :<span class="txt_level">   MBA / PGDM </span> <br />	
-:<span class="txt_level">   Not working </span> <br />
-:<span class="txt_level">   Not Specified  </span> <br />	
+:<span class="txt_level">   <?php echo $job[$model->educations->employedIn]?></span> <br />
+:<span class="txt_level">   <?php echo $model->educations->yearlyIncome?></span> <br />	
 	
 </p>
 </div>
@@ -379,13 +384,13 @@ Family Status<br />
 Ancestral Origin<br /><br />			
 Family album<br />		
 </p>
-
+<?php $familyValues = Utilities::getFamilyValues();$familyType = Utilities::getFamilyType();$familyStatus = Utilities::getFamilyStatus();?>
 </div>
 <div class="row_two">
 <p class="txt_rg">
-:<span class="txt_level">   MBA / PGDM </span><br />	
-:<span class="txt_level"> Not working </span><br />	
-:<span class="txt_level">   completed MBA </span> <br />
+:<span class="txt_level">  <?php echo $familyValues[$model->familyprofiles->familyValues]?> </span><br />	
+:<span class="txt_level"> <?php echo $familyType[$model->familyprofiles->familyType]?></span><br /> 	
+:<span class="txt_level">   <?php echo $familyStatus[$model->familyprofiles->familyValues]?></span> <br />
 :<span class="txt_level"> MBA / PGDM </span> <br /><br />
 :<span class="txt_level">View my album <a href="family.html" target="_blank">(5 Photos)</a></span> <br />	
 </p>
@@ -426,7 +431,7 @@ Blood Groupe</p>
  <p class="text_pink-hd">About my family</p>
                 <p class="space-25px">&nbsp;</p>
 
-<p class="txt_rg">My dad is into business,mom a simple house wife,got 2 sisters and 1 younger brother.both sisters got married.</p>
+<p class="txt_rg"><?php echo $model->familyprofiles->familyDesc?>.</p>
 
 <div class="clear"></div>
 
@@ -443,7 +448,7 @@ Blood Groupe</p>
 
 <div class="table_box_large"><!--table_box-->
 <div class="row_one">
-<p class="txt_rg">Groom's Age<br />		
+<p class="txt_rg">Age<br />		
 Height<br />			
 Marital status<br />
 Physical Status<br />		
@@ -454,7 +459,7 @@ Sub Caste<br />
 Eating Habits<br />		
 Smoking Habits<br />		
 Drinking Habits<br />		
-Education<br />	<br />		
+Education<br />	
 Occupation<br />		
 Annual Income<br />		
 Country<br />		
@@ -469,23 +474,22 @@ Residing City<br />
 <p class="txt_rg">
 :<span class="txt_level">   <?php echo $partner->ageFrom.' - '.$partner->ageTo.' Years'; ?></span><br />	
 :<span class="txt_level">  <?php echo $heightArray[$partner->heightTo]; ?> / <?php echo $heightArray[$partner->heightFrom]; ?></span><br />	
-:<span class="txt_level">   Unmarried</span> <br />
-:<span class="txt_level">    Normal</span> <br />
-:<span class="txt_level">   5Malayalam</span> <br />
-:<span class="txt_level">   Muslim - Others</span> <br />
-:<span class="txt_level">   Caste no bar</span> <br />
-:<span class="txt_level">   Any</span> <br />
-:<span class="txt_level">   Doesn't matter</span> <br />
-:<span class="txt_level">   Non-smoker</span> <br />
-:<span class="txt_level">   Non-drinker</span> <br />
-:<span class="txt_level">   Bachelors - Engineering / Computers, Medicine - General / 
-		   <span class="txt_level_sub"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Dental / Surgeon /...</span></span> <br />
-:<span class="txt_level">   Engineer - Non IT, Doctor</span> <br />
-:<span class="txt_level">   Any</span> <br />
-:<span class="txt_level">   Any</span> <br />
-:<span class="txt_level">   Any</span> <br />
-:<span class="txt_level">   Any</span> <br />
-:<span class="txt_level">   Any</span> <br />
+:<span class="txt_level">   <?php echo $marry[$partner->maritalStatus];?></span> <br />
+:<span class="txt_level">    <?php echo $physicalStatus[$partner->physicalStatus]?></span> <br />
+:<span class="txt_level">   <?php echo Utilities::getValueForIds(new Languages(), $partner->languages, 'languageId')?></span> <br />
+:<span class="txt_level">   <?php echo $partner->religionData->name?></span> <br />
+:<span class="txt_level">   <?php echo $partner->casteData->name?></span> <br />
+:<span class="txt_level">   <?php echo Utilities::getValueForIds(new Subcaste(), $partner->subcaste, 'subcasteId')?></span> <br />
+:<span class="txt_level">   <?php echo Utilities::getArrayValues(Utilities::getFood(), $partner->eatingHabits)?></span> <br />
+:<span class="txt_level">   <?php echo Utilities::getArrayValues(Utilities::getSmoke(), $partner->smokingHabits)?></span> <br />
+:<span class="txt_level">   <?php echo Utilities::getArrayValues(Utilities::getDrink(), $partner->drinkingHabits)?></span> <br />
+:<span class="txt_level">   Bachelors - Engineering / Computers, Medicine - General </span><br/> 
+:<span class="txt_level">   <?php echo Utilities::getValueForIds(new OccupationMaster(), $partner->occupation, 'occupationId')?></span> <br />
+:<span class="txt_level">   <?php echo $partner->annualIncome; ?></span> <br />
+:<span class="txt_level">   <?php echo Utilities::getValueForIds(new Country(), $partner->countries, 'countryId')?></span> <br />
+:<span class="txt_level">   <?php echo Utilities::getValueForIds(new States(), $partner->states, 'stateId')?></span> <br />
+:<span class="txt_level">   <?php echo Utilities::getValueForIds(new Country(), $partner->citizenship, 'countryId')?></span> <br />
+:<span class="txt_level">   <?php echo Utilities::getValueForIds(new Places(), $partner->places, 'placeId')?></span> <br />
 </p>
 </div>
 
@@ -506,7 +510,7 @@ Residing City<br />
 
 <div class="clear"></div>
 
-<p class="txt_rg">Expecting moderately religious with high family values and well educated.Expecting moderately religious with high family values and well educated.Expecting moderately religious with high family values and well educated.Expecting moderately religious with high family values and well educated.Expecting moderately religious with high family values and well educated.Expecting moderately religious with high family values and well educated.Expecting moderately religious with high family values</p>
+<p class="txt_rg"><?php echo $partner->partnerDescription; ?></p>
 <br />
 <div class="clear"></div>
 
