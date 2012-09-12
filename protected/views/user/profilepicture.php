@@ -1,3 +1,71 @@
+<script type="text/javascript">
+function addMoreFiles()
+{
+
+	// get the current element count
+	var count = document.getElementById("photoCount").value;
+	//Create an input type dynamically.
+    var element = document.createElement("input");
+     //Assign different attributes to the element.
+    element.setAttribute("type", "file");
+    element.setAttribute("value", "");
+    element.setAttribute("name", "profilePhoto_"+count);
+    element.setAttribute("id", "profilePhoto_"+count);
+    element.setAttribute("class", "fileStyle");
+ 
+    var container = document.getElementById("photoContainer");
+ 
+    //Append the element in page (in span).
+    container.appendChild(element);
+    count = parseInt(count) + 1;
+    document.getElementById("photoCount").value = count;
+}
+
+function addMoreDocuments()
+{
+
+	// get the current element count
+	var count = document.getElementById("documentCount").value;
+	//Create an input type dynamically.
+    var element = document.createElement("input");
+     //Assign different attributes to the element.
+    element.setAttribute("type", "file");
+    element.setAttribute("value", "");
+    element.setAttribute("name", "profileDocument_"+count);
+    element.setAttribute("id", "profileDocument_"+count);
+    element.setAttribute("class", "fileStyle");
+ 
+    var container = document.getElementById("documentContainer");
+ 
+    //Append the element in page (in span).
+    container.appendChild(element);
+
+    // create the select box
+    
+    var element = document.createElement("select");
+     //Assign different attributes to the element.
+    element.setAttribute("name", "documentType_"+count);
+    element.setAttribute("id", "documentType_"+count);
+    element.setAttribute("class", "select_small_140");
+
+    var option = document.createElement("option");
+    option.setAttribute("value", "1");
+    option.innerHTML = 'Passport';
+    element.appendChild(option);
+    var option = document.createElement("option");
+    option.setAttribute("value", "2");
+    option.innerHTML = 'Voters ID';
+    element.appendChild(option);
+    var option = document.createElement("option");
+    option.setAttribute("value", "3");
+    option.innerHTML = 'PAN Card';
+    element.appendChild(option);
+    container.appendChild(element);
+    
+    count = parseInt(count) + 1;
+    document.getElementById("documentCount").value = count;
+}
+</script>
 <!--left-content-->
                 <div id="content-left-member-11">   
 
@@ -60,11 +128,13 @@
 <div class="list_div_2"><!--list_div_2-->
 
 <form action="<?php echo Yii::app()->params['homeUrl'] ?>/user/profilepicture" method="post" enctype="multipart/form-data">
- <input type="file" name="profilePhoto" id="profilePhoto"  class="fileStyle"/>
+<input type="hidden" name="photoCount" id="photoCount" value="2" />
+ <input type="file" name="profilePhoto_1" id="profilePhoto_1"  class="fileStyle"/>
 
  <br />
+ <div id="photoContainer" style="margin-bottom:10px;"></div>
   <div>
-  <input type="button" name="morephoto" id="morephoto" class="btnStyle" value="Add more" /></div>
+  <input type="button" name="morephoto" id="morephoto" class="btnStyle" value="Add more" onClick="addMoreFiles()"; /></div>
 	<div class="clearSpace"></div>
   <div>
   <input type="submit" name="uploadphoto" id="uploadphoto" class="btnStyle" value="Upload" /></div>
@@ -182,17 +252,8 @@
 <div class="list_div_2"><!--list_div_2-->
 
 <form action="<?php echo Yii::app()->params['homeUrl'] ?>/user/profilepicture" method="post" enctype="multipart/form-data">
- <input type="file" name="profileDocument" id="profileDocument" size="19" class="fileStyle" />
-
- <br />
-
-              
-   </div>
-<!--/list_div_2-->
-
-
-
-
+  <input type="hidden" name="documentCount" id="documentCount"  value="2" />
+ <input type="file" name="profileDocument_1" id="profileDocument_1" size="19" class="fileStyle" />
 <div style="float:left; width:40%;">
 <div class="list_div_1-doc"><!--list_div_1-->
 <p class="txt_bldn">Type of Document*</p>
@@ -200,7 +261,7 @@
 
 <div class="list_div_3b">
 
- <select class="select_small_140" id="documentType" name="documentType">
+ <select class="select_small_140" id="documentType_1" name="documentType_1">
  <option value="1">Passport</option>
  <option value="2">Voters ID</option>
  <option value="3">PAN Card</option>
@@ -213,6 +274,18 @@
  </div><!--/list_div_2-->
  </div>
  
+<div class="clear"></div>
+ <div id="documentContainer" style="margin-bottom:10px;"></div>
+
+              
+   </div>
+<!--/list_div_2-->
+
+
+
+
+
+ 
  
  
  
@@ -222,7 +295,7 @@
  <div class="div_rr" style="width:100%;">
 
                   <div>
-  <input type="button" name="moredocuments" id="moredocuments" class="btnStyle" value="Add more" /></div>
+  <input type="button" name="moredocuments" id="moredocuments" class="btnStyle" value="Add more" onClick="addMoreDocuments();" /></div>
 	<div class="clearSpace"></div>
   <div>
   <input type="submit" name="uploaddocuments" id="uploaddocuments" class="btnStyle" value="Upload" /></div>

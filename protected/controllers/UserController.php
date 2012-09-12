@@ -541,28 +541,63 @@ class UserController extends Controller
   		Yii::app()->session->add('user',$user);
   		$photos = new Photos();
   		$documents = new Documents();
-  		//Upload the profile photo  		  
-		if (!empty($_FILES['profilePhoto']['tmp_name'])){  
-			$file = $_FILES['profilePhoto'];
-			$fileName=basename( $_FILES['profilePhoto']['name']);   
-			$extension = strtolower(Utilities::getExtension($fileName));  
-			if(Utilities::isValidImageExtension($extension)){         
-			 	$path = Utilities::getDirectory('images',array('profile',$user->marryId)); 
-			 	$fileName = $user->marryId.date("his").".".$extension; 
-				$targetPath = Utilities::getFullFilePath($path, $fileName);
-				if(Utilities::uploadFile($_FILES['profilePhoto']['tmp_name'], $targetPath)) {
-					//code to insert to db
-					$photos->updateAll(array('profileImage'=>0),'userId='.$user->userId);  // unset the existing 
-					$photos->userId = $user->userId;
-					$photos->imageName = $fileName;
-					$photos->profileImage = 1;
-					$photos->save();
-				}else{
-					echo "There was an error uploading the file, please try again!";
-				}				
-			}	
-				
-		}elseif(isset($_GET['r']) && $_GET['r'] == 'setimage'){   // set the profile image
+  		//Upload the profile photo
+  		$photoCount = isset($_POST['photoCount']) ? $_POST['photoCount']:1; 
+  		for($i = 1; $i < $photoCount; $i++){		  
+		if (!empty($_FILES['profilePhoto_'.$i]['tmp_name'])){  
+				$file = $_FILES['profilePhoto_'.$i];
+				$fileName=basename( $_FILES['profilePhoto_'.$i]['name']);   
+				$extension = strtolower(Utilities::getExtension($fileName));  
+				if(Utilities::isValidImageExtension($extension)){         
+				 	$path = Utilities::getDirectory('images',array('profile',$user->marryId)); 
+				 	$fileName = $user->marryId.date("his").".".$extension; 
+					$targetPath = Utilities::getFullFilePath($path, $fileName);
+					if(Utilities::uploadFile($_FILES['profilePhoto_'.$i]['tmp_name'], $targetPath)) {
+						//code to insert to db
+						$photos = new Photos();
+						$photos->updateAll(array('profileImage'=>0),'userId='.$user->userId);  // unset the existing 
+						$photos->userId = $user->userId;
+						$photos->imageName = $fileName;
+						$photos->profileImage = 1;
+						$photos->save();
+						
+					}else{
+						echo "There was an error uploading the file, please try again!";
+					}				
+				}	
+					
+			}
+			sleep(1); // set a time delay to upload
+  		}
+  		
+  		//upload profile document
+  		$documentCount = isset($_POST['documentCount']) ? $_POST['documentCount']:1;
+  		for($i = 1; $i < $documentCount; $i++){
+			if (!empty($_FILES['profileDocument_'.$i]['tmp_name'])){   // upload the documents
+				$file = $_FILES['profileDocument_'.$i];
+				$documentType = trim($_POST['documentType_'.$i]);
+				$fileName=basename( $_FILES['profileDocument_'.$i]['name']);   
+				$extension = strtolower(Utilities::getExtension($fileName));  
+				if(Utilities::isValidDocumentExtension($extension)){         
+				 	$path = Utilities::getDirectory('images',array('documents',$user->marryId)); 
+				 	$fileName = $user->marryId.date("his").".".$extension; 
+					$targetPath = Utilities::getFullFilePath($path, $fileName);
+					if(Utilities::uploadFile($_FILES['profileDocument_'.$i]['tmp_name'], $targetPath)) {
+						//code to insert to db
+						$documents = new Documents();
+						$documents->userId = $user->userId;
+						$documents->documentName = $fileName;
+						$documents->documentType = $documentType;
+						$documents->save();
+					}else{
+						echo "There was an error uploading the file, please try again!";
+					}				
+				}	
+					
+			}
+			sleep(1); // set a time delay to upload
+  		}
+		if(isset($_GET['r']) && $_GET['r'] == 'setimage'){   // set the profile image
 			$photoId = (int)trim($_GET['pId']);
 			$userId = (int)trim($_GET['uId']);
 			$user = Yii::app()->session->get('user');
@@ -588,26 +623,6 @@ class UserController extends Controller
 				$this->redirect(Yii::app()->params['homeUrl']."/user/profilepicture");
 				Yii::app()->end();	
 			}
-		}elseif (!empty($_FILES['profileDocument']['tmp_name'])){   // upload the documents
-			$file = $_FILES['profileDocument'];
-			$documentType = trim($_POST['documentType']);
-			$fileName=basename( $_FILES['profileDocument']['name']);   
-			$extension = strtolower(Utilities::getExtension($fileName));  
-			if(Utilities::isValidDocumentExtension($extension)){         
-			 	$path = Utilities::getDirectory('images',array('documents',$user->marryId)); 
-			 	$fileName = $user->marryId.date("his").".".$extension; 
-				$targetPath = Utilities::getFullFilePath($path, $fileName);
-				if(Utilities::uploadFile($_FILES['profileDocument']['tmp_name'], $targetPath)) {
-					//code to insert to db
-					$documents->userId = $user->userId;
-					$documents->documentName = $fileName;
-					$documents->documentType = $documentType;
-					$documents->save();
-				}else{
-					echo "There was an error uploading the file, please try again!";
-				}				
-			}	
-				
 		}elseif(isset($_GET['r']) && $_GET['r'] == 'deletedocument'){   // delete the document
 			$documentId = (int)trim($_GET['dId']);
 			$userId = (int)trim($_GET['uId']);
