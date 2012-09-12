@@ -101,6 +101,6 @@ return array(
 		'resourceUrl' => 'http://scripts.marrydoor.com',
 		'homeUrl' => 'http://marrydoor.com',
 		'mediaUrl' => 'http://scripts.marrydoor.com/images',
-		'ftpPath' => 'E:\project\marrydoor',
+		'ftpPath' => 'D:\ftp\marrydoor',
 	),
 );

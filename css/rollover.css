@@ -823,6 +823,7 @@
 	 a.regular-last:hover,
 	 a.regular:hover,
 	 a.ref:hover,
+	 a.buttonHref:hover,
 	 a.edit-sub-add:hover,
 	 a.chg-pas-last:hover,
 	 a.chg-pas:hover,
@@ -1077,7 +1078,19 @@
 	color :#fff;
 	background :#876099;
 	 }	 
-		 
+
+	a.buttonHref{
+	padding-top:4px;
+	font-size:12px;
+	text-align : center;
+	color :#876099;
+	text-decoration : none;
+	background :#e6e7e8;
+	font:Lucida Grande;
+	font-family:Arial, Helvetica, sans-serif;
+	border:none;
+	}
+	
 	
 		 
 		 

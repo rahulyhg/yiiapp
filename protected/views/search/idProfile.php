@@ -3,7 +3,7 @@
 *
 * $Id$
 --------------------------------------------------------------------------------------------------------------------------
-* Information contained in this file is the intellectual property of Ladbrokes Plc
+* Information contained in this file is the intellectual property of Marrydoor
 * Copyright © 2012 MarryDorr. All Rights Reserved.
 * ---------------------------------------------------------------------------------------------------------------------------
 *
@@ -47,7 +47,7 @@
 </div>
 
 
-<p class="log_color_blue_add">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#">&nbsp;Short List</a>   |  <a href="#">Block</a>   |  <a href="#">Forwards</a>  |  <a href="#">Print</a></p>
+<p class="log_color_blue_add">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#">&nbsp;Short List</a>   |  <a href="#">Block</a>   |  <a href="#">Forwards</a>  |  <a href="#" onclick="window.print();">Print</a></p>
 
 
 <div class="list_div_2sm"><!--list_div_2sm-->
@@ -518,7 +518,7 @@ Residing City<br />
 
 <div class="line"></div>
 
-<div class="left"><p class="text_blue"><a href="#">Short List</a>   |  <a href="#">Block</a>   |  <a href="#">Forwards</a>  |  <a href="#">Print</a></p>
+<div class="left"><p class="text_blue"><a href="#">Short List</a>   |  <a href="#">Block</a>   |  <a href="#">Forwards</a>  |  <a href="#" onclick="window.print();">Print</a></p>
 </div>
 
 <div class="right_mgntp-sub">

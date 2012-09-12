@@ -3,7 +3,7 @@
 *
 * $Id$
 --------------------------------------------------------------------------------------------------------------------------
-* Information contained in this file is the intellectual property of Ladbrokes Plc
+* Information contained in this file is the intellectual property of MarryDoor Plc
 * Copyright © 2012 MarryDorr. All Rights Reserved.
 * ---------------------------------------------------------------------------------------------------------------------------
 *
@@ -319,20 +319,10 @@
     
   </div>
   </div>
- <div class="list_class-5">
- <p class="txt_bld">Looking for Duth</p>
- </div>
-<div class="list_class-6">
-       	<p class="radio_sub">
-                    <input type="radio" name="b" value="myself">
-                    &nbsp;&nbsp;Yes</p>
-                    <p class="radio-2">
-                    <input type="radio" name="b" value="son">
-                    &nbsp;&nbsp;No</p>
-      </div>
+ 
                     <p class="clear"></p>
         <div class="list_class-5">
-                      <p class="txt_bld">Mother Toung
+                      <p class="txt_bld">Mother Tounge
  </p>
         </div>
 <div class="list_class-6">
@@ -387,12 +377,6 @@
 
   <p class="clear"></p>
   
-<div class="list_class-5">
-   <p class="txt_bld">Sub Caste</p>
-   </div>   
-<div class="list_class-6">
-<input type="text" name="subcaste" id="subcaste" class="addres_form-new2" placeholder="Sub Caste" /></div>
-
 
   <p class="clear"></p>
   <div class="line"></div>
@@ -409,13 +393,13 @@
  </div>
 <div class="list_class-6">
 	    <p class="radio-2-sub">
-                    <input type="radio" name="status[]" value="N">
+                    <input type="radio" name="pstatus[]" value="N">
                     &nbsp;&nbsp;Doesn’t Matter</p>
           <p class="radio-2">
-                    <input type="radio" name="status[]" value="0">
+                    <input type="radio" name="pstatus[]" value="0">
           &nbsp;&nbsp;Normal</p>
                     <p class="radio-2">
-                    <input type="radio" name="status[]" value="1">
+                    <input type="radio" name="pstatus[]" value="1">
                     &nbsp;&nbsp;Physically challenged </p>
       </div>
                     <p class="clear"></p>
@@ -707,22 +691,6 @@
 
 
 
- <p class="text_pink-hd">Keywords</p>
-                <p class="space-25px">&nbsp;</p>
-
-
-
-<div class="list_div_780-02"><!--list_div_780-->
-<p>Enter keywords within quotes and for more than one keyword use a comma separator between words. Example: "Good looking", "Well settled", etc. Keywords are searched against the profile description of a member.</p>
-</div>
- 
-  <p class="clear"></p>
-   <div class="list_class-5">
-   <p class="txt_bld">Keyword</p>
-   </div>   
-<div class="list_class-6">
-<input type="text" name="keyword" id="keyword" class="addres_form-new2" placeholder="Country" /></div>
- 
                     <p class="clear"></p>
         <div class="list_class-5">
                       <p class="txt_bld">Show profile
@@ -772,8 +740,7 @@
 
                    
                    <a href="javascript:advanceSearch.submit();" class="srch-sub-bottom">Search</a>
-	  
-                         <a class="srch-sub-save" href="#">Save Search</a>
+                    <a class="srch-sub-save" id="searchButton" href="#">Save Search</a>
       
       </div>
         
@@ -791,4 +758,19 @@
  </div>
             <!--main-content closing-->
             
-    
+<script type="text/javascript">
+$(document).ready(function() {
+
+	$('#searchButton').click(function() {	
+	$('<input>').attr({
+	    type: 'hidden',
+	    id: 'search',
+	    name: 'search',
+	    value: 'save'
+	}).appendTo('#advanceSearch');
+	  $('#advanceSearch').submit();
+	});
+});
+
+
+</script>    

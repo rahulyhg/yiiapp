@@ -3,7 +3,7 @@
 *
 * $Id$
 --------------------------------------------------------------------------------------------------------------------------
-* Information contained in this file is the intellectual property of Ladbrokes Plc
+* Information contained in this file is the intellectual property of MarryDoor Plc
 * Copyright © 2012 MarryDorr. All Rights Reserved.
 * ---------------------------------------------------------------------------------------------------------------------------
 *

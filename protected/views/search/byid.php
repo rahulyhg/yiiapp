@@ -3,8 +3,8 @@
 *
 * $Id$
 --------------------------------------------------------------------------------------------------------------------------
-* Information contained in this file is the intellectual property of Ladbrokes Plc
-* Copyright © 2012 MarryDorr. All Rights Reserved.
+* Information contained in this file is the intellectual property of MarryDoor
+* Copyright © 2012 MarryDoor. All Rights Reserved.
 * ---------------------------------------------------------------------------------------------------------------------------
 *
 * @author  Ageesh K Gopinath

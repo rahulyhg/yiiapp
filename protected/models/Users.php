@@ -112,6 +112,7 @@ class Users extends CActiveRecord
 			'profileViewer' => array(self::HAS_MANY, 'ProfileViews', 'visitedId'),
 			'shortlist' => array(self::HAS_MANY, 'Shortlist', 'userID'),
 			'shortlisted' => array(self::HAS_MANY, 'Shortlist', 'profileID'),
+			'search' => array(self::HAS_ONE, 'Search', 'userId'),
 		);
 	}
 

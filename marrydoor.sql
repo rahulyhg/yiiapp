@@ -237,24 +237,25 @@ create table signs_master(signId BIGINT UNIQUE NOT NULL AUTO_INCREMENT, name VAR
 
 DROP VIEW IF EXISTS marrydoor.view_users;
 
-CREATE VIEW view_users AS SELECT U.*,UC.mobileNo,UC.landLine,UC.alternativeNo,UC.facebookUrl,UC.skypeId,UC.googleIM,UC.yahooIM,UC.visibility,
-UP.casteId as casteId,C.name as caste,UP.religion as religionId, R.name as religion,UP.countryId,CO.name as country,UP.stateId,S.name as state,UP.distictId,D.name as district,UP.place as placeId, PL.name as place,UP.mobilePhone,UP.landPhone,UP.intercasteable,UP.createdBy,UP.maritalStatus,
+CREATE VIEW view_users AS SELECT U.*, FLOOR( DATEDIFF( CURRENT_DATE, U.dob) /365 ) as age,UC.mobileNo,UC.landLine,UC.alternativeNo,UC.facebookUrl,UC.skypeId,UC.googleIM,UC.yahooIM,UC.visibility,
+UP.casteId as casteId,C.name as caste,UP.religionId as religionId, R.name as religion,UP.countryId,CO.name as country,UP.stateId,S.name as state,UP.distictId,D.name as district,UP.placeId as placeId, PL.name as place,UP.mobilePhone,UP.landPhone,UP.intercasteable,UP.createdBy,UP.maritalStatus,
 P.heightId,P.weight,P.bodyType,P.complexion,P.physicalStatus,
-PP.ageFrom,PP.ageTo,PP.maritalStatus as partnerStatus,PP.haveChildren,PP.heightFrom,PP.heightTo,PP.physicalStatus as partnerPhysicalStatus,PP.religion as partnerReligion,PP.caste partnerCaste,PP.manglik,PP.star,PP.eatingHabits,PP.drinkingHabits,PP.smokingHabits,PP.languages,PP.countries,PP.states,PP.districts,PP.places,PP.citizenship,PP.occupation,PP.annualIncome,PP.partnerDescription
+PP.ageFrom,PP.ageTo,PP.maritalStatus as partnerStatus,PP.haveChildren,PP.heightFrom,PP.heightTo,PP.physicalStatus as partnerPhysicalStatus,PP.religion as partnerReligion,PP.caste partnerCaste,PP.manglik,PP.star,PP.eatingHabits,PP.drinkingHabits,PP.smokingHabits,PP.languages,PP.countries,PP.states,PP.districts,PP.places,PP.citizenship,PP.occupation,PP.annualIncome,PP.partnerDescription,
+EL.educationId as educationId,EM.name as educationName,EL.occupationId as occupationId,OM.name as occupationName
 FROM users U
 LEFT JOIN usercontactdetails UC ON U.userId = UC.userId
 LEFT JOIN userpersonaldetails UP ON U.userId = UP.userId
-LEFT JOIN physicaldetails p ON U.userId = P.userId
+LEFT JOIN physicaldetails P ON U.userId = P.userId
 LEFT JOIN partnerpreferences PP ON U.userId = PP.userId
 LEFT JOIN caste C ON UP.casteId = C.casteId
-LEFT JOIN religion R ON UP.religion = R.religionId
+LEFT JOIN religion R ON UP.religionId = R.religionId
 LEFT JOIN country CO ON UP.countryId = CO.countryId
 LEFT JOIN states S ON UP.stateId = S.stateId
 LEFT JOIN districts D ON UP.distictId = D.districtId
-LEFT JOIN places PL ON UP.place = PL.placeId
-
-
-
+LEFT JOIN places PL ON UP.placeId = PL.placeId
+LEFT JOIN education EL ON U.userId = EL.userId
+LEFT JOIN education_master EM ON EL.educationId = EM.educationId
+LEFT JOIN occupation_master OM ON EL.occupationId  = OM.occupationId
 
 -- TABLE FOR album
 
@@ -281,7 +282,7 @@ ALTER TABLE marrydoor.photos ADD active TINYINT(4) DEFAULT 0 AFTER profileImage;
 ALTER TABLE marrydoor.documents ADD active TINYINT(4) DEFAULT 0 AFTER documentType;
 
 
-
+create table search(searchId BIGINT UNIQUE NOT NULL AUTO_INCREMENT, searchText text NOT NULL, searchQquery text NOT NULL, userId BIGINT NOT NULL, PRIMARY KEY(searchId), FOREIGN KEY (userId) REFERENCES users(userId))ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8
 
 
 
