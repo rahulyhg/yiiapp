@@ -391,13 +391,13 @@
  </div>
 <div class="list_class-6">
 	    <p class="radio-2-sub">
-                    <input type="radio" name="pstatus[]" value="N">
+                    <input type="radio" name="pstatus" value="N">
                     &nbsp;&nbsp;Doesn’t Matter</p>
           <p class="radio-2">
-                    <input type="radio" name="pstatus[]" value="0">
+                    <input type="radio" name="pstatus" value="0">
           &nbsp;&nbsp;Normal</p>
                     <p class="radio-2">
-                    <input type="radio" name="pstatus[]" value="1">
+                    <input type="radio" name="pstatus" value="1">
                     &nbsp;&nbsp;Physically challenged </p>
       </div>
                     <p class="clear"></p>
@@ -641,7 +641,7 @@
         &nbsp;&nbsp;Only With horoscope </span></div> 
  
                     <p class="clear"></p>
-                    <div class="list_class-5">
+             <!--      <div class="list_class-5">
                       <p class="txt_bld">Don't show
 
 </p>
@@ -657,7 +657,7 @@
    <span class="radio-2-newc">     <input type="checkbox" name="show[]" value="view" />
 &nbsp;&nbsp;Viewed Profiles</span><span class="radio-2">
         <input type="checkbox" name="show[]" value="shortlist" />
-      &nbsp;&nbsp;Shortlisted Profiles</span></div> 
+      &nbsp;&nbsp;Shortlisted Profiles</span></div>  -->
  
                     <p class="clear"></p>
                     <p class="clear"></p>

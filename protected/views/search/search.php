@@ -212,28 +212,14 @@
                        <?php }?> 
                         <?php if(sizeof($normal) > 0 ) {?>
                         <p class="text_pink-16">Latest Matches For You</p><p class="space-15px">&nbsp;</p>
-                    
+                    		<p class="clear"></p>
+                        <p class="line"></p>
                        <?php }?>
                      
                      <div class="left">    
 
 						</div>
                         
-                         
-                         
-                         
-                         <div class="view-1">
-          </div>
-          
-          
-          
-          
-              
-              
-              
-              <p class="clear"></p>
-                        <p class="line"></p>
- 
    <?php 
   
   $index1 = 0;

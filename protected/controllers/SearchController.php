@@ -9,6 +9,83 @@ class SearchController extends Controller
 	
 	public function actionRegular()
 	{
+		if(isset($_POST['ageFrom']) && isset($_POST['ageTo']))
+		{
+			if(isset($_POST['ageFrom']))
+		$ageFrom = $_POST['ageFrom'];
+		if(isset($_POST['ageTo']))
+		$ageTo = $_POST['ageTo'];
+		$condition = "age BETWEEN {$ageFrom} AND {$ageTo} and active =1";
+		
+		
+		if(isset($_POST['gender']))
+		{
+		$gender = $_POST['gender'];
+		$condition .= " AND gender = '{$gender}'";
+		}
+		
+		if(isset($_POST['heightFrom']))
+		$heightFrom = $_POST['heightFrom'];
+		if(isset($_POST['heightTo']))
+		$heightTo = $_POST['heightTo'];
+		
+		$condition .= " AND heightId BETWEEN {$heightFrom} AND {$heightTo}";
+		
+		if(isset($_POST['status']))
+		{
+			$mstatus = implode(",",$_POST['status']);
+			$condition .= " AND FIND_IN_SET('{$mstatus}',maritalStatus)";
+			//maritalStatus 	
+		}
+		
+		if(isset($_POST['religion']) && !empty($_POST['religion']))
+		{
+		$religion = $_POST['religion'];
+		$condition .= " AND religionId = {$religion}";
+		}
+
+		if(isset($_POST['language1']) && !empty($_POST['language1']))
+		{
+		$language = implode(",",$_POST['language1']);
+		$condition .= " AND FIND_IN_SET('{$language}',languages)";
+		}
+		
+		if(isset($_POST['caste1']))
+		{
+		$caste = $_POST['caste1'];
+		$condition .= " AND FIND_IN_SET('{$caste}',casteId)";
+		}
+		if(isset($_POST['education1']))
+		{
+			$education = implode(",", $_POST['education1']);
+			$condition .= " AND FIND_IN_SET('{$education}',educationId)";
+		}
+		if(isset($_POST['profile']))
+		{
+			foreach ($_POST['profile'] as $value) {
+				if($value == 'p')
+				$condition .= " AND photo = 1 ";
+				else if ($value == 'h')
+				$condition .= " AND horoscope = 1 ";
+			}
+		}
+		
+		$users = ViewUsers::model()->findAll(array('condition'=>$condition,'order'=> 'createdOn DESC' ));
+		$highLightUser = array();
+		$normalUser = array();
+		foreach ($users as $key => $value) {
+			if($value->highlighted == 1 )
+			$highLightUser[] = $value;
+			else 
+			$normalUser[] = $value;
+		}
+		//$user = Users::model()->find();
+		if(sizeof($users) > 0)
+		$this->render('search',array('highLight' => $highLightUser,'normal'=> $normalUser,'search'=>'quick'));
+		else 
+		$this->render('regular',array('error'=> '*******NO RESULTS FOUND******,Please try again'));
+		}
+		else 
 		$this->render('regular');
 	}
 	
@@ -26,31 +103,20 @@ class SearchController extends Controller
 		if(isset($_POST['gender']))
 		{
 		$gender = $_POST['gender'];
-		$condition .= " and gender = '{$gender}'";
+		$condition .= " OR gender = '{$gender}'";
 		}
 		
 		if(isset($_POST['religion']) && !empty($_POST['religion']))
 		{
 		$religion = $_POST['religion'];
-		$condition .= " and religionId = {$religion}";
+		$condition .= " OR religionId = {$religion}";
 		}
 		if(isset($_POST['caste']) && !empty($_POST['caste']))
 		{
 		$caste = $_POST['caste'];
-		$condition .= " and casteId = {$caste}";
+		$condition .= " OR casteId = {$caste}";
 		}
-		/*
-		$users = Users::model()->with(
-		array('userpersonaldetails'=>$arrayUp,'educations','habits'
-		))->findAll(
-		array(
-		'alias' => 'u',
-		'condition' => "{$genderQuery} FLOOR( DATEDIFF( CURRENT_DATE, u.dob) /365 ) BETWEEN {$ageFrom} AND {$ageTo}"
-		)
-		); //t
-		*/
 		
-
 		$users = ViewUsers::model()->findAll(array('condition'=>$condition,'order'=> 'createdOn DESC' ));
 		$highLightUser = array();
 		$normalUser = array();
@@ -79,6 +145,8 @@ class SearchController extends Controller
 			$this->render('search',array('highLight' => $highLightUser,'normal'=> $normalUser,'search'=>'save'));
 		}
 		*/
+		$searchFor = null;
+		
 		if(isset($_POST['ageFrom']) && isset($_POST['ageTo']))
 		{
 			
@@ -92,7 +160,7 @@ class SearchController extends Controller
 		if(isset($_POST['gender']))
 		{
 		$gender = $_POST['gender'];
-		$condition .= " and gender = '{$gender}'";
+		$condition .= " AND gender = '{$gender}'";
 		}
 		
 		if(isset($_POST['heightFrom']))
@@ -100,12 +168,12 @@ class SearchController extends Controller
 		if(isset($_POST['heightTo']))
 		$heightTo = $_POST['heightTo'];
 		
-		$condition .= " and heightId BETWEEN {$heightFrom} AND {$heightTo}";
+		$condition .= " AND heightId BETWEEN {$heightFrom} AND {$heightTo}";
 		
 		if(isset($_POST['status']))
 		{
 			$mstatus = implode(",", $_POST['status']);
-		    $condition .= " and maritalStatus in ({$mstatus})";
+		    $condition .= " AND maritalStatus in ({$mstatus})";
 		}
 		
 		if(isset($_POST['religion']) && !empty($_POST['religion']))
@@ -113,7 +181,7 @@ class SearchController extends Controller
 		$religion = $_POST['religion'];
 		$religionModel = Religion::model()->findByPK($religion);
 		$religionName = $religionModel->name;
-		$condition .= " and religionId = {$religion}";
+		$condition .= " AND religionId = {$religion}";
 		}
 		
 		if(isset($_POST['state']) && !empty($_POST['state']))
@@ -121,7 +189,7 @@ class SearchController extends Controller
 		$state = $_POST['state'];
 		$stateModel = States::model()->findByPK($state);
 		$stateName = $stateModel->name;
-		$condition .= " and stateId = {$state}";
+		$condition .= " AND stateId = {$state}";
 		}
 		
 		
@@ -130,16 +198,25 @@ class SearchController extends Controller
 		$district = $_POST['district'];
 		$districtModel = Districts::model()->findByPK($district);
 		$districtName = $districtModel->name;
-		$condition .= " and distictId = {$district}";
+		$condition .= " AND distictId = {$district}";
 		}
 		
 		if(isset($_POST['language1']) && !empty($_POST['language1']))
 		{
 		$language = implode(",",$_POST['language1']);
-		
+		/*
 		$languageModel = Languages::model()->findAll(array('condition'=> "languageId in ({$language})"));
+		if(isset(sizeof($languageModel > 0 )))
+		{
+			foreach ($languageModel as $value) {
+				$languageName .= $value->name;
+			}
+			
+		}
+		else
 		$languageName = $languageModel->name;
-		$condition .= " and languages = {$language}";
+		*/
+		$condition .= " AND FIND_IN_SET('{$language}',languages)";
 		}
 		
 		
@@ -148,33 +225,30 @@ class SearchController extends Controller
 		$caste = implode(",",$_POST['caste']);
 		$casteModel = Caste::model()->findByPK($caste);
 		$casteName = $casteModel->name;
-		$condition .= " and casteId = {$caste}";
+		$condition .= " AND FIND_IN_SET('{$caste}',casteId) ";
 		}
 		
 		if(isset($_POST['pstatus']))
 		{
-			$status = implode(",", $_POST['pstatus']);
-			$condition .= " and physicalStatus in ({$status})";
+			if($_POST['pstatus'] != 'N')
+			$condition .= " AND physicalStatus = {$status}";
 		}
 		if(isset($_POST['country1']))
 		{
 			$country = implode(",", $_POST['country1']);
-			$countryModel = Country::model()->findAll(array('condition'=> "countryId in ({$country})"));
-			$countryeName = $countryModel->name;
-			$condition .= " and countryId = {$country}";
+			$condition .= " AND FIND_IN_SET('{$country}',countryId)";
 		}
 		
 		if(isset($_POST['education1']))
 		{
 			$education = implode(",", $_POST['education1']);
-			$educationModel = EducationMaster::model()->findAll(array('condition'=> "educationId in ({$education})"));
-			
+			$condition .= " AND FIND_IN_SET('{$education}',educationId)";
 		}
 		
 		if(isset($_POST['occupation1']))
 		{
 			$occupation = implode(",", $_POST['occupation1']);
-			$occupationModel = OccupationMaster::model()->findAll(array('condition'=> "occupationId in ({$occupation})"));
+			$condition .= " AND FIND_IN_SET('{$occupation}',occupationId)";
 			
 		}
 		
@@ -186,7 +260,7 @@ class SearchController extends Controller
 		if(isset($_POST['star1']))
 		{
 			$stars = implode(",", $_POST['star1']);
-			$starModel = SignsMaster::model()->findAll(array('condition'=> "signId  in ({$stars})"));
+			$condition .= " AND FIND_IN_SET('{$stars}',star)";
 		}
 		
 		
@@ -201,14 +275,17 @@ class SearchController extends Controller
 			$chova = implode(",", $_POST['chova']);
 		}
 		
-		if(isset($_POST['subcaste1']))
+		/*if(isset($_POST['subcaste1']))
 		{
 			$subcaste = implode(",", $_POST['subcaste1']);
-			$subcasteModel = Subcaste::model()->findAll(array('condition'=> " subcasteId in ({$subcaste})"));
+			$condition .= " OR FIND_IN_SET('{$subcaste}',star)";
+			
 		}
+		*/
 		if(isset($_POST['eat']))
 		{
 			$eat = implode(",", $_POST['eat']);
+			$condition .= " AND FIND_IN_SET('{$eat}',eatingHabits)";
 			//eatingHabits 	 	
 		}
 		
@@ -216,12 +293,14 @@ class SearchController extends Controller
 		{
 			//drinkingHabits
 			$drink = implode(",", $_POST['drink']);
+			$condition .= " AND FIND_IN_SET('{$drink}',drinkingHabits)";
 		}
 
 		if(isset($_POST['smoke']))
 		{
 			//smokingHabits
 			$smoke = implode(",", $_POST['smoke']);
+			$condition .= " AND FIND_IN_SET('{$smoke}',smokingHabits)";
 		}
 		
 		if(isset($_POST['profile']))
@@ -238,6 +317,15 @@ class SearchController extends Controller
 		 	
 		 }
 		
+		if(isset($_POST['profile']))
+		{
+			foreach ($_POST['profile'] as $value) {
+				if($value == 'p')
+				$condition .= " AND photo = 1 ";
+				else if ($value == 'h')
+				$condition .= " AND horoscope = 1 ";
+			}
+		}
 		
 			$users = ViewUsers::model()->findAll(array('condition'=>$condition,'order'=> 'createdOn DESC' ));	
 			$highLightUser = array();
@@ -248,7 +336,11 @@ class SearchController extends Controller
 			else 
 			$normalUser[] = $value;
 		}
+		
+		if(sizeof($users) > 0 )
 			$this->render('search',array('highLight' => $highLightUser,'normal'=> $normalUser,'search'=>'quick'));
+		else 
+			$this->render('advance',array('error'=> '******NO MATCHES FOUND***** Please try again'));
 		}
 		else 
 		{

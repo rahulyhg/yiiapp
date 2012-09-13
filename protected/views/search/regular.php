@@ -254,17 +254,17 @@
 <div class="list_class-6">
                      	
              <span class="radio-2-new">
-<input type="checkbox" value="0" name="status">
+<input type="checkbox" value="0" name="status[]">
 &nbsp;&nbsp;Unmarried</span>
   <span class="radio-2-newb">
-        <input type="checkbox" value="1" name="status">
+        <input type="checkbox" value="1" name="status[]">
         &nbsp;&nbsp;&nbsp;Widower</span>
         <span class="radio-2-newb">
         &nbsp;&nbsp;
-        <input type="checkbox" value="2" name="status">
+        <input type="checkbox" value="2" name="status[]">
         &nbsp;&nbsp;Divorced</span>
         <span class="radio-2">
-       <input type="checkbox" value="3" name="status">
+       <input type="checkbox" value="3" name="status[]">
         &nbsp;&nbsp;Awaiting Divorce</span>           
                         
                         
@@ -411,11 +411,11 @@
     <input type="checkbox" value="P" name="profile[]">
     &nbsp;&nbsp;Only With Photo</span>
   <span class="radio-2">
-        <input type="checkbox" value="H" name="profile[]">
+        <input type="checkbox" value="h" name="profile[]">
         &nbsp;&nbsp;Only With horoscope </span></div> 
  
                     <p class="clear"></p>
-                    <div class="list_class-5">
+                   <!--  <div class="list_class-5">
                       <p class="txt_bld">Don't show
 
 </p>
@@ -437,7 +437,7 @@
         
         
         </div> 
- 
+  -->
  
                     <p class="clear"></p>
 <div class="list_class-6">
