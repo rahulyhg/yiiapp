@@ -25,13 +25,13 @@
         	<div class="profile_200">
  
  
-     <a href="my-album.html"><img src="images/model_1.jpg" border="0" class="mrgn_5top" /></a>
+     <a href="my-album.html"><img src="<?php echo Yii::app()->params['mediaUrl']; ?>/model_1.jpg" border="0" class="mrgn_5top" /></a>
 	      <p class="mrgn_25"><span class="text_pink_13"><a href="my-page.html">Biju George</a></span></p>
                 <div class="clear"></div>
                 <div class="line"></div>
                 
                <div class="div_ww"> 
-                <img src="images/img_03more.jpg" class="left" width="100%" /> </div>
+                <img src="<?php echo Yii::app()->params['mediaUrl']; ?>/img_03more.jpg" class="left" width="100%" /> </div>
                 
                     
         <p class="text_blue_15">REMAINING. <a href="#">RE-CHARGE&nbsp;NOW</a></p>    
@@ -46,14 +46,14 @@
                   <span  class="innersidelinks-l"><a href="my-privacy-settings.html">My Settings</a></span>
               <div class="clear"></div>
                 <div class="line_sm"></div>
-                <p class="txt_bld-15"><img src="images/arrow_small_right.jpg" />&nbsp;&nbsp;&nbsp;Messages</p>
+                <p class="txt_bld-15"><img src="<?php echo Yii::app()->params['mediaUrl']; ?>/arrow_small_right.jpg" />&nbsp;&nbsp;&nbsp;Messages</p>
                 	<p class="bullettext"><a href="messages.html">Inbox 25</a></p>
                 	<p class="bullettext"><a href="messages-sent.html">Outbox 35</a></p>
                 	<p class="bullettext"><a href="#">Delivery Report 3</a></p>
                 </ul>    
 <div class="clear"></div>
                 <div class="line_sm"></div>
-                <p class="txt_bld-15"><img src="images/arrow_small_right.jpg" />&nbsp;&nbsp;&nbsp;Interest</p>
+                <p class="txt_bld-15"><img src="<?php echo Yii::app()->params['mediaUrl']; ?>/arrow_small_right.jpg" />&nbsp;&nbsp;&nbsp;Interest</p>
                 <p class="bullettext"><a href="interest-sent.html">Sent 35</a></p>
                 
                 	<p class="bullettext"><a href="interest-recived.html">Recived 12</a></p>
@@ -61,7 +61,7 @@
                 	<p class="bullettext"><a href="#">Decliened 7</a></p>
                 	<p class="bullettext"><a href="interest-acceped-you.html">Accepted by me 1</a>                </p>
                	<div class="line_sm"></div>
-                <p class="txt_bld-15"><img src="images/arrow_small_right.jpg" />&nbsp;&nbsp;&nbsp;Album</p>
+                <p class="txt_bld-15"><img src="<?php echo Yii::app()->params['mediaUrl']; ?>/arrow_small_right.jpg" />&nbsp;&nbsp;&nbsp;Album</p>
               
               
               
@@ -72,7 +72,7 @@
                 	<p class="bullettext"><a href="request-declined.html">Declined 3</a></p>
 <p class="bullettext"><a href="request-accepted.html">Accepted by me 1</a>              </p>
 <div class="line_sm"></div>
-                <p class="txt_bld-15"><img src="images/arrow_small_right.jpg" />&nbsp;&nbsp;&nbsp;Documents</p>
+                <p class="txt_bld-15"><img src="<?php echo Yii::app()->params['mediaUrl']; ?>/arrow_small_right.jpg" />&nbsp;&nbsp;&nbsp;Documents</p>
                 
                 
                 
@@ -81,7 +81,7 @@
                <p class="bullettext"><a href="request-declined.html">Declined 3</a></p>
                <p class="bullettext"><a href="request-accepted.html">Accepted by me 1</a></p>
 <div class="line_sm"></div>
-                <p class="txt_bld-15"><img src="images/arrow_small_right.jpg" />&nbsp;&nbsp;&nbsp;Contacts</p>
+                <p class="txt_bld-15"><img src="<?php echo Yii::app()->params['mediaUrl']; ?>/arrow_small_right.jpg" />&nbsp;&nbsp;&nbsp;Contacts</p>
                 
                 
                <p class="bullettext"><a href="request-sent.html">Sent 35</a></p>
@@ -89,7 +89,7 @@
                <p class="bullettext"><a href="request-declined.html">Declined 3</a></p>
                <p class="bullettext"><a href="request-accepted.html">Accepted by me 1</a></p>
 <div class="line_sm"></div>
-                <p class="txt_bld-15"><img src="images/arrow_small_right.jpg" />&nbsp;&nbsp;&nbsp;Famili album</p>
+                <p class="txt_bld-15"><img src="<?php echo Yii::app()->params['mediaUrl']; ?>/arrow_small_right.jpg" />&nbsp;&nbsp;&nbsp;Famili album</p>
                 <p class="bullettext"><a href="request-sent.html">Sent 35</a></p>
                 <p class="bullettext"><a href="request-acceped-recived.html">Recived 12</a></p>
                 <p class="bullettext"><a href="request-declined.html">Declined 3</a></p>
@@ -117,12 +117,12 @@
   <div class="clear"></div>
                 <div class="line_sm"></div>                
                  <div class="div_ww"> 
-                <img src="images/img_advert.jpg" class="left" width="100%" /> </div>
+                <img src="<?php echo Yii::app()->params['mediaUrl']; ?>/img_advert.jpg" class="left" width="100%" /> </div>
                 
                 <div class="clear"></div>
                 <div class="line_sm"></div>
              <div class="div_ww">
-                <img src="images/do-you-like.jpg" class="left" width="100%" /></div>
+                <img src="<?php echo Yii::app()->params['mediaUrl']; ?>/do-you-like.jpg" class="left" width="100%" /></div>
                 
                 <div class="clear"></div>
                 <p class="txt_bld">Suggest to a friend</p>
@@ -218,10 +218,10 @@
                     </div>
                     <div class="list_class-6">
                    	<p class="radio_sub">
-                    <input type="radio" name="M" value="gender">
+                    <input type="radio" name="gender" value="M">
                     &nbsp;&nbsp;Male</p>
                     <p class="radio-2">
-                    <input type="radio" name="F" value="gender">
+                    <input type="radio" name="gender" value="F">
                     &nbsp;&nbsp;Female</p>
         </div>
                     
@@ -334,9 +334,8 @@
         
                         
                         <div class="list_div_mdl">
-                        					<p class="ad-rm">
+                        					
                         					<a class="ad-rm" href="#" onclick="return add('language','language1')">Add</a>
-                                           </p>
    											<p class="space-5px">&nbsp;</p>
                                      		<a class="ad-rm" href="#" onclick="return add('language1','language')">Remove</a>
 						</div>
@@ -362,10 +361,9 @@
         
                         
                         <div class="list_div_mdl">
-                        					<p class="ad-rm">
+                        					
                         					<a class="ad-rm" href="#" onclick="return add('caste','caste1')">Add</a>
-                                           </p>
-   											<p class="space-5px">&nbsp;</p>
+                                           <p class="space-5px">&nbsp;</p>
                                      		<a class="ad-rm" href="#" onclick="return add('caste1','caste')">Remove</a>
 						</div>
                         
@@ -419,9 +417,8 @@
         
                         
                         <div class="list_div_mdl">
-                        					<p class="ad-rm">
+                        					
                         					<a class="ad-rm" href="#" onclick="return add('country','country1')">Add</a>
-                                           </p>
    											<p class="space-5px">&nbsp;</p>
                                      		<a class="ad-rm" href="#" onclick="return add('country1','country')">Remove</a>
 						</div>
@@ -433,36 +430,7 @@
                         </div>        
 
   <div class="clear"></div>
- <div class="list_class-5">
- <p class="txt_bld">Resident status
-</p>
- </div>
-<div class="list_class-6">
-       	  <p class="radio-2-sub">
-                    <input type="checkbox" name="residentStatus[]" value="myself">
-                    &nbsp;&nbsp;Any</p>
-                    <p class="radio-2-sub">
-                    <input type="checkbox" name="residentStatus[]" value="son">
-                    &nbsp;Citizen</p>
-          <p class="radio-2-sub_large">
-            <input type="checkbox" name="residentStatus[]" value="myself" />
-  &nbsp;&nbsp;Permanent&nbsp;Resident </p>
-  
-          
-    <div class="clear"></div>
-  <p class="space-15px">&nbsp;</p>
 
-					
-					<p class="radio-2-sub">
-                      <input type="checkbox" name="residentStatus[]" value="myself" />
-  &nbsp;&nbsp;Student Visa </p>
-                    <p class="radio-2-sub">
-            <input type="checkbox" name="residentStatus[]" value="myself" />
-  &nbsp;&nbsp;Temporary Visa </p>
-                    <p class="radio-2-sub">
-                      <input type="checkbox" name="residentStatus" value="myself" />
-  &nbsp;&nbsp;Work Permit </p>
-</div>
                     <p class="clear"></p>
         <div class="list_class-5">
                       <p class="txt_bld">Education
@@ -478,9 +446,9 @@
         
                         
                         <div class="list_div_mdl">
-                        					<p class="ad-rm">
+                        					
                         					<a class="ad-rm" href="#" onclick="return add('education','education1')">Add</a>
-                                           </p>
+                                           
    											<p class="space-5px">&nbsp;</p>
                                      		<a class="ad-rm" href="#" onclick="return add('education1','education')">Remove</a>
 						</div>
@@ -505,9 +473,8 @@
         
                         
                         <div class="list_div_mdl">
-                        					<p class="ad-rm">
+                        					
                         					<a class="ad-rm" href="#" onclick="return add('occupation','occupation1')">Add</a>
-                                           </p>
    											<p class="space-5px">&nbsp;</p>
                                      		<a class="ad-rm" href="#" onclick="return add('occupation1','occupation')">Remove</a>
 						</div>
@@ -553,9 +520,9 @@
         
                         
                         <div class="list_div_mdl">
-                        					<p class="ad-rm">
+                        					
                         					<a class="ad-rm" href="#" onclick="return add('star','star1')">Add</a>
-                                           </p>
+                                           
    											<p class="space-5px">&nbsp;</p>
                                      		<a class="ad-rm" href="#" onclick="return add('star1','star')">Remove</a>
 						</div>
@@ -567,39 +534,6 @@
                         </div>                        
 		 
  <p class="clear"></p>
- <div class="list_class-5">
- <p class="txt_bld">Sudha Jathakam</p>
- </div>
-<div class="list_class-6">
-                <span class="radio-2-new">
-    <input type="checkbox" name="sudha[]" value="1" />
-    &nbsp;&nbsp;Yes</span>
- <span class="radio-2-new">
-        <input type="checkbox" name="sudha[]" value="0" />
-        &nbsp;&nbsp; No</span>
-         <span class="radio-2-newc">
-        &nbsp;&nbsp;&nbsp;
-        <input type="checkbox" name="sudha[]" value="N" />
-        &nbsp;&nbsp;Don't know</span>
-      </div>
-
- <p class="clear"></p>
- <div class="list_class-5">
- <p class="txt_bld">Chovva Dosham
-</p>
- </div>
- <div class="list_class-6_sml">
-   <span class="radio-2-new">
-    <input type="checkbox" name="chova[]" value="1" />
-    &nbsp;&nbsp;Yes</span>
- <span class="radio-2-new">
-        <input type="checkbox" name="chova[]" value="0" />
-        &nbsp;&nbsp; No</span>
-         <span class="radio-2-newc">
-        &nbsp;&nbsp;&nbsp;
-        <input type="checkbox" name="chova[]" value="N" />
-        &nbsp;&nbsp;Don't know</span>
- </div>
 
                     <p class="clear"></p>
                     <div class="list_class-5">
@@ -614,9 +548,9 @@
         
                         
                         <div class="list_div_mdl">
-                        					<p class="ad-rm">
+                        					
                         					<a class="ad-rm" href="#" onclick="return add('subcaste','subcaste1')">Add</a>
-                                           </p>
+                                           
    											<p class="space-5px">&nbsp;</p>
                                      		<a class="ad-rm" href="#" onclick="return add('subcaste1','subcaste')">Remove</a>
 						</div>

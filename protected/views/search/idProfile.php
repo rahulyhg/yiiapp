@@ -26,13 +26,13 @@
 
 
 
-  <a href="#"><img src="images/model_men.jpg" border="0" class="model_img" /></a>
+  <a href="#"><img src="<?php echo Yii::app()->params['mediaUrl']; ?>/model_men.jpg" border="0" class="model_img" /></a>
 <div class="clear"></div>
 <div class="no_box_2"><!--no_box-->
 	
 	<div class="mrgn_4_arrw"><a href="#"></a></div>
     
-	<div class="left"><a href="#"><img src="images/mode_small.jpg" border="0" /></a><a href="#"><img src="images/mode_small.jpg" border="0" /></a><a href="#"><img src="images/mode_small.jpg" border="0" /></a></div>
+	<div class="left"><a href="#"><img src="<?php echo Yii::app()->params['mediaUrl']; ?>/mode_small.jpg" border="0" /></a><a href="#"><img src="<?php echo Yii::app()->params['mediaUrl']; ?>/mode_small.jpg" border="0" /></a><a href="#"><img src="<?php echo Yii::app()->params['mediaUrl']; ?>/mode_small.jpg" border="0" /></a></div>
     
 <div class="mrgn_4_arrw_11"><a href="#"></a></div>
 </div><!--no_box_2-->
@@ -541,7 +541,7 @@ Residing City<br />
 Only for</p>
 
 
-<a href="#"><img src="images/img_200.jpg" class="left"  border="0" width="100%"/></a>
+<a href="#"><img src="<?php echo Yii::app()->params['mediaUrl']; ?>/img_200.jpg" class="left"  border="0" width="100%"/></a>
 
 <div class="clear"></div>
 
@@ -568,7 +568,7 @@ benefits</p>
 Choose any one for you Only for</p>
 
 <div class="center_icon" >
-<img src="images/1_round.jpg" /></div>
+<img src="<?php echo Yii::app()->params['mediaUrl']; ?>/1_round.jpg" /></div>
 
 <p class="text_20_cntr">Activation Coupon</p>
 
@@ -576,7 +576,7 @@ Choose any one for you Only for</p>
 
 
 <div class="center_icon" >
-<img src="images/2_round.jpg" /></div>
+<img src="<?php echo Yii::app()->params['mediaUrl']; ?>/2_round.jpg" /></div>
 
 <p class="text_20_cntr">NetBanking</p>
 
@@ -584,7 +584,7 @@ Choose any one for you Only for</p>
 
 
 <div class="center_icon" >
-<img src="images/3_round.jpg" /></div>
+<img src="<?php echo Yii::app()->params['mediaUrl']; ?>/3_round.jpg" /></div>
 
 <p class="text_20_cntr">Credit card and Paypal</p>
 

@@ -22,12 +22,12 @@
         	<div class="profile_200">
  
  
-     <a href="my-album.html"><img border="0" class="mrgn_5top" src="images/model_1.jpg"></a>
+     <a href="my-album.html"><img border="0" class="mrgn_5top" src="<?php echo Yii::app()->params['mediaUrl']; ?>/model_1.jpg"></a>
 	      <p class="mrgn_25"><span class="text_pink_13"><a href="my-page.html">Biju George</a></span></p>
                 <div class="clear"></div>
                 <div class="line"></div>
                       <div class="div_ww">   
-                <img width="100%" class="left" src="images/img_03more.jpg"></div>
+                <img width="100%" class="left" src="<?php echo Yii::app()->params['mediaUrl']; ?>/img_03more.jpg"></div>
                 
                     
         <p class="text_blue_15">REMAINING. <a href="#">RE-CHARGE&nbsp;NOW</a></p>    
@@ -42,14 +42,14 @@
                   <span class="innersidelinks-l"><a href="my-privacy-settings.html">My Settings</a></span>
               <div class="clear"></div>
                 <div class="line_sm"></div>
-                <p class="txt_bld-15"><img src="images/arrow_small_right.jpg">&nbsp;&nbsp;&nbsp;Messages</p>
+                <p class="txt_bld-15"><img src="<?php echo Yii::app()->params['mediaUrl']; ?>/arrow_small_right.jpg">&nbsp;&nbsp;&nbsp;Messages</p>
                 	<p class="bullettext"><a href="messages.html">Inbox 25</a></p>
                 	<p class="bullettext"><a href="messages-sent.html">Outbox 35</a></p>
                 	<p class="bullettext"><a href="#">Delivery Report 3</a></p>
                     
 <div class="clear"></div>
                 <div class="line_sm"></div>
-                <p class="txt_bld-15"><img src="images/arrow_small_right.jpg">&nbsp;&nbsp;&nbsp;Interest</p>
+                <p class="txt_bld-15"><img src="<?php echo Yii::app()->params['mediaUrl']; ?>/arrow_small_right.jpg">&nbsp;&nbsp;&nbsp;Interest</p>
                 <p class="bullettext"><a href="interest-sent.html">Sent 35</a></p>
                 
                 	<p class="bullettext"><a href="interest-recived.html">Recived 12</a></p>
@@ -57,7 +57,7 @@
                 	<p class="bullettext"><a href="#">Decliened 7</a></p>
                 	<p class="bullettext"><a href="interest-acceped-you.html">Accepted by me 1</a>                </p>
                	<div class="line_sm"></div>
-                <p class="txt_bld-15"><img src="images/arrow_small_right.jpg">&nbsp;&nbsp;&nbsp;Album</p>
+                <p class="txt_bld-15"><img src="<?php echo Yii::app()->params['mediaUrl']; ?>/arrow_small_right.jpg">&nbsp;&nbsp;&nbsp;Album</p>
               
               
               
@@ -68,7 +68,7 @@
                 	<p class="bullettext"><a href="request-declined.html">Declined 3</a></p>
 <p class="bullettext"><a href="request-accepted.html">Accepted by me 1</a>              </p>
 <div class="line_sm"></div>
-                <p class="txt_bld-15"><img src="images/arrow_small_right.jpg">&nbsp;&nbsp;&nbsp;Documents</p>
+                <p class="txt_bld-15"><img src="<?php echo Yii::app()->params['mediaUrl']; ?>/arrow_small_right.jpg">&nbsp;&nbsp;&nbsp;Documents</p>
                 
                 
                 
@@ -77,7 +77,7 @@
                <p class="bullettext"><a href="request-declined.html">Declined 3</a></p>
                <p class="bullettext"><a href="request-accepted.html">Accepted by me 1</a></p>
 <div class="line_sm"></div>
-                <p class="txt_bld-15"><img src="images/arrow_small_right.jpg">&nbsp;&nbsp;&nbsp;Contacts</p>
+                <p class="txt_bld-15"><img src="<?php echo Yii::app()->params['mediaUrl']; ?>/arrow_small_right.jpg">&nbsp;&nbsp;&nbsp;Contacts</p>
                 
                 
                <p class="bullettext"><a href="request-sent.html">Sent 35</a></p>
@@ -85,7 +85,7 @@
                <p class="bullettext"><a href="request-declined.html">Declined 3</a></p>
                <p class="bullettext"><a href="request-accepted.html">Accepted by me 1</a></p>
 <div class="line_sm"></div>
-                <p class="txt_bld-15"><img src="images/arrow_small_right.jpg">&nbsp;&nbsp;&nbsp;Famili album</p>
+                <p class="txt_bld-15"><img src="<?php echo Yii::app()->params['mediaUrl']; ?>/arrow_small_right.jpg">&nbsp;&nbsp;&nbsp;Famili album</p>
                 <p class="bullettext"><a href="request-sent.html">Sent 35</a></p>
                 <p class="bullettext"><a href="request-acceped-recived.html">Recived 12</a></p>
                 <p class="bullettext"><a href="request-declined.html">Declined 3</a></p>
@@ -113,12 +113,12 @@
   <div class="clear"></div>
                 <div class="line_sm"></div>                
                       <div class="div_ww">       
-                <img width="100%" class="left" src="images/img_advert.jpg"></div>
+                <img width="100%" class="left" src="<?php echo Yii::app()->params['mediaUrl']; ?>/img_advert.jpg"></div>
                 
                 <div class="clear"></div>
                 <div class="line_sm"></div>
                       <div class="div_ww">     
-                <img width="100%" class="left" src="images/do-you-like.jpg"> </div>
+                <img width="100%" class="left" src="<?php echo Yii::app()->params['mediaUrl']; ?>/do-you-like.jpg"> </div>
                 
                 <div class="clear"></div>
                 <p class="txt_bld">Suggest to a friend</p>
@@ -197,7 +197,11 @@
 
       
    <div class="line"></div>
-        
+	<?php 
+	if(isset($error))
+	echo $error;
+	
+	?>        
 
 <form id="regularSearch"  name="regularSearch" method="post"  action="/search/regular">
                     <div class="list_class-5">
@@ -395,12 +399,6 @@
                         </div>        <p class="clear"></p>
 
            
-   <div class="list_class-5">
-   <p class="txt_bld">Keyword</p>
-   </div>   
-<div class="list_class-6">
-<input type="text" placeholder="Country" class="addres_form-new2" id="country" name="country"></div>
- 
                     <p class="clear"></p>
         <div class="list_class-5">
                       <p class="txt_bld">Show profile
@@ -445,7 +443,7 @@
 <div class="list_class-6">
 
 						<a href="javascript:regularSearch.submit();" class="srch-sub-bottom">Search</a>	
-                         <a href="#" class="srch-sub-save">Save Search</a>
+                         <a href="#" id="searchButton" class="srch-sub-save">Save Search</a>
       
 </div>
         
@@ -461,3 +459,21 @@
 <div class="space-25px"><p>&nbsp;</p></div>
 <!--right-content closing-->
       </div>
+      
+ <script type="text/javascript">
+$(document).ready(function() {
+
+	$('#searchButton').click(function() {	
+	$('<input>').attr({
+	    type: 'hidden',
+	    id: 'search',
+	    name: 'search',
+	    value: 'save'
+	}).appendTo('#regularSearch');
+	  $('#regularSearch').submit();
+	});
+});
+
+
+</script>      
+      

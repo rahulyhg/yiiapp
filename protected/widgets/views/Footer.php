@@ -1,6 +1,6 @@
 	<div id="footer">
 		<div class="footer-1">
-			<a href="#"><img src="images/rings.jpg" class="icon_footer"
+			<a href="#"><img src="<?php echo Yii::app()->params['mediaUrl']; ?>/rings.jpg" class="icon_footer"
 				border="0" /> </a>
 			<p class="text_wt_ftr">
 				<a href="about-us.html">About us</a> &nbsp;|&nbsp; <a href="#">Contact
@@ -13,10 +13,10 @@
 			</p>
 			<p class="text_wt_ftr2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Find
 				us on</p>
-			<a href="#"><img src="images/facebook_icon.jpg" class="footer_icons"
-				border="0" /><a href="#"><img src="images/twitter_icon.jpg"
+			<a href="#"><img src="<?php echo Yii::app()->params['mediaUrl']; ?>/facebook_icon.jpg" class="footer_icons"
+				border="0" /><a href="#"><img src="<?php echo Yii::app()->params['mediaUrl']; ?>/twitter_icon.jpg"
 					class="footer_icons" border="0" /> </a> <a href="#"><img
-					src="images/google_icon.jpg" class="footer_icons"
+					src="<?php echo Yii::app()->params['mediaUrl']; ?>/google_icon.jpg" class="footer_icons"
 					style="padding-bottom: 2px;" border="0" /> </a>
 		
 		</div>
