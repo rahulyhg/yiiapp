@@ -103,18 +103,18 @@ class SearchController extends Controller
 		if(isset($_POST['gender']))
 		{
 		$gender = $_POST['gender'];
-		$condition .= " OR gender = '{$gender}'";
+		$condition .= " AND gender = '{$gender}'";
 		}
 		
 		if(isset($_POST['religion']) && !empty($_POST['religion']))
 		{
 		$religion = $_POST['religion'];
-		$condition .= " OR religionId = {$religion}";
+		$condition .= " AND religionId = {$religion}";
 		}
 		if(isset($_POST['caste']) && !empty($_POST['caste']))
 		{
 		$caste = $_POST['caste'];
-		$condition .= " OR casteId = {$caste}";
+		$condition .= " AND casteId = {$caste}";
 		}
 		
 		$users = ViewUsers::model()->findAll(array('condition'=>$condition,'order'=> 'createdOn DESC' ));
@@ -385,7 +385,7 @@ class SearchController extends Controller
 					$index++; 
 						$gender = 'F';
 					if($index > 1)	
-						$condition .= " OR gender = '{$gender}'";
+						$condition .= " AND gender = '{$gender}'";
 					else
 						$condition .= "gender = '{$gender}'";
 				}
@@ -394,7 +394,7 @@ class SearchController extends Controller
 						$index++;
 						$gender = 'M';
 						if($index > 1)	
-						$condition .= " OR gender = '{$gender}'";
+						$condition .= " AND gender = '{$gender}'";
 					else
 						$condition .= "gender = '{$gender}'";
 				}
@@ -403,7 +403,7 @@ class SearchController extends Controller
 					$index++;
 					$age = intval($value);
 					if($index > 1)
-					$condition .= " OR age = {$age} ";
+					$condition .= " AND age = {$age} ";
 					else
 					$condition .= "age = {$age} ";
 				}
@@ -412,7 +412,7 @@ class SearchController extends Controller
 					$index++;
 					$name = $value;
 					if($index > 1)
-					$condition .= " OR name like '%{$name}%'";
+					$condition .= " AND name like '%{$name}%'";
 					else
 					$condition .= "name like '%{$name}%'";
 				}
