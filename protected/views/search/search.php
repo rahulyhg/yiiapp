@@ -147,7 +147,7 @@
                         
                           <?php $userName = Yii::app()->session->get('username');?>
   						<?php if(isset($userName)) {?>
-                       <a class="high-light" href="highlight-your-profile.html" ">Highlight your profile</a>
+                       <a class="high-light" href="/highlight" ">Highlight your profile</a>
                       <?php }?>
                        
                     
@@ -162,7 +162,7 @@
                         <a href="album.html"><img src="<?php echo Yii::app()->params['mediaUrl']; ?>/photo_5.jpg" border="0" class="search_div_img" /></a>
         				<p class="graytext">Name </p>
                         <p class="full-col">:</p>
-                        <p class="gray-rt-link"> <a href="search.html"><?php echo $value->name; echo '( '.$value->marryId.' )' ;?></a></p>
+                        <p class="gray-rt-link"> <a href="<?php echo 'byid?id='.$value->marryId ?>"><?php echo $value->name; echo '( '.$value->marryId.' )' ;?></a></p>
                         <p class="graytext">Religion / Cas</p>
                         <p class="full-col">:</p>
                         <p class="gray-rt"> <?php echo $value->religion;?> , <?php echo $value->caste;?> &nbsp;</p>
@@ -234,7 +234,7 @@
                         <a href="album.html"><img src="<?php echo Yii::app()->params['mediaUrl']; ?>/photo_5.jpg" border="0" class="search_div_img" /></a>
         				<p class="graytext">Name </p>
                         <p class="full-col">:</p>
-                        <p class="gray-rt-link"> <a href="search.html"><?php echo $value->name; echo '( '.$value->marryId.' )' ;?></a></p>
+                        <p class="gray-rt-link"> <a href="<?php echo 'byid?id='.$value->marryId ?>"><?php echo $value->name; echo '( '.$value->marryId.' )' ;?></a></p>
                         <p class="graytext">Religion / Cas</p>
                         <p class="full-col">:</p>
                         <p class="gray-rt"> <?php echo $value->religion;?> , <?php echo $value->caste;?> &nbsp;</p>
