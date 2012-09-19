@@ -66,7 +66,7 @@ class Utilities
    $feet = $cm*0.3937008/12;
       $ft = (int)$feet;
       $inc = ceil(($feet-$ft)*12);
-   $height[strval($cm)] = strval($cm.' - '.$ft.'ft '.$inc.'in');
+   $height[strval($cm)] = strval($cm.'cm - '.$ft.'ft '.$inc.'in');
      }
   return $height; 
  }

@@ -200,7 +200,6 @@
 	<?php 
 	if(isset($error))
 	echo $error;
-	
 	?>        
 
 <form id="regularSearch"  name="regularSearch" method="post"  action="/search/regular">

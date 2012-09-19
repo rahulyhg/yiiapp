@@ -4,14 +4,117 @@ class SearchController extends Controller
 {
 	public function actionSearch()
 	{
-		$this->render('search');
+		$this->render('advance');
+	}
+	
+	//search from front page
+	public function actionBasic()
+	{
+	  if(isset($_POST['heightStart']) && isset($_POST['heightLimit']))
+		{
+
+		if(isset($_POST['heightStart']))
+		$heightFrom = $_POST['heightStart'];
+		if(isset($_POST['heightLimit']))
+		$heightTo = $_POST['heightLimit'];
+					
+		$condition = "heightId BETWEEN {$heightFrom} AND {$heightTo}";
+			
+	
+		if(isset($_POST['endAge']) && $_POST['endAge']!= '0000' )
+		{
+		$endAge = $_POST['endAge'];
+		$condition = "EXTRACT(YEAR from dob) = '{$endAge}'"; 
+		}
+		
+		if(isset($_POST['bride']))
+		{
+		$gender = $_POST['gender'];
+		$condition .= " AND gender = '{$gender}'";
+		if($gender == 'M')
+		$searchText.= "Male, ";
+		else 
+		$searchText.= "Female, ";
+		}
+		
+		
+		if(isset($_POST['religion']) && !empty($_POST['religion']))
+		{
+		$condition .= " AND religionId = {$_POST['religion']}";
+		}
+		
+		if(isset($_POST['state']) && !empty($_POST['state']))
+		{
+		$condition .= " AND stateId = {$_POST['state']}";
+		}
+		
+		if(isset($_POST['state']) && !empty($_POST['state']))
+		{
+		$condition .= " AND stateId = {$_POST['state']}";
+		}
+		if(isset($_POST['district']) && !empty($_POST['district']))
+		{
+		$condition .= " AND distictId = {$_POST['district']}";
+		}
+		
+		
+		if(isset($_POST['caste']) && !empty($_POST['caste']))
+		{
+		$caste = $_POST['caste'];
+		$condition .= " AND casteId = {$caste}";
+		}
+		
+		
+		if(isset($_POST['bodyColor']))
+		{
+			$condition .= " AND complexion = {$_POST['bodyColor']}";
+			//maritalStatus 	
+		}
+		
+		if(isset($_POST['bodyType']))
+		{
+			$condition .= " AND bodyType = {$_POST['bodyType']} ";
+			//maritalStatus 	
+		}
+		
+		if(isset($_POST['motherTounge']) && !empty($_POST['motherTounge']))
+		{
+		$condition .= " AND FIND_IN_SET('{$_POST['motherTounge']}',languages)";
+		}
+
+		if(isset($_POST['photo']))
+		{
+				$condition .= " AND photo = 1 ";
+		}
+		
+		$users = ViewUsers::model()->findAll(array('condition'=>$condition,'order'=> 'createdOn DESC' ));
+		$highLightUser = array();
+		$normalUser = array();
+		foreach ($users as $key => $value) {
+			if($value->highlighted == 1 )
+			$highLightUser[] = $value;
+			else 
+			$normalUser[] = $value;
+		}
+		//$user = Users::model()->find();
+		if(sizeof($users) > 0)
+		$this->render('search',array('highLight' => $highLightUser,'normal'=> $normalUser,'search'=>'regular'));
+		else 
+		$this->render('regular',array('error'=> '*******NO RESULTS FOUND******,Please try again'));
+		}
+		else 
+		$this->render('regular');
+		
 	}
 	
 	public function actionRegular()
 	{
+		
 		if(isset($_POST['ageFrom']) && isset($_POST['ageTo']))
 		{
-			if(isset($_POST['ageFrom']))
+			
+		$searchText = "You have searched for: ";	
+		if(isset($_POST['ageFrom']))
 		$ageFrom = $_POST['ageFrom'];
 		if(isset($_POST['ageTo']))
 		$ageTo = $_POST['ageTo'];
@@ -22,14 +125,34 @@ class SearchController extends Controller
 		{
 		$gender = $_POST['gender'];
 		$condition .= " AND gender = '{$gender}'";
+		if($gender == 'M')
+		$searchText.= "Male, ";
+		else 
+		$searchText.= "Female, ";
 		}
 		
+		$searchText.= "{$ageFrom} yrs to {$ageTo} yrs, ";
+		$height = Utilities::getHeights();
 		if(isset($_POST['heightFrom']))
 		$heightFrom = $_POST['heightFrom'];
 		if(isset($_POST['heightTo']))
 		$heightTo = $_POST['heightTo'];
 		
 		$condition .= " AND heightId BETWEEN {$heightFrom} AND {$heightTo}";
+		$searchText.= "{$height[$heightFrom]} to {$height[$heightTo]} , ";
+		
+		if(isset($_POST['religion']) && !empty($_POST['religion']))
+		{
+		$religion = Religion::model()->findByPk($_POST['religion']);
+		$condition .= " AND religionId = {$_POST['religion']}";
+		$searchText.= "Religion : $religion->name , ";
+		}
+		
+		if(isset($_POST['caste1']))
+		{
+		$caste = $_POST['caste1'];
+		$condition .= " AND FIND_IN_SET('{$caste}',casteId)";
+		}
 		
 		if(isset($_POST['status']))
 		{
@@ -38,23 +161,12 @@ class SearchController extends Controller
 			//maritalStatus 	
 		}
 		
-		if(isset($_POST['religion']) && !empty($_POST['religion']))
-		{
-		$religion = $_POST['religion'];
-		$condition .= " AND religionId = {$religion}";
-		}
-
 		if(isset($_POST['language1']) && !empty($_POST['language1']))
 		{
 		$language = implode(",",$_POST['language1']);
 		$condition .= " AND FIND_IN_SET('{$language}',languages)";
 		}
 		
-		if(isset($_POST['caste1']))
-		{
-		$caste = $_POST['caste1'];
-		$condition .= " AND FIND_IN_SET('{$caste}',casteId)";
-		}
 		if(isset($_POST['education1']))
 		{
 			$education = implode(",", $_POST['education1']);
@@ -81,7 +193,7 @@ class SearchController extends Controller
 		}
 		//$user = Users::model()->find();
 		if(sizeof($users) > 0)
-		$this->render('search',array('highLight' => $highLightUser,'normal'=> $normalUser,'search'=>'quick'));
+		$this->render('search',array('highLight' => $highLightUser,'normal'=> $normalUser,'search'=>'regular','searchText' => $searchText));
 		else 
 		$this->render('regular',array('error'=> '*******NO RESULTS FOUND******,Please try again'));
 		}

@@ -115,8 +115,8 @@
 				<div class="list_class-8b">
 				<?php
 				$userPersonal = $user->userpersonaldetails;
-				$religion = $user->userpersonaldetails->religion;
-				$caste = $user->userpersonaldetails->caste;
+				$religion = $userPersonal->religion;
+				$caste = $userPersonal->caste;
 				?>
 					<div class="div_150">
 						<span class="txt_12"> &nbsp;<?php echo $religion->name?> - <?php echo $caste->name?>
@@ -834,7 +834,7 @@
         </div>
 <div class="list_class-6">
           <div class="list_class-textfield_age-1">
-           <?php echo CHtml::activeFileField($model, 'familyAlbum'); ?>
+           <?php echo CHtml::activeFileField($user, 'familyAlbum'); ?>
                   </div>
 </div>
 

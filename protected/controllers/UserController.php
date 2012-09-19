@@ -69,27 +69,12 @@ class UserController extends Controller
 		$user = Yii::app()->session->get('user');
 		$userPersonal = $user->userpersonaldetails;
 		$address = new Address();
-		if(!empty($user->usercontactdetails))
-			$contact = $user->usercontactdetails;
-		else
-			$contact = new Usercontactdetails();
-		if(!empty($user->physicaldetails))
-		$physical = $user->physicaldetails;
-		else 
-			$physical = new Physicaldetails();
+		$contact = $user->usercontactdetails;
 		
-		if(!empty($user->educations))
-			$education = $user->educations;
-		else
+			$physical = new Physicaldetails();
 			$education = new Education();
-		if(!empty($user->habits))	
-		$habit = $user->habits;
-		else
-		$habit = new Habit();
-		if(!empty($user->familyprofiles))
-		$family = $user->familyprofiles;
-		else
-		$family = new Familyprofile();
+    		$habit = new Habit();
+     		$family = new Familyprofile();
 
 		//Will fetch this from session
 		$userPersonal->userId = $user->userId;
@@ -159,9 +144,9 @@ class UserController extends Controller
 		
 		//education details
 		$education->userId = $user->userId;
-		if(isset($_POST['education']))
+		if(isset($_POST['education']) && !empty($_POST['education']))
 		$education->educationId = $_POST['education'];
-		if(isset($_POST['occupation']))
+		if(isset($_POST['occupation']) && !empty($_POST['occupation']))
 		$education->occupationId = $_POST['occupation'];
 		if(isset($_POST['employed']))
 		$education->employedIn = $_POST['employed'];
@@ -206,9 +191,9 @@ class UserController extends Controller
 		if(isset($_POST['myDesc']))
 		$family->userDesc = $_POST['myDesc'];
 		
-			if(isset($_POST['Familyprofile']['familyAlbum'])){
+			if(isset($_POST['Users']['familyAlbum'])){
 				
-			$file = CUploadedFile::getInstance($family,'familyAlbum');
+			$file = CUploadedFile::getInstance($user,'familyAlbum');
 			if(isset($file) && !empty($file->name))
 			{
 			$extension = strtolower(Utilities::getExtension($file->name));  

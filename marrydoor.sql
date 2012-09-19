@@ -284,5 +284,8 @@ ALTER TABLE marrydoor.documents ADD active TINYINT(4) DEFAULT 0 AFTER documentTy
 
 create table search(searchId BIGINT UNIQUE NOT NULL AUTO_INCREMENT, searchText text NOT NULL, searchQquery text NOT NULL, userId BIGINT NOT NULL, PRIMARY KEY(searchId), FOREIGN KEY (userId) REFERENCES users(userId))ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8
 
+-- --table for bookmark----
+
+create table bookmark(bookMarkId BIGINT UNIQUE NOT NULL AUTO_INCREMENT, userID BIGINT NOT NULL, profileIDs text NOT NULL, PRIMARY KEY(bookMarkId),FOREIGN KEY (userID) REFERENCES users(userId))ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;
 
 

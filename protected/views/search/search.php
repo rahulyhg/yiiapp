@@ -127,11 +127,14 @@
              
 					
 
-<?php if($search == 'advance') {?>
+<?php if($search == 'advance' || $search == 'regular') {?>
 <p class="txt_bld"><span class="text_pink">Its make your profile more visibile</span></p>
 
-
-					<p class="txt_10px"><b>You have searched for:</b> Female, 21 yrs to 28 yrs, 4Ft / 121 Cms to 7Ft / 213 Cms, Unmarried, Religion: Muslim - Shia, Mother Tongue: Malayalam, Physical Status: Doesn't matter, Resident status: Any, Education: Bachelors - Engineering / Computers, Masters - Engineering / Computers, Bachelors - Arts / Science / Commerce / B Phil /..., Masters - Arts / Science / Commerce / M Phil /..., Management - BBA / MBA /..., Medicine - General / Dental / Surgeon /..., Legal - BL / ML / LLB / LLM /..., , Annual income: Any, Manglik: Doesn't matter, Eating habits: Non Vegetarian, Eggetarian, , Drinking habits: All, Smoking habits: All.</p>
+						<?php 
+	if(isset($searchText)){ ?>
+	<p class="txt_10px"><?php echo $searchText;?></p>
+<?php }?> 
+					
 
 <?php }?>
 <div class="clear"></div>
@@ -142,9 +145,10 @@
                     
                       <p class="text_pink-hd">Highlighted Profiles</p>
                         
-                        
+                          <?php $userName = Yii::app()->session->get('username');?>
+  						<?php if(isset($userName)) {?>
                        <a class="high-light" href="highlight-your-profile.html" ">Highlight your profile</a>
-                     
+                      <?php }?>
                        
                     
               </div>

@@ -180,10 +180,10 @@
 </div>
 	<div class="memo-sub_right_small"><!--memo-sub_right_small-->		
 	<p class="radio-new">
-		<?php echo $searchForm->radioButton($searchModel,'bride', array('value'=>'female')); ?>Bride
+		<?php echo $searchForm->radioButton($searchModel,'bride', array('value'=>'f')); ?>Bride
 	 </p>	
 	 <p class="radio-new_size">
-		<?php echo $searchForm->radioButton($searchModel,'groom', array('value'=>'male')); ?>Groom
+		<?php echo $searchForm->radioButton($searchModel,'groom', array('value'=>'m')); ?>Groom
 	 </p>
 		<?php echo $searchForm->error($searchModel,'name'); ?>
 	</div>
@@ -327,15 +327,15 @@
 <div class="memo-box-three"><!--memo-box-three-->
 
 <?php $searchForm=$this->beginWidget('CActiveForm', array(
-	'id'=>'users-search-searchID',
+		'id'=>'keywordSearch',
 	'action' => Yii::app()->createUrl('search/keyword'),
 	'enableAjaxValidation'=>false,
 )); ?>
 
-<input type="text" name="keyword" value="Search By ID / Keyword" class="text_normal_small">
+<input type="text" name="keyword" value="" placeholder="Search By ID / Keyword" class="text_normal_small" />
 
 
-<a onmouseover="MM_swapImage('Image21','','<?php echo Yii::app()->params['resourceUrl']; ?>/images/search_btn_sm.jpg',1)" onmouseout="MM_swapImgRestore()" href="search.html"><img width="49" border="0" height="22" class="search_add_sub" id="Image21" name="Image21" src="<?php echo Yii::app()->params['resourceUrl']; ?>/images/search_btn_ash_sm.jpg"></a>
+<a  href="javascript:keywordSearch.submit();"><img width="49" border="0" height="22" class="search_add_sub" id="Image21" name="Image21" src="<?php echo Yii::app()->params['resourceUrl']; ?>/images/search_btn_ash_sm.jpg"></a>
 
 <?php $this->endWidget(); ?>
 
