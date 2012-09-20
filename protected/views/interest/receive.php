@@ -147,7 +147,7 @@
               <div class="space-15px">&nbsp;</div>
               <div style="float:right">
               
-              <a class="sm-send" href="#">Accept</a>
+              <a class="recive" href="#">Accept</a>
                <a class="recive" href="#">Decline</a>
 </div>
                 <div class="left">
@@ -167,22 +167,24 @@
                 
                 
                   <!--div_msg_fullbox-->   <div class="msgbox-full_interest">
+                  
+                 <form id="receiver"  name="receiver" method="post"  action="/interest"> 
                 <div style="float:left; padding-right:5px;">
-                 <INPUT type="checkbox" name="userId" class="case" value="<?php echo $value->userId?>">
+                 <input type="checkbox" name="user" class="case" value="<?php echo $value->userId?>" />
+                 <input type="hidden" name="userId" class="case" value="<?php echo $value->userId?>" />
                  </div>
                  <div class="ii_div">
                    <a href="album.html"><img src="<?php echo Yii::app()->params['mediaUrl']; ?>/model_thumb/thumb_1.jpg" border="0" class="imageicon" /></a> </div>
-                  <div class="div_lft_part">
+                  <div style="float:left; padding:5px 0px 0px 10px;">
                  <p> <span class="text_blue_b"><a href="<?php echo 'byid?id='.$value->marryId ?>"><?php echo $value->name; echo '( '.$value->marryId.' )' ;?></a></span> (You expressed interest on <?php echo date('d-M-Y',strtotime($interest[$value->userId]));?>)</p>
                   <p class="txt_rg"><?php echo $value->religion;?> , <?php echo $value->caste;?> &nbsp;, <?php echo $value->age ?>Years &nbsp; - <?php if(isset($value->heightId)) echo $heightArray[$value->heightId]; ?> &nbsp;
 <?php echo $value->place.', '.$value->state.', '.$value->country; ?> &nbsp;</p>
  <p class="innersidelinks-still-l0">Interest Sent you, 2 Minuts ago</p>
                   </div>
                   
-                                     <a class="rec-sub" href="#">Decline</a>
-
-                   <a class="rec-sub" href="#">Accept</a>
-                  
+				<a class="rec-sub" href="#">Decline</a>
+                <a class="rec-sub" href="#">Accept</a>
+                 </form> 
                  <div class="clear"></div> 
                  </div>
                 
@@ -195,7 +197,9 @@
   }
       ?> 
           
-               
+               <form id="interest"  name="interest" method="post"  action="/interest">
+			
+			</form>  
 
                <!--div_closing_msg_fullbox--> 
                
@@ -207,7 +211,7 @@
                 <span class="bullettext_select">&nbsp;Select all&nbsp;</span></div>
               <div style="float:right">
 
-              <a class="sm-send" href="#">Accept</a>
+              <a class="recive" href="#">Accept</a>
               <a class="recive" href="#">Decline</a>
 		   </div>
 		</div>
@@ -237,6 +241,37 @@ Only for</p>
    <script type="text/javascript">
 $(document).ready(function() {
 
+	$('.rec-sub').click(function (){
+
+		if($(this).text() == 'Accept')
+		 {
+
+			 $('<input>').attr({
+				    type: 'hidden',
+				    id: 'sent',
+				    name: 'key',
+				    value: 'accept'
+				}).appendTo('#receiver');
+				  $('#receiver').submit(); 
+			 
+		 }	 	
+
+		 if($(this).text() == 'Decline')
+		 {
+
+			 $('<input>').attr({
+				    type: 'hidden',
+				    id: 'sent',
+				    name: 'key',
+				    value: 'decline'
+				}).appendTo('#receiver');
+				  $('#receiver').submit(); 
+			 
+		 }	
+		
+		
+	});
+	
 	 $('.selection').change(function () {
 
 		 if($(this).attr("checked")){
@@ -251,25 +286,56 @@ $(document).ready(function() {
 		$('.selection').attr("checked",false);
 		 });
 	 
-	 $('.rmv-large').click(function (){
+	 $('.recive').click(function (){
 		 var  allVal= [];
-		 if($("input:checkbox[name=userId]:checked").length == 0)
+		 if($("input:checkbox[name=user]:checked").length == 0)
 		 {
 			alert('Please select any one of profile to remove');
 			return false;
 		 }		 
-		 $("input:checkbox[name=userId]:checked").each(function(){
+				 
+		 $("input:checkbox[name=user]:checked").each(function(){
 			 allVal.push($(this).val());
 		 });
 
-		 $('<input>').attr({
-			    type: 'hidden',
-			    id: 'userId',
-			    name: 'userId',
-			    value: allVal
-			}).appendTo('#shortlist');
-			  $('#shortlist').submit(); 
-		  
+		 if($(this).text() == 'Accept')
+		 {
+
+			 $('<input>').attr({
+				    type: 'hidden',
+				    id: 'sent',
+				    name: 'key',
+				    value: 'accept'
+				}).appendTo('#interest');
+			 $('<input>').attr({
+				    type: 'hidden',
+				    id: 'userId',
+				    name: 'userId',
+				    value: allVal
+				}).appendTo('#interest');
+				  $('#interest').submit(); 
+			 
+		 }	 	
+
+		 if($(this).text() == 'Decline')
+		 {
+
+			 $('<input>').attr({
+				    type: 'hidden',
+				    id: 'sent',
+				    name: 'key',
+				    value: 'decline'
+				}).appendTo('#interest');
+			 $('<input>').attr({
+				    type: 'hidden',
+				    id: 'userId',
+				    name: 'userId',
+				    value: allVal
+				}).appendTo('#interest');
+				  $('#interest').submit(); 
+			 
+		 }	
+		 
 	 });
 		 //		
 });

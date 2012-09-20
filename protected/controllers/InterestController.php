@@ -6,12 +6,12 @@ class InterestController extends Controller
 	{
 		
 		if(isset($_POST['key']) && isset($_POST['userId']))
-		{
+		{										  		
 			if($_POST['key'] == 'sent')
 			{
 				$user = 1;
-				$userIds = implode(",", $_POST['userId']);
-				$sql = "UPDATE interests SET status = 3 WHERE senderId = {$user} and receiverId in ({$userIds})";
+				$userIds =  $_POST['userId'];
+				$sql = "UPDATE interests SET status = 3,statusChange= now() WHERE senderId = {$user} and receiverId in ({$userIds})";
 				$command=Yii::app()->db->createCommand($sql);
 				$results=$command->query();
 				
@@ -19,7 +19,37 @@ class InterestController extends Controller
 				//$sendI
 				$this->forward('sent');	
 			}
+			if($_POST['key'] == 'accept')
+			{
+				
+				$user = 1;
+				$userIds =  $_POST['userId'];
+				$sql = "UPDATE interests SET status = 1,statusChange= now() WHERE senderId  in ({$userIds}) and receiverId = {$user}";
+				$command=Yii::app()->db->createCommand($sql);
+				$results=$command->query();
+				
+				
+				//$sendI
+				$this->forward('receive');	
+				
+			}
+			
+			if($_POST['key'] == 'decline')
+			{
+				$user = 1;
+				$userIds =  $_POST['userId'];
+				$sql = "UPDATE interests SET status = 2,statusChange= now() WHERE senderId  in ({$userIds}) and receiverId = {$user}";
+				$command=Yii::app()->db->createCommand($sql);
+				$results=$command->query();
+				
+				
+				//$sendI
+				$this->forward('receive');	
+			}
 		}
+		
+		
+		
 		$this->render('index');
 	}
 	
@@ -114,7 +144,7 @@ class InterestController extends Controller
 	{
 		
 	$user = Users::model()->findByPk(1);
-		$receiveInterest = $user->interestReceiver(array('condition'=>'status != 3'));
+		$receiveInterest = $user->interestReceiver(array('condition'=>'status = 0'));
 		if(sizeof($receiveInterest) > 0){
 		$userId = array();
 		$userInterest = array();

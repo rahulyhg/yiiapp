@@ -19,18 +19,25 @@ class HighlightController extends Controller
 	{
 		
 		$users = Users::model()->findByPk(1);
+		$isHighLighted = false;
 		if($users->highlighted == 1	)
 		{
-			$this->render('index',array('isHighLighted'=>true));
+			$isHighLighted = true;
 		}
 		else if(isset($_POST['coupon']))
 		{
 			//get user from session
-			$this->render('index',array('isHighLighted'=>true));
+			$users = Users::model()->findByPk(1);
+			$coupon = Coupon::model()->findByAttributes(array('couponCode'=>$_POST['coupon']));
+			$coupon->isUsed = 1;
+			$coupon->save();
+			$users->highlighted = 1 ;
+			$users->save();
+			$isHighLighted = true;
+			
 			
 		}
-		else
-		$this->render('index');
+		$this->render('index',array('isHighLighted'=> $isHighLighted));
 	}
 
 }
