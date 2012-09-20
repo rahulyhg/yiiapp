@@ -149,17 +149,18 @@
               <div class="space-15px">&nbsp;</div>
               <div style="float:right">
                                            
-                                           
+             <!--                               
               <a class="sm-send" href="#">Accept</a>
 			<a class="recive" href="#">Decline</a>
-
+ 			-->
                 
               
 			  </div>
                 <div class="left">
+                <!--  
                <INPUT type="checkbox" class="selection" name="selection" >
                 <span class="bullettext_select">&nbsp;Select all&nbsp;</span>
-                <span class="bullettext_select">&nbsp;<a href="#">Delete</a></span>                </div>
+                <span class="bullettext_select">&nbsp;<a href="#">Delete</a></span>  -->                </div>
                               <div class="clear"></div>
                               <div class="line"></div>
 
@@ -175,9 +176,9 @@
   foreach ($user as $value) { ?>                               
                               
                               
-                <!--div_msg_fullbox-->   <div class="msgbox-full_interest">
+                <!-- div_msg_fullbox-->   <div class="msgbox-full_interest">
                 <div style="float:left; padding-right:5px;">
-                  <INPUT type="checkbox" name="userId" class="case" value="<?php echo $value->userId?>">
+                <!--   <INPUT type="checkbox" name="userId" class="case" value="<?php echo $value->userId?>"> -->
                  </div>
                  <div style="float:left;">
                    <a href="album.html"><img src="<?php echo Yii::app()->params['mediaUrl']; ?>/model_thumb/thumb_1.jpg" border="0" class="imageicon" /></a> </div>
@@ -188,7 +189,7 @@
  <p class="innersidelinks-still-l0">You accepted  , 2 Minuts ago</p>
                   </div>
                   
-                    <a class="decliner" href="#">Decline</a>
+               <!--      <a class="decliner" href="#">Decline</a>  -->
    
 <div class="clear"></div> 
                  </div>
@@ -205,15 +206,15 @@
               
                   <div class="space-35px">&nbsp;</div>
                   <div class="left">
-                <INPUT type="checkbox" class="selection" name="selection" >
+                <!-- <INPUT type="checkbox" class="selection" name="selection" >
                 <span class="bullettext_select">&nbsp;Select all&nbsp;</span>
-                <span class="bullettext_select">&nbsp;<a href="#">Delete</a></span>  </div>
+                <span class="bullettext_select">&nbsp;<a href="#">Delete</a></span>  --> </div>
               <div style="float:right">
                
-                   
+                   <!-- 
               <a class="sm-send" href="#">Accept</a>
                 <a class="recive" href="#">Decline</a>
-
+ 				-->
               
               
 			  </div>

@@ -87,14 +87,14 @@ class InterestController extends Controller
 	public function actionAccept()
 	{
 		$user = Users::model()->findByPk(1);
-		$sendInterest = $user->interestSender(array('condition'=>'status=1'));
+		$sendInterest = $user->interestReceiver(array('condition'=>'status=1'));
 		
 		if(sizeof($sendInterest) > 0){
 		$userId = array();
 		$userInterest = array();
 		foreach ($sendInterest as $value) {
-			$userId[] = $value->receiverId;
-			$userInterest[$value->receiverId] = $value->sendDate;
+			$userId[] = $value->senderId;
+			$userInterest[$value->senderId] = $value->sendDate;
 		}
 		$userIds = implode(",", $userId);
 		$condition = "userId in ($userIds)";
@@ -117,14 +117,14 @@ class InterestController extends Controller
 	public function actionDecline()
 	{
 		$user = Users::model()->findByPk(1);
-		$sendInterest = $user->interestSender(array('condition'=>'status= 2'));
+		$sendInterest = $user->interestReceiver(array('condition'=>'status= 2'));
 		
 		if(sizeof($sendInterest) > 0){
 		$userId = array();
 		$userInterest = array();
 		foreach ($sendInterest as $value) {
-			$userId[] = $value->receiverId;
-			$userInterest[$value->receiverId] = $value->sendDate;
+			$userId[] = $value->senderId;
+			$userInterest[$value->senderId] = $value->sendDate;
 		}
 		$userIds = implode(",", $userId);
 		$condition = "userId in ($userIds)";
