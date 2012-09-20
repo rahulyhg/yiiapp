@@ -14,7 +14,8 @@ class MessageController extends Controller
 	
 	public function actionIndex()
 	{
-		$this->render('index');
+		$user = Yii::app()->session->get('user');	
+		$this->render('index',array('user'=>$user));
 	}
 
 	// Uncomment the following methods and override them if needed

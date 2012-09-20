@@ -23,7 +23,7 @@ return array(
 		
 		'gii'=>array(
 			'class'=>'system.gii.GiiModule',
-			'password'=>'Aditi01*',
+			'password'=>'',
 		 	// If removed, Gii defaults to localhost only. Edit carefully to taste.
 			'ipFilters'=>array('127.0.0.1','::1'),
 		),
@@ -68,7 +68,7 @@ return array(
 			'connectionString' => 'mysql:host=localhost;dbname=marrydoor',
 			'emulatePrepare' => true,
 			'username' => 'root',
-			'password' => 'Aditi01*',
+			'password' => '',
 			'charset' => 'utf8',
 		),
 		
@@ -99,8 +99,9 @@ return array(
 		// this is used in contact page
 		'adminEmail'=>'webmaster@example.com',
 		'resourceUrl' => 'http://scripts.marrydoor.com',
-		'homeUrl' => 'http://marrydoor.com',
+		'homeUrl' => 'http://local.marrydoor.com',
 		'mediaUrl' => 'http://scripts.marrydoor.com/images',
-		'ftpPath' => 'D:\ftp\marrydoor',
+		'sslmediaUrl' => 'https://scripts.marrydoor.com/images',
+		'ftpPath' => 'E:\project\marrydoor',
 	),
 );
