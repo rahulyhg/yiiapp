@@ -96,7 +96,7 @@ class SiteController extends Controller
 			}	
 		}
 		// display the login form
-		$this->actionIndex();
+		$this->forward('index');
 	}
 
 	/**
@@ -107,7 +107,6 @@ class SiteController extends Controller
 		Yii::app()->user->logout();
 		Yii::app()->session->clear();
 		Yii::app()->session->destroy();
-		Yii::app()->end();
-		$this->actionIndex();
+		$this->forward('index');
 	}
 }

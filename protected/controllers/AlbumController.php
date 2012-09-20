@@ -16,6 +16,16 @@
 class AlbumController extends Controller
 {
 	
+	 public function beforeAction()
+        {
+                $user = Yii::app()->session->get('user');
+                if(!isset($user)) {
+                        $this->redirect(Yii::app()->user->loginUrl);
+                        return false;
+                }       
+                return true;
+        }  
+	
 	/**
 	 * This is the default 'index' action that is invoked
 	 * when an action is not explicitly requested by users.

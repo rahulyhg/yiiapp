@@ -2,6 +2,16 @@
 
 class HighlightController extends Controller
 {
+	 public function beforeAction()
+        {
+                $user = Yii::app()->session->get('user');
+                if(!isset($user)) {
+                        $this->redirect(Yii::app()->user->loginUrl);
+                        return false;
+                }       
+                return true;
+        }   
+	
 	public function actionIndex()
 	{
 
