@@ -6,7 +6,7 @@ class HighlightController extends Controller
 	{
 
 		//get user from session
-		$users = Users::model()->findByPk(1);
+		$users = $user = Yii::app()->session->get('user');
 		if($users->highlighted == 1	)
 		{
 			$this->render('index',array('isHighLighted'=>true));
@@ -18,7 +18,7 @@ class HighlightController extends Controller
 	public function actionupdate()
 	{
 		
-		$users = Users::model()->findByPk(1);
+		$users = $user = Yii::app()->session->get('user');
 		$isHighLighted = false;
 		if($users->highlighted == 1	)
 		{
@@ -27,14 +27,15 @@ class HighlightController extends Controller
 		else if(isset($_POST['coupon']))
 		{
 			//get user from session
-			$users = Users::model()->findByPk(1);
+			
 			$coupon = Coupon::model()->findByAttributes(array('couponCode'=>$_POST['coupon']));
 			$coupon->isUsed = 1;
 			$coupon->save();
 			$users->highlighted = 1 ;
 			$users->save();
 			$isHighLighted = true;
-			
+			$payment = new Payment();
+			$paypment->userID = $users->userId;
 			
 		}
 		$this->render('index',array('isHighLighted'=> $isHighLighted));

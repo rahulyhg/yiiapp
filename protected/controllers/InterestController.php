@@ -9,7 +9,8 @@ class InterestController extends Controller
 		{										  		
 			if($_POST['key'] == 'sent')
 			{
-				$user = 1;
+				$users  = Yii::app()->session->get('user');
+				$user = $users->userId;
 				$userIds =  $_POST['userId'];
 				$sql = "UPDATE interests SET status = 3,statusChange= now() WHERE senderId = {$user} and receiverId in ({$userIds})";
 				$command=Yii::app()->db->createCommand($sql);
@@ -22,7 +23,8 @@ class InterestController extends Controller
 			if($_POST['key'] == 'accept')
 			{
 				
-				$user = 1;
+				$users  = Yii::app()->session->get('user');
+				$user = $users->userId;
 				$userIds =  $_POST['userId'];
 				$sql = "UPDATE interests SET status = 1,statusChange= now() WHERE senderId  in ({$userIds}) and receiverId = {$user}";
 				$command=Yii::app()->db->createCommand($sql);
@@ -36,7 +38,8 @@ class InterestController extends Controller
 			
 			if($_POST['key'] == 'decline')
 			{
-				$user = 1;
+				$users  = Yii::app()->session->get('user');
+				$user = $users->userId;
 				$userIds =  $_POST['userId'];
 				$sql = "UPDATE interests SET status = 2,statusChange= now() WHERE senderId  in ({$userIds}) and receiverId = {$user}";
 				$command=Yii::app()->db->createCommand($sql);
@@ -59,7 +62,8 @@ class InterestController extends Controller
 	 */
 	public function actionSent()
 	{
-		$user = Users::model()->findByPk(1);
+		
+		$user  = Yii::app()->session->get('user');
 		$sendInterest = $user->interestSender(array('condition'=>'status != 3'));
 		if(sizeof($sendInterest) > 0){
 		$userId = array();
@@ -86,7 +90,7 @@ class InterestController extends Controller
 	 */
 	public function actionAccept()
 	{
-		$user = Users::model()->findByPk(1);
+		$user  = Yii::app()->session->get('user');
 		$sendInterest = $user->interestReceiver(array('condition'=>'status=1'));
 		
 		if(sizeof($sendInterest) > 0){
@@ -116,7 +120,7 @@ class InterestController extends Controller
 	 */
 	public function actionDecline()
 	{
-		$user = Users::model()->findByPk(1);
+		$users = $user = Yii::app()->session->get('user');
 		$sendInterest = $user->interestReceiver(array('condition'=>'status= 2'));
 		
 		if(sizeof($sendInterest) > 0){
@@ -143,7 +147,7 @@ class InterestController extends Controller
 	public function actionReceive()
 	{
 		
-	$user = Users::model()->findByPk(1);
+    	$user  = Yii::app()->session->get('user');
 		$receiveInterest = $user->interestReceiver(array('condition'=>'status = 0'));
 		if(sizeof($receiveInterest) > 0){
 		$userId = array();
