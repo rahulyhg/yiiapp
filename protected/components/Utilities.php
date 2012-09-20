@@ -301,4 +301,10 @@ class Utilities
 			return false;
 		}
 	}
+	
+ public static function getInterestStatus()
+ {
+ 	return array('0'=>'no','1'=>'accept','2'=>'decline','3'=>'delete');
+ }
+ 
 }

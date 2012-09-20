@@ -90,13 +90,13 @@ create table messages(messageId BIGINT UNIQUE NOT NULL AUTO_INCREMENT, senderId 
 
 -- ---table for interests------
 
- create table interests (interestId BIGINT UNIQUE NOT NULL AUTO_INCREMENT, senderId BIGINT NOT NULL, receiverId BIGINT NOT NULL, status TINYINT NOT NULL DEFAULT 0, sendDate DATE NOT NULL, PRIMARY KEY(interestId),FOREIGN KEY (senderId) REFERENCES users(userId), FOREIGN KEY (receiverId) REFERENCES users(userID))ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;
+ create table interests (interestId BIGINT UNIQUE NOT NULL AUTO_INCREMENT, senderId BIGINT NOT NULL, receiverId BIGINT NOT NULL, status TINYINT NOT NULL DEFAULT 0, sendDate DATETIME NOT NULL,statusChange DATETIME NOT NULL DEFAULT '0000-00-00 00:00:00', PRIMARY KEY(interestId),FOREIGN KEY (senderId) REFERENCES users(userId), FOREIGN KEY (receiverId) REFERENCES users(userID))ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;
 
 
 
 -- --table for shortlist----
 
-create table shortlist(shortlistId BIGINT UNIQUE NOT NULL AUTO_INCREMENT, userID BIGINT NOT NULL, profileID BIGINT NOT NULL, PRIMARY KEY(shortlistId),FOREIGN KEY (profileID) REFERENCES users(userId))ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;
+create table shortlist(shortlistId BIGINT UNIQUE NOT NULL AUTO_INCREMENT, userID BIGINT NOT NULL, status TINYINT NOT NULL DEFAULT 0, profileID BIGINT NOT NULL, PRIMARY KEY(shortlistId),FOREIGN KEY (profileID) REFERENCES users(userId))ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;
 
 -- --table for profileViews---
 
@@ -288,4 +288,5 @@ create table search(searchId BIGINT UNIQUE NOT NULL AUTO_INCREMENT, searchText t
 
 create table bookmark(bookMarkId BIGINT UNIQUE NOT NULL AUTO_INCREMENT, userID BIGINT NOT NULL, profileIDs text NOT NULL, PRIMARY KEY(bookMarkId),FOREIGN KEY (userID) REFERENCES users(userId))ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;
 
-
+-- table for payment --
+create table payment(paymentId BIGINT NOT NULL, userID bigint not null, couponcode varchar(15) NOT NULL, startdate datetime NOT NULL, actionItem enum('highlight','membership'), PRIMARY KEY(paymentId), FOREIGN KEY (userId) REFERENCES users(userId))ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;

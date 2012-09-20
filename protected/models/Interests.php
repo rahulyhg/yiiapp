@@ -9,6 +9,11 @@
  * @property string $receiverId
  * @property integer $status
  * @property string $sendDate
+ * @property string $statusChange
+ *
+ * The followings are the available model relations:
+ * @property Users $sender
+ * @property Users $receiver
  */
 class Interests extends CActiveRecord
 {
@@ -40,10 +45,10 @@ class Interests extends CActiveRecord
 		return array(
 			array('status', 'numerical', 'integerOnly'=>true),
 			array('senderId, receiverId', 'length', 'max'=>20),
-			array('sendDate', 'safe'),
+			array('sendDate, statusChange', 'safe'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('interestId, senderId, receiverId, status, sendDate', 'safe', 'on'=>'search'),
+			array('interestId, senderId, receiverId, status, sendDate, statusChange', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -71,6 +76,7 @@ class Interests extends CActiveRecord
 			'receiverId' => 'Receiver',
 			'status' => 'Status',
 			'sendDate' => 'Send Date',
+			'statusChange' => 'Status Change',
 		);
 	}
 
@@ -90,6 +96,7 @@ class Interests extends CActiveRecord
 		$criteria->compare('receiverId',$this->receiverId,true);
 		$criteria->compare('status',$this->status);
 		$criteria->compare('sendDate',$this->sendDate,true);
+		$criteria->compare('statusChange',$this->statusChange,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

@@ -1,6 +1,21 @@
+<?php
+/*
+*
+* $Id$
+--------------------------------------------------------------------------------------------------------------------------
+* Information contained in this file is the intellectual property of Ladbrokes Plc
+* Copyright © 2012 MarryDorr. All Rights Reserved.
+* ---------------------------------------------------------------------------------------------------------------------------
+*
+* @author  Ageesh K Gopinath
+* @title accept.php
+* @description <Description of this class>
+*  @filesource <URL>
+*  @version <Revision>
+*/
+?>
 
-            
-            <!--head closing-->
+
             <!--main-content-->
             <div id="main-content">
             	<!--left-content-->
@@ -14,10 +29,9 @@
 	      <p class="mrgn_25"><span class="text_pink_13"><a href="my-page.html">Biju George</a></span></p>
                 <div class="clear"></div>
                 <div class="line"></div>
-                
-             <div class="div_ww ">   
-                <img src="<?php echo Yii::app()->params['mediaUrl']; ?>/img_03more.jpg" class="left" style="width:100%;" /> </div>
-                
+                <div style="float:left; width:96%;">    
+                <img src="<?php echo Yii::app()->params['mediaUrl']; ?>/img_03more.jpg" class="left" style="width:100%;" />
+                </div>
                     
         <p class="text_blue_15">REMAINING. <a href="#">RE-CHARGE&nbsp;NOW</a></p>    
         
@@ -101,15 +115,15 @@
                   
   <div class="clear"></div>
                 <div class="line_sm"></div>                
-              <div style="float:left; width:96%;">       
+                 <div style="float:left; width:96%;">    
                 <img src="<?php echo Yii::app()->params['mediaUrl']; ?>/img_advert.jpg" class="left" style="width:100%;" />
-                
-                </div>
+                 </div>
+                 
                 <div class="clear"></div>
                 <div class="line_sm"></div>
-                  <div style="float:left; width:96%;">  
-                <img src="<?php echo Yii::app()->params['mediaUrl']; ?>/do-you-like.jpg" class="left"  style="width:100%;" /></div>
-                
+                 <div style="float:left; width:96%;">  
+                <img src="<?php echo Yii::app()->params['mediaUrl']; ?>/do-you-like.jpg" class="left" style="width:100%;"/>
+                </div>
                 <div class="clear"></div>
                 <p class="txt_bld">Suggest to a friend</p>
               <p class="txt_bld-10">Use comma to seperate each ids</p><p class="space-10px">&nbsp;</p>
@@ -117,151 +131,159 @@
                 <input type="text" class="select_small_180"  placeholder="Friends Email ID"/>               
                 
                 
-                              <a class="invite" href="#">Invite</a>
+                                             <a class="invite" href="#">Invite</a>
 
                 </form>
   </div>
   <!--profile details closing--> 
   <!--center profile details closing--> 
-  			<div id="content-left">
-  			  <!--closing central profile details closing-->
-              <!--left-content closing-->
-              <!--left-content-->
-              <!--bottom-content closing-->
+  			<div id="content-right-02"> 
+              <div class="div_mdla">
+                   <p class="space-3px">&nbsp;</p>
+              <div class="line-new-1"></div>
+			  
+			  
+               <p class="text_pink-hd">Interrest Accepted you</p>
+               
+               <p class="clear"></p>
+              <div class="space-15px">&nbsp;</div>
+              <div style="float:right">
+                                           
+                                           
+              <a class="sm-send" href="#">Accept</a>
+			<a class="recive" href="#">Decline</a>
 
-	<?php if(isset($isHighLighted) && $isHighLighted == true ){?>
-					<p class="text_pink-hd">Highlight Your Profile</p>
-					 <p class="space-15px">&nbsp;</p>
-					Your profile has been highlighted
-					<div class="clear"></div><div class="clear"></div>
-	<?php } else {?>
-             <div class="content-right-02"><!--div_mdl-->
+                
+              
+			  </div>
+                <div class="left">
+               <INPUT type="checkbox" class="selection" name="selection" >
+                <span class="bullettext_select">&nbsp;Select all&nbsp;</span>
+                <span class="bullettext_select">&nbsp;<a href="#">Delete</a></span>                </div>
+                              <div class="clear"></div>
+                              <div class="line"></div>
 
-
-<div class="txt_bld_new ">
-
-
-					<p class="text_pink-hd">Highlight Your Profile</p>
-                  <div class="clear"></div>  
-          <p class="txt_rg">&nbsp;</p>
-                    <p class="txt_rg">Happy Valentine's Day everyone! To show our love, we are running a sale for you guys Happy Valentine's Day everyone! To show our love, we are running a sale for you guys Happy Valentine's Day everyone!<br />
-                      Happy Valentine's Day everyone! To show our love, we are running a sale for you guys</p>
-                    	<div class="clear"></div>
-		  <p class="line"></p>
-          
-      <p class="space-15px">&nbsp;</p>    
-         <div style="float:left; width:70%;"> 
-          <img src="<?php echo Yii::app()->params['mediaUrl']; ?>/highlight-your-profile.jpg" class=" left" style="width:100%;" />
-          </div>
-        <div class="clear"></div>
-        
-        <p class="space-15px">&nbsp;</p> 
-        
-        <div class="line-1pix"></div>
-        
-          <p class="space-15px">&nbsp;</p> 
-          
-          
-          
-          
-             <p class="text_pink-hd">Benefits</p>
-          <div class="clear"></div>
-          <p class="txt_rg">Contact members directly<br />
-Send personalised messaages<br />
-View Album, Documents, and contact details<br />
-View horoscope of members<br />
-Express Unlimited interest<br />
-Plus other exclusive paid membership benefits</p>
-
-<p class="space-15px">&nbsp;</p>
-<div class="line-new10"></div>
-<p class="space-15px">&nbsp;</p>
-
-<p class="text_pink-hd">Choose your Payment Options</p>
-
-          <div class="clear"></div>
-<p class="space-15px">&nbsp;</p>
-          
-          <p class="text_pink-hd"> Activation Coupon</p>
-           <div class="clear"></div>
-           
-          <p class="txt_rg">You can subscribe through activation coupon which you can purchase from your nearest re-sellers. &nbsp;&nbsp; <span class="txt_another"> <a href="#">Click here</a></span> to find your nearest re-seller</p>
-          
-             <div class="clear"></div>
-<p class="space-15px">&nbsp;</p>
-          
-       
- </div>
- 
- 
- 
- <p class="space-15px">&nbsp;</p>
- 
- 
-         
-          
-            <a href="#" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image63','','<?php echo Yii::app()->params['mediaUrl']; ?>/express_intrest_red.jpg',1)" class="button_align"></a>
-          <p class="clear">&nbsp;</p>
-          <p class="space-10px"></p>
-          
-          
+<div class="clear"></div>                              
+                <div class="right">
+                              <p>Filter&nbsp;&nbsp; <span class="text_blue_b"><a href="#">&nbsp;&nbsp; By You </a><a href="#">Send to You</a></span>   </p>
+                              </div>
+                              <div class="clear"></div>
+                              
+ <?php 
+  $heightArray = Utilities::getHeights();
+  if(isset($user)){
+  foreach ($user as $value) { ?>                               
+                              
+                              
+                <!--div_msg_fullbox-->   <div class="msgbox-full_interest">
+                <div style="float:left; padding-right:5px;">
+                  <INPUT type="checkbox" name="userId" class="case" value="<?php echo $value->userId?>">
+                 </div>
+                 <div style="float:left;">
+                   <a href="album.html"><img src="<?php echo Yii::app()->params['mediaUrl']; ?>/model_thumb/thumb_1.jpg" border="0" class="imageicon" /></a> </div>
+                  <div style="float:left; padding:5px 0px 0px 10px;">
+               <p> <span class="text_blue_b"><a href="<?php echo 'byid?id='.$value->marryId ?>"><?php echo $value->name; echo '( '.$value->marryId.' )' ;?></a></span> (You expressed interest on <?php echo date('d-M-Y',strtotime($interest[$value->userId]));?>)</p>
+                  <p class="txt_rg"><?php echo $value->religion;?> , <?php echo $value->caste;?> &nbsp;, <?php echo $value->age ?>Years &nbsp; - <?php if(isset($value->heightId)) echo $heightArray[$value->heightId]; ?> &nbsp;
+<?php echo $value->place.', '.$value->state.', '.$value->country; ?> &nbsp;</p>
+ <p class="innersidelinks-still-l0">You accepted  , 2 Minuts ago</p>
+                  </div>
+                  
+                    <a class="decliner" href="#">Decline</a>
    
+<div class="clear"></div> 
+                 </div>
+       
+               
+              <?php }
+  }
+  else
+  {
+  	echo "No interests sent so far";
+  }
+      ?> 
           
-             <div class="list_class-5-sub">
-          <p class="txt_bld">Enter the coupon</p>
-        </div>
-    <form id="highlight"  name="highlight" method="post"  action="/highlight/keyword">
-<div class="list_feedback">
-  <div class="list_class-textfield-small">
-<input type="text" name="coupon" id="coupon" class="addres_form-new_l"  />
-
-				
-				
-
-
-                    
-
-   </div>
-  
-    <div class="clear"></div>
-    <div class="space-10px"></div>
- <a class="view-button" href="javascript:highlight.submit();">Hightlight Profile</a>
-
-                <!--bottom-content-->
-              </div>
               
-     </form>           
-         
+                  <div class="space-35px">&nbsp;</div>
+                  <div class="left">
+                <INPUT type="checkbox" class="selection" name="selection" >
+                <span class="bullettext_select">&nbsp;Select all&nbsp;</span>
+                <span class="bullettext_select">&nbsp;<a href="#">Delete</a></span>  </div>
+              <div style="float:right">
+               
+                   
+              <a class="sm-send" href="#">Accept</a>
+                <a class="recive" href="#">Decline</a>
 
-
-
-
-<!--/search_div_right-->
-<p class="clear"></p>
-                        
-              <!--/search_div_1st--><!--/search_div_1st--><!--/search_div_3rd-->
-
-
-
-
-
-
-
-						
-						
-						
-						
-                       
-
-<p class="clear">&nbsp;</p><p class="space-10px">&nbsp;</p>
-
-                <!--bottom-content-->
-              </div>
-              <?php }?>
-                <p class="clear">&nbsp;</p>
               
-              <p class="clear">&nbsp;</p><p class="space-10px">&nbsp;</p>
+              
+			  </div>
 
-                <!--bottom-content-->
-      </div>
- 
+
+               </div> 
+  <!--closing central profile details closing-->      
+              
+                <!--left-content closing-->
+                <!--left-content-->
+                
+                <div id="content-right-small-1">
+               	  <div class="div_r_1"><!--div_r-->
+
+
+<p class="text_20_gery"><a href="payment_benefits.html">Subscribe Now!</a><br />
+Only for</p>
+
+<div style="float:left; width:96%;">
+<img src="<?php echo Yii::app()->params['mediaUrl']; ?>/img_200.jpg" class="left" style="width:100%;"  border="0"/>
+</div>
+<p class="text_20_gery">For 3 Months</p>
+
+
+<div class="clear"></div>
+               	  </div>
+              
+              </div></div>
+</div>
+
+
+  <script type="text/javascript">
+$(document).ready(function() {
+
+	 $('.selection').change(function () {
+
+		 if($(this).attr("checked")){
+			 $('input:checkbox').attr('checked','checked');
+		}else{ 
+			$('input:checkbox').removeAttr('checked');
+		}
+		 
+	 }); 	
+
+	 $('.case').change(function () {
+		$('.selection').attr("checked",false);
+		 });
+	 
+	 $('.rmv-large').click(function (){
+		 var  allVal= [];
+		 if($("input:checkbox[name=userId]:checked").length == 0)
+		 {
+			alert('Please select any one of profile to remove');
+			return false;
+		 }		 
+		 $("input:checkbox[name=userId]:checked").each(function(){
+			 allVal.push($(this).val());
+		 });
+
+		 $('<input>').attr({
+			    type: 'hidden',
+			    id: 'userId',
+			    name: 'userId',
+			    value: allVal
+			}).appendTo('#shortlist');
+			  $('#shortlist').submit(); 
+		  
+	 });
+		 //		
+});
+
+
+</script> 

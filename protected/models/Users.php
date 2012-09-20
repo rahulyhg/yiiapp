@@ -113,6 +113,7 @@ class Users extends CActiveRecord
 			'shortlist' => array(self::HAS_MANY, 'Shortlist', 'userID'),
 			'shortlisted' => array(self::HAS_MANY, 'Shortlist', 'profileID'),
 			'search' => array(self::HAS_ONE, 'Search', 'userId'),
+			'payment' => array(self::HAS_MANY, 'Payment', 'userID'),
 		);
 	}
 

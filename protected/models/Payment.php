@@ -1,23 +1,24 @@
 <?php
 
 /**
- * This is the model class for table "shortlist".
+ * This is the model class for table "payment".
  *
- * The followings are the available columns in table 'shortlist':
- * @property string $shortlistId
+ * The followings are the available columns in table 'payment':
+ * @property string $paymentId
  * @property string $userID
- * @property integer $status
- * @property string $profileID
+ * @property string $couponcode
+ * @property string $startdate
+ * @property string $actionItem
  *
  * The followings are the available model relations:
- * @property Users $profile
+ * @property Users $user
  */
-class Shortlist extends CActiveRecord
+class Payment extends CActiveRecord
 {
 	/**
 	 * Returns the static model of the specified AR class.
 	 * @param string $className active record class name.
-	 * @return Shortlist the static model class
+	 * @return Payment the static model class
 	 */
 	public static function model($className=__CLASS__)
 	{
@@ -29,7 +30,7 @@ class Shortlist extends CActiveRecord
 	 */
 	public function tableName()
 	{
-		return 'shortlist';
+		return 'payment';
 	}
 
 	/**
@@ -40,11 +41,13 @@ class Shortlist extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('status', 'numerical', 'integerOnly'=>true),
-			array('userID, profileID', 'length', 'max'=>20),
+			array('paymentId, userID', 'length', 'max'=>20),
+			array('couponcode', 'length', 'max'=>15),
+			array('actionItem', 'length', 'max'=>10),
+			array('startdate', 'safe'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('shortlistId, userID, status, profileID', 'safe', 'on'=>'search'),
+			array('paymentId, userID, couponcode, startdate, actionItem', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -56,7 +59,7 @@ class Shortlist extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'profile' => array(self::BELONGS_TO, 'Users', 'profileID'),
+			'user' => array(self::BELONGS_TO, 'Users', 'userID'),
 		);
 	}
 
@@ -66,10 +69,11 @@ class Shortlist extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'shortlistId' => 'Shortlist',
+			'paymentId' => 'Payment',
 			'userID' => 'User',
-			'status' => 'Status',
-			'profileID' => 'Profile',
+			'couponcode' => 'Couponcode',
+			'startdate' => 'Startdate',
+			'actionItem' => 'Action Item',
 		);
 	}
 
@@ -84,10 +88,11 @@ class Shortlist extends CActiveRecord
 
 		$criteria=new CDbCriteria;
 
-		$criteria->compare('shortlistId',$this->shortlistId,true);
+		$criteria->compare('paymentId',$this->paymentId,true);
 		$criteria->compare('userID',$this->userID,true);
-		$criteria->compare('status',$this->status);
-		$criteria->compare('profileID',$this->profileID,true);
+		$criteria->compare('couponcode',$this->couponcode,true);
+		$criteria->compare('startdate',$this->startdate,true);
+		$criteria->compare('actionItem',$this->actionItem,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

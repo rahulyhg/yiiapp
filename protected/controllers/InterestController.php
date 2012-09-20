@@ -4,33 +4,135 @@ class InterestController extends Controller
 {
 	public function actionIndex()
 	{
+		
+		if(isset($_POST['key']) && isset($_POST['userId']))
+		{
+			if($_POST['key'] == 'sent')
+			{
+				$user = 1;
+				$userIds = implode(",", $_POST['userId']);
+				$sql = "UPDATE interests SET status = 3 WHERE senderId = {$user} and receiverId in ({$userIds})";
+				$command=Yii::app()->db->createCommand($sql);
+				$results=$command->query();
+				
+				
+				//$sendI
+				$this->forward('sent');	
+			}
+		}
 		$this->render('index');
 	}
-
-	// Uncomment the following methods and override them if needed
-	/*
-	public function filters()
+	
+	/**
+	 *  Interest sent
+	 * Enter description here ...
+	 */
+	public function actionSent()
 	{
-		// return the filter configuration for this controller, e.g.:
-		return array(
-			'inlineFilterName',
-			array(
-				'class'=>'path.to.FilterClass',
-				'propertyName'=>'propertyValue',
-			),
-		);
+		$user = Users::model()->findByPk(1);
+		$sendInterest = $user->interestSender(array('condition'=>'status != 3'));
+		if(sizeof($sendInterest) > 0){
+		$userId = array();
+		$userInterest = array();
+		foreach ($sendInterest as $value) {
+			$userId[] = $value->receiverId;
+			$userInterest[$value->receiverId] = $value->sendDate;
+		}
+		$userIds = implode(",", $userId);
+		$condition = "userId in ($userIds)";
+		$users = ViewUsers::model()->findAll(array('condition'=>$condition,'order'=> 'createdOn DESC' ));
+		$this->render('sent',array('user'=>$users,'interest'=>$userInterest));
+		}
+		else
+		{
+			$this->render('sent');
+		}
+
 	}
 
-	public function actions()
+	/**
+	 * Profiles accepted your interest
+	 * Enter description here ...
+	 */
+	public function actionAccept()
 	{
-		// return external action classes, e.g.:
-		return array(
-			'action1'=>'path.to.ActionClass',
-			'action2'=>array(
-				'class'=>'path.to.AnotherActionClass',
-				'propertyName'=>'propertyValue',
-			),
-		);
+		$user = Users::model()->findByPk(1);
+		$sendInterest = $user->interestSender(array('condition'=>'status=1'));
+		
+		if(sizeof($sendInterest) > 0){
+		$userId = array();
+		$userInterest = array();
+		foreach ($sendInterest as $value) {
+			$userId[] = $value->receiverId;
+			$userInterest[$value->receiverId] = $value->sendDate;
+		}
+		$userIds = implode(",", $userId);
+		$condition = "userId in ($userIds)";
+		$users = ViewUsers::model()->findAll(array('condition'=>$condition,'order'=> 'createdOn DESC' ));
+		$this->render('accept',array('user'=>$users,'interest'=>$userInterest));
+		}
+		else
+		{
+			$this->render('accept');
+		}
+		
+		
 	}
-	*/
+	
+	/**
+	 * 
+	 * Profiles declined your interest
+	 * Enter description here ...
+	 */
+	public function actionDecline()
+	{
+		$user = Users::model()->findByPk(1);
+		$sendInterest = $user->interestSender(array('condition'=>'status= 2'));
+		
+		if(sizeof($sendInterest) > 0){
+		$userId = array();
+		$userInterest = array();
+		foreach ($sendInterest as $value) {
+			$userId[] = $value->receiverId;
+			$userInterest[$value->receiverId] = $value->sendDate;
+		}
+		$userIds = implode(",", $userId);
+		$condition = "userId in ($userIds)";
+		$users = ViewUsers::model()->findAll(array('condition'=>$condition,'order'=> 'createdOn DESC' ));
+		$this->render('decline',array('user'=>$users,'interest'=>$userInterest));
+		}
+		else
+		{
+			$this->render('decline');
+		}
+	}
+	/**
+	 * Interest received
+	 * Enter description here ...
+	 */
+	public function actionReceive()
+	{
+		
+	$user = Users::model()->findByPk(1);
+		$receiveInterest = $user->interestReceiver(array('condition'=>'status != 3'));
+		if(sizeof($receiveInterest) > 0){
+		$userId = array();
+		$userInterest = array();
+		foreach ($receiveInterest as $value) {
+			$userId[] = $value->senderId;
+			$userInterest[$value->senderId] = $value->sendDate;
+		}
+		$userIds = implode(",", $userId);
+		$condition = "userId in ($userIds)";
+		$users = ViewUsers::model()->findAll(array('condition'=>$condition,'order'=> 'createdOn DESC' ));
+		$this->render('receive',array('user'=>$users,'interest'=>$userInterest));
+		}
+		else
+		{
+			$this->render('receive');
+		}
+		
+		
+	}
+	
 }
