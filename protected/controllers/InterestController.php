@@ -14,6 +14,21 @@ class InterestController extends Controller
                 return true;
         }  
 	
+       public function actionInsert()
+       {
+	
+       		if(isset($_POST['userId']))
+       		{
+       		$user = Yii::app()->session->get('user');
+       		$interest = new Interests();
+       		$interest->senderId =  $user->userId;
+       		$interest->receiverId =  $_POST['userId'];
+       		$interest->sendDate = new CDbExpression('NOW()');
+       		$interest->save();
+       	 	}
+       } 
+        
+        
 	public function actionIndex()
 	{
 		

@@ -69,14 +69,12 @@ Activity status	<br />
 <?php $heightArray = Utilities::getHeights()?>
 <p class="txt_rg_raj">
 :    <span class="txt_level"><strong><?php echo $model->name?>(<?php echo $model->marryId ?>)</strong></span><br />
-		<?php if(!empty($model->userpersonaldetails->religion)){?>
-:    <span class="txt_level"><?php echo $model->userpersonaldetails->religion->name ?>/ <?php echo $model->userpersonaldetails->caste->name ?></span><br />
- 			<?php }?>
+:    <span class="txt_level"><?php if(isset($model->userpersonaldetails->religion))echo $model->userpersonaldetails->religion->name ?>/ <?php if(isset($model->userpersonaldetails->caste))echo $model->userpersonaldetails->caste->name ?></span><br />
 :    <span class="txt_level"><?php echo Utilities::getAgeFromDateofBirth($model->dob)?> Years </span><br />
-:    <span class="txt_level"><?php echo $heightArray[$model->physicaldetails->heightId]; ?></span><br />
-:    <span class="txt_level"><?php echo $model->userpersonaldetails->place->name ?>, <?php echo $model->userpersonaldetails->state->name ?>, <?php echo $model->userpersonaldetails->country->name ?></span><br />
-:	<span class="txt_level"><?php echo $model->educations->education->name ?></span><br />
-:    <span class="txt_level"><?php echo $model->educations->occupation->name ?></span><br />
+:    <span class="txt_level"><?php if(isset($model->physicaldetails->heightId))echo $heightArray[$model->physicaldetails->heightId]; ?></span><br />
+:    <span class="txt_level"><?php if(isset($model->userpersonaldetails->place))echo $model->userpersonaldetails->place->name ?>, <?php if(isset($model->userpersonaldetails->state))echo $model->userpersonaldetails->state->name ?>, <?php if(isset($model->userpersonaldetails->country))echo $model->userpersonaldetails->country->name ?></span><br />
+:	<span class="txt_level"><?php if(isset($model->educations->education))echo $model->educations->education->name ?></span><br />
+:    <span class="txt_level"><?php if(isset($model->educations->occupation))echo $model->educations->occupation->name ?></span><br />
   
 :   <span class="txt_level">2 days beefore</span><br />
 &nbsp;
@@ -85,12 +83,15 @@ Activity status	<br />
 
 
 <div class="right_mgntp-sub">
+<?php  $user = Yii::app()->session->get('user');
+if(isset($user)){
+?>
 <a class="exp-sub-less" href="#">Express Interest</a>
 
   <a class="exp-sub-add-less" href="#">Bookmark</a>
 
      <a class="exp-sub-send-less" href="#">Send Message</a>
-
+<?php }?>
 </div>
 </div>
 
@@ -119,7 +120,7 @@ Activity status	<br />
 <div class="line_new_r"></div>
 <div class="space-15px"><p>&nbsp;</p></div>
 
-<p class="log_color_sub"><a href="#">Personal</a>  |  <a href="#">Professional</a>   |  <a href="#">Family</a>   |  <a href="#">Partner Preference</a>   |  <a href="#">Hobbies & Interests</a></p>
+<p class="log_color_sub"><a href="#personal">Personal</a>  |  <a href="#professional">Professional</a>   |  <a href="#family">Family</a>   |  <a href="#partner">Partner Preference</a>   |  <a href="#">Hobbies & Interests</a></p>
 
 <div class="clear"></div>
 <div class="space-15px"><p>&nbsp;</p></div>
@@ -130,11 +131,11 @@ Activity status	<br />
 
 
 
-  <p class="txt_rg"><span class="text_pink-hd">Personal information</span><br /> in my own words</p>
+  <p class="txt_rg"><span class="text_pink-hd"><a name="personal"></a>Personal information</span><br /> in my own words</p>
                 <p class="space-15px">&nbsp;</p>
                 
                 
-<p class="txt_rg"><?php echo $model->familyprofiles->userDesc  ?></p>
+<p class="txt_rg"><?php if(isset($model->familyprofiles->userDesc))echo $model->familyprofiles->userDesc  ?></p>
 <br />
 <div class="clear"></div>
   <p class="text_pink-hd">Basic details</p>
@@ -156,10 +157,10 @@ Marital Status
 <div class="row_two">
 <p class="txt_rg">
 :<span class="txt_level"><?php echo $model->name ?></span><br />	
-:<span class="txt_level">  <?php echo Utilities::getAgeFromDateofBirth($model->dob)?> Years</span><br />	
-:<span class="txt_level">   <?php echo $heightArray[$model->physicaldetails->heightId]; ?></span> <br />	
+:<span class="txt_level">  <?php if(isset($model->dob))echo Utilities::getAgeFromDateofBirth($model->dob)?> Years</span><br />	
+:<span class="txt_level">   <?php if(isset($model->physicaldetails->heightId))echo $heightArray[$model->physicaldetails->heightId]; ?></span> <br />	
 :<span class="txt_level">   Language </span><br />	
-:<span class="txt_level">   <?php $marry = Utilities::getMaritalStatus(); echo $marry[$model->userpersonaldetails->maritalStatus]?></span>
+:<span class="txt_level">   <?php $marry = Utilities::getMaritalStatus(); if(isset($model->userpersonaldetails->maritalStatus))echo $marry[$model->userpersonaldetails->maritalStatus]?></span>
 </p>
 </div>
 
@@ -177,9 +178,9 @@ Blood Groupe
 <div class="row_two">
 <p class="txt_rg">
 <?php $bodyType = Utilities::getBodyType(); $bodyColor = Utilities::getBodyColor();$physicalStatus = Utilities::physicalStatus()?>
-:<span class="txt_level">    <?php echo $bodyType[$model->physicaldetails->bodyType]?>/<?php echo $bodyType[$model->physicaldetails->complexion]?></span><br />	
-:<span class="txt_level">   <?php echo $physicalStatus[$model->physicaldetails->physicalStatus]?></span><br />	
-:<span class="txt_level">   <?php echo $model->physicaldetails->weight?> Kgs</span> <br />	
+:<span class="txt_level">    <?php if(isset($model->physicaldetails->bodyType))echo $bodyType[$model->physicaldetails->bodyType]?>/<?php if(isset($model->physicaldetails->complexion))echo $bodyType[$model->physicaldetails->complexion]?></span><br />	
+:<span class="txt_level">   <?php if(isset($model->physicaldetails->physicalStatus))echo $physicalStatus[$model->physicaldetails->physicalStatus]?></span><br />	
+:<span class="txt_level">   <?php if(isset($model->physicaldetails->weight))echo $model->physicaldetails->weight?> Kgs</span> <br />	
 :<span class="txt_level">   Not Specified</span><br />	
 </p>
 </div>
@@ -210,9 +211,9 @@ Horoscope Match<br />
 </div>
 <div class="row_two">
 <p class="txt_rg">
-:<span class="txt_level">  <?php echo $model->userpersonaldetails->religion->name ?></span><br />	
+:<span class="txt_level">  <?php if(isset($model->userpersonaldetails->religion))echo $model->userpersonaldetails->religion->name ?></span><br />	
 :<span class="txt_level">  Muslim - Others / Not</span> <br />
-<span class="txt_level">&nbsp;&nbsp;<?php echo $model->userpersonaldetails->caste->name ?></span><br />	
+<span class="txt_level">&nbsp;&nbsp;<?php if(isset($model->userpersonaldetails->caste))echo $model->userpersonaldetails->caste->name ?></span><br />	
 :<span class="txt_level">   Doesn't matter</span> <br />	
 :<span class="txt_level">   Not Specified</span><br />	
 </div>
@@ -245,8 +246,8 @@ $drink= Utilities::getDrink();
 </div>
 <div class="row_two">
 <p class="txt_rg">
-:<span class="txt_level"></span><?php echo $food[$model->habits->food]?><br />	
-:<span class="txt_level">   <?php echo $smoke[$model->habits->smoking]?></span><br />	
+:<span class="txt_level"></span><?php if(isset($model->habits->food))echo $food[$model->habits->food]?><br />	
+:<span class="txt_level">   <?php if(isset($model->habits->smoking))echo $smoke[$model->habits->smoking]?></span><br />	
 :<span class="txt_level">   Doesn't matter</span> <br />	
 </p>
 </div>
@@ -261,7 +262,7 @@ $drink= Utilities::getDrink();
 
 <div class="row_two">
 <p class="txt_rg">
-:<span class="txt_level">   <?php echo $drink[$model->habits->drinking]?></span><br />	
+:<span class="txt_level">   <?php if(isset($model->habits->drinking))echo $drink[$model->habits->drinking]?></span><br />	
 </p>
 </div>
 
@@ -295,8 +296,8 @@ Citizenship<br />
 </div>
 <div class="row_two">
 <p class="txt_rg">
-:<span class="txt_level"> <?php echo $model->userpersonaldetails->country->name ?>  India</span><br />	
-:<span class="txt_level"> <?php echo $model->userpersonaldetails->state->name ?> </span><br />	
+:<span class="txt_level"> <?php if(isset($model->userpersonaldetails->country))echo $model->userpersonaldetails->country->name ?> </span><br />	
+:<span class="txt_level"> <?php if(isset($model->userpersonaldetails->state))echo $model->userpersonaldetails->state->name ?> </span><br />	
 :<span class="txt_level">  </span><br />	
 </p>
 </div>
@@ -316,7 +317,7 @@ Resident Status<br />
 
 <div class="row_two">
 <p class="txt_rg">
-:<span class="txt_level">   <?php echo $model->userpersonaldetails->place->name ?></span><br />	
+:<span class="txt_level">   <?php if(isset($model->userpersonaldetails->place))echo $model->userpersonaldetails->place->name ?></span><br />	
 :<span class="txt_level">   Citizen</span><br />	
 </p>
 </div>
@@ -331,7 +332,7 @@ Resident Status<br />
 <div class="clear"></div>
 
 
- <p class="text_pink-hd">Proffessional information</p>
+ <p class="text_pink-hd"><a name="professional"></a>Proffessional information</p>
                 <p class="space-25px">&nbsp;</p>
 
 
@@ -352,12 +353,12 @@ Annual Income
 </div>
 <div class="row_two">
 <p class="txt_rg">
-:<span class="txt_level">   <?php echo $model->educations->education->name ?></span><br />	
-:<span class="txt_level">   <?php echo $model->educations->occupation->name ?></span><br />	
+:<span class="txt_level">   <?php if(isset($model->educations->education))echo $model->educations->education->name ?></span><br />	
+:<span class="txt_level">   <?php if(isset($model->educations->occupation))echo $model->educations->occupation->name ?></span><br />	
 :<span class="txt_level">   completed MBA </span> <br />
 :<span class="txt_level">   MBA / PGDM </span> <br />	
-:<span class="txt_level">   <?php echo $job[$model->educations->employedIn]?></span> <br />
-:<span class="txt_level">   <?php echo $model->educations->yearlyIncome?></span> <br />	
+:<span class="txt_level">   <?php if(isset($model->educations->employedIn))echo $job[$model->educations->employedIn]?></span> <br />
+:<span class="txt_level">   <?php if(isset($model->educations->yearlyIncome))echo $model->educations->yearlyIncome?></span> <br />	
 	
 </p>
 </div>
@@ -370,7 +371,7 @@ Annual Income
 <div class="space-15px"><p>&nbsp;</p></div>
 <div class="clear"></div>
 
- <p class="text_pink-hd">Family details</p>
+ <p class="text_pink-hd"><a name="family"></a>Family details</p>
                 <p class="space-25px">&nbsp;</p>
 
 
@@ -388,9 +389,9 @@ Family album<br />
 </div>
 <div class="row_two">
 <p class="txt_rg">
-:<span class="txt_level">  <?php echo $familyValues[$model->familyprofiles->familyValues]?> </span><br />	
-:<span class="txt_level"> <?php echo $familyType[$model->familyprofiles->familyType]?></span><br /> 	
-:<span class="txt_level">   <?php echo $familyStatus[$model->familyprofiles->familyValues]?></span> <br />
+:<span class="txt_level">  <?php if(isset($model->familyprofiles->familyValues))echo $familyValues[$model->familyprofiles->familyValues]?> </span><br />	
+:<span class="txt_level"> <?php if(isset($model->familyprofiles->familyType))echo $familyType[$model->familyprofiles->familyType]?></span><br /> 	
+:<span class="txt_level">   <?php if(isset($model->familyprofiles->familyValues))echo $familyStatus[$model->familyprofiles->familyValues]?></span> <br />
 :<span class="txt_level"> MBA / PGDM </span> <br /><br />
 :<span class="txt_level">View my album <a href="family.html" target="_blank">(5 Photos)</a></span> <br />	
 </p>
@@ -431,7 +432,7 @@ Blood Groupe</p>
  <p class="text_pink-hd">About my family</p>
                 <p class="space-25px">&nbsp;</p>
 
-<p class="txt_rg"><?php echo $model->familyprofiles->familyDesc?>.</p>
+<p class="txt_rg"><?php if(isset($model->familyprofiles->familyDesc))echo $model->familyprofiles->familyDesc?>.</p>
 
 <div class="clear"></div>
 
@@ -441,7 +442,7 @@ Blood Groupe</p>
 
 <div class="clear"></div>
 
- <p class="text_pink-hd">My partner preference</p>
+ <p class="text_pink-hd"><a name="partner"></a>My partner preference</p>
                 <p class="space-25px">&nbsp;</p>
 
 <div class="clear"></div>
@@ -472,24 +473,24 @@ Residing City<br />
 <?php $partner = $model->partnerpreferences?>
 <div class="row_three">
 <p class="txt_rg">
-:<span class="txt_level">   <?php echo $partner->ageFrom.' - '.$partner->ageTo.' Years'; ?></span><br />	
-:<span class="txt_level">  <?php echo $heightArray[$partner->heightTo]; ?> / <?php echo $heightArray[$partner->heightFrom]; ?></span><br />	
-:<span class="txt_level">   <?php echo $marry[$partner->maritalStatus];?></span> <br />
-:<span class="txt_level">    <?php echo $physicalStatus[$partner->physicalStatus]?></span> <br />
-:<span class="txt_level">   <?php echo Utilities::getValueForIds(new Languages(), $partner->languages, 'languageId')?></span> <br />
-:<span class="txt_level">   <?php echo $partner->religionData->name?></span> <br />
-:<span class="txt_level">   <?php echo $partner->casteData->name?></span> <br />
-:<span class="txt_level">   <?php echo Utilities::getValueForIds(new Subcaste(), $partner->subcaste, 'subcasteId')?></span> <br />
-:<span class="txt_level">   <?php echo Utilities::getArrayValues(Utilities::getFood(), $partner->eatingHabits)?></span> <br />
-:<span class="txt_level">   <?php echo Utilities::getArrayValues(Utilities::getSmoke(), $partner->smokingHabits)?></span> <br />
-:<span class="txt_level">   <?php echo Utilities::getArrayValues(Utilities::getDrink(), $partner->drinkingHabits)?></span> <br />
+:<span class="txt_level">   <?php if(isset($partner->ageFrom))echo $partner->ageFrom; echo ' - ';if(isset($partner->ageTo))echo $partner->ageTo.' Years'; ?></span><br />	
+:<span class="txt_level">  <?php if(isset($partner->heightTo))echo $heightArray[$partner->heightTo]; ?> / <?php if(isset($partner->heightFrom))echo $heightArray[$partner->heightFrom]; ?></span><br />	
+:<span class="txt_level">   <?php if(isset($partner->maritalStatus))echo $marry[$partner->maritalStatus];?></span> <br />
+:<span class="txt_level">    <?php if(isset($partner->physicalStatus))echo $physicalStatus[$partner->physicalStatus]?></span> <br />
+:<span class="txt_level">   <?php if(isset($partner->languages))echo Utilities::getValueForIds(new Languages(), $partner->languages, 'languageId')?></span> <br />
+:<span class="txt_level">   <?php if(isset($partner->religionData->name))echo $partner->religionData->name?></span> <br />
+:<span class="txt_level">   <?php if(isset($partner->casteData->name))echo $partner->casteData->name?></span> <br />
+:<span class="txt_level">   <?php if(isset($partner->subcaste))echo Utilities::getValueForIds(new Subcaste(), $partner->subcaste, 'subcasteId')?></span> <br />
+:<span class="txt_level">   <?php if(isset($partner->eatingHabits))echo Utilities::getArrayValues(Utilities::getFood(), $partner->eatingHabits)?></span> <br />
+:<span class="txt_level">   <?php if(isset($partner->smokingHabits))echo Utilities::getArrayValues(Utilities::getSmoke(), $partner->smokingHabits)?></span> <br />
+:<span class="txt_level">   <?php if(isset($partner->drinkingHabits))echo Utilities::getArrayValues(Utilities::getDrink(), $partner->drinkingHabits)?></span> <br />
 :<span class="txt_level">   Bachelors - Engineering / Computers, Medicine - General </span><br/> 
-:<span class="txt_level">   <?php echo Utilities::getValueForIds(new OccupationMaster(), $partner->occupation, 'occupationId')?></span> <br />
-:<span class="txt_level">   <?php echo $partner->annualIncome; ?></span> <br />
-:<span class="txt_level">   <?php echo Utilities::getValueForIds(new Country(), $partner->countries, 'countryId')?></span> <br />
-:<span class="txt_level">   <?php echo Utilities::getValueForIds(new States(), $partner->states, 'stateId')?></span> <br />
-:<span class="txt_level">   <?php echo Utilities::getValueForIds(new Country(), $partner->citizenship, 'countryId')?></span> <br />
-:<span class="txt_level">   <?php echo Utilities::getValueForIds(new Places(), $partner->places, 'placeId')?></span> <br />
+:<span class="txt_level">   <?php if(isset($partner->occupation))echo Utilities::getValueForIds(new OccupationMaster(), $partner->occupation, 'occupationId')?></span> <br />
+:<span class="txt_level">   <?php if(isset($partner->annualIncome))echo $partner->annualIncome; ?></span> <br />
+:<span class="txt_level">   <?php if(isset($partner->countries)) echo Utilities::getValueForIds(new Country(), $partner->countries, 'countryId')?></span> <br />
+:<span class="txt_level">   <?php if(isset($partner->states))echo Utilities::getValueForIds(new States(), $partner->states, 'stateId')?></span> <br />
+:<span class="txt_level">   <?php if(isset($partner->citizenship))echo Utilities::getValueForIds(new Country(), $partner->citizenship, 'countryId')?></span> <br />
+:<span class="txt_level">   <?php if(isset($partner->places))echo Utilities::getValueForIds(new Places(), $partner->places, 'placeId')?></span> <br />
 </p>
 </div>
 
@@ -510,7 +511,7 @@ Residing City<br />
 
 <div class="clear"></div>
 
-<p class="txt_rg"><?php echo $partner->partnerDescription; ?></p>
+<p class="txt_rg"><?php if(isset($partner->partnerDescription))echo $partner->partnerDescription; ?></p>
 <br />
 <div class="clear"></div>
 
@@ -522,12 +523,15 @@ Residing City<br />
 </div>
 
 <div class="right_mgntp-sub">
+<?php  $user = Yii::app()->session->get('user');
+if(isset($user)){
+?>
 <a class="exp-sub-less" href="#">Express Interest</a>
 
   <a class="exp-sub-add-less" href="#">Bookmark</a>
 
      <a class="exp-sub-send-less" href="#">Send Message</a>
-
+<?php }?>
 
 </div>
 
@@ -606,7 +610,47 @@ Choose any one for you Only for</p>
             </div>
             <!--main-content closing-->
             
-        </div>
+ <script type="text/javascript">
+$(document).ready(function() {
 
+	$('.rec-sub').click(function (){
+
+		if($(this).text() == 'Accept')
+		 {
+
+			 $('<input>').attr({
+				    type: 'hidden',
+				    id: 'sent',
+				    name: 'key',
+				    value: 'accept'
+				}).appendTo('#receiver');
+				  $('#receiver').submit(); 
+			 
+		 }	 	
+
+		 if($(this).text() == 'Decline')
+		 {
+
+			 $('<input>').attr({
+				    type: 'hidden',
+				    id: 'sent',
+				    name: 'key',
+				    value: 'decline'
+				}).appendTo('#receiver');
+				  $('#receiver').submit(); 
+			 
+		 }	
+		
+		
+	});
+	
+	
+
+		 //		
+});
+
+
+</script> 
+ 
     
    

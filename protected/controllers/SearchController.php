@@ -2,9 +2,38 @@
 
 class SearchController extends Controller
 {
+	
 	public function actionSearch()
 	{
 		$this->render('advance');
+	}
+	
+	  public function beforeAction(CAction $action)
+        {
+        		if($action->id == 'byid')
+        		return true;
+                $user = Yii::app()->session->get('user');
+                if(!isset($user)) {
+                        $this->redirect(Yii::app()->user->loginUrl);
+                        return false;
+                }       
+                return true;
+        }  
+	
+	
+	
+	public function actionHighlight()
+	{
+		$condition = 'highlighted = 1';
+
+		$users = ViewUsers::model()->findAll(array('condition'=>$condition,'order'=> 'createdOn DESC' ));
+		$highLightUser = array();
+		$normalUser = array();
+		
+		//$user = Users::model()->find();
+		if(sizeof($users) > 0)
+		$this->render('search',array('highLight' => $users,'normal'=> $normalUser,'search'=>'highlight'));
+		
 	}
 	
 	//search from front page
@@ -98,7 +127,12 @@ class SearchController extends Controller
 		}
 		//$user = Users::model()->find();
 		if(sizeof($users) > 0)
-		$this->render('search',array('highLight' => $highLightUser,'normal'=> $normalUser,'search'=>'regular'));
+		{
+			
+		$totalUser = sizeof($normalUser);
+		$totalPage = ceil($totalUser/10);	
+		$this->render('search',array('highLight' => $highLightUser,'normal'=> $normalUser,'search'=>'regular','totalUser'=>$totalUser,'totalPage' => $totalPage));
+		}
 		else 
 		$this->render('regular',array('error'=> '*******NO RESULTS FOUND******,Please try again'));
 		}
@@ -193,7 +227,13 @@ class SearchController extends Controller
 		}
 		//$user = Users::model()->find();
 		if(sizeof($users) > 0)
-		$this->render('search',array('highLight' => $highLightUser,'normal'=> $normalUser,'search'=>'regular','searchText' => $searchText));
+		{
+			
+		$totalUser = sizeof($normalUser);
+		$totalPage = ceil($totalUser/10);	
+		$this->render('search',array('highLight' => $highLightUser,'normal'=> $normalUser,'search'=>'regular','totalUser'=>$totalUser,'totalPage' => $totalPage));	
+	
+		}
 		else 
 		$this->render('regular',array('error'=> '*******NO RESULTS FOUND******,Please try again'));
 		}
@@ -240,7 +280,11 @@ class SearchController extends Controller
 		}
 		//$user = Users::model()->find();
 		if(sizeof($users) > 0)
-		$this->render('search',array('highLight' => $highLightUser,'normal'=> $normalUser,'search'=>'quick'));
+		{
+		$totalUser = sizeof($normalUser);
+		$totalPage = ceil($totalUser/10);	
+		$this->render('search',array('highLight' => $highLightUser,'normal'=> $normalUser,'search'=>'regular','totalUser'=>$totalUser,'totalPage' => $totalPage));	
+		}
 		else 
 		$this->render('regular',array('error'=> '*******NO RESULTS FOUND******,Please try again'));
 		}
@@ -450,7 +494,13 @@ class SearchController extends Controller
 		}
 		
 		if(sizeof($users) > 0 )
-			$this->render('search',array('highLight' => $highLightUser,'normal'=> $normalUser,'search'=>'quick'));
+		{
+
+		$totalUser = sizeof($normalUser);
+		$totalPage = ceil($totalUser/10);	
+		$this->render('search',array('highLight' => $highLightUser,'normal'=> $normalUser,'search'=>'regular','totalUser'=>$totalUser,'totalPage' => $totalPage));	
+	
+		}
 		else 
 			$this->render('advance',array('error'=> '******NO MATCHES FOUND***** Please try again'));
 		}
@@ -543,7 +593,12 @@ class SearchController extends Controller
 		}
 		//$user = Users::model()->find();
 		if(sizeof($users) > 0)
-		$this->render('search',array('highLight' => $highLightUser,'normal'=> $normalUser,'search'=>'keyword'));
+		{
+			
+		$totalUser = sizeof($normalUser);
+		$totalPage = ceil($totalUser/10);	
+		$this->render('search',array('highLight' => $highLightUser,'normal'=> $normalUser,'search'=>'regular','totalUser'=>$totalUser,'totalPage' => $totalPage));	
+		}
 		else 
 		$this->render('keyword',array('error' => '***********NO SEARCH RESULTS FOUND*******  Please search for gender,age,name...'));	
 		}

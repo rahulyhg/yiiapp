@@ -145,8 +145,8 @@
                     
                       <p class="text_pink-hd">Highlighted Profiles</p>
                         
-                          <?php $userName = Yii::app()->session->get('username');?>
-  						<?php if(isset($userName)) {?>
+                          <?php $user = Yii::app()->session->get('user');?>
+  						<?php if(isset($userName) && $userName->highlighted != 1) {?>
                        <a class="high-light" href="/highlight" ">Highlight your profile</a>
                       <?php }?>
                        
@@ -155,9 +155,10 @@
   <?php 
   $heightArray = Utilities::getHeights();
   $index = 0;
-  foreach ($highLight as $value) { ?>
+  $twohighLight = array_slice($highLight, 0, 2);
+  foreach ($twohighLight as $value) { ?>
   
-  	<div class="<?php if($index % 2 == 0) { echo 'search_div_lft';} else{ echo 'search_div_right';}?>"><!--search_div_lft-->
+  	<div class="<?php if($index % 2 == 0) { echo 'search_div_lft';} else{ echo 'search_div_right';}?>" ><!--search_div_lft-->
 						<p class="space-25px">&nbsp;</p>
                         <a href="album.html"><img src="<?php echo Yii::app()->params['mediaUrl']; ?>/photo_5.jpg" border="0" class="search_div_img" /></a>
         				<p class="graytext">Name </p>
@@ -191,14 +192,14 @@
                      <a href="#" ><img src="<?php echo Yii::app()->params['mediaUrl']; ?>/arrow_small_right.jpg" name="Image67" width="7" height="13" border="0" id="Image67" /></a></div>
                         </div>
 <div class="clear"></div>
-
+<!-- 
 <a href="#" class="exp-sub">Express Interest</a>
 
 <a href="#" class="exp-sub-add">Bookmark</a>
 
 <a href="#" class="exp-sub-send">Send Message</a> 
     
-
+ -->
 
 
 </div><!--/search_div_lft-->
@@ -212,24 +213,35 @@
                         <p class="clear"></p>
                         <p class="line"></p>
                           <?php if(sizeof($highLight) > 2 ) {?>
-                        <p class="right"><span class="text_blue-right"><strong><a href="search.html">View More Highligted Profiles</a></strong></span></p><p class="clear"></p>
+                        <p class="right"><span class="text_blue-right"><strong><a href="/search/highlight">View More Highligted Profiles</a></strong></span></p><p class="clear"></p>
                        <?php }?> 
                         <?php if(sizeof($normal) > 0 ) {?>
                         <p class="text_pink-16">Latest Matches For You</p><p class="space-15px">&nbsp;</p>
-                    		<p class="clear"></p>
+                    		<?php if(isset($totalPage) && intval($totalPage) > 0) { ?>
+							<div class="view-1">
+        <div class="first-new"><span class="fir"><a class="fpnl" href="#">First </a></span></div>
+
+        <div class="first-new"><span class="pre"><a class="fpnl" href="#">Previous </a></span></div>
+              
+		 <div class="first-new"><span class="next"><a class="fpnl" href="#">Next</a></span></div>
+                        
+                <div class="first-new"><span class="last"><a class="fpnl" href="#">Last</a></span></div>            </div>	
+            <?php }?>
+							
+							<p class="clear"></p>                        
                         <p class="line"></p>
                        <?php }?>
                      
                      <div class="left">    
 
 						</div>
-                        
+						
    <?php 
   
   $index1 = 0;
   foreach ($normal as $value) { ?>
                    
-  	<div class="<?php if($index % 2 == 0) { echo 'search_div_lft';} else{ echo 'search_div_right';}?>"><!--search_div_lft-->
+  	<div id="<?php echo $index1?>" class="<?php if($index1 % 2 == 0) { echo 'search_div_lft';} else{ echo 'search_div_right';}?>" <?php if(intval($totalPage) > 1) {?> style="display:none" <?php }?>><!--search_div_lft-->
 						<p class="space-25px">&nbsp;</p>
                         <a href="album.html"><img src="<?php echo Yii::app()->params['mediaUrl']; ?>/photo_5.jpg" border="0" class="search_div_img" /></a>
         				<p class="graytext">Name </p>
@@ -263,13 +275,13 @@
                      <a href="#" ><img src="<?php echo Yii::app()->params['mediaUrl']; ?>/arrow_small_right.jpg" name="Image67" width="7" height="13" border="0" id="Image67" /></a></div>
                         </div>
 <div class="clear"></div>
+<!--  
+<a href="#" id="<?php echo $value->userId ?>" class="exp-sub">Express Interest</a>
 
-<a href="#" class="exp-sub">Express Interest</a>
-
-<a href="#" class="exp-sub-add">Bookmark</a>
+<a href="#" id="<?php echo $value->userId ?>" class="exp-sub-add">Bookmark</a>
 
 <a href="#" class="exp-sub-send">Send Message</a> 
-    
+     -->
 
 
 
@@ -287,22 +299,167 @@
 
 						</div>
                         
+          <?php if(isset($totalPage) && intval($totalPage) > 0) { ?>
+                        <div class="view-1">
+          <div class="first-new"><span class="fir"><a class="fpnl" href="#">First </a></span></div>
+
+        <div class="first-new"><span class="pre"><a class="fpnl" href="#">Previous </a></span></div>
+              
+		 <div class="first-new"><span class="next"><a class="fpnl" href="#">Next</a></span></div>
                         
-                        
-                       
+                <div class="first-new"><span class="last"><a class="fpnl" href="#">Last</a></span></div>
+                </div>              
           
-          
-          
-          
-              
-              
-              
-              
-              
-			  
+          <input type="hidden" value="<?php echo $totalPage?>" name="totalPage" />
+          <input type="hidden" value="0" name="currentPage" />
+          <input type="hidden" value="<?php echo $totalUser ?>" name="user" />
+          <input type="hidden" value="1" name="firstPage" />
+           <input type="hidden" value="<?php echo intval($totalPage)- 1?>" name="lastPage" />
+                 <?php } ?>       
+            
 			  <p class="clear">&nbsp;</p><p class="space-10px">&nbsp;</p>
 
                 <!--bottom-content-->
               </div>
          
  </div>
+ 
+   <script type="text/javascript">
+
+   $(document).ready(function() {
+	var totalPage = parseInt($("input[name='totalPage']").val());
+	var totalUser = parseInt($("input[name='user']").val());
+	var currentPage = parseIn($("input[name='currentPage']").val());
+	var lastPage = parseIn($("input[name='lastPage']").val());
+	var firstPage = parseIn($("input[name='firstPage']").val());
+	
+
+		
+		
+	$('.fir').click(function (){
+		currentPage = parseIn($("input[name='currentPage']").val());
+		if(currentPage == 1)
+			return;
+
+		$('.search_div_lft').hide();
+		$('.search_div_right').hide();
+		var example = 10;
+		for (var =0; i < example; i++)
+		{
+			if( example < = totalUser)
+			{	
+			$('#'+i).show();
+			}
+		}
+		$("input[name='currentPage']").val("1");
+		
+		});
+
+	$('.pre').click(function (){
+		currentPage = parseIn($("input[name='currentPage']").val());
+		if(currentPage == 1)
+			return;
+		$('.search_div_lft').hide();
+		$('.search_div_right').hide();
+		var index = currentPage * 10;
+		currentPage = currentPage - 1;
+		for (var i = currentPage * 10;  i <  index; i++)
+		{
+			$('#'+i).show();
+		}
+		
+		$("input[name='currentPage']").val(currentPage);
+	});
+
+	$('.next').click(function (){
+		
+		currentPage = parseIn($("input[name='currentPage']").val());
+		lastPage = parseIn($("input[name='lastPage']").val());
+		if(currentPage == lastPage )
+			return;
+		$('.search_div_lft').hide();
+		$('.search_div_right').hide();
+		var index = currentPage * 10;
+		currentPage = currentPage + 1;
+		
+		for (var i = index ;  i < currentPage * 10 ; i++)
+		{
+			if(i <= totalUser){
+			$('#'+i).show();
+			}
+		}
+		
+		$("input[name='currentPage']").val(currentPage);
+	
+			
+	});
+
+	$('.last').click(function (){
+
+		currentPage = parseIn($("input[name='currentPage']").val());
+		lastPage = parseIn($("input[name='lastPage']").val());
+		if(lastPage == currentPage)
+			return;
+		$('.search_div_lft').hide();
+		$('.search_div_right').hide();
+		
+		for (var i = lastPage * 10;  i <= totalUser; i++)
+		{
+			$('#'+i).show();
+		}
+	
+		$("input[name='currentPage']").val(lastPage);
+		
+	});
+
+	 
+   });
+   
+ function setInterest(userId) {
+     
+    //generate the parameter for the php script
+   
+    $.ajax({
+        url: "/interest/insert",  
+        type: "POST",        
+        data: {"userId":userId},     
+        cache: false,
+        success: function (response) {  
+         	alert(response);
+            //hide the progress bar
+            $('#loading').hide();   
+             
+            //add the content retrieved from ajax and put it in the #content div
+            $('#content').html(html);
+             
+            //display the body with fadeIn transition
+            $('#content').fadeIn('slow');       
+        }       
+    });
+}
+
+ function setBookmark() {
+     
+	    //generate the parameter for the php script
+	   
+	    $.ajax({
+	        url: "/bookmark/insert",  
+	        type: "POST",        
+	        data: data,     
+	        cache: false,
+	        success: function (html) {  
+	         
+	            //hide the progress bar
+	            $('#loading').hide();   
+	             
+	            //add the content retrieved from ajax and put it in the #content div
+	            $('#content').html(html);
+	             
+	            //display the body with fadeIn transition
+	            $('#content').fadeIn('slow');       
+	        }       
+	    });
+	}
+
+ 
+ </script>
