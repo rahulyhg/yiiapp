@@ -238,7 +238,8 @@ class UserController extends Controller
 		}
 		//$url = Yii::app()->createUrl('mypage/index');
 		//$this->redirect($url);
-		$this->render('hobbies');
+		//$this->render('hobbies');
+		$this->render('success',array('user'=>$user));
 	}
 	public function actionHobby()
 	{
@@ -415,8 +416,14 @@ class UserController extends Controller
 		}
 		
 		$reference1->save();
+		//$this->render("partner");
+		//here we have to show the documents and album upload page
+		//then show profile complete page
+	}
+	
+	public function actionShowpartner()
+	{
 		$this->render("partner");
-		
 	}
 	
 	public function actionPartner()
@@ -478,7 +485,7 @@ class UserController extends Controller
 		
 		$partner->save();
 		
-		$this->render("partner");
+		$this->render("hobbies");
 	}
 	
 	

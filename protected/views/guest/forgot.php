@@ -59,8 +59,16 @@
 
 
 
-
-
+	<?php if(isset($sent) && $sent == true)   {?>
+	
+	 We have sent an email to your registered email address with the password, please use the new password for login.
+	
+	<?php } else if(isset($sent) && $sent == false) {?>
+		
+		Please enter correct email id.
+	
+	<?php } else {?>
+	
 
 		<div class="ab-nav-new">
 			<!--ab-nav-new-->
@@ -74,21 +82,18 @@
 
 			<div id="mypage-search-ff">
 
-				<form>
-					<a class="srch-sub" href="#">Submit</a> <input type="text"
-						class="text_normal_search" />
+				<form id="forget"  name="forget" method="post"  action="/guest/forget">
+					<a class="srch-sub" href="javascript:forget.submit();">Submit</a> 
+					<input type="text" name="email" class="text_normal_search" />
 				</form>
 
 			</div>
 		</div>
 
-
-
-
-
+	<?php } ?>
 		<div class="back_to_page">
 
-			<a class="back-my-page-auto" href="#">Back To Home Page</a>
+			<a class="back-my-page-auto" href="<?php echo Utilities::getHomeUrl()?>">Back To Home Page</a>
 
 
 

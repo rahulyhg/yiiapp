@@ -375,15 +375,14 @@
 				<div style="float: left; width: 55%;">
 					<div class="list_class-7">
 						<p class="txt_bld-4">
-							Altranative Mobile No.<br /> Phone No for verification*<br />
+							Altranative Mobile No.<br /> 
 							Facebook URL<br /> Skype<br /> Google IM<br /> Yahoo IM
 						</p>
 					</div>
 
 					<div class="list_class-textfield">
 						<input type="text" name="alterMobile" id="alterMobile"
-							class="addres_form" /> <input type="text" name="phoneVerify"
-							id="phoneVerify" class="addres_form" /> <input type="text"
+							class="addres_form" /> <input type="text"
 							name="facebook" id="facebook" class="addres_form" /> <input
 							type="text" class="addres_form" name="skype" id="skype" /> <input
 							type="text" class="addres_form" name="google" id="google" /> <input
@@ -614,7 +613,7 @@
 						</p>
 
 						<div class="small_form_box">
-							<img src="images/money_icon.jpg" class="rupee" />
+							<img src="<?php echo Yii::app()->params['mediaUrl']; ?>/money_icon.jpg" class="rupee" />
 							<p class="txt_bld-10">
 								<input type="text" class="small_form_1" id="income"
 									name="income" placeholder="Use Rupees" /><span class="rupee_1">1,00,000
@@ -935,7 +934,7 @@
 				Subscribe Now!<br /> Only for
 			</p>
 			<div style="float: left; width: 100%;">
-				<a href="#"><img src="images/img_200.jpg" class="left"
+				<a href="#"><img src="<?php echo Yii::app()->params['mediaUrl']; ?>/img_200.jpg" class="left"
 					style="width: 100%;" border="0" /> </a>
 			</div>
 			<div class="clear"></div>
@@ -963,7 +962,7 @@
 				for you Only for</p>
 
 			<div class="center_icon">
-				<img src="images/1_round.jpg" />
+				<img src="<?php echo Yii::app()->params['mediaUrl']; ?>/1_round.jpg" />
 			</div>
 
 			<p class="text_20_cntr">
@@ -978,7 +977,7 @@
 
 
 			<div class="center_icon">
-				<img src="images/2_round.jpg" />
+				<img src="<?php echo Yii::app()->params['mediaUrl']; ?>/2_round.jpg" />
 			</div>
 
 			<p class="text_20_cntr">
@@ -993,7 +992,7 @@
 
 
 			<div class="center_icon">
-				<img src="images/3_round.jpg" />
+				<img src="<?php echo Yii::app()->params['mediaUrl']; ?>/3_round.jpg" />
 			</div>
 
 			<p class="text_20_cntr">

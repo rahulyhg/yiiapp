@@ -10,13 +10,13 @@
 
 <p class="txt_rg">E-Mail / User ID</p>
 	<input type="text" class="user-form"  tabindex="1"  id="user" name="LoginForm[username]"/>
-<p class="txt_rg"><span class="text_blue"><a href="new-user.html">New User?</a></span></p>
+<p class="txt_rg"><span class="text_blue"><a href="/guest/user">New User?</a></span></p>
 </div>
 
 <div class="left">
 <p class="txt_rg">Password</p>
 	<input type="password" class="user-form" tabindex="2" id="password" name="LoginForm[password]" />
-<p class="txt_rg"><span class="text_blue"><a href="forget-password.html">Forget Passord?</a></span></p>
+<p class="txt_rg"><span class="text_blue"><a href="/guest/forget">Forget Passord?</a></span></p>
 
 </div>
 <div class="right">

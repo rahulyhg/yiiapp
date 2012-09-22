@@ -328,11 +328,12 @@
 
 <?php $searchForm=$this->beginWidget('CActiveForm', array(
 		'id'=>'keywordSearch',
-	'action' => Yii::app()->createUrl('search/keyword'),
+		'method' => 'GET',
+	'action' => Yii::app()->createUrl('search/byid'),
 	'enableAjaxValidation'=>false,
 )); ?>
 
-<input type="text" name="keyword" value="" placeholder="Search By ID / Keyword" class="text_normal_small" />
+<input type="text" name="id" value="" placeholder="Search By ID " class="text_normal_small" />
 
 
 <a  href="javascript:keywordSearch.submit();"><img width="49" border="0" height="22" class="search_add_sub" id="Image21" name="Image21" src="<?php echo Yii::app()->params['resourceUrl']; ?>/images/search_btn_ash_sm.jpg"></a>
@@ -347,25 +348,9 @@
 <div class="clear"></div>
 
 
-<a href="payment_benefits.html"><img width="1015" border="0" height="125" src="<?php echo Yii::app()->params['resourceUrl']; ?>/images/subscribe_now.jpg"></a>
-
-<div class="pay-ment-box"><!--pay-ment-box-->
-<div class="pay-ment-box-one"><img src="<?php echo Yii::app()->params['resourceUrl']; ?>/images/off-line-payment.jpg"></div>
-<div class="pay-ment-box-two"><img src="<?php echo Yii::app()->params['resourceUrl']; ?>/images/on-line-payment.jpg">
-	
-	<div class="debit-box">
-
-		<img class="debit-img" src="<?php echo Yii::app()->params['resourceUrl']; ?>/images/x-pay.jpg">
-		<img class="debit-img" src="<?php echo Yii::app()->params['resourceUrl']; ?>/images/pay-pal.jpg">
-		<img class="debit-img" src="<?php echo Yii::app()->params['resourceUrl']; ?>/images/visa.jpg">
-		<img class="debit-img" src="<?php echo Yii::app()->params['resourceUrl']; ?>/images/master.jpg">
-	</div>
+<a href="/guest/paiduser"><img width="1015" border="0" height="125" src="<?php echo Yii::app()->params['resourceUrl']; ?>/images/subscribe_now.jpg"></a>
 
 
-</div>
-<div class="pay-ment-box-three"><img src="<?php echo Yii::app()->params['resourceUrl']; ?>/images/bank-transfer.jpg"></div>
-
-</div>
 <script type="text/javascript">
 jQuery(document).ready(function(){
     	// binds form submission and fields to the validation engine

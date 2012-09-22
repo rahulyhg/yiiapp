@@ -150,11 +150,7 @@ class PrivacyController extends Controller
 		$this->actionIndex();
 	}
 
-	public function actionForget()
-	{
-		$this->layout= '//layouts/single';
-		$this->render('forgot');
-	}
+	
 
 	public function actionSave()
 	{

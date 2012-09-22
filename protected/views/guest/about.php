@@ -21,7 +21,7 @@
         
         <div class="di_height">
         	 <div id="wrapper-head-sub"> <!--wrapper-head-->
-            <br /><a href="home-viewed-by-member.html"> <img src="images/logo.jpg" class="middle-align" border="0" /></a> 
+            <br /><a href="home-viewed-by-member.html"> <img src="<?php echo Yii::app()->params['mediaUrl']; ?>/logo.jpg" class="middle-align" border="0" /></a> 
           	</div><!--wrapper-head-->
       
       	<div class="name-bloc-sub-add"><!--name-bloc-sub-add-->

@@ -9,6 +9,7 @@
 	<title><?php echo CHtml::encode($this->pageTitle); ?></title>
 </head>
 <body>
+		<div id="page">
 		<!--wrapper-->
 		<div class="wrapper">
 		
@@ -22,7 +23,7 @@
 	<?php endif?>
 
 	<?php echo $content; ?>
-
+		</div>
 	</div>
 	<!--footer-->
 	<?php $this->widget('application.widgets.footer'); ?>

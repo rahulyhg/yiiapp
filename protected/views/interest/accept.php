@@ -143,30 +143,29 @@
               <div class="line-new-1"></div>
 			  
 			  
-               <p class="text_pink-hd">Interrest Accepted you</p>
+               <p class="text_pink-hd">Interrest Accepted </p>
                
                <p class="clear"></p>
               <div class="space-15px">&nbsp;</div>
               <div style="float:right">
                                            
-             <!--                               
-              <a class="sm-send" href="#">Accept</a>
-			<a class="recive" href="#">Decline</a>
- 			-->
+             
+			<a class="recive" href="#">Delete</a>
+ 			
                 
               
 			  </div>
                 <div class="left">
-                <!--  
+                  
                <INPUT type="checkbox" class="selection" name="selection" >
                 <span class="bullettext_select">&nbsp;Select all&nbsp;</span>
-                <span class="bullettext_select">&nbsp;<a href="#">Delete</a></span>  -->                </div>
+				 </div>
                               <div class="clear"></div>
                               <div class="line"></div>
 
 <div class="clear"></div>                              
                 <div class="right">
-                              <p>Filter&nbsp;&nbsp; <span class="text_blue_b"><a href="#">&nbsp;&nbsp; By You </a><a href="#">Send to You</a></span>   </p>
+                              
                               </div>
                               <div class="clear"></div>
                               
@@ -178,18 +177,18 @@
                               
                 <!-- div_msg_fullbox-->   <div class="msgbox-full_interest">
                 <div style="float:left; padding-right:5px;">
-                <!--   <INPUT type="checkbox" name="userId" class="case" value="<?php echo $value->userId?>"> -->
+                <INPUT type="checkbox" name="userId" class="case" value="<?php echo $value->userId?>"> 
                  </div>
                  <div style="float:left;">
                    <a href="album.html"><img src="<?php echo Yii::app()->params['mediaUrl']; ?>/model_thumb/thumb_1.jpg" border="0" class="imageicon" /></a> </div>
                   <div style="float:left; padding:5px 0px 0px 10px;">
-               <p> <span class="text_blue_b"><a href="<?php echo 'byid?id='.$value->marryId ?>"><?php echo $value->name; echo '( '.$value->marryId.' )' ;?></a></span> (You expressed interest on <?php echo date('d-M-Y',strtotime($interest[$value->userId]));?>)</p>
+               <p> <span class="text_blue_b"><a href="<?php echo 'byid?id='.$value->marryId ?>"><?php echo $value->name; echo '( '.$value->marryId.' )' ;?></a></span> (You expressed interest on <?php if(isset($interest[$value->userId]))echo date('d-M-Y',strtotime($interest[$value->userId])); if(isset($receive[$value->userId]))echo date('d-M-Y',strtotime($receive[$value->userId]));?>)</p>
                   <p class="txt_rg"><?php echo $value->religion;?> , <?php echo $value->caste;?> &nbsp;, <?php echo $value->age ?>Years &nbsp; - <?php if(isset($value->heightId)) echo $heightArray[$value->heightId]; ?> &nbsp;
 <?php echo $value->place.', '.$value->state.', '.$value->country; ?> &nbsp;</p>
  <p class="innersidelinks-still-l0">You accepted  , 2 Minuts ago</p>
                   </div>
                   
-               <!--      <a class="decliner" href="#">Decline</a>  -->
+               <a class="decliner" href="#">Delete</a>  
    
 <div class="clear"></div> 
                  </div>
@@ -206,20 +205,23 @@
               
                   <div class="space-35px">&nbsp;</div>
                   <div class="left">
-                <!-- <INPUT type="checkbox" class="selection" name="selection" >
+                <INPUT type="checkbox" class="selection" name="selection" >
                 <span class="bullettext_select">&nbsp;Select all&nbsp;</span>
-                <span class="bullettext_select">&nbsp;<a href="#">Delete</a></span>  --> </div>
+                </div>
               <div style="float:right">
                
-                   <!-- 
-              <a class="sm-send" href="#">Accept</a>
-                <a class="recive" href="#">Decline</a>
- 				-->
+                   
+              
+                <a class="recive" href="#">Delete</a>
+ 				
               
               
 			  </div>
-
-
+				<form id="interest"  name="interest" method="post"  action="/interest">
+			
+			</form>  
+              
+				
                </div> 
   <!--closing central profile details closing-->      
               
@@ -263,7 +265,7 @@ $(document).ready(function() {
 		$('.selection').attr("checked",false);
 		 });
 	 
-	 $('.rmv-large').click(function (){
+	 $('.recive').click(function (){
 		 var  allVal= [];
 		 if($("input:checkbox[name=userId]:checked").length == 0)
 		 {
@@ -279,8 +281,14 @@ $(document).ready(function() {
 			    id: 'userId',
 			    name: 'userId',
 			    value: allVal
-			}).appendTo('#shortlist');
-			  $('#shortlist').submit(); 
+			}).appendTo('#interest');
+		 $('<input>').attr({
+			    type: 'hidden',
+			    id: 'key',
+			    name: 'key',
+			    value: 'accept'
+			}).appendTo('#interest');	
+			  $('#interest').submit(); 
 		  
 	 });
 		 //		

@@ -28,7 +28,7 @@ class InterestController extends Controller
        	 	}
        } 
         
-        
+	       
 	public function actionIndex()
 	{
 		
@@ -53,13 +53,13 @@ class InterestController extends Controller
 				$users  = Yii::app()->session->get('user');
 				$user = $users->userId;
 				$userIds =  $_POST['userId'];
-				$sql = "UPDATE interests SET status = 1,statusChange= now() WHERE senderId  in ({$userIds}) and receiverId = {$user}";
+				$sql = "UPDATE interests SET status = 3,statusChange= now() WHERE senderId  in ({$userIds}) and receiverId = {$user}";
 				$command=Yii::app()->db->createCommand($sql);
 				$results=$command->query();
 				
 				
 				//$sendI
-				$this->forward('receive');	
+				$this->forward('accept');	
 				
 			}
 			
@@ -74,7 +74,7 @@ class InterestController extends Controller
 				
 				
 				//$sendI
-				$this->forward('receive');	
+				$this->forward('decline');	
 			}
 		}
 		
@@ -112,21 +112,24 @@ class InterestController extends Controller
 	}
 
 	/**
-	 * Profiles accepted your interest
+	 * Interest accepted by you
 	 * Enter description here ...
 	 */
 	public function actionAccept()
 	{
 		$user  = Yii::app()->session->get('user');
-		$sendInterest = $user->interestReceiver(array('condition'=>'status=1'));
-		
-		if(sizeof($sendInterest) > 0){
+		$userID = $user->userId;
+		$sendInterest = $user->interestReceiver(array('condition'=>'status = 1'));
+		if(sizeof($sendInterest) > 0 ){
 		$userId = array();
 		$userInterest = array();
+		$receiveInt = array();
 		foreach ($sendInterest as $value) {
 			$userId[] = $value->senderId;
 			$userInterest[$value->senderId] = $value->sendDate;
 		}
+		
+		
 		$userIds = implode(",", $userId);
 		$condition = "userId in ($userIds)";
 		$users = ViewUsers::model()->findAll(array('condition'=>$condition,'order'=> 'createdOn DESC' ));
@@ -142,7 +145,7 @@ class InterestController extends Controller
 	
 	/**
 	 * 
-	 * Profiles declined your interest
+	 * Declined interest details
 	 * Enter description here ...
 	 */
 	public function actionDecline()

@@ -155,7 +155,7 @@
 
 <div class="clear"></div>                              
                 <div class="right">
-                              <p>Filter |&nbsp;<span class="text_blue_b"><a href="#"> By You Send to You</a></span>   </p>
+                              
                               </div>
                               <div class="clear"></div>
                               

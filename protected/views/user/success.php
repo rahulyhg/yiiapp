@@ -38,32 +38,16 @@ Please use this ID or your Email to login to KeralaMatrimony.com. A confirmation
  <div class="line"></div>      	
        
                 
- <p class="text_pink-hd">Take the next most Iiportent step and verify your phone number</p>
  
- <div class="clear"></div>
- 
- 
-        
-<div class="space"><br /></div>
-
-        
- <p class="txt_bld_14"><span class="text_blk">How to verify your phone number:</span></p><br />
-
-<p class="txt_bld_14_new">We are only allowed verification of Indian Landline or Mobile numbers, If you are a Non Recidence Indian, Kindly use any altranative number. You will receive a call shortly from us on your phone number for verification is <?php echo $userPersonal->mobilePhone?>. If you think this number is wrong <span class="back"><a href="my-contact.html" >Click here</a> </span>to edit your verification phone number<br /><br />
-Press 1 on your mobile to complete your verification<br /><br /><br />
-
-
-
-
 <!--/memo-sub_left-->
 
 <div class="div_rr">
 <div class="clear"></div>
-                 <a class="focus-sub" href="#">Verify</a>
+                 <a class="focus-sub" href="/user/showpartner">Next</a>
 
 </div>
 
-</p>
+
 
 
 
