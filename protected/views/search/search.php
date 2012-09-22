@@ -146,7 +146,7 @@
                       <p class="text_pink-hd">Highlighted Profiles</p>
                         
                           <?php $user = Yii::app()->session->get('user');?>
-  						<?php if(isset($userName) && $userName->highlighted != 1) {?>
+  						<?php if(isset($user) && $user->highlighted != 1) {?>
                        <a class="high-light" href="/highlight" ">Highlight your profile</a>
                       <?php }?>
                        
@@ -166,22 +166,22 @@
                         <p class="gray-rt-link"> <a href="<?php echo 'byid?id='.$value->marryId ?>"><?php echo $value->name; echo '( '.$value->marryId.' )' ;?></a></p>
                         <p class="graytext">Religion / Cas</p>
                         <p class="full-col">:</p>
-                        <p class="gray-rt"> <?php echo $value->religion;?> , <?php echo $value->caste;?> &nbsp;</p>
+                        <p class="gray-rt"> <?php if(isset($value->userpersonaldetails->religion))echo $value->userpersonaldetails->religion->name ;?> , <?php if(isset($value->userpersonaldetails->caste))echo $value->userpersonaldetails->caste->name ;?> &nbsp;</p>
                         <p class="graytext">Age </p>
                         <p class="full-col">:</p>
-                        <p class="gray-rt"> <?php echo $value->age ?>Years &nbsp;</p>
+                        <p class="gray-rt"> <?php echo Utilities::getAgeFromDateofBirth($value->dob); ?>Years &nbsp;</p>
                         <p class="graytext">Height </p>
                         <p class="full-col">:</p>
-                        <p class="gray-rt"> <?php if(isset($value->heightId)) echo $heightArray[$value->heightId]; ?> &nbsp;</p>
+                        <p class="gray-rt"> <?php if(isset($value->physicaldetails->heightId))echo $heightArray[$value->physicaldetails->heightId]; ?> &nbsp;</p>
                         <p class="graytext">Place </p>
                         <p class="full-col">:</p>
-                        <p class="gray-rt"> <?php echo $value->place.', '.$value->state.', '.$value->country; ?> &nbsp;</p>
+                        <p class="gray-rt"> <?php if(isset($value->userpersonaldetails->place))echo $value->userpersonaldetails->place->name ?>, <?php if(isset($value->userpersonaldetails->state))echo $value->userpersonaldetails->state->name ?>, <?php if(isset($value->userpersonaldetails->country))echo $value->userpersonaldetails->country->name?> &nbsp;</p>
                         <p class="graytext">Education </p>
                         <p class="full-col">:</p>
-                        <p class="gray-rt"><?php echo $value->educationName?> &nbsp;</p>
+                        <p class="gray-rt"><?php if(isset($value->educations->education))echo $value->educations->education->name?> &nbsp;</p>
                         <p class="graytext">Occupation </p>
                         <p class="full-col">:</p>
-                        <p class="gray-rt"> <?php echo $value->occupationName?> &nbsp;</p>
+                        <p class="gray-rt"> <?php if(isset($value->educations->occupation))echo $value->educations->occupation->name ?> &nbsp;</p>
                         <p class="blue-text-01"><a href="<?php echo 'byid?id='.$value->marryId ?>">View Full Profile</a></p>
                       <div class="clear"></div>
                       	<div class="pages-1">
@@ -192,14 +192,23 @@
                      <a href="#" ><img src="<?php echo Yii::app()->params['mediaUrl']; ?>/arrow_small_right.jpg" name="Image67" width="7" height="13" border="0" id="Image67" /></a></div>
                         </div>
 <div class="clear"></div>
-<!-- 
-<a href="#" class="exp-sub">Express Interest</a>
+ 
+ <?php 
+ 
+ $isInterest = $user->interestSender(array('condition'=>"receiverId = {$value->userId}"));
+ $isBookMarked = $user->bookmark(array('condition'=>"FIND_IN_SET('{$value->userId}',profileIDs)")); 
+ $isMessage = $user->messageSender(array('condition'=>"receiverId = {$value->userId}"));
+ if(!isset($isInterest) || empty($isInterest)) {
+ ?>
+<a href="#" id="<?php echo $value->userId ?>" class="exp-sub">Express Interest</a>
+<?php }?>
+<?php if(!isset($isBookMarked) || empty($isBookMarked)) {?> 
+<a href="#" id="<?php echo $value->userId ?>" class="exp-sub-add">Bookmark</a>
+<?php }?>
+<?php if(!isset($isMessage) || empty($isMessage)) {?>
+<a href="#" id="<?php echo $value->userId ?>" class="exp-sub-send">Send Message</a> 
+   <?php } ?> 
 
-<a href="#" class="exp-sub-add">Bookmark</a>
-
-<a href="#" class="exp-sub-send">Send Message</a> 
-    
- -->
 
 
 </div><!--/search_div_lft-->
@@ -249,22 +258,22 @@
                         <p class="gray-rt-link"> <a href="<?php echo 'byid?id='.$value->marryId ?>"><?php echo $value->name; echo '( '.$value->marryId.' )' ;?></a></p>
                         <p class="graytext">Religion / Cas</p>
                         <p class="full-col">:</p>
-                        <p class="gray-rt"> <?php echo $value->religion;?> , <?php echo $value->caste;?> &nbsp;</p>
+                        <p class="gray-rt"> <?php if(isset($value->userpersonaldetails->religion))echo $value->userpersonaldetails->religion->name ;?> , <?php if(isset($value->userpersonaldetails->caste))echo $value->userpersonaldetails->caste->name ;?> &nbsp;</p>
                         <p class="graytext">Age </p>
                         <p class="full-col">:</p>
-                        <p class="gray-rt"> <?php echo $value->age ?>Years &nbsp;</p>
+                        <p class="gray-rt"> <?php echo Utilities::getAgeFromDateofBirth($value->dob); ?>Years &nbsp;</p>
                         <p class="graytext">Height </p>
                         <p class="full-col">:</p>
-                        <p class="gray-rt"> <?php if(isset($value->heightId)) echo $heightArray[$value->heightId]; ?> &nbsp;</p>
+                        <p class="gray-rt"> <?php if(isset($value->physicaldetails->heightId))echo $heightArray[$value->physicaldetails->heightId];  ?> &nbsp;</p>
                         <p class="graytext">Place </p>
                         <p class="full-col">:</p>
-                        <p class="gray-rt"> <?php echo $value->place.', '.$value->state.', '.$value->country; ?> &nbsp;</p>
+                        <p class="gray-rt"> <?php if(isset($value->userpersonaldetails->place))echo $value->userpersonaldetails->place->name ?>, <?php if(isset($value->userpersonaldetails->state))echo $value->userpersonaldetails->state->name ?>, <?php if(isset($value->userpersonaldetails->country))echo $value->userpersonaldetails->country->name ?> &nbsp;</p>
                         <p class="graytext">Education </p>
                         <p class="full-col">:</p>
-                        <p class="gray-rt"><?php echo $value->educationName?> &nbsp;</p>
+                        <p class="gray-rt"><?php if(isset($value->educations->education))echo $value->educations->education->name ?> &nbsp;</p>
                         <p class="graytext">Occupation </p>
                         <p class="full-col">:</p>
-                        <p class="gray-rt"> <?php echo $value->occupationName?> &nbsp;</p>
+                        <p class="gray-rt"> <?php if(isset($value->educations->occupation))echo $value->educations->occupation->name ?> &nbsp;</p>
                         <p class="blue-text-01"><a href="<?php echo 'byid?id='.$value->marryId ?>">View Full Profile</a></p>
                       <div class="clear"></div>
                       	<div class="pages-1">
@@ -275,15 +284,22 @@
                      <a href="#" ><img src="<?php echo Yii::app()->params['mediaUrl']; ?>/arrow_small_right.jpg" name="Image67" width="7" height="13" border="0" id="Image67" /></a></div>
                         </div>
 <div class="clear"></div>
-<!--  
+  
+   <?php 
+ 
+ $isInterest = $user->interestSender(array('condition'=>"receiverId = {$value->userId}"));
+ $isBookMarked = $user->bookmark(array('condition'=>"FIND_IN_SET('{$value->userId}',profileIDs)")); 
+ $isMessage = $user->messageSender(array('condition'=>"receiverId = {$value->userId}"));
+ if(!isset($isInterest) || empty($isInterest)) {
+ ?>
 <a href="#" id="<?php echo $value->userId ?>" class="exp-sub">Express Interest</a>
-
-<a href="#" id="<?php echo $value->userId ?>" class="exp-sub-add">Bookmark</a>
-
-<a href="#" class="exp-sub-send">Send Message</a> 
-     -->
-
-
+<?php }?>
+<?php if(!isset($isBookMarked) || empty($isBookMarked)) {?> 
+<a href="#"  id="<?php echo $value->userId ?>" class="exp-sub-add">Bookmark</a>
+<?php }?>
+<?php if(!isset($isMessage) || empty($isMessage)) {?>
+<a href="#"  id="<?php echo $value->userId ?>" class="exp-sub-send">Send Message</a> 
+   <?php } ?> 
 
 </div><!--/search_div_lft-->
   	

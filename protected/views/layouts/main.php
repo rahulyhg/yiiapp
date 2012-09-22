@@ -23,7 +23,7 @@
 			<?php $this->widget('application.widgets.menu.Dropdownmenu'); ?>
  		<!-- Dropdown menu ends -->
 		</div>
-
+		<?php }?>
 
 		<div id="mypage-login_box">
 			<!-- login header -->
@@ -33,7 +33,7 @@
 	<p class="clear"></p>
 
 
-
+ <?php if(isset($userName)) {?>
 	<p class="space-25px">&nbsp;</p>
 				<!--navigation_container-->
 				<div class="navigation_container">

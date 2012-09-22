@@ -23,7 +23,7 @@ return array(
 		
 		'gii'=>array(
 			'class'=>'system.gii.GiiModule',
-			'password'=>'',
+			'password'=>'Aditi01*',
 		 	// If removed, Gii defaults to localhost only. Edit carefully to taste.
 			'ipFilters'=>array('127.0.0.1','::1'),
 		),
@@ -37,6 +37,17 @@ return array(
 			'allowAutoLogin'=>true,
 		),
 		// uncomment the following to enable URLs in path-format
+		
+		//email configuration
+		 'mail'=>array(
+        	'class' => 'application.extensions.yii-mail.YiiMail',  
+	          'transportType'=>'smtp', /// case sensitive!
+	          'transportOptions'=>array(
+	            'host'=> 'smtp.gmail.com',
+	            ),
+	        'logging' => true,
+	        'dryRun' => false
+    	),
 		
 		'session' => array(
         'savePath' => 'C:\TEMP',
@@ -68,7 +79,7 @@ return array(
 			'connectionString' => 'mysql:host=localhost;dbname=marrydoor',
 			'emulatePrepare' => true,
 			'username' => 'root',
-			'password' => '',
+			'password' => 'Aditi01*',
 			'charset' => 'utf8',
 		),
 		
@@ -99,9 +110,8 @@ return array(
 		// this is used in contact page
 		'adminEmail'=>'webmaster@example.com',
 		'resourceUrl' => 'http://scripts.marrydoor.com',
-		'homeUrl' => 'http://local.marrydoor.com',
+		'homeUrl' => 'http://marrydoor.com',
 		'mediaUrl' => 'http://scripts.marrydoor.com/images',
-		'sslmediaUrl' => 'https://scripts.marrydoor.com/images',
-		'ftpPath' => 'E:\project\marrydoor',
+		'ftpPath' => 'D:\ftp\marrydoor',
 	),
 );

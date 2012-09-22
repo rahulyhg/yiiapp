@@ -150,7 +150,7 @@ class InterestController extends Controller
 	 */
 	public function actionDecline()
 	{
-		$users = $user = Yii::app()->session->get('user');
+		$user = Yii::app()->session->get('user');
 		$sendInterest = $user->interestReceiver(array('condition'=>'status= 2'));
 		
 		if(sizeof($sendInterest) > 0){

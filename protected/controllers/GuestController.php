@@ -39,6 +39,7 @@ class GuestController extends Controller
 	
 	public function actionAbout()
 	{
+		var_dump($user->bookmark(array('condition'=>"FIND_IN_SET('{$value->userId}',profileIDs)")));
 		$this->layout= '//layouts/single';
 		$this->render('about');
 	}

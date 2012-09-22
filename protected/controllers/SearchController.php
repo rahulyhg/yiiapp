@@ -39,6 +39,7 @@ class SearchController extends Controller
 	//search from front page
 	public function actionBasic()
 	{
+	 $user = Yii::app()->session->get('user');	
 	  if(isset($_POST['heightStart']) && isset($_POST['heightLimit']))
 		{
 
@@ -116,7 +117,16 @@ class SearchController extends Controller
 				$condition .= " AND photo = 1 ";
 		}
 		
-		$users = ViewUsers::model()->findAll(array('condition'=>$condition,'order'=> 'createdOn DESC' ));
+		$usersV = ViewUsers::model()->findAll(array('condition'=>$condition,'order'=> 'createdOn DESC' ));
+		$userIds = array();
+		foreach ($usersV as $key => $value) {
+			$userIds[] = $value->userId; 
+		}
+		
+		$userList = implode(",", $userIds);
+		$scondition = " userId in ({$userList}) and userId != {$user->userId} ";
+		$users = Users::model()->findAll(array('condition'=>$scondition,'order'=> 'createdOn DESC' ));
+		
 		$highLightUser = array();
 		$normalUser = array();
 		foreach ($users as $key => $value) {
@@ -126,7 +136,7 @@ class SearchController extends Controller
 			$normalUser[] = $value;
 		}
 		//$user = Users::model()->find();
-		if(sizeof($users) > 0)
+		if(sizeof($usersV) > 0 && sizeof($users) > 0)
 		{
 			
 		$totalUser = sizeof($normalUser);
@@ -143,7 +153,7 @@ class SearchController extends Controller
 	
 	public function actionRegular()
 	{
-		
+		$user = Yii::app()->session->get('user');
 		if(isset($_POST['ageFrom']) && isset($_POST['ageTo']))
 		{
 			
@@ -216,7 +226,19 @@ class SearchController extends Controller
 			}
 		}
 		
-		$users = ViewUsers::model()->findAll(array('condition'=>$condition,'order'=> 'createdOn DESC' ));
+		
+		$usersV = ViewUsers::model()->findAll(array('condition'=>$condition,'order'=> 'createdOn DESC' ));
+		$userIds = array();
+		foreach ($usersV as $key => $value) {
+			$userIds[] = $value->userId; 
+		}
+		
+		$userList = implode(",", $userIds);
+		$scondition = " userId in ({$userList}) and userId != {$user->userId} ";
+		$users = Users::model()->findAll(array('condition'=>$scondition,'order'=> 'createdOn DESC' ));
+		
+		
+		
 		$highLightUser = array();
 		$normalUser = array();
 		foreach ($users as $key => $value) {
@@ -243,6 +265,7 @@ class SearchController extends Controller
 	
 	public function actionQuick(){
 		
+		$user = Yii::app()->session->get('user');
 		if(isset($_POST['ageFrom']) && isset($_POST['ageTo']))
 		{
 		if(isset($_POST['ageFrom']))
@@ -269,7 +292,18 @@ class SearchController extends Controller
 		$condition .= " AND casteId = {$caste}";
 		}
 		
-		$users = ViewUsers::model()->findAll(array('condition'=>$condition,'order'=> 'createdOn DESC' ));
+		
+		$usersV = ViewUsers::model()->findAll(array('condition'=>$condition,'order'=> 'createdOn DESC' ));
+		$userIds = array();
+		foreach ($usersV as $key => $value) {
+			$userIds[] = $value->userId; 
+		}
+		
+		$userList = implode(",", $userIds);
+		$scondition = " userId in ({$userList}) and userId != {$user->userId} ";
+		$users = Users::model()->findAll(array('condition'=>$scondition,'order'=> 'createdOn DESC' ));
+		
+		
 		$highLightUser = array();
 		$normalUser = array();
 		foreach ($users as $key => $value) {
@@ -301,6 +335,7 @@ class SearchController extends Controller
 			$this->render('search',array('highLight' => $highLightUser,'normal'=> $normalUser,'search'=>'save'));
 		}
 		*/
+		$user = Yii::app()->session->get('user');
 		$searchFor = null;
 		
 		if(isset($_POST['ageFrom']) && isset($_POST['ageTo']))
@@ -483,7 +518,17 @@ class SearchController extends Controller
 			}
 		}
 		
-			$users = ViewUsers::model()->findAll(array('condition'=>$condition,'order'=> 'createdOn DESC' ));	
+		$usersV = ViewUsers::model()->findAll(array('condition'=>$condition,'order'=> 'createdOn DESC' ));
+		$userIds = array();
+		foreach ($usersV as $key => $value) {
+			$userIds[] = $value->userId; 
+		}
+		
+		$userList = implode(",", $userIds);
+		$scondition = " userId in ({$userList}) and userId != {$user->userId} ";
+		$users = Users::model()->findAll(array('condition'=>$scondition,'order'=> 'createdOn DESC' ));
+		
+			
 			$highLightUser = array();
 			$normalUser = array();
 			foreach ($users as $key => $value) {
@@ -531,6 +576,7 @@ class SearchController extends Controller
 	}
 	public function actionKeyword()
 	{
+		$user = Yii::app()->session->get('user');
 		if(isset($_POST['keyword']))
 		{
 			$gender = null;
@@ -540,49 +586,35 @@ class SearchController extends Controller
 			$keywords = explode(",", $_POST['keyword']);
 			$female = array('f','female');
 			$male = array('m','male');
-			$index = 0;
+			
+			$condition .= " userId != {$user->userId} ";
 			foreach ($keywords as $value) {
 				if(in_array($value,$female))
 				{
-					$index++; 
+ 
 						$gender = 'F';
-					if($index > 1)	
 						$condition .= " AND gender = '{$gender}'";
-					else
-						$condition .= "gender = '{$gender}'";
 				}
 				else if(in_array($value,$male))
 				{
-						$index++;
 						$gender = 'M';
-						if($index > 1)	
 						$condition .= " AND gender = '{$gender}'";
-					else
-						$condition .= "gender = '{$gender}'";
 				}
 				else if(ctype_digit($value))
 				{
-					$index++;
 					$age = intval($value);
-					if($index > 1)
-					$condition .= " AND age = {$age} ";
-					else
-					$condition .= "age = {$age} ";
+					$condition .= " AND FLOOR( DATEDIFF( CURRENT_DATE, dob) /365 )= {$age} ";
 				}
 				else
 				{
-					$index++;
 					$name = $value;
-					if($index > 1)
 					$condition .= " AND name like '%{$name}%'";
-					else
-					$condition .= "name like '%{$name}%'";
 				}
 				
 			}
 			
 		
-		$users = ViewUsers::model()->findAll(array('condition'=>$condition,'order'=> 'createdOn DESC' ));
+		$users = Users::model()->findAll(array('condition'=>$condition,'order'=> 'createdOn DESC' ));
 		$highLightUser = array();
 		$normalUser = array();
 		foreach ($users as $key => $value) {
