@@ -4,7 +4,7 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<meta name="language" content="en" />
 	<!-- css & js -->
-	<?php $this->widget('application.widgets.scripts'); ?>	
+	<?php $this->widget('application.widgets.Scripts'); ?>	
 	
 	<title><?php echo CHtml::encode($this->pageTitle); ?></title>
 </head>
@@ -12,73 +12,67 @@
 	<div id="page">
 		<!--wrapper-->
 		<div id="wrapper">
-<?php $userName = Yii::app()->session->get('username');?>		
+		
 	<div id="head-my">
 	<a href="home-viewed-by-member.html"> <img src="<?php echo Yii::app()->params['resourceUrl']; ?>/images/logo.jpg"
 		class="logo" border="0" /> </a>
-		
-		 <?php if(isset($userName)) {?>
 		<div class="mgn_top">
 		<!-- Dropdown menu -->
-		
-			<?php $this->widget('application.widgets.menu.dropdownmenu'); ?>
+			<?php $this->widget('application.widgets.menu.Dropdownmenu'); ?>
  		<!-- Dropdown menu ends -->
 		</div>
-	<?php }?>
+
 
 		<div id="mypage-login_box">
 			<!-- login header -->
-				<?php $this->widget('application.widgets.login.header'); ?>
+				<?php $this->widget('application.widgets.login.Header'); ?>
 			<!-- login header ends -->
 		</div>
 	<p class="clear"></p>
 
 
-	
-  <?php if(isset($userName)) {?>
 
 	<p class="space-25px">&nbsp;</p>
 				<!--navigation_container-->
 				<div class="navigation_container">
 				<!-- main menu starts -->
-					<?php $this->widget('application.widgets.menu.main'); ?>
+					<?php $this->widget('application.widgets.menu.Main'); ?>
 				<!-- main menu ends -->
 					<!-- my account dropdown -->
-					<?php $this->widget('application.widgets.menu.myaccount'); ?>
+					<?php $this->widget('application.widgets.menu.Myaccount'); ?>
 				<!-- my account dropdown ends -->
 				<!-- my profile dropdown -->
 	
 				<!-- my profie dropdown ends here -->
-					<?php $this->widget('application.widgets.menu.myprofile'); ?>
+					<?php $this->widget('application.widgets.menu.Myprofile'); ?>
 				<!-- communicate dropdown -->
-					<?php $this->widget('application.widgets.menu.communicate'); ?>
+					<?php $this->widget('application.widgets.menu.Communicate'); ?>
 				<!-- communicate dropdown ends here -->
 	
 				<!-- search dropdown -->
-					<?php $this->widget('application.widgets.menu.search'); ?>
+					<?php $this->widget('application.widgets.menu.Search'); ?>
 				<!-- search dropdown ends here -->
 				<!-- payment dropdown starts here -->
-					<?php $this->widget('application.widgets.menu.paymentoptions'); ?>
+					<?php $this->widget('application.widgets.menu.Paymentoptions'); ?>
 				<!-- payment dropdown ends here -->
 				<!-- contactus dropdown starts here -->
-					<?php $this->widget('application.widgets.menu.contactus'); ?>
+					<?php $this->widget('application.widgets.menu.Contactus'); ?>
 				<!-- contactus dropdown ends here -->
 				</div>
 				<!--/navigation_container-->
-				<?php } else {?>
 				
-				<div class="navigation_container_small">
-		<div class="nav_bloc"><!--nav_bloc-->
-		
-		<div class="nav_links"><a href="08--search.html">&nbsp;&nbsp;&nbsp;search</a></div>
-		<div class="nav_links"><a href="01-home-viewed-by-guest.html">payment options</a></div>
-		<div class="nav_links_last"><a href="10 my contact.html">contact us</a></div>
-	</div><!--nav_bloc-->
-</div><!--/navigation_container-->
-				<?php }?>
 <p class="clear"></p>
 <p class="space-15px">&nbsp;</p>
 
+
+
+			<div id="div-200">
+				<p class="txt_bld">
+					<span class="innersidelinks-home"><a href="#">Home</a> </span>|&nbsp;&nbsp;
+					<a href="#">My page</a>
+				</p>
+				<p class="space-5px">&nbsp;</p>
+			</div>
 
 
 </div>
@@ -96,7 +90,7 @@
 	<div class="clear"></div>
 </div>
 	<!--footer-->
-	<?php $this->widget('application.widgets.footer'); ?>
+	<?php $this->widget('application.widgets.Footer'); ?>
 
 </div><!-- page -->
 <div class="clear"></div>

@@ -307,4 +307,39 @@ class Utilities
  	return array('0'=>'no','1'=>'accept','2'=>'decline','3'=>'delete');
  }
  
+ public static function createAbsoluteUrl($controller,$action='',$params=array(),$protocol='')
+ {
+ 	if($action == ''){
+ 		$action = 'index';
+ 	}
+ 	if($protocol == ''){
+ 		$protocol = 'http';
+ 	}
+ 	if($protocol == "https"){
+    		$selfUrl = 'http://'.$_SERVER['SERVER_NAME']."/".$controller."/".$action;
+    	}else{
+    		$selfUrl = 'http://'.$_SERVER['SERVER_NAME']."/".$controller."/".$action;
+    	}
+    	if(!empty($params)){
+    		$selfUrl.= "?";
+    		foreach($params as $key=>$value){
+    			$selfUrl.= $key."=".$value."&";
+    		}
+    		$selfUrl = substr($selfUrl,0,strlen($selfUrl)-1);
+    	}
+    	return $selfUrl;
+ }
+ 
+ public static function getProtocol(){
+ 	$protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' || $_SERVER['SERVER_PORT'] == 443) ? "https" : "http";
+ 	return $protocol;
+ }
+ public static function getMediaUrl()
+ {
+ 	if(self::getProtocol()=='https'){
+ 		return Yii::app()->params['sslmediaUrl'];
+ 	}else{
+ 		return Yii::app()->params['mediaUrl'];
+ 	}
+ }
 }
