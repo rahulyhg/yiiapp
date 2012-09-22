@@ -7,7 +7,7 @@
  * Description : TODO
  *
  */
-class Search extends CWidget
+class Leftmenu extends CWidget
 {
     public function init()
     {
