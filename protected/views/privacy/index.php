@@ -8,12 +8,12 @@
         	<div class="profile_200">
  
  
-     <a href="my-album.html"><img src="<?php echo Yii::app()->params['resourceUrl']; ?>/images/model_1.jpg" border="0" class="mrgn_5top" /></a>
+     <a href="my-album.html"><img src="<?php echo Yii::app()->params['mediaUrl']; ?>/images/model_1.jpg" border="0" class="mrgn_5top" /></a>
 	      <p class="mrgn_25"><span class="text_pink_13"><a href="my-page.html">Biju George</a></span></p>
                 <div class="clear"></div>
                 <div class="line"></div>
                 <div class="div_ww">
-                <img src="<?php echo Yii::app()->params['resourceUrl']; ?>/images/img_03more.jpg" class="left" width="100%" /> </div>
+                <img src="<?php echo Yii::app()->params['mediaUrl']; ?>/images/img_03more.jpg" class="left" width="100%" /> </div>
                 
                     
         <p class="text_blue_15">REMAINING. <a href="#">RE-CHARGE&nbsp;NOW</a></p>    
@@ -28,14 +28,14 @@
                   <span  class="innersidelinks-l"><a href="my-privacy-settings.html">My Settings</a></span>
               <div class="clear"></div>
                 <div class="line_sm"></div>
-                <p class="txt_bld-15"><img src="<?php echo Yii::app()->params['resourceUrl']; ?>/images/arrow_small_right.jpg" />&nbsp;&nbsp;&nbsp;Messages</p>
+                <p class="txt_bld-15"><img src="<?php echo Yii::app()->params['mediaUrl']; ?>/images/arrow_small_right.jpg" />&nbsp;&nbsp;&nbsp;Messages</p>
                 	<p class="bullettext"><a href="messages.html">Inbox 25</a></p>
                 	<p class="bullettext"><a href="messages-sent.html">Outbox 35</a></p>
                 	<p class="bullettext"><a href="#">Delivery Report 3</a></p>
                 </ul>    
 <div class="clear"></div>
                 <div class="line_sm"></div>
-                <p class="txt_bld-15"><img src="<?php echo Yii::app()->params['resourceUrl']; ?>/images/arrow_small_right.jpg" />&nbsp;&nbsp;&nbsp;Interest</p>
+                <p class="txt_bld-15"><img src="<?php echo Yii::app()->params['mediaUrl']; ?>/images/arrow_small_right.jpg" />&nbsp;&nbsp;&nbsp;Interest</p>
                 <p class="bullettext"><a href="interest-sent.html">Sent 35</a></p>
                 
                 	<p class="bullettext"><a href="interest-recived.html">Recived 12</a></p>
@@ -43,7 +43,7 @@
                 	<p class="bullettext"><a href="#">Decliened 7</a></p>
                 	<p class="bullettext"><a href="interest-acceped-you.html">Accepted by me 1</a>                </p>
                	<div class="line_sm"></div>
-                <p class="txt_bld-15"><img src="<?php echo Yii::app()->params['resourceUrl']; ?>/images/arrow_small_right.jpg" />&nbsp;&nbsp;&nbsp;Album</p>
+                <p class="txt_bld-15"><img src="<?php echo Yii::app()->params['mediaUrl']; ?>/images/arrow_small_right.jpg" />&nbsp;&nbsp;&nbsp;Album</p>
               
               
               
@@ -54,7 +54,7 @@
                 	<p class="bullettext"><a href="request-declined.html">Declined 3</a></p>
 <p class="bullettext"><a href="request-accepted.html">Accepted by me 1</a>              </p>
 <div class="line_sm"></div>
-                <p class="txt_bld-15"><img src="<?php echo Yii::app()->params['resourceUrl']; ?>/images/arrow_small_right.jpg" />&nbsp;&nbsp;&nbsp;Documents</p>
+                <p class="txt_bld-15"><img src="<?php echo Yii::app()->params['mediaUrl']; ?>/images/arrow_small_right.jpg" />&nbsp;&nbsp;&nbsp;Documents</p>
                 
                 
                 
@@ -63,7 +63,7 @@
                <p class="bullettext"><a href="request-declined.html">Declined 3</a></p>
                <p class="bullettext"><a href="request-accepted.html">Accepted by me 1</a></p>
 <div class="line_sm"></div>
-                <p class="txt_bld-15"><img src="<?php echo Yii::app()->params['resourceUrl']; ?>/images/arrow_small_right.jpg" />&nbsp;&nbsp;&nbsp;Contacts</p>
+                <p class="txt_bld-15"><img src="<?php echo Yii::app()->params['mediaUrl']; ?>/images/arrow_small_right.jpg" />&nbsp;&nbsp;&nbsp;Contacts</p>
                 
                 
                <p class="bullettext"><a href="request-sent.html">Sent 35</a></p>
@@ -71,7 +71,7 @@
                <p class="bullettext"><a href="request-declined.html">Declined 3</a></p>
                <p class="bullettext"><a href="request-accepted.html">Accepted by me 1</a></p>
 <div class="line_sm"></div>
-                <p class="txt_bld-15"><img src="<?php echo Yii::app()->params['resourceUrl']; ?>/images/arrow_small_right.jpg" />&nbsp;&nbsp;&nbsp;Famili album</p>
+                <p class="txt_bld-15"><img src="<?php echo Yii::app()->params['mediaUrl']; ?>/images/arrow_small_right.jpg" />&nbsp;&nbsp;&nbsp;Famili album</p>
                 <p class="bullettext"><a href="request-sent.html">Sent 35</a></p>
                 <p class="bullettext"><a href="request-acceped-recived.html">Recived 12</a></p>
                 <p class="bullettext"><a href="request-declined.html">Declined 3</a></p>
@@ -99,12 +99,12 @@
   <div class="clear"></div>
                 <div class="line_sm"></div>                
                 <div class="div_ww" > 
-                <img src="<?php echo Yii::app()->params['resourceUrl']; ?>/images/img_advert.jpg" class="left" width="100%" /> </div>
+                <img src="<?php echo Yii::app()->params['mediaUrl']; ?>/images/img_advert.jpg" class="left" width="100%" /> </div>
                 
                 <div class="clear"></div>
                 <div class="line_sm"></div>
                 <div class="div_ww" > 
-                <img src="<?php echo Yii::app()->params['resourceUrl']; ?>/images/do-you-like.jpg" class="left" width="100%" /> </div>
+                <img src="<?php echo Yii::app()->params['mediaUrl']; ?>/images/do-you-like.jpg" class="left" width="100%" /> </div>
                 
                 <div class="clear"></div>
                 <p class="txt_bld">Suggest to a friend</p>
@@ -408,7 +408,7 @@
 <p class="text_20_gery"><a href="payment_benefits.html">Subscribe Now!</a><br />
 Only for</p>
 
-<img src="<?php echo Yii::app()->params['resourceUrl']; ?>/images/img_200.jpg" class="left" width="100%"  border="0"/>
+<img src="<?php echo Yii::app()->params['mediaUrl']; ?>/images/img_200.jpg" class="left" width="100%"  border="0"/>
 
 
 <p class="text_20_gery">For 3 Months</p>

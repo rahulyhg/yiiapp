@@ -14,7 +14,7 @@
 		<div id="wrapper">
 <?php $userName = Yii::app()->session->get('username');?>		
 	<div id="head-my">
-	<a href="home-viewed-by-member.html"> <img src="<?php echo Yii::app()->params['resourceUrl']; ?>/images/logo.jpg"
+	<a href="home-viewed-by-member.html"> <img src="<?php echo Yii::app()->params['mediaUrl']; ?>/images/logo.jpg"
 		class="logo" border="0" /> </a>
 		
 		 <?php if(isset($userName)) {?>

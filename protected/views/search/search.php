@@ -343,26 +343,35 @@
    <script type="text/javascript">
 
    $(document).ready(function() {
+
+	$('.exp-sub').click(function(){
+		var userId = $(this).attr('id');
+		setInterest(userId);
+
+
+		});	
+
+	   
 	var totalPage = parseInt($("input[name='totalPage']").val());
 	var totalUser = parseInt($("input[name='user']").val());
-	var currentPage = parseIn($("input[name='currentPage']").val());
-	var lastPage = parseIn($("input[name='lastPage']").val());
-	var firstPage = parseIn($("input[name='firstPage']").val());
+	var currentPage = parseInt($("input[name='currentPage']").val());
+	var lastPage = parseInt($("input[name='lastPage']").val());
+	var firstPage = parseInt($("input[name='firstPage']").val());
 	
 
 		
 		
 	$('.fir').click(function (){
-		currentPage = parseIn($("input[name='currentPage']").val());
+		currentPage = parseInt($("input[name='currentPage']").val());
 		if(currentPage == 1)
 			return;
 
 		$('.search_div_lft').hide();
 		$('.search_div_right').hide();
 		var example = 10;
-		for (var =0; i < example; i++)
+		for (var i= 0; i < example; i++)
 		{
-			if( example < = totalUser)
+			if( example <= totalUser)
 			{	
 			$('#'+i).show();
 			}
@@ -372,7 +381,7 @@
 		});
 
 	$('.pre').click(function (){
-		currentPage = parseIn($("input[name='currentPage']").val());
+		currentPage = parseInt($("input[name='currentPage']").val());
 		if(currentPage == 1)
 			return;
 		$('.search_div_lft').hide();
@@ -389,8 +398,8 @@
 
 	$('.next').click(function (){
 		
-		currentPage = parseIn($("input[name='currentPage']").val());
-		lastPage = parseIn($("input[name='lastPage']").val());
+		currentPage = parseInt($("input[name='currentPage']").val());
+		lastPage = parseInt($("input[name='lastPage']").val());
 		if(currentPage == lastPage )
 			return;
 		$('.search_div_lft').hide();
@@ -412,8 +421,8 @@
 
 	$('.last').click(function (){
 
-		currentPage = parseIn($("input[name='currentPage']").val());
-		lastPage = parseIn($("input[name='lastPage']").val());
+		currentPage = parseInt($("input[name='currentPage']").val());
+		lastPage = parseInt($("input[name='lastPage']").val());
 		if(lastPage == currentPage)
 			return;
 		$('.search_div_lft').hide();
@@ -443,13 +452,10 @@
         success: function (response) {  
          	alert(response);
             //hide the progress bar
-            $('#loading').hide();   
+            $('#userId').hide();   
              
             //add the content retrieved from ajax and put it in the #content div
-            $('#content').html(html);
-             
-            //display the body with fadeIn transition
-            $('#content').fadeIn('slow');       
+                   
         }       
     });
 }

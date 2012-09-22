@@ -1,7 +1,7 @@
 <!-- **************************** REGISTER FORM STARTING ************************ -->
 <div class="memo-box-one"><!--memo-box-one-->
-<div class="left2"><a onmouseover="MM_swapImage('Image24','','<?php echo Yii::app()->params['resourceUrl']; ?>/images/free-member.jpg',1)" onmouseout="MM_swapImgRestore()" href="#"><img width="213" border="0" height="27" id="Image24" name="Image24" src="<?php echo Yii::app()->params['resourceUrl']; ?>/images/free-member.jpg"></a></div>
-<div class="right"><a onmouseover="MM_swapImage('Image25','','<?php echo Yii::app()->params['resourceUrl']; ?>/images/paid-member-red.jpg',1)" onmouseout="MM_swapImgRestore()" href="paide-membership.html"><img width="219" border="0" height="27" id="Image25" name="Image25" src="<?php echo Yii::app()->params['resourceUrl']; ?>/images/paid-member.jpg"></a></div>
+<div class="left2"><a onmouseover="MM_swapImage('Image24','','<?php echo Yii::app()->params['mediaUrl']; ?>/images/free-member.jpg',1)" onmouseout="MM_swapImgRestore()" href="#"><img width="213" border="0" height="27" id="Image24" name="Image24" src="<?php echo Yii::app()->params['mediaUrl']; ?>/images/free-member.jpg"></a></div>
+<div class="right"><a onmouseover="MM_swapImage('Image25','','<?php echo Yii::app()->params['mediaUrl']; ?>/images/paid-member-red.jpg',1)" onmouseout="MM_swapImgRestore()" href="paide-membership.html"><img width="219" border="0" height="27" id="Image25" name="Image25" src="<?php echo Yii::app()->params['mediaUrl']; ?>/images/paid-member.jpg"></a></div>
 
 <div class="clear"></div>
 
@@ -157,7 +157,7 @@
 
 <div class="memo-head"><!--memo-head-->
 
-<img src="<?php echo Yii::app()->params['resourceUrl']; ?>/images/basic-search.jpg">
+<img src="<?php echo Yii::app()->params['mediaUrl']; ?>/images/basic-search.jpg">
 
 
 </div><!--memo-head--><!--memo-sub-->
@@ -336,19 +336,19 @@
 <input type="text" name="id" value="" placeholder="Search By ID " class="text_normal_small" />
 
 
-<a  href="javascript:keywordSearch.submit();"><img width="49" border="0" height="22" class="search_add_sub" id="Image21" name="Image21" src="<?php echo Yii::app()->params['resourceUrl']; ?>/images/search_btn_ash_sm.jpg"></a>
+<a  href="javascript:keywordSearch.submit();"><img width="49" border="0" height="22" class="search_add_sub" id="Image21" name="Image21" src="<?php echo Yii::app()->params['mediaUrl']; ?>/images/search_btn_ash_sm.jpg"></a>
 
 <?php $this->endWidget(); ?>
 
 <div class="memo-4">
-<img src="<?php echo Yii::app()->params['resourceUrl']; ?>/images/problem.jpg">
+<img src="<?php echo Yii::app()->params['mediaUrl']; ?>/images/problem.jpg">
 </div>
 </div>
 
 <div class="clear"></div>
 
 
-<a href="/guest/paiduser"><img width="1015" border="0" height="125" src="<?php echo Yii::app()->params['resourceUrl']; ?>/images/subscribe_now.jpg"></a>
+<a href="/guest/paiduser"><img width="1015" border="0" height="125" src="<?php echo Yii::app()->params['mediaUrl']; ?>/images/subscribe_now.jpg"></a>
 
 
 <script type="text/javascript">

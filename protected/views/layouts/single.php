@@ -4,7 +4,7 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<meta name="language" content="en" />
 	<!-- css & js -->
-	<?php $this->widget('application.widgets.scripts'); ?>	
+	<?php $this->widget('application.widgets.Scripts'); ?>	
 	
 	<title><?php echo CHtml::encode($this->pageTitle); ?></title>
 </head>
@@ -26,7 +26,7 @@
 		</div>
 	</div>
 	<!--footer-->
-	<?php $this->widget('application.widgets.footer'); ?>
+	<?php $this->widget('application.widgets.Footer'); ?>
 
 <div class="clear"></div>
 </body>

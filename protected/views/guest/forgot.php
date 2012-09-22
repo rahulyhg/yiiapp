@@ -23,7 +23,7 @@
 	<div id="wrapper-head-sub">
 		<!--wrapper-head-sub-->
 		<br /> <a href="home-viewed-by-member.html"><img
-			src="<?php echo Yii::app()->params['resourceUrl']; ?>/images/logo.jpg"
+			src="<?php echo Yii::app()->params['mediaUrl']; ?>/images/logo.jpg"
 			class="middle-align-sub" border="0" /> </a>
 	</div>
 	<!--wrapper-head-sub-->
