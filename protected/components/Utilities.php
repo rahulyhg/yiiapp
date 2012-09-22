@@ -342,4 +342,42 @@ class Utilities
  		return Yii::app()->params['mediaUrl'];
  	}
  }
+ 
+ public static function getUserTypes()
+ {
+ 	return array('0'=>'normal','1'=>'paid','2'=>'deleted');
+ }
+ 
+ public static function getWeight()
+ {
+ 	$weights = array();
+     foreach( range(25,130) as $weight){
+   $weights[$weight] = $weight;
+     }
+     return $weights; 	
+ }
+ 
+ public static function getHomeUrl()
+ {
+ 	return Yii::app()->params['homeUrl']; 
+ }
+ 
+	public static function sendClaimEmail($claimParams) {
+		$subject = "test";
+        // escaped just in case...
+        $datetime = new DateTime(); 
+        $dString = $datetime->format('Y/m/d H:i:s');
+        $body = htmlentities("UserName: {$claimParams['customerId']}\nEmail Address: {$claimParams['emailId']}\nPromotion Code: {$claimParams['claimcode']}\nDate:{$dString}",
+                                ENT_QUOTES, 'UTF-8');
+        set_time_limit(0);
+        Yii::import('application.extensions.*');
+        $message = new YiiMailMessage();
+       	$message->setTo(array(Yii::app()->params['MailTo']=>'Promotions'));
+        $message->setFrom(Yii::app()->params['MailFrom']);
+        $message->setSubject($subject);
+        $message->setBody($body);
+        $numsent = Yii::app()->mail->send($message);
+	}
+ 
+ 
 }

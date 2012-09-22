@@ -12,10 +12,12 @@
 	<div id="page">
 		<!--wrapper-->
 		<div id="wrapper">
-		
+<?php $userName = Yii::app()->session->get('username');?>		
 	<div id="head-my">
 	<a href="home-viewed-by-member.html"> <img src="<?php echo Yii::app()->params['resourceUrl']; ?>/images/logo.jpg"
 		class="logo" border="0" /> </a>
+		
+		 <?php if(isset($userName)) {?>
 		<div class="mgn_top">
 		<!-- Dropdown menu -->
 			<?php $this->widget('application.widgets.menu.Dropdownmenu'); ?>
@@ -60,19 +62,20 @@
 				<!-- contactus dropdown ends here -->
 				</div>
 				<!--/navigation_container-->
+				<?php } else {?>
 				
+				<div class="navigation_container_small">
+		<div class="nav_bloc"><!--nav_bloc-->
+		
+		<div class="nav_links"><a href="08--search.html">&nbsp;&nbsp;&nbsp;search</a></div>
+		<div class="nav_links"><a href="01-home-viewed-by-guest.html">payment options</a></div>
+		<div class="nav_links_last"><a href="10 my contact.html">contact us</a></div>
+	</div><!--nav_bloc-->
+</div><!--/navigation_container-->
+				<?php }?>
 <p class="clear"></p>
 <p class="space-15px">&nbsp;</p>
 
-
-
-			<div id="div-200">
-				<p class="txt_bld">
-					<span class="innersidelinks-home"><a href="#">Home</a> </span>|&nbsp;&nbsp;
-					<a href="#">My page</a>
-				</p>
-				<p class="space-5px">&nbsp;</p>
-			</div>
 
 
 </div>
