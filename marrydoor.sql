@@ -100,7 +100,7 @@ create table shortlist(shortlistId BIGINT UNIQUE NOT NULL AUTO_INCREMENT, userID
 
 -- --table for profileViews---
 
-create table profileViews(profileViewId BIGINT UNIQUE NOT NULL AUTO_INCREMENT, userID BIGINT NOT NULL, visitedId BIGINT NOT NULL, PRIMARY KEY(profileViewId))ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;
+create table profileViews(profileViewId BIGINT UNIQUE NOT NULL AUTO_INCREMENT, userID BIGINT NOT NULL, visitedId text NOT NULL, PRIMARY KEY(profileViewId),FOREIGN KEY (userID) REFERENCES users(userId))ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;
 
 -- --table for country
 

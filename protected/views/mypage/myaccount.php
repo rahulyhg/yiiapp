@@ -3,20 +3,18 @@
 *
 * $Id$
 --------------------------------------------------------------------------------------------------------------------------
-* Information contained in this file is the intellectual property of MarryDoor
-* Copyright © 2012 MarryDoor. All Rights Reserved.
+* Information contained in this file is the intellectual property of Ladbrokes Plc
+* Copyright © 2012 MarryDorr. All Rights Reserved.
 * ---------------------------------------------------------------------------------------------------------------------------
 *
 * @author  Ageesh K Gopinath
-* @title byid.php
+* @title myaccount.php
 * @description <Description of this class>
 *  @filesource <URL>
 *  @version <Revision>
 */
 ?>
 
-            
-           
             <!--main-content-->
             <div id="main-content">
             	<!--left-content-->
@@ -30,8 +28,7 @@
 	      <p class="mrgn_25"><span class="text_pink_13"><a href="my-page.html">Biju George</a></span></p>
                 <div class="clear"></div>
                 <div class="line"></div>
-                      <div class="div_ww">  
-                <img src="<?php echo Yii::app()->params['mediaUrl']; ?>/img_03more.jpg" class="left" width="100%" /> </div>
+                <img src="<?php echo Yii::app()->params['mediaUrl']; ?>/img_03more.jpg" class="left" />
                 
                     
         <p class="text_blue_15">REMAINING. <a href="#">RE-CHARGE&nbsp;NOW</a></p>    
@@ -116,12 +113,11 @@
                   
   <div class="clear"></div>
                 <div class="line_sm"></div>                
-                      <div class="div_ww">    
-                <img src="<?php echo Yii::app()->params['mediaUrl']; ?>/img_advert.jpg" class="left" width="100%" /> </div>
+                  
+                <img src="<?php echo Yii::app()->params['mediaUrl']; ?>/img_advert.jpg" class="left" />
                 <div class="clear"></div>
                 <div class="line_sm"></div>
-                      <div class="div_ww">  
-                <img src="<?php echo Yii::app()->params['mediaUrl']; ?>/do-you-like.jpg" class="left" width="100%" /> </div>
+                <img src="<?php echo Yii::app()->params['mediaUrl']; ?>/do-you-like.jpg" class="left" />
                 <div class="clear"></div>
                 <p class="txt_bld">Suggest to a friend</p>
               <p class="txt_bld-10">Use comma to seperate each ids</p><p class="space-10px">&nbsp;</p>
@@ -129,140 +125,127 @@
                 <input type="text" class="select_small_180"  placeholder="Friends Email ID"/>               
                 
                 
-                <a class="invite" href="#">Invite</a>
+                <a href="#" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image89','','<?php echo Yii::app()->params['mediaUrl']; ?>/invite_btn.jpg',1)"><img src="<?php echo Yii::app()->params['mediaUrl']; ?>/invite_btn_ash.jpg" name="Image89" width="49" height="22" border="0" id="Image89" class="right" /></a>
                 </form>
   </div>
   <!--profile details closing--> 
-  <!--center profile details closing-->
-  
-<div id="content-left">
-<div class="line_sm"></div>
-
-
- <p class="text_pink-hd">Quick Search</p>
-                <p class="space-25px">&nbsp;</p>
-
-
- <div class="list_div_780"><!--list_div_780-->
-
-
-<form id="quickSearch"  name="quickSearch" method="post"  action="/search/quick">
-<p class="radio-70">
-<input type="radio" value="M" name="gender">&nbsp;&nbsp;Male</p>
-<p class="radio-70">
-<input type="radio" value="F" name="gender">&nbsp;&nbsp;Female</p>
-
-<p class="left"> &nbsp;&nbsp;Age&nbsp;&nbsp;</p>
-<?php echo CHtml::dropDownList('ageFrom',null,Utilities::getAge(),array('class'=>'select_45')); ?>
-  
- <p class="left">&nbsp;&nbsp;To&nbsp;&nbsp;&nbsp;</p>
- <?php echo CHtml::dropDownList('ageTo',null,Utilities::getAge(),array('class'=>'select_45')); ?>
-  
- 
-<p class="mgn_10_newb">Religion </p>
-<?php $records = Religion::model()->findAll("active = 1");
-		$list = CHtml::listData($records, 'religionId', 'name');
-		echo CHtml::dropDownList('religion',null,$list,array('empty' => 'Religion','class'=>'select_120')); ?>
- 
-<p class="mgn_10_newb">Caste</p>
-<?php $records = Caste::model()->findAll("active = 1");
-		$list = CHtml::listData($records, 'casteId', 'name');
-		echo CHtml::dropDownList('caste',null,$list,array('empty' => 'Caste','class'=>'select_120')); ?>
- 
-                          <a href="javascript:quickSearch.submit();" class="srch-sub">Search</a>
-
-
-</form>
-
-
-<div class="clear"></div>
-
-<p class="right_text"><a href="/search/byid">View Profile by ID</a><bR />
-<a href="/search/advance">More Search Options</a></p>
-
-
-
- </div><!--/list_div_780-->
-<div class="clear"></div>
-<div class="line"></div>
- <p class="text_pink-hd">Search By ID</p>
-                <p class="space-25px">&nbsp;</p>
-
-
-<div class="list_div_780-02"><!--list_div_780-->
-
-<p class="txt_rg">Happy Valentine's Day everyone! To show our love, we are running a sale for you guys Happy Valentine's Day everyone! To show our love, we are running a sale for you guys Happy Valentine's Day everyone! Happy Valentine's Day everyone! To show our love, we are.</p>
-</div><!--/list_div_780-->
-<a href="/search/regular" class="regular">Regular Search</a>
- <a href="/search/advance" class="regular">Advanced Search</a>
-
- <a href="/search/keyword" class="regular">Key Word Search</a>
-  <a href="/search/byid" class="regular"> Search by ID</a>
-
-  <div class="clear"></div>    
-
-      
- 
-        
-  
-  
-  
-  
-  
-  
-  <div class="line"></div>
-
-                <p class="space-25px">&nbsp;</p>
-
-
-                    <p class="clear"></p>
-                   
- 
-  <p class="clear"></p>
- <div class="list_div_780-02"><!--list_div_780-->
-
-<p>Enter the Matrimony ID of the member whose profile you would like to see.</p>
-</div><!--/list_div_780-->
-   
-   <div class="list_class-5">
-  
-   <p class="txt_bld">Searcy by ID</p>
-   </div>   
-<div class="list_class-6">
-<?php if(isset($model))
-{
-	echo $model;
-}
-
-?>
-<form id="idSearch"  name="idSearch" method="get"  action="/search/byid">
-<input type="text" name="id" id="id" class="addres_form-new_l"  />
-                   <a class="view-button" href="javascript:idSearch.submit();">View Profile</a>
-                   <a class="view-reset" href="javascript:idSearch.reset();">Reset</a>
-
-</form>
-
-</div>
- 
-              <p class="clear"></p>
+  <!--center profile details closing--> 
+  			<div id="content-right-02"> 
               
               
-<div class="space-15px"><br /></div>  
-                  
- <div class="list_div_780-02"><!--list_div_780-->
-
-</div><!--/list_div_780-->
-
-                   
-        
-        
-         
- 
-</div>
-<!--/closing-rightside-div-->
- 
-<div class="clear"></div>
-<!--right-content closing-->
-          </div>
-            <!--main-content closing-->
+              
+              
             
+              
+              
+
+<div class="div_mdl_space_1"><!--div_mdl_space_1-->
+ <p class="text_pink-hd-sub-sm">My Account</p><br />
+            <div class="line-sub-small"></div>
+            <div class="clear"></div>  
+	
+	<div class="div-left-box"><!--div-left-box-->
+Account status<br /> 		
+Profile Created on<br /> 		
+Registerd Contact No<br /> 		
+Registered Email<br /> 		
+Profile visited by you<br /> 		
+Your profile visitors<br />  		
+Interest received<br />  		
+Interest send<br /> 			
+Interest Decliened by you<br /> 		
+Interest Accepted by you<br /> 		
+Message sent<br /> 			
+Message recived<br />  		
+Interest Decliened you<br /> 		
+Interest Decliened your<br /> 		
+Request resived<br />  		
+Request send<br /> 			
+Request Decliened by you<br /> 		
+Request Decliened your<br /> 		
+Shortlisted you<br /> 		
+Shortlisted by you<br /> 		
+Your Book Mark<br /> 		
+Persons who blocked by me<br />  		
+<span class="blue"><a href="#">Click to</a></span> De activate account<br /> 
+<span class="blue"><a href="#">Click to</a></span> Delete account 
+	</div><!--div-left-box-->
+	 <?php $user = Yii::app()->session->get('user');?>
+	<div class="div-left-box"><!--div-left-box-->
+	
+	:   Subscibed  (10 Days Remaining)<br />
+		:   <?php if(isset($user->createdOn))echo date_format(date_create($user->createdOn), 'd,M,Y');?><br />
+		:   <?php if(isset($user->usercontactdetails)) echo $user->usercontactdetails->mobileNo ?>  (<span class="blue"><a href="#">Edit</a>)</span><br />
+		: <?php if(isset($user->emailId)) echo $user->emailId ?>  (<span class="blue"><a href="#">Edit</a>)</span><br />
+		:   <?php if(isset($user->profileUser)) 
+				echo count(explode(",",$user->profileUser->visitedId));
+		?><br />
+ 		:  <?php 
+ 				if(isset($profileCount))
+ 				echo $profileCount;
+ 		?> <br />
+		:   <span class="blue"><a href="#"><?php
+			$receiveInterest = $user->interestReceiver(array('condition'=>'status = 0'));
+				if(isset($receiveInterest))
+				echo count($receiveInterest);
+		?></a></span><br />
+		:   <?php 
+			$sent = $user->interestSender(array('condition'=>'status != 3'));
+		if(isset($sent)) echo count($sent);?><br />
+		:   <span class="blue"><a href="#"><?php 
+			
+			$sendInterest = $user->interestReceiver(array('condition'=>'status= 2'));
+			if(isset($sendInterest))
+			echo count($sendInterest);
+		
+		?></a></span><br />
+		:  <?php 
+				$decline = $user->interestReceiver(array('condition'=>'status = 1'));
+				if(isset($decline))
+				echo count($decline);
+		?><br />
+			:   <span class="blue"><a href="#">12</a></span><br />
+ 		:   <span class="blue"><a href="#">12</a></span><br />
+		:   <span class="blue"><a href="#">12</a></span><br />
+		:   12<br />
+ 		:   <span class="blue"><a href="#">12</a></span><br />
+			:   <span class="blue"><a href="#">12</a></span><br />
+		:   <span class="blue"><a href="#">12</a></span><br />
+		:   12<br />
+		:   <span class="blue"><a href="#">12</a></span><br />
+		:   <span class="blue"><a href="#">12</a></span><br />
+		:   <span class="blue"><a href="#">12</a></span><br />
+ 		:   <span class="blue"><a href="#">12</a></span><br />
+	
+	</div><!--div-left-box-->
+	
+	
+	
+	
+</div>
+
+
+
+
+
+
+
+ 
+  <!--closing central profile details closing-->      
+              
+                <!--left-content closing-->
+                <!--left-content-->
+                
+                <div id="content-right-small-1">
+               	  <div class="div_r_1"><!--div_r-->
+
+<p class="text_20_gery"><a href="payment_benefits.html">Subscribe Now!</a><br />
+Only for</p>
+
+<img src="<?php echo Yii::app()->params['mediaUrl']; ?>/img_200.jpg" class="left" />
+
+<div class="clear"></div>
+               	  </div>
+              
+              </div></div>
+  </div>

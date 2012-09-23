@@ -29,6 +29,8 @@ class UserIdentity extends CUserIdentity
 			if(isset($record) && $record['emailId'] != null)
 			{
 			//User::model()->findAll('first_name=? AND last_name=?', array('Paul', 'Smith'));
+			if($record->userType != 3)
+			{
 			$mail = $record['emailId'];
 			$this->_id = $record['userId'];
 			$this->setState('user', $record['name']);
@@ -36,6 +38,7 @@ class UserIdentity extends CUserIdentity
 			Yii::app()->session->add('username',$record['name']);
 			Yii::app()->session->add('user',$record);
 			return true;
+			}
 			}
 			return false ;
 		}			

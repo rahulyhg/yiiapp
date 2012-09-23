@@ -15,18 +15,60 @@
 */
 class MypageController extends Controller
 {
+	
+	  public function beforeAction(CAction $action)
+        {
+        		if($action->id == 'byid')
+        		return true;
+                $user = Yii::app()->session->get('user');
+                if(!isset($user)) {
+                        $this->redirect(Yii::app()->user->loginUrl);
+                        return false;
+                }       
+                return true;
+        }  
+	
 	public function actionIndex()
 	{
-		$physical = new Physicaldetails();
-		$physical->userId = 2;
-		$physical->heightId = 23;
-		$physical->weight = 15;
-		$physical->bodyType =  0;
-		$physical->complexion = 0;
-		$physical->physicalStatus = 1;
-		$physical->save();
 	
 		$this->render('index');
 	}
+	
+	public function actionMyprofile()
+	{
+		$this->render('myprofile');
+	}
+	
+	public function actionContact()
+	{
+		$this->render('mycontact');
+	}
+	
+	public function actionReference()
+	{
+		 $user = Yii::app()->session->get('user');
+		 $referenceList = $user->references;
+		 if(isset($referenceList) )
+		 {
+		 	$this->render('myreference',array('referenceList'=>$referenceList));
+		 }
+		 else
+		$this->render('myreference');
+	}
+	
+	public function actionAccount()
+	{
+		$user = Yii::app()->session->get('user');
+		$sql = "SELECT count(*) as pCount FROM profileviews WHERE ( FIND_IN_SET( {$user->userId},visitedId))";
+		$command=Yii::app()->db->createCommand($sql);
+		$profileCount = $command->queryRow();
+		$this->render('myaccount',array('profileCount' => $profileCount['pCount']));
+	}
+	
+	public function actionAlbum()
+	{
+		$this->render('myalbum');
+	}
+	
 	
 }

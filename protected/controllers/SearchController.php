@@ -22,20 +22,6 @@ class SearchController extends Controller
 	
 	
 	
-	public function actionHighlight()
-	{
-		$condition = 'highlighted = 1';
-
-		$users = ViewUsers::model()->findAll(array('condition'=>$condition,'order'=> 'createdOn DESC' ));
-		$highLightUser = array();
-		$normalUser = array();
-		
-		//$user = Users::model()->find();
-		if(sizeof($users) > 0)
-		$this->render('search',array('highLight' => $users,'normal'=> $normalUser,'search'=>'highlight'));
-		
-	}
-	
 	//search from front page
 	public function actionBasic()
 	{
@@ -561,6 +547,23 @@ class SearchController extends Controller
 
 			if(isset($user->name))
 			{
+				$loggedUser = Yii::app()->session->get('user');
+				if(isset($loggedUser)){
+				if(isset($loggedUser->profileUser)){
+					$arrayList = explode(",",$loggedUser->profileUser->visitedId);
+					$arrayList[] = $user->userId;
+					$visitedId = implode(",", $arrayList);
+					$loggedUser->profileUser->visitedId = $visitedId ;
+					if(!in_array($visitedId,$arrayList))  
+					$loggedUser->profileUser->save();
+				}
+				else {
+					$profileView = new ProfileViews();
+					$profileView->userID = $loggedUser->userId;
+					$profileView->visitedId = $user->userId;
+					$profileView->save(); 
+				}
+				}
 				$this->render('idProfile',array('model'=>$user));
 			}
 			else
@@ -638,30 +641,5 @@ class SearchController extends Controller
 		$this->render('keyword');
 	}
 
-	// Uncomment the following methods and override them if needed
-	/*
-	public function filters()
-	{
-		// return the filter configuration for this controller, e.g.:
-		return array(
-			'inlineFilterName',
-			array(
-				'class'=>'path.to.FilterClass',
-				'propertyName'=>'propertyValue',
-			),
-		);
-	}
-
-	public function actions()
-	{
-		// return external action classes, e.g.:
-		return array(
-			'action1'=>'path.to.ActionClass',
-			'action2'=>array(
-				'class'=>'path.to.AnotherActionClass',
-				'propertyName'=>'propertyValue',
-			),
-		);
-	}
-	*/
+	
 }

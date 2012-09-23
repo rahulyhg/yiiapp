@@ -187,11 +187,11 @@
 <p class="txt_rg">Happy Valentine's Day everyone! To show our love, we are running a sale for you guys Happy Valentine's Day everyone! To show our love, we are running a sale for you guys Happy Valentine's Day everyone! Happy Valentine's Day everyone! To show our love, we are.</p>
 </div><!--/list_div_780-->
 
-<a href="#" class="regular">Regular Search</a>
- <a href="#" class="regular">Advanced Search</a>
+<a href="/search/regular" class="regular">Regular Search</a>
+ <a href="/search/advance" class="regular">Advanced Search</a>
 
- <a href="#" class="regular">Key Word Search</a>
-  <a href="#" class="regular"> Search by ID</a>
+ <a href="/search/keyword" class="regular">Key Word Search</a>
+  <a href="/search/byid" class="regular"> Search by ID</a>
   
   <div class="clear"></div>    
 

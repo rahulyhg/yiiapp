@@ -343,18 +343,21 @@
 
    $(document).ready(function() {
 
-	$('#high').hide();   
+	$('#high').hide();
+   
 
 	$('.right').click(function(){
 		
 		if($('div.right a').text() == 'Hide')
 		{
 			$('div.right a').text("View More Highligted Profiles");
-			$('#high').hide();
+			$('#high').hide("slow").fadeOut("slow");
+
 		}
 		else{
 		$('div.right a').text("Hide");
-		$('#high').show();
+		$('#high').show("slow").fadeIn("slow");
+
 		}
 		})
 	

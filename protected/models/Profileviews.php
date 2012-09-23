@@ -1,12 +1,15 @@
 <?php
 
 /**
- * This is the model class for table "profileViews".
+ * This is the model class for table "profileviews".
  *
- * The followings are the available columns in table 'profileViews':
+ * The followings are the available columns in table 'profileviews':
  * @property string $profileViewId
  * @property string $userID
  * @property string $visitedId
+ *
+ * The followings are the available model relations:
+ * @property Users $user
  */
 class ProfileViews extends CActiveRecord
 {
@@ -25,7 +28,7 @@ class ProfileViews extends CActiveRecord
 	 */
 	public function tableName()
 	{
-		return 'profileViews';
+		return 'profileviews';
 	}
 
 	/**
@@ -36,7 +39,8 @@ class ProfileViews extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('userID, visitedId', 'length', 'max'=>20),
+			array('userID', 'length', 'max'=>20),
+			array('visitedId', 'safe'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
 			array('profileViewId, userID, visitedId', 'safe', 'on'=>'search'),
@@ -51,6 +55,7 @@ class ProfileViews extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
+			'user' => array(self::BELONGS_TO, 'Users', 'userID'),
 		);
 	}
 

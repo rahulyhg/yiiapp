@@ -148,6 +148,8 @@ class Utilities
    	return 'Not specified';
  }
  
+ 
+ 
  public static function getArrayValues($arrayToFetch,$indexes)
  {
  	$stringValue = "";
@@ -348,6 +350,13 @@ class Utilities
  	return array('0'=>'normal','1'=>'paid','2'=>'deleted');
  }
  
+	public static function getUserDisplay($index)
+	 {
+	 	$userType =  array('0'=>'You can change your account to subscribe user','1'=>'You are subscribed','2'=>'deleted');
+	 	return $userType[$index]; 
+	 }
+ 
+ 
  public static function getWeight()
  {
  	$weights = array();
@@ -379,5 +388,15 @@ class Utilities
         $numsent = Yii::app()->mail->send($message);
 	}
  
+	public static function getLanguageForId($id)
+	{
+		$language = Languages::model()->findbyPk($id);
+		return $language->name;
+	}
+	
+	public static function getAddressType()
+	{
+		return array('0' =>'communication','1' =>'permanent');
+	}
  
 }
