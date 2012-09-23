@@ -46,13 +46,17 @@ class GuestController extends Controller
 	
 	public function actionUser()
 	{
+		$searchModel = new SearchForm();
+		$model = new UserForm();
 		$this->layout= '//layouts/single';
-		$this->render('newuser');
+		$this->render('newuser',array('model'=>$model,'searchModel' =>$searchModel));
 	}
 	
 	public function actionPaiduser()
 	{
+		$searchModel = new SearchForm();
+		$model = new UserForm();
 		$this->layout= '//layouts/single';
-		$this->render('paiduser');
+		$this->render('paiduser',array('model'=>$model,'searchModel' =>$searchModel));
 	}
 }

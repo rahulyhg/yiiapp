@@ -49,14 +49,19 @@
             <!--head closing-->
             <!--main-content-->
           <div id="main-content">
-            	<div class="new_user11"><!--memo-box-one-->
+<div class="new_user11"><!--memo-box-one-->
 <div class="left2">
 
  <p class="text_pink-hd">Free membership</p>
  
  </div>
 
-
+<?php $form=$this->beginWidget('CActiveForm', array(
+	'id'=>'users-register-form',
+	'action' => Yii::app()->createUrl('user/register'),
+ 	'focus'=>array($model,'name'),
+	'enableAjaxValidation'=>false,
+)); ?>
 <div class="clear"></div>
 
 
@@ -66,13 +71,12 @@
                     
 <div class="div_ww">
 <div class="memo-sub_left_mgn"><!--memo-sub_left_mgn-->
-<p class="txt_rg_index_left">Name</p>
+<?php echo $form->labelEx($model,'name',array('class'=>'txt_rg_index_left')); ?>
 
 	</div><!--/memo-sub_left_mgn-->
 
 		<div class="memo-sub_right_mgn_3"><!--memo-sub_right_mgn-->
-			
-<input type="text" name="" id="" class="gray_form_1" /> 
+	<?php echo $form->textField($model,'name',array('class' =>'gray_form_1')); ?>			
 			</div><!--/memo-sub_right_mgn-->
             
              </div>
@@ -84,62 +88,41 @@
 
 
 <div class="memo-sub_left_mgn"><!--memo-sub_left_mgn-->
+	<?php echo $form->labelEx($model,'date',array('class'=>'txt_rg_index_left')); ?>
 
-	<p class="txt_rg_index_left">Date of Birth</p>
 	</div><!--/memo-sub_left_mgn-->
 
 		<div class="memo-sub_right_mgn_3"><!--memo-sub_right_mgn_3-->
         
  
+ 	<?php echo CHtml::dropDownList('date',Utilities::currentDay(),Utilities::getRegDays(),array('class'=>'gray_date_memo_1')); ?>
+		<?php echo CHtml::dropDownList('month',Utilities::currentMonth(),Utilities::getRegMonths(),array('class'=>'gray_month_memo_medium')); ?>		    
+    	<?php echo CHtml::dropDownList('year',Utilities::currentYear(),  Utilities::getRegYears(),array('class'=>'gray_year_memo_1')); ?>
+		<?php echo $form->error($model,'date'); ?>
   	
- <select class="gray_date_memo_1">
- <option>01</option>
- <option>02</option>
- <option>03</option>
- </select> 
- 
-   
-<select class="gray_month_memo_medium">
- <option>September</option>
- <option>October</option>
- <option>November</option>
- </select>  
- 
-   
-	  <select class="gray_year_memo_1">
- <option>1975</option>
- <option>1976</option>
- <option>1977</option>
- </select>  
-
 			</div><!--/memo-sub_right_mgn_3-->
 
 
 <div class="memo-sub_left_mgn"><!--memo-sub_left_mgn-->
 
-		<p class="txt_rg_index_left">Gender</p>
+<?php echo $form->labelEx($model,'gender',array('class'=>'txt_rg_index_left')); ?>
 				  </div><!--/memo-sub_left_mgn-->
 
 						<div class="memo-sub_right_mgn_3"><!--memo-sub_right_mgn_3-->
- <select class="gray_month_memo">
- <option>Female</option>
- <option>Male</option>
- </select> 
-
-							</div><!--/memo-sub_right_mgn_3-->
+						<?php echo CHtml::dropDownList('gender','Female',array('F'=>'Female','M'=>'Male'),array('class'=>'gray_month_memo')); ?>
+ 							</div><!--/memo-sub_right_mgn_3-->
 
 
 <div class="memo-sub_left_mgn"><!--memo-sub_left_mgn-->
-<p class="txt_rg_index_left">Religion</p>
+<?php echo $form->labelEx($model,'religion',array('class'=>'txt_rg_index_left')); ?>
+
 			</div><!--/memo-sub_left_mgn-->
 
 				<div class="memo-sub_right_mgn_3"><!--memo-sub_right_mgn_3-->
- <select class="gray_month_memo">
- <option>Hindu</option>
- <option>Hindu</option>
- <option>Hindu</option>
- </select>
  
+<?php $records = Religion::model()->findAll("active = 1");
+		$list = CHtml::listData($records, 'religionId', 'name');
+		echo CHtml::dropDownList('religion',null,$list,array('empty' => 'Religion','class'=>'gray_month_memo')); ?> 
 
 						</div><!--/memo-sub_right_mgn_3--><!--/memo-sub_left_mgn--><!--/memo-sub_right_mgn_3-->
 
@@ -149,17 +132,14 @@
                     
 
 <div class="memo-sub_left_mgn"><!--memo-sub_left_mgn-->
-<p class="txt_rg_index_left">Caste / Division</p>
+<?php echo $form->labelEx($model,'caste',array('class'=>'txt_rg_index_left')); ?>
 
 	</div><!--/memo-sub_left_mgn-->
 
 		<div class="memo-sub_right_mgn_3"><!--memo-sub_right_mgn_3-->
-			 <select class="gray_month_memo">
-  <option>Ezhava</option>
- <option>Ezhava</option>
- <option>Ezhava</option>
- </select>
- 
+		<?php $records = Caste::model()->findAll("active = 1");
+		$list = CHtml::listData($records, 'casteId', 'name');
+		echo CHtml::dropDownList('caste',null,$list,array('empty' => 'Caste','class'=>'gray_month_memo')); ?>
 
 			</div><!--/memo-sub_right_mgn_3-->
 
@@ -171,61 +151,49 @@
 
 <div class="memo-sub_left_mgn"><!--memo-sub_left_mgn-->
 
-	<p class="txt_rg_index_left">Country living in</p>
+<?php echo $form->labelEx($model,'country',array('class'=>'txt_rg_index_left')); ?>
 	</div><!--/memo-sub_left_mgn-->
 
 		<div class="memo-sub_right_mgn_3"><!--memo-sub_right_mgn_3-->
-
- <select class="gray_month_memo">
- <option>India</option>
- <option>India</option>
- <option>India</option>
- </select>
+<?php $records = Country::model()->findAll("active = 1");
+		$list = CHtml::listData($records, 'countryId', 'name');
+		echo CHtml::dropDownList('country',null,$list,array('empty' => 'Country','class'=>'gray_month_memo')); ?>
  
 			</div><!--/memo-sub_right_mgn_3-->
 
 
 <div class="memo-sub_left_mgn"><!--memo-sub_left_mgn-->
 
-		<p class="txt_rg_index_left">State living in</p>
+<?php echo $form->labelEx($model,'state',array('class'=>'txt_rg_index_left')); ?>
 					</div><!--/memo-sub_left_mgn-->
 
 						<div class="memo-sub_right_mgn_3"><!--memo-sub_right_mgn_3-->
- <select class="gray_month_memo">
- <option>Kerala</option>
- <option>Kerala</option>
- <option>Kerala</option>
- </select>
- 
-
+						<?php $records = States::model()->findAll("active = 1");
+		$list = CHtml::listData($records, 'stateId', 'name');
+		echo CHtml::dropDownList('state',null,$list,array('empty' => 'State','class'=>'gray_month_memo')); ?>
 							</div><!--/memo-sub_right_mgn_3-->
                             
                             
 
 <div class="memo-sub_left_mgn"><!--memo-sub_left_mgn-->
 
-	<p class="txt_rg_index_left">Mother Tongue</p>
+<?php echo $form->labelEx($model,'motherTounge',array('class'=>'txt_rg_index_left')); ?>
 	</div><!--/memo-sub_left_mgn-->
 
 		<div class="memo-sub_right_mgn_3"><!--memo-sub_right_mgn_3-->
-
- <select class="gray_month_memo">
-
- <option>Malayalam</option>
- <option>Malayalam</option>
- <option>Malayalam</option>
- </select>
- 
-			</div><!--/memo-sub_right_mgn_3-->
+<?php $records = Languages::model()->findAll("active = 1");
+		$list = CHtml::listData($records, 'languageId', 'name');
+		echo CHtml::dropDownList('motherTounge',null,$list,array('empty' => 'Language','class'=>'gray_month_memo')); ?>
+ 			</div><!--/memo-sub_right_mgn_3-->
 
 
 <div class="memo-sub_left_mgn"><!--memo-sub_left_mgn-->
 
-	<p class="txt_rg_index_left">Mobile No.</p>
+	<?php echo $form->labelEx($model,'mobileNo',array('class'=>'txt_rg_index_left')); ?>
 			</div><!--/memo-sub_left_mgn-->
 
 				<div class="memo-sub_right_mgn_3"><!--memo-sub_right_mgn_3-->
-<input type="text" name="" id="" class="gray_form_1" /> 
+				<?php echo $form->textField($model,'mobileNo',array('class'=>'gray_form_1')); ?>
 
 						</div><!--/memo-sub_right_mgn_3-->
 
@@ -235,13 +203,13 @@
 
 
 <div class="memo-sub_left_mgn"><!--memo-sub_left_mgn-->
-
-	<p class="txt_rg_index_left">Landline No.</p>
+<?php echo $form->labelEx($model,'landNo',array('class'=>'txt_rg_index_left')); ?>
+	
 	</div><!--/memo-sub_left_mgn-->
 
 		<div class="memo-sub_right_mgn_3"><!--memo-sub_right_mgn_3-->
 
-<input type="text" name="" id="" class="gray_form_1" /> 
+		<?php echo $form->textField($model,'landNo',array('class'=>'gray_form_1')); ?>
 			</div><!--/memo-sub_right_mgn_3-->
 
 				<p class="space-0px">&nbsp;</p>
@@ -250,12 +218,13 @@
                     
 
 <div class="memo-sub_left_mgn"><!--memo-sub_left_mgn-->
-<p class="txt_rg_index_left">E-mail</p>
+<?php echo $form->labelEx($model,'emailId',array('class'=>'txt_rg_index_left')); ?>
+
 
 	</div><!--/memo-sub_left_mgn-->
 
 		<div class="memo-sub_right_mgn_3"><!--memo-sub_right_mgn_3-->
-			<input type="text" name="" id="" class="gray_form_1" /> 
+			<?php echo $form->textField($model,'emailId',array('class'=>'index_form_1')); ?> 
 
 			</div><!--/memo-sub_right_mgn_3-->
 
@@ -267,12 +236,12 @@
 
 <div class="memo-sub_left_mgn"><!--memo-sub_left_mgn-->
 
-	<p class="txt_rg_index_left">Login Password</p>
+	<?php echo $form->labelEx($model,'password',array('class'=>'txt_rg_index_left')); ?>
 	</div><!--/memo-sub_left_mgn-->
 
 		<div class="memo-sub_right_mgn_3"><!--memo-sub_right_mgn-->
 
-<input type="text" name="" id="" class="gray_form_1" /> 
+<?php echo $form->passwordField($model,'password',array('class'=>'index_form_1')); ?> 
 			</div><!--/memo-sub_right_mgn-->
 
 
@@ -290,14 +259,15 @@
 		<div class="memo-sub_right_mgn"><!--memo-sub_right_mgn-->
 
 
-<div style="float:right;">  
- <a class="focus-sub" href="#">Reset</a>
-                <a class="focus-sub" href="#">Submit</a> </div>
+<div class="right">
+ <?php echo CHtml::submitButton('Submit',array('class'=>'btnStyle')); ?>
+			<div class="clearSpace"></div>
+		<?php echo CHtml::resetButton('Reset',array('class' =>'btnStyle')); ?>
 </div>
-
+<?php $this->endWidget(); ?>
 </div><!--memo-box-one-->
 
-
+</div>
 
 
 
@@ -314,20 +284,25 @@
 
 <div class="clear"></div>
 	<div class="line_sm"></div>	
-
+<?php $form=$this->beginWidget('CActiveForm', array(
+	'id'=>'users-paid-form',
+	'action' => Yii::app()->createUrl('user/register'),
+ 	'focus'=>array($model,'name'),
+	'enableAjaxValidation'=>false,
+)); ?>
 				
 
 					
                     
 
 <div class="memo-sub_left_mgn"><!--memo-sub_left_mgn-->
-<p class="txt_rg_index_left">Name</p>
+<?php echo $form->labelEx($model,'name',array('class'=>'txt_rg_index_left')); ?>
 
 	</div><!--/memo-sub_left_mgn-->
 
 			<div class="memo-sub_right_mgn_3"><!--memo-sub_right_mgn-->
 			
-<input type="text" name="" id="" class="gray_form_1" /> 
+<?php echo $form->textField($model,'name',array('class' =>'gray_form_1')); ?>			
  
 			</div><!--/memo-sub_right_mgn-->
 
@@ -339,61 +314,34 @@
 
 <div class="memo-sub_left_mgn"><!--memo-sub_left_mgn-->
 
-	<p class="txt_rg_index_left">Date of Birth</p>
+	<?php echo $form->labelEx($model,'date',array('class'=>'txt_rg_index_left')); ?>
 	</div><!--/memo-sub_left_mgn-->
 
 			<div class="memo-sub_right_mgn_3"><!--memo-sub_right_mgn-->
-        
- 
- 
-  	
- <select class="gray_date_memo_1">
- <option>01</option>
- <option>02</option>
- <option>03</option>
- </select> 
- 
-   
-<select class="gray_month_memo_medium">
- <option>September</option>
- <option>October</option>
- <option>November</option>
- </select>  
- 
-   
-	  <select class="gray_year_memo_1">
- <option>1975</option>
- <option>1976</option>
- <option>1977</option>
- </select>   
-
+        <?php echo CHtml::dropDownList('date',Utilities::currentDay(),Utilities::getRegDays(),array('class'=>'gray_date_memo_1')); ?>
+		<?php echo CHtml::dropDownList('month',Utilities::currentMonth(),Utilities::getRegMonths(),array('class'=>'gray_month_memo_medium')); ?>		    
+    	<?php echo CHtml::dropDownList('year',Utilities::currentYear(),  Utilities::getRegYears(),array('class'=>'gray_year_memo_1')); ?>
+		<?php echo $form->error($model,'date'); ?>
 			</div><!--/memo-sub_right_mgn-->
 
 
 <div class="memo-sub_left_mgn"><!--memo-sub_left_mgn-->
 
-		<p class="txt_rg_index_left">Gender</p>
+		<?php echo $form->labelEx($model,'gender',array('class'=>'txt_rg_index_left')); ?>
 				  </div><!--/memo-sub_left_mgn-->
 
 						<div class="memo-sub_right_mgn_3"><!--memo-sub_right_mgn-->
- <select class="gray_month_memo">
- <option>Female</option>
- <option>Male</option>
- </select> 
-
+ <?php echo CHtml::dropDownList('gender','Female',array('F'=>'Female','M'=>'Male'),array('class'=>'gray_month_memo')); ?>
 							</div><!--/memo-sub_right_mgn-->
 
 <div class="memo-sub_left_mgn"><!--memo-sub_left_mgn-->
-<p class="txt_rg_index_left">Religion</p>
+<?php echo $form->labelEx($model,'religion',array('class'=>'txt_rg_index_left')); ?>
 			</div><!--/memo-sub_left_mgn-->
 
 					<div class="memo-sub_right_mgn_3"><!--memo-sub_right_mgn-->
- <select class="gray_month_memo">
-  <option>Hindu</option>
- <option>Hindu</option>
- <option>Hindu</option>
- </select>
- 
+ <?php $records = Religion::model()->findAll("active = 1");
+		$list = CHtml::listData($records, 'religionId', 'name');
+		echo CHtml::dropDownList('religion',null,$list,array('empty' => 'Religion','class'=>'gray_month_memo')); ?> 
 
 						</div><!--/memo-sub_right_mgn-->
 
@@ -407,17 +355,14 @@
                     
 
 <div class="memo-sub_left_mgn"><!--memo-sub_left_mgn-->
-<p class="txt_rg_index_left">Caste / Division</p>
+<?php echo $form->labelEx($model,'caste',array('class'=>'txt_rg_index_left')); ?>
 
 	</div><!--/memo-sub_left_mgn-->
 
 			<div class="memo-sub_right_mgn_3"><!--memo-sub_right_mgn-->
-		 <select class="gray_month_memo">
-  <option>Ezhava</option>
- <option>Ezhava</option>
- <option>Ezhava</option>
- </select>
- 
+		 <?php $records = Caste::model()->findAll("active = 1");
+		$list = CHtml::listData($records, 'casteId', 'name');
+		echo CHtml::dropDownList('caste',null,$list,array('empty' => 'Caste','class'=>'gray_month_memo')); ?>
 
 			</div><!--/memo-sub_right_mgn-->
 
@@ -429,32 +374,27 @@
 
 <div class="memo-sub_left_mgn"><!--memo-sub_left_mgn-->
 
-	<p class="txt_rg_index_left">Country living in</p>
+<?php echo $form->labelEx($model,'country',array('class'=>'txt_rg_index_left')); ?>
 	</div><!--/memo-sub_left_mgn-->
 
 			<div class="memo-sub_right_mgn_3"><!--memo-sub_right_mgn-->
 
- <select class="gray_month_memo">
- <option>India</option>
- <option>India</option>
- <option>India</option>
- </select>
+ <?php $records = Country::model()->findAll("active = 1");
+		$list = CHtml::listData($records, 'countryId', 'name');
+		echo CHtml::dropDownList('country',null,$list,array('empty' => 'Country','class'=>'gray_month_memo')); ?>
  
 			</div><!--/memo-sub_right_mgn-->
 
 
 <div class="memo-sub_left_mgn"><!--memo-sub_left_mgn-->
 
-		<p class="txt_rg_index_left">State living in</p>
+<?php echo $form->labelEx($model,'state',array('class'=>'txt_rg_index_left')); ?>
 					</div><!--/memo-sub_left_mgn-->
 
 						<div class="memo-sub_right_mgn_3"><!--memo-sub_right_mgn-->
- <select class="gray_month_memo">
- <option>Kerala</option>
- <option>Kerala</option>
- <option>Kerala</option>
- </select>
- 
+ <?php $records = States::model()->findAll("active = 1");
+		$list = CHtml::listData($records, 'stateId', 'name');
+		echo CHtml::dropDownList('state',null,$list,array('empty' => 'State','class'=>'gray_month_memo')); ?>
 
 							</div><!--/memo-sub_right_mgn-->
 
@@ -462,30 +402,26 @@
 
 <div class="memo-sub_left_mgn"><!--memo-sub_left_mgn-->
 
-	<p class="txt_rg_index_left">Mother Tongue</p>
+	<?php echo $form->labelEx($model,'motherTounge',array('class'=>'txt_rg_index_left')); ?>
 	</div><!--/memo-sub_left_mgn-->
 
 		<div class="memo-sub_right_mgn_3"><!--memo-sub_right_mgn-->
 
- <select class="gray_month_memo">
-
- <option>Malayalam</option>
- <option>Malayalam</option>
- <option>Malayalam</option>
- </select>
- 
+ <?php $records = Languages::model()->findAll("active = 1");
+		$list = CHtml::listData($records, 'languageId', 'name');
+		echo CHtml::dropDownList('motherTounge',null,$list,array('empty' => 'Language','class'=>'gray_month_memo')); ?>
 			</div><!--/memo-sub_right_mgn-->
 
 
 
 <div class="memo-sub_left_mgn"><!--memo-sub_left_mgn-->
 
-		<p class="txt_rg_index_left">Mobile No.</p>
+	<?php echo $form->labelEx($model,'mobileNo',array('class'=>'txt_rg_index_left')); ?>
 			</div><!--/memo-sub_left_mgn-->
             
             
 	<div class="memo-sub_right_mgn_3"><!--memo-sub_right_mgn-->
-<input type="text" name="" id="" class="gray_form_1" /> 
+<?php echo $form->textField($model,'mobileNo',array('class'=>'gray_form_1')); ?>
 						</div><!--/memo-sub_right_mgn-->
 
 
@@ -495,12 +431,12 @@
 
 <div class="memo-sub_left_mgn"><!--memo-sub_left_mgn-->
 
-	<p class="txt_rg_index_left">Landline No.</p>
+<?php echo $form->labelEx($model,'landNo',array('class'=>'txt_rg_index_left')); ?>
 	</div><!--/memo-sub_left_mgn-->
 
 			<div class="memo-sub_right_mgn_3"><!--memo-sub_right_mgn-->
 
-<input type="text" name="" id="" class="gray_form_1" /> 
+<?php echo $form->textField($model,'landNo',array('class'=>'gray_form_1')); ?>
 			</div><!--/memo-sub_right_mgn-->
 
 				<p class="space-0px">&nbsp;</p>
@@ -509,12 +445,12 @@
                     
 
 <div class="memo-sub_left_mgn"><!--memo-sub_left_mgn-->
-<p class="txt_rg_index_left">E-mail</p>
+<?php echo $form->labelEx($model,'emailId',array('class'=>'txt_rg_index_left')); ?>
 
 	</div><!--/memo-sub_left_mgn-->
 
 		<div class="memo-sub_right_mgn_3"><!--memo-sub_right_mgn-->
-		<input type="text" name="" id="" class="gray_form_1" />  
+		<?php echo $form->textField($model,'emailId',array('class'=>'index_form_1')); ?> 
 
 			</div><!--/memo-sub_right_mgn-->
 
@@ -526,12 +462,12 @@
 
 <div class="memo-sub_left_mgn"><!--memo-sub_left_mgn-->
 
-<p class="txt_rg_index_left">Login Password</p>
+<?php echo $form->labelEx($model,'password',array('class'=>'txt_rg_index_left')); ?>
 	</div><!--/memo-sub_left_mgn-->
 
 		<div class="memo-sub_right_mgn_3"><!--memo-sub_right_mgn-->
 
-<input type="text" name="" id="" class="gray_form_1" /> 
+<?php echo $form->passwordField($model,'password',array('class'=>'index_form_1')); ?> 
 			</div><!--/memo-sub_right_mgn--><!--/memo-sub_left_mgn--><!--/memo-sub_left_mgn--><!--/memo-sub_right_mgn--><!--/memo-sub_left_mgn-->
             
             
@@ -572,12 +508,13 @@
             
             
 
-  <div style="float:right;">  
-    	<a class="focus-sub" href="#">Reset</a>
-                <a class="focus-sub" href="#">Submit</a> </div>
+  <div class="right">
+ <?php echo CHtml::submitButton('Submit',array('class'=>'btnStyle')); ?>
+			<div class="clearSpace"></div>
+		<?php echo CHtml::resetButton('Reset',array('class' =>'btnStyle')); ?>
+</div>
 
-
-
+<?php $this->endWidget(); ?>
 
 </div>
 

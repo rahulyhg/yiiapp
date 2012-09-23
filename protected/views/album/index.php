@@ -8,11 +8,11 @@
 			</div><!--name-bloc-->
 			
 			<div class="img-bloc"><!--img-bloc-->
-			<a href="#">	<img src="<?php echo Yii::app()->params['mediaUrl']; ?>/images/pop-up/11-album-document-1.jpg" class="gal-img_22" border="0"/></a>
-			<a href="#">	<img src="<?php echo Yii::app()->params['mediaUrl']; ?>/images/pop-up/11-album-document-2.jpg" class="gal-img_22" border="0"/></a>
-			<a href="#">	<img src="<?php echo Yii::app()->params['mediaUrl']; ?>/images/pop-up/11-album-document-3.jpg" class="gal-img_22" border="0"/></a>
-			<a href="#">	<img src="<?php echo Yii::app()->params['mediaUrl']; ?>/images/pop-up/11-album-document-2.jpg" class="gal-img_22" border="0"/></a>
-			<a href="#">	<img src="<?php echo Yii::app()->params['mediaUrl']; ?>/images/pop-up/11-album-document-5.jpg" class="gal-img_22" border="0"/></a>
+			<a href="#">	<img src="<?php echo Yii::app()->params['mediaUrl']; ?>/pop-up/11-album-document-1.jpg" class="gal-img_22" border="0"/></a>
+			<a href="#">	<img src="<?php echo Yii::app()->params['mediaUrl']; ?>/pop-up/11-album-document-2.jpg" class="gal-img_22" border="0"/></a>
+			<a href="#">	<img src="<?php echo Yii::app()->params['mediaUrl']; ?>/pop-up/11-album-document-3.jpg" class="gal-img_22" border="0"/></a>
+			<a href="#">	<img src="<?php echo Yii::app()->params['mediaUrl']; ?>/pop-up/11-album-document-2.jpg" class="gal-img_22" border="0"/></a>
+			<a href="#">	<img src="<?php echo Yii::app()->params['mediaUrl']; ?>/pop-up/11-album-document-5.jpg" class="gal-img_22" border="0"/></a>
 			</div><!--img-bloc-->
 			
 		  <div id="big-wrapper"><!--big-wrapper-->
@@ -32,7 +32,7 @@
 			<div class="star-img"><!--star-img-->
 		      <a href="#" class="star-panne-44"/> </a>
               
-			<img src="<?php echo Yii::app()->params['mediaUrl']; ?>/images/pop-up/model.jpg" class="left" />
+			<img src="<?php echo Yii::app()->params['mediaUrl']; ?>/pop-up/model.jpg" class="left" />
 			   
             <a href="#" class="star-pannel-right-55"/></a>
             
@@ -51,5 +51,5 @@
 
             </div><!--big-wrapper-->
         	
-            
+            </div>
           </div>

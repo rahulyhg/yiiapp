@@ -22,7 +22,7 @@ class UserForm extends CFormModel
 	public $landNo;
 	public $emailId;
 	public $password;
-	
+	public $coupon;
 	
 	
 	/**
@@ -66,8 +66,8 @@ class UserForm extends CFormModel
 			'mobileNo' => 'Mobile No',
 			'landNo' => 'Landline No',
 			'emailId' => 'E-mail',
-			'password' => 'password',
-		
+			'password' => 'Password',
+			'coupon' => 'Coupon code',
 		);
 	}
 

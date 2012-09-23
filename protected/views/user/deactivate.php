@@ -18,7 +18,7 @@
          
     <div id="content-wrapper"><!--content-wrapper-sub-->
         	 <div id="wrapper-head-sub"> <!--wrapper-head-sub-->
-            <br /><a href="home-viewed-by-member.html"><img src="<?php echo Yii::app()->params['mediaUrl']; ?>/images/logo.jpg" class="middle-logo-sub-new" width="317" height="90" border="0" /></a>
+            <br /><a href="home-viewed-by-member.html"><img src="<?php echo Yii::app()->params['mediaUrl']; ?>/logo.jpg" class="middle-logo-sub-new" width="317" height="90" border="0" /></a>
           	</div><!--wrapper-head-sub-->
 			<div class="name-bloc-sub-add"><!--name-bloc-sub-add-->
 				<br />

@@ -18,7 +18,7 @@
     	<!--wrapper-->
    	 <div class="wrapper_medium">
      
-<a href="home-viewed-by-guest.html"><img src="<?php echo Yii::app()->params['mediaUrl']; ?>/images/logo.jpg" class="middle-logo-sub-new"  border="0" /></a><!--head closing-->
+<a href="home-viewed-by-guest.html"><img src="<?php echo Yii::app()->params['mediaUrl']; ?>/logo.jpg" class="middle-logo-sub-new"  border="0" /></a><!--head closing-->
             <!--main-content-->
      
     
@@ -39,7 +39,7 @@
 <div class="line-new10"></div>
 <p class="space-15px">&nbsp;</p>
 <div style="float:left; width:60%;">
-<img src="<?php echo Yii::app()->params['mediaUrl']; ?>/images/subscribe_2nd.jpg" style="width:100%;" />
+<img src="<?php echo Yii::app()->params['mediaUrl']; ?>/subscribe_2nd.jpg" style="width:100%;" />
 </div>
 <p class="space-15px">&nbsp;</p>
 

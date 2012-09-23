@@ -111,7 +111,7 @@ return array(
 		'adminEmail'=>'webmaster@example.com',
 		'resourceUrl' => 'http://scripts.marrydoor.com',
 		'homeUrl' => 'http://marrydoor.com',
-		'mediaUrl' => 'http://scripts.marrydoor.com/images',
+		'mediaUrl' => 'http://media.marrydoor.com',
 		'ftpPath' => 'D:\ftp\marrydoor',
 	),
 );

@@ -155,10 +155,9 @@
   <?php 
   $heightArray = Utilities::getHeights();
   $index = 0;
-  $twohighLight = array_slice($highLight, 0, 2);
-  foreach ($twohighLight as $value) { ?>
+  foreach ($highLight as $value) { ?>
   
-  	<div class="<?php if($index % 2 == 0) { echo 'search_div_lft';} else{ echo 'search_div_right';}?>" ><!--search_div_lft-->
+  	<div <?php if($index > 1) echo 'id="high"';?> class="<?php if($index % 2 == 0) { echo 'search_div_lft';} else{ echo 'search_div_right';}?>" ><!--search_div_lft-->
 						<p class="space-25px">&nbsp;</p>
                         <a href="album.html"><img src="<?php echo Yii::app()->params['mediaUrl']; ?>/photo_5.jpg" border="0" class="search_div_img" /></a>
         				<p class="graytext">Name </p>
@@ -222,11 +221,11 @@
                         <p class="clear"></p>
                         <p class="line"></p>
                           <?php if(sizeof($highLight) > 2 ) {?>
-                        <p class="right"><span class="text_blue-right"><strong><a href="/search/highlight">View More Highligted Profiles</a></strong></span></p><p class="clear"></p>
+                        <div class="right"><span class="text_blue-right"><strong><a href="#">View More Highligted Profiles</a></strong></span></div><p class="clear"></p>
                        <?php }?> 
                         <?php if(sizeof($normal) > 0 ) {?>
                         <p class="text_pink-16">Latest Matches For You</p><p class="space-15px">&nbsp;</p>
-                    		<?php if(isset($totalPage) && intval($totalPage) > 0) { ?>
+                    		<?php if(isset($totalPage) && intval($totalPage) > 1) { ?>
 							<div class="view-1">
         <div class="first-new"><span class="fir"><a class="fpnl" href="#">First </a></span></div>
 
@@ -315,7 +314,7 @@
 
 						</div>
                         
-          <?php if(isset($totalPage) && intval($totalPage) > 0) { ?>
+          <?php if(isset($totalPage) && intval($totalPage) > 1) { ?>
                         <div class="view-1">
           <div class="first-new"><span class="fir"><a class="fpnl" href="#">First </a></span></div>
 
@@ -344,10 +343,27 @@
 
    $(document).ready(function() {
 
+	$('#high').hide();   
+
+	$('.right').click(function(){
+		
+		if($('div.right a').text() == 'Hide')
+		{
+			$('div.right a').text("View More Highligted Profiles");
+			$('#high').hide();
+		}
+		else{
+		$('div.right a').text("Hide");
+		$('#high').show();
+		}
+		})
+	
 	$('.exp-sub').click(function(){
 		var userId = $(this).attr('id');
-		setInterest(userId);
-
+		if(setInterest(userId))
+		{
+		$(this).hide();
+		}
 
 		});	
 
@@ -450,13 +466,13 @@
         data: {"userId":userId},     
         cache: false,
         success: function (response) {  
-         	alert(response);
             //hide the progress bar
-            $('#userId').hide();   
-             
-            //add the content retrieved from ajax and put it in the #content div
+           return true; 
                    
-        }       
+        },       
+        error: function (){
+            return false;
+        }
     });
 }
 
