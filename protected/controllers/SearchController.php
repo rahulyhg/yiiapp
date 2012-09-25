@@ -551,11 +551,13 @@ class SearchController extends Controller
 				if(isset($loggedUser)){
 				if(isset($loggedUser->profileUser)){
 					$arrayList = explode(",",$loggedUser->profileUser->visitedId);
-					$arrayList[] = $user->userId;
+					if(!in_array($user->userId,$arrayList))
+					{
+					$arrayList[] = $user->userId; 	
 					$visitedId = implode(",", $arrayList);
 					$loggedUser->profileUser->visitedId = $visitedId ;
-					if(!in_array($visitedId,$arrayList))  
 					$loggedUser->profileUser->save();
+					}
 				}
 				else {
 					$profileView = new ProfileViews();

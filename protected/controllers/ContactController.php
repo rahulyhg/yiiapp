@@ -25,11 +25,13 @@ class ContactController extends Controller
 				if(isset($loggedUser)){
 				if(isset($loggedUser->addressBook)){
 					$arrayList = explode(",",$loggedUser->addressBook->visitedId);
+					
+					if(!in_array($user->userId,$arrayList)){
 					$arrayList[] = $user->userId;
 					$visitedId = implode(",", $arrayList);
 					$loggedUser->addressBook->visitedId = $visitedId ;
-					if(!in_array($visitedId,$arrayList))  
 					$loggedUser->addressBook->save();
+					}
 				}
 				else {
 					$addressbook = new Addressbook();

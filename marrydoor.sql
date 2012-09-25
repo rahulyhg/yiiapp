@@ -96,7 +96,7 @@ create table messages(messageId BIGINT UNIQUE NOT NULL AUTO_INCREMENT, senderId 
 
 -- --table for shortlist----
 
-create table shortlist(shortlistId BIGINT UNIQUE NOT NULL AUTO_INCREMENT, userID BIGINT NOT NULL, status TINYINT NOT NULL DEFAULT 0, profileID BIGINT NOT NULL, PRIMARY KEY(shortlistId),FOREIGN KEY (profileID) REFERENCES users(userId))ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;
+create table shortlist(shortlistId BIGINT UNIQUE NOT NULL AUTO_INCREMENT, userID BIGINT NOT NULL, profileID text NOT NULL, PRIMARY KEY(shortlistId),FOREIGN KEY (userID) REFERENCES users(userId))ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;
 
 -- --table for profileViews---
 

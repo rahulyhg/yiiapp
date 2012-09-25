@@ -212,21 +212,21 @@
 						 <p class="txt_normal-2"><INPUT type="checkbox" name="userId" class="case" value="<?php echo $value->userId?>">&nbsp;&nbsp;Select</p><p class="space-10px">&nbsp;</p>
                          <a href="album.html"><img src="<?php echo Yii::app()->params['mediaUrl']; ?>/photo_5.jpg" border="0" class="search_div_img" /></a>
           
-                        <p class="gray-rtsm-link"> <a href="<?php echo 'byid?id='.$value->marryId ?>"><?php echo $value->name; echo '( '.$value->marryId.' )' ;?></a></p>
+                        <p class="gray-rtsm-link"> <a href="<?php echo '/search/byid?id='.$value->marryId ?>"><?php echo $value->name; echo '( '.$value->marryId.' )' ;?></a></p>
                       
-                        <p class="gray-rtsm">  <?php echo $value->religion;?> , <?php echo $value->caste;?> &nbsp;</p>
+                        <p class="gray-rtsm">  <?php if(isset($value->userpersonaldetails->religion))echo $value->userpersonaldetails->religion->name ;?> , <?php if(isset($value->userpersonaldetails->caste))echo $value->userpersonaldetails->caste->name ;?> &nbsp;</p>
                       
-                        <p class="gray-rtsm"> <?php echo $value->age ?>Years &nbsp;</p>
+                        <p class="gray-rtsm"> <?php echo Utilities::getAgeFromDateofBirth($value->dob); ?>Years &nbsp;</p>
                        
-                        <p class="gray-rtsm"> <?php if(isset($value->heightId)) echo $heightArray[$value->heightId]; ?> &nbsp;</p>
+                        <p class="gray-rtsm"> <?php if(isset($value->physicaldetails->heightId))echo $heightArray[$value->physicaldetails->heightId]; ?> &nbsp;</p>
                         
-                        <p class="gray-rtsm">  <?php echo $value->place.', '.$value->state.', '.$value->country; ?> &nbsp;</p>
+                        <p class="gray-rtsm"> <?php if(isset($value->userpersonaldetails->place))echo $value->userpersonaldetails->place->name ?>, <?php if(isset($value->userpersonaldetails->state))echo $value->userpersonaldetails->state->name ?>, <?php if(isset($value->userpersonaldetails->country))echo $value->userpersonaldetails->country->name?> &nbsp;</p>
                        
-                        <p class="gray-rtsm"> <?php echo $value->educationName?> &nbsp;</p>
+                        <p class="gray-rtsm"> <?php if(isset($value->educations->education))echo $value->educations->education->name?> &nbsp;</p>
                        
-                        <p class="gray-rtsm"> <?php echo $value->occupationName?> &nbsp;</p>
+                        <p class="gray-rtsm"> <?php if(isset($value->educations->occupation))echo $value->educations->occupation->name ?> &nbsp;</p>
 						
-						  <p class="gray-rtsm"> <span class="blue-text-01"><a href="<?php echo 'byid?id='.$value->marryId ?>">View Full Profile</a></span></p>
+						  <p class="gray-rtsm"> <span class="blue-text-01"><a href="<?php echo '/search/byid?id='.$value->marryId ?>">View Full Profile</a></span></p>
                        
                       <div class="clear"></div>
                       
@@ -284,13 +284,13 @@
                
                
                <div class="view-1">
-       <div class="first-new"><a class="fpnl" href="#">First</a></div>
+       	<div class="first-new"><a class="fpnl" href="#">First</a></div>
 
         <div class="first-new"><a class="fpnl" href="#">Previous</a></div>
               
-		 <div class="first-new"><a class="fpnl" href="#">Next</a></div>
+		<div class="first-new"><a class="fpnl" href="#">Next</a></div>
                         
-                <div class="first-new"><a class="fpnl" href="#">Last</a></div>
+        <div class="first-new"><a class="fpnl" href="#">Last</a></div>
                              
                        
                         

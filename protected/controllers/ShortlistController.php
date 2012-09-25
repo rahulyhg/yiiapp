@@ -15,16 +15,11 @@ class ShortlistController extends Controller
 	
 	public function actionIndex()
 	{
-		$usersList = Users::model()->findByPk(1);
+		$usersList = Yii::app()->session->get('user');
 		$userShort = $usersList->shortlist;
-		if(sizeof($userShort) > 0){
-		$userId = array();
-		foreach ($userShort as $value) {
-			$userId[] = $value->profileID;
-		}
-		$userIds = implode(",", $userId);
-		$condition = "userId in ($userIds)";
-		$users = ViewUsers::model()->findAll(array('condition'=>$condition,'order'=> 'createdOn DESC' ));
+		if(isset($userShort)){
+		$condition = "userId in ($userShort->profileID)";
+		$users = Users::model()->findAll(array('condition'=>$condition,'order'=> 'createdOn DESC' ));
 		$this->render('shortlist',array('users'=>$users));
 		}
 		else 
