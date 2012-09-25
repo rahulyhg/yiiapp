@@ -294,3 +294,18 @@ create table payment(paymentId BIGINT NOT NULL, userID bigint not null, couponco
 -- --table for addressbook ---
 create table addressbook(addressbookId BIGINT UNIQUE NOT NULL AUTO_INCREMENT, userID BIGINT NOT NULL, visitedId text NOT NULL, PRIMARY KEY(addressbookId),FOREIGN KEY (userID) REFERENCES users(userId))ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;
 
+
+RENAME TABLE album TO albumrequest;
+
+-- table album --
+
+CREATE TABLE IF NOT EXISTS album (
+  albumId bigint(20) NOT NULL AUTO_INCREMENT,
+  userId bigint(20) NOT NULL,
+  imageName varchar(100) NOT NULL,
+  description varchar(200) NULL,
+  active tinyint(4) NOT NULL DEFAULT '0',
+  PRIMARY KEY (albumId),
+  FOREIGN KEY (userId) REFERENCES users(userId),
+  UNIQUE KEY albumId (albumId)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=0

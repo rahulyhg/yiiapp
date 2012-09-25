@@ -99,8 +99,8 @@ class Users extends CActiveRecord
 			'messageReceiver' => array(self::HAS_MANY, 'Messages', 'receiverId'),
 			'interestSender' => array(self::HAS_MANY, 'Interests', 'senderId'),
 			'interestReceiver' => array(self::HAS_MANY, 'Interests', 'receiverId'),
-			'albumSender' => array(self::HAS_MANY, 'Album', 'senderId'),
-			'albumReceiver' => array(self::HAS_MANY, 'Album', 'receiverId'),
+			'albumSender' => array(self::HAS_MANY, 'Albumrequest', 'senderId'),
+			'albumReceiver' => array(self::HAS_MANY, 'Albumrequest', 'receiverId'),
 			'familyAlbumSender' => array(self::HAS_MANY, 'FamilyAlbum', 'senderId'),
 			'familyAlbumReceiver' => array(self::HAS_MANY, 'FamilyAlbum', 'receiverId'),
 			'documentSender' => array(self::HAS_MANY, 'DocumentRequest', 'senderId'),
@@ -114,6 +114,7 @@ class Users extends CActiveRecord
 			'payment' => array(self::HAS_MANY, 'Payment', 'userID'),
 			'bookmark' => array(self::HAS_ONE, 'Bookmark', 'userID'),
 			'addressBook' => array(self::HAS_ONE, 'Addressbook', 'userID'),
+			'album' => array(self::HAS_MANY, 'Album', 'userId'),
 		);
 	}
 

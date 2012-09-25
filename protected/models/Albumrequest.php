@@ -1,24 +1,25 @@
 <?php
 
 /**
- * This is the model class for table "album".
+ * This is the model class for table "albumrequest".
  *
- * The followings are the available columns in table 'album':
+ * The followings are the available columns in table 'albumrequest':
  * @property string $albumId
- * @property string $userId
- * @property string $imageName
- * @property string $description
- * @property integer $active
+ * @property string $senderId
+ * @property string $receiverId
+ * @property integer $status
+ * @property string $sendDate
  *
  * The followings are the available model relations:
- * @property Users $user
+ * @property Users $sender
+ * @property Users $receiver
  */
-class Album extends CActiveRecord
+class Albumrequest extends CActiveRecord
 {
 	/**
 	 * Returns the static model of the specified AR class.
 	 * @param string $className active record class name.
-	 * @return Album the static model class
+	 * @return Albumrequest the static model class
 	 */
 	public static function model($className=__CLASS__)
 	{
@@ -30,7 +31,7 @@ class Album extends CActiveRecord
 	 */
 	public function tableName()
 	{
-		return 'album';
+		return 'albumrequest';
 	}
 
 	/**
@@ -41,13 +42,12 @@ class Album extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('active', 'numerical', 'integerOnly'=>true),
-			array('userId', 'length', 'max'=>20),
-			array('imageName', 'length', 'max'=>100),
-			array('description', 'length', 'max'=>200),
+			array('status', 'numerical', 'integerOnly'=>true),
+			array('senderId, receiverId', 'length', 'max'=>20),
+			array('sendDate', 'safe'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('albumId, userId, imageName, description, active', 'safe', 'on'=>'search'),
+			array('albumId, senderId, receiverId, status, sendDate', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -59,7 +59,8 @@ class Album extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'user' => array(self::BELONGS_TO, 'Users', 'userId'),
+			'sender' => array(self::BELONGS_TO, 'Users', 'senderId'),
+			'receiver' => array(self::BELONGS_TO, 'Users', 'receiverId'),
 		);
 	}
 
@@ -70,10 +71,10 @@ class Album extends CActiveRecord
 	{
 		return array(
 			'albumId' => 'Album',
-			'userId' => 'User',
-			'imageName' => 'Image Name',
-			'description' => 'Description',
-			'active' => 'Active',
+			'senderId' => 'Sender',
+			'receiverId' => 'Receiver',
+			'status' => 'Status',
+			'sendDate' => 'Send Date',
 		);
 	}
 
@@ -89,10 +90,10 @@ class Album extends CActiveRecord
 		$criteria=new CDbCriteria;
 
 		$criteria->compare('albumId',$this->albumId,true);
-		$criteria->compare('userId',$this->userId,true);
-		$criteria->compare('imageName',$this->imageName,true);
-		$criteria->compare('description',$this->description,true);
-		$criteria->compare('active',$this->active);
+		$criteria->compare('senderId',$this->senderId,true);
+		$criteria->compare('receiverId',$this->receiverId,true);
+		$criteria->compare('status',$this->status);
+		$criteria->compare('sendDate',$this->sendDate,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
