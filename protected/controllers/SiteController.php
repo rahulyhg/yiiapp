@@ -105,9 +105,8 @@ class SiteController extends Controller
 			$user = Yii::app()->session->get('user');
 				$userloggeddetails = new Userloggeddetails();
 				$userloggeddetails->userId = $user->userId;
-				$userloggeddetails->loggedIn = date('Y-m-d H:i:s');
+				$userloggeddetails->loggedIn = new CDbExpression('NOW()');
 				$userloggeddetails->save();
-				$this->redirect("//user/mypage");
 			}	
 		}
 		// display the login form

@@ -4,23 +4,27 @@ class UserController extends Controller
 {
 	 public function beforeAction()
         {
+        	
+        		if($action->id == 'register')
+        		return true;
                 $user = Yii::app()->session->get('user');
                 if(!isset($user)) {
                         $this->redirect(Yii::app()->user->loginUrl);
                         return false;
                 }       
-                return true;
+                else{
+                	if(isset($user->userloggeddetails))
+                		return false;
+                	else
+                	return true;	
+                }
         }   
 	
 	public function actionRegister()
 	{
 		$user = new Users();
-
-		if(Yii::app()->getRequest()->getIsAjaxRequest()) {
-			echo CActiveForm::validate( array( $model));
-			Yii::app()->end();
-		}
 		$userPersonal = new Userpersonaldetails();
+		$view = 'success';
 		if(isset($_POST['UserForm']))
 		{
 			$transaction = Yii::app()->db->beginTransaction();
@@ -54,9 +58,7 @@ class UserController extends Controller
 				$userPersonal->save();
 					
 				$transaction->commit();
-				Yii::app()->session->add('username',$user->name);
-				Yii::app()->session->add('user',$user);
-					
+				
 			}
 			catch (Exception $e)
 			{
@@ -64,6 +66,18 @@ class UserController extends Controller
 				Yii::app()->user->setFlash('error', "{$e->getMessage()}");
 				$this->refresh();
 			}
+				$form = new LoginForm();
+				$form->username = $user->name;
+				$form->password = $user->password;
+				
+				if($form->login())
+				{
+					Yii::log("Create the user succesfully with username {$user->name} and marry door ID {$user->marryId}");	
+				}
+				else
+				{
+					 $this->redirect(array('/site'));
+				}
 				
 				
 		}

@@ -37,6 +37,7 @@ class UserIdentity extends CUserIdentity
 			$this->setState('id',$this->_id);
 			Yii::app()->session->add('username',$record['name']);
 			Yii::app()->session->add('user',$record);
+			$this->errorCode=self::ERROR_NONE;
 			return true;
 			}
 			}
