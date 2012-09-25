@@ -20,6 +20,21 @@ class SiteController extends Controller
 			),
 		);
 	}
+	
+	
+	public function beforeAction(CAction $action)
+        {
+        		if($action->id == 'logout')
+        		return true;
+                $user = Yii::app()->session->get('user');
+                if(isset($user)) {
+                        $this->redirect(array('/mypage'));
+                        return true;
+                }       
+                return true;
+        }  
+	
+	
 
 	/**
 	 * This is the default 'index' action that is invoked
@@ -107,6 +122,6 @@ class SiteController extends Controller
 		Yii::app()->user->logout();
 		Yii::app()->session->clear();
 		Yii::app()->session->destroy();
-		$this->forward('index');
+		$this->redirect(Yii::app()->user->loginUrl);
 	}
 }

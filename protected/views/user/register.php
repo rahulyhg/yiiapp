@@ -19,7 +19,6 @@
 <?php $form=$this->beginWidget('CActiveForm', array(
 	'id'=>'users-register-form',
 	'action' => Yii::app()->createUrl('user/register'),
- 	'focus'=>array($model,'name'),
 	'enableAjaxValidation'=>false,
 )); ?>
 
@@ -30,7 +29,7 @@
 		<?php echo $form->labelEx($model,'name',array('class'=>'txt_rg_index')); ?>
 	</div>	
 	<div class="memo-sub_right"><!--memo-sub_right-->	
-		<?php echo $form->textField($model,'name',array('class' =>'index_form_1')); ?>
+		<?php echo $form->textField($model,'name',array('class' =>'validate[required] index_form_1')); ?>
 		<?php echo $form->error($model,'name'); ?>
 	</div>	
 	<p class="space-0px">&nbsp;</p>	
@@ -38,16 +37,16 @@
 		<?php echo $form->labelEx($model,'date',array('class'=>'txt_rg_index')); ?>
 	</div>	
 	<div class="memo-sub_right">
-		<?php echo CHtml::dropDownList('date',Utilities::currentDay(),Utilities::getRegDays(),array('class'=>'select_45_pink')); ?>
-		<?php echo CHtml::dropDownList('month',Utilities::currentMonth(),Utilities::getRegMonths(),array('class'=>'index_month_memo_medium')); ?>		    
-    	<?php echo CHtml::dropDownList('year',Utilities::currentYear(),  Utilities::getRegYears(),array('class'=>'index_year_memo_1')); ?>
+		<?php echo CHtml::dropDownList('date',null,Utilities::getRegDays(),array('class'=>'validate[required] select_45_pink')); ?>
+		<?php echo CHtml::dropDownList('month',null,Utilities::getRegMonths(),array('class'=>'validate[required] index_month_memo_medium')); ?>		    
+    	<?php echo CHtml::dropDownList('year',null,  Utilities::getRegYears(),array('class'=>'validate[required] index_year_memo_1')); ?>
 		<?php echo $form->error($model,'date'); ?>
 	</div>
 	<div class="memo-sub_left">
 		<?php echo $form->labelEx($model,'gender',array('class'=>'txt_rg_index')); ?>
 	</div>
 	<div class="memo-sub_right"><!--memo-sub_right-->	
-		<?php echo CHtml::dropDownList('gender','Female',array('F'=>'Female','M'=>'Male'),array('class'=>'index_select_drop')); ?>
+		<?php echo CHtml::dropDownList('gender','Female',array('' =>'Gender','F'=>'Female','M'=>'Male'),array('class'=>'validate[required] index_select_drop')); ?>
 		<?php echo $form->error($model,'gender'); ?>
 	</div>
 	
@@ -57,7 +56,7 @@
 	<div class="memo-sub_right"><!--memo-sub_right-->
 	<?php $records = Religion::model()->findAll("active = 1");
 		$list = CHtml::listData($records, 'religionId', 'name');
-		echo CHtml::dropDownList('religion',null,$list,array('empty' => 'Religion','class'=>'index_select_drop')); ?>
+		echo CHtml::dropDownList('religion',null,$list,array('empty' => 'Religion','class'=>'validate[required] index_select_drop')); ?>
 		<?php echo $form->error($model,'religion'); ?>
 	</div>	
 
@@ -67,7 +66,7 @@
 	<div class="memo-sub_right"><!--memo-sub_right-->
 		<?php $records = Languages::model()->findAll("active = 1");
 		$list = CHtml::listData($records, 'languageId', 'name');
-		echo CHtml::dropDownList('motherTounge',null,$list,array('empty' => 'Language','class'=>'index_select_drop')); ?>
+		echo CHtml::dropDownList('motherTounge',null,$list,array('empty' => 'Language','class'=>'validate[required] index_select_drop')); ?>
 		<?php echo $form->error($model,'motherTounge'); ?>
 	</div>
 	<div class="memo-sub_left">
@@ -76,7 +75,7 @@
 	<div class="memo-sub_right"><!--memo-sub_right-->
 	<?php $records = Caste::model()->findAll("active = 1");
 		$list = CHtml::listData($records, 'casteId', 'name');
-		echo CHtml::dropDownList('caste',null,$list,array('empty' => 'Caste','class'=>'index_select_drop')); ?>
+		echo CHtml::dropDownList('caste',null,$list,array('empty' => 'Caste','class'=>'validate[required] index_select_drop')); ?>
 		<?php echo $form->error($model,'caste'); ?>
 	</div>	
 	
@@ -86,7 +85,7 @@
 	<div class="memo-sub_right"><!--memo-sub_right-->
 	<?php $records = Country::model()->findAll("active = 1");
 		$list = CHtml::listData($records, 'countryId', 'name');
-		echo CHtml::dropDownList('country',null,$list,array('empty' => 'Country','class'=>'index_select_drop')); ?>
+		echo CHtml::dropDownList('country',null,$list,array('empty' => 'Country','class'=>'validate[required] index_select_drop')); ?>
 		<?php echo $form->error($model,'country'); ?>
 	</div>
 	
@@ -96,15 +95,15 @@
 	<div class="memo-sub_right"><!--memo-sub_right-->
 		<?php $records = States::model()->findAll("active = 1");
 		$list = CHtml::listData($records, 'stateId', 'name');
-		echo CHtml::dropDownList('state',null,$list,array('empty' => 'State','class'=>'index_select_drop')); ?>
+		echo CHtml::dropDownList('state',null,$list,array('empty' => 'State','class'=>'validate[required] index_select_drop')); ?>
 		<?php echo $form->error($model,'state'); ?>
 	</div>
 	
 	<div class="memo-sub_left">
-		<?php echo $form->labelEx($model,'mobileNo',array('class'=>'txt_rg_index')); ?>
+		<?php echo $form->labelEx($model,'mobileNo',array('class'=>'txt_rg_index required')); ?>
 	</div>
 	<div class="memo-sub_right"><!--memo-sub_right-->
-		<?php echo $form->textField($model,'mobileNo',array('class'=>'index_form_1')); ?>
+		<?php echo $form->textField($model,'mobileNo',array('class'=>'validate[required,funcCall[validatePhone]] index_form_1')); ?>
 		<?php echo $form->error($model,'mobileNo'); ?>
 	</div>
 	
@@ -113,7 +112,7 @@
 		<?php echo $form->labelEx($model,'landNo',array('class'=>'txt_rg_index')); ?>
 	</div>
 	<div class="memo-sub_right">
-		<?php echo $form->textField($model,'landNo',array('class'=>'index_form_1')); ?>
+		<?php echo $form->textField($model,'landNo',array('class'=>'validate[required,funcCall[validatePhone]] index_form_1 required')); ?>
 		<?php echo $form->error($model,'landNo'); ?>
 	</div>
 	
@@ -121,7 +120,7 @@
 		<?php echo $form->labelEx($model,'emailId',array('class'=>'txt_rg_index')); ?>
 	</div>	
 	<div class="memo-sub_right">
-		<?php echo $form->textField($model,'emailId',array('class'=>'index_form_1')); ?>
+		<?php echo $form->textField($model,'emailId',array('class'=>'validate[required, funcCall[checkEmailValidation]] index_form_1')); ?>
 		<?php echo $form->error($model,'emailId'); ?>
 	</div>
 
@@ -129,7 +128,7 @@
 		<?php echo $form->labelEx($model,'password',array('class'=>'txt_rg_index')); ?>
 	</div>
 	<div class="memo-sub_right">
-		<?php echo $form->passwordField($model,'password',array('class'=>'index_form_1')); ?>
+		<?php echo $form->passwordField($model,'password',array('class'=>'validate[required] index_form_1')); ?>
 		<?php echo $form->error($model,'password'); ?>
 	</div>
 
@@ -330,13 +329,12 @@
 		'id'=>'keywordSearch',
 		'method' => 'GET',
 	'action' => Yii::app()->createUrl('search/byid'),
-	'enableAjaxValidation'=>false,
 )); ?>
 
-<input type="text" name="id" value="" placeholder="Search By ID " class="text_normal_small" />
+<input type="text" name="id" value=""  placeholder="Search By ID " class="validate[required] text_normal_small" />
 
 
-<a  href="javascript:keywordSearch.submit();"><img width="49" border="0" height="22" class="search_add_sub" id="Image21" name="Image21" src="<?php echo Yii::app()->params['mediaUrl']; ?>/search_btn_ash_sm.jpg"></a>
+<?php echo CHtml::submitButton('Search',array('class'=>'btnStyle')); ?>
 
 <?php $this->endWidget(); ?>
 
@@ -352,9 +350,11 @@
 
 
 <script type="text/javascript">
-jQuery(document).ready(function(){
-    	// binds form submission and fields to the validation engine
-    	jQuery(".users-register-form").validationEngine();
-    	jQuery(".users-search-searchForm").validationEngine();
-	});
+$(document).ready(function(){
+    $("#users-register-form").validationEngine('attach');
+    $("#users-search-searchForm").validationEngine('attach');
+    $("#keywordSearch").validationEngine('attach');
+  });
+
+
 </script>	

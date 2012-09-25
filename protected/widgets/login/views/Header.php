@@ -9,13 +9,13 @@
 <div class="left">
 
 <p class="txt_rg">E-Mail / User ID</p>
-	<input type="text" class="user-form"  tabindex="1"  id="user" name="LoginForm[username]"/>
+	<input type="text" class="validate[required] user-form"  tabindex="1"  id="user" name="LoginForm[username]"/>
 <p class="txt_rg"><span class="text_blue"><a href="/guest/user">New User?</a></span></p>
 </div>
 
 <div class="left">
 <p class="txt_rg">Password</p>
-	<input type="password" class="user-form" tabindex="2" id="password" name="LoginForm[password]" />
+	<input type="password" class="validate[required] user-form" tabindex="2" id="password" name="LoginForm[password]" />
 <p class="txt_rg"><span class="text_blue"><a href="/guest/forget">Forget Passord?</a></span></p>
 
 </div>
@@ -28,3 +28,11 @@
 
 <!-- logged user -->
 <!--<div class="txt_bld" id="mypage-search-2">Hi <span class="logout"><a href="#">BIJU! M123456</a></span>  |   <span class="back"><a href="my-page.html">Back to my page</a></span>  |     <span class="logout"><a href="#">Logout</a></span></div>-->
+
+<script type="text/javascript">
+$(document).ready(function(){
+    $("#LoginForm").validationEngine('attach');
+  });
+
+
+</script>	

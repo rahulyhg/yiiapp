@@ -45,7 +45,7 @@ class Utilities
 
   $yearNow = self::currentYear();
   $yearFrom = $yearNow - 59;
-  $yearTo = $yearNow;
+  $yearTo = $yearNow - 18;
   $arrYears = array('0000'=>'Year');
 
   foreach (range($yearFrom, $yearTo) as $number) {
