@@ -70,5 +70,19 @@ class MypageController extends Controller
 		$this->render('myalbum');
 	}
 	
+	public function actionAddressbook()
+	{
+		$loggedUser = Yii::app()->session->get('user');
+		if(isset($loggedUser->addressBook)){
+		$userIds = $loggedUser->addressBook->visitedId;
+		$condition = "userId in ({$userIds}) and userId != {$loggedUser->userId} ";
+		$users = Users::model()->findAll(array('condition'=>$condition,'order'=> 'createdOn DESC' ));			
+		$this->render('addressBook',array('users'=>$users));			
+		}
+		
+		else
+		$this->render('addressBook');
+	}
+	
 	
 }

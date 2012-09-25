@@ -290,3 +290,7 @@ create table bookmark(bookMarkId BIGINT UNIQUE NOT NULL AUTO_INCREMENT, userID B
 
 -- table for payment --
 create table payment(paymentId BIGINT NOT NULL, userID bigint not null, couponcode varchar(15) NOT NULL, startdate datetime NOT NULL, actionItem enum('highlight','membership'), PRIMARY KEY(paymentId), FOREIGN KEY (userId) REFERENCES users(userId))ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;
+
+-- --table for addressbook ---
+create table addressbook(addressbookId BIGINT UNIQUE NOT NULL AUTO_INCREMENT, userID BIGINT NOT NULL, visitedId text NOT NULL, PRIMARY KEY(addressbookId),FOREIGN KEY (userID) REFERENCES users(userId))ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;
+

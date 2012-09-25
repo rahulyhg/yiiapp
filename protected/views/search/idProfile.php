@@ -86,12 +86,24 @@ Activity status	<br />
 <?php  $user = Yii::app()->session->get('user');
 if(isset($user)){
 ?>
-<a class="exp-sub-less" href="#">Express Interest</a>
+<?php 
 
-  <a class="exp-sub-add-less" href="#">Bookmark</a>
-
-     <a class="exp-sub-send-less" href="#">Send Message</a>
+ $isInterest = $user->interestSender(array('condition'=>"receiverId = {$model->userId}"));
+ $isBookMarked = $user->bookmark(array('condition'=>"FIND_IN_SET('{$model->userId}',profileIDs)")); 
+ $isMessage = $user->messageSender(array('condition'=>"receiverId = {$model->userId}"));
+ if(!isset($isInterest) || empty($isInterest)) {
+ ?>
+<a href="#" id="<?php echo $model->userId ?>" class="exp-sub-less">Express Interest</a>
 <?php }?>
+<?php if(!isset($isBookMarked) || empty($isBookMarked)) {?> 
+<a href="#" id="<?php echo $model->userId ?>" class="exp-sub-add-less">Bookmark</a>
+<?php }?>
+<?php if(!isset($isMessage) || empty($isMessage)) {?>
+<a href="#" id="<?php echo $model->userId ?>" class="exp-sub-send-less">Send Message</a> 
+   <?php }
+}
+   ?> 
+
 </div>
 </div>
 
@@ -523,15 +535,20 @@ Residing City<br />
 </div>
 
 <div class="right_mgntp-sub">
-<?php  $user = Yii::app()->session->get('user');
+<?php 
 if(isset($user)){
-?>
-<a class="exp-sub-less" href="#">Express Interest</a>
-
-  <a class="exp-sub-add-less" href="#">Bookmark</a>
-
-     <a class="exp-sub-send-less" href="#">Send Message</a>
+ if(!isset($isInterest) || empty($isInterest)) {
+ ?>
+<a href="#" id="<?php echo $model->userId ?>" class="exp-sub-less">Express Interest</a>
 <?php }?>
+<?php if(!isset($isBookMarked) || empty($isBookMarked)) {?> 
+<a href="#" id="<?php echo $model->userId ?>" class="exp-sub-add-less">Bookmark</a>
+<?php }?>
+<?php if(!isset($isMessage) || empty($isMessage)) {?>
+<a href="#" id="<?php echo $model->userId ?>" class="exp-sub-send-less">Send Message</a> 
+   <?php } 
+}
+   ?>
 
 </div>
 

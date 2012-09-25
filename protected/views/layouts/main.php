@@ -3,6 +3,7 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<meta name="language" content="en" />
+		<link rel="icon" href="http://media.marrydoor.com/rings.jpg" />
 	<!-- css & js -->
 	<?php $this->widget('application.widgets.Scripts'); ?>	
 	
