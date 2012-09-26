@@ -399,4 +399,14 @@ class Utilities
 		return array('0' =>'communication','1' =>'permanent');
 	}
  
+ 
+ public static function getScriptUrl()
+ {
+ 	if(self::getProtocol()=='https'){
+ 		return Yii::app()->params['sslScriptUrl'];
+ 	}else{
+ 		return Yii::app()->params['scriptUrl'];
+ 	}
+ }
+ 
 }

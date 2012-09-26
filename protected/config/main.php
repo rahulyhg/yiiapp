@@ -110,8 +110,11 @@ return array(
 		// this is used in contact page
 		'adminEmail'=>'webmaster@example.com',
 		'resourceUrl' => 'http://scripts.marrydoor.com',
-		'homeUrl' => 'http://marrydoor.com',
-		'mediaUrl' => 'http://media.marrydoor.com',
-		'ftpPath' => 'D:\ftp\marrydoor',
+		'homeUrl' => 'http://local.marrydoor.com',
+		'mediaUrl' => 'http://scripts.marrydoor.com/images',
+		'sslmediaUrl' => 'https://scripts.marrydoor.com/images',
+		'scriptUrl' => 'http://scripts.marrydoor.com',
+		'sslScriptUrl' => 'https://scripts.marrydoor.com',
+		'ftpPath' => 'E:\project\marrydoor',
 	),
 );

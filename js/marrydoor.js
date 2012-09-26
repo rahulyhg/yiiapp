@@ -3,7 +3,85 @@
 		{
 			$('#'+select1+' option:selected').appendTo('#'+select2);
 			return false;
-		}		
+		}
+		
+		// User defined functions
+		
+		// functions to add more pics and documents
+
+				function addMoreFiles()
+				{
+
+					// get the current element count
+					var count = document.getElementById("photoCount").value;
+					//Create an input type dynamically.
+				    var element = document.createElement("input");
+				     //Assign different attributes to the element.
+				    element.setAttribute("type", "file");
+				    element.setAttribute("value", "");
+				    element.setAttribute("name", "profilePhoto_"+count);
+				    element.setAttribute("id", "profilePhoto_"+count);
+				    element.setAttribute("class", "fileStyle");
+				 
+				    var container = document.getElementById("photoContainer");
+				 
+				    //Append the element in page (in span).
+				    container.appendChild(element);
+				    count = parseInt(count) + 1;
+				    document.getElementById("photoCount").value = count;
+				}
+
+				function addMoreDocuments()
+				{
+
+					// get the current element count
+					var count = document.getElementById("documentCount").value;
+					//Create an input type dynamically.
+				    var element = document.createElement("input");
+				     //Assign different attributes to the element.
+				    element.setAttribute("type", "file");
+				    element.setAttribute("value", "");
+				    element.setAttribute("name", "profileDocument_"+count);
+				    element.setAttribute("id", "profileDocument_"+count);
+				    element.setAttribute("class", "fileStyle");
+				 
+				    var container = document.getElementById("documentContainer");
+				 
+				    //Append the element in page (in span).
+				    container.appendChild(element);
+
+				    // create the select box
+				    
+				    var element = document.createElement("select");
+				     //Assign different attributes to the element.
+				    element.setAttribute("name", "documentType_"+count);
+				    element.setAttribute("id", "documentType_"+count);
+				    element.setAttribute("class", "select_small_140");
+
+				    var option = document.createElement("option");
+				    option.setAttribute("value", "1");
+				    option.innerHTML = 'Passport';
+				    element.appendChild(option);
+				    var option = document.createElement("option");
+				    option.setAttribute("value", "2");
+				    option.innerHTML = 'Voters ID';
+				    element.appendChild(option);
+				    var option = document.createElement("option");
+				    option.setAttribute("value", "3");
+				    option.innerHTML = 'PAN Card';
+				    element.appendChild(option);
+				    container.appendChild(element);
+				    
+				    count = parseInt(count) + 1;
+				    document.getElementById("documentCount").value = count;
+				}
+				
+		// function to change the picture in album page
+
+		function changeAlbumPicture(image){
+			$("#albumImageContainer").attr("src", image);
+		}
+		
 		$(document).ready(function(){
    		//toggle the request dropdown 
    		
@@ -182,3 +260,4 @@
    			
    			});*/
 	})
+		

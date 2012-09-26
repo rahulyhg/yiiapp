@@ -1,3 +1,5 @@
+ <?php $user = Yii::app()->session->get('user');
+ ?>
     	<div id="album_main"><!--content-wrapper-->
 			<!--wrapper-head-->
 			<div class="name-bloc"><!--name-bloc-->
@@ -8,11 +10,16 @@
 			</div><!--name-bloc-->
 			
 			<div class="img-bloc"><!--img-bloc-->
-			<a href="#">	<img src="<?php echo Yii::app()->params['mediaUrl']; ?>/pop-up/11-album-document-1.jpg" class="gal-img_22" border="0"/></a>
-			<a href="#">	<img src="<?php echo Yii::app()->params['mediaUrl']; ?>/pop-up/11-album-document-2.jpg" class="gal-img_22" border="0"/></a>
-			<a href="#">	<img src="<?php echo Yii::app()->params['mediaUrl']; ?>/pop-up/11-album-document-3.jpg" class="gal-img_22" border="0"/></a>
-			<a href="#">	<img src="<?php echo Yii::app()->params['mediaUrl']; ?>/pop-up/11-album-document-2.jpg" class="gal-img_22" border="0"/></a>
-			<a href="#">	<img src="<?php echo Yii::app()->params['mediaUrl']; ?>/pop-up/11-album-document-5.jpg" class="gal-img_22" border="0"/></a>
+			<?php if(isset($photosList) && count($photosList) > 0 ){ 
+				$i = 1;
+				foreach($photosList as $photo){
+				if($i == 1)
+				$defaultImage = Utilities::getProfileImage($user->marryId,$photo->imageName);
+				$i++;
+				?>
+			<img src="<?php echo Utilities::getProfileImage($user->marryId,$photo->imageName); ?>" class="gal-img_22" border="0" onclick="javascript:changeAlbumPicture('<?php echo Utilities::getProfileImage($user->marryId,$photo->imageName); ?>');" style="cursor:pointer;" />
+			<?php }
+				} ?>
 			</div><!--img-bloc-->
 			
 		  <div id="big-wrapper"><!--big-wrapper-->
@@ -32,7 +39,7 @@
 			<div class="star-img"><!--star-img-->
 		      <a href="#" class="star-panne-44"/> </a>
               
-			<img src="<?php echo Yii::app()->params['mediaUrl']; ?>/pop-up/model.jpg" class="left" />
+			<img id="albumImageContainer" src="<?php echo $defaultImage ?>" class="left"  width="352" height="482" />
 			   
             <a href="#" class="star-pannel-right-55"/></a>
             
@@ -51,5 +58,5 @@
 
             </div><!--big-wrapper-->
         	
-            </div>
+            
           </div>

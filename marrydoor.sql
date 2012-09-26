@@ -1,7 +1,5 @@
-DROP DATABASE `marrydoor`; 
 
-CREATE DATABASE `marrydoor` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
-USE `marrydoor`;
+USE `domianfo_marrydoor`;
 
 -- ---------- Table for users --------------- 
 
@@ -235,7 +233,7 @@ create table familyAlbum(familyAlbumId BIGINT UNIQUE NOT NULL AUTO_INCREMENT, se
 create table signs_master(signId BIGINT UNIQUE NOT NULL AUTO_INCREMENT, name VARCHAR(250) NOT NULL, image VARCHAR(250)  DEFAULT "abc.jpg" NOT NULL, active BIGINT NOT NULL DEFAULT 1, PRIMARY KEY(signId))ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
-DROP VIEW IF EXISTS marrydoor.view_users;
+DROP VIEW IF EXISTS view_users;
 
 CREATE VIEW view_users AS SELECT U.*, FLOOR( DATEDIFF( CURRENT_DATE, U.dob) /365 ) as age,UC.mobileNo,UC.landLine,UC.alternativeNo,UC.facebookUrl,UC.skypeId,UC.googleIM,UC.yahooIM,UC.visibility,
 UP.casteId as casteId,C.name as caste,UP.religionId as religionId, R.name as religion,UP.countryId,CO.name as country,UP.stateId,S.name as state,UP.distictId,D.name as district,UP.placeId as placeId, PL.name as place,UP.mobilePhone,UP.landPhone,UP.intercasteable,UP.createdBy,UP.maritalStatus,
@@ -275,11 +273,11 @@ create table familyAlbum(familyAlbumId BIGINT UNIQUE NOT NULL AUTO_INCREMENT, se
 
 -- alter the photos table
 
-ALTER TABLE marrydoor.photos ADD active TINYINT(4) DEFAULT 0 AFTER profileImage;
+ALTER TABLE photos ADD active TINYINT(4) DEFAULT 0 AFTER profileImage;
 
 -- alter the documents table
 
-ALTER TABLE marrydoor.documents ADD active TINYINT(4) DEFAULT 0 AFTER documentType;
+ALTER TABLE documents ADD active TINYINT(4) DEFAULT 0 AFTER documentType;
 
 
 create table search(searchId BIGINT UNIQUE NOT NULL AUTO_INCREMENT, searchText text NOT NULL, searchQquery text NOT NULL, userId BIGINT NOT NULL, PRIMARY KEY(searchId), FOREIGN KEY (userId) REFERENCES users(userId))ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8

@@ -552,11 +552,10 @@ class UserController extends Controller
 
 	public function actionProfilepicture()
 	{
-		$user = Users::model()->findByPk(2);
-  		Yii::app()->session->add('username',$user->name);
-  		Yii::app()->session->add('user',$user);
+		$user = Yii::app()->session->get('user');
   		$photos = new Photos();
   		$documents = new Documents();
+  		
   		//Upload the profile photo
   		$photoCount = isset($_POST['photoCount']) ? $_POST['photoCount']:1; 
   		for($i = 1; $i < $photoCount; $i++){		  
