@@ -102,7 +102,7 @@ class SiteController extends Controller
 			// validate user input and redirect to the previous page if valid
 			if($model->login())
 			{
-			$user = Yii::app()->session->get('user');
+				$user = Yii::app()->session->get('user');
 				$userloggeddetails = new Userloggeddetails();
 				$userloggeddetails->userId = $user->userId;
 				$userloggeddetails->loggedIn = new CDbExpression('NOW()');
@@ -118,6 +118,13 @@ class SiteController extends Controller
 	 */
 	public function actionLogout()
 	{
+		$user = Yii::app()->session->get('user');
+		$userLogged = $user->userloggeddetails(array('order'=>'loggedIn DESC','limit'=>1));
+		if(isset($userLogged))
+		{		
+			$userLogged[0]->loggedOut = new CDbExpression('NOW()');
+			$userLogged[0]->save();
+		}
 		Yii::app()->user->logout();
 		Yii::app()->session->clear();
 		Yii::app()->session->destroy();
