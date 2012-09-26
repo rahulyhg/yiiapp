@@ -1,7 +1,41 @@
+<script type="text/javascript">
+function addMoreFiles()
+{
+
+	// get the current element count
+	var count = document.getElementById("photoCount").value;
+	//Create an input type dynamically.
+    var element = document.createElement("input");
+     //Assign different attributes to the element.
+    element.setAttribute("type", "file");
+    element.setAttribute("value", "");
+    element.setAttribute("name", "profilePhoto_"+count);
+    element.setAttribute("id", "profilePhoto_"+count);
+    element.setAttribute("class", "fileStyle");
+
+    var textElement = document.createElement("input");
+    //Assign different attributes to the element.
+   textElement.setAttribute("type", "text");
+   textElement.setAttribute("value", "");
+   textElement.setAttribute("name", "description_"+count);
+   textElement.setAttribute("id", "description_"+count);
+   textElement.setAttribute("class", "fileStyle");
+ 
+    var container = document.getElementById("photoContainer");
+ 
+    //Append the element in page (in span).
+    container.appendChild(element);
+    container.appendChild(textElement);
+    count = parseInt(count) + 1;
+    document.getElementById("photoCount").value = count;
+}
+
+</script>
 <!--left-content-->
-                <div id="content-left-member-11">   
-
-
+<div id="content-left-member-11">  
+<?php if(isset($message) && $message != "") { ?> 
+<p>Error message</p>
+<?php } ?>
  <p class="text_pink-hd">Add Photos</p>
  
  <div class="clear"></div>
@@ -59,10 +93,10 @@
 
 <div class="list_div_2"><!--list_div_2-->
 
-<form action="<?php echo Yii::app()->params['homeUrl'] ?>/user/profilepicture" method="post" enctype="multipart/form-data">
+<form action="<?php echo Utilities::createAbsoluteUrl('album','add'); ?>" method="post" enctype="multipart/form-data">
 <input type="hidden" name="photoCount" id="photoCount" value="2" />
  <input type="file" name="profilePhoto_1" id="profilePhoto_1"  class="fileStyle"/>
-
+ <p class="txt_bld">Description</p><input type="text" name="description_1" id="description_1"  class="fileStyle"/>
  <br />
  <div id="photoContainer" style="margin-bottom:10px;"></div>
   <div>
@@ -121,148 +155,7 @@
 
 
 
- <p class="text_pink-hd">Add Documents</p>
  
- <div class="clear"></div>
-
-<p class="txt_bld_14"><span class="text_pink">Its make your profile more visibile</span></p><br />
-
-
-
-
-
-<p class="txt_rg">Happy Valentine's Day everyone! To show our love, we are running a sale for you guys Happy Valentine's Day everyone! To show our love, we are running a sale for you guys Happy Valentine's Day everyone! To show our love, we are running a sale for you guys Happy Valentine's Day everyone! To show ou r love, we are running a sale for you guys Happy Valentine's Day everyone! To show our love, we are running a sale for you guys Happy Valentine's Day everyone! To show our love, we are running a sale for you guys</p>
-
-
-
-<div class="space"><br /></div>
-
-<?php if(!empty($documents)):?>
-<!-- list of documents starts -->
-<div class="line"></div>
-<?php foreach($documents as $document):?>
-<div class="image_13"><!--image_12-->
-
-<a href="#">
-<img src="<?php echo Yii::app()->params['mediaUrl']; ?>/photo_2_blank.jpg" class="image" border="0" /></a>
-
- <p class="txt_bld-10"><br />
-<a href="<?php echo Yii::app()->params['homeUrl']?>/user/profilepicture/r/deletedocument/dId/<?php echo $document->documentId?>/uId/<?php echo $user->userId?>" class="txt_link">Delete</a></p>
-
-</div><!--/image_12-->
-<?php endforeach; ?>
-
-<div class="clear"></div>
-
-
-
-<div class="space"><br /></div>
-<div class="line"></div>
-<!-- documents list ends here -->
-<?php endif; ?>
-<p class="txt_rg">You can add one more photo in this album</p>
-
-
-<div class="list_div_1b"><!--list_div_1-->
-<p class="txt_bld">&nbsp;</p>
-</div><!--/list_div_1-->
-
-<div class="list_div_260"><!--list_div_1-->
-<p class="txt_bld-10-new2">Select an image file on your computer</p>
-</div><!--/list_div_1-->
-
-<div class="clear"></div>
-
-<div class="list_div_1"><!--list_div_1-->
-<p class="txt_bld">Upload  Photo</p>
-</div><!--/list_div_2-->
-
-
-
-
-
-<div class="list_div_2"><!--list_div_2-->
-
-<form action="<?php echo Yii::app()->params['homeUrl'] ?>/user/profilepicture" method="post" enctype="multipart/form-data">
-  <input type="hidden" name="documentCount" id="documentCount"  value="2" />
- <input type="file" name="profileDocument_1" id="profileDocument_1" size="19" class="fileStyle" />
-<div style="float:left; width:40%;">
-<div class="list_div_1-doc"><!--list_div_1-->
-<p class="txt_bldn">Type of Document*</p>
-</div><!--/list_div_1-->
-
-<div class="list_div_3b">
-
- <select class="select_small_140" id="documentType_1" name="documentType_1">
- <option value="1">Passport</option>
- <option value="2">Voters ID</option>
- <option value="3">PAN Card</option>
- </select>
-
-
- <div class="space"><p></p></div>
- 
-
- </div><!--/list_div_2-->
- </div>
- 
-<div class="clear"></div>
- <div id="documentContainer" style="margin-bottom:10px;"></div>
-
-              
-   </div>
-<!--/list_div_2-->
-
-
-
-
-
- 
- 
- 
- 
- 
-<div class="clear"></div>
- <div class="div_ww">
- <div class="div_rr" style="width:100%;">
-
-                  <div>
-  <input type="button" name="moredocuments" id="moredocuments" class="btnStyle" value="Add more" onClick="addMoreDocuments();" /></div>
-	<div class="clearSpace"></div>
-  <div>
-  <input type="submit" name="uploaddocuments" id="uploaddocuments" class="btnStyle" value="Upload" /></div>
-  </form>
-                
-</div>  
-</div>
-
-
-
-
-
-
-
-<div class="clear"></div><div class="line"></div>
-<p class="space-15px">&nbsp;</p>
-
-
-
-<div class="div_ww">
-  <div class="list_div_1"><!--list_div_1-->
-<p class="txt_bldn">Who can view above detals</p>
-</div><!--/list_div_1-->
-
-<div class="list_div_300">
-<p class="radio-4">
-          <input type="radio" name="view" value="myself">&nbsp;Subscribers</p>
-                 <p class="radio-4">
-                            <input type="radio" name="view" value="son">&nbsp;By request</p>
-   </div>       
- </div>
-<!--/list_div_2-->
-
-<div class="clear"></div>
-
 <div class="div_rr">
 
                 <a class="focus-sub" href="#">Submit</a> </div>
