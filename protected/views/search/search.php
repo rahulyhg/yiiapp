@@ -381,11 +381,15 @@
 		
 		
 	$('.fir').click(function (){
+		$('.next').show();
+		$('.fir').hide();
+		$('.last').show();
 		currentPage = parseInt($("input[name='currentPage']").val());
 		if(currentPage == 1)
 		{
 			return;
 		}
+		$('.pre').hide();
 		$('.search_div_lft').hide();
 		$('.search_div_right').hide();
 		var example = 10;
@@ -401,6 +405,8 @@
 		});
 
 	$('.pre').click(function (){
+		$('.next').show();
+		$('.last').show();
 		currentPage = parseInt($("input[name='currentPage']").val());
 		if(currentPage == 1)
 		{
@@ -419,6 +425,9 @@
 	});
 
 	$('.next').click(function (){
+		$('.pre').show();
+		$('.fir').show();
+		
 		currentPage = parseInt($("input[name='currentPage']").val());
 		lastPage = parseInt($("input[name='lastPage']").val());
 		if(currentPage == lastPage )
@@ -444,7 +453,10 @@
 	});
 
 	$('.last').click(function (){
-
+		$('.pre').show();
+		$('.next').hide();
+		$('.fir').show();
+		$('.last').hide();
 		currentPage = parseInt($("input[name='currentPage']").val());
 		lastPage = parseInt($("input[name='lastPage']").val());
 		

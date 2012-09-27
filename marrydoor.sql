@@ -58,7 +58,14 @@ create table hobiesAndInterests(hobiesId BIGINT UNIQUE NOT NULL AUTO_INCREMENT, 
 
 -- -------Table for partnerPreferences--------
 
-create table partnerPreferences(preferenceId BIGINT UNIQUE NOT NULL AUTO_INCREMENT, userId BIGINT NOT NULL,ageFrom INT(10) NOT NULL DEFAULT 0, ageTo INT(10) NOT NULL DEFAULT 0, maritalStatus TINYINT NOT NULL DEFAULT 0, haveChildren TINYINT NOT NULL DEFAULT 0, heightFrom INT(10) NOT NULL DEFAULT 0,heightTo INT(10) NOT NULL DEFAULT 0, physicalStatus TINYINT NOT NULL DEFAULT 0, religion INT(10) NOT NULL DEFAULT 0,caste INT(10) NOT NULL DEFAULT 0,subcaste TEXT NOT NULL, manglik TINYINT NOT NULL DEFAULT 0,dosham INT(100) NOT NULL DEFAULT 0, sudham INT(100) NOT NULL DEFAULT 0,star TEXT NOT NULL, eatingHabits TEXT NOT NULL, drinkingHabits TEXT NOT NULL, smokingHabits TEXT NOT NULL, languages TEXT NOT NULL, countries TEXT NOT NULL, states TEXT NOT NULL, districts TEXT NOT NULL, places TEXT NOT NULL, citizenship TEXT NOT NULL, occupation TEXT NOT NULL, annualIncome INT NOT NULL DEFAULT 0, partnerDescription TEXT NOT NULL, PRIMARY KEY(preferenceId), FOREIGN KEY (userId) REFERENCES users(userId))ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;
+create table partnerPreferences(preferenceId BIGINT UNIQUE NOT NULL AUTO_INCREMENT, 
+userId BIGINT NOT NULL,ageFrom INT(10) NOT NULL DEFAULT 0, ageTo INT(10) NOT NULL DEFAULT 0,
+ maritalStatus TINYINT, haveChildren TINYINT , heightFrom INT(10),
+heightTo INT(10), physicalStatus TINYINT, religion INT(10) ,caste INT(10) ,
+subcaste TEXT , manglik TINYINT ,dosham INT(100) , sudham INT(100) ,star TEXT , 
+eatingHabits TEXT , drinkingHabits TEXT , smokingHabits TEXT , languages TEXT , countries TEXT , 
+states TEXT , districts TEXT , places TEXT , citizenship TEXT , occupation TEXT , 
+annualIncome INT , partnerDescription TEXT , PRIMARY KEY(preferenceId), FOREIGN KEY (userId) REFERENCES users(userId))ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;
 
 
 -- ----Table for photos-----
@@ -238,8 +245,8 @@ DROP VIEW IF EXISTS view_users;
 CREATE VIEW view_users AS SELECT U.*, FLOOR( DATEDIFF( CURRENT_DATE, U.dob) /365 ) as age,UC.mobileNo,UC.landLine,UC.alternativeNo,UC.facebookUrl,UC.skypeId,UC.googleIM,UC.yahooIM,UC.visibility,
 UP.casteId as casteId,C.name as caste,UP.religionId as religionId, R.name as religion,UP.countryId,CO.name as country,UP.stateId,S.name as state,UP.distictId,D.name as district,UP.placeId as placeId, PL.name as place,UP.mobilePhone,UP.landPhone,UP.intercasteable,UP.createdBy,UP.maritalStatus,
 P.heightId,P.weight,P.bodyType,P.complexion,P.physicalStatus,
-H.dosham as dosham,H.sudham as sudham,HA.food,HA.smoking,HA.drinking, 
-EL.educationId as educationId,EM.name as educationName,EL.occupationId as occupationId,OM.name as occupationName
+H.dosham as dosham,H.sudham as sudham,HA.food,HA.smoking,HA.drinking,HI.languages, 
+EL.educationId as educationId,EM.name as educationName,EL.occupationId as occupationId,OM.name as occupationName,EL.yearlyIncome as annualIncome
 FROM users U
 LEFT JOIN usercontactdetails UC ON U.userId = UC.userId
 LEFT JOIN userpersonaldetails UP ON U.userId = UP.userId
@@ -252,6 +259,7 @@ LEFT JOIN districts D ON UP.distictId = D.districtId
 LEFT JOIN places PL ON UP.placeId = PL.placeId
 LEFT JOIN education EL ON U.userId = EL.userId
 LEFT JOIN horoscopes H ON U.userId = H.userId
+LEFT JOIN hobiesandinterests HI on U.userId = HI.userId 
 LEFT JOIN habit HA ON U.userId = HA.userId
 LEFT JOIN education_master EM ON EL.educationId = EM.educationId
 LEFT JOIN occupation_master OM ON EL.occupationId  = OM.occupationId
