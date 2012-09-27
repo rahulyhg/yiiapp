@@ -409,4 +409,101 @@ class Utilities
  	}
  }
  
+ public static function getPartnerPreference($parenterPrefObj)
+ {
+ 	$condition = "age BETWEEN {$parenterPrefObj->ageFrom} AND {$parenterPrefObj->ageTo} and active =1";
+ 	$condition .= " AND heightId BETWEEN {$parenterPrefObj->heightFrom} AND {$parenterPrefObj->heightTo}";
+	if(isset($parenterPrefObj->maritalStatus))
+	{
+		$condition .= "AND maritalStatus = {$parenterPrefObj->maritalStatus}";
+	}
+	/*
+ 	if(isset($parenterPrefObj->haveChildren))
+	{
+		$condition .= "AND haveChildren = {$parenterPrefObj->haveChildren}";
+	}*/
+	if(isset($parenterPrefObj->physicalStatus))
+	{
+		$condition .= "AND physicalStatus = {$parenterPrefObj->physicalStatus}";
+	}
+ 	
+	if(isset($parenterPrefObj->religion))
+	{
+		$condition .= "AND religionId = {$parenterPrefObj->religion}";
+	}
+ 	if(isset($parenterPrefObj->caste))
+	{
+		$condition .= "AND casteId = {$parenterPrefObj->caste}";
+	}
+ 	/*if(isset($parenterPrefObj->subcaste))
+	{
+		$condition .= "AND casteId = {$parenterPrefObj->subcaste}";
+	}
+	*/
+ 	if(isset($parenterPrefObj->dosham))
+	{
+		$condition .= "AND dosham = {$parenterPrefObj->dosham}";
+	}
+ 	if(isset($parenterPrefObj->sudham))
+	{
+		$condition .= "AND sudham = {$parenterPrefObj->sudham}";
+	}
+ 	if(isset($parenterPrefObj->eatingHabits))
+	{
+		
+		$condition .= "AND FIND_IN_SET('{$parenterPrefObj->eatingHabits}',eatingHabits)";
+	}
+ 	if(isset($parenterPrefObj->drinkingHabits))
+	{
+		
+		$condition .= "AND FIND_IN_SET('{$parenterPrefObj->drinkingHabits}',drinkingHabits)";
+	}
+		if(isset($parenterPrefObj->smokingHabits))
+	{
+	
+		$condition .= "AND FIND_IN_SET('{$parenterPrefObj->smokingHabits}',smokingHabits)";
+	}
+ 	if(isset($parenterPrefObj->languages))
+	{
+		
+		$condition .= "AND FIND_IN_SET('{$parenterPrefObj->languages}',languages)";
+	}
+ if(isset($parenterPrefObj->countries))
+	{
+	
+		$condition .= "AND FIND_IN_SET('{$parenterPrefObj->countries}',countries)";
+	}
+ if(isset($parenterPrefObj->states))
+	{
+		
+		$condition .= "AND FIND_IN_SET('{$parenterPrefObj->states}',states)";
+	}
+ if(isset($parenterPrefObj->districts))
+	{
+		$condition .= "AND FIND_IN_SET('{$parenterPrefObj->districts}',districts)";
+	}	
+	if(isset($parenterPrefObj->places))
+	{
+		$condition .= "AND FIND_IN_SET('{$parenterPrefObj->places}',places)";
+	}	
+	/*
+	if(isset($parenterPrefObj->citizenship))
+	{
+		$condition .= "AND citizenship = {$parenterPrefObj->citizenship}";
+	}	
+	*/
+	if(isset($parenterPrefObj->occupation))
+	{
+		
+		$condition .= "AND FIND_IN_SET('{$parenterPrefObj->occupation}',occupation)";
+	}	
+	
+	if(isset($parenterPrefObj->annualIncome))
+	{
+		$condition .= "AND annualIncome = {$parenterPrefObj->annualIncome}";
+	}	
+ 	return $condition;
+ }
+ 
+ 
 }

@@ -157,7 +157,7 @@
   $index = 0;
   foreach ($highLight as $value) { ?>
   
-  	<div <?php if($index > 1) echo 'id="high"';?> class="<?php if($index % 2 == 0) { echo 'search_div_lft';} else{ echo 'search_div_right';}?>" ><!--search_div_lft-->
+  	<div <?php if($index > 1) echo "id='high{$index}'";?> class="<?php if($index % 2 == 0) { echo 'search_div_lfth';} else{ echo 'search_div_righth';}?>" ><!--search_div_lft-->
 						<p class="space-25px">&nbsp;</p>
                         <a href="album.html"><img src="<?php echo Yii::app()->params['mediaUrl']; ?>/photo_5.jpg" border="0" class="search_div_img" /></a>
         				<p class="graytext">Name </p>
@@ -181,7 +181,7 @@
                         <p class="graytext">Occupation </p>
                         <p class="full-col">:</p>
                         <p class="gray-rt"> <?php if(isset($value->educations->occupation))echo $value->educations->occupation->name ?> &nbsp;</p>
-                        <p class="blue-text-01"><a href="<?php echo 'byid?id='.$value->marryId ?>">View Full Profile</a></p>
+                        <p class="blue-text-01"><a href="<?php echo 'byid/id/5'.$value->marryId ?>">View Full Profile</a></p>
                       <div class="clear"></div>
                       	<div class="pages-1">
                         
@@ -246,10 +246,10 @@
 						
    <?php 
   
-  $index1 = 0;
+  $index1 = 1;
   foreach ($normal as $value) { ?>
                    
-  	<div id="<?php echo $index1?>" class="<?php if($index1 % 2 == 0) { echo 'search_div_lft';} else{ echo 'search_div_right';}?>" <?php if(intval($totalPage) > 1) {?> style="display:none" <?php }?>><!--search_div_lft-->
+  	<div id="<?php echo 'normal'.$index1?>" class="<?php if($index1 % 2 != 0) { echo 'search_div_lft';} else{ echo 'search_div_right';}?>" <?php if(intval($totalPage) > 1 && $index1 > 10 ) {?> style="display:none" <?php }?>><!--search_div_lft-->
 						<p class="space-25px">&nbsp;</p>
                         <a href="album.html"><img src="<?php echo Yii::app()->params['mediaUrl']; ?>/photo_5.jpg" border="0" class="search_div_img" /></a>
         				<p class="graytext">Name </p>
@@ -273,7 +273,7 @@
                         <p class="graytext">Occupation </p>
                         <p class="full-col">:</p>
                         <p class="gray-rt"> <?php if(isset($value->educations->occupation))echo $value->educations->occupation->name ?> &nbsp;</p>
-                        <p class="blue-text-01"><a href="<?php echo 'byid?id='.$value->marryId ?>">View Full Profile</a></p>
+                        <p class="blue-text-01"><a href="<?php echo 'byid/id/'.$value->marryId ?>">View Full Profile</a></p>
                       <div class="clear"></div>
                       	<div class="pages-1">
                         
@@ -326,10 +326,10 @@
                 </div>              
           
           <input type="hidden" value="<?php echo $totalPage?>" name="totalPage" />
-          <input type="hidden" value="0" name="currentPage" />
+          <input type="hidden" value="1" name="currentPage" />
           <input type="hidden" value="<?php echo $totalUser ?>" name="user" />
           <input type="hidden" value="1" name="firstPage" />
-           <input type="hidden" value="<?php echo intval($totalPage)- 1?>" name="lastPage" />
+           <input type="hidden" value="<?php echo $totalPage?>" name="lastPage" />
                  <?php } ?>       
             
 			  <p class="clear">&nbsp;</p><p class="space-10px">&nbsp;</p>
@@ -343,20 +343,21 @@
 
    $(document).ready(function() {
 
-	$('#high').hide();
-   
+	
+	$("div[id^='high']").hide();
+	
 
 	$('.right').click(function(){
 		
 		if($('div.right a').text() == 'Hide')
 		{
 			$('div.right a').text("View More Highligted Profiles");
-			$('#high').hide("slow").fadeOut("slow");
+			$("div[id^='high']").hide("slow").fadeOut("slow");
 
 		}
 		else{
 		$('div.right a').text("Hide");
-		$('#high').show("slow").fadeIn("slow");
+		$("div[id^='high']").show("slow").fadeIn("slow");
 
 		}
 		})
@@ -377,22 +378,22 @@
 	var lastPage = parseInt($("input[name='lastPage']").val());
 	var firstPage = parseInt($("input[name='firstPage']").val());
 	
-
 		
 		
 	$('.fir').click(function (){
 		currentPage = parseInt($("input[name='currentPage']").val());
 		if(currentPage == 1)
+		{
 			return;
-
+		}
 		$('.search_div_lft').hide();
 		$('.search_div_right').hide();
 		var example = 10;
-		for (var i= 0; i < example; i++)
+		for (var i= 1; i <= example; i++)
 		{
 			if( example <= totalUser)
 			{	
-			$('#'+i).show();
+				$('div#normal'+i).show();
 			}
 		}
 		$("input[name='currentPage']").val("1");
@@ -402,34 +403,38 @@
 	$('.pre').click(function (){
 		currentPage = parseInt($("input[name='currentPage']").val());
 		if(currentPage == 1)
+		{
 			return;
+		}	
 		$('.search_div_lft').hide();
 		$('.search_div_right').hide();
-		var index = currentPage * 10;
 		currentPage = currentPage - 1;
-		for (var i = currentPage * 10;  i <  index; i++)
+		var index = currentPage * 10;
+		for (var i = index - 9;  i <=  index; i++)
 		{
-			$('#'+i).show();
+			$('div#normal'+i).show();
 		}
 		
 		$("input[name='currentPage']").val(currentPage);
 	});
 
 	$('.next').click(function (){
-		
 		currentPage = parseInt($("input[name='currentPage']").val());
 		lastPage = parseInt($("input[name='lastPage']").val());
 		if(currentPage == lastPage )
+		{
 			return;
+		}	
 		$('.search_div_lft').hide();
 		$('.search_div_right').hide();
+		
 		var index = currentPage * 10;
 		currentPage = currentPage + 1;
 		
-		for (var i = index ;  i < currentPage * 10 ; i++)
+		for (var i = index+1 ;  i <= currentPage * 10 ; i++)
 		{
 			if(i <= totalUser){
-			$('#'+i).show();
+			$('div#normal'+i).show();
 			}
 		}
 		
@@ -442,14 +447,17 @@
 
 		currentPage = parseInt($("input[name='currentPage']").val());
 		lastPage = parseInt($("input[name='lastPage']").val());
+		
 		if(lastPage == currentPage)
+		{
 			return;
+		}	
 		$('.search_div_lft').hide();
 		$('.search_div_right').hide();
-		
-		for (var i = lastPage * 10;  i <= totalUser; i++)
+		var index = lastPage -1 ;
+		for (var i = (index * 10) + 1;  i <= totalUser; i++)
 		{
-			$('#'+i).show();
+			$('div#normal'+i).show();
 		}
 	
 		$("input[name='currentPage']").val(lastPage);

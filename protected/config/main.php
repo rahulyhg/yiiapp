@@ -111,7 +111,7 @@ return array(
 		'adminEmail'=>'webmaster@example.com',
 		'resourceUrl' => 'http://scripts.marrydoor.com',
 		'homeUrl' => 'http://local.marrydoor.com',
-		'mediaUrl' => 'http://scripts.marrydoor.com/images',
+		'mediaUrl' => 'http://media.marrydoor.com',
 		'sslmediaUrl' => 'https://scripts.marrydoor.com/images',
 		'scriptUrl' => 'http://scripts.marrydoor.com',
 		'sslScriptUrl' => 'https://scripts.marrydoor.com',
