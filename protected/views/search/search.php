@@ -181,7 +181,7 @@
                         <p class="graytext">Occupation </p>
                         <p class="full-col">:</p>
                         <p class="gray-rt"> <?php if(isset($value->educations->occupation))echo $value->educations->occupation->name ?> &nbsp;</p>
-                        <p class="blue-text-01"><a href="<?php echo 'byid/id/5'.$value->marryId ?>">View Full Profile</a></p>
+                        <p class="blue-text-01"><a href="<?php echo 'byid/id/'.$value->marryId ?>">View Full Profile</a></p>
                       <div class="clear"></div>
                       	<div class="pages-1">
                         

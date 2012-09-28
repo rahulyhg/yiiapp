@@ -25,10 +25,21 @@ class SearchController extends Controller
 	//search from front page
 	public function actionBasic()
 	{
-	 $user = Yii::app()->session->get('user');	
+	 	
+	  $user = Yii::app()->session->get('user');
+	  	
 	  if(isset($_POST['heightStart']) && isset($_POST['heightLimit']))
 		{
 
+		$scondition = "FIND_IN_SET('{$user->userId}',profileIDs)";
+		$profileBlock = ProfileBlock::model()->findAll(array('condition'=>$scondition));
+		
+		$blockId = array();
+		foreach ($profileBlock as $key => $value) {
+			$blockId[] = $value->userId;
+		}
+		$blockIdList = implode(",", $blockId);	
+			
 		if(isset($_POST['heightStart']))
 		$heightFrom = $_POST['heightStart'];
 		if(isset($_POST['heightLimit']))
@@ -103,7 +114,10 @@ class SearchController extends Controller
 				$condition .= " AND photo = 1 ";
 		}
 		
-		$usersV = ViewUsers::model()->findAll(array('condition'=>$condition,'order'=> 'createdOn DESC' ));
+		$usersV = ViewUsers::model()->findAll(array('condition'=>$condition,
+		'order'=> 'createdOn DESC' ));
+		
+		
 		$userIds = array();
 		foreach ($usersV as $key => $value) {
 			$userIds[] = $value->userId; 
@@ -111,6 +125,8 @@ class SearchController extends Controller
 		
 		$userList = implode(",", $userIds);
 		$scondition = " userId in ({$userList}) and userId != {$user->userId} ";
+		if(isset($blockIdList) && sizeof($blockId) > 0 )
+		$scondition .= " AND userId NOT IN({$blockIdList})";
 		$users = Users::model()->findAll(array('condition'=>$scondition,'order'=> 'createdOn DESC' ));
 		
 		$highLightUser = array();
@@ -142,7 +158,14 @@ class SearchController extends Controller
 		$user = Yii::app()->session->get('user');
 		if(isset($_POST['ageFrom']) && isset($_POST['ageTo']))
 		{
-			
+		$scondition = "FIND_IN_SET('{$user->userId}',profileIDs)";
+		$profileBlock = ProfileBlock::model()->findAll(array('condition'=>$scondition));
+		$blockId = array();
+		foreach ($profileBlock as $key => $value) {
+			$blockId[] = $value->userId;
+		}
+		$blockIdList = implode(",", $blockId);
+		
 		$searchText = "You have searched for: ";	
 		if(isset($_POST['ageFrom']))
 		$ageFrom = $_POST['ageFrom'];
@@ -214,13 +237,22 @@ class SearchController extends Controller
 		
 		
 		$usersV = ViewUsers::model()->findAll(array('condition'=>$condition,'order'=> 'createdOn DESC' ));
+		
+		$profileBlock = $user->profileBlock;
+		if(isset($profileBlock->profileIDs))
+		{
+			$blockedIds = explode(",", $profileBlock->profileIDs);
+		}
 		$userIds = array();
 		foreach ($usersV as $key => $value) {
+			if(isset($blockedIds) && !in_array($value->userId, $blockedIds))
 			$userIds[] = $value->userId; 
 		}
 		
 		$userList = implode(",", $userIds);
 		$scondition = " userId in ({$userList}) and userId != {$user->userId} ";
+		if(isset($blockIdList) && sizeof($blockId) > 0 )
+		$scondition .= " AND userId NOT IN({$blockIdList})";
 		$users = Users::model()->findAll(array('condition'=>$scondition,'order'=> 'createdOn DESC' ));
 		
 		
@@ -254,6 +286,15 @@ class SearchController extends Controller
 		$user = Yii::app()->session->get('user');
 		if(isset($_POST['ageFrom']) && isset($_POST['ageTo']))
 		{
+			
+		$scondition = "FIND_IN_SET('{$user->userId}',profileIDs)";
+		$profileBlock = ProfileBlock::model()->findAll(array('condition'=>$scondition));
+		$blockId = array();
+		foreach ($profileBlock as $key => $value) {
+			$blockId[] = $value->userId;
+		}
+		$blockIdList = implode(",", $blockId);
+		
 		if(isset($_POST['ageFrom']))
 		$ageFrom = $_POST['ageFrom'];
 		if(isset($_POST['ageTo']))
@@ -280,6 +321,8 @@ class SearchController extends Controller
 		
 		
 		$usersV = ViewUsers::model()->findAll(array('condition'=>$condition,'order'=> 'createdOn DESC' ));
+		
+		
 		$userIds = array();
 		foreach ($usersV as $key => $value) {
 			$userIds[] = $value->userId; 
@@ -287,6 +330,8 @@ class SearchController extends Controller
 		
 		$userList = implode(",", $userIds);
 		$scondition = " userId in ({$userList}) and userId != {$user->userId} ";
+		if(isset($blockIdList) && sizeof($blockId) > 0 )
+		$scondition .= " AND userId NOT IN({$blockIdList})";
 		$users = Users::model()->findAll(array('condition'=>$scondition,'order'=> 'createdOn DESC' ));
 		
 		
@@ -327,6 +372,14 @@ class SearchController extends Controller
 		if(isset($_POST['ageFrom']) && isset($_POST['ageTo']))
 		{
 			
+		$scondition = "FIND_IN_SET('{$user->userId}',profileIDs)";
+		$profileBlock = ProfileBlock::model()->findAll(array('condition'=>$scondition));	
+		$blockId = array();
+		foreach ($profileBlock as $key => $value) {
+			$blockId[] = $value->userId;
+		}
+		$blockIdList = implode(",", $blockId);
+		
 		if(isset($_POST['ageFrom']))
 		$ageFrom = $_POST['ageFrom'];
 		if(isset($_POST['ageTo']))
@@ -505,6 +558,9 @@ class SearchController extends Controller
 		}
 		
 		$usersV = ViewUsers::model()->findAll(array('condition'=>$condition,'order'=> 'createdOn DESC' ));
+		
+		
+		
 		$userIds = array();
 		foreach ($usersV as $key => $value) {
 			$userIds[] = $value->userId; 
@@ -512,6 +568,8 @@ class SearchController extends Controller
 		
 		$userList = implode(",", $userIds);
 		$scondition = " userId in ({$userList}) and userId != {$user->userId} ";
+		if(isset($blockIdList) && sizeof($blockId) > 0 )
+		$scondition .= " AND userId NOT IN({$blockIdList})";
 		$users = Users::model()->findAll(array('condition'=>$scondition,'order'=> 'createdOn DESC' ));
 		
 			
@@ -544,10 +602,29 @@ class SearchController extends Controller
 		if(isset($_GET['id']))
 		{
 			$user = Users::model()->findByAttributes(array('marryId'=>$_GET['id']));
-
+			$loggedUser = Yii::app()->session->get('user');
+			$scondition = "FIND_IN_SET('{$loggedUser->userId}',profileIDs)";
+			$profileBlock = ProfileBlock::model()->findAll(array('condition'=>$scondition));
+			
+			$blockId = array();
+		foreach ($profileBlock as $key => $value) {
+			$blockId[] = $value->userId;
+		}
+		
+			
+			if(sizeof($blockId) > 0 )
+			{
+				
+				if(in_array($loggedUser->userId, $blockId))
+				{
+					$model = "The user has not authorize you to view his/her profile.";
+					$this->render('byid',array('model' => $model));
+					return;
+					}
+			}
 			if(isset($user->name))
 			{
-				$loggedUser = Yii::app()->session->get('user');
+						
 				if(isset($loggedUser)){
 				if(isset($loggedUser->profileUser)){
 					$arrayList = explode(",",$loggedUser->profileUser->visitedId);
@@ -618,15 +695,26 @@ class SearchController extends Controller
 				
 			}
 			
+		if(isset($blockIdList) && sizeof($blockId) > 0 )
+		$scondition .= " AND userId NOT IN({$blockIdList})";
 		
 		$users = Users::model()->findAll(array('condition'=>$condition,'order'=> 'createdOn DESC' ));
+		
+		$profileBlock = $user->profileBlock;
+		if(isset($profileBlock->profileIDs))
+		{
+			$blockedIds = explode(",", $profileBlock->profileIDs);
+		}
+		
 		$highLightUser = array();
 		$normalUser = array();
 		foreach ($users as $key => $value) {
+			if(isset($blockedIds) && !in_array($value->userId, $blockedIds)){
 			if($value->highlighted == 1 )
 			$highLightUser[] = $value;
 			else 
 			$normalUser[] = $value;
+			}
 		}
 		//$user = Users::model()->find();
 		if(sizeof($users) > 0)

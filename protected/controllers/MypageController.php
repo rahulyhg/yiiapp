@@ -18,8 +18,7 @@ class MypageController extends Controller
 
 	public function beforeAction(CAction $action)
 	{
-		if($action->id == 'byid')
-		return true;
+		
 		$user = Yii::app()->session->get('user');
 		if(!isset($user)) {
 			$this->redirect(Yii::app()->user->loginUrl);
@@ -31,6 +30,16 @@ class MypageController extends Controller
 	public function actionIndex()
 	{
 		$user = Yii::app()->session->get('user');
+		//$condition = "userId in ($userIds)";	
+		$scondition = "FIND_IN_SET('{$user->userId}',profileIDs)";
+		$profileBlock = ProfileBlock::model()->findAll(array('condition'=>$scondition));
+		
+		$blockId = array();
+		foreach ($profileBlock as $key => $value) {
+			$blockId[] = $value->userId;
+		}
+		$blockIdList = implode(",", $blockId);
+			
 		if(isset($user->partnerpreferences))
 		{
 			$condition  = Utilities::getPartnerPreference($user->partnerpreferences);
@@ -38,20 +47,57 @@ class MypageController extends Controller
 			'select'=>'t.userId',
     		'distinct'=>true,
 			'order'=> 'createdOn DESC' ));
-			$userIds = array();
-			foreach ($usersV as $key => $value) {
-				$userIds[] = $value->userId;
-			}
+		
+		$sendInterest = $user->interestSender;	
+		if(sizeof($sendInterest) > 0){
+		$suserId = array();
+		$userInterest = array();
+		foreach ($sendInterest as $value) {
+			$suserId[] = $value->receiverId;
+		}
+		}
+		
+		
+		$receiveInterest = $user->interestReceiver;
+		if(sizeof($receiveInterest) > 0){
+		$ruserId = array();
+		$userInterest = array();
+		foreach ($receiveInterest as $value) {
+			$ruserId[] = $value->senderId;
+		}
+		}
+		$intersetUserIds = array_merge($suserId,$ruserId);
+		if(sizeof($intersetUserIds) > 0)
+		{
+			$userList = implode(",", $intersetUserIds);
+			$scondition = " userId in ({$userList}) AND userId != {$user->userId} ";
+			if(isset($blockIdList) && sizeof($blockId) > 0 )
+			$scondition .= " AND userId NOT IN({$blockIdList})"; 
+			$profileUsers = Users::model()->findAll(array('condition'=>$scondition,'order'=> 'createdOn DESC' ));
+			
+		}
+		
+		
+		
+		
+		
+		$userIds = array();
+		foreach ($usersV as $key => $value) {
+			$userIds[] = $value->userId; 
+		}
 
 			if(sizeof($userIds) > 0 )
 			{
 				$userList = implode(",", $userIds);
-				$scondition = " userId in ({$userList}) and userId != {$user->userId} ";
+				$scondition = " userId in ({$userList}) AND userId != {$user->userId} ";
+				if(isset($blockIdList) && sizeof($blockId) > 0 )
+				$scondition .= " AND userId NOT IN({$blockIdList})"; 
+				
 				$users = Users::model()->findAll(array(
 				'condition'=>$scondition,
 				'order'=> 'createdOn DESC' ));
 
-
+				
 
 				$highLightUser = array();
 				$normalUser = array();
@@ -61,9 +107,13 @@ class MypageController extends Controller
 					else
 					$normalUser[] = $value;
 				}
-
-				$this->render('index',array('highlight'=>$highLightUser,'normal'=>$normalUser));
-				return ;
+				if(sizeof($normalUser) > 0)
+				{
+				$totalUser = sizeof($normalUser);
+				$totalPage = ceil($totalUser/10);
+				$this->render('index',array('highlight'=>$highLightUser,'normal'=>$normalUser,'totalUser'=>$totalUser,'totalPage' => $totalPage));
+				}
+				
 			}
 			else 
 			$this->render('index');

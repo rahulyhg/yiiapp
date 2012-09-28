@@ -244,7 +244,7 @@ DROP VIEW IF EXISTS view_users;
 
 CREATE VIEW view_users AS SELECT U.*, FLOOR( DATEDIFF( CURRENT_DATE, U.dob) /365 ) as age,UC.mobileNo,UC.landLine,UC.alternativeNo,UC.facebookUrl,UC.skypeId,UC.googleIM,UC.yahooIM,UC.visibility,
 UP.casteId as casteId,C.name as caste,UP.religionId as religionId, R.name as religion,UP.countryId,CO.name as country,UP.stateId,S.name as state,UP.distictId,D.name as district,UP.placeId as placeId, PL.name as place,UP.mobilePhone,UP.landPhone,UP.intercasteable,UP.createdBy,UP.maritalStatus,
-P.heightId,P.weight,P.bodyType,P.complexion,P.physicalStatus,
+P.heightId,P.weight,P.bodyType,P.complexion,P.physicalStatus,PB.profileIDs as profileBlocked,
 H.dosham as dosham,H.sudham as sudham,HA.food,HA.smoking,HA.drinking,HI.languages, 
 EL.educationId as educationId,EM.name as educationName,EL.occupationId as occupationId,OM.name as occupationName,EL.yearlyIncome as annualIncome
 FROM users U
@@ -258,6 +258,7 @@ LEFT JOIN states S ON UP.stateId = S.stateId
 LEFT JOIN districts D ON UP.distictId = D.districtId
 LEFT JOIN places PL ON UP.placeId = PL.placeId
 LEFT JOIN education EL ON U.userId = EL.userId
+LEFT JOIN profileBlock PB ON U.userId = PB.userId
 LEFT JOIN horoscopes H ON U.userId = H.userId
 LEFT JOIN hobiesandinterests HI on U.userId = HI.userId 
 LEFT JOIN habit HA ON U.userId = HA.userId
@@ -316,3 +317,11 @@ CREATE TABLE IF NOT EXISTS album (
   FOREIGN KEY (userId) REFERENCES users(userId),
   UNIQUE KEY albumId (albumId)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=0
+
+-- table for profile udpate logging --
+create table profileUpdates(profileId BIGINT UNIQUE NOT NULL AUTO_INCREMENT, userId BIGINT NOT NULL, status text NOT NULL, PRIMARY KEY(profileId),when datetime NOT NULL,FOREIGN KEY (userId) REFERENCES users(userId))ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;
+
+-- table for profile blocking --
+create table profileBlock(profileBlockId BIGINT UNIQUE NOT NULL AUTO_INCREMENT, 
+userId BIGINT NOT NULL, profileIDs text NOT NULL, PRIMARY KEY(profileBlockId)
+,FOREIGN KEY (userId) REFERENCES users(userId))ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;

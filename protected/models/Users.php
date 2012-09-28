@@ -115,6 +115,9 @@ class Users extends CActiveRecord
 			'bookmark' => array(self::HAS_ONE, 'Bookmark', 'userID'),
 			'addressBook' => array(self::HAS_ONE, 'Addressbook', 'userID'),
 			'album' => array(self::HAS_MANY, 'Album', 'userId'),
+			'profileUpdates' => array(self::HAS_ONE, 'ProfileUpdates', 'userId'),
+			'profileBlock' => array(self::HAS_ONE, 'ProfileBlock', 'userId'),
+		
 		);
 	}
 
