@@ -2,7 +2,11 @@
  	// get the user details from session value
  	$user = Yii::app()->session->get('user'); 
  	$profileImage = $user->photos(array('condition'=>'profileImage = 1'));
- 	$image = $profileImage[0]->imageName;
+ 	if(count($profileImage) > 0){
+ 		$image = $profileImage[0]->imageName;
+ 	}else{
+ 		$image = '';
+ 	}
  ?>
         <!--profile details-section-->
         	<div class="profile_200">
