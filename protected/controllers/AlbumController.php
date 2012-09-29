@@ -32,10 +32,18 @@ class AlbumController extends Controller
 	 */
 	public function actionIndex()
 	{
-		$user = Yii::app()->session->get('user');
+		$marryId = isset($_GET['mId']) ? $_GET['mId']:'';
+		if($marryId != ''){
+		$userObj = new Users();
+		$user = $userObj->findAll("marryId='".$marryId."'");
+		$user = $user[0];
 		$photos = new Photos();
 		$photosList = $photos->findAll('userId='.$user->userId);
-		$this->render('index',array('photosList' => $photosList));
+		$this->render('index',array('photosList' => $photosList,'user' => $user));
+		}else{
+			$message = Yii::t('error','invalidRequest');
+			$this->render('index',array('message' => $message));
+		}
 	}
 	
 	public function actionAdd()

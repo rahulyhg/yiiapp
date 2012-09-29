@@ -1,10 +1,9 @@
- <?php $user = Yii::app()->session->get('user');
- ?>
-    	<div id="album_main"><!--content-wrapper-->
+	<?php if($message == "") { ?>
+	<div id="album_main"><!--content-wrapper-->
 			<!--wrapper-head-->
 			<div class="name-bloc"><!--name-bloc-->
 				<br />
-				<p class="text_pink-hd">Lilly Mathews MD123456</p> 
+				<p class="text_pink-hd"><?php echo $user->name." ".$user->marryId ?></p> 
 				<div class="clear"></div>
 				<p class="txt_rg">Viewing album</p>
 			</div><!--name-bloc-->
@@ -60,3 +59,8 @@
         	
             
           </div>
+    <?php } else {?>
+    <div id="album_main">
+    	<?php echo $message; ?>
+    </div>
+    <?php } ?>
