@@ -33,7 +33,6 @@
                 	<p class="bullettext"><a href="<?php echo Utilities::createAbsoluteUrl('message','',array()); ?>">Inbox <?php echo count($user->messageReceiver); ?></a></p>
                 	<p class="bullettext"><a href="<?php echo Utilities::createAbsoluteUrl('message','outbox',array()); ?>">Outbox <?php echo count($user->messageSender); ?></a></p>
                 	<p class="bullettext"><a href="<?php echo Utilities::createAbsoluteUrl('message','delivery',array()); ?>">Delivery Report 3</a></p>
-                </ul>    
 <div class="clear"></div>
                 <div class="line_sm"></div>
                 <p class="txt_bld-15"><img src="<?php echo Utilities::getMediaUrl() ?>/arrow_small_right.jpg" />&nbsp;&nbsp;&nbsp;Interest</p>

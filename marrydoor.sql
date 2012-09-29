@@ -53,7 +53,7 @@ create table familyprofile(familyProfileID BIGINT UNIQUE NOT NULL AUTO_INCREMENT
 
 -- --Table for hobiesAndInterests-----
 
-create table hobiesAndInterests(hobiesId BIGINT UNIQUE NOT NULL AUTO_INCREMENT, userId BIGINT NOT NULL, hobies TEXT NOT NULL, interests TEXT NOT NULL, musics TEXT NOT NULL, reading TEXT NOT NULL, movies TEXT NOT NULL, activities TEXT NOT NULL, cuisine TEXT NOT NULL, languages TEXT NOT NULL, languageOther VARCHAR(100) NOT NULL, PRIMARY KEY(hobiesId), FOREIGN KEY (userId) REFERENCES users(userId))ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;
+create table hobiesandinterests(hobiesId BIGINT UNIQUE NOT NULL AUTO_INCREMENT, userId BIGINT NOT NULL, hobies TEXT NOT NULL, interests TEXT NOT NULL, musics TEXT NOT NULL, reading TEXT NOT NULL, movies TEXT NOT NULL, activities TEXT NOT NULL, cuisine TEXT NOT NULL, languages TEXT NOT NULL, languageOther VARCHAR(100) NOT NULL, PRIMARY KEY(hobiesId), FOREIGN KEY (userId) REFERENCES users(userId))ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;
 
 
 -- -------Table for partnerPreferences--------
@@ -105,7 +105,7 @@ create table shortlist(shortlistId BIGINT UNIQUE NOT NULL AUTO_INCREMENT, userID
 
 -- --table for profileViews---
 
-create table profileViews(profileViewId BIGINT UNIQUE NOT NULL AUTO_INCREMENT, userID BIGINT NOT NULL, visitedId text NOT NULL, PRIMARY KEY(profileViewId),FOREIGN KEY (userID) REFERENCES users(userId))ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;
+create table profileviews(profileViewId BIGINT UNIQUE NOT NULL AUTO_INCREMENT, userID BIGINT NOT NULL, visitedId text NOT NULL, PRIMARY KEY(profileViewId),FOREIGN KEY (userID) REFERENCES users(userId))ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;
 
 -- --table for country
 
