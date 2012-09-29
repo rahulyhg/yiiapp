@@ -76,7 +76,6 @@
 	'id'=>'users-register-form',
 	'action' => Yii::app()->createUrl('user/register'),
  	'focus'=>array($model,'name'),
-	'enableAjaxValidation'=>false,
 )); ?>					
                     
 <div class="div_ww">
@@ -86,7 +85,7 @@
 </div><!--/memo-sub_left_mgn-->
 	<div class="memo-sub_right_mgn_2"><!--memo-sub_right_mgn-->
 			
-<?php echo $form->textField($model,'name',array('class' =>'gray_form_1')); ?>			 
+<?php echo $form->textField($model,'name',array('class' =>'validate[required] gray_form_1')); ?>			 
 
  </div><!--/memo-sub_right_mgn-->
 
@@ -106,9 +105,9 @@
 
 			<div class="memo-sub_right_mgn_3"><!--memo-sub_right_mgn-->
         
- <?php echo CHtml::dropDownList('date',Utilities::currentDay(),Utilities::getRegDays(),array('class'=>'gray_date_memo_1')); ?>
-		<?php echo CHtml::dropDownList('month',Utilities::currentMonth(),Utilities::getRegMonths(),array('class'=>'gray_month_memo_medium')); ?>		    
-    	<?php echo CHtml::dropDownList('year',Utilities::currentYear(),  Utilities::getRegYears(),array('class'=>'gray_year_memo_1')); ?>
+ <?php echo CHtml::dropDownList('date',null,Utilities::getRegDays(),array('prompt'=>'Date','class'=>'validate[required] gray_date_memo_1')); ?>
+		<?php echo CHtml::dropDownList('month',null,Utilities::getRegMonths(),array('prompt'=>'Month','class'=>'validate[required] gray_month_memo_medium')); ?>		    
+    	<?php echo CHtml::dropDownList('year',null,  Utilities::getRegYears(),array('prompt'=>'Year','class'=>'validate[required] gray_year_memo_1')); ?>
 		<?php echo $form->error($model,'date'); ?>
 					</div><!--/memo-sub_right_mgn-->
 
@@ -121,7 +120,7 @@
 				  </div><!--/memo-sub_left_mgn-->
 
 						<div class="memo-sub_right_mgn_2"><!--memo-sub_right_mgn-->
-<?php echo CHtml::dropDownList('gender','Female',array('F'=>'Female','M'=>'Male'),array('class'=>'gray_month_memo')); ?>
+<?php echo CHtml::dropDownList('gender',null,array('F'=>'Female','M'=>'Male'),array('class'=>'validate[required] gray_month_memo')); ?>
 							</div><!--/memo-sub_right_mgn--></div>
                             
                             
@@ -134,7 +133,7 @@
 					<div class="memo-sub_right_mgn_2"><!--memo-sub_right_mgn-->
  <?php $records = Religion::model()->findAll("active = 1");
 		$list = CHtml::listData($records, 'religionId', 'name');
-		echo CHtml::dropDownList('religion',null,$list,array('empty' => 'Religion','class'=>'gray_month_memo')); ?> 
+		echo CHtml::dropDownList('religion',null,$list,array('empty' => 'Religion','class'=>'validate[required] gray_month_memo')); ?> 
 
 
 
@@ -158,7 +157,7 @@
 			<div class="memo-sub_right_mgn_2"><!--memo-sub_right_mgn-->
 			 <?php $records = Caste::model()->findAll("active = 1");
 		$list = CHtml::listData($records, 'casteId', 'name');
-		echo CHtml::dropDownList('caste',null,$list,array('empty' => 'Caste','class'=>'gray_month_memo')); ?>
+		echo CHtml::dropDownList('caste',null,$list,array('empty' => 'Caste','class'=>'validate[required] gray_month_memo')); ?>
 			</div><!--/memo-sub_right_mgn--></div>
 
 		<p class="space-0px">&nbsp;</p>
@@ -175,7 +174,7 @@
 
  <?php $records = Country::model()->findAll("active = 1");
 		$list = CHtml::listData($records, 'countryId', 'name');
-		echo CHtml::dropDownList('country',null,$list,array('empty' => 'Country','class'=>'gray_month_memo')); ?>
+		echo CHtml::dropDownList('country',null,$list,array('empty' => 'Country','class'=>'validate[required] gray_month_memo')); ?>
  
 			</div><!--/memo-sub_right_mgn-->
 
@@ -191,7 +190,7 @@
 						<div class="memo-sub_right_mgn_2"><!--memo-sub_right_mgn-->
 <?php $records = States::model()->findAll("active = 1");
 		$list = CHtml::listData($records, 'stateId', 'name');
-		echo CHtml::dropDownList('state',null,$list,array('empty' => 'State','class'=>'gray_month_memo')); ?>
+		echo CHtml::dropDownList('state',null,$list,array('empty' => 'State','class'=>'validate[required] gray_month_memo')); ?>
 									</div><!--/memo-sub_right_mgn--></div>
                             
                             
@@ -207,7 +206,7 @@
 
  <?php $records = Languages::model()->findAll("active = 1");
 		$list = CHtml::listData($records, 'languageId', 'name');
-		echo CHtml::dropDownList('motherTounge',null,$list,array('empty' => 'Language','class'=>'gray_month_memo')); ?> 
+		echo CHtml::dropDownList('motherTounge',null,$list,array('empty' => 'Language','class'=>'validate[required] gray_month_memo')); ?> 
 		</div><!--/memo-sub_right_mgn-->
 
 </div>
@@ -221,7 +220,7 @@
             
             
 	<div class="memo-sub_right_mgn_2"><!--memo-sub_right_mgn-->
-<?php echo $form->textField($model,'mobileNo',array('class'=>'gray_form_1')); ?>
+<?php echo $form->textField($model,'mobileNo',array('class'=>'validate[required,funcCall[validatePhone]]  gray_form_1')); ?>
  
 
 
@@ -239,7 +238,7 @@
 
 			<div class="memo-sub_right_mgn_2"><!--memo-sub_right_mgn-->
 
-<?php echo $form->textField($model,'landNo',array('class'=>'gray_form_1')); ?>
+<?php echo $form->textField($model,'landNo',array('class'=>'validate[required,funcCall[validatePhone]]  gray_form_1')); ?>
 			</div><!--/memo-sub_right_mgn--></div>
 
 				<p class="space-0px">&nbsp;</p>
@@ -253,7 +252,7 @@
 	</div><!--/memo-sub_left_mgn-->
 
 		<div class="memo-sub_right_mgn_2"><!--memo-sub_right_mgn-->
-			<?php echo $form->textField($model,'emailId',array('class'=>'index_form_1')); ?>  
+			<?php echo $form->textField($model,'emailId',array('class'=>'validate[required, funcCall[checkEmailValidation]] index_form_1')); ?>  
 
 		</div><!--/memo-sub_right_mgn--></div>
 
@@ -269,7 +268,7 @@
 
 		<div class="memo-sub_right_mgn_2"><!--memo-sub_right_mgn-->
 
-<?php echo $form->passwordField($model,'password',array('class'=>'index_form_1')); ?> 
+<?php echo $form->passwordField($model,'password',array('class'=>'validate[required] index_form_1')); ?> 
 			</div><!--/memo-sub_right_mgn--><!--/memo-sub_left_mgn--></div>
             
             
@@ -361,4 +360,12 @@
             <!--main-content closing-->
         </div>
         <!--wrapper closing-->
+ 
+ <script type="text/javascript">
+$(document).ready(function(){
+    $("#users-register-form").validationEngine('attach');
+  });
+
+
+</script>	
  

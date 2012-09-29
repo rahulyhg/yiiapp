@@ -2,23 +2,17 @@
 
 class UserController extends Controller
 {
-	 public function beforeAction()
+	
+	  public function beforeAction()
         {
-        	
-        		if($action->id == 'register')
-        		return true;
                 $user = Yii::app()->session->get('user');
                 if(!isset($user)) {
                         $this->redirect(Yii::app()->user->loginUrl);
                         return false;
                 }       
-                else{
-                	if(isset($user->userloggeddetails))
-                		return false;
-                	else
-                	return true;	
-                }
-        }   
+                return true;
+        }  
+		
 	
 	public function actionRegister()
 	{
@@ -34,7 +28,11 @@ class UserController extends Controller
 				$user->emailId = $_POST['UserForm']['emailId'];
 				$user->password = new CDbExpression("MD5({$_POST['UserForm']['password']})");
 				$user->name = $_POST['UserForm']['name'];
-				$user->dob = $dob;
+				$password = $_POST['UserForm']['password'];
+				if(isset($_POST['date']) && isset($_POST['month']) && isset($_POST['year']) )
+				{	
+					$user->dob = $dob;
+				}
 				$user->gender = $_POST['gender'];
 				$user->motherTounge = $_POST['motherTounge'];
 				$user->createdOn = new CDbExpression('NOW()');
@@ -67,8 +65,8 @@ class UserController extends Controller
 				$this->refresh();
 			}
 				$form = new LoginForm();
-				$form->username = $user->name;
-				$form->password = $user->password;
+				$form->username = $user->marryId;
+				$form->password = $password;
 				
 				if($form->login())
 				{
@@ -437,6 +435,7 @@ class UserController extends Controller
 	
 	public function actionShowpartner()
 	{
+		
 		$this->render("partner");
 	}
 	

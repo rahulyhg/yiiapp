@@ -1,7 +1,7 @@
 <!-- **************************** REGISTER FORM STARTING ************************ -->
 <div class="memo-box-one"><!--memo-box-one-->
 <div class="left2"><a onmouseover="MM_swapImage('Image24','','<?php echo Yii::app()->params['mediaUrl']; ?>/free-member.jpg',1)" onmouseout="MM_swapImgRestore()" href="#"><img width="213" border="0" height="27" id="Image24" name="Image24" src="<?php echo Yii::app()->params['mediaUrl']; ?>/free-member.jpg"></a></div>
-<div class="right"><a onmouseover="MM_swapImage('Image25','','<?php echo Yii::app()->params['mediaUrl']; ?>/paid-member-red.jpg',1)" onmouseout="MM_swapImgRestore()" href="paide-membership.html"><img width="219" border="0" height="27" id="Image25" name="Image25" src="<?php echo Yii::app()->params['mediaUrl']; ?>/paid-member.jpg"></a></div>
+<div class="right"><a onmouseover="MM_swapImage('Image25','','<?php echo Yii::app()->params['mediaUrl']; ?>/paid-member-red.jpg',1)" onmouseout="MM_swapImgRestore()" href="/guest/paiduser"><img width="219" border="0" height="27" id="Image25" name="Image25" src="<?php echo Yii::app()->params['mediaUrl']; ?>/paid-member.jpg"></a></div>
 
 <div class="clear"></div>
 
@@ -37,16 +37,16 @@
 		<?php echo $form->labelEx($model,'date',array('class'=>'txt_rg_index')); ?>
 	</div>	
 	<div class="memo-sub_right">
-		<?php echo CHtml::dropDownList('date',null,Utilities::getRegDays(),array('class'=>'validate[required] select_45_pink')); ?>
-		<?php echo CHtml::dropDownList('month',null,Utilities::getRegMonths(),array('class'=>'validate[required] index_month_memo_medium')); ?>		    
-    	<?php echo CHtml::dropDownList('year',null,  Utilities::getRegYears(),array('class'=>'validate[required] index_year_memo_1')); ?>
+		<?php echo CHtml::dropDownList('date',null,Utilities::getRegDays(),array('prompt'=>'Date','class'=>'validate[required] select_45_pink')); ?>
+		<?php echo CHtml::dropDownList('month',null,Utilities::getRegMonths(),array('prompt'=>'Month','class'=>'validate[required] index_month_memo_medium')); ?>		    
+    	<?php echo CHtml::dropDownList('year',null,  Utilities::getRegYears(),array('prompt'=>'Year','class'=>'validate[required] index_year_memo_1')); ?>
 		<?php echo $form->error($model,'date'); ?>
 	</div>
 	<div class="memo-sub_left">
 		<?php echo $form->labelEx($model,'gender',array('class'=>'txt_rg_index')); ?>
 	</div>
 	<div class="memo-sub_right"><!--memo-sub_right-->	
-		<?php echo CHtml::dropDownList('gender','Female',array('' =>'Gender','F'=>'Female','M'=>'Male'),array('class'=>'validate[required] index_select_drop')); ?>
+		<?php echo CHtml::dropDownList('gender',null,array('' =>'Gender','F'=>'Female','M'=>'Male'),array('prompt'=>'Gender','class'=>'validate[required] index_select_drop')); ?>
 		<?php echo $form->error($model,'gender'); ?>
 	</div>
 	
@@ -167,7 +167,6 @@
 <?php $searchForm=$this->beginWidget('CActiveForm', array(
 	'id'=>'users-search-searchForm',
 	'action' => Yii::app()->createUrl('search/basic'),
-	'enableAjaxValidation'=>false,
 )); ?>	
 
 
@@ -328,7 +327,7 @@
 <?php $searchForm=$this->beginWidget('CActiveForm', array(
 		'id'=>'keywordSearch',
 		'method' => 'GET',
-	'action' => Yii::app()->createUrl('search/byid'),
+		'action' => Yii::app()->createUrl('search/byid'),
 )); ?>
 
 <input type="text" name="id" value=""  placeholder="Search By ID " class="validate[required] text_normal_small" />

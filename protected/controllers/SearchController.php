@@ -602,14 +602,14 @@ class SearchController extends Controller
 		if(isset($_GET['id']))
 		{
 			$user = Users::model()->findByAttributes(array('marryId'=>$_GET['id']));
-			$loggedUser = Yii::app()->session->get('user');
+			/*$loggedUser = Yii::app()->session->get('user');
 			$scondition = "FIND_IN_SET('{$loggedUser->userId}',profileIDs)";
 			$profileBlock = ProfileBlock::model()->findAll(array('condition'=>$scondition));
 			
 			$blockId = array();
 		foreach ($profileBlock as $key => $value) {
 			$blockId[] = $value->userId;
-		}
+		} 
 		
 			
 			if(sizeof($blockId) > 0 )
@@ -620,8 +620,8 @@ class SearchController extends Controller
 					$model = "The user has not authorize you to view his/her profile.";
 					$this->render('byid',array('model' => $model));
 					return;
-					}
-			}
+				}
+			}*/
 			if(isset($user->name))
 			{
 						
