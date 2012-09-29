@@ -29,7 +29,8 @@ return array(
 		),
 		
 	),
-
+	// language
+	'language' => 'en',
 	// application components
 	'components'=>array(
 		'user'=>array(
