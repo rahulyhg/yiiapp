@@ -701,6 +701,7 @@ class SearchController extends Controller
 		$users = Users::model()->findAll(array('condition'=>$condition,'order'=> 'createdOn DESC' ));
 		
 		$profileBlock = $user->profileBlock;
+		$blockedIds = array();
 		if(isset($profileBlock->profileIDs))
 		{
 			$blockedIds = explode(",", $profileBlock->profileIDs);
@@ -709,12 +710,11 @@ class SearchController extends Controller
 		$highLightUser = array();
 		$normalUser = array();
 		foreach ($users as $key => $value) {
-			if(isset($blockedIds) && !in_array($value->userId, $blockedIds)){
+			
 			if($value->highlighted == 1 )
 			$highLightUser[] = $value;
 			else 
 			$normalUser[] = $value;
-			}
 		}
 		//$user = Users::model()->find();
 		if(sizeof($users) > 0)
