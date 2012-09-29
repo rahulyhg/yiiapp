@@ -10,7 +10,7 @@ active TINYINT(5) NOT NULL, handicapped TINYINT(5) NOT NULL, highlighted TINYINT
 
 -- --------Table for userLoggedDetails-------------
 
-create table userLoggedDetails(logId BIGINT
+create table userloggeddetails(logId BIGINT
 UNIQUE NOT NULL AUTO_INCREMENT,userId BIGINT NOT NULL, loggedIn DATETIME NOT NULL DEFAULT '0000-00-00 00:00:00', 
 loggedOut DATETIME NOT NULL DEFAULT '0000-00-00 00:00:00', 
 profileUpdage TINYINT(1) DEFAULT 0, PRIMARY KEY(logId), FOREIGN KEY (userId) REFERENCES users(userId))ENGINE=InnoDB AUTO_INCREMENT=0
@@ -18,11 +18,11 @@ DEFAULT CHARSET=utf8;
 
 -- ------Table for userPersonalDetails------------
 
-create table userPersonalDetails(personalDetailsId BIGINT UNIQUE NOT NULL AUTO_INCREMENT, userId BIGINT NOT NULL, casteId INT(10) NOT NULL DEFAULT 0, religionId INT(10) NOT NULL DEFAULT 0, countryId INT(10) NOT NULL DEFAULT 0, stateId INT(10) NOT NULL DEFAULT 0, distictId INT(10) NOT NULL DEFAULT 0, placeId INT(10) NOT NULL DEFAULT 0, mobilePhone INT(10) NOT NULL, landPhone INT(15) NOT NULL, intercasteable TINYINT NOT NULL DEFAULT 0, createdBy TINYINT NOT NULL DEFAULT 0, maritalStatus TINYINT NOT NULL DEFAULT 0, PRIMARY KEY(personalDetailsId), FOREIGN KEY (userId) REFERENCES users(userId))ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;
+create table userpersonaldetails(personalDetailsId BIGINT UNIQUE NOT NULL AUTO_INCREMENT, userId BIGINT NOT NULL, casteId INT(10) NOT NULL DEFAULT 0, religionId INT(10) NOT NULL DEFAULT 0, countryId INT(10) NOT NULL DEFAULT 0, stateId INT(10) NOT NULL DEFAULT 0, distictId INT(10) NOT NULL DEFAULT 0, placeId INT(10) NOT NULL DEFAULT 0, mobilePhone INT(10) NOT NULL, landPhone INT(15) NOT NULL, intercasteable TINYINT NOT NULL DEFAULT 0, createdBy TINYINT NOT NULL DEFAULT 0, maritalStatus TINYINT NOT NULL DEFAULT 0, PRIMARY KEY(personalDetailsId), FOREIGN KEY (userId) REFERENCES users(userId))ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;
 
 -- --------Table for userContactDetails--------------
 
-create table userContactDetails(contactDetailsId BIGINT UNIQUE NOT NULL AUTO_INCREMENT, userId BIGINT NOT NULL, mobileNo INT(10) NOT NULL, landLine INT(15) NOT NULL, alternativeNo VARCHAR(20) NOT NULL, facebookUrl VARCHAR(255), skypeId VARCHAR(255), googleIM VARCHAR(255), yahooIM VARCHAR(255), visibility TINYINT NOT NULL DEFAULT 0, PRIMARY KEY(contactDetailsId), FOREIGN KEY (userId) REFERENCES users(userId))ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;
+create table usercontactdetails(contactDetailsId BIGINT UNIQUE NOT NULL AUTO_INCREMENT, userId BIGINT NOT NULL, mobileNo INT(10) NOT NULL, landLine INT(15) NOT NULL, alternativeNo VARCHAR(20) NOT NULL, facebookUrl VARCHAR(255), skypeId VARCHAR(255), googleIM VARCHAR(255), yahooIM VARCHAR(255), visibility TINYINT NOT NULL DEFAULT 0, PRIMARY KEY(contactDetailsId), FOREIGN KEY (userId) REFERENCES users(userId))ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;
 
 
 -- ------Table for address---------
@@ -33,7 +33,7 @@ create table address(addressId BIGINT UNIQUE NOT NULL AUTO_INCREMENT, userId BIG
 
 -- ---Table for physicalDetails------
 
-create table physicalDetails(physicalId BIGINT UNIQUE NOT NULL AUTO_INCREMENT, userId BIGINT NOT NULL, heightId BIGINT NOT NULL, weight INT NOT NULL, bodyType TINYINT NOT NULL DEFAULT 0, complexion TINYINT NOT NULL DEFAULT 0, physicalStatus TINYINT NOT NULL DEFAULT 0, PRIMARY KEY(physicalId), FOREIGN KEY (userId) REFERENCES users(userId))ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;
+create table physicaldetails(physicalId BIGINT UNIQUE NOT NULL AUTO_INCREMENT, userId BIGINT NOT NULL, heightId BIGINT NOT NULL, weight INT NOT NULL, bodyType TINYINT NOT NULL DEFAULT 0, complexion TINYINT NOT NULL DEFAULT 0, physicalStatus TINYINT NOT NULL DEFAULT 0, PRIMARY KEY(physicalId), FOREIGN KEY (userId) REFERENCES users(userId))ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;
 
 
 -- ---- Tale for education----------
@@ -48,7 +48,7 @@ create table habit(habitId BIGINT UNIQUE NOT NULL AUTO_INCREMENT, userId BIGINT 
 
 -- ---Table for familyProfile-----
 
-create table familyProfile(familyProfileID BIGINT UNIQUE NOT NULL AUTO_INCREMENT, userId BIGINT NOT NULL, familyStatus TINYINT NOT NULL DEFAULT 0, familyType TINYINT NOT NULL DEFAULT 0, familyValues TINYINT NOT NULL DEFAULT 0, brothers INT NOT NULL, sisters INT NOT NULL, brotherMarried INT NOT NULL, SisterMarried INT NOT NULL, familyPic VARCHAR(255), visibility TINYINT NOT NULL DEFAULT 0, familyDesc TEXT NOT NULL, userDesc TEXT NOT NULL, PRIMARY KEY(familyProfileID), FOREIGN KEY (userId) REFERENCES users(userId))ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;
+create table familyprofile(familyProfileID BIGINT UNIQUE NOT NULL AUTO_INCREMENT, userId BIGINT NOT NULL, familyStatus TINYINT NOT NULL DEFAULT 0, familyType TINYINT NOT NULL DEFAULT 0, familyValues TINYINT NOT NULL DEFAULT 0, brothers INT NOT NULL, sisters INT NOT NULL, brotherMarried INT NOT NULL, SisterMarried INT NOT NULL, familyPic VARCHAR(255), visibility TINYINT NOT NULL DEFAULT 0, familyDesc TEXT NOT NULL, userDesc TEXT NOT NULL, PRIMARY KEY(familyProfileID), FOREIGN KEY (userId) REFERENCES users(userId))ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;
 
 
 -- --Table for hobiesAndInterests-----
@@ -58,7 +58,7 @@ create table hobiesAndInterests(hobiesId BIGINT UNIQUE NOT NULL AUTO_INCREMENT, 
 
 -- -------Table for partnerPreferences--------
 
-create table partnerPreferences(preferenceId BIGINT UNIQUE NOT NULL AUTO_INCREMENT, 
+create table partnerpreferences(preferenceId BIGINT UNIQUE NOT NULL AUTO_INCREMENT, 
 userId BIGINT NOT NULL,ageFrom INT(10) NOT NULL DEFAULT 0, ageTo INT(10) NOT NULL DEFAULT 0,
  maritalStatus TINYINT, haveChildren TINYINT , heightFrom INT(10),
 heightTo INT(10), physicalStatus TINYINT, religion INT(10) ,caste INT(10) ,
@@ -209,7 +209,7 @@ create table coupon_logs(id BIGINT UNIQUE NOT NULL AUTO_INCREMENT, adminUserId I
 
 ---table for bodyType_master--
 
-create table bodyType_master(id BIGINT UNIQUE NOT NULL AUTO_INCREMENT, name VARCHAR(250) NOT NULL, active BIGINT NOT NULL DEFAULT 1, PRIMARY KEY(id))ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;
+create table bodytype_master(id BIGINT UNIQUE NOT NULL AUTO_INCREMENT, name VARCHAR(250) NOT NULL, active BIGINT NOT NULL DEFAULT 1, PRIMARY KEY(id))ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;
 
 
 ---table for complexion_master--
@@ -225,15 +225,15 @@ create table album(albumId BIGINT UNIQUE NOT NULL AUTO_INCREMENT, senderId BIGIN
 
 -- Table for documentRequest
 
-create table documentRequest(documentRequestId BIGINT UNIQUE NOT NULL AUTO_INCREMENT, senderId BIGINT NOT NULL, receiverId BIGINT NOT NULL, status TINYINT NOT NULL DEFAULT 0, sendDate DATE NOT NULL, PRIMARY KEY(documentRequestId), FOREIGN KEY (senderId) REFERENCES users(userId), FOREIGN KEY (receiverId) REFERENCES users(userID))ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;
+create table documentrequest(documentRequestId BIGINT UNIQUE NOT NULL AUTO_INCREMENT, senderId BIGINT NOT NULL, receiverId BIGINT NOT NULL, status TINYINT NOT NULL DEFAULT 0, sendDate DATE NOT NULL, PRIMARY KEY(documentRequestId), FOREIGN KEY (senderId) REFERENCES users(userId), FOREIGN KEY (receiverId) REFERENCES users(userID))ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;
 
 -- Table for contactRequest
 
-create table contactRequest(contactRequestId BIGINT UNIQUE NOT NULL AUTO_INCREMENT, senderId BIGINT NOT NULL, receiverId BIGINT NOT NULL, status TINYINT NOT NULL DEFAULT 0, sendDate DATE NOT NULL, PRIMARY KEY(contactRequestId), FOREIGN KEY (senderId) REFERENCES users(userId), FOREIGN KEY (receiverId) REFERENCES users(userID))ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;
+create table contactrequest(contactRequestId BIGINT UNIQUE NOT NULL AUTO_INCREMENT, senderId BIGINT NOT NULL, receiverId BIGINT NOT NULL, status TINYINT NOT NULL DEFAULT 0, sendDate DATE NOT NULL, PRIMARY KEY(contactRequestId), FOREIGN KEY (senderId) REFERENCES users(userId), FOREIGN KEY (receiverId) REFERENCES users(userID))ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;
 
 -- Table for familyAlbum
 
-create table familyAlbum(familyAlbumId BIGINT UNIQUE NOT NULL AUTO_INCREMENT, senderId BIGINT NOT NULL, receiverId BIGINT NOT NULL, status TINYINT NOT NULL DEFAULT 0, sendDate DATE NOT NULL, PRIMARY KEY(familyAlbumId), FOREIGN KEY (senderId) REFERENCES users(userId), FOREIGN KEY (receiverId) REFERENCES users(userID))ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;
+create table familyalbum(familyAlbumId BIGINT UNIQUE NOT NULL AUTO_INCREMENT, senderId BIGINT NOT NULL, receiverId BIGINT NOT NULL, status TINYINT NOT NULL DEFAULT 0, sendDate DATE NOT NULL, PRIMARY KEY(familyAlbumId), FOREIGN KEY (senderId) REFERENCES users(userId), FOREIGN KEY (receiverId) REFERENCES users(userID))ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;
 
 -- signs_master table
 
@@ -244,7 +244,7 @@ DROP VIEW IF EXISTS view_users;
 
 CREATE VIEW view_users AS SELECT U.*, FLOOR( DATEDIFF( CURRENT_DATE, U.dob) /365 ) as age,UC.mobileNo,UC.landLine,UC.alternativeNo,UC.facebookUrl,UC.skypeId,UC.googleIM,UC.yahooIM,UC.visibility,
 UP.casteId as casteId,C.name as caste,UP.religionId as religionId, R.name as religion,UP.countryId,CO.name as country,UP.stateId,S.name as state,UP.distictId,D.name as district,UP.placeId as placeId, PL.name as place,UP.mobilePhone,UP.landPhone,UP.intercasteable,UP.createdBy,UP.maritalStatus,
-P.heightId,P.weight,P.bodyType,P.complexion,P.physicalStatus,PB.profileIDs as profileBlocked,
+P.heightId,P.weight,P.bodyType,P.complexion,P.physicalstatus,PB.profileIDs as profileBlocked,
 H.dosham as dosham,H.sudham as sudham,HA.food,HA.smoking,HA.drinking,HI.languages, 
 EL.educationId as educationId,EM.name as educationName,EL.occupationId as occupationId,OM.name as occupationName,EL.yearlyIncome as annualIncome
 FROM users U
@@ -258,7 +258,7 @@ LEFT JOIN states S ON UP.stateId = S.stateId
 LEFT JOIN districts D ON UP.distictId = D.districtId
 LEFT JOIN places PL ON UP.placeId = PL.placeId
 LEFT JOIN education EL ON U.userId = EL.userId
-LEFT JOIN profileBlock PB ON U.userId = PB.userId
+LEFT JOIN profileblock PB ON U.userId = PB.userId
 LEFT JOIN horoscopes H ON U.userId = H.userId
 LEFT JOIN hobiesandinterests HI on U.userId = HI.userId 
 LEFT JOIN habit HA ON U.userId = HA.userId
@@ -269,17 +269,17 @@ LEFT JOIN occupation_master OM ON EL.occupationId  = OM.occupationId
 
 create table album(albumId BIGINT UNIQUE NOT NULL AUTO_INCREMENT, senderId BIGINT NOT NULL, receiverId BIGINT NOT NULL, status TINYINT NOT NULL DEFAULT 0, sendDate DATE NOT NULL, PRIMARY KEY(albumId), FOREIGN KEY (senderId) REFERENCES users(userId), FOREIGN KEY (receiverId) REFERENCES users(userID))ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;
 
--- Table for documentRequest
+-- Table for documentrequest
 
 create table documentRequest(documentRequestId BIGINT UNIQUE NOT NULL AUTO_INCREMENT, senderId BIGINT NOT NULL, receiverId BIGINT NOT NULL, status TINYINT NOT NULL DEFAULT 0, sendDate DATE NOT NULL, PRIMARY KEY(documentRequestId), FOREIGN KEY (senderId) REFERENCES users(userId), FOREIGN KEY (receiverId) REFERENCES users(userID))ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;
 
--- Table for contactRequest
+-- Table for contactrequest
 
 create table contactRequest(contactRequestId BIGINT UNIQUE NOT NULL AUTO_INCREMENT, senderId BIGINT NOT NULL, receiverId BIGINT NOT NULL, status TINYINT NOT NULL DEFAULT 0, sendDate DATE NOT NULL, PRIMARY KEY(contactRequestId), FOREIGN KEY (senderId) REFERENCES users(userId), FOREIGN KEY (receiverId) REFERENCES users(userID))ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;
 
 -- Table for familyAlbum
 
-create table familyAlbum(familyAlbumId BIGINT UNIQUE NOT NULL AUTO_INCREMENT, senderId BIGINT NOT NULL, receiverId BIGINT NOT NULL, status TINYINT NOT NULL DEFAULT 0, sendDate DATE NOT NULL, PRIMARY KEY(familyAlbumId), FOREIGN KEY (senderId) REFERENCES users(userId), FOREIGN KEY (receiverId) REFERENCES users(userID))ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;
+create table familyalbum(familyAlbumId BIGINT UNIQUE NOT NULL AUTO_INCREMENT, senderId BIGINT NOT NULL, receiverId BIGINT NOT NULL, status TINYINT NOT NULL DEFAULT 0, sendDate DATE NOT NULL, PRIMARY KEY(familyAlbumId), FOREIGN KEY (senderId) REFERENCES users(userId), FOREIGN KEY (receiverId) REFERENCES users(userID))ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;
 
 -- alter the photos table
 
@@ -319,9 +319,9 @@ CREATE TABLE IF NOT EXISTS album (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=0
 
 -- table for profile udpate logging --
-create table profileUpdates(profileId BIGINT UNIQUE NOT NULL AUTO_INCREMENT, userId BIGINT NOT NULL, status text NOT NULL, PRIMARY KEY(profileId),when datetime NOT NULL,FOREIGN KEY (userId) REFERENCES users(userId))ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;
+create table profileupdates(profileId BIGINT UNIQUE NOT NULL AUTO_INCREMENT, userId BIGINT NOT NULL, status text NOT NULL, PRIMARY KEY(profileId),when datetime NOT NULL,FOREIGN KEY (userId) REFERENCES users(userId))ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;
 
 -- table for profile blocking --
-create table profileBlock(profileBlockId BIGINT UNIQUE NOT NULL AUTO_INCREMENT, 
+create table profileblock(profileBlockId BIGINT UNIQUE NOT NULL AUTO_INCREMENT, 
 userId BIGINT NOT NULL, profileIDs text NOT NULL, PRIMARY KEY(profileBlockId)
 ,FOREIGN KEY (userId) REFERENCES users(userId))ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;
