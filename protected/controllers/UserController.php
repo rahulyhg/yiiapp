@@ -3,15 +3,27 @@
 class UserController extends Controller
 {
 	
-	  public function beforeAction()
+	  public function beforeAction(CAction $action)
         {
+        	
+        		if($action->id == 'register')
+        		return true;
                 $user = Yii::app()->session->get('user');
                 if(!isset($user)) {
                         $this->redirect(Yii::app()->user->loginUrl);
                         return false;
                 }       
-                return true;
-        }  
+                else{
+                	if(isset($user->userloggeddetails) && sizeof($user->userloggeddetails) > 0)
+                	{
+                		$this->redirect(array('/mypage'));
+                	}
+                	else{
+                	return true;
+                	}	
+                }
+        }   
+	  
 		
 	
 	public function actionRegister()
@@ -43,7 +55,16 @@ class UserController extends Controller
 				$user->marryId = sprintf("MD%05s",$user->primaryKey);
 				$user->updateByPk($user->primaryKey,array('marryId'=>$user->marryId));
 					
-					
+				
+				if(isset($_POST['UserForm']['coupon']))
+				{
+					$payment = new Payment();
+					$payment->couponcode = $_POST['UserForm']['coupon'];
+					$payment->userID = $user->primaryKey;
+					$payment->startdate = new CDbExpression('NOW()');
+					$payment->actionItem = 'membership';
+					$payment->save();
+				}	
 					
 				//user personal details table
 				$userPersonal->userId = $user->primaryKey;
@@ -70,6 +91,7 @@ class UserController extends Controller
 				
 				if($form->login())
 				{
+					Yii::app()->session->add('user',$user);
 					Yii::log("Create the user succesfully with username {$user->name} and marry door ID {$user->marryId}");	
 				}
 				else
@@ -79,7 +101,7 @@ class UserController extends Controller
 				
 				
 		}
-		$this->render('success',array('user'=>$user,'userPersonal'=>$userPersonal));
+		$this->render('contacts',array('user'=>$user,'userPersonal'=>$userPersonal));
 	}
 
 	public function actionFamilyPic(){
@@ -91,7 +113,7 @@ class UserController extends Controller
 		$user = Yii::app()->session->get('user');
 		$userPersonal = $user->userpersonaldetails;
 		$address = new Address();
-		$contact = $user->usercontactdetails;
+		$contact = new Usercontactdetails();
 		
 			$physical = new Physicaldetails();
 			$education = new Education();
@@ -117,20 +139,20 @@ class UserController extends Controller
 		$address->userId = $user->userId;
 		if(isset($_POST['house']))
 		$address->houseName = $_POST['house'];
-		if(isset($_POST['place']))
-		$address->place = $_POST['place'];
+		if(isset($_POST['houseplace']))
+		$address->place = $_POST['houseplace'];
 		if(isset($_POST['post']))
 		$address->postoffice = $_POST['post'];
 		if(isset($_POST['postcode']))
 		$address->pincode = $_POST['postcode'];
-		if(isset($_POST['city']))
-		$address->city = $_POST['city'];
-		if(isset($_POST['district']))
-		$address->district = $_POST['district'];
-		if(isset($_POST['state']))
-		$address->state = $_POST['state'];
-		if(isset($_POST['country']))
-		$address->country  = $_POST['country'];
+		if(isset($_POST['housecity']))
+		$address->city = $_POST['housecity'];
+		if(isset($_POST['housedistrict']))
+		$address->district = $_POST['housedistrict'];
+		if(isset($_POST['housestate']))
+		$address->state = $_POST['housestate'];
+		if(isset($_POST['housecountry']))
+		$address->country  = $_POST['housecountry'];
 		$address->save();
 			
 		//contact details	
@@ -312,6 +334,7 @@ class UserController extends Controller
 		$user = Yii::app()->session->get('user');
 		$horoscope = new Horoscopes();
 		$horoscope->userId = $user->userId;
+		if(isset($_POST['date']))
 		$horoscope->astrodate = $_POST['year'].'-'.$_POST['month'].'-'.$_POST['date'];
 		if(isset($_POST['city']))
 		$horoscope->city = $_POST['city'];
@@ -542,8 +565,6 @@ class UserController extends Controller
 		
 		
 		$user = Yii::app()->session->get('user');
-
-		
 		$this->render('contacts',array('user'=>$user));
 		
 		//$this->render('horoscope',array('model' => new Horoscopes()));

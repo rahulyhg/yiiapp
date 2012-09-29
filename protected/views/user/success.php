@@ -30,7 +30,7 @@
 
 <p class="txt_bld_14">You have successfully registered with Kerala.marrydoor.com, a part of marrydoor.com.<br />This is your Matrimony ID: <?php echo $user->marryId?><br /><br />
 
-Please use this ID or your Email to login to KeralaMatrimony.com. A confirmation mail will be sent to you with your Matrimony ID and Password.</p>
+Please use this ID or your Email to login to KeralaMatrimony.com. A confirmation mail will be sent to you with your Matrimony ID.</p>
 
 <div class="space"><br /><br /></div>
               		

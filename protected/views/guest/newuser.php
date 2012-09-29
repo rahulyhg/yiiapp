@@ -470,36 +470,38 @@
 <?php echo $form->passwordField($model,'password',array('class'=>'validate[required] index_form_1')); ?> 
 			</div><!--/memo-sub_right_mgn--><!--/memo-sub_left_mgn--><!--/memo-sub_left_mgn--><!--/memo-sub_right_mgn--><!--/memo-sub_left_mgn-->
             
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
           
+<div class="div_ww">
 <div class="memo-sub_left_mgn"><!--memo-sub_left_mgn-->
 
-<p class="txt_rg_index_left">Continue with</p>
+	<p class="txt_rg_index_left">Subscribe Now! Only for</p>
 	</div><!--/memo-sub_left_mgn-->
-    
-    
-    	<div class="memo-sub_right_mgn_3"><!--memo-sub_right_mgn-->
 
- <select class="gray_month_memo_large">
-<option>Paid Membership</option>
-<option>Free Membership</option>
- </select>
- 		</div><!--/memo-sub_right_mgn--><!--/memo-sub_left_mgn-->
+		<div class="memo-sub_right_mgn_img"><!--memo-sub_right_mgn-->
+
+<img src="<?php echo Yii::app()->params['mediaUrl']; ?>/img_200for3months.jpg" class="left" />
+			</div><!--/memo-sub_right_mgn--><!--/memo-sub_left_mgn-->
             
+   </div>         
+            
+            
+	<div class="clear"></div>
+    
+Please enter your coupon code,also please contact us at 0407-12121212 for coupon.
+<div id="coupon" class="memo-sub_left_mgn"><!--memo-sub_left_mgn-->
 
+<?php echo $form->labelEx($model,'coupon',array('class'=>'txt_rg_index_left')); ?>
+	</div><!--/memo-sub_left_mgn-->
+
+		<div id="coupon1" class="memo-sub_right_mgn_3"><!--memo-sub_right_mgn-->
+
+<?php echo $form->textField($model,'coupon',array('class'=>'validate[required] index_form_1')); ?> 
+			</div><!--/memo-sub_right_mgn--><!--/memo-sub_left_mgn--><!--/memo-sub_left_mgn--><!--/memo-sub_right_mgn--><!--/memo-sub_left_mgn-->
+            
+            
+            
+            
+            
 	<div class="clear"></div>
     
 <div class="space-15px"><p>&nbsp;</p></div>    

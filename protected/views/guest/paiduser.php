@@ -292,36 +292,20 @@
    </div>         
             
             
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-   <div class="div_ww">         
-          
-<div class="memo-sub_left_mgn"><!--memo-sub_left_mgn-->
-
-	<p class="txt_rg_index_left">Select Your plan</p>
-	</div><!--/memo-sub_left_mgn-->
-    
-    
-    	<div class="memo-sub_right_mgn_2"><!--memo-sub_right_mgn-->
-
- <select class="gray_month_memo_large">
- <option>Activation Coupon</option>
- <option>Net Banking</option>
- <option>Credit Card and Paypal</option>
- </select>
- 		</div><!--/memo-sub_right_mgn--><!--/memo-sub_left_mgn-->
-            
-</div>
 	<div class="clear"></div>
     
+        Please enter your coupon code,also please contact us at 0407-12121212 for coupon.
+         <div id="coupon" class="memo-sub_left_mgn"><!--memo-sub_left_mgn-->
+
+<?php echo $form->labelEx($model,'coupon',array('class'=>'txt_rg_index_left')); ?>
+	</div><!--/memo-sub_left_mgn-->
+
+		<div id="coupon1" class="memo-sub_right_mgn_3"><!--memo-sub_right_mgn-->
+
+<?php echo $form->textField($model,'coupon',array('class'=>'validate[required] index_form_1')); ?> 
+			</div><!--/memo-sub_right_mgn--><!--/memo-sub_left_mgn--><!--/memo-sub_left_mgn--><!--/memo-sub_right_mgn--><!--/memo-sub_left_mgn-->
+            
+            
 <div class="space-15px">
   <blockquote>
     <blockquote>
@@ -329,7 +313,6 @@
     </blockquote>
   </blockquote>
 </div>    
-        
             
             
 <div class="clear"></div>

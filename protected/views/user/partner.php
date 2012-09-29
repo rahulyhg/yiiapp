@@ -34,9 +34,9 @@
                     </div>
 		<div class="list_class-6">
 		
-		<?php echo CHtml::dropDownList('ageFrom',null,Utilities::getAge(),array('class'=>'select_45')); ?>
+		<?php echo CHtml::dropDownList('ageFrom',null,Utilities::getAge(),array('prompt'=>'Age','class'=>'validate[required] select_45')); ?>
        	                 <span class="txt_bldleft">&nbsp;&nbsp;To&nbsp;&nbsp;</span> 
-        <?php echo CHtml::dropDownList('ageTo',null,Utilities::getAge(),array('class'=>'select_45')); ?>
+        <?php echo CHtml::dropDownList('ageTo',null,Utilities::getAge(),array('prompt'=>'Age','class'=>'validate[required] select_45')); ?>
         </div>
                     
                     <div class="clear"></div>
@@ -44,11 +44,11 @@
                     <p class="txt_bld"><span class="txt_bld_new">Marital Status</span></p>
                     </div> 
         <div class="list_class-6">
-                    		<span class="check_box"><INPUT type="checkbox" value="4" name="maritial[]">&nbsp;&nbsp;Any&nbsp;&nbsp;</span>
-                            <span class="check_box"><INPUT type="checkbox" value="0" name="maritial[]">&nbsp;&nbsp;Unmarried&nbsp;&nbsp;</span>
-                            <span class="check_box"><INPUT type="checkbox" value="1" name="maritial[]">&nbsp;&nbsp;Widow/Widower&nbsp;&nbsp;</span> 
-                            <span class="check_box"><INPUT type="checkbox" value="2" name="maritial[]">&nbsp;&nbsp;Divorced&nbsp;&nbsp;</span> 
-                            <span class="check_box"><INPUT type="checkbox" value="3" name="maritial[]">&nbsp;&nbsp;Awaiting divorce&nbsp;&nbsp;</span> 
+                    		<span class="check_box"><INPUT type="checkbox" class="validate[minCheckbox[1]] checkbox" value="4" name="maritial[]">&nbsp;&nbsp;Any&nbsp;&nbsp;</span>
+                            <span class="check_box"><INPUT type="checkbox" class="validate[minCheckbox[1]] checkbox" value="0" name="maritial[]">&nbsp;&nbsp;Unmarried&nbsp;&nbsp;</span>
+                            <span class="check_box"><INPUT type="checkbox" class="validate[minCheckbox[1]] checkbox" value="1" name="maritial[]">&nbsp;&nbsp;Widow/Widower&nbsp;&nbsp;</span> 
+                            <span class="check_box"><INPUT type="checkbox" class="validate[minCheckbox[1]] checkbox" value="2" name="maritial[]">&nbsp;&nbsp;Divorced&nbsp;&nbsp;</span> 
+                            <span class="check_box"><INPUT type="checkbox" class="validate[minCheckbox[1]] checkbox" value="3" name="maritial[]">&nbsp;&nbsp;Awaiting divorce&nbsp;&nbsp;</span> 
         </div>     
                     
                                      <div class="clear"></div>
@@ -58,13 +58,13 @@
                    
         <div class="list_class-6">
                    	<p class="radio_110">
-                    <input type="radio" name="child" value="0">&nbsp;&nbsp;Doesn't matter</p>
+                    <input type="radio" name="child" class="validate[required] radio" value="0">&nbsp;&nbsp;Doesn't matter</p>
                     <p class="radio_145">
-                    <input type="radio" name="child" value="1">&nbsp;&nbsp;Yes. living together</p>
+                    <input type="radio" name="child" class="validate[required] radio"  value="1">&nbsp;&nbsp;Yes. living together</p>
                     <p class="radio_155">
-                    <input type="radio" name="child" value="2">&nbsp;&nbsp;Yes. not living together</p>
+                    <input type="radio" name="child" class="validate[required] radio"  value="2">&nbsp;&nbsp;Yes. not living together</p>
                     <p class="radio_135">
-                    <input type="radio" name="child" value="3">&nbsp;&nbsp;No</p>
+                    <input type="radio" name="child" class="validate[required] radio"  value="3">&nbsp;&nbsp;No</p>
         </div>
 
         <div class="clear"></div>
@@ -74,9 +74,9 @@
 
 <div class="list_class-6">
   
-  <?php echo CHtml::dropDownList('heightFrom',null,Utilities::getHeights(),array('class'=>'select_small')); ?>
+  <?php echo CHtml::dropDownList('heightFrom',null,Utilities::getHeights(),array('prompt'=>'Height','class'=>'validate[required] select_small')); ?>
   <span class="txt_bldleft">&nbsp;&nbsp;To&nbsp;&nbsp;</span>
-  <?php echo CHtml::dropDownList('heightTo',null,Utilities::getHeights(),array('class'=>'select_small')); ?>
+  <?php echo CHtml::dropDownList('heightTo',null,Utilities::getHeights(),array('prompt'=>'Height','class'=>'validate[required] select_small')); ?>
   
 </div>
         <div class="clear"></div>
@@ -86,11 +86,11 @@
 
 <div class="list_class-6">
                    	<p class="radio_110">
-                    <input type="radio" name="status" value="0">&nbsp;&nbsp;Normal</p>
+                    <input type="radio" name="status" class="validate[required] radio"  value="0">&nbsp;&nbsp;Normal</p>
                    <p class="radio_145">
-                    <input type="radio" name="status" value="1">&nbsp;&nbsp;Disabled</p>
+                    <input type="radio" name="status" class="validate[required] radio"  value="1">&nbsp;&nbsp;Disabled</p>
                    <p class="radio_145">
-                    <input type="radio" name="status" value="2">&nbsp;&nbsp;Doesn't matter</p>
+                    <input type="radio" name="status" class="validate[required] radio"  value="2">&nbsp;&nbsp;Doesn't matter</p>
         </div>
         <div class="clear"></div>
         <div class="list_class-5">
@@ -347,7 +347,7 @@
 						</div>
                         
                         <div>
-                        <select class="tab_200" id="state1" name="state1[]" multiple="multiple">
+                        <select class="validate[required] tab_200" id="state1" name="state1[]" multiple="multiple">
                         </select>
                         </div>
                         </div>
@@ -442,7 +442,7 @@
 						</div>
                         
                         <div>
-                        <select class="tab_200" id="language1" name="language1[]" multiple="multiple">
+                        <select class="validate[required] tab_200" id="language1" name="language1[]" multiple="multiple">
                         </select>
                         </div>
                         </div>
@@ -642,4 +642,11 @@ Choose any one for you Only for</p>
             </div>
             <!--main-content closing-->
         
+ <script type="text/javascript">
+$(document).ready(function(){
+    $("#userPartner").validationEngine('attach');
+  });
+
+
+</script>	
         

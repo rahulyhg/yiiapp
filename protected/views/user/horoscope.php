@@ -36,8 +36,8 @@
                     <div class="list_class-2x">
                      
  		<?php echo CHtml::dropDownList('date',Utilities::currentDay(),Utilities::getRegDays(),array('class'=>'sel_date_memo_l')); ?>
-		<?php echo CHtml::dropDownList('month',Utilities::currentMonth(),Utilities::getRegMonths(),array('class'=>'sel_month_memo_l')); ?>		    
-    	<?php echo CHtml::dropDownList('year',Utilities::currentYear(),  Utilities::getRegYears(),array('class'=>'sel_year_memo_small')); ?>
+		<?php echo CHtml::dropDownList('month',Utilities::currentMonth(),Utilities::getRegMonths(),array('class'=>'validate[condRequired[date]] sel_month_memo_l')); ?>		    
+    	<?php echo CHtml::dropDownList('year',Utilities::currentYear(),  Utilities::getRegYears(),array('class'=>'validate[condRequired[date]] sel_year_memo_small')); ?>
  					</div>
 	<div class="clear"></div>	
 					

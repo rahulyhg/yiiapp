@@ -9,7 +9,7 @@ class Utilities
    const PS = PATH_SEPARATOR;
    
    public static function getRegDays() {
-     $days = array('00'=>'Day');
+     $days = array();
      foreach( range(1,31) as $day){
       if($day < 10) {
        $days['0'.$day] = '0'.$day;
@@ -23,7 +23,6 @@ class Utilities
  public static function getRegMonths()
  {
   return array(
-     '00' => 'Month',
      '01' => Yii::t('app','January'), 
      '02' => Yii::t('app','February'),
      '03' => Yii::t('app','March'), 
@@ -46,7 +45,7 @@ class Utilities
   $yearNow = self::currentYear();
   $yearFrom = $yearNow - 59;
   $yearTo = $yearNow - 18;
-  $arrYears = array('0000'=>'Year');
+  $arrYears = array();
 
   foreach (range($yearFrom, $yearTo) as $number) {
    $arrYears[$number] = $number;

@@ -64,16 +64,16 @@
 				
 				
 				<p class="radio_135">
-					<input type="radio" name="profileFor" value="1">&nbsp;&nbsp;Son
+					<input type="radio" name="profileFor" class="validate[required] radio"  value="1">&nbsp;&nbsp;Son
 				</p>
 				<p class="radio_135">
-					<input type="radio" name="profileFor" value="2">&nbsp;&nbsp;Brother
+					<input type="radio" name="profileFor" value="2" class="validate[required] radio" >&nbsp;&nbsp;Brother
 				</p>
 				<p class="radio_135">
-					<input type="radio" name="profileFor" value="3">&nbsp;&nbsp;Relative
+					<input type="radio" name="profileFor" value="3" class="validate[required] radio" >&nbsp;&nbsp;Relative
 				</p>
 				<p class="radio_135">
-					<input type="radio" name="profileFor" value="4">&nbsp;&nbsp;Friend
+					<input type="radio" name="profileFor" value="4" class="validate[required] radio" >&nbsp;&nbsp;Friend
 				</p>
 			</div>
 			<!--closing personal details-section-1-->
@@ -87,16 +87,16 @@
 			<div class="list_class-4">
 
 				<p class="radio_135">
-					<input type="radio" name="marital" value="0">&nbsp;&nbsp;Unmarried
+					<input type="radio" name="marital" value="0" class="validate[required] radio" >&nbsp;&nbsp;Unmarried
 				</p>
 				<p class="radio_135">
-					<input type="radio" name="marital" value="1">&nbsp;&nbsp;Widower
+					<input type="radio" name="marital" value="1" class="validate[required] radio" >&nbsp;&nbsp;Widower
 				</p>
 				<p class="radio_135">
-					<input type="radio" name="marital" value="2">&nbsp;&nbsp;Divorced
+					<input type="radio" name="marital" value="2" class="validate[required] radio" >&nbsp;&nbsp;Divorced
 				</p>
 				<p class="radio_155">
-					<input type="radio" name="marital" value="3">&nbsp;&nbsp;Awaiting&nbsp;divorce
+					<input type="radio" name="marital" value="3" class="validate[required] radio"  >&nbsp;&nbsp;Awaiting&nbsp;divorce
 				</p>
 
 			</div>
@@ -115,11 +115,11 @@
 				<div class="list_class-8b">
 				<?php
 				$userPersonal = $user->userpersonaldetails;
-				$religion = $userPersonal->religion;
-				$caste = $userPersonal->caste;
+				$religion = Religion::model()->findbyPk($user->userpersonaldetails->religionId);
+				$caste = Caste::model()->findbyPk($user->userpersonaldetails->casteId);
 				?>
 					<div class="div_150">
-						<span class="txt_12"> &nbsp;<?php echo $religion->name?> - <?php echo $caste->name?>
+						<span class="txt_12"> &nbsp;<?php if(isset($user->userpersonaldetails->religion))echo $user->userpersonaldetails->religion->name; else echo $religion->name ;?>- <?php if(isset($model->userpersonaldetails->caste))echo $model->userpersonaldetails->caste->name;else echo $caste->name ?>
 						</span>
 					</div>
 					
@@ -137,10 +137,10 @@
 			<div class="list_class-4">
 						
 					<p class="radio_135">
-					<input type="radio" name="interCaste" value="1">&nbsp;&nbsp;Yes
+					<input type="radio" class="validate[required] radio" name="interCaste" value="1">&nbsp;&nbsp;Yes
 					</p>
 					<p class="radio_135">
-						<input type="radio" name="interCaste" value="0">&nbsp;&nbsp;No
+						<input type="radio" class="validate[required] radio "name="interCaste" value="0">&nbsp;&nbsp;No
 					</p>
 					&nbsp;&nbsp;&nbsp;&nbsp;
 
@@ -163,11 +163,11 @@
 			</div>
 			<div class="list_class-6">
 			<?php
-			$country = $religion = $user->userpersonaldetails->country;
+			$country = Country::model()->findbyPk($user->userpersonaldetails->countryId);
 			?>
 				<div class="list_class-8b">
 					<div class="div_150">
-						<span class="txt_12"><?php echo $country->name?> </span>
+						<span class="txt_12"><?php if(isset($user->userpersonaldetails->country))echo $user->userpersonaldetails->country->name;else  echo $country->name?> </span>
 					</div>
 				</div>
 			</div>
@@ -185,7 +185,7 @@
 
 			$records = States::model()->findAll("active = 1");
 			$list = CHtml::listData($records, 'stateId', 'name');
-			echo CHtml::dropDownList('state',$user->userpersonaldetails->stateId,$list,array('empty' => 'State','class'=>'select_small_h22')); ?>
+			echo CHtml::dropDownList('state',$user->userpersonaldetails->stateId,$list,array('empty' => 'State','class'=>'validate[required] select_small_h22')); ?>
 
 			</div>
 			<!--closing personal details-section-5-->
@@ -199,7 +199,7 @@
 
 			$records = Districts::model()->findAll("active = 1");
 			$list = CHtml::listData($records, 'districtId', 'name');
-			echo CHtml::dropDownList('district',null,$list,array('empty' => 'District','class'=>'select_small_h22')); ?>
+			echo CHtml::dropDownList('district',null,$list,array('empty' => 'District','class'=>'validate[required] select_small_h22')); ?>
 
 			</div>
 			<!--closing personal details-section-6-->
@@ -215,7 +215,7 @@
 
 			$records = Places::model()->findAll("active = 1");
 			$list = CHtml::listData($records, 'placeId', 'name');
-			echo CHtml::dropDownList('place',null,$list,array('empty' => 'Places','class'=>'select_small_h22')); ?>
+			echo CHtml::dropDownList('place',null,$list,array('empty' => 'Places','class'=>'validate[required] select_small_h22')); ?>
 
 			</div>
 			<div class="clear"></div>
@@ -251,12 +251,12 @@
 				<!--/list_class-new_div_1-->
 				<div class="list_class-new_div_2">
 					<!--list_class-new_div_2-->
-					<input type="text" name="house" id="house" class="addres_form"
+					<input type="text" name="house" id="house" class="validate[required] addres_form"
 						placeholder="House Name / No." />
 				</div>
 				<div class="list_input_div_2">
 					<!--list_class-new_div_2-->
-					<input type="text" name="place" id="place" class="addres_form"
+					<input type="text" name="houseplace" id="place" class="validate[required] addres_form"
 						placeholder="Place" />
 				</div>
 			</div>
@@ -270,12 +270,12 @@
 				<!--/list_class-new_div_1-->
 				<div class="list_class-new_div_2">
 					<!--list_class-new_div_2-->
-					<input type="text" name="post" id="post" class="addres_form"
+					<input type="text" name="post" id="post" class="validate[required] addres_form"
 						placeholder="Post Office" />
 				</div>
 				<div class="list_input_div_2">
 					<!--list_class-new_div_2-->
-					<input type="text" name="postcode" id="postcode" class="addres_form"
+					<input type="text" name="postcode" id="postcode" class="validate[required,custom[integer],maxSize[6]] addres_form"
 						placeholder="Post Code" />
 				</div>
 			</div>
@@ -291,12 +291,12 @@
 				<!--/list_class-new_div_1-->
 				<div class="list_class-new_div_2">
 					<!--list_class-new_div_2-->
-					<input type="text" name="city" id="city" class="addres_form"
+					<input type="text" name="housecity" id="city" class="validate[required] addres_form"
 						placeholder="City" />
 				</div>
 				<div class="list_input_div_2">
 					<!--list_class-new_div_2-->
-					<input type="text" name="state" id="district" class="addres_form"
+					<input type="text" name="housedistrict" id="district" class="validate[required] addres_form"
 						placeholder="District" />
 				</div>
 			</div>
@@ -310,13 +310,13 @@
 				</div>
 				<div class="list_class-new_div_2">
 					<!--list_class-new_div_2-->
-					<input type="text" name="state" id="state" class="addres_form"
+					<input type="text" name="housestate" id="state" class="validate[required] addres_form"
 						placeholder="State" />
 				</div>
 				<!--/list_class-new_div_1-->
 				<div class="list_input_div_2">
 					<!--list_class-new_div_2-->
-					<input type="text" name="country" id="country" class="addres_form"
+					<input type="text" name="housecountry" id="country" class="validate[required] addres_form"
 						placeholder="Country" />
 				</div>
 
@@ -382,11 +382,11 @@
 
 					<div class="list_class-textfield">
 						<input type="text" name="alterMobile" id="alterMobile"
-							class="addres_form" /> <input type="text"
-							name="facebook" id="facebook" class="addres_form" /> <input
-							type="text" class="addres_form" name="skype" id="skype" /> <input
-							type="text" class="addres_form" name="google" id="google" /> <input
-							type="text" class="addres_form" name="yahoo" id="yahoo" />
+							class="validate[required,funcCall[validatePhone]] addres_form" /> <input type="text"
+							name="facebook" id="facebook" class="validate[required] addres_form" /> <input
+							type="text" class="validate[required] addres_form" name="skype" id="skype" /> <input
+							type="text" class="validate[required] addres_form" name="google" id="google" /> <input
+							type="text" class="validate[required] addres_form" name="yahoo" id="yahoo" />
 
 					</div>
 				</div>
@@ -398,9 +398,9 @@
         <p class="txt_bldn"><span class="txt_bld_new">Who can view above detals</span></p>
         </div> 
         <div class="list_class-8"><p class="radio-4">
-          <input type="radio" name="pcontact" value="subscribers">&nbsp;Subscribers</p>
+          <input type="radio" name="pcontact" class="validate[required] radio" value="subscribers">&nbsp;Subscribers</p>
                             <p class="radio-4">
-                            <input type="radio" name="pcontact" value="request">&nbsp;By request</p>
+                            <input type="radio" name="pcontact" class="validate[required] radio" value="request">&nbsp;By request</p>
                             
            
                             
@@ -419,7 +419,7 @@
 			</div>
 			<div class="list_class-4">
 				<div class="list_fdf-textfield">
-					<input type="text" class="addres_form" name="height" id="height" />
+					<input type="text" class="validate[required,custom[integer],min[100],max[250]] addres_form" name="height" id="height" />
 				</div>
 				<div class="clear"></div>
 			</div>
@@ -434,7 +434,7 @@
 
 				<div class="list_class-4">
 					<div class="list_fdf-textfield">
-						<input type="text" class="addres_form" name="weight" id="weight" />
+						<input type="text" class="validate[required,custom[integer],min[30],max[150]] addres_form" name="weight" id="weight" />
 					</div>
 				</div>
 				<!--closing personal contact details-section-1-->
@@ -451,16 +451,16 @@
 					</div>
 					<div class="bb1_6">
 						<p class="radio_135">
-							<input type="radio" name="bodyType" value="0">&nbsp;&nbsp;Average
+							<input type="radio" name="bodyType" class="validate[required] radio" value="0">&nbsp;&nbsp;Average
 						</p>
 						<p class="radio_135">
-							<input type="radio" name="bodyType" value="1">&nbsp;&nbsp;Athletic
+							<input type="radio" name="bodyType" class="validate[required] radio" value="1">&nbsp;&nbsp;Athletic
 						</p>
 						<p class="radio_90">
-							<input type="radio" name="bodyType" value="2">&nbsp;&nbsp;Slim
+							<input type="radio" name="bodyType" class="validate[required] radio" value="2">&nbsp;&nbsp;Slim
 						</p>
 						<p class="radio_135">
-							<input type="radio" name="bodyType" value="3">&nbsp;&nbsp;Heavy
+							<input type="radio" name="bodyType" class="validate[required] radio" value="3">&nbsp;&nbsp;Heavy
 						</p>
 					</div>
 
@@ -476,21 +476,21 @@
 				</div>
 				<div class="bb1_6">
 					<p class="radio_135">
-						<input type="radio" name="complexion" value="0">&nbsp;&nbsp;Very
+						<input type="radio" name="complexion" class="validate[required] radio" value="0">&nbsp;&nbsp;Very
 						Fair
 					</p>
 					<p class="radio_135">
-						<input type="radio" name="complexion" value="1">&nbsp;&nbsp;Fair
+						<input type="radio" name="complexion" class="validate[required] radio" value="1">&nbsp;&nbsp;Fair
 					</p>
 					<p class="radio_90">
-						<input type="radio" name="complexion" value="2">&nbsp;&nbsp;Wheatish
+						<input type="radio" name="complexion" class="validate[required] radio" value="2">&nbsp;&nbsp;Wheatish
 					</p>
 					<p class="radio_145">
-						<input type="radio" name="complexion" value="3" />
+						<input type="radio" name="complexion" class="validate[required] radio" value="3" />
 						&nbsp;&nbsp;Wheatish&nbsp;brown
 					</p>
 					<p class="radio_135">
-						<input type="radio" name="complexion" value="4" />
+						<input type="radio" name="complexion" class="validate[required] radio" value="4" />
 						&nbsp;&nbsp;Dark
 					</p>
 				</div>
@@ -535,7 +535,7 @@
 
 					$records = EducationMaster::model()->findAll("active = 1");
 					$list = CHtml::listData($records, 'educationId', 'name');
-					echo CHtml::dropDownList('education',null,$list,array('empty' => 'Education','class'=>'select_small_h22')); ?>
+					echo CHtml::dropDownList('education',null,$list,array('empty' => 'Education','class'=>'validate[required] select_small_h22')); ?>
 
 				</div>
 
@@ -552,7 +552,7 @@
 
 					$records = OccupationMaster::model()->findAll("active = 1");
 					$list = CHtml::listData($records, 'occupationId', 'name');
-					echo CHtml::dropDownList('occupation',null,$list,array('empty' => 'Occupation','class'=>'select_small_h22')); ?>
+					echo CHtml::dropDownList('occupation',null,$list,array('empty' => 'Occupation','class'=>'validate[required] select_small_h22')); ?>
 				</div>
 
 
@@ -572,24 +572,24 @@
 					</div>
 					<div class="list_xx">
 						<p class="radio_135">
-							<input type="radio" name="employed" value="0">&nbsp;&nbsp;Government
+							<input type="radio" name="employed" class="validate[required] radio"  value="0">&nbsp;&nbsp;Government
 						</p>
 						<p class="radio_auto">
-							<input type="radio" name="employed" value="1">&nbsp;&nbsp;Private
+							<input type="radio" name="employed" class="validate[required] radio" value="1">&nbsp;&nbsp;Private
 						</p>
 						<p class="radio_auto">
-							<input type="radio" name="employed" value="2">&nbsp;&nbsp;Business
+							<input type="radio" name="employed" class="validate[required] radio" value="2">&nbsp;&nbsp;Business
 						</p>
 						<p class="radio_auto">
-							<input type="radio" name="employed" value="3" />
+							<input type="radio" name="employed" class="validate[required] radio" value="3" />
 							&nbsp;&nbsp;Defence
 						</p>
 						<p class="radio_auto">
-							<input type="radio" name="employed" value="4" />
+							<input type="radio" name="employed" class="validate[required] radio" value="4" />
 							&nbsp;&nbsp;Self&nbsp;Employed
 						</p>
 						<p class="radio_auto">
-							<input type="radio" name="employed" value="5" />&nbsp;&nbsp;NRI
+							<input type="radio" name="employed" class="validate[required] radio" value="5" />&nbsp;&nbsp;NRI
 						</p>
 					</div>
 
@@ -606,16 +606,16 @@
 
 					<div class="list_xx">
 						<p class="radio_135">
-							<input type="radio" name="ctc" value="12" /> &nbsp;&nbsp;Monthly
+							<input type="radio" name="ctc" class="validate[required] radio" value="12" /> &nbsp;&nbsp;Monthly
 						</p>
 						<p class="radio_90">
-							<input type="radio" name="ctc" value="1" /> &nbsp;&nbsp;Annual
+							<input type="radio" name="ctc" class="validate[required] radio" value="1" /> &nbsp;&nbsp;Annual
 						</p>
 
 						<div class="small_form_box">
 							<img src="<?php echo Yii::app()->params['mediaUrl']; ?>/money_icon.jpg" class="rupee" />
 							<p class="txt_bld-10">
-								<input type="text" class="small_form_1" id="income"
+								<input type="text" class="validate[required,custom[integer]] small_form_1" id="income"
 									name="income" placeholder="Use Rupees" /><span class="rupee_1">1,00,000
 									per month</span>
 							</p>
@@ -650,14 +650,14 @@
 
 					<div class="list_xx">
 						<p class="radio_135">
-							<input type="radio" name="food" value="0">&nbsp;&nbsp;Vegetarian
+							<input type="radio" name="food" class="validate[required] radio" value="0">&nbsp;&nbsp;Vegetarian
 						</p>
 						<p class="radio_145">
-							<input type="radio" name="food" value="1" />
+							<input type="radio" name="food" class="validate[required] radio" value="1" />
 							&nbsp;&nbsp;Non&nbsp;Vegetarian
 						</p>
 						<p class="radio_135">
-							<input type="radio" name="food" value="2">&nbsp;&nbsp;Eggetarian
+							<input type="radio" name="food" value="2" class="validate[required] radio" >&nbsp;&nbsp;Eggetarian
 						</p>
 					</div>
 				</div>
@@ -670,14 +670,14 @@
 					</div>
 					<div class="list_xx">
 						<p class="radio_135">
-							<input type="radio" name="smoke" value="0" /> &nbsp;&nbsp;No
+							<input type="radio" name="smoke" value="0" class="validate[required] radio" /> &nbsp;&nbsp;No
 						</p>
 						<p class="radio_145">
-							<input type="radio" name="smoke" value="1" />
+							<input type="radio" name="smoke" value="1" class="validate[required] radio" />
 							&nbsp;&nbsp;Occasionally
 						</p>
 						<p class="radio_145">
-							<input type="radio" name="smoke" value="2" /> &nbsp;&nbsp;Yes
+							<input type="radio" name="smoke" value="2" class="validate[required] radio" /> &nbsp;&nbsp;Yes
 						</p>
 					</div>
 				</div>
@@ -690,14 +690,14 @@
 
 					<div class="list_xx">
 						<p class="radio_135">
-							<input type="radio" name="drink" value="0" /> &nbsp;&nbsp;No
+							<input type="radio" name="drink" value="0" class="validate[required] radio" /> &nbsp;&nbsp;No
 						</p>
 						<p class="radio_145">
-							<input type="radio" name="drink" value="1" />
+							<input type="radio" name="drink" value="1" class="validate[required] radio" />
 							&nbsp;&nbsp;Occasionally
 						</p>
 						<p class="radio_135">
-							<input type="radio" name="drink" value="2" /> &nbsp;&nbsp;Yes
+							<input type="radio" name="drink" value="2" class="validate[required] radio" /> &nbsp;&nbsp;Yes
 						</p>
 					</div>
 				</div>
@@ -723,22 +723,22 @@
 					</div>
 					<div class="list_xx">
 						<p class="radio_135">
-							<input type="radio" name="status" value="3" /> &nbsp;Rich
+							<input type="radio" name="status" value="3" class="validate[required] radio" /> &nbsp;Rich
 						</p>
 						<p class="radio_145">
-							<input type="radio" name="status" value="2" /> Upper Middleclass
+							<input type="radio" name="status" value="2" class="validate[required] radio" /> Upper Middleclass
 						</p>
 						<p class="radio_135">
-							<input type="radio" name="status" value="1" /> &nbsp;&nbsp;Middle
+							<input type="radio" name="status" value="1" class="validate[required] radio" /> &nbsp;&nbsp;Middle
 							class
 						</p>
 						<p class="radio_145">
-							<input type="radio" name="status" value="0" />
+							<input type="radio" name="status" value="0" class="validate[required] radio" />
 							Lower&nbsp;middleclass
 						</p>
 
 						<p class="radio_auto">
-							<input type="radio" name="status" value="4" /> &nbsp;Affluent
+							<input type="radio" name="status" value="4" class="validate[required] radio" /> &nbsp;Affluent
 						</p>
 					</div>
 				</div>
@@ -752,10 +752,10 @@
 					</div>
 					<div class="list_xx">
 						<p class="radio_135">
-							<input type="radio" name="type" value="0" /> &nbsp;&nbsp;Joint
+							<input type="radio" name="type" value="0" class="validate[required] radio" /> &nbsp;&nbsp;Joint
 						</p>
 						<p class="radio_135">
-							<input type="radio" name="type" value="1" /> &nbsp;&nbsp;Nuclear
+							<input type="radio" class="validate[required] radio" name="type" value="1" /> &nbsp;&nbsp;Nuclear
 						</p>
 					</div>
 				</div>
@@ -768,19 +768,19 @@
 
 					<div class="list_xx">
 						<p class="radio_135">
-							<input type="radio" name="familyValues" value="0" />
+							<input type="radio" name="familyValues" value="0" class="validate[required] radio" />
 							&nbsp;&nbsp;Orthodox
 						</p>
 						<p class="radio_135">
-							<input type="radio" name="familyValues" value="1" />
+							<input type="radio" name="familyValues" value="1" class="validate[required] radio" />
 							&nbsp;&nbsp;Traditional
 						</p>
 						<p class="radio_135">
-							<input type="radio" name="familyValues" value="2" />
+							<input type="radio" name="familyValues" value="2" class="validate[required] radio" />
 							&nbsp;&nbsp;Moderate
 						</p>
 						<p class="radio_135">
-							<input type="radio" name="familyValues" value="3" />
+							<input type="radio" name="familyValues" value="3" class="validate[required] radio" />
 							&nbsp;&nbsp;Liberal
 						</p>
 					</div>
@@ -797,12 +797,12 @@
 
 					<div class="list_xx">
 						<div class="list_class-textfield_age">
-							<input type="text"  name="brothers"
+							<input type="text"  name="brothers" class="validate[required,custom[integer]]"
 								id="brothers" />
 						</div>
 						<p class="radio">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Married</p>
 						<div class="list_class-textfield_age">
-							<input type="text" name="brothersMarry"
+							<input type="text" name="brothersMarry" class="validate[required,custom[integer]]"
 								id="brothersMarry" />
 						</div>
 					</div>
@@ -816,12 +816,12 @@
 					</div>
 					<div class="list_xx">
 						<div class="list_class-textfield_age">
-							<input type="text"  name="sisters"
+							<input type="text"  name="sisters" class="validate[required,custom[integer]]"
 								id="sisters" />
 						</div>
 						<p class="radio">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Married</p>
 						<div class="list_class-textfield_age">
-							<input type="text" name="sistersMarry"
+							<input type="text" name="sistersMarry" class="validate[required,custom[integer]]"
 								id="sistersMarry" />
 						</div>
 					</div>
@@ -845,7 +845,7 @@
         </div>
 <div class="list_xx">
 <p class="radio-2b">
-          <?php echo CHtml::checkBoxList('family',null,array('all'=>'All','subscribers'=>'Subscribers','member'=> 'Logged Members','request' => 'By Request')); ?>
+          <?php echo CHtml::checkBoxList('family',null,array('all'=>'All','subscribers'=>'Subscribers','member'=> 'Logged Members','request' => 'By Request'),array('class'=>'validate[minCheckbox[1]] checkbox')); ?>
           </p> </div>
 
 
@@ -864,7 +864,7 @@
 					<div class="list_xx">
 
 
-						<textarea name="familyDesc" rows="2" cols="20" class="tab_300b">
+						<textarea name="familyDesc" rows="2" cols="20" class="validate[required] text-input tab_300b">
 
 </textarea>
 
@@ -893,7 +893,7 @@
 					<div class="list_class-6">
 
 
-						<textarea rows="2" cols="20" name="myDesc" class="tab_300b">
+						<textarea rows="2" cols="20" name="myDesc" class="validate[required] text-input tab_300b">
 
 </textarea>
 					</div>
@@ -1014,3 +1014,13 @@
 	
 </div>	
 	<!--main-content closing-->
+	
+	
+<script type="text/javascript">
+$(document).ready(function(){
+    $("#userContact").validationEngine('attach');
+  });
+
+
+</script>	
+	

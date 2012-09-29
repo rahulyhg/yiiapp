@@ -120,7 +120,7 @@ class SiteController extends Controller
 	{
 		$user = Yii::app()->session->get('user');
 		$userLogged = $user->userloggeddetails(array('order'=>'loggedIn DESC','limit'=>1));
-		if(isset($userLogged))
+		if(isset($userLogged) && sizeof($userLogged) > 0)
 		{		
 			$userLogged[0]->loggedOut = new CDbExpression('NOW()');
 			$userLogged[0]->save();

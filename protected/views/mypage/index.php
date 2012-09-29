@@ -165,12 +165,12 @@
             <div <?php if($index > 1) echo "id='high{$index}'";?> class="<?php if($index % 2 == 0) { echo 'list_div_250';} else{ echo 'list_div_240r';}?>" ><!--search_div_lft-->
 	
             <a href="album.html"><img src="<?php echo Yii::app()->params['mediaUrl']; ?>/photo_5.jpg" border="0" class="search_div_img" /></a>
-            <p class="txt_normal-2"><span class="txt_bld"><a href="<?php echo '/byid/id/'.$value->marryId ?>"><?php echo $value->name; echo '( '.$value->marryId.' )' ;?></a></span><br />
+            <p class="txt_normal-2"><span class="txt_bld"><a href="<?php echo '/search/byid/id/'.$value->marryId ?>"><?php echo $value->name; echo '( '.$value->marryId.' )' ;?></a></span><br />
 			<?php if(isset($value->userpersonaldetails->religion))echo $value->userpersonaldetails->religion->name ;?> , <?php if(isset($value->userpersonaldetails->caste))echo $value->userpersonaldetails->caste->name ;?> &nbsp;
             <br /> <?php echo Utilities::getAgeFromDateofBirth($value->dob); ?>Years &nbsp;<br /><?php if(isset($value->physicaldetails->heightId))echo $heightArray[$value->physicaldetails->heightId]; ?> &nbsp;
             <br /><?php if(isset($value->userpersonaldetails->place))echo $value->userpersonaldetails->place->name ?>&nbsp;<br /><?php if(isset($value->educations->education))echo $value->educations->education->name?> &nbsp;
             <br /><?php if(isset($value->educations->occupation))echo $value->educations->occupation->name ?> &nbsp;</p>
-            <p class="search_div_1"><span class="blue-text-01"><a href="<?php echo 'byid/id/'.$value->marryId ?>">View Full Profile</a></span></p>
+            <p class="search_div_1"><span class="blue-text-01"><a href="<?php echo '/search/byid/id/'.$value->marryId ?>">View Full Profile</a></span></p>
             <div class="clear"></div>
             	
                       
@@ -375,12 +375,14 @@ Only for</p>
                 </div>
                 <!--bottom-content closing-->
                 	
-
+              <?php 
+  if(isset($normal)) {
+ ?>
 
                         <p class="clear"></p>
                         <p class="line"></p>
                         <p class="clear"></p>
-                        <p class="text_pink-16">Latest Matches For You</p><p class="space-15px">&nbsp;</p>
+                        <div id="searchLatest" tabindex="2"><p class="text_pink-16">Latest Matches For You</p><p class="space-15px">&nbsp;</p></div>
               <p class="sellect-all"><span class="txt_normal-2"></span>
                      
 <div class="view-1">
@@ -403,7 +405,6 @@ Only for</p>
                         
               
                <?php 
-  
   $index1 = 1;
   foreach ($normal as $value) { ?>
                    
@@ -431,7 +432,7 @@ Only for</p>
                         <p class="graytext">Occupation </p>
                         <p class="full-col">:</p>
                         <p class="gray-rt"> <?php if(isset($value->educations->occupation))echo $value->educations->occupation->name ?> &nbsp;</p>
-                        <p class="blue-text-01"><a href="<?php echo 'byid/id/'.$value->marryId ?>">View Full Profile</a></p>
+                        <p class="blue-text-01"><a href="<?php echo '/search/byid/id/'.$value->marryId ?>">View Full Profile</a></p>
                       <div class="clear"></div>
                       	<div class="pages-1">
                         
@@ -459,7 +460,10 @@ Only for</p>
    <?php } ?> 
 
 </div><!--/search_div_lft-->
-  <?php $index1++; }?>		
+  <?php $index1++; }
+  
+  }
+  ?>		
               
               						<p class="clear"></p>
                         <p class="line"></p>
@@ -568,7 +572,7 @@ Only for</p>
 			}
 		}
 		$("input[name='currentPage']").val("1");
-		
+		$('div#searchLatest').focus();
 		});
 
 	$('.pre').click(function (){
@@ -589,6 +593,7 @@ Only for</p>
 		}
 		
 		$("input[name='currentPage']").val(currentPage);
+		$('div#searchLatest').focus();
 	});
 
 	$('.next').click(function (){
@@ -615,7 +620,7 @@ Only for</p>
 		}
 		
 		$("input[name='currentPage']").val(currentPage);
-	
+		$('div#searchLatest').focus();
 			
 	});
 
@@ -640,7 +645,7 @@ Only for</p>
 		}
 	
 		$("input[name='currentPage']").val(lastPage);
-		
+		$('div#searchLatest').focus();
 	});
 
 	 
