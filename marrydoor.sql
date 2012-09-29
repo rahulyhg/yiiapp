@@ -217,7 +217,7 @@ create table bodytype_master(id BIGINT UNIQUE NOT NULL AUTO_INCREMENT, name VARC
 create table complexion_master(id BIGINT UNIQUE NOT NULL AUTO_INCREMENT, name VARCHAR(250) NOT NULL, active BIGINT NOT NULL DEFAULT 1, PRIMARY KEY(id))ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;
 
 -- table for privacy
-create table privacy (id BIGINT UNIQUE NOT NULL AUTO_INCREMENT, userId BIGINT NOT NULL,items ENUM('album', 'family', 'documents','astro','reference','contact'),privacy SET('all', 'subscribers', 'member', 'request'), PRIMARY KEY(id),FOREIGN KEY (userId) REFERENCES users(userId))ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8
+create table privacy (id BIGINT UNIQUE NOT NULL AUTO_INCREMENT, userId BIGINT NOT NULL,items ENUM('album', 'family', 'documents','astro','reference','contact'),privacy SET('all', 'subscribers', 'member', 'request'), PRIMARY KEY(id),FOREIGN KEY (userId) REFERENCES users(userId))ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;
 
 -- TABLE FOR album
 
@@ -239,31 +239,6 @@ create table familyalbum(familyAlbumId BIGINT UNIQUE NOT NULL AUTO_INCREMENT, se
 
 create table signs_master(signId BIGINT UNIQUE NOT NULL AUTO_INCREMENT, name VARCHAR(250) NOT NULL, image VARCHAR(250)  DEFAULT "abc.jpg" NOT NULL, active BIGINT NOT NULL DEFAULT 1, PRIMARY KEY(signId))ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-
-DROP VIEW IF EXISTS view_users;
-
-CREATE VIEW view_users AS SELECT U.*, FLOOR( DATEDIFF( CURRENT_DATE, U.dob) /365 ) as age,UC.mobileNo,UC.landLine,UC.alternativeNo,UC.facebookUrl,UC.skypeId,UC.googleIM,UC.yahooIM,UC.visibility,
-UP.casteId as casteId,C.name as caste,UP.religionId as religionId, R.name as religion,UP.countryId,CO.name as country,UP.stateId,S.name as state,UP.distictId,D.name as district,UP.placeId as placeId, PL.name as place,UP.mobilePhone,UP.landPhone,UP.intercasteable,UP.createdBy,UP.maritalStatus,
-P.heightId,P.weight,P.bodyType,P.complexion,P.physicalstatus,PB.profileIDs as profileBlocked,
-H.dosham as dosham,H.sudham as sudham,HA.food,HA.smoking,HA.drinking,HI.languages, 
-EL.educationId as educationId,EM.name as educationName,EL.occupationId as occupationId,OM.name as occupationName,EL.yearlyIncome as annualIncome
-FROM users U
-LEFT JOIN usercontactdetails UC ON U.userId = UC.userId
-LEFT JOIN userpersonaldetails UP ON U.userId = UP.userId
-LEFT JOIN physicaldetails P ON U.userId = P.userId
-LEFT JOIN caste C ON UP.casteId = C.casteId
-LEFT JOIN religion R ON UP.religionId = R.religionId
-LEFT JOIN country CO ON UP.countryId = CO.countryId
-LEFT JOIN states S ON UP.stateId = S.stateId
-LEFT JOIN districts D ON UP.distictId = D.districtId
-LEFT JOIN places PL ON UP.placeId = PL.placeId
-LEFT JOIN education EL ON U.userId = EL.userId
-LEFT JOIN profileblock PB ON U.userId = PB.userId
-LEFT JOIN horoscopes H ON U.userId = H.userId
-LEFT JOIN hobiesandinterests HI on U.userId = HI.userId 
-LEFT JOIN habit HA ON U.userId = HA.userId
-LEFT JOIN education_master EM ON EL.educationId = EM.educationId
-LEFT JOIN occupation_master OM ON EL.occupationId  = OM.occupationId
 
 -- TABLE FOR album
 
@@ -290,7 +265,7 @@ ALTER TABLE photos ADD active TINYINT(4) DEFAULT 0 AFTER profileImage;
 ALTER TABLE documents ADD active TINYINT(4) DEFAULT 0 AFTER documentType;
 
 
-create table search(searchId BIGINT UNIQUE NOT NULL AUTO_INCREMENT, searchText text NOT NULL, searchQquery text NOT NULL, userId BIGINT NOT NULL, PRIMARY KEY(searchId), FOREIGN KEY (userId) REFERENCES users(userId))ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8
+create table search(searchId BIGINT UNIQUE NOT NULL AUTO_INCREMENT, searchText text NOT NULL, searchQquery text NOT NULL, userId BIGINT NOT NULL, PRIMARY KEY(searchId), FOREIGN KEY (userId) REFERENCES users(userId))ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;
 
 -- --table for bookmark----
 
@@ -316,12 +291,37 @@ CREATE TABLE IF NOT EXISTS album (
   PRIMARY KEY (albumId),
   FOREIGN KEY (userId) REFERENCES users(userId),
   UNIQUE KEY albumId (albumId)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=0
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=0;
 
 -- table for profile udpate logging --
-create table profileupdates(profileId BIGINT UNIQUE NOT NULL AUTO_INCREMENT, userId BIGINT NOT NULL, status text NOT NULL, PRIMARY KEY(profileId),when datetime NOT NULL,FOREIGN KEY (userId) REFERENCES users(userId))ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;
+create table profileupdates(profileId BIGINT UNIQUE NOT NULL AUTO_INCREMENT, userId BIGINT NOT NULL, status text NOT NULL, PRIMARY KEY(profileId),statusTime datetime NOT NULL,FOREIGN KEY (userId) REFERENCES users(userId))ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;
 
 -- table for profile blocking --
 create table profileblock(profileBlockId BIGINT UNIQUE NOT NULL AUTO_INCREMENT, 
 userId BIGINT NOT NULL, profileIDs text NOT NULL, PRIMARY KEY(profileBlockId)
 ,FOREIGN KEY (userId) REFERENCES users(userId))ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;
+
+DROP VIEW IF EXISTS view_users;
+
+CREATE VIEW view_users AS SELECT U.*, FLOOR( DATEDIFF( CURRENT_DATE, U.dob) /365 ) as age,UC.mobileNo,UC.landLine,UC.alternativeNo,UC.facebookUrl,UC.skypeId,UC.googleIM,UC.yahooIM,UC.visibility,
+UP.casteId as casteId,C.name as caste,UP.religionId as religionId, R.name as religion,UP.countryId,CO.name as country,UP.stateId,S.name as state,UP.distictId,D.name as district,UP.placeId as placeId, PL.name as place,UP.mobilePhone,UP.landPhone,UP.intercasteable,UP.createdBy,UP.maritalStatus,
+P.heightId,P.weight,P.bodyType,P.complexion,P.physicalstatus,PB.profileIDs as profileBlocked,
+H.dosham as dosham,H.sudham as sudham,HA.food,HA.smoking,HA.drinking,HI.languages, 
+EL.educationId as educationId,EM.name as educationName,EL.occupationId as occupationId,OM.name as occupationName,EL.yearlyIncome as annualIncome
+FROM users U
+LEFT JOIN usercontactdetails UC ON U.userId = UC.userId
+LEFT JOIN userpersonaldetails UP ON U.userId = UP.userId
+LEFT JOIN physicaldetails P ON U.userId = P.userId
+LEFT JOIN caste C ON UP.casteId = C.casteId
+LEFT JOIN religion R ON UP.religionId = R.religionId
+LEFT JOIN country CO ON UP.countryId = CO.countryId
+LEFT JOIN states S ON UP.stateId = S.stateId
+LEFT JOIN districts D ON UP.distictId = D.districtId
+LEFT JOIN places PL ON UP.placeId = PL.placeId
+LEFT JOIN education EL ON U.userId = EL.userId
+LEFT JOIN profileblock PB ON U.userId = PB.userId
+LEFT JOIN horoscopes H ON U.userId = H.userId
+LEFT JOIN hobiesandinterests HI on U.userId = HI.userId 
+LEFT JOIN habit HA ON U.userId = HA.userId
+LEFT JOIN education_master EM ON EL.educationId = EM.educationId
+LEFT JOIN occupation_master OM ON EL.occupationId  = OM.occupationId;
