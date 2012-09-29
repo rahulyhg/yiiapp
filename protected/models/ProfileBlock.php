@@ -1,12 +1,15 @@
 <?php
 
 /**
- * This is the model class for table "profileBlock".
+ * This is the model class for table "profileblock".
  *
- * The followings are the available columns in table 'profileBlock':
+ * The followings are the available columns in table 'profileblock':
  * @property string $profileBlockId
  * @property string $userId
  * @property string $profileIDs
+ *
+ * The followings are the available model relations:
+ * @property Users $user
  */
 class ProfileBlock extends CActiveRecord
 {
@@ -25,7 +28,7 @@ class ProfileBlock extends CActiveRecord
 	 */
 	public function tableName()
 	{
-		return 'profileBlock';
+		return 'profileblock';
 	}
 
 	/**
@@ -52,6 +55,7 @@ class ProfileBlock extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
+			'user' => array(self::BELONGS_TO, 'Users', 'userId'),
 		);
 	}
 
