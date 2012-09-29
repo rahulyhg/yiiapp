@@ -157,7 +157,10 @@ class MypageController extends Controller
 
 	public function actionAlbum()
 	{
-		$this->render('myalbum');
+		$user = Yii::app()->session->get('user');
+		$photos = new Photos();
+		$photosList = $photos->findAll('userId='.$user->userId);
+		$this->render('myalbum',array('photosList' => $photosList));
 	}
 
 	public function actionAddressbook()
