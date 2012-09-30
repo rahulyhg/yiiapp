@@ -64,16 +64,20 @@
 				</div>
 				<!--/navigation_container-->
 				<?php } else {?>
-				
-				<div class="navigation_container_small">
-		<div class="nav_bloc"><!--nav_bloc-->
+		<!-- search dropdown -->
 		
-		<div class="nav_links"><a href="08--search.html">&nbsp;&nbsp;&nbsp;search</a></div>
-		<div class="nav_links"><a href="01-home-viewed-by-guest.html">payment options</a></div>
-		<div class="nav_links_last"><a href="10 my contact.html">contact us</a></div>
-	</div><!--nav_bloc-->
-</div><!--/navigation_container-->
-				<?php }?>
+				<div class="navigation_container">
+				<?php $this->widget('application.widgets.menu.SubMain'); ?>
+				<?php $this->widget('application.widgets.menu.Search'); ?>
+				<!-- search dropdown ends here -->
+				<!-- payment dropdown starts here -->
+					<?php $this->widget('application.widgets.menu.Paymentoptions'); ?>
+				<!-- payment dropdown ends here -->
+				<!-- contactus dropdown starts here -->
+					<?php $this->widget('application.widgets.menu.Contactus'); ?>
+				</div>	
+				<!-- contactus dropdown ends here -->
+					<?php }?>
 <p class="clear"></p>
 <p class="space-15px">&nbsp;</p>
 
@@ -86,6 +90,7 @@
 	<?php if(isset($this->breadcrumbs)):?>
 		<?php $this->widget('zii.widgets.CBreadcrumbs', array(
 			'links'=>$this->breadcrumbs,
+		    'homeLink'=>CHtml::link('Start', array('/site/index')),
 		)); ?><!-- breadcrumbs -->
 	<?php endif?>
 

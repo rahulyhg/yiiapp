@@ -31,17 +31,17 @@
             <p class="space-25px">&nbsp;</p>
             <!--navigation_container--><!--/navigation_container-->
 			<p class="clear"></p><p class="space-15px">&nbsp;</p>
-            
-              <div class="navigation_container_small">
-		<div class="nav_bloc"><!--nav_bloc-->
-		
-		<div class="nav_links"><a href="08--search.html">&nbsp;&nbsp;&nbsp;search</a></div>
-		<div class="nav_links"><a href="01-home-viewed-by-guest.html">payment options</a></div>
-		<div class="nav_links_last"><a href="10 my contact.html">contact us</a></div>
-	</div><!--nav_bloc-->
-</div><!--/navigation_container-->
-
-
+            <div class="navigation_container">
+            	<?php $this->widget('application.widgets.menu.SubMain'); ?>
+				<?php $this->widget('application.widgets.menu.Search'); ?>
+				<!-- search dropdown ends here -->
+				<!-- payment dropdown starts here -->
+					<?php $this->widget('application.widgets.menu.Paymentoptions'); ?>
+				<!-- payment dropdown ends here -->
+				<!-- contactus dropdown starts here -->
+					<?php $this->widget('application.widgets.menu.Contactus'); ?>
+				<!-- contactus dropdown ends here -->
+			</div>		
             <!--/navigation_regional--><!--/navigation_regional-->
             <p class="clear"></p>
             <p class="space-15px">&nbsp;</p>

@@ -27,7 +27,7 @@ class GuestController extends Controller
 		}
 		else
 		{
-			Utilities::sendClaimEmail();
+			
 			$this->render('forgot');
 		}
 	}
