@@ -73,7 +73,9 @@ class MypageController extends Controller
 			$scondition = " userId in ({$userList}) AND userId != {$user->userId} ";
 			if(isset($blockIdList) && sizeof($blockId) > 0 )
 			$scondition .= " AND userId NOT IN({$blockIdList})"; 
-			$profileUsers = Users::model()->findAll(array('condition'=>$scondition,'order'=> 'createdOn DESC' ));
+			$profileUpdatedUsers = Users::model()->with(array(
+			'profileUpdates' => array('order'=> 'statusTime DESC' ),)
+			)->findAll(array('condition'=>$scondition));
 			
 		}
 		
@@ -111,7 +113,7 @@ class MypageController extends Controller
 				{
 				$totalUser = sizeof($normalUser);
 				$totalPage = ceil($totalUser/10);
-				$this->render('index',array('highlight'=>$highLightUser,'normal'=>$normalUser,'totalUser'=>$totalUser,'totalPage' => $totalPage));
+				$this->render('index',array('highlight'=>$highLightUser,'normal'=>$normalUser,'totalUser'=>$totalUser,'totalPage' => $totalPage,'profileUpdates'=>$profileUpdatedUsers));
 				}
 				
 			}

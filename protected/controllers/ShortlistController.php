@@ -20,7 +20,19 @@ class ShortlistController extends Controller
 		if(isset($userShort)){
 		$condition = "userId in ($userShort->profileID)";
 		$users = Users::model()->findAll(array('condition'=>$condition,'order'=> 'createdOn DESC' ));
-		$this->render('shortlist',array('users'=>$users));
+		
+		if(sizeof($users) > 0)
+		{
+			
+		$totalUser = sizeof($users);
+		$totalPage = ceil($totalUser/10);	
+		$this->render('shortlist',array('users'=>$users,'totalUser'=>$totalUser,'totalPage' => $totalPage));
+		}
+		else
+		{
+			$this->render('shortlist');
+		}
+		
 		}
 		else 
 		{
@@ -33,7 +45,7 @@ class ShortlistController extends Controller
 		if(isset($_POST['userId']) && !empty($_POST['userId']))
 		{
 			//change this from session
-			$usersList = Users::model()->findByPk(1);
+			$usersList = Yii::app()->session->get('user');
 			
 			$sql = "DELETE FROM shortlist WHERE userID = '1' AND profileID IN({$_POST['userId']})";
 			$command=Yii::app()->db->createCommand($sql);
