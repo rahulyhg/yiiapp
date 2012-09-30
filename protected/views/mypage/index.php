@@ -104,161 +104,70 @@
        } 
           ?> 
           
-          
+			
+           
+    <?php 
+    if(isset($profileUpdates)){
+   ?> 	
+    	
+    	<div class="clear"></div>
+			<p class="left"><span class="text_pink"><span class="bold">Recent Updates</span></span></p>
             <div class="clear"></div>
             <div class="line_sm"></div>
-            <p class="left"><span class="text_pink"><span class="bold">Recent Updates</span></span></p>
-            <p class="right"><span class="txt_bld">SORT &nbsp;<a href="#" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image142','','<?php echo Yii::app()->params['mediaUrl']; ?>/arrow-bottom-red.jpg',1)"><img src="<?php echo Yii::app()->params['mediaUrl']; ?>/arrow-bottom.jpg" name="Image142" width="10" height="5" border="0" id="Image142" /></a></span></p>
+            <p class="right"></p>
             <div class="clear"></div><p class="space-5px">&nbsp;</p>
-            
+           
+    	
+   <?php $heightArray = Utilities::getHeights();
+    foreach ($profileUpdates as $value) { ?>        
             <div class="left"><!--left-->
+            
+            
+            $value
               <a href="album.html"><img src="<?php echo Yii::app()->params['mediaUrl']; ?>/model_3.jpg" border="0" class="search_div_img" /></a>
          
          
      
-<p class="txt_11flt_2"><span class="text_blue"><a href="search.html">Seema Varma</a></span><br />
-Chrishtian, R.c.<br />
-29 Years - 5’ 4’’, 167 cm<br />
-Ankamaly, Kerala, India </p>
+<p class="txt_11flt_2"><span class="text_blue">
+ <a href="<?php echo 'byid?id='.$value->marryId ?>"><?php echo $value->name;?></a>
+</span><br />
+<?php if(isset($value->userpersonaldetails->religion))echo $value->userpersonaldetails->religion->name ;?> , <?php if(isset($value->userpersonaldetails->caste))echo $value->userpersonaldetails->caste->name ;?> &nbsp;<br />
+<?php echo Utilities::getAgeFromDateofBirth($value->dob); ?>Years &nbsp; -  <?php if(isset($value->physicaldetails->heightId))echo $heightArray[$value->physicaldetails->heightId];  ?> &nbsp;<br />
+<?php if(isset($value->userpersonaldetails->place))echo $value->userpersonaldetails->place->name ?>, <?php if(isset($value->userpersonaldetails->state))echo $value->userpersonaldetails->state->name ?>, <?php if(isset($value->userpersonaldetails->country))echo $value->userpersonaldetails->country->name ?> &nbsp;</p>
 <div class="clear"></div>
 <p>
 <strong><span class="txt_rg">
-            Updated five photos in her album&nbsp;&nbsp;&nbsp;&nbsp;</span></strong><br />
-            <span class="txt_11flt">2 Minuts ago</span>
+
+		<?php if(isset($value->profileUpdates)) {?>
+            <?php if(isset($value->profileUpdates->profile) && $value->profileUpdates->profile != 'album' ) echo $value->profileUpdates->status ?>&nbsp;&nbsp;&nbsp;&nbsp;</span></strong><br />
+            <span class="txt_11flt">  <?php if(isset($value->profileUpdates->statusTime)) echo "Updated ".Utilities::getHumanTime($value->profileUpdates->statusTime). ' ago';?></span>
 </p>
 </div><!--/left-->
-
-
-
-
-
-
-            <p class="txt_11">(You expressed interest on 12th Jan. 2012)</p>
+			<?php $isInterest = $user->interestSender(array('condition'=>"receiverId = {$value->userId}"));
+			if(isset($value->profileUpdates->profile) && $value->profileUpdates->profile == 'album' ) {?>
+ 			<p class="txt_11">
+ 			<?php if(isset($isInterest->sendDate))
+ 			{
+ 				echo "You have expressed interest ".Utilities::getHumanTime($value->profileUpdates->statusTime . ' ago' );
+ 			}
+ 			?>
+ 			</p>
             <a href="album.html"><img src="<?php echo Yii::app()->params['mediaUrl']; ?>/model_5.jpg" border="0" class="image" /></a>
             <a href="album.html"><img src="<?php echo Yii::app()->params['mediaUrl']; ?>/model_4.jpg" border="0" class="image" /></a>
             <a href="album.html"><img src="<?php echo Yii::app()->params['mediaUrl']; ?>/model_5.jpg" border="0" class="image" /></a>
-            
+            <?php }
+    }
+            ?>
             <div class="clear"></div>
             <div class="line"></div>
           
-          
-              
-            <div class="left"><!--left-->
-              <a href="album.html"><img src="<?php echo Yii::app()->params['mediaUrl']; ?>/model_3.jpg" border="0" class="search_div_img" /></a>
-         
-         
-     
-<p class="txt_11flt_2"><span class="text_blue"><a href="search.html">Seema Varma</a></span><br />
-Chrishtian, R.c.<br />
-29 Years - 5’ 4’’, 167 cm<br />
-Ankamaly, Kerala, India </p>
-<div class="clear"></div>
-<p>
-<strong><span class="txt_rg">
-            Updated five photos in her album&nbsp;&nbsp;&nbsp;&nbsp;</span></strong><br />
-            <span class="txt_11flt">2 Minuts ago</span>
-</p>
-</div><!--/left-->
 
 
 
+<?php }
+    }
+?>
 
-            <div class="clear"></div>
-            <div class="space"><br /></div>
-            <p class="txt_11">The most eligible bachelor & young politician from Kerala, Hibi Eden tied the wedding knot with Anna LinAda who was formerly a television anchor,The most eligible bachelor & young politician from Kerala, Hibi Eden tied the wedding knot with Anna LinAda who was formerly a television anchor,,,</p>
-            <p class="txt_11flt">2 Minuts ago</p>
-            <div class="clear"></div>
-            <div class="line_sm"></div>
-            <div class="clear"></div>
-            
-            
-            
-            
-            
-             <div class="left"><!--left-->
-              <a href="album.html"><img src="<?php echo Yii::app()->params['mediaUrl']; ?>/model_3.jpg" border="0" class="search_div_img" /></a>
-         
-         
-     
-<p class="txt_11flt_2"><span class="text_blue"><a href="search.html">Seema Varma</a></span><br />
-Chrishtian, R.c.<br />
-29 Years - 5’ 4’’, 167 cm<br />
-Ankamaly, Kerala, India </p>
-<div class="clear"></div>
-<p>
-<strong><span class="txt_rg">
-            Updated five photos in her album&nbsp;&nbsp;&nbsp;&nbsp;</span></strong><br />
-            <span class="txt_11flt">2 Minuts ago</span>
-</p>
-</div><!--/left-->
-
-
-
-
-
-
-            <p class="txt_11">(You expressed interest on 12th Jan. 2012)</p>
-            <a href="album.html"><img src="<?php echo Yii::app()->params['mediaUrl']; ?>/model_5.jpg" border="0" class="image" /></a>
-            <a href="album.html"><img src="<?php echo Yii::app()->params['mediaUrl']; ?>/model_4.jpg" border="0" class="image" /></a>
-            <a href="album.html"><img src="<?php echo Yii::app()->params['mediaUrl']; ?>/model_5.jpg" border="0" class="image" /></a>
-            <a href="album.html"><img src="<?php echo Yii::app()->params['mediaUrl']; ?>/model_5.jpg" border="0" class="image" /></a>
-            
-            <div class="clear"></div>
-            <div class="line"></div>
-          
-          
-              
-            <div class="left"><!--left-->
-              <a href="album.html"><img src="<?php echo Yii::app()->params['mediaUrl']; ?>/model_3.jpg" border="0" class="search_div_img" /></a>
-         
-         
-     
-<p class="txt_11flt_2"><span class="text_blue"><a href="search.html">Seema Varma</a></span><br />
-Chrishtian, R.c.<br />
-29 Years - 5’ 4’’, 167 cm<br />
-Ankamaly, Kerala, India </p>
-<div class="clear"></div>
-<p>
-<strong><span class="txt_rg">
-            Updated five photos in her album</span></strong><br />
-            <span class="txt_11flt">2 Minuts ago</span>
-</p>
-</div><!--/left-->
-
-
-
-
-            <div class="clear"></div>
-            <div class="space"><br /></div>
-            <p class="txt_11">The most eligible bachelor & young politician from Kerala, Hibi Eden tied the wedding knot with Anna LinAda who was formerly a television anchor,The most eligible bachelor & young politician from Kerala, Hibi Eden tied the wedding knot with Anna LinAda who was formerly a television anchor,,,</p>
-            <p class="txt_11flt">2 Minuts ago</p>
-          
-        
-            <p class="right"><span class="text_blue-right"><strong><a href="more-feeds.html">View More Feeds</a></strong></span></p>
-            <p class="clear"></p>
-            <p class="space-15px">&nbsp;</p>
-            </div>  
-  <!--closing central profile details closing-->      
-              
-                <!--left-content closing-->
-                <!--left-content-->
-                
-                <div id="content-right-small">
-               	  <div class="div_r_hh"><!--div_r-->
-
-<p class="text_20_gery"><a href="payment_benefits.html">Subscribe Now!</a><br />
-Only for</p>
-<div class="div_ww">
-<img src="<?php echo Yii::app()->params['mediaUrl']; ?>/img_200.jpg" class="left" width="100%"  border="0"/></div>
-
-<p class="text_20_gery">For 3 Months</p>
-
-
-<div class="clear"></div>
-               	  </div>
-              
-                </div>
-                <!--bottom-content closing-->
                 	
               <?php 
   if(isset($normal)) {
@@ -267,7 +176,7 @@ Only for</p>
                         <p class="clear"></p>
                         <p class="line"></p>
                         <p class="clear"></p>
-                        <div id="searchLatest" tabindex="2"><p class="text_pink-16">Latest Matches For You</p><p class="space-15px">&nbsp;</p></div>
+                        <div id="searchLatest"><p class="text_pink-16">Latest Matches For You</p><p class="space-15px">&nbsp;</p></div>
               <p class="sellect-all"><span class="txt_normal-2"></span>
                      
 <div class="view-1">

@@ -13,7 +13,7 @@
  
  
      <a href="<?php echo Utilities::createAbsoluteUrl('album','',array()); ?>"><img src="<?php echo Utilities::getProfileImage($user->marryId,$image) ?>" border="0" class="mrgn_5top" /></a>
-	      <p class="mrgn_25"><span class="text_pink_13"><a href="my-page.html">Biju George</a></span></p>
+	      <p class="mrgn_25"><span class="text_pink_13"><a href="/mypage"><?php echo $user->name?></a></span></p>
                 <div class="clear"></div>
                 <div class="line"></div>
                 

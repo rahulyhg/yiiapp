@@ -6,11 +6,9 @@
  * The followings are the available columns in table 'profileupdates':
  * @property string $profileId
  * @property string $userId
+ * @property string $profile
  * @property string $status
  * @property string $statusTime
- *
- * The followings are the available model relations:
- * @property Users $user
  */
 class ProfileUpdates extends CActiveRecord
 {
@@ -41,10 +39,11 @@ class ProfileUpdates extends CActiveRecord
 		// will receive user inputs.
 		return array(
 			array('userId', 'length', 'max'=>20),
+			array('profile', 'length', 'max'=>9),
 			array('status, statusTime', 'safe'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('profileId, userId, status, statusTime', 'safe', 'on'=>'search'),
+			array('profileId, userId, profile, status, statusTime', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -56,7 +55,6 @@ class ProfileUpdates extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'user' => array(self::BELONGS_TO, 'Users', 'userId'),
 		);
 	}
 
@@ -68,6 +66,7 @@ class ProfileUpdates extends CActiveRecord
 		return array(
 			'profileId' => 'Profile',
 			'userId' => 'User',
+			'profile' => 'Profile',
 			'status' => 'Status',
 			'statusTime' => 'Status Time',
 		);
@@ -86,6 +85,7 @@ class ProfileUpdates extends CActiveRecord
 
 		$criteria->compare('profileId',$this->profileId,true);
 		$criteria->compare('userId',$this->userId,true);
+		$criteria->compare('profile',$this->profile,true);
 		$criteria->compare('status',$this->status,true);
 		$criteria->compare('statusTime',$this->statusTime,true);
 

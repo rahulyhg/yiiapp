@@ -39,7 +39,7 @@
                   <p class="text_pink-hd">Shortlisted Profiles</p>
                 <p class="space-25px">&nbsp;</p>
 
-
+			 <?php if(isset($users)){ ?>
                     	<div class="clear"></div>
 						 <p class="line"></p>
                         <p class="sellect-all"><span class="txt_normal-2"><INPUT type="checkbox" class="selection" name="selection">&nbsp;&nbsp;Select All</span></p>
@@ -56,14 +56,8 @@
                 <div class="first-new"><a class="fpnl" href="#">Last</a></div>
                   
                      
-                        
-                      <div class="right">
-                        <a href="#"><img src="<?php echo Yii::app()->params['mediaUrl']; ?>/view.jpg" border="0" class="view_img" /></a>
-                        <a href="#"><img src="<?php echo Yii::app()->params['mediaUrl']; ?>/view_2.jpg"  class="view_img"  border="0" /></a></div>
-                         <div id="view-02" >
-                        <span class="view_text">View</span></div>
           </div>
-          
+          <?php }?>
           
           <p class="clear">&nbsp;</p><p class="space-10px">&nbsp;</p>
 
@@ -78,7 +72,10 @@
 					
 					<div class="clear"></div>
 					
+					<?php if(!isset($users)) {
 					
+						echo  "No short listed profiles";
+					}?>
 					
 					<div class="space-10px"><p>&nbsp;</p></div>
                     
@@ -90,100 +87,96 @@
   $index = 1;
   if(isset($users)){
   foreach ($users as $value) { ?>
-                   
-<div class="<?php if($index % 3 == 0) { echo 'search_div_1st';} else{ echo 'search_div_3rd';}?>"><!--search_div_lft-->
-						 <p class="txt_normal-2"><INPUT type="checkbox" name="userId" class="case" value="<?php echo $value->userId?>">&nbsp;&nbsp;Select</p><p class="space-10px">&nbsp;</p>
-                         <a href="album.html"><img src="<?php echo Yii::app()->params['mediaUrl']; ?>/photo_5.jpg" border="0" class="search_div_img" /></a>
-          
-                        <p class="gray-rtsm-link"> <a href="<?php echo '/search/byid?id='.$value->marryId ?>"><?php echo $value->name; echo '( '.$value->marryId.' )' ;?></a></p>
-                      
-                        <p class="gray-rtsm">  <?php if(isset($value->userpersonaldetails->religion))echo $value->userpersonaldetails->religion->name ;?> , <?php if(isset($value->userpersonaldetails->caste))echo $value->userpersonaldetails->caste->name ;?> &nbsp;</p>
-                      
-                        <p class="gray-rtsm"> <?php echo Utilities::getAgeFromDateofBirth($value->dob); ?>Years &nbsp;</p>
-                       
-                        <p class="gray-rtsm"> <?php if(isset($value->physicaldetails->heightId))echo $heightArray[$value->physicaldetails->heightId]; ?> &nbsp;</p>
-                        
-                        <p class="gray-rtsm"> <?php if(isset($value->userpersonaldetails->place))echo $value->userpersonaldetails->place->name ?>, <?php if(isset($value->userpersonaldetails->state))echo $value->userpersonaldetails->state->name ?>, <?php if(isset($value->userpersonaldetails->country))echo $value->userpersonaldetails->country->name?> &nbsp;</p>
-                       
-                        <p class="gray-rtsm"> <?php if(isset($value->educations->education))echo $value->educations->education->name?> &nbsp;</p>
-                       
-                        <p class="gray-rtsm"> <?php if(isset($value->educations->occupation))echo $value->educations->occupation->name ?> &nbsp;</p>
-						
-						  <p class="gray-rtsm"> <span class="blue-text-01"><a href="<?php echo '/search/byid?id='.$value->marryId ?>">View Full Profile</a></span></p>
-                       
+	                   
+  	<div id="<?php echo 'normal'.$index1?>" class="<?php if($index1 % 2 != 0) { echo 'search_div_lft';} else{ echo 'search_div_right';}?>" <?php if(intval($totalPage) > 1 && $index1 > 10 ) {?> style="display:none" <?php }?>><!--search_div_lft-->
+						<p class="space-25px">&nbsp;</p>
+                        <a href="album.html"><img src="<?php echo Yii::app()->params['mediaUrl']; ?>/photo_5.jpg" border="0" class="search_div_img" /></a>
+        				<p class="graytext">Name </p>
+                        <p class="full-col">:</p>
+                        <p class="gray-rt-link"> <a href="<?php echo 'byid?id='.$value->marryId ?>"><?php echo $value->name; echo '( '.$value->marryId.' )' ;?></a></p>
+                        <p class="graytext">Religion / Cas</p>
+                        <p class="full-col">:</p>
+                        <p class="gray-rt"> <?php if(isset($value->userpersonaldetails->religion))echo $value->userpersonaldetails->religion->name ;?> , <?php if(isset($value->userpersonaldetails->caste))echo $value->userpersonaldetails->caste->name ;?> &nbsp;</p>
+                        <p class="graytext">Age </p>
+                        <p class="full-col">:</p>
+                        <p class="gray-rt"> <?php echo Utilities::getAgeFromDateofBirth($value->dob); ?>Years &nbsp;</p>
+                        <p class="graytext">Height </p>
+                        <p class="full-col">:</p>
+                        <p class="gray-rt"> <?php if(isset($value->physicaldetails->heightId))echo $heightArray[$value->physicaldetails->heightId];  ?> &nbsp;</p>
+                        <p class="graytext">Place </p>
+                        <p class="full-col">:</p>
+                        <p class="gray-rt"> <?php if(isset($value->userpersonaldetails->place))echo $value->userpersonaldetails->place->name ?>, <?php if(isset($value->userpersonaldetails->state))echo $value->userpersonaldetails->state->name ?>, <?php if(isset($value->userpersonaldetails->country))echo $value->userpersonaldetails->country->name ?> &nbsp;</p>
+                        <p class="graytext">Education </p>
+                        <p class="full-col">:</p>
+                        <p class="gray-rt"><?php if(isset($value->educations->education))echo $value->educations->education->name ?> &nbsp;</p>
+                        <p class="graytext">Occupation </p>
+                        <p class="full-col">:</p>
+                        <p class="gray-rt"> <?php if(isset($value->educations->occupation))echo $value->educations->occupation->name ?> &nbsp;</p>
+                        <p class="blue-text-01"><a href="<?php echo 'byid/id/'.$value->marryId ?>">View Full Profile</a></p>
                       <div class="clear"></div>
-                      
-                      
-                      	  	   
                       	<div class="pages-1">
-                        <div class="arrow">
                         
-                        <a href="#" class="hh_11" ></a></div>
                    
                    <div class="arrow">
                    
-                     <a href="#" class="hh_11_cc" > </a></div>
+                     <a href="#" ><img src="<?php echo Yii::app()->params['mediaUrl']; ?>/arrow_small_right.jpg" name="Image67" width="7" height="13" border="0" id="Image67" /></a></div>
                         </div>
-                        
-                        
-						  <div class="clear"></div>
-					<p class="text_pink-bold">
-						<a href="#">Remove Shortlist</a><br />
-						<a href="#">Send Message</a><br />
-						<a href="#">Decline Interest</a></p>
 <div class="clear"></div>
-</div>
-<?php 
-  if($index % 3 == 0) { 
-  echo '<p class="clear"></p><p class="line"></p>';
-  }
-  $index++;
-  }
-  }
-  else {
-  	echo "No Shortlisted profiles";
-  }
-  ?>
-<!--/search_div_1st-->
+  
+   <?php 
+ 
+ $isInterest = $user->interestSender(array('condition'=>"receiverId = {$value->userId}"));
+ $isBookMarked = $user->bookmark(array('condition'=>"FIND_IN_SET('{$value->userId}',profileIDs)")); 
+ $isMessage = $user->messageSender(array('condition'=>"receiverId = {$value->userId}"));
+ if(!isset($isInterest) || empty($isInterest)) {
+ ?>
+<a href="#" id="<?php echo $value->userId ?>" class="exp-sub">Express Interest</a>
+<?php }?>
+<?php if(!isset($isBookMarked) || empty($isBookMarked)) {?> 
+<a href="#"  id="<?php echo $value->userId ?>" class="exp-sub-add">Bookmark</a>
+<?php }?>
+<?php if(!isset($isMessage) || empty($isMessage)) {?>
+<a href="#"  id="<?php echo $value->userId ?>" class="exp-sub-send">Send Message</a> 
+   <?php } ?> 
 
-                   
+</div><!--/search_div_lft-->
+  	
+  	     	
 
-
-                        <!--/search_div_lft-->
-<p class="clear"></p>
+<?php $index1++; }?>						
                         
-						<!--/search_div_lft-->
-						<!--/search_div_lft-->
-<p class="clear"></p>
-						
-                        <!--/search_div_lft-->
-                        <!--/search_div_lft-->
-<p class="clear"></p>
+						<p class="clear"></p>
                         <p class="line"></p>
-                        <p class="sellect-all"><span class="txt_normal-2"><INPUT type="checkbox" class="selection" name="selection">&nbsp;&nbsp;Select All</span></p>
-                                            <a class="rmv-large" href="#">Remove Shortlist</a>
-
-               
-               
-               
-               <div class="view-1">
-       	<div class="first-new"><a class="fpnl" href="#">First</a></div>
-
-        <div class="first-new"><a class="fpnl" href="#">Previous</a></div>
-              
-		<div class="first-new"><a class="fpnl" href="#">Next</a></div>
-                        
-        <div class="first-new"><a class="fpnl" href="#">Last</a></div>
-                             
                        
+                       
+                     <div class="left">   
+
+						</div>
                         
-                      <div class="right">
-                        <a href="#"><img src="<?php echo Yii::app()->params['mediaUrl']; ?>/view.jpg" border="0" class="view_img" /></a>
-                        <a href="#"><img src="<?php echo Yii::app()->params['mediaUrl']; ?>/view_2.jpg"  class="view_img"  border="0" /></a></div>
-                         <div id="view-02" >
-                        <span class="view_text">View</span></div>
-          </div>
+          <?php if(isset($totalPage) && intval($totalPage) > 1) { ?>
+                        <div class="view-1">
+          <div class="first-new"><span class="fir"><a class="fpnl" href="#">First </a></span></div>
+
+        <div class="first-new"><span class="pre"><a class="fpnl" href="#">Previous </a></span></div>
+              
+		 <div class="first-new"><span class="next"><a class="fpnl" href="#">Next</a></span></div>
+                        
+                <div class="first-new"><span class="last"><a class="fpnl" href="#">Last</a></span></div>
+                </div>              
           
+          <input type="hidden" value="<?php echo $totalPage?>" name="totalPage" />
+          <input type="hidden" value="1" name="currentPage" />
+          <input type="hidden" value="<?php echo $totalUser ?>" name="user" />
+          <input type="hidden" value="1" name="firstPage" />
+           <input type="hidden" value="<?php echo $totalPage?>" name="lastPage" />
+                 <?php } 
+  } 
+                 ?>       
+            
+			  <p class="clear">&nbsp;</p><p class="space-10px">&nbsp;</p>
+  	                   
+
+
             <form id="shortlist"  name="shortlist" method="post"  action="/shortlist/remove">
 			
 			</form>  
@@ -199,6 +192,111 @@
   <script type="text/javascript">
 $(document).ready(function() {
 
+	var totalPage = parseInt($("input[name='totalPage']").val());
+	var totalUser = parseInt($("input[name='user']").val());
+	var currentPage = parseInt($("input[name='currentPage']").val());
+	var lastPage = parseInt($("input[name='lastPage']").val());
+	var firstPage = parseInt($("input[name='firstPage']").val());
+	
+		
+		
+	$('.fir').click(function (){
+		$('.next').show();
+		$('.fir').hide();
+		$('.last').show();
+		currentPage = parseInt($("input[name='currentPage']").val());
+		if(currentPage == 1)
+		{
+			return;
+		}
+		$('.pre').hide();
+		$('.search_div_lft').hide();
+		$('.search_div_right').hide();
+		var example = 10;
+		for (var i= 1; i <= example; i++)
+		{
+			if( example <= totalUser)
+			{	
+				$('div#normal'+i).show();
+			}
+		}
+		$("input[name='currentPage']").val("1");
+		
+		});
+
+	$('.pre').click(function (){
+		$('.next').show();
+		$('.last').show();
+		currentPage = parseInt($("input[name='currentPage']").val());
+		if(currentPage == 1)
+		{
+			return;
+		}	
+		$('.search_div_lft').hide();
+		$('.search_div_right').hide();
+		currentPage = currentPage - 1;
+		var index = currentPage * 10;
+		for (var i = index - 9;  i <=  index; i++)
+		{
+			$('div#normal'+i).show();
+		}
+		
+		$("input[name='currentPage']").val(currentPage);
+	});
+
+	$('.next').click(function (){
+		$('.pre').show();
+		$('.fir').show();
+		
+		currentPage = parseInt($("input[name='currentPage']").val());
+		lastPage = parseInt($("input[name='lastPage']").val());
+		if(currentPage == lastPage )
+		{
+			return;
+		}	
+		$('.search_div_lft').hide();
+		$('.search_div_right').hide();
+		
+		var index = currentPage * 10;
+		currentPage = currentPage + 1;
+		
+		for (var i = index+1 ;  i <= currentPage * 10 ; i++)
+		{
+			if(i <= totalUser){
+			$('div#normal'+i).show();
+			}
+		}
+		
+		$("input[name='currentPage']").val(currentPage);
+	
+			
+	});
+
+	$('.last').click(function (){
+		$('.pre').show();
+		$('.next').hide();
+		$('.fir').show();
+		$('.last').hide();
+		currentPage = parseInt($("input[name='currentPage']").val());
+		lastPage = parseInt($("input[name='lastPage']").val());
+		
+		if(lastPage == currentPage)
+		{
+			return;
+		}	
+		$('.search_div_lft').hide();
+		$('.search_div_right').hide();
+		var index = lastPage -1 ;
+		for (var i = (index * 10) + 1;  i <= totalUser; i++)
+		{
+			$('div#normal'+i).show();
+		}
+	
+		$("input[name='currentPage']").val(lastPage);
+		
+	});
+
+	
 	 $('.selection').change(function () {
 
 		 if($(this).attr("checked")){

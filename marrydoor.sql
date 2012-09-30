@@ -273,7 +273,17 @@ CREATE TABLE IF NOT EXISTS album (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=0;
 
 -- table for profile udpate logging --
-create table profileupdates(profileId BIGINT UNIQUE NOT NULL AUTO_INCREMENT, userId BIGINT NOT NULL, status text NOT NULL, PRIMARY KEY(profileId),statusTime datetime NOT NULL,FOREIGN KEY (userId) REFERENCES users(userId))ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;
+CREATE TABLE IF NOT EXISTS `profileupdates` (
+  `profileId` bigint(20) NOT NULL auto_increment,
+  `userId` bigint(20) NOT NULL,
+  `profile` enum('personal','education','partner','hobby','profile','album','documents') default NULL,
+  `status` text NOT NULL,
+  `statusTime` datetime NOT NULL,
+  PRIMARY KEY  (`profileId`),
+  UNIQUE KEY `profileId` (`profileId`),
+  KEY `userId` (`userId`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=0 ;
+
 
 -- table for profile blocking --
 create table profileblock(profileBlockId BIGINT UNIQUE NOT NULL AUTO_INCREMENT, 
