@@ -157,13 +157,6 @@ class MypageController extends Controller
 		$this->render('myaccount',array('profileCount' => $profileCount['pCount']));
 	}
 
-	public function actionAlbum()
-	{
-		$user = Yii::app()->session->get('user');
-		$photos = new Photos();
-		$photosList = $photos->findAll('userId='.$user->userId);
-		$this->render('myalbum',array('photosList' => $photosList));
-	}
 
 	public function actionAddressbook()
 	{
@@ -179,5 +172,38 @@ class MypageController extends Controller
 		$this->render('addressBook');
 	}
 
-
+	// album actions
+	public function actionAlbum()
+	{
+		$user = Yii::app()->session->get('user');
+		$album = new Album();
+		$action = isset($_REQUEST['action']) ? $_REQUEST['action'] : "";
+		$albumId = isset($_REQUEST['albumId']) ? $_REQUEST['albumId'] : 0;
+		if($action == "delete"){
+			$photo = $album->find('userId='.$user->userId.' and albumId='.$albumId);
+			if(count($photo) > 0){
+				$path = Utilities::getDirectory('images',array('profile',$user->marryId));
+				$targetFile = Utilities::getFullFilePath($path, $photo->imageName);
+				if(file_exists($targetFile)){
+					if(unlink($targetFile)){
+						$album->deleteByPk($albumId);
+					}
+				}
+			}
+		}elseif($action == "setprofilephoto"){
+			$photo = $album->find('userId='.$user->userId.' and albumId='.$albumId);
+			if(count($photo) > 0){
+				$photos = new Photos();
+				$photos->updateAll(array('profileImage'=>0),'userId='.$user->userId);  // unset the existing
+				$photos->userId = $user->userId;
+				$photos->imageName = $photo->imageName;
+				$photos->profileImage = 1;
+				$photos->save();
+			}
+		}
+		$photosList = $album->findAll('userId='.$user->userId);
+		$this->render('myalbum',array('photosList' => $photosList));
+	}
+	
+	
 }

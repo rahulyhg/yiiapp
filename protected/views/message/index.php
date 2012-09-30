@@ -19,10 +19,10 @@
               
               <div style="float:right">
              
-             <a class="recive" href="#">Recived</a>
+             <a class="recive" href="<?php echo Utilities::createAbsoluteUrl('message','index');?>">Recived</a>
 
-              <a class="sm-send" href="#">Sent</a>
-                          <a class="acknl" href="#">Delivery Acknowledgement</a>
+              <a class="sm-send" href="<?php echo Utilities::createAbsoluteUrl('message','sent');?>">Sent</a>
+                          <a class="acknl" href="<?php echo Utilities::createAbsoluteUrl('message','acknowledgement');?>">Delivery Acknowledgement</a>
 
              
              
@@ -37,8 +37,8 @@
                             
                 <div class="space-15px">&nbsp;</div>
                               <div class="clear"></div>
-                              
-                               
+                <?php if(!empty($message)):?>              
+                 <?php foreach($message as $messageItem):?>              
                 <!--div_msg_fullbox-->   <div class="msgbox-full_large">
                 <div style="float:left; padding-right:5px;">
                  <INPUT type="checkbox" name="select" class="checkicon">
@@ -61,29 +61,13 @@
                   
                  </div>
                  
-              <div class="clear"></div>   
-                 
-                                            
-                <!--div_msg_fullbox-->   <div class="msgbox-full_large">
-                <div style="float:left; padding-right:5px;">
-                 <INPUT type="checkbox" name="select" class="checkicon">
+              <div class="clear"></div>             
+               <?php endforeach;?>  
+               <?php else: ?>  
+                 <!--div_msg_fullbox-->   <div class="msgbox-full_large">
+                 	<?php echo Yii::t('error','noMessages'); ?>
                  </div>
-                 <div style="float:left;">
-                      <a href="album.html"> <img src="images/model_3.jpg" class="imageicon"  border="0"/></a>
-                 </div>
-                  <div style="float:left; padding:5px 0px 0px 10px;">
-                 <p> <span class="text_blue_b"><a href="search.html">Seema Varma</a></span></p>
-                  <p class="txt_rg">I Love You... Give me your number</p>
- <p class="innersidelinks-still-l0">2 Minuts ago</p>
-                  </div>
-   <a class="replay" href="#">Replay</a>
-
-                  
-                  <div class="clear"></div>
-                  
-              
-                  
-                 </div>
+               <?php endif;?>
                  
                  
                  
@@ -288,10 +272,10 @@
              
               <div style="float:right">
              
-             <a class="recive" href="#">Recived</a>
+             <a class="recive" href="<?php echo Utilities::createAbsoluteUrl('message','index');?>">Recived</a>
 
-              <a class="sm-send" href="#">Sent</a>
-                          <a class="acknl" href="#">Delivery Acknowledgement</a>
+              <a class="sm-send" href="<?php echo Utilities::createAbsoluteUrl('message','sent');?>">Sent</a>
+                          <a class="acknl" href="<?php echo Utilities::createAbsoluteUrl('message','acknowledgement');?>">Delivery Acknowledgement</a>
              
              
              </div>

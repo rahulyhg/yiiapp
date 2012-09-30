@@ -14,7 +14,25 @@ class MessageController extends Controller
 	
 	public function actionIndex()
 	{
-		$this->render('index');
+		$user = Yii::app()->session->get('user');
+		$message = new Messages();
+		$messages = $message->findAll('receiverId='.$user->userId);
+		$this->render('index',array('messages'=>$messages));
+	}
+	
+	public function actionSent()
+	{
+		$user = Yii::app()->session->get('user');
+		$message = new Messages();
+		$messages = $message->findAll('senderId='.$user->userId);
+		$this->render('sent',array('messages'=>$messages));
+	}
+	
+
+	public function actionAcknowledgement()
+	{
+		$user = Yii::app()->session->get('user');
+		$this->render('acknowledgement');
 	}
 
 	// Uncomment the following methods and override them if needed
