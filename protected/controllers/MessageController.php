@@ -35,6 +35,11 @@ class MessageController extends Controller
 		$this->render('acknowledgement');
 	}
 
+	public function actionCompose()
+	{
+		$user = Yii::app()->session->get('user');
+		$this->render('acknowledgement');
+	}		
 	// Uncomment the following methods and override them if needed
 	/*
 	public function filters()

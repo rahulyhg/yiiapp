@@ -193,12 +193,16 @@ class MypageController extends Controller
 		}elseif($action == "setprofilephoto"){
 			$photo = $album->find('userId='.$user->userId.' and albumId='.$albumId);
 			if(count($photo) > 0){
+				// set profile picture
 				$photos = new Photos();
 				$photos->updateAll(array('profileImage'=>0),'userId='.$user->userId);  // unset the existing
 				$photos->userId = $user->userId;
 				$photos->imageName = $photo->imageName;
 				$photos->profileImage = 1;
 				$photos->save();
+				
+				//delete from album
+				$album->deleteByPk($albumId);
 			}
 		}
 		$photosList = $album->findAll('userId='.$user->userId);

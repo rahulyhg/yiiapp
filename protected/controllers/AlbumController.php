@@ -34,12 +34,37 @@ class AlbumController extends Controller
 	{
 		$marryId = isset($_GET['mId']) ? $_GET['mId']:'';
 		if($marryId != ''){
-		$userObj = new Users();
-		$user = $userObj->findAll("marryId='".$marryId."'");
-		$user = $user[0];
-		$photos = new Photos();
-		$photosList = $photos->findAll('userId='.$user->userId);
-		$this->render('index',array('photosList' => $photosList,'user' => $user));
+			$userObj = new Users();
+			$user = $userObj->find("marryId='".$marryId."'");
+			// set user id in session to avoid set in form hidden
+			Yii::app()->session->add('profileUserId',$user->userId);
+			$album = new Album();
+			
+			// user action goes here
+			$action = isset($_REQUEST['action']) ? $_REQUEST['action'] : "";
+			$loggedUser = Yii::app()->session->get('user');
+			if($action == "expressInterest"){
+				$interest = new Interests();
+				$interest->senderId = $loggedUser->userId;
+				$interest->receiverId = Yii::app()->session->get('profileUserId');
+				$interest->sendDate = date('Y-m-d h:i:s');
+				$interest->save();
+			}elseif($action == "bookmark"){
+				$bookmark = new Bookmark();
+				$profileIds = $bookmark->find('userId='.$loggedUser->userId);
+				//var_dump($profileIds);die;
+				$id = $profileIds->profileIDs;
+				if(count($profileIds) > 0){
+					$ids = $id.",".Yii::app()->session->get('profileUserId');
+					$bookmark->updateByPk($profileIds->bookMarkId,array('profileIDs'=>$ids));
+				}else{
+					$bookmark->userID = $loggedUser->userId;
+					$bookmark->profileIDs = Yii::app()->session->get('profileUserId');
+					$bookmark->save();
+				}
+			}
+			$photosList = $album->findAll('userId='.$user->userId);
+			$this->render('index',array('photosList' => $photosList,'user' => $user));
 		}else{
 			$message = Yii::t('error','invalidRequest');
 			$this->render('index',array('message' => $message));

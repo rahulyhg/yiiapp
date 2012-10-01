@@ -25,11 +25,11 @@
 			
 				<div class="content-top"><!--content-top-->
 				
-							<a class="exp-sub-less" href="#">Express Interest</a>
+							<a class="exp-sub-less" href="#" onclick="javascript:expressInterest();">Express Interest</a>
 
-   <a class="exp-sub-add-less" href="#">Bookmark</a>
+   <a class="exp-sub-add-less" href="#" onclick="javascript:bookmark();">Bookmark</a>
 
-     <a class="exp-sub-send-less" href="#">Send Message</a>
+     <a class="exp-sub-send-less" href="<?php echo Utilities::createAbsoluteUrl('message','compose') ?>">Send Message</a>
 
 			  </div><!--content-top-->
               
@@ -48,12 +48,16 @@
         	
 			<div class="content-bottom"><!--content-bottom-->
 				
-			
-            <a class="exp-sub-less" href="#">Express Interest</a>
+			<!-- hidden form -->
+			<form name="frmMyAlbum" id="frmMyAlbum" method="post" action="<?php echo Utilities::createAbsoluteUrl('album','index',array('mId'=>$user->marryId)); ?>" >
+              <input type="hidden" id="action" name="action" value="" />
+              </form>
+              
+            <a class="exp-sub-less" href="#" onclick="javascript:expressInterest();">Express Interest</a>
 
-   <a class="exp-sub-add-less" href="#">Bookmark</a>
+   <a class="exp-sub-add-less" href="#" onclick="javascript:bookmark();">Bookmark</a>
 
-     <a class="exp-sub-send-less" href="#">Send Message</a>
+     <a class="exp-sub-send-less" href="<?php echo Utilities::createAbsoluteUrl('message','compose') ?>">Send Message</a>
 
             </div><!--big-wrapper-->
         	
@@ -63,4 +67,20 @@
     <div id="album_main">
     	<?php echo $message; ?>
     </div>
-    <?php } ?>
+     <?php } ?>   
+  <script type="text/javascript">
+  
+  function expressInterest()
+  {
+	  document.getElementById('action').value = 'expressInterest';
+	  document.frmMyAlbum.submit();
+  }
+  
+  function bookmark()
+  {
+	  document.getElementById('action').value = 'bookmark';
+	  document.frmMyAlbum.submit();
+  }
+
+  
+  </script>
