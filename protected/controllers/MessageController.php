@@ -38,7 +38,21 @@ class MessageController extends Controller
 	public function actionCompose()
 	{
 		$user = Yii::app()->session->get('user');
-		$this->render('acknowledgement');
+		if(isset($_POST['addMessage']) && $_POST['addMessage'] == "Send"){
+			$msg = trim($_POST['userMessage']);
+			if($msg != ""){
+				$message = new Messages();
+				$message->senderId = $user->userId;
+				$message->receiverId = Yii::app()->session->get('profileUserId');
+				$message->message = $msg;
+				$message->sendDate = date('Y-m-d h:i:s');
+				$message->save();
+				$success = Yii::t('success','composeSuccess');
+			}else{
+				$success = Yii::t('error','composeError');
+			}
+		}
+		$this->render('compose',array('message'=>$success));
 	}		
 	// Uncomment the following methods and override them if needed
 	/*
