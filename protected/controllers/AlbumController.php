@@ -49,7 +49,6 @@ class AlbumController extends Controller
 	public function actionAdd()
 	{
 		$user = Yii::app()->session->get('user');
-		$photos = new Photos();
 		$message = "";
 		//Upload the profile photo
   		$photoCount = isset($_POST['photoCount']) ? $_POST['photoCount']:1; 
@@ -59,17 +58,17 @@ class AlbumController extends Controller
 				$fileName=basename( $_FILES['profilePhoto_'.$i]['name']);   
 				$extension = strtolower(Utilities::getExtension($fileName));  
 				if(Utilities::isValidImageExtension($extension)){         
-				 	$path = Utilities::getDirectory('images',array('album',$user->marryId)); 
+				 	$path = Utilities::getDirectory('images',array('profile',$user->marryId)); 
 				 	$fileName = $user->marryId.date("his").".".$extension; 
 					$targetPath = Utilities::getFullFilePath($path, $fileName);
 					$description = trim($_POST['description_'.$i]);
 					if(Utilities::uploadFile($_FILES['profilePhoto_'.$i]['tmp_name'], $targetPath)) {
 						//code to insert to db
-						$photos = new Photos();
-						$photos->userId = $user->userId;
-						$photos->imageName = $fileName;
-						//$photos->description = $description;
-						$photos->save();
+						$album = new Album();
+						$album->userId = $user->userId;
+						$album->imageName = $fileName;
+						$album->description = $description;
+						$album->save();
 						$message = "Photo has been uploaded successfully!";
 					}else{
 						$message = "There was an error uploading the file, please try again!";

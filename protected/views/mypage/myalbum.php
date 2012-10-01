@@ -13,6 +13,7 @@
 *  @filesource <URL>
 *  @version <Revision>
 */
+$user = Yii::app()->session->get('user');
 ?>
 
             <div id="main-content">
@@ -35,12 +36,9 @@
             
               <div class="right_tabs">
               
-              <input type="button" value="Add more photos" name="yt5" tabindex="3" class="btnStyle">
-              <a href="member-addphotos-02-pop-up.html" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image39','','<?php echo Yii::app()->params['mediaUrl']; ?>/add-more-photos_pink.jpg',1)"><img src="<?php echo Yii::app()->params['mediaUrl']; ?>/add-more-photos.jpg" name="Image39" width="128" height="22" border="0" id="Image39" class="button_align" /></a>
-              
-              
-              <a href="my-privacy-settings.html" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image40','','<?php echo Yii::app()->params['mediaUrl']; ?>/privacy-settings-pink.jpg',1)"><img src="<?php echo Yii::app()->params['mediaUrl']; ?>/privacy-settings.jpg" name="Image40" width="119" height="22" border="0" id="Image40"  class="button_align" /></a> 
-				
+              <input type="button" value="Add more photos" name="yt5" tabindex="3" class="btnStyle" onclick="javascript:addMorePhotos();" />
+              <input type="button" value="Privacy Settings" name="yt5" tabindex="3" class="btnStyle" onclick="javascript:privacySettings();" />
+             				
 			  </div>
               
               
@@ -51,103 +49,40 @@
 <div class="clear"></div>                              
                 <div class="space-15px">&nbsp;</div>
                               <div class="clear"></div>
+                 <?php if(!empty($photosList)):?>
+                 <?php foreach($photosList as $photo):?>
                 <!--div_msg_fullbox-->   <div class="profile_box">
                   <div style="float:left;">
-             <a href="#">    <img src="<?php echo Yii::app()->params['mediaUrl']; ?>/img-profile-picture.jpg" class="imageicon"  border="0"/></a>
+             	<a href="#">    <img src="<?php echo Utilities::getProfileImage($user->marryId,$photo->imageName); ?>"  border="0" width="187" height="242" /></a>
                  </div>
                  
-				  <a href="#" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image37','','<?php echo Yii::app()->params['mediaUrl']; ?>/delete_pink.jpg',1)" class="profile-btn" ><img src="<?php echo Yii::app()->params['mediaUrl']; ?>/delete.jpg" name="Image37" width="67" height="22" border="0" id="Image37" /></a>
-                  
-                  <a href="#" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image38','','<?php echo Yii::app()->params['mediaUrl']; ?>/use_as_profile.jpg',1)"  class="profile-btn"><img src="<?php echo Yii::app()->params['mediaUrl']; ?>/use_as_profile_gray.jpg" name="Image38" width="129" height="22" border="0" id="Image38"  /></a></div>
+				  <input type="button" value="Use as profile picture" name="yt5" tabindex="3" class="btnStyle" onclick="javascript:setProfilePhoto(<?php echo $photo->albumId; ?>);">
+             	 <input type="button" value="Delete" name="yt5" tabindex="3" class="btnStyle" onclick="javascript:deletePhoto(<?php echo $photo->albumId; ?>);">              
+                  </div>
                 <div class="clear"></div>
-             
+              <?php endforeach;?>
+              <?php else : ?>  
+              <div class="profile_box">
+              	<?php echo Yii::t('error','noAlbums'); ?>
+              </div>
+             <?php endif; ?>
                 <div class="space-15px">&nbsp;</div>
-              
-              
-              
-              
-              
-              
-      <!--div_msg_fullbox-->   <div class="profile_box">
-                  <div style="float:left;">
-          <a href="#">    <img src="<?php echo Yii::app()->params['mediaUrl']; ?>/img-profile-picture.jpg" class="imageicon"  border="0"/></a>    </div>
-             
-             
-                 <a href="#" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image42','','<?php echo Yii::app()->params['mediaUrl']; ?>/delete_pink.jpg',1)"  class="profile-btn"><img src="<?php echo Yii::app()->params['mediaUrl']; ?>/delete.jpg" name="Image42" width="67" height="22" border="0" id="Image42" /></a> <a href="#" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image41','','<?php echo Yii::app()->params['mediaUrl']; ?>/use_as_profile.jpg',1)"  class="profile-btn"><img src="<?php echo Yii::app()->params['mediaUrl']; ?>/use_as_profile_gray.jpg" name="Image41" width="129" height="22" border="0" id="Image41" /></a></div>
-                <div class="clear"></div>
-             
-                <div class="space-15px">&nbsp;</div>
-              
-              
-              
-              
-              
-              
-      <!--div_msg_fullbox-->   <div class="profile_box">
-                  <div style="float:left;">
-              <a href="#">    <img src="<?php echo Yii::app()->params['mediaUrl']; ?>/img-profile-picture.jpg" class="imageicon"  border="0"/></a>
-                 </div>
-                 
-          <a href="#" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image43','','<?php echo Yii::app()->params['mediaUrl']; ?>/delete_pink.jpg',1)" class="profile-btn"><img src="<?php echo Yii::app()->params['mediaUrl']; ?>/delete.jpg" name="Image43" width="67" height="22" border="0" id="Image43" /></a>
-          
-          
-          <a href="#" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image44','','<?php echo Yii::app()->params['mediaUrl']; ?>/use_as_profile.jpg',1)" class="profile-btn"><img src="<?php echo Yii::app()->params['mediaUrl']; ?>/use_as_profile_gray.jpg" name="Image44" width="129" height="22" border="0" id="Image44" /></a></div>
-                <div class="clear"></div>
-             
-                 <div class="space-15px">&nbsp;</div>
-              
-              
-              
-              
-              
-              
-      <!--div_msg_fullbox-->   <div class="profile_box">
-                  <div style="float:left;">
-          <a href="#">    <img src="<?php echo Yii::app()->params['mediaUrl']; ?>/img-profile-picture.jpg" class="imageicon"  border="0"/></a>     </div>
-                 
-			     <a href="#" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image45','','<?php echo Yii::app()->params['mediaUrl']; ?>/delete_pink.jpg',1)" class="profile-btn"><img src="<?php echo Yii::app()->params['mediaUrl']; ?>/delete.jpg" name="Image45" width="67" height="22" border="0" id="Image45" /></a>
-                 
-                 
-                 
-                 
-                 <a href="#" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image46','','<?php echo Yii::app()->params['mediaUrl']; ?>/use_as_profile.jpg',1)"  class="profile-btn"><img src="<?php echo Yii::app()->params['mediaUrl']; ?>/use_as_profile_gray.jpg" name="Image46" width="129" height="22" border="0" id="Image46" /></a>
-                 </div>
-                <div class="clear"></div>
-             
-                 <div class="space-15px">&nbsp;</div>
-              
-              
-              
-              
-              
-              
-      <!--div_msg_fullbox-->   <div class="profile_box">
-                  <div style="float:left;">
-          <a href="#">    <img src="<?php echo Yii::app()->params['mediaUrl']; ?>/img-profile-picture.jpg" class="imageicon"  border="0"/></a>       </div>
-                 
-				  
-		         <a href="#" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image47','','<?php echo Yii::app()->params['mediaUrl']; ?>/delete_pink.jpg',1)"  class="profile-btn"><img src="<?php echo Yii::app()->params['mediaUrl']; ?>/delete.jpg" name="Image47" width="67" height="22" border="0" id="Image47" /></a>
-                 
-                 
-                 <a href="#" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image48','','<?php echo Yii::app()->params['mediaUrl']; ?>/use_as_profile.jpg',1)"  class="profile-btn"><img src="<?php echo Yii::app()->params['mediaUrl']; ?>/use_as_profile_gray.jpg" name="Image48" width="129" height="22" border="0" id="Image48" /></a>
-                 
-                 </div>
-                <div class="clear"></div>
-                
+                           
            
              
              <div class="space-10px"><p>&nbsp;<br />&nbsp;<br /></p></div>
              
              
               <div class="right_tabs">
-              
-              
-                <a href="member-addphotos-02-pop-up.html" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image51','','<?php echo Yii::app()->params['mediaUrl']; ?>/add-more-photos_pink.jpg',1)"><img src="<?php echo Yii::app()->params['mediaUrl']; ?>/add-more-photos.jpg" name="Image51" width="128" height="22" border="0" id="Image51" class="button_align" /></a>
-                
-                
-                
-                <a href="my-privacy-settings.html" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image52','','<?php echo Yii::app()->params['mediaUrl']; ?>/privacy-settings-pink.jpg',1)"><img src="<?php echo Yii::app()->params['mediaUrl']; ?>/privacy-settings.jpg" name="Image52" width="119" height="22" border="0" id="Image52" class="button_align"/></a>
-                
+              <!-- hidden form to submit values -->
+              <form name="frmMyAlbum" id="frmMyAlbum" method="post" action="<?php echo Utilities::createAbsoluteUrl('mypage','album'); ?>" >
+              <input type="hidden" id="action" name="action" value="" />
+              <input type="hidden" id="albumId" name="albumId" value="" />
+              </form>
+              <!-- form ends -->
+                <input type="button" value="Add more photos" name="yt5" tabindex="3" class="btnStyle" onclick="javascript:addMorePhotos();">
+              <input type="button" value="Privacy Settings" name="yt5" tabindex="3" class="btnStyle" onclick="javascript:privacySettings();">
+               
                 
                 </div>
               
@@ -177,3 +112,28 @@ Only for</p>
               </div></div>
 
    </div>
+  <script type="text/javascript">
+  function addMorePhotos()
+  {
+	  window.location.href='<?php echo Utilities::createAbsoluteUrl('album','add'); ?>';
+  }
+
+  function privacySettings()
+  {
+	  window.location.href='<?php echo Utilities::createAbsoluteUrl('album','privacy'); ?>';
+  }
+
+  function setProfilePhoto(albumId)
+  {
+	  document.getElementById('action').value = 'setprofilephoto';
+	  document.getElementById('albumId').value = albumId;
+	  document.frmMyAlbum.submit();
+  }
+
+  function deletePhoto(albumId)
+  {
+	  document.getElementById('action').value = 'delete';
+	  document.getElementById('albumId').value = albumId;
+	  document.frmMyAlbum.submit();
+  }
+  </script>
