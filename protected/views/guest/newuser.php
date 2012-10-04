@@ -529,6 +529,13 @@ Please enter your coupon code,also please contact us at 0407-12121212 for coupon
             </div>
             <!--main-content closing-->
         </div>
+        <script type="text/javascript" src="<?php echo Yii::app()->params['resourceUrl']; ?>/js/jquery.js"></script>
+	<script type="text/javascript" src="<?php echo Yii::app()->params['resourceUrl']; ?>/js/marrydoor.js"></script>
+	<script type="text/javascript" src="<?php echo Yii::app()->params['resourceUrl']; ?>/js/jquery.validationEngine.js" charset="utf-8"></script>
+	<script type="text/javascript" src="<?php echo Yii::app()->params['resourceUrl']; ?>/js/jquery.validationEngine-en.js" charset="utf-8"></script>
+	<script type="text/javascript" src="<?php echo Yii::app()->params['resourceUrl']; ?>/js/formvalidation.js" charset="utf-8"></script>
+	
+	
 <script type="text/javascript">
 $(document).ready(function(){
     $("#users-register-form").validationEngine('attach');

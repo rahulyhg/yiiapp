@@ -26,11 +26,11 @@
         
               <div class="clear"></div>
                 <div class="line_sm"></div>
-                 <span  class="innersidelinks-still-l"><a href="<?php echo Utilities::createAbsoluteUrl('user','mypage',array()); ?>">My Page</a></span><p class="space-5px">&nbsp;</p>
-                  <span  class="innersidelinks-l"><a href="<?php echo Utilities::createAbsoluteUrl('user','myprofile',array()); ?>">My Profile</a></span><p class="space-5px">&nbsp;</p>
-                  <span  class="innersidelinks-l"><a href="<?php echo Utilities::createAbsoluteUrl('user','myaccount',array()); ?>">My Account</a></span><p class="space-5px">&nbsp;</p>
+                 <span  class="innersidelinks-still-l"><a href="<?php echo Utilities::createAbsoluteUrl('mypage','index',array()); ?>">My Page</a></span><p class="space-5px">&nbsp;</p>
+                  <span  class="innersidelinks-l"><a href="<?php echo Utilities::createAbsoluteUrl('mypage','myprofile',array()); ?>">My Profile</a></span><p class="space-5px">&nbsp;</p>
+                  <span  class="innersidelinks-l"><a href="<?php echo Utilities::createAbsoluteUrl('mypage','account',array()); ?>">My Account</a></span><p class="space-5px">&nbsp;</p>
               
-                  <span  class="innersidelinks-l"><a href="<?php echo Utilities::createAbsoluteUrl('user','mysettings',array()); ?>">My Settings</a></span>
+                  <span  class="innersidelinks-l"><a href="<?php echo Utilities::createAbsoluteUrl('privacy','index',array()); ?>">My Settings</a></span>
               <div class="clear"></div>
                 <div class="line_sm"></div>
                 <p class="txt_bld-15"><img src="<?php echo Utilities::getMediaUrl() ?>/arrow_small_right.jpg" />&nbsp;&nbsp;&nbsp;Messages</p>
