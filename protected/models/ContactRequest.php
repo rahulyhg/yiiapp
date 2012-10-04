@@ -1,14 +1,18 @@
 <?php
 
 /**
- * This is the model class for table "contactRequest".
+ * This is the model class for table "contactrequest".
  *
- * The followings are the available columns in table 'contactRequest':
+ * The followings are the available columns in table 'contactrequest':
  * @property string $contactRequestId
  * @property string $senderId
  * @property string $receiverId
  * @property integer $status
  * @property string $sendDate
+ *
+ * The followings are the available model relations:
+ * @property Users $sender
+ * @property Users $receiver
  */
 class ContactRequest extends CActiveRecord
 {
@@ -27,7 +31,7 @@ class ContactRequest extends CActiveRecord
 	 */
 	public function tableName()
 	{
-		return 'contactRequest';
+		return 'contactrequest';
 	}
 
 	/**

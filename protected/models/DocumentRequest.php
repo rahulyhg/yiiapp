@@ -1,14 +1,18 @@
 <?php
 
 /**
- * This is the model class for table "documentRequest".
+ * This is the model class for table "documentrequest".
  *
- * The followings are the available columns in table 'documentRequest':
+ * The followings are the available columns in table 'documentrequest':
  * @property string $documentRequestId
  * @property string $senderId
  * @property string $receiverId
  * @property integer $status
  * @property string $sendDate
+ *
+ * The followings are the available model relations:
+ * @property Users $sender
+ * @property Users $receiver
  */
 class DocumentRequest extends CActiveRecord
 {
@@ -27,7 +31,7 @@ class DocumentRequest extends CActiveRecord
 	 */
 	public function tableName()
 	{
-		return 'documentRequest';
+		return 'documentrequest';
 	}
 
 	/**

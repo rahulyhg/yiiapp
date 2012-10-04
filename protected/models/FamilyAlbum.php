@@ -1,14 +1,18 @@
 <?php
 
 /**
- * This is the model class for table "familyAlbum".
+ * This is the model class for table "familyalbum".
  *
- * The followings are the available columns in table 'familyAlbum':
+ * The followings are the available columns in table 'familyalbum':
  * @property string $familyAlbumId
  * @property string $senderId
  * @property string $receiverId
  * @property integer $status
  * @property string $sendDate
+ *
+ * The followings are the available model relations:
+ * @property Users $sender
+ * @property Users $receiver
  */
 class FamilyAlbum extends CActiveRecord
 {
@@ -27,7 +31,7 @@ class FamilyAlbum extends CActiveRecord
 	 */
 	public function tableName()
 	{
-		return 'familyAlbum';
+		return 'familyalbum';
 	}
 
 	/**
@@ -55,8 +59,8 @@ class FamilyAlbum extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-		'sender' => array(self::BELONGS_TO, 'Users', 'senderId'),
-		'receiver' => array(self::BELONGS_TO, 'Users', 'receiverId'),
+			'sender' => array(self::BELONGS_TO, 'Users', 'senderId'),
+			'receiver' => array(self::BELONGS_TO, 'Users', 'receiverId'),
 		);
 	}
 
