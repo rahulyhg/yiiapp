@@ -40,14 +40,6 @@ class MypageController extends Controller
 		}
 		$blockIdList = implode(",", $blockId);
 			
-		if(isset($user->partnerpreferences))
-		{
-			$condition  = Utilities::getPartnerPreference($user->partnerpreferences);
-			$usersV = ViewUsers::model()->findAll(array('condition'=>$condition,
-			'select'=>'t.userId',
-    		'distinct'=>true,
-			'order'=> 'createdOn DESC' ));
-		
 		$sendInterest = $user->interestSender;	
 		if(sizeof($sendInterest) > 0){
 		$suserId = array();
@@ -66,9 +58,10 @@ class MypageController extends Controller
 			$ruserId[] = $value->senderId;
 		}
 		}
-		$intersetUserIds = array_merge($suserId,$ruserId);
-		if(sizeof($intersetUserIds) > 0)
+		if(isset($suserId) || isset($ruserId))
 		{
+			
+			$intersetUserIds = array_merge($suserId,$ruserId);
 			$userList = implode(",", $intersetUserIds);
 			$scondition = " userId in ({$userList}) AND userId != {$user->userId} ";
 			if(isset($blockIdList) && sizeof($blockId) > 0 )
@@ -80,9 +73,13 @@ class MypageController extends Controller
 		}
 		
 		
-		
-		
-		
+		if(isset($user->partnerpreferences))
+		{
+			$condition  = Utilities::getPartnerPreference($user->partnerpreferences);
+			$usersV = ViewUsers::model()->findAll(array('condition'=>$condition,
+			'select'=>'t.userId',
+    		'distinct'=>true,
+			'order'=> 'createdOn DESC' ));
 		$userIds = array();
 		foreach ($usersV as $key => $value) {
 			$userIds[] = $value->userId; 

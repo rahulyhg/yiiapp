@@ -107,10 +107,21 @@ class SiteController extends Controller
 				$userloggeddetails->userId = $user->userId;
 				$userloggeddetails->loggedIn = new CDbExpression('NOW()');
 				$userloggeddetails->save();
-			}	
+				$this->redirect(array('/mypage'));
+			}
+			else
+			{	
+				$searchModel = new SearchForm();
+				$model = new UserForm();
+				$this->render('//user/register',array('model'=>$model,'searchModel' =>$searchModel,"loginError"=>"true"));
+				
+			}
 		}
+		else
+		{
 		// display the login form
 		$this->forward('index');
+		}
 	}
 
 	/**
