@@ -19,7 +19,7 @@
               
               <div style="float:right">
              
-             <a class="recive" href="<?php echo Utilities::createAbsoluteUrl('message','index');?>">Recived</a>
+             <a class="recive" href="<?php echo Utilities::createAbsoluteUrl('message','index');?>">Received</a>
 
               <a class="sm-send" href="<?php echo Utilities::createAbsoluteUrl('message','sent');?>">Sent</a>
                           <a class="acknl" href="<?php echo Utilities::createAbsoluteUrl('message','acknowledgement');?>">Delivery Acknowledgement</a>
@@ -37,8 +37,8 @@
                             
                 <div class="space-15px">&nbsp;</div>
                               <div class="clear"></div>
-                <?php if(!empty($message)):?>              
-                 <?php foreach($message as $messageItem):?>              
+                <?php if(!empty($messages)):?>              
+                 <?php foreach($messages as $messageItem):?>              
                 <!--div_msg_fullbox-->   <div class="msgbox-full_large">
                 <div style="float:left; padding-right:5px;">
                  <INPUT type="checkbox" name="select" class="checkicon">
@@ -76,7 +76,7 @@
              
               <div style="float:right">
              
-             <a class="recive" href="<?php echo Utilities::createAbsoluteUrl('message','index');?>">Recived</a>
+             <a class="recive" href="<?php echo Utilities::createAbsoluteUrl('message','index');?>">Received</a>
 
               <a class="sm-send" href="<?php echo Utilities::createAbsoluteUrl('message','sent');?>">Sent</a>
                           <a class="acknl" href="<?php echo Utilities::createAbsoluteUrl('message','acknowledgement');?>">Delivery Acknowledgement</a>
