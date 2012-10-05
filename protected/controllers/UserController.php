@@ -451,7 +451,7 @@ class UserController extends Controller
 		}
 		
 		$reference1->save();
-		//$this->render("partner");
+		$this->render('profilepicture');
 		//here we have to show the documents and album upload page
 		//then show profile complete page
 	}
