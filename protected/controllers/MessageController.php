@@ -1,3 +1,4 @@
+
 <?php
 
 class MessageController extends Controller
@@ -15,16 +16,18 @@ class MessageController extends Controller
 	public function actionIndex()
 	{
 		$user = Yii::app()->session->get('user');
-		$message = new Messages();
-		$messages = $message->findAll('receiverId='.$user->userId);
+		$sql = "SELECT * FROM view_messages WHERE receiverId = {$user->userId}";
+		$command=Yii::app()->db->createCommand($sql);
+		$messages = $command->queryAll();
 		$this->render('index',array('messages'=>$messages));
 	}
 	
 	public function actionSent()
 	{
 		$user = Yii::app()->session->get('user');
-		$message = new Messages();
-		$messages = $message->findAll('senderId='.$user->userId);
+		$sql = "SELECT * FROM view_messages WHERE senderId = {$user->userId}";
+		$command=Yii::app()->db->createCommand($sql);
+		$messages = $command->queryAll();
 		$this->render('sent',array('messages'=>$messages));
 	}
 	
@@ -32,18 +35,26 @@ class MessageController extends Controller
 	public function actionAcknowledgement()
 	{
 		$user = Yii::app()->session->get('user');
+		$sql = "SELECT * FROM view_messages WHERE receiverId = {$user->userId} and status = 2";
+		$command=Yii::app()->db->createCommand($sql);
+		$messages = $command->queryAll();
 		$this->render('acknowledgement');
 	}
 
 	public function actionCompose()
 	{
 		$user = Yii::app()->session->get('user');
+		if(Yii::app()->session->itemAt('profileUserId')){
+			$receiverId = Yii::app()->session->get('profileUserId');
+		}elseif(isset($_POST['receiverId'])){
+			$receiverId = (int)$_POST['receiverId'];
+		}
 		if(isset($_POST['addMessage']) && $_POST['addMessage'] == "Send"){
 			$msg = trim($_POST['userMessage']);
 			if($msg != ""){
 				$message = new Messages();
 				$message->senderId = $user->userId;
-				$message->receiverId = Yii::app()->session->get('profileUserId');
+				$message->receiverId = $receiverId;
 				$message->message = $msg;
 				$message->sendDate = date('Y-m-d h:i:s');
 				$message->save();

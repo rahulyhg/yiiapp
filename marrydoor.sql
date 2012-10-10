@@ -319,8 +319,8 @@ LEFT JOIN occupation_master OM ON EL.occupationId  = OM.occupationId;
 
 DROP VIEW IF EXISTS view_messages;
 
-CREATE VIEW view_messages AS SELECT M.*, SU.userId as senderUserId, SU.emailId as senderEmailId, SU.name as senderName, FLOOR( DATEDIFF( CURRENT_DATE, SU.dob) /365 ) as senderAge,
-SU.gender senderGender, SU.motherTounge as senderMotherTounge, SU.userType as senderUserType, RU.userId as receiverUserId, RU.emailId as receiverEmailId, RU.name as receiverName, FLOOR( DATEDIFF( CURRENT_DATE, RU.dob) /365 ) as receiverAge,
+CREATE VIEW view_messages AS SELECT M.*, SU.userId as senderUserId, SU.marryId as senderMarryId,SU.emailId as senderEmailId, SU.name as senderName, FLOOR( DATEDIFF( CURRENT_DATE, SU.dob) /365 ) as senderAge,
+SU.gender senderGender, SU.motherTounge as senderMotherTounge, SU.userType as senderUserType, RU.userId as receiverUserId, RU.marryId as receiverMarryId,RU.emailId as receiverEmailId, RU.name as receiverName, FLOOR( DATEDIFF( CURRENT_DATE, RU.dob) /365 ) as receiverAge,
 RU.gender receiverGender, RU.motherTounge as receiverMotherTounge, RU.userType as receiverUserType,SP.photoId as senderPhotoId, SP.imageName as senderImageName, RP.photoId as receiverPhotoId, RP.imageName as receiverImageName
 FROM messages M
 JOIN users SU ON M.senderId = SU.userId

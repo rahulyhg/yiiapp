@@ -530,5 +530,25 @@ class Utilities
  	return $condition;
  }
  
- 
+	public static function getTimeDuration($time)
+	{
+			$strTimeSpent = "";
+			$days = floor($time / (60 * 60 * 24));
+			$remainder = $time % (60 * 60 * 24);
+			$hours = floor($remainder / (60 * 60));
+			$remainder = $remainder % (60 * 60);
+			$minutes = floor($remainder / 60);
+			$seconds = $remainder % 60;
+			
+			if($days > 0)
+			$strTimeSpent = date('F d Y', $time);
+			elseif($days == 0 && $hours == 0 && $minutes == 0)
+			$strTimeSpent = "few seconds ago";		
+			elseif($days == 0 && $hours == 0)
+			$strTimeSpent = $minutes.' minutes ago';
+			else
+			$strTimeSpent = "few seconds ago";
+			
+			return $strTimeSpent;	
+	}
 }
