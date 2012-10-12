@@ -38,21 +38,21 @@
                 <div class="space-15px">&nbsp;</div>
                               <div class="clear"></div>
                 <?php if(!empty($messages)):?>              
-                 <?php foreach($messages as $messageItem):?>              
+                 <?php foreach($messages as $message):?>              
                 <!--div_msg_fullbox-->   <div class="msgbox-full_large">
                 <div style="float:left; padding-right:5px;">
                  <INPUT type="checkbox" name="select" class="checkicon">
                  </div>
                  <div style="float:left;">
-                <a href="album.html"> <img src="images/model_3.jpg" class="imageicon"  border="0"/></a>
+                <a href="<?php echo Utilities::createAbsoluteUrl('album','index',array('mId' => $message['senderMarryId']));?>"> <img src="<?php echo Utilities::getProfileImage($message['senderMarryId'],$message['senderImageName']) ?>"   border="0" height="60" width="40"/></a>
                  </div>
                   <div style="float:left; padding:5px 0px 0px 10px;">
-                 <p> <span class="text_blue_b"><a href="search.html">Seema Varma</a></span></p>
-                  <p class="txt_rg">I Love You... Give me your number</p>
- <p class="innersidelinks-still-l0">2 Minuts ago</p>
+                 <p> <span class="text_blue_b"><a href="<?php echo Utilities::createAbsoluteUrl('mypage','index');?>"><?php echo $message['senderName']; ?></a></span></p>
+                  <p class="txt_rg"><?php echo $message['message']; ?></p>
+ <p class="innersidelinks-still-l0"><?php echo Utilities::getTimeDuration($message['sendDate']); ?></p>
                   </div>
                   
-                  <a class="replay" href="#">Replay</a>
+                  <a class="replay" href="<?php echo Utilities::createAbsoluteUrl('message','compose',array('receiverId' => $message['receiverId']));?>">Replay</a>
            
                   
                   <div class="clear"></div>
