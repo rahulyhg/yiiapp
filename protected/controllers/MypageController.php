@@ -41,8 +41,8 @@ class MypageController extends Controller
 		$blockIdList = implode(",", $blockId);
 			
 		$sendInterest = $user->interestSender;	
-		if(sizeof($sendInterest) > 0){
 		$suserId = array();
+		if(sizeof($sendInterest) > 0){
 		$userInterest = array();
 		foreach ($sendInterest as $value) {
 			$suserId[] = $value->receiverId;
@@ -51,14 +51,14 @@ class MypageController extends Controller
 		
 		
 		$receiveInterest = $user->interestReceiver;
-		if(sizeof($receiveInterest) > 0){
 		$ruserId = array();
+		if(sizeof($receiveInterest) > 0){
 		$userInterest = array();
 		foreach ($receiveInterest as $value) {
 			$ruserId[] = $value->senderId;
 		}
 		}
-		if(isset($suserId) || isset($ruserId))
+		if(sizeof($suserId) > 0 || sizeof($ruserId) > 0 )
 		{
 			
 			$intersetUserIds = array_merge($suserId,$ruserId);
@@ -153,12 +153,26 @@ class MypageController extends Controller
 		$profileCount = $command->queryRow();
 		$this->render('myaccount',array('profileCount' => $profileCount['pCount']));
 	}
+	
+	public function actionPayment()
+	{
+		$loggedUser = Yii::app()->session->get('user');
+		$payments = $loggedUser->payment(array('order'=> 'startdate ASC'));
+		if(isset($payments ) && sizeof($payments) > 0)
+		{
+			$this->render('payment',array('payment' =>$payments));
+		}
+		else
+		{
+			$this->render('payment');
+		}
+	}
 
 
 	public function actionAddressbook()
 	{
-		$loggedUser = Yii::app()->session->get('user');
-		if(isset($loggedUser->addressBook)){
+			$loggedUser = Yii::app()->session->get('user');
+			if(isset($loggedUser->addressBook) && sizeof($loggedUser->addressBook) > 0 ){
 			$userIds = $loggedUser->addressBook->visitedId;
 			$condition = "userId in ({$userIds}) and userId != {$loggedUser->userId} ";
 			$users = Users::model()->findAll(array('condition'=>$condition,'order'=> 'createdOn DESC' ));

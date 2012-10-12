@@ -87,17 +87,17 @@
                     <span  class="innersidelinks-l"><a href="<?php echo Utilities::createAbsoluteUrl('user','document',array()); ?>">My Document</a></span>
               <p class="space-5px">&nbsp;</p>
  
-                  <span  class="innersidelinks-l"><a href="<?php echo Utilities::createAbsoluteUrl('user','address',array()); ?>">My Address Book</a></span><p class="space-5px">&nbsp;</p>
-                  <span  class="innersidelinks-l"><a href="<?php echo Utilities::createAbsoluteUrl('user','reference',array()); ?>">My Refference</a></span><p class="space-5px">&nbsp;</p>
-                  <span  class="innersidelinks-l"><a href="<?php echo Utilities::createAbsoluteUrl('user','shortlist',array()); ?>">My Shortlist</a></span>
+                  <span  class="innersidelinks-l"><a href="<?php echo Utilities::createAbsoluteUrl('mypage','addressbook',array()); ?>">My Address Book</a></span><p class="space-5px">&nbsp;</p>
+                  <span  class="innersidelinks-l"><a href="<?php echo Utilities::createAbsoluteUrl('mypage','reference',array()); ?>">My Refference</a></span><p class="space-5px">&nbsp;</p>
+                  <span  class="innersidelinks-l"><a href="<?php echo Utilities::createAbsoluteUrl('shortlist','index',array()); ?>">My Shortlist</a></span>
               <p class="space-5px">&nbsp;</p>
-                  <span  class="innersidelinks-l"><a href="<?php echo Utilities::createAbsoluteUrl('user','bookmark',array()); ?>">My bookmarks</a></span>
+                  <span  class="innersidelinks-l"><a href="<?php echo Utilities::createAbsoluteUrl('bookmark','index',array()); ?>">My bookmarks</a></span>
               <p class="space-5px">&nbsp;</p>
-                  <span  class="innersidelinks-l"><a href="<?php echo Utilities::createAbsoluteUrl('user','contact',array()); ?>">My Contact Details</a></span>
+                  <span  class="innersidelinks-l"><a href="<?php echo Utilities::createAbsoluteUrl('mypage','contact',array()); ?>">My Contact Details</a></span>
                   <p class="space-5px">&nbsp;</p>
                   <span  class="innersidelinks-l"><a href="<?php echo Utilities::createAbsoluteUrl('user','partner',array()); ?>">My Partner Preference</a></span>
                   <p class="space-5px">&nbsp;</p>
-                  <span  class="innersidelinks-l"><a href="<?php echo Utilities::createAbsoluteUrl('user','payment',array()); ?>">My payment Summery</a></span>
+                  <span  class="innersidelinks-l"><a href="<?php echo Utilities::createAbsoluteUrl('mypage','payment',array()); ?>">My payment Summery</a></span>
                   
                   
   <div class="clear"></div>

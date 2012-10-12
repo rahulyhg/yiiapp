@@ -14,6 +14,30 @@ class BookmarkController extends Controller
 	
 	public function actionIndex()
 	{
+		$usersList = Yii::app()->session->get('user');
+		$userBook = $usersList->bookmark;
+		if(isset($userBook)){
+		$condition = "userId in ($userBook->profileIDs)";
+		$users = Users::model()->findAll(array('condition'=>$condition,'order'=> 'createdOn DESC' ));
+		
+		if(sizeof($users) > 0)
+		{
+			
+		$totalUser = sizeof($users);
+		$totalPage = ceil($totalUser/10);	
+		$this->render('index',array('users'=>$users,'totalUser'=>$totalUser,'totalPage' => $totalPage));
+		}
+		else
+		{
+			$this->render('index');
+		}
+		
+		}
+		else 
+		{
+			$this->render('index');
+		}
+		
 		$this->render('index');
 	}
 

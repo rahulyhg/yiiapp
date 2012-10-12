@@ -38,6 +38,11 @@
 
 					<p class="text_pink-hd">My Address Book</p>
                     	<div class="clear"></div>
+                    	
+                 <?php if(isset($users)) {
+                 
+                 ?>
+                    	
 		  <p class="line"></p>
           <p class="sellect-all"><span class="txt_normal-2"><INPUT type="checkbox" name="selection">&nbsp;&nbsp;Select All</span></p>
                       
@@ -178,6 +183,11 @@
 
                 <!--bottom-content-->
               </div>
+              <?php 
+              }else {
+              
+              	echo "No address book details";
+              }?>   	
      </div>
      </div>
      </div>
