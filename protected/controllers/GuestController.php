@@ -48,7 +48,7 @@ class GuestController extends Controller
 	{
 		$searchModel = new SearchForm();
 		$model = new UserForm();
-		$this->layout= '//layouts/single';
+		//$this->layout= '//layouts/single';
 		$this->render('newuser',array('model'=>$model,'searchModel' =>$searchModel));
 	}
 	
@@ -56,7 +56,7 @@ class GuestController extends Controller
 	{
 		$searchModel = new SearchForm();
 		$model = new UserForm();
-		$this->layout= '//layouts/single';
+		//$this->layout= '//layouts/single';
 		$this->render('paiduser',array('model'=>$model,'searchModel' =>$searchModel));
 	}
 }
