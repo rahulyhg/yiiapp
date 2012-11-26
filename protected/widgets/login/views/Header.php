@@ -1,38 +1,15 @@
-  <?php $userName = Yii::app()->session->get('username');?>
-  <?php if(isset($userName)) {?>
-<div class="txt_bld" id="mypage-search-2">Welcome <span class="logout"><?php echo $userName;?></span> !</div>
-<a href="/site/logout" class="deactivate">Logout</a>
-<?php }else{?>
-<div class="txt_bld" id="mypage-search-2">Welcome <span class="logout">Guest</span> !</div>
-   <div class="user-login"><!--user-login-->
-<?php echo CHtml::beginForm(Yii::app()->createUrl('site/login'),'post',array('name'=>'LoginForm','id'=>'LoginForm'));?>
-<div class="left">
-
-<p class="txt_rg">E-Mail / User ID</p>
-	<input type="text" class="validate[required] user-form"  tabindex="1"  id="user" name="LoginForm[username]"/>
-<p class="txt_rg"><span class="text_blue"><a href="/guest/user">New User?</a></span></p>
-</div>
-
-<div class="left">
-<p class="txt_rg">Password</p>
-	<input type="password" class="validate[required] user-form" tabindex="2" id="password" name="LoginForm[password]" />
-<p class="txt_rg"><span class="text_blue"><a href="/guest/forget">Forget Passord?</a></span></p>
-
-</div>
-<div class="right">
-<?php echo CHtml::submitButton('Login',array('class'=>'btnStyle','tabindex'=>'3')); ?>
-</div>
-<?php echo CHtml::endForm(); ?>
-</div>
-<?php }?>
-
-<!-- logged user -->
-<!--<div class="txt_bld" id="mypage-search-2">Hi <span class="logout"><a href="#">BIJU! M123456</a></span>  |   <span class="back"><a href="my-page.html">Back to my page</a></span>  |     <span class="logout"><a href="#">Logout</a></span></div>-->
-
-<script type="text/javascript">
-$(document).ready(function(){
-    $("#LoginForm").validationEngine('attach');
-  });
-
-
-</script>	
+        <a href="javascript:void(0)" class="logo" ></a>
+        <div class="welcome-message">Welcome Guest!</div>
+        <div class="user-login">
+			<div class="login-contnr">
+				<p>E-Mail / User ID</p>
+				<input type="text" id="" />
+				<a href="home-new-user.htm">New User?</a>
+			</div>
+			<div class="login-contnr">
+				<p>Password</p>
+				<input type="password" id="" />
+				<a href="pop_forgot-password.htm">Forget Password?</a>
+			</div>
+			<a href="my-page.htm" class="type2">Login</a>
+		</div>

@@ -1,107 +1,44 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<meta name="language" content="en" />
-		<link rel="icon" href="http://media.marrydoor.com/rings.jpg" />
-	<!-- css & js -->
-	<?php $this->widget('application.widgets.Scripts'); ?>	
-	
-	<title><?php echo CHtml::encode($this->pageTitle); ?></title>
+    <meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<title>Marrydoor Matrimony</title>
+	<meta name="description" content="Marrydoor - The Malayalam Matrimonial Site. Thousands of Kerala Brides & Grooms. Register free" />
+    <meta name="keywords" content="marrydoor.com, Marrydoor, Matrimony, Marriage, Wedding, Malayalam Matrimony, Malayalam brides, Malayalam grooms, bride search, groom search, indian brides, indian grooms, malayalm matrimony sites, kerala matrimony sites, kerala, gods own country, greenary, kerala tourism, malayalam film actress, malayalam film stars, kerala film acress, malayalam news, news, kerala news, html5, css3, design inspirations, profile pictures, beautiful profile pictures, beautiful girls profiles, malayogam, anugrahamatrimony, bharath matrimony, m4marry, ezhava matrimony, chavara matrimony, kalyanam, marriage, widowed, second marriage, late marriage, christian matrimony, christian, hindu, muslim, Kerala Matrimonial, Kerala Matrimonials, Kerala Matrimony " />
+	<meta name="google-site-verification" content="">
+	<meta name="author" content="Loloos Technolab Pvt. Ltd.">
+	<meta name="Copyright" content="Copyright &#169; Loloos Technolab Pvt. Ltd. 2012 | All Rights Reserved.">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+	<link rel="shortcut icon" href="./images/favicon.ico">
+    <link rel=icon type="image/ico" href="./images/favicon.ico">
+    <!-- scripts widgets -->
+	<?php $this->widget('application.widgets.Scripts'); ?>
+	<!-- scripts ends -->
 </head>
 <body>
-	<div id="page">
-		<!--wrapper-->
-		<div id="wrapper">
-<?php $userName = Yii::app()->session->get('username');?>		
-	<div id="head-my">
-	<a href="home-viewed-by-member.html"> <img src="<?php echo Yii::app()->params['mediaUrl']; ?>/logo.jpg"
-		class="logo" border="0" /> </a>
-		
-		 <?php if(isset($userName)) {?>
-		<div class="mgn_top">
-		<!-- Dropdown menu -->
-			<?php $this->widget('application.widgets.menu.Dropdownmenu'); ?>
- 		<!-- Dropdown menu ends -->
-		</div>
-		<?php }?>
-
-		<div id="mypage-login_box">
-			<!-- login header -->
-				<?php $this->widget('application.widgets.login.Header'); ?>
-			<!-- login header ends -->
-		</div>
-	<p class="clear"></p>
-
-
- <?php if(isset($userName)) {?>
-	<p class="space-25px">&nbsp;</p>
-				<!--navigation_container-->
-				<div class="navigation_container">
-				<!-- main menu starts -->
-					<?php $this->widget('application.widgets.menu.Main'); ?>
-				<!-- main menu ends -->
-					<!-- my account dropdown -->
-					<?php $this->widget('application.widgets.menu.Myaccount'); ?>
-				<!-- my account dropdown ends -->
-				<!-- my profile dropdown -->
-	
-				<!-- my profie dropdown ends here -->
-					<?php $this->widget('application.widgets.menu.Myprofile'); ?>
-				<!-- communicate dropdown -->
-					<?php $this->widget('application.widgets.menu.Communicate'); ?>
-				<!-- communicate dropdown ends here -->
-	
-				<!-- search dropdown -->
-					<?php $this->widget('application.widgets.menu.Search'); ?>
-				<!-- search dropdown ends here -->
-				<!-- payment dropdown starts here -->
-					<?php $this->widget('application.widgets.menu.Paymentoptions'); ?>
-				<!-- payment dropdown ends here -->
-				<!-- contactus dropdown starts here -->
-					<?php $this->widget('application.widgets.menu.Contactus'); ?>
-				<!-- contactus dropdown ends here -->
-				</div>
-				<!--/navigation_container-->
-				<?php } else {?>
-		<!-- search dropdown -->
-		
-				<div class="navigation_container">
-				<?php $this->widget('application.widgets.menu.SubMain'); ?>
-				<?php $this->widget('application.widgets.menu.Search'); ?>
-				<!-- search dropdown ends here -->
-				<!-- payment dropdown starts here -->
-					<?php $this->widget('application.widgets.menu.Paymentoptions'); ?>
-				<!-- payment dropdown ends here -->
-				<!-- contactus dropdown starts here -->
-					<?php $this->widget('application.widgets.menu.Contactus'); ?>
-				</div>	
-				<!-- contactus dropdown ends here -->
-					<?php }?>
-<p class="clear"></p>
-<p class="space-15px">&nbsp;</p>
-
-
-
-</div>
-
-<!--head closing-->
-
-	<?php if(isset($this->breadcrumbs)):?>
-		<?php $this->widget('zii.widgets.CBreadcrumbs', array(
-			'links'=>$this->breadcrumbs,
-		    'homeLink'=>CHtml::link('Start', array('/site/index')),
-		)); ?><!-- breadcrumbs -->
-	<?php endif?>
-
+<!-- main content wrapper -->
+<div class="wrapper">
+	<!-- header section -->
+    <header class="header">
+		<!-- login header -->
+		 <?php $this->widget('application.widgets.login.Header'); ?>
+		<!-- login header ends -->
+		<!-- menu -->
+		<?php $this->widget('application.widgets.menu.Main'); ?> 
+        <!-- menu ends -->
+    </header>
+    <!-- header ends -->
+    <!-- content -->
 	<?php echo $content; ?>
-
-	<div class="clear"></div>
+	<!-- content ends -->
 </div>
-	<!--footer-->
-	<?php $this->widget('application.widgets.Footer'); ?>
-
-</div><!-- page -->
-<div class="clear"></div>
+<!-- main content wrapper -->
+<!--footer section starts here-->
+<?php $this->widget('application.widgets.Footer'); ?>
+<!-- footer ends -->
+<!-- social icons -->
+<?php $this->widget('application.widgets.Social'); ?>
+<!-- social icons ends -->
 </body>
 </html>
