@@ -1,23 +1,28 @@
-	<div id="footer">
-		<div class="footer-1">
-			<a href="#"><img src="<?php echo Yii::app()->params['mediaUrl']; ?>/rings.jpg" class="icon_footer"
-				border="0" /> </a>
-			<p class="text_wt_ftr">
-				<a href="about-us.html">About us</a> &nbsp;|&nbsp; <a href="#">Contact
-					Us</a> &nbsp;|&nbsp; <a href="faq.html">FAQ's</a> &nbsp;|&nbsp; <a
-					href="feedback.html">Feedback</a> &nbsp;|&nbsp; <a
-					href="privacy-policy.html">Privacy Policy</a> &nbsp;|&nbsp; <a
-					href="terms-conditions.html">Terms & Conditions</a> &nbsp;|&nbsp;
-				Copyright © 2012 <a href="#">Loloos Technolab Pvt. Ltd.</a>
-				&nbsp;All rights reserved.
-			</p>
-			<p class="text_wt_ftr2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Find
-				us on</p>
-			<a href="#"><img src="<?php echo Yii::app()->params['mediaUrl']; ?>/facebook_icon.jpg" class="footer_icons"
-				border="0" /><a href="#"><img src="<?php echo Yii::app()->params['mediaUrl']; ?>/twitter_icon.jpg"
-					class="footer_icons" border="0" /> </a> <a href="#"><img
-					src="<?php echo Yii::app()->params['mediaUrl']; ?>/google_icon.jpg" class="footer_icons"
-					style="padding-bottom: 2px;" border="0" /> </a>
-		
-		</div>
-	</div>
+<footer class="footer">
+	<ul class="footer-links">
+		<li>
+			<a class="loloos" href="#"></a>
+		</li>
+		<li>
+			<a class="iframe" href="./popups/pop_about-marrydoor.htm">About us</a>
+		</li>
+		<li>
+			<a class="iframe" href="./popups/pop_contact-us.htm">Contact Us</a>
+		</li>
+		<li>
+			<a class="iframe" href="./popups/pop_faq.htm">FAQ's</a>
+		</li>
+		<li>
+			<a class="iframe" href="./popups/pop_feedback.htm">Feedback</a>
+		</li>
+		<li>
+			<a class="iframe" href="./popups/pop_privacy-policy.htm">Privacy Policy</a>
+		</li>
+		<li>
+			<a class="iframe" href="./popups/pop_terms-contitions.htm">Terms &amp; Conditions</a>
+		</li>
+		<li>
+			Copyright &#169; 2012 <a class="lol" href="#">Loloos Technolab</a> Pvt. Ltd. All rights reserved.
+		</li> 
+	</ul>
+</footer>
