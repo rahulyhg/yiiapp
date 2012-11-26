@@ -132,7 +132,7 @@
 					<div class="benefits">Benefits For Subsciribed Users</div>
 					<div class="divider"> </div>
 					<p>Contact members directly <br /> Send personalised messaages <br /> View Album, Documents, and contact details <br /> View horoscope of members <br /> Express Unlimited interest Plus other exclusive paid membership benefits</p>
-					<a class="type6" href="home-paid-registration.htm" >Continue to Registration</a>
+					<a class="type6" href="http://marrydoor.com/guest/paiduser" >Continue to Registration</a>
 				</div>
 			</li>
 		</ul>
