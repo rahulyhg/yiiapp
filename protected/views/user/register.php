@@ -249,12 +249,10 @@
 				</div>
 			</li>
 			<li>
-				<div class="left"></div>
-				<div class="right">
+				<div class="right left-m40">
 					<div class="button-contnr">
-						<?php echo CHtml::submitButton('Search',array('class'=>'type1b')); ?>
-						<div class="clearSpace"></div>
-						<?php echo CHtml::resetButton('Reset',array('class'=>'type1b')); ?>
+						<?php echo CHtml::resetButton('Reset',array('class' =>'type1b')); ?>
+						<?php echo CHtml::submitButton('Submit',array('class'=>'type1b')); ?>
 					</div>
 				</div>
 			</li> 

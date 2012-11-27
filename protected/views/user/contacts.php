@@ -14,1013 +14,636 @@
  *  @version <Revision>
  */
 ?>
-<!--main-content-->
-<div id="main-content">
-	<!--left-content-->
 
-	<div id="content-left-1">
-		<form id="userContact" enctype="multipart/form-data" name="userContact" method="post" action="/user/contact">
-			<p class="text_pink-hd">You're just a step away from discovering a
-				life partner</p>
-			<div class="clear"></div>
-
-			<p class="space-10px">&nbsp;</p>
-			<p class="txt_bld-11">*marked fields are mandatory</p>
-			<div class="line"></div>
-			<div class="list_class">
-				<p class="txt_bld">
-					Regional Site<span class="txt_bld-18"> *</span>
-				</p>
+<section class="data-contnr"> <article class="section">
+<h1 class="message">Your life partner is just a click away!</h1>
+<h5>
+	<span class="sup">*</span>marked fields are mandatory
+</h5>
+</article> <article class="section">
+<ul>
+	<li>
+		<div class="title">Regional Site</div>
+		<div class="info">
+			<select class="wid150">
+				<option>Kerala</option>
+			</select>
+		</div>
+	</li>
+</ul>
+<ul>
+	<li><h3>Personal Details</h3></li>
+	<li>
+		<div class="title">
+			Profile being created for <span class="sup">*</span>
+		</div>
+		<div class="info">
+			<div class="radio wid90">
+				<input type="radio" name="profileFor" value="0"> <span>Myself</span>
 			</div>
-			<div class="list_class-2">
-				<select class="select_small">
-					<option>Kerala</option>
-				</select>
+			<div class="radio wid90">
+				<input type="radio" name="profileFor" class="validate[required]"
+					value="1"> <span>Son</span>
 			</div>
-
-			<div class="list_class-3"></div>
-			<div class="clear"></div>
-			<div class="line"></div>
-			<p class="space-10px">&nbsp;</p>
-			<!--personal details-->
-			<p class="text_pink-hd">Personal details</p>
-
-
-			<div class="clear"></div>
-
-
-			<div class="list_class">
-				<p class="txt_bldn">
-					Profile being created for<span class="txt_bld-18"> *</span>
-				</p>
+			<div class="radio wid90">
+				<input type="radio" name="profileFor" value="2"
+					class="validate[required]"> <span>Brother</span>
 			</div>
-			<div class="list_class-4">
-				<p class="radio_135">
-					<input type="radio" name="profileFor" value="0">&nbsp;&nbsp;My Self
-
-
-
-				
-				
-				
-				<p class="radio_135">
-					<input type="radio" name="profileFor" class="validate[required] radio"  value="1">&nbsp;&nbsp;Son
-				</p>
-				<p class="radio_135">
-					<input type="radio" name="profileFor" value="2" class="validate[required] radio" >&nbsp;&nbsp;Brother
-				</p>
-				<p class="radio_135">
-					<input type="radio" name="profileFor" value="3" class="validate[required] radio" >&nbsp;&nbsp;Relative
-				</p>
-				<p class="radio_135">
-					<input type="radio" name="profileFor" value="4" class="validate[required] radio" >&nbsp;&nbsp;Friend
-				</p>
+			<div class="radio wid90">
+				<input type="radio" name="profileFor" value="3"
+					class="validate[required]"><span>Relative</span>
 			</div>
-			<!--closing personal details-section-1-->
-			<!--personal details-section-2-->
-			<div class="clear"></div>
-			<div class="list_class">
-				<p class="txt_bldn">
-					Marital status <span class="txt_bld-18">*</span>
-				</p>
+			<div class="radio wid90">
+				<input type="radio" name="profileFor" value="4"
+					class="validate[required]"><span>Friend</span>
 			</div>
-			<div class="list_class-4">
-
-				<p class="radio_135">
-					<input type="radio" name="marital" value="0" class="validate[required] radio" >&nbsp;&nbsp;Unmarried
-				</p>
-				<p class="radio_135">
-					<input type="radio" name="marital" value="1" class="validate[required] radio" >&nbsp;&nbsp;Widower
-				</p>
-				<p class="radio_135">
-					<input type="radio" name="marital" value="2" class="validate[required] radio" >&nbsp;&nbsp;Divorced
-				</p>
-				<p class="radio_155">
-					<input type="radio" name="marital" value="3" class="validate[required] radio"  >&nbsp;&nbsp;Awaiting&nbsp;divorce
-				</p>
-
+		</div>
+	</li>
+	<li>
+		<div class="title">
+			Marital status <span class="sup">*</span>
+		</div>
+		<div class="info">
+			<div class="radio wid90">
+				<input type="radio" name="marital" value="0"
+					class="validate[required]"><span>Unmarried</span>
 			</div>
-			<!--closing personal details-section-2-->
-			<!--personal details-section-3-->
-			<div class="clear"></div>
-			<div class="list_class">
-				<p class="txt_bld">
-					Caste / Subcast<span class="txt_bld-18"> *</span>
-				</p>
+			<div class="radio wid90">
+				<input type="radio" name="marital" value="1"
+					class="validate[required]"><span>Widower</span>
 			</div>
-
-
-			<div class="list_class-6">
-
-				<div class="list_class-8b">
-				<?php
-				$userPersonal = $user->userpersonaldetails;
-				$religion = Religion::model()->findbyPk($user->userpersonaldetails->religionId);
-				$caste = Caste::model()->findbyPk($user->userpersonaldetails->casteId);
-				?>
-					<div class="div_150">
-						<span class="txt_12"> &nbsp;<?php if(isset($user->userpersonaldetails->religion))echo $user->userpersonaldetails->religion->name; else echo $religion->name ;?>- <?php if(isset($model->userpersonaldetails->caste))echo $model->userpersonaldetails->caste->name;else echo $caste->name ?>
-						</span>
-					</div>
-					
-				</div>
-
+			<div class="radio wid90">
+				<input type="radio" name="marital" value="2"
+					class="validate[required]"> <span>Divorced</span>
 			</div>
-
-			<div class="clear"></div>
-			<div class="list_class">
-			<p class="txt_bld">
-				Are you willing to marry from other communities
-			</p>
+			<div class="radio wid150">
+				<input type="radio" name="marital" value="3"
+					class="validate[required]"> <span>Awaiting divorce</span>
 			</div>
-			
-			<div class="list_class-4">
-						
-					<p class="radio_135">
-					<input type="radio" class="validate[required] radio" name="interCaste" value="1">&nbsp;&nbsp;Yes
-					</p>
-					<p class="radio_135">
-						<input type="radio" class="validate[required] radio "name="interCaste" value="0">&nbsp;&nbsp;No
-					</p>
-					&nbsp;&nbsp;&nbsp;&nbsp;
-
-
-
-
+		</div>
+	</li>
+	<li>
+		<div class="title">
+			Caste <span class="sup">*</span>
+		</div>
+		<div class="info">
+		<?php
+		$userPersonal = $user->userpersonaldetails;
+		$religion = Religion::model()->findbyPk($user->userpersonaldetails->religionId);
+		$caste = Caste::model()->findbyPk($user->userpersonaldetails->casteId);
+		?>
+			<div class="special width90">
+			<?php if(isset($user->userpersonaldetails->religion))echo $user->userpersonaldetails->religion->name; else echo $religion->name ;?>
+				-
+				<?php if(isset($model->userpersonaldetails->caste))echo $model->userpersonaldetails->caste->name;else echo $caste->name ?>
+				<a href="#"> edit</a>
 			</div>
-
-
-
-
-			<!--closing personal details-section-3-->
-			<!--personal details-section-4-->
-
-			<div class="clear"></div>
-
-
-			<div class="list_class">
-				<p class="txt_bld">Country living in</p>
+			<div class="special">Are you willing to marry from other communities</div>
+			<div class="radio wid60">
+				<input type="radio" class="validate[required]" name="interCaste"
+					value="1"><span>Yes</span>
 			</div>
-			<div class="list_class-6">
-			<?php
-			$country = Country::model()->findbyPk($user->userpersonaldetails->countryId);
-			?>
-				<div class="list_class-8b">
-					<div class="div_150">
-						<span class="txt_12"><?php if(isset($user->userpersonaldetails->country))echo $user->userpersonaldetails->country->name;else  echo $country->name?> </span>
-					</div>
-				</div>
+			<div class="radio wid60">
+				<input type="radio" class="validate[required]" name="interCaste"
+					value="0"> <span>No</span>
 			</div>
+		</div>
+	</li>
+	<li>
+		<div class="title">
+			Country living in <span class="sup">*</span>
+		</div> <?php
+		$country = Country::model()->findbyPk($user->userpersonaldetails->countryId);
+		?>
+		<div class="info">
+		<?php if(isset($user->userpersonaldetails->country))echo $user->userpersonaldetails->country->name;else  echo $country->name?>
+			<a href="#"> edit</a>
+		</div>
+	</li>
+	<li>
+		<div class="title">
+			Residing state <span class="sup">*</span>
+		</div>
+		<div class="info">
 
-			<!--closing personal details-section-4-->
-			<!--personal details-section-5-->
-			<div class="clear"></div>
+		<?php
 
-
-			<div class="list_class">
-				<p class="txt_bldn">Residing State</p>
-			</div>
-			<div class="list_class-6">
-			<?php
-
-			$records = States::model()->findAll("active = 1");
-			$list = CHtml::listData($records, 'stateId', 'name');
-			echo CHtml::dropDownList('state',$user->userpersonaldetails->stateId,$list,array('empty' => 'State','class'=>'validate[required] select_small_h22')); ?>
-
-			</div>
-			<!--closing personal details-section-5-->
-			<!--personal details-section-6-->
-			<div class="clear"></div>
-			<div class="list_class">
-				<p class="txt_bldn">Residing District</p>
-			</div>
-			<div class="list_class-6">
-			<?php
-
+		$records = States::model()->findAll("active = 1");
+		$list = CHtml::listData($records, 'stateId', 'name');
+		echo CHtml::dropDownList('state',$user->userpersonaldetails->stateId,$list,array('empty' => 'State','class'=>'validate[required] wid150')); ?>
+		</div>
+	</li>
+	<li>
+		<div class="title">
+			Residing district <span class="sup">*</span>
+		</div>
+		<div class="info">
+					<?php
 			$records = Districts::model()->findAll("active = 1");
 			$list = CHtml::listData($records, 'districtId', 'name');
-			echo CHtml::dropDownList('district',null,$list,array('empty' => 'District','class'=>'validate[required] select_small_h22')); ?>
-
-			</div>
-			<!--closing personal details-section-6-->
-			<!--personal details-section-7-->
-			<div class="clear"></div>
-			<div class="list_class">
-				<p class="txt_bldn">
-					Residing Municipality<br />Corperation/ Panchayatht
-				</p>
-			</div>
-			<div class="list_class-6">
-			<?php
+			echo CHtml::dropDownList('district',null,$list,array('empty' => 'District','class'=>'validate[required] wid150')); ?>
+		
+		</div>
+	</li>
+	<li>
+		<div class="title">
+			Residing Municipality <br />Corperation/ Panchayath
+		</div>
+		<div class="info">
+					<?php
 
 			$records = Places::model()->findAll("active = 1");
 			$list = CHtml::listData($records, 'placeId', 'name');
-			echo CHtml::dropDownList('place',null,$list,array('empty' => 'Places','class'=>'validate[required] select_small_h22')); ?>
-
-			</div>
-			<div class="clear"></div>
-			<p class="space-15px">&nbsp;</p>
-			<div class="line"></div>
-			<!--closing personal details-section-7-->
-			<!--personal contact details-section-1-->
-
-
-			<p class="space-10px">&nbsp;</p>
-			<p class="text_pink-hd">Personal contact details</p>
-			<div class="clear"></div>
-
-
-			<div class="space-10px"\>
-				<p>&nbsp;</p>
-			</div>
-
-
-			<div style="float: left; width: 100%;">
-				<div class="list_com">
-					<!--list_class-new_div_1-->
-					<p class="txt_bld">Communication Address</p>
-				</div>
-				<!--/list_class-new_div_1-->
-			</div>
-
-			<div style="float: left; width: 100%;">
-				<div class="list_com">
-					<!--list_class-new_div_1-->
-					<p class="txt_bld">&nbsp;</p>
-				</div>
-				<!--/list_class-new_div_1-->
-				<div class="list_class-new_div_2">
-					<!--list_class-new_div_2-->
-					<input type="text" name="house" id="house" class="validate[required] addres_form"
+			echo CHtml::dropDownList('place',null,$list,array('empty' => 'Places','class'=>'validate[required] wid150')); ?>
+		</div>
+	</li>
+</ul>
+<ul>
+	<li><h3>Personal Contact Details</h3></li>
+	<li>
+		<div class="title">
+			Communication Address <span class="sup">*</span>
+		</div>
+		<div class="info">
+			<div class="inner-row">
+			<input type="text" name="house" id="house" class="validate[required]"
 						placeholder="House Name / No." />
-				</div>
-				<div class="list_input_div_2">
-					<!--list_class-new_div_2-->
-					<input type="text" name="houseplace" id="place" class="validate[required] addres_form"
+			</div>
+			<div class="inner-row">
+			<input type="text" name="houseplace" id="place" class="validate[required]"
 						placeholder="Place" />
-				</div>
 			</div>
-
-
-			<div style="float: left; width: 100%;">
-				<div class="list_com">
-					<!--list_class-new_div_1-->
-					<p class="txt_bld">&nbsp;</p>
-				</div>
-				<!--/list_class-new_div_1-->
-				<div class="list_class-new_div_2">
-					<!--list_class-new_div_2-->
-					<input type="text" name="post" id="post" class="validate[required] addres_form"
-						placeholder="Post Office" />
-				</div>
-				<div class="list_input_div_2">
-					<!--list_class-new_div_2-->
-					<input type="text" name="postcode" id="postcode" class="validate[required,custom[integer],maxSize[6]] addres_form"
-						placeholder="Post Code" />
-				</div>
-			</div>
-
-
-
-
-			<div style="float: left; width: 100%;">
-				<div class="list_com">
-					<!--list_class-new_div_1-->
-					<p class="txt_bld">&nbsp;</p>
-				</div>
-				<!--/list_class-new_div_1-->
-				<div class="list_class-new_div_2">
-					<!--list_class-new_div_2-->
-					<input type="text" name="housecity" id="city" class="validate[required] addres_form"
+			<div class="inner-row">
+			<input type="text" name="housecity" id="city" class="validate[required]"
 						placeholder="City" />
-				</div>
-				<div class="list_input_div_2">
-					<!--list_class-new_div_2-->
-					<input type="text" name="housedistrict" id="district" class="validate[required] addres_form"
+				<input type="text" name="housedistrict" id="district" class="validate[required]"
 						placeholder="District" />
-				</div>
 			</div>
-
-
-
-			<div style="float: left; width: 100%;">
-				<div class="list_com">
-					<!--list_class-new_div_1-->
-					<p class="txt_bld">&nbsp;</p>
-				</div>
-				<div class="list_class-new_div_2">
-					<!--list_class-new_div_2-->
-					<input type="text" name="housestate" id="state" class="validate[required] addres_form"
+			<div class="inner-row">
+				<input type="text" name="housestate" id="state" class="validate[required]"
 						placeholder="State" />
-				</div>
-				<!--/list_class-new_div_1-->
-				<div class="list_input_div_2">
-					<!--list_class-new_div_2-->
-					<input type="text" name="housecountry" id="country" class="validate[required] addres_form"
+				<input type="text" name="housecountry" id="country" class="validate[required]"
 						placeholder="Country" />
-				</div>
-
 			</div>
-
-
-
-
-
-
-			<div class="clear"></div>
-
-
-
-
-
-
-			<!--closing personal contact details-section-1-->
-			<!--personal contact details-section-2-->
-			<p class="clear">&nbsp;</p>
-			<!--closing personal contact details-section-1-->
-			<!--personal contact details-section-2-->
-			<div class="clear"></div>
-
-			<div style="float: left; width: 100%;">
-				<div class="mm_class">
-					<p class="txt_bldn">Mobile No.</p>
-				</div>
-				<div class="list_div-8 ">
-					<div class="div_150">
-						<span class="txt_12"><?php echo $userPersonal->mobilePhone; ?> </span>
-					</div>
-				</div>
-
+			<div class="inner-row">
+				<input type="text" name="postcode" id="postcode" class="validate[required,custom[integer],maxSize[6]]"
+						placeholder="Post Code" />
 			</div>
-
-
-			<div style="float: left; width: 100%;">
-				<div class="mm_class">
-					<p class="txt_bldn">Landline No.</p>
-				</div>
-				<div class="list_div-8">
-					<div class="div_150">
-						<span class="txt_12"><?php 
-						echo $userPersonal->landPhone ?> </span>
-					</div>
-				</div>
-
+		</div>
+	</li>
+	<li>
+		<div class="title">Permanent Address</div>
+		<div class="info">
+			<div class="inner-row">
+			<input type="text" name="house1" id="house" class="validate[required]"
+						placeholder="House Name / No." />
 			</div>
-
-
-			<!--closing personal contact details-section-2-->
-			<!--personal contact details-section-3-->
-			<div class="clear"></div>
-			<div style="float: left; width: 100%;">
-				<div style="float: left; width: 55%;">
-					<div class="list_class-7">
-						<p class="txt_bld-4">
-							Altranative Mobile No.<br /> 
-							Facebook URL<br /> Skype<br /> Google IM<br /> Yahoo IM
-						</p>
-					</div>
-
-					<div class="list_class-textfield">
-						<input type="text" name="alterMobile" id="alterMobile"
-							class="validate[required,funcCall[validatePhone]] addres_form" /> <input type="text"
-							name="facebook" id="facebook" class="validate[required] addres_form" /> <input
-							type="text" class="validate[required] addres_form" name="skype" id="skype" /> <input
-							type="text" class="validate[required] addres_form" name="google" id="google" /> <input
+			<div class="inner-row">
+			<input type="text" name="houseplace1" id="place" class="validate[required]"
+						placeholder="Place" />
+			</div>
+			<div class="inner-row">
+			<input type="text" name="housecity1" id="city" class="validate[required]"
+						placeholder="City" />
+				<input type="text" name="housedistrict1" id="district" class="validate[required]"
+						placeholder="District" />
+			</div>
+			<div class="inner-row">
+				<input type="text" name="housestate1" id="state" class="validate[required]"
+						placeholder="State" />
+				<input type="text" name="housecountry1" id="country" class="validate[required]"
+						placeholder="Country" />
+			</div>
+			<div class="inner-row">
+				<input type="text" name="postcode1" id="postcode" class="validate[required,custom[integer],maxSize[6]]"
+						placeholder="Post Code" />
+			</div>
+		</div>
+	</li>
+	<li>
+		<div class="title">Mobile No.</div>
+		<div class="info">
+			<?php echo $userPersonal->mobilePhone; ?>  <a href="#">Edit</a>
+		</div>
+	</li>
+	<li>
+		<div class="title">Landline No.</div>
+		<div class="info">
+			<?php 
+						echo $userPersonal->landPhone ?>  <a href="#">Edit</a>
+		</div>
+	</li>
+	<li>
+		<div class="title">Altranative Mobile No.</div>
+		<div class="info">
+<input type="text" name="alterMobile" id="alterMobile"
+							class="validate[required,funcCall[validatePhone]]" /> 
+		</div>
+	</li>
+	<li>
+		<div class="title">Facebook URL</div>
+		<div class="info">
+			<input type="text"
+							name="facebook" id="facebook" class="validate[required] addres_form" /> 
+		</div>
+	</li>
+	<li>
+		<div class="title">Skype</div>
+		<div class="info">
+			<input
+							type="text" class="validate[required] addres_form" name="skype" id="skype" /> 
+		</div>
+	</li>
+	<li>
+		<div class="title">Google IM</div>
+		<div class="info">
+			<input
+							type="text" class="validate[required] addres_form" name="google" id="google" /> 
+		</div>
+	</li>
+	<li>
+		<div class="title">Yahoo IM</div>
+		<div class="info">
+			<input
 							type="text" class="validate[required] addres_form" name="yahoo" id="yahoo" />
-
-					</div>
-				</div>
-
+		</div>
+	</li>
+	<li>
+		<div class="title">Who can view above detals</div>
+		<div class="info">
+			<div class="check">
+				<input type="radio" name="pcontact" class="validate[required] radio" value="subscribers"><span>Subscribers</span>
 			</div>
-			<div class="clear"></div>
-			<div class="clear"></div>
-        <div class="list_ss-7">
-        <p class="txt_bldn"><span class="txt_bld_new">Who can view above detals</span></p>
-        </div> 
-        <div class="list_class-8"><p class="radio-4">
-          <input type="radio" name="pcontact" class="validate[required] radio" value="subscribers">&nbsp;Subscribers</p>
-                            <p class="radio-4">
-                            <input type="radio" name="pcontact" class="validate[required] radio" value="request">&nbsp;By request</p>
-                            
-           
-                            
-        </div>
-			<!--closing personal contact details-section-3-->
-			<div class="clear"></div>
-			<p class="space-15px">&nbsp;</p>
-			<div class="line"></div>
-			<!--closing personal details-section-7-->
-			<!--personal contact details-section-1-->
-			<p class="space-10px">&nbsp;</p>
-			<p class="text_pink-hd">Physical attribute</p>
-			<div class="clear"></div>
-			<div class="list_class">
-				<p class="txt_bldn">Height in cm</p>
+			<div class="check">
+				<input type="radio" name="pcontact" class="validate[required] radio" value="request"> <span>By Request</span>
 			</div>
-			<div class="list_class-4">
-				<div class="list_fdf-textfield">
-					<input type="text" class="validate[required,custom[integer],min[100],max[250]] addres_form" name="height" id="height" />
-				</div>
-				<div class="clear"></div>
+		</div>
+	</li>
+</ul>
+<ul>
+	<li><h3>Physical Attributes</h3></li>
+	<li>
+		<div class="title">
+			Height in cm<span class="sup">*</span>
+		</div>
+		<div class="info">
+		<input type="text" class="validate[required,custom[integer],min[100],max[250]] addres_form" name="height" id="height" />
+		</div>
+	</li>
+	<li>
+		<div class="title">
+			Weight in kg<span class="sup">*</span>
+		</div>
+		<div class="info">
+			<input type="text" class="validate[required,custom[integer],min[30],max[150]] addres_form" name="weight" id="weight" />
+		</div>
+	</li>
+	<li>
+		<div class="title">
+			Body type <span class="sup">*</span>
+		</div>
+		<div class="info">
+			<div class="radio wid90">
+				<input type="radio" name="bodyType" class="validate[required] radio" value="0"> <span>Average</span>
 			</div>
-
-			<!--closing personal contact details-section-1-->
-
-			<!--personal contact details-section-2-->
-			<div style="float: left; width: 100%;">
-				<div class="list_class">
-					<p class="txt_bldn">Weight in Kg</p>
+			<div class="radio wid90">
+				<input type="radio" name="bodyType" class="validate[required] radio" value="1"> <span>Athletic </span>
+			</div>
+			<div class="radio wid90">
+				<input type="radio" name="bodyType" class="validate[required] radio" value="2"> <span>Slim</span>
+			</div>
+			<div class="radio wid90">
+				<input type="radio" name="bodyType" class="validate[required] radio" value="3"><span>Heavy</span>
+			</div>
+		</div>
+	</li>
+	<li>
+		<div class="title">
+			Complexion <span class="sup">*</span>
+		</div>
+		<div class="info">
+			<div class="radio wid90">
+				<input type="radio" name="complexion" class="validate[required]" value="0"><span>Very Fair</span>
+			</div>
+			<div class="radio wid90">
+				<input type="radio" name="complexion" class="validate[required]" value="1"> <span>Fair </span>
+			</div>
+			<div class="radio wid90">
+				<input type="radio" name="complexion" class="validate[required]" value="2"> <span>Wheatish </span>
+			</div>
+			<div class="radio wid130">
+				<input type="radio" name="complexion" class="validate[required]" value="3"> <span>Wheatish brown</span>
+			</div>
+			<div class="radio wid90">
+				<input type="radio" name="complexion" class="validate[required]" value="4"> <span>Dark</span>
+			</div>
+		</div>
+	</li>
+	<li>
+		<div class="title">
+			Physical status <span class="sup">*</span>
+		</div>
+		<div class="info">
+			<div class="inner-row">
+				<div class="radio wid90">
+					<input type="radio" name="physical" value="0"><span>Normal</span>
 				</div>
-
-				<div class="list_class-4">
-					<div class="list_fdf-textfield">
-						<input type="text" class="validate[required,custom[integer],min[30],max[150]] addres_form" name="weight" id="weight" />
-					</div>
+				<div class="radio">
+					<input type="radio" name="physical" value="1"><span><a href="#">Physically
+							challenged</a> </span>
 				</div>
-				<!--closing personal contact details-section-1-->
-				<!--personal contact details-section-2-->
-				<div class="clear"></div>
-
-
-
-				<div class="div_ww">
-					<div class="list_class">
-						<p class="txt_bldn">
-							Body Type<span class="txt_bld-18"></span>
-						</p>
-					</div>
-					<div class="bb1_6">
-						<p class="radio_135">
-							<input type="radio" name="bodyType" class="validate[required] radio" value="0">&nbsp;&nbsp;Average
-						</p>
-						<p class="radio_135">
-							<input type="radio" name="bodyType" class="validate[required] radio" value="1">&nbsp;&nbsp;Athletic
-						</p>
-						<p class="radio_90">
-							<input type="radio" name="bodyType" class="validate[required] radio" value="2">&nbsp;&nbsp;Slim
-						</p>
-						<p class="radio_135">
-							<input type="radio" name="bodyType" class="validate[required] radio" value="3">&nbsp;&nbsp;Heavy
-						</p>
-					</div>
-
+			</div>
+			<div id="option_list" subject="Physically challenged options"
+				class="inner-row" style="display: none">
+				<div class="check">
+					<input type="checkbox" /> <span>Option1</span>
 				</div>
-
-
-
-				<div class="clear"></div>
-				<div class="list_class">
-					<p class="txt_bldn">
-						Complexion<span class="txt_bld-18">*</span>
-					</p>
+				<div class="check">
+					<input type="checkbox" /> <span>Option2</span>
 				</div>
-				<div class="bb1_6">
-					<p class="radio_135">
-						<input type="radio" name="complexion" class="validate[required] radio" value="0">&nbsp;&nbsp;Very
-						Fair
-					</p>
-					<p class="radio_135">
-						<input type="radio" name="complexion" class="validate[required] radio" value="1">&nbsp;&nbsp;Fair
-					</p>
-					<p class="radio_90">
-						<input type="radio" name="complexion" class="validate[required] radio" value="2">&nbsp;&nbsp;Wheatish
-					</p>
-					<p class="radio_145">
-						<input type="radio" name="complexion" class="validate[required] radio" value="3" />
-						&nbsp;&nbsp;Wheatish&nbsp;brown
-					</p>
-					<p class="radio_135">
-						<input type="radio" name="complexion" class="validate[required] radio" value="4" />
-						&nbsp;&nbsp;Dark
-					</p>
+				<div class="check">
+					<input type="checkbox" /> <span>Option3</span>
 				</div>
-
-				<div class="clear"></div>
-				<div class="list_class">
-					<p class="txt_bldn">
-						Physical status <span class="txt_bld-18">*</span>
-					</p>
+				<div class="check">
+					<input type="checkbox" /> <span>Option4</span>
 				</div>
-				<div class="bb1_6">
-					<p class="radio_135">
-						<input type="radio" name="physical" value="0">&nbsp;&nbsp;Normal
-					</p>
-					<p class="radio_155">
-						<input type="radio" name="physical" value="1" />
-						&nbsp;&nbsp;Physically challenged
-					</p>
+				<div class="check">
+					<input type="checkbox" /> <span>Option5</span>
+				</div>	
+				<div class="check">
+					<input type="checkbox" /> <span>Option6</span>
 				</div>
-
-				<div class="clear"></div>
-				<p class="space-15px">&nbsp;</p>
-				<div class="line"></div>
-				<!--closing personal details-section-7-->
-				<!--personal contact details-section-1-->
-				<p class="space-10px">&nbsp;</p>
-
-				<p class="text_pink-hd">Education and Occupation</p>
-
-				<div class="clear"></div>
-
-
-
-
-
-				<div class="div_ww" style="margin-top: 20px;">
-
-					<div class="list_dd_ff">
-						<p class="txt_bld">Education*</p>
-					</div>
-					<?php
+			</div>
+		</div>
+	</li>
+</ul>
+<ul>
+	<li><h3>Education & Occupation</h3></li>
+	<li>
+		<div class="title">
+			Education <span class="sup">*</span>
+		</div>
+		<div class="info">
+		<?php
 
 					$records = EducationMaster::model()->findAll("active = 1");
 					$list = CHtml::listData($records, 'educationId', 'name');
-					echo CHtml::dropDownList('education',null,$list,array('empty' => 'Education','class'=>'validate[required] select_small_h22')); ?>
-
-				</div>
-
-				<div class="clear"></div>
-
-				<div class="div_ww">
-					<div class="list_com">
-						<!--list_class-new_div_1-->
-						<p class="txt_bld">Occupation *</p>
-					</div>
-					<!--/list_class-new_div_1-->
-
-					<?php
+					echo CHtml::dropDownList('education',null,$list,array('empty' => 'Education','class'=>'validate[required] wid150')); ?>
+			
+		</div>
+	</li>
+	<li>
+		<div class="title">
+			Occupation <span class="sup">*</span>
+		</div>
+		<div class="info">
+		<?php
 
 					$records = OccupationMaster::model()->findAll("active = 1");
 					$list = CHtml::listData($records, 'occupationId', 'name');
-					echo CHtml::dropDownList('occupation',null,$list,array('empty' => 'Occupation','class'=>'validate[required] select_small_h22')); ?>
-				</div>
-
-
-				<p class="clear">&nbsp;</p>
-
-
-				<!--closing personal contact details-section-1-->
-				<!--personal contact details-section-2-->
-				<div class="clear"></div>
-
-
-				<div class="div_ww">
-					<div class="list_class">
-						<p class="txt_bldn">
-							Employed in *<span class="txt_bld-18"></span>
-						</p>
-					</div>
-					<div class="list_xx">
-						<p class="radio_135">
-							<input type="radio" name="employed" class="validate[required] radio"  value="0">&nbsp;&nbsp;Government
-						</p>
-						<p class="radio_auto">
-							<input type="radio" name="employed" class="validate[required] radio" value="1">&nbsp;&nbsp;Private
-						</p>
-						<p class="radio_auto">
-							<input type="radio" name="employed" class="validate[required] radio" value="2">&nbsp;&nbsp;Business
-						</p>
-						<p class="radio_auto">
-							<input type="radio" name="employed" class="validate[required] radio" value="3" />
-							&nbsp;&nbsp;Defence
-						</p>
-						<p class="radio_auto">
-							<input type="radio" name="employed" class="validate[required] radio" value="4" />
-							&nbsp;&nbsp;Self&nbsp;Employed
-						</p>
-						<p class="radio_auto">
-							<input type="radio" name="employed" class="validate[required] radio" value="5" />&nbsp;&nbsp;NRI
-						</p>
-					</div>
-
-				</div>
-
-
-
-				<div class="clear"></div>
-
-				<div class="div_ww">
-					<div class="list_class">
-						<p class="txt_bldn">Income</p>
-					</div>
-
-					<div class="list_xx">
-						<p class="radio_135">
-							<input type="radio" name="ctc" class="validate[required] radio" value="12" /> &nbsp;&nbsp;Monthly
-						</p>
-						<p class="radio_90">
-							<input type="radio" name="ctc" class="validate[required] radio" value="1" /> &nbsp;&nbsp;Annual
-						</p>
-
-						<div class="small_form_box">
-							<img src="<?php echo Yii::app()->params['mediaUrl']; ?>/money_icon.jpg" class="rupee" />
-							<p class="txt_bld-10">
-								<input type="text" class="validate[required,custom[integer]] small_form_1" id="income"
-									name="income" placeholder="Use Rupees" /><span class="rupee_1">1,00,000
-									per month</span>
-							</p>
-						</div>
-					</div>
-				</div>
-
-
-				<!--personal contact details-section-2-->
-				<div class="clear"></div>
-				<p class="space-15px">&nbsp;</p>
-				<div class="line"></div>
-				<!--closing personal details-section-7-->
-				<!--personal contact details-section-1-->
-				<p class="space-10px">&nbsp;</p>
-				<p class="text_pink-hd">Habits</p>
-				<div class="clear"></div>
-				<!--closing personal contact details-section-1-->
-				<!--personal contact details-section-2-->
-				<p class="clear">&nbsp;</p>
-				<!--closing personal contact details-section-1-->
-				<!--personal contact details-section-2-->
-				<div class="clear"></div>
-
-
-
-				<div class="div_ww">
-					<div class="list_class">
-						<p class="txt_bldl">Food</p>
-					</div>
-
-
-					<div class="list_xx">
-						<p class="radio_135">
-							<input type="radio" name="food" class="validate[required] radio" value="0">&nbsp;&nbsp;Vegetarian
-						</p>
-						<p class="radio_145">
-							<input type="radio" name="food" class="validate[required] radio" value="1" />
-							&nbsp;&nbsp;Non&nbsp;Vegetarian
-						</p>
-						<p class="radio_135">
-							<input type="radio" name="food" value="2" class="validate[required] radio" >&nbsp;&nbsp;Eggetarian
-						</p>
-					</div>
-				</div>
-
-				<div class="clear"></div>
-
-				<div class="div_ww">
-					<div class="list_class">
-						<p class="txt_bldl">Smoking</p>
-					</div>
-					<div class="list_xx">
-						<p class="radio_135">
-							<input type="radio" name="smoke" value="0" class="validate[required] radio" /> &nbsp;&nbsp;No
-						</p>
-						<p class="radio_145">
-							<input type="radio" name="smoke" value="1" class="validate[required] radio" />
-							&nbsp;&nbsp;Occasionally
-						</p>
-						<p class="radio_145">
-							<input type="radio" name="smoke" value="2" class="validate[required] radio" /> &nbsp;&nbsp;Yes
-						</p>
-					</div>
-				</div>
-				<div class="clear"></div>
-
-				<div class="div_ww">
-					<div class="list_class">
-						<p class="txt_bldl">Drinking</p>
-					</div>
-
-					<div class="list_xx">
-						<p class="radio_135">
-							<input type="radio" name="drink" value="0" class="validate[required] radio" /> &nbsp;&nbsp;No
-						</p>
-						<p class="radio_145">
-							<input type="radio" name="drink" value="1" class="validate[required] radio" />
-							&nbsp;&nbsp;Occasionally
-						</p>
-						<p class="radio_135">
-							<input type="radio" name="drink" value="2" class="validate[required] radio" /> &nbsp;&nbsp;Yes
-						</p>
-					</div>
-				</div>
-
-				<div class="clear"></div>
-				<p class="space-15px">&nbsp;</p>
-				<div class="line"></div>
-				<!--closing personal details-section-7-->
-				<!--personal contact details-section-1-->
-				<p class="space-10px">&nbsp;</p>
-				<p class="text_pink-hd">Family profile</p>
-				<div class="clear"></div>
-				<!--closing personal contact details-section-1-->
-				<!--personal contact details-section-2-->
-				<p class="clear">&nbsp;</p>
-				<!--closing personal contact details-section-1-->
-				<!--personal contact details-section-2-->
-				<div class="clear"></div>
-
-				<div class="div_ww">
-					<div class="list_class">
-						<p class="txt_bldl">Family status*</p>
-					</div>
-					<div class="list_xx">
-						<p class="radio_135">
-							<input type="radio" name="status" value="3" class="validate[required] radio" /> &nbsp;Rich
-						</p>
-						<p class="radio_145">
-							<input type="radio" name="status" value="2" class="validate[required] radio" /> Upper Middleclass
-						</p>
-						<p class="radio_135">
-							<input type="radio" name="status" value="1" class="validate[required] radio" /> &nbsp;&nbsp;Middle
-							class
-						</p>
-						<p class="radio_145">
-							<input type="radio" name="status" value="0" class="validate[required] radio" />
-							Lower&nbsp;middleclass
-						</p>
-
-						<p class="radio_auto">
-							<input type="radio" name="status" value="4" class="validate[required] radio" /> &nbsp;Affluent
-						</p>
-					</div>
-				</div>
-
-				<div class="clear"></div>
-				<div class="clear"></div>
-
-				<div class="div_ww">
-					<div class="list_class">
-						<p class="txt_bldl">Family type*</p>
-					</div>
-					<div class="list_xx">
-						<p class="radio_135">
-							<input type="radio" name="type" value="0" class="validate[required] radio" /> &nbsp;&nbsp;Joint
-						</p>
-						<p class="radio_135">
-							<input type="radio" class="validate[required] radio" name="type" value="1" /> &nbsp;&nbsp;Nuclear
-						</p>
-					</div>
-				</div>
-				<div class="clear"></div>
-
-				<div class="div_ww">
-					<div class="list_class-5">
-						<p class="txt_bldl">Family values</p>
-					</div>
-
-					<div class="list_xx">
-						<p class="radio_135">
-							<input type="radio" name="familyValues" value="0" class="validate[required] radio" />
-							&nbsp;&nbsp;Orthodox
-						</p>
-						<p class="radio_135">
-							<input type="radio" name="familyValues" value="1" class="validate[required] radio" />
-							&nbsp;&nbsp;Traditional
-						</p>
-						<p class="radio_135">
-							<input type="radio" name="familyValues" value="2" class="validate[required] radio" />
-							&nbsp;&nbsp;Moderate
-						</p>
-						<p class="radio_135">
-							<input type="radio" name="familyValues" value="3" class="validate[required] radio" />
-							&nbsp;&nbsp;Liberal
-						</p>
-					</div>
-				</div>
-
-
-
-
-				<div class="clear"></div>
-				<div class="div_ww">
-					<div class="list_class">
-						<p class="txt_bldl">Brothers</p>
-					</div>
-
-					<div class="list_xx">
-						<div class="list_class-textfield_age">
-							<input type="text"  name="brothers" class="validate[required,custom[integer]]"
-								id="brothers" />
-						</div>
-						<p class="radio">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Married</p>
-						<div class="list_class-textfield_age">
-							<input type="text" name="brothersMarry" class="validate[required,custom[integer]]"
-								id="brothersMarry" />
-						</div>
-					</div>
-				</div>
-
-
-				<div class="clear"></div>
-				<div class="div_ww">
-					<div class="list_class">
-						<p class="txt_bldl">Sisters</p>
-					</div>
-					<div class="list_xx">
-						<div class="list_class-textfield_age">
-							<input type="text"  name="sisters" class="validate[required,custom[integer]]"
-								id="sisters" />
-						</div>
-						<p class="radio">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Married</p>
-						<div class="list_class-textfield_age">
-							<input type="text" name="sistersMarry" class="validate[required,custom[integer]]"
-								id="sistersMarry" />
-						</div>
-					</div>
-				</div>
-
-		 <div class="clear"></div>
-        <div class="list_class-5">
-          <p class="txt_bldl">Upload Family Photo</p>
-        </div>
-<div class="list_class-6">
-          <div class="list_class-textfield_age-1">
-           <?php echo CHtml::activeFileField($user, 'familyAlbum'); ?>
-                  </div>
-</div>
-
-  <div class="clear"></div>
-  
-   <div class="div_ww"> 
-        <div class="list_class">
-          <p class="txt_bldl">Who can view my photo</p>
-        </div>
-<div class="list_xx">
-<p class="radio-2b">
-          <?php echo CHtml::checkBoxList('family',null,array('all'=>'All','subscribers'=>'Subscribers','member'=> 'Logged Members','request' => 'By Request'),array('class'=>'validate[minCheckbox[1]] checkbox')); ?>
-          </p> </div>
-
-
-
-		
-
-
-
-
-				<div class="clear"></div>
-
-				<div class="div_ww">
-					<div class="list_class">
-						<p class="txt_bldl">Discribsion about my family</p>
-					</div>
-					<div class="list_xx">
-
-
-						<textarea name="familyDesc" rows="2" cols="20" class="validate[required] text-input tab_300b">
-
-</textarea>
-
-					</div>
-
-				</div>
-
-
-				<div class="clear"></div>
-				<p class="space-15px">&nbsp;</p>
-				<div class="line"></div>
-				<!--closing personal details-section-7-->
-				<!--personal contact details-section-1-->
-				<p class="space-10px">&nbsp;</p>
-				<p class="text_pink-hd">Description</p>
-				<div class="clear"></div>
-
-
-
-				<div class="clear"></div>
-
-				<div class="div_ww">
-					<div class="list_class">
-						<p class="txt_bldl">Discribsion about me</p>
-					</div>
-					<div class="list_class-6">
-
-
-						<textarea rows="2" cols="20" name="myDesc" class="validate[required] text-input tab_300b">
-
-</textarea>
-					</div>
-					</div>
-				</div>
-			</div>
-			<div class="clear"></div>
-
-			<div class="space-25px">
-				<p>&nbsp;</p>
-			</div>
-
-			<div class="clear"></div>
-			<div class="right-10">
-				<input type="reset" value="Reset" name="yt1" class="reset_sub"> <input
-					type="submit" value="Submit" name="yt0" class="reset_sub">
-
-			</div>
-		</form>
-
-	</div>
-
-
-
-
-
-
-
-
-
-
-
-	<div id="content-right_sub">
-		<div class="div_r_1">
-			<!--div_r-->
-
-			<p class="text_20_gery">
-				Subscribe Now!<br /> Only for
-			</p>
-			<div style="float: left; width: 100%;">
-				<a href="#"><img src="<?php echo Yii::app()->params['mediaUrl']; ?>/img_200.jpg" class="left"
-					style="width: 100%;" border="0" /> </a>
-			</div>
-			<div class="clear"></div>
-
-			<div class="line"></div>
-
-			<p class="text_20_cntr">Benefits For Subsciribed Users</p>
-
-			<p class="text_18_cntr">
-				Contact members directly<br /> Send personalised messaages<br />
-				View Album, Documents, and contact<br /> details<br /> View
-				horoscope of members<br /> Express Unlimited interest<br /> Plus
-				other exclusive paid membership <br /> benefits
-			</p>
-
-
-
-			<div class="line"></div>
-
-			<p class="text_20_cntr">
-				<a href="#">Payment Options</a>
-			</p>
-
-			<p class="text_banner">You have three payment options, Choose any one
-				for you Only for</p>
-
-			<div class="center_icon">
-				<img src="<?php echo Yii::app()->params['mediaUrl']; ?>/1_round.jpg" />
-			</div>
-
-			<p class="text_20_cntr">
-				<a href="#">Activation Coupon</a>
-			</p>
-
-			<p class="text_banner">
-				You can subscribe through activation coupon which you can purchase
-				from your nearest re-sellers. <span class="span_blue"> Click here</span>
-				to find your nearest re-seller
-			</p>
-
-
-			<div class="center_icon">
-				<img src="<?php echo Yii::app()->params['mediaUrl']; ?>/2_round.jpg" />
-			</div>
-
-			<p class="text_20_cntr">
-				<a href="#">NetBanking</a>
-			</p>
-
-			<p class="text_banner">
-				We are accepting major banks Net Transfer and Debit card transaction
-				through Online. <span class="span_blue"> Click here</span> to find
-				our banking partners
-			</p>
-
-
-			<div class="center_icon">
-				<img src="<?php echo Yii::app()->params['mediaUrl']; ?>/3_round.jpg" />
-			</div>
-
-			<p class="text_20_cntr">
-				<a href="#">Credit card and Paypal</a>
-			</p>
-
-			<p class="text_banner">
-				We are accepting Visa, Master and Rupay cards and paypal.<span
-					class="span_blue"> Click here</span> to go payment page.<br /> <br />
-			</p>
-
-
-			<p class="text_20_blue">
-				<a href="payment_benefits.html">SUBSCRIBE NOW!</a>
-			</p>
+					echo CHtml::dropDownList('occupation',null,$list,array('empty' => 'Occupation','class'=>'validate[required] wid150')); ?>
 		</div>
-		<!--right-content closing-->
+	</li>
+	<li>
+		<div class="title">
+			Employed in <span class="sup">*</span>
+		</div>
+		<div class="info">
+			<div class="radio wid100">
+				<input type="radio" name="employed" class="validate[required]"  value="0"/><span>Government </span>
+			</div>
+			<div class="radio mR14">
+				<input type="radio" name="employed" class="validate[required]"  value="1"/> <span>Private </span>
+			</div>
+			<div class="radio mR14">
+				<input type="radio" name="employed" class="validate[required]"  value="2"/> <span>Business</span>
+			</div>
+			<div class="radio mR14">
+				<input type="radio" name="employed" class="validate[required]"  value="3"/> <span>Defence</span>
+			</div>
+			<div class="radio mR14">
+				<input type="radio" name="employed" class="validate[required]"  value="4"/><span>Self Employed</span>
+			</div>
+			<div class="radio ">
+				<input type="radio" name="employed" class="validate[required]"  value="5"/><span>NRI</span>
+			</div>
+		</div>
+	</li>
+	<li>
+		<div class="title">Income</div>
+		<div class="info">
+			<div class="radio wid100">
+				<input type="radio" name="ctc" class="validate[required]" value="12" /> <span>Monthly</span>
+			</div>
+			<div class="radio wid80">
+				<input type="radio" name="ctc" class="validate[required]" value="1" /> <span>Annual </span>
+			</div>
+			<div class="useRs">
+				<input class="wid100" type="text" id="income"
+									name="income" placeholder="Use Rupees" /> <span
+					class="perM">1,00,000 per month </span>
+			</div>
+		</div>
+	</li>
+</ul>
+<ul>
+	<li><h3>Habits</h3></li>
+	<li>
+		<div class="title">Food</div>
+		<div class="info">
+			<div class="radio wid100">
+				<input type="radio" name="food" class="validate[required]" value="0" /> <span>Vegetarian </span>
+			</div>
+			<div class="radio wid130">
+				<input type="radio" name="food" class="validate[required]" value="1" />  <span>Non-Vegetarian </span>
+			</div>
+			<div class="radio ">
+				<input type="radio" name="food" class="validate[required]" value="2" /> <span>Eggetarian</span>
+			</div>
+		</div>
+	</li>
+	<li>
+		<div class="title">Smoking</div>
+		<div class="info">
+			<div class="radio wid100">
+				<input type="radio" name="smoke" value="0" class="validate[required]" /> <span>No </span>
+			</div>
+			<div class="radio wid130">
+				<input type="radio" name="smoke" value="1" class="validate[required]" /> <span>Occasionally </span>
+			</div>
+			<div class="radio ">
+				<input type="radio" name="smoke" value="2" class="validate[required]" /><span>Yes</span>
+			</div>
+		</div>
+	</li>
+	<li>
+		<div class="title">Drinking</div>
+		<div class="info">
+			<div class="radio wid100">
+				<input type="radio" name="drink" value="0" class="validate[required]" /> <span>No </span>
+			</div>
+			<div class="radio wid130">
+				<input type="radio" name="drink" value="1" class="validate[required]" /> <span>Occasionally </span>
+			</div>
+			<div class="radio ">
+				<input type="radio" name="drink" value="2" class="validate[required]" /> <span>Yes</span>
+			</div>
+		</div>
+	</li>
+</ul>
+<ul>
+	<li><h3>Family Profile</h3></li>
+	<li>
+		<div class="title">Family status</div>
+		<div class="info">
+			<div class="radio wid140">
+				<input type="radio" name="status" value="0" class="validate[required]" /> <span>Lower middle class
+				</span>
+			</div>
+			<div class="radio mR10">
+				<input type="radio" name="status" value="1" class="validate[required]" /> <span>Middle class </span>
+			</div>
+			<div class="radio mR10">
+				<input type="radio" name="status" value="2" class="validate[required]" /> <span> Upper middle
+					class</span>
+			</div>
+			<div class="radio mR10">
+				<input type="radio" name="status" value="3" class="validate[required]" /><span>Rich</span>
+			</div>
+			<div class="radio">
+				<input type="radio" name="status" value="4" class="validate[required]" /> <span>Affluent </span>
+			</div>
+		</div>
+	</li>
+	<li>
+		<div class="title">Family type</div>
+		<div class="info">
+			<div class="radio wid140">
+				<input type="radio" name="type" value="0" class="validate[required]" /><span>Joint </span>
+			</div>
+			<div class="radio ">
+				<input type="radio" name="type" value="1" class="validate[required]" /><span>Nuclear </span>
+			</div>
+		</div>
+	</li>
+	<li>
+		<div class="title">Family values</div>
+		<div class="info">
+			<div class="radio wid140">
+				<input type="radio" name="familyValues" value="0" class="validate[required]" /> <span>Orthodox </span>
+			</div>
+			<div class="radio wid100">
+				<input type="radio" name="familyValues" value="1" class="validate[required]" />  <span>Traditional </span>
+			</div>
+			<div class="radio wid140">
+				<input type="radio" name="familyValues" value="2" class="validate[required]" />  <span>Moderate </span>
+			</div>
+			<div class="radio ">
+				<input type="radio" name="familyValues" value="3" class="validate[required]" />  <span>Liberal </span>
+			</div>
+		</div>
+	</li>
+	<li>
+		<div class="title">Brothers</div>
+		<div class="info">
+			<input type="text"  name="brothers" class="validate[required,custom[integer]]"
+								id="brothers" />
+			<div class="married">
+				<input type="text" name="brothersMarry" class="validate[required,custom[integer]]"
+								id="brothersMarry" />
+			</div>
+		</div>
+	</li>
+	<li>
+		<div class="title">Sisters</div>
+		<div class="info">
+			<input type="text"  name="sisters" class="validate[required,custom[integer]]"
+								id="sisters" />
+			<div class="married">
+				<input type="text" name="sistersMarry" class="validate[required,custom[integer]]"
+								id="sistersMarry" />
+			</div>
+		</div>
+	</li>
+	<li class="upPhotoM">
+		<div class="title"></div>
+		<div class="info">
+		  <?php echo CHtml::activeFileField($user, 'familyAlbum'); ?>
+			<a href="#" class="upload">UPLOAD YOUR FAMILY PHOTOS</a>
+		</div>
+	</li>
+	<li class="whoM">
+		<div class="title">Who can view album</div>
+		<div class="info">
+			<div class="check">
+				<input type="checkbox" name="all" /> <span>All</span>
+			</div>
+			<div class="check">
+				<input type="checkbox" name="subscribers" /> <span>Subscribers</span>
+			</div>
+			<div class="check">
+				<input type="checkbox" name="member" /> <span>Loged Members</span>
+			</div>
+			<div class="check">
+				<input type="checkbox" name="request"/> <span>By Request</span>
+			</div>
+		</div>
+	</li>
+	<li>
+		<div class="title">About My family</div>
+		<div class="info">
+			<textarea 	name="familyDesc" rows="2" cols="20" class="validate[required]"
+				placeholder="Please give details about your family, background etc. Limit it to 100 words to get maximum results. Do not write your contact details here. If you do so, your ID will be rejected by our automated system."></textarea>
+		</div>
+	</li>
+</ul>
+<ul>
+	<li>
+		<h3>Discription*</h3>
+	</li>
+	<li>
+		<div class="title"></div>
+		<div class="info">
+		<textarea name="familyDesc" rows="2" cols="20" class="validate[required] text-input tab_300b">
+
+</textarea>
+			<textarea rows="2" cols="20" name="myDesc" class="validate[required]"
+				placeholder="Enter your personal details, qualification, profession, interests etc. Do not write your contact details here. If you do so, your ID will be rejected by our automated system."></textarea>
+		</div>
+	</li>
+	<li>
+		<div class="buttonContnr3">
+			<a href="#" class="type2">Submit</a> <a href="#" class="type2">Reset</a>
+		</div>
+	</li>
+</ul>
+</article> </section>
+<aside class="rightbar-contnr">
+<div class="subscribe-box">
+	<div class="sub-now">
+		Subscribe Now!<br /> <span>Only for</span>
 	</div>
-	
-</div>	
-	<!--main-content closing-->
-	
-	
+	<div class="digit">
+		<span class="WebRupee">Rs.</span>200
+	</div>
+	<div class="for">For 3 Months</div>
+	<div class="divider"></div>
+	<div class="benefit">Benefits of Subscribing</div>
+	<p>
+		Real time update about profile visitors <br /> Access key details of
+		other users<br /> Contact candidates directly <br /> View horoscope of
+		members <br /> Message candidates directly
+	</p>
+	<div class="divider"></div>
+	<a class="subNow" href="subscribe-now.htm">Subscribe Now</a>
+</div>
+</aside>
+
+
 <script type="text/javascript">
 $(document).ready(function(){
     $("#userContact").validationEngine('attach');
   });
 
 
-</script>	
-	
+</script>
