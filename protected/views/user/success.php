@@ -14,88 +14,22 @@
 *  @version <Revision>
 */
 ?>
-<div id="main-content">
-            	<!--left-content-->
-  <div id="content-left-1">
-                
- <p class="text_pink-hd">Congratulations</p>
- 
- <div class="clear"></div>
-					
-                    
-					
-    <div class="clear"></div>      
-				  
-			<div class="space"><br /></div>
-
-<p class="txt_bld_14">You have successfully registered with Kerala.marrydoor.com, a part of marrydoor.com.<br />This is your Matrimony ID: <?php echo $user->marryId?><br /><br />
-
-Please use this ID or your Email to login to KeralaMatrimony.com. A confirmation mail will be sent to you with your Matrimony ID.</p>
-
-<div class="space"><br /><br /></div>
-              		
-    
- <div class="line"></div>      	
-       
-                
- 
-<!--/memo-sub_left-->
-
-<div class="div_rr">
-<div class="clear"></div>
-                 <a class="focus-sub" href="/user/showpartner">Next</a>
-
-</div>
 
 
+<section class="data-contnr ">
+		<div class="congrats">Congratulations!</div>
+		<p>You have successfully registered with marrydoo.com with the <span>ID: <?php echo $user->marryId?></span></p>
+		<p>Please use this ID for any future transactions and a mail is send to your registered e-mail id which contains your registration details.</p>
+		<a href="/user/showpartner" class="next">NEXT</a>
+	</section>
+	<section class="rightbar-contnr">
+		<div class="subscribe-box min-height">
+			<div class="sub-now">Subscribe Now!<br /><span>Only for</span></div>
+			<div class="digit"><span class="WebRupee">Rs.</span>200</div>
+			<div class="for">For 3 Months</div>
+			<div class="divider"> </div>
+			<div class="benefit">Benefits For Subsciribed Users</div>
+			<p>Contact members directly <br /> Send personalised messaages <br /> View Album, Documents, and contact details <br /> View horoscope of members <br /> &nbsp;</p>
+		</div>
+	</section>
 
-
-
-
-<div class="space"><br /></div>
-              </div>
-                <!--left-content closing-->
-                <!--left-content-->
-                <div id="content-right_sub">
-               	  <div class="div_r_hh"><!--div_r-->
-
-<p class="text_20_gery">Subscribe Now!<br />
-Only for</p>
-
-<div style="float:left; width:100%;">
-<img src="images/img_200.jpg" class="left" style="width:100%;" />
-</div>
-
-<div class="clear"></div>
-
-<div class="line"></div>
-
-<p class="text_20_cntr">Benefits For Subsciribed Users</p>
-
-<p class="text_18_cntr">Contact members directly<br />
-Send personalised messaages<br />
-View Album, Documents, and contact<br /> 
-details<br />
-View horoscope of members<br />
-Express Unlimited interest<br />
-Plus other exclusive paid membership <br />
-benefits</p>
-
-
-
-<div class="line"></div>
-
-
-
-<p class="text_20_blue">SUBSCRIBE NOW!</a>
-</p>
-</div>
-                    
-                    
-                    
-                    
-                    
-                
-                </div>
-                <!--right-content closing-->
-            </div>

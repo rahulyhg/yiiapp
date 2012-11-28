@@ -16,6 +16,7 @@
 ?>
 
 <section class="data-contnr"> <article class="section">
+<form id="userContact" enctype="multipart/form-data" name="userContact" method="post" action="/user/contact">
 <h1 class="message">Your life partner is just a click away!</h1>
 <h5>
 	<span class="sup">*</span>marked fields are mandatory
@@ -617,7 +618,10 @@
 		</div>
 	</li>
 </ul>
-</article> </section>
+</form>
+</article> 
+
+</section>
 <aside class="rightbar-contnr">
 <div class="subscribe-box">
 	<div class="sub-now">
