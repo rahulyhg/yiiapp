@@ -10,7 +10,7 @@
 }
 .data-contnr3 .page-subhead{
     width: 99%;
-    float: left;497
+    float: left;
     font: normal 12px/12px verdana,helvetica,arial,sans-serif;
     color: #9775a6;
     margin: 5px 0 6px;
@@ -431,7 +431,7 @@
     width:378px;
     min-height:495px;
     float: left;
-    margin-right: 4px;
+    margin:0 4px 20px 0;
     border: 1px solid #e9eaea;
 }
 .membership-contnr ul.tab-head{
@@ -566,7 +566,7 @@
     min-height:495px;
     float: left;
     border: 1px solid #e9eaea;
-    
+    margin-bottom: 20px;
 }
 .basic-search h2{
     width:94%;
@@ -658,6 +658,7 @@
     width: 710px;
     float: left;
     min-height: 300px;
+    margin-bottom: 20px;
 }
 .data-contnr .congrats{
     color: #7C51A1;
@@ -824,19 +825,26 @@ article.section ul li .info .check span{
     line-height: 14px;
 }
 article.section ul li .info .ar{
-    width: 160px;
-    height:132px;
+    width: 190px;
+    height:170px;
     border: 1px solid #e4e5e6;
     float: left;
     margin:0 0;
     padding: 5px;
     color: #939393;
     font: normal 13px/14px helvetica,arial,sans-serif;
+    overflow: hidden !important;
 }
-article.section ul li .info .ar span{
+article.section ul li .info .ar option{
     float: left;
     width: 100%;
     margin-bottom: 2px;
+    cursor: pointer !important;
+    background: #fff;
+}
+article.section ul li .info .ar option:hover{
+    background: #f8f8f8;
+    cursor: pointer !important;
 }
 article.section ul li .info .ar-btn{
     width: 65px;
@@ -966,7 +974,7 @@ article.section ul li .info .checked{
     float: left;
     min-height: 200px;
     text-align: left;
-    margin-left: 15px;
+    margin:0 0 20px 15px;
 }
 .data-contnr2 p{
     color: #939598;
@@ -1253,7 +1261,7 @@ article.section ul li .info .checked{
     float: left;
     min-height: 200px;
     text-align: left;
-    margin-left: 15px;
+    margin:0 0 20px 15px;
 }
 .data-contnr3 p{
     color: #939598;
@@ -1899,12 +1907,12 @@ article.section ul li .info .checked{
 .newUserC{
     width: 44% !important;
     border: none !important;
-    margin: 0 !important;
+    margin:0 0 20px 0 !important;
 }
 .paidMembC{
     width: 60% !important;
     border: none !important;
-    margin: 0 0 0 50px !important;
+    margin: 0 0 20px 50px !important;
 }
 /*visitors page*/
 .tab-data .profile{
@@ -2281,11 +2289,108 @@ article.section ul li .info .checked{
     float: left;
     margin: 0 0 0 41%;
 }
+.page404{
+    width: 100%;
+    height: 498px;
+    margin-top: -14px;
+    position: relative;
+    float: left;
+}
+.page404 .md404{
+    width: 351px;
+    height:501px;
+    background: url("http://media.marrydoor.com/images/404.png") no-repeat -20px 0;
+    position: absolute;
+    left: 0;
+    top: 0;
+    animation:myfirst 1s;
+    -moz-animation:myfirst 1s;
+    -webkit-animation:myfirst 1s;
+    -o-animation:myfirst 1s; 
+}
+@keyframes myfirst
+{
+0%   {left:-20%; top:0px;opacity: 0; transform:scale(2);}
+100% {left:0px; top:0px; opacity: 1;transform:scale(1);}
+}
+@-moz-keyframes myfirst /* Firefox */
+{
+0%   {left:-20%; top:0px;opacity: 0; transform:scale(2);}
+100% {left:0px; top:0px; opacity: 1;transform:scale(1);}
+}
 
+@-webkit-keyframes myfirst /* Safari and Chrome */
+{
+0%   {left:-20%; top:0px;opacity: 0; transform:scale(2);}
+100% {left:0px; top:0px; opacity: 1;transform:scale(1);}
+}
 
+@-o-keyframes myfirst /* Opera */
+{
+0%   {left:-20%; top:0px;opacity: 0; transform:scale(2);}
+100% {left:0px; top:0px; opacity: 1;transform:scale(1);}
+}
+.page404 .pnf-data{
+    width: 520px;
+    height: 498px;
+    position: absolute;
+    top: 50px;
+    right: 0 !important;
+    animation:pnf 1s;
+    -moz-animation:pnf 1s;
+    -webkit-animation:pnf 1s;
+    -o-animation:pnf 1s;
+}
+@keyframes pnf
+{
+0%   {right:-30%; top:50px;opacity: 0;}
+100% {right:0px; top:50px; opacity: 1;}
+}
+@-moz-keyframes pnf /* Firefox */
+{
+0%   {right:-30%; top:50px;opacity: 0;}
+100% {right:0px; top:50px; opacity: 1;}
+}
 
+@-webkit-keyframes pnf /* Safari and Chrome */
+{
+0%   {right:-30%; top:50px;opacity: 0;}
+100% {right:0px; top:50px; opacity: 1;}
+}
 
-
-
-
+@-o-keyframes pnf /* Opera */
+{
+0%   {right:-30%; top:50px;opacity: 0;}
+100% {right:0px; top:50px; opacity: 1;}
+}
+.page404 .pnf-data .pnf-head{
+    width: 100%;
+    float: left;
+    color: #252525;
+    font:bold 200px/170px arial,helvetica,sans-serif;
+}
+.page404 .pnf-data .pnf-subhead{
+    width: 85%;
+    float: left;
+    margin: 0 0 0 62px;
+    color: #252525;
+    text-transform: uppercase;
+    font:bold 24px/28px arial,helvetica,sans-serif;
+}
+.page404 .pnf-data .pnf-text{
+    width: 85%;
+    float: left;
+    margin: 5px 0 0 62px;
+    color: #252525;
+    font:normal 14px/20px arial,helvetica,sans-serif;
+}
+.page404 .pnf-data .pnf-link{
+    float: left;
+    margin: 5px 0 0 62px;
+    color: #252525;
+    font:normal 14px/20px arial,helvetica,sans-serif;
+}
+.page404 .pnf-data .pnf-link:hover{
+    text-decoration: none;
+}
 

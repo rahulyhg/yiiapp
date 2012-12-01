@@ -141,20 +141,20 @@ mark {background-color: #826DC9; color: #fff; font-style: italic; font-weight: b
 @font-face {
     font-family: "HelveticaCondensed";
     font-style: normal;
-    src: url("../font/HelveticaCondensedMedium.ttf") format("opentype");
+    src: url("http://media.marrydoor.com/font/HelveticaCondensedMedium.ttf") format("opentype");
 }
 @font-face {
     font-family: "GraublauWeb";
-    src: url("../font/GraublauWeb.otf") format("opentype");
+    src: url("http://media.marrydoor.com/font/GraublauWeb.otf") format("opentype");
 }
 @font-face {
     font-family: "Tallys";
-    src: url("../font/Tallys_15.otf") format("opentype");
+    src: url("http://media.marrydoor.com/font/Tallys_15.otf") format("opentype");
 }
 @font-face {
     font-family: "GraublauWeb";
     font-weight: 900;
-    src: url("../font/GraublauWebBold.otf") format("opentype");
+    src: url("http://media.marrydoor.com/font/GraublauWebBold.otf") format("opentype");
 }
 .graublau {
     color: #999999;
@@ -163,10 +163,10 @@ mark {background-color: #826DC9; color: #fff; font-style: italic; font-weight: b
 }
 
 @font-face{
-    font-family: 'WebRupee';src: url('../font/WebRupee.V2.0.eot');src: local('WebRupee'),
-    url('../font/WebRupee.V2.0.ttf') format('truetype'),
-    url('../font/WebRupee.V2.0.woff') format('woff'),
-    url('../font/WebRupee.V2.0.svg') format('svg');
+    font-family: 'WebRupee';src: url('http://media.marrydoor.com/font/WebRupee.V2.0.eot');src: local('WebRupee'),
+    url('http://media.marrydoor.com/font/WebRupee.V2.0.ttf') format('truetype'),
+    url('http://media.marrydoor.com/font/WebRupee.V2.0.woff') format('woff'),
+    url('http://media.marrydoor.com/font/WebRupee.V2.0.svg') format('svg');
     font-weight: normal;
     font-style: normal;
 }
@@ -461,7 +461,7 @@ body{
 	bottom: 0 !important;
 }
 /*global buttons*/
-a.type1{
+.type1{
     float: left;
     font: normal 12px/14px arial,tahoma,sans-serif;
     color: #7c51a1;
@@ -473,29 +473,46 @@ a.type1{
     box-shadow: 0 0 0 0;
     margin: 0;
 }
-a.type1:hover{
+.type1:hover{
     background: #7c51a1;
     color: #f1effa;
     border: 1px solid #7c51a1;
 }
-a.type2{
+.type1b{
+    width:65px;
+    background: none repeat scroll 0 0 #f1effa;
+    color: #7c51a1;
+    float: left;
+    font: 12px/17px arial,helvetica,sans-serif;
+    margin:0 10px 0 0;
+    text-align: center;
+    text-decoration: none;
+	padding:3px 0 !important;
+	border: none 0;
+}
+.type1b:hover{
+    background: #7c51a1;
+    color: #f1effa;
+	text-decoration: none !important;
+}
+.type2{
     width:65px;
     background: none repeat scroll 0 0 #f1effa;
     color: #7c51a1;
     float: right;
     font: 12px/22px arial,helvetica,sans-serif;
-    height: 23px;
     margin:18px 0 0 0;
     text-align: center;
     text-decoration: none;
-	padding: 0 !important;
+	padding:3px 0 !important;
+	border: none 0;
 }
-a.type2:hover{
+.type2:hover{
     background: #7c51a1;
     color: #f1effa;
 	text-decoration: none !important;
 }
-a.type3{
+.type3{
     width:65px;
     background: none repeat scroll 0 0 #f1effa;
     color: #7c51a1;
@@ -506,13 +523,14 @@ a.type3{
     text-align: center;
     text-decoration: none;
 	padding: 0 !important;
+	border: none 0;
 }
-a.type3:hover{
+.type3:hover{
     background: #7c51a1;
     color: #f1effa;
 	text-decoration: none !important;
 }
-a.type4{
+.type4{
     background: none repeat scroll 0 0 #f1effa;
     color: #7c51a1;
     float: right;
@@ -523,12 +541,12 @@ a.type4{
     text-decoration: none;
 	padding: 0 10px !important;
 }
-a.type4:hover{
+.type4:hover{
     background: #7c51a1;
     color: #f1effa;
 	text-decoration: none !important;
 }
-a.type5{
+.type5{
     background: none repeat scroll 0 0 #f1effa;
     color: #7c51a1;
     float: left;
@@ -539,12 +557,12 @@ a.type5{
     text-decoration: none;
 	padding: 0 12px !important;
 }
-a.type5:hover{
+.type5:hover{
     background: #7c51a1;
     color: #f1effa;
 	text-decoration: none !important;
 }
-a.type6{
+.type6{
     background: none repeat scroll 0 0 #f1effa;
     color: #7c51a1;
     float: left;
@@ -556,12 +574,12 @@ a.type6{
 	padding: 0 12px !important;
 	position: absolute;
 }
-a.type6:hover{
+.type6:hover{
     background: #7c51a1;
     color: #f1effa;
 	text-decoration: none !important;
 }
-a.type7{
+.type7{
     background: none repeat scroll 0 0 #f1effa;
     color: #7c51a1;
     float: left;
@@ -573,7 +591,7 @@ a.type7{
 	padding: 0 12px !important;
 	position: absolute;
 }
-a.type7:hover{
+.type7:hover{
     background: #7c51a1;
     color: #f1effa;
 	text-decoration: none !important;
@@ -581,7 +599,7 @@ a.type7:hover{
 .min-height{
 	min-height: 215px !important;
 }
-a.next{
+.next{
     width: 100px;
     background: none repeat scroll 0 0 #f1effa;
     color: #7c51a1;
@@ -592,11 +610,11 @@ a.next{
     text-align: center;
     text-decoration: none;
 }
-a.next:hover{
+.next:hover{
     background: #7c51a1;
     color: #f1effa;
 }
-a.upload{
+.upload{
 	width: 260px;
     background: none repeat scroll 0 0 #f1effa;
     color: #7c51a1;
@@ -608,7 +626,7 @@ a.upload{
     text-decoration: none;
 	text-transform: uppercase;
 }
-a.upload:hover{
+.upload:hover{
     background: #7c51a1;
     color: #f1effa;
 }
@@ -900,6 +918,7 @@ h5{
 .left-bar-container{
     width: 200px;
     float: left;
+	margin-bottom: 10px;
 }
 .left-bar-container .left-bar-box{
     width: 100%;
@@ -1080,7 +1099,7 @@ h5{
 .rightbar-contnr{
     width: 250px;
     min-height: 200px;
-	margin-top: 8px;
+	margin: 8px 0 20px;
     float: right;
 }
 .rightbar-contnr .searchID{
@@ -1572,7 +1591,6 @@ h5{
     width: 100%;
     float: left;
     height: 40px;
-    margin-top: 20px;
     background: #7c51a1;
 }
 .footer ul.footer-links{
