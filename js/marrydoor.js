@@ -70,6 +70,99 @@ $(function(){
         });
     });
 });	
+
+// remap jQuery to $
+(function($){})(window.jQuery);
+/* trigger when page is ready */
+$(document).ready(function (){
+	// your functions go here
+});
+/* optional triggers
+$(window).load(function() {
+});
+$(window).resize(function() {
+    
+});
+*/
+//global tab
+$(function(){
+    $('.tab-head > li > a').live('click',function(){
+        $('.tab-head > li > a').each(function(){
+           $(this).removeClass();
+        });
+        $(this).addClass('select');
+        var tabid = $(this).attr('id');
+        
+        $('.tab-data').each(function(){
+           $(this).hide();
+        })
+        $('#'+tabid+'_data').show();
+        return false;
+    });  
+});
+
+//nav bar
+$(document).ready(function(){
+    $('.menu > a.link').live('click',function(){
+        $('.menu > div.sub').each(function(){
+            $(this).hide();    
+        });
+        $(this).parent().find('.sub').show();
+    });
+    $(document).mouseup(function(){
+        $('.menu > div.sub').each(function(){
+            $(this).hide();    
+        });
+    });
+});
+
+//info box
+$(document).ready(function(){
+    $('.left-bar-data > li > a.infoB').live('hover',function(){
+        $('li > div.infoBox').each(function(){
+            $(this).hide();    
+        });
+        $(this).parent().find('.infoBox').show();
+    });
+    $(document).mouseout(function(){
+        $('li > div.infoBox').each(function(){
+            $(this).hide();    
+        });
+    });
+	
+	
+	$(".headerForgetPassword").colorbox({iframe:true, width:"855px", height:"355px"});
+	$("#popUpClose").click(function(){
+		parent.$.fn.colorbox.close();
+	});
+});
+//notification tab
+$(function(){
+    $('.noti_contnr > .notifications > a').live('click',function(){
+        $('.noti_contnr > .notifications > a').each(function(){
+           $(this).removeClass(
+		   );
+        });
+        $(this).addClass('select');
+        var tabid = $(this).attr('id');
+        
+        $('.notiTabData').each(function(){
+           $(this).hide();
+        })
+        $('#'+tabid+'_notif').show();
+        return false;
+    });
+    $(document).mouseup(function(){
+        $('.noti_contnr > .notiTabData').each(function(){
+            $(this).hide();
+        });
+	$('.noti_contnr > .notifications > a').each(function(){
+	    $(this).removeClass('select');
+        });
+    });
+});
+
+
 		function add(select1,select2)
 		{
 			$('#'+select1+' option:selected').appendTo('#'+select2);

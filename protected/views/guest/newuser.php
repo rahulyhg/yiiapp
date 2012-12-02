@@ -1,241 +1,237 @@
-<?php
-/*
-*
-* $Id$
---------------------------------------------------------------------------------------------------------------------------
-* Information contained in this file is the intellectual property of Ladbrokes Plc
-* Copyright © 2012 MarryDorr. All Rights Reserved.
-* ---------------------------------------------------------------------------------------------------------------------------
-*
-* @author  Ageesh K Gopinath
-* @title newuser.php
-* @description <Description of this class>
-*  @filesource <URL>
-*  @version <Revision>
-*/
-?>
-
-
 	<section class="membership-contnr newUserC">
 		<ul class="inner tab-data mT0">
-		<?php $form=$this->beginWidget('CActiveForm', array(
-	'id'=>'users-register-form',
-	'action' => Yii::app()->createUrl('user/register'),
- 	'focus'=>array($model,'name'),
-	'enableAjaxValidation'=>false,
-)); ?>
 			<li><h1>Free Registration</h1></li>
 			<li><span class="sup">*</span>All Fields are mandatory</li>
 			<li>
-				<div class="left"><?php echo $form->labelEx($model,'name',array('class'=>'txt_rg_index_left')); ?></div>
+				<div class="left">Name</div>
 				<div class="right">
-					<?php echo $form->textField($model,'name',array('class' =>'validate[required] gray_form_1')); ?>			
+					<input type="text" />
 				</div>
 			</li>
 			<li>
-				<div class="left"><?php echo $form->labelEx($model,'date',array('class'=>'txt_rg_index_left')); ?></div>
+				<div class="left">Date of Birth</div>
 				<div class="right">
-				<?php echo CHtml::dropDownList('date',null,Utilities::getRegDays(),array('prompt'=>'Date','class'=>'validate[required] width20')); ?>
-				<?php echo CHtml::dropDownList('month',null,Utilities::getRegMonths(),array('prompt'=>'Month','class'=>'validate[required] width37')); ?>		    
-    			<?php echo CHtml::dropDownList('year',null,  Utilities::getRegYears(),array('prompt'=>'Year','class'=>'validate[required] width28')); ?>
+					<select class="width20">
+						<option>01</option>
+						<option>02</option>
+						<option>03</option>
+						<option>04</option>
+						<option>05</option>
+					</select>
+					<select class="width37">
+						<option>January</option>
+						<option>February</option>
+						<option>March</option>
+						<option>April</option>
+						<option>May</option>
+					</select>
+					<select class="width28">
+						<option>1979</option>
+						<option>1980</option>
+						<option>1981</option>
+						<option>1982</option>
+						<option>1983</option>
+					</select>
 				</div>
 			</li>
 			<li>
-				<div class="left"><?php echo $form->labelEx($model,'gender',array('class'=>'txt_rg_index_left')); ?></div>
+				<div class="left">Gender</div>
 				<div class="right">
-				<?php echo CHtml::dropDownList('gender',null,array('F'=>'Female','M'=>'Male'),array('prompt'=>'Gender','class'=>'validate[required] width35')); ?>
+					<select class="width35">
+						<option>Female</option>
+						<option>Male</option>
+					</select>
 				</div>
 			</li>
 			<li>
-			<div class="left"><?php echo $form->labelEx($model,'motherTounge'); ?></div>
+				<div class="left">Mother Tongue</div>
 				<div class="right">
-				<?php $records = Languages::model()->findAll("active = 1");
-		$list = CHtml::listData($records, 'languageId', 'name');
-		echo CHtml::dropDownList('motherTounge',null,$list,array('empty' => 'Language','class'=>'validate[required] width60')); ?>
-		<?php echo $form->error($model,'motherTounge'); ?>
+					<select class="width60">
+						<option>Malayalam</option>
+						<option>Tamil</option>
+						<option>Hindi</option>
+					</select>
 				</div>
 			</li>
 			<li>
-				<div class="left"><?php echo $form->labelEx($model,'religion'); ?></div>
+				<div class="left">Religion</div>
 				<div class="right">
-				<?php $records = Religion::model()->findAll("active = 1");
-		$list = CHtml::listData($records, 'religionId', 'name');
-		echo CHtml::dropDownList('religion',null,$list,array('empty' => 'Religion','class'=>'validate[required] width60')); ?>
-		<?php echo $form->error($model,'religion'); ?>
+					<select class="width60">
+						<option>Hindu</option>
+						<option>Muslim</option>
+						<option>Christian</option>
+					</select>
 				</div>
 			</li>
 			<li>
-					<div class="left"><?php echo $form->labelEx($model,'caste'); ?></div>
+				<div class="left">Caste / Division</div>
 				<div class="right">
-				<?php $records = Caste::model()->findAll("active = 1");
-		$list = CHtml::listData($records, 'casteId', 'name');
-		echo CHtml::dropDownList('caste',null,$list,array('empty' => 'Caste','class'=>'validate[required] width60')); ?>
-		<?php echo $form->error($model,'caste'); ?>
+					<select class="width60">
+						<option>Menon</option>
+						<option>Nair</option>
+						<option>Ezhava</option>
+					</select>
 				</div>
 			</li>
 			<li>
-				<div class="left"><?php echo $form->labelEx($model,'country'); ?></div>
+				<div class="left">Country</div>
 				<div class="right">
-				<?php $records = Country::model()->findAll("active = 1");
-		$list = CHtml::listData($records, 'countryId', 'name');
-		echo CHtml::dropDownList('country',null,$list,array('empty' => 'Country','class'=>'validate[required] width60')); ?>
-		<?php echo $form->error($model,'country'); ?>
+					<select class="width60">
+						<option>India</option>
+						<option>US</option>
+						<option>UK</option>
+					</select>
 				</div>
 			</li>
 			<li>
-				<div class="left"><?php echo $form->labelEx($model,'state'); ?></div>
+				<div class="left">State</div>
 				<div class="right">
-				<?php $records = States::model()->findAll("active = 1");
-		$list = CHtml::listData($records, 'stateId', 'name');
-		echo CHtml::dropDownList('state',null,$list,array('empty' => 'State','class'=>'validate[required] width60')); ?>
-		<?php echo $form->error($model,'state'); ?>
+					<select class="width60">
+						<option>Kerala</option>
+						<option>Tamilnadu</option>
+						<option>Karnadaka</option>
+					</select>
 				</div>
 			</li>
 			<li>
-				<div class="left"><?php echo $form->labelEx($model,'mobileNo'); ?></div>
+				<div class="left">Mobile No.</div>
 				<div class="right">
-					<?php echo $form->textField($model,'mobileNo',array('class'=>'validate[required,funcCall[validatePhone]]')); ?>
-					<?php echo $form->error($model,'mobileNo'); ?>
+					<input type="text" />
 				</div>
 			</li>
 			<li>
-			<div class="left"><?php echo $form->labelEx($model,'landNo'); ?></div>
+				<div class="left">E-mail</div>
 				<div class="right">
-					<?php echo $form->textField($model,'landNo',array('class'=>'validate[required,funcCall[validatePhone]]')); ?>
-					<?php echo $form->error($model,'landNo'); ?>
-				</div>
-			
-			</li>
-			<li>
-				<div class="left"><?php echo $form->labelEx($model,'emailId'); ?></div>
-				<div class="right">
-					<?php echo $form->textField($model,'emailId',array('class'=>'validate[required, funcCall[checkEmailValidation]]')); ?>
-		<?php echo $form->error($model,'emailId'); ?>
+					<input type="text" />
 				</div>
 			</li>
 			<li>
-				<div class="left"><?php echo $form->labelEx($model,'password'); ?></div>
+				<div class="left">Login Password</div>
 				<div class="right">
-					<?php echo $form->passwordField($model,'password',array('class'=>'validate[required]')); ?>
-					<?php echo $form->error($model,'password'); ?>
+					<input type="text" />
 				</div>
 			</li>
 			<li>
 				<div class="right left-m40">
 					<div class="button-contnr">
-						<?php echo CHtml::resetButton('Reset',array('class' =>'type1b')); ?>
-						<?php echo CHtml::submitButton('Submit',array('class'=>'type1b')); ?>
+						<a class="type1" href="#">Reset</a>
+						<a class="type1" href="member-welcome.htm">Submit</a>
 					</div>
 				</div>
-			</li> 
-				<?php $this->endWidget(); ?>	
+			</li> 	
 		</ul>
 	</section>
-		<section class="membership-contnr newUserC floatR">
+	<section class="membership-contnr newUserC floatR">
 		<ul class="inner tab-data mT0">
-		<?php $form=$this->beginWidget('CActiveForm', array(
-	'id'=>'users-paid-form',
-	'action' => Yii::app()->createUrl('user/register'),
- 	'focus'=>array($model,'name'),
-	'enableAjaxValidation'=>false,
-)); ?>
-		
 			<li><h1>Paid Registration</h1></li>
 			<li><span class="sup">*</span>All Fields are mandatory</li>
 			<li>
-				<div class="left"><?php echo $form->labelEx($model,'name'); ?></div>
+				<div class="left">Name</div>
 				<div class="right">
-					<?php echo $form->textField($model,'name',array('class' =>'validate[required]')); ?>
-					<?php echo $form->error($model,'name'); ?>
+					<input type="text" />
 				</div>
 			</li>
 			<li>
-				<div class="left"><?php echo $form->labelEx($model,'date'); ?></div>
+				<div class="left">Date of Birth</div>
 				<div class="right">
-				<?php echo CHtml::dropDownList('date',null,Utilities::getRegDays(),array('prompt'=>'Date','class'=>'validate[required] width28')); ?>
-				<?php echo CHtml::dropDownList('month',null,Utilities::getRegMonths(),array('prompt'=>'Month','class'=>'validate[required] width37')); ?>		    
-		    	<?php echo CHtml::dropDownList('year',null,  Utilities::getRegYears(),array('prompt'=>'Year','class'=>'validate[required] width28')); ?>
-				<?php echo $form->error($model,'date'); ?>
+					<select class="width20">
+						<option>01</option>
+						<option>02</option>
+						<option>03</option>
+						<option>04</option>
+						<option>05</option>
+					</select>
+					<select class="width37">
+						<option>January</option>
+						<option>February</option>
+						<option>March</option>
+						<option>April</option>
+						<option>May</option>
+					</select>
+					<select class="width28">
+						<option>1979</option>
+						<option>1980</option>
+						<option>1981</option>
+						<option>1982</option>
+						<option>1983</option>
+					</select>
 				</div>
 			</li>
 			<li>
-				<div class="left"><?php echo $form->labelEx($model,'gender'); ?></div>
+				<div class="left">Gender</div>
 				<div class="right">
-				<?php echo CHtml::dropDownList('gender',null,array('' =>'Gender','F'=>'Female','M'=>'Male'),array('prompt'=>'Gender','class'=>'validate[required] width35')); ?>
+					<select class="width35">
+						<option>Female</option>
+						<option>Male</option>
+					</select>
 				</div>
 			</li>
 			<li>
-				<div class="left"><?php echo $form->labelEx($model,'motherTounge'); ?></div>
+				<div class="left">Mother Tongue</div>
 				<div class="right">
-				<?php $records = Languages::model()->findAll("active = 1");
-		$list = CHtml::listData($records, 'languageId', 'name');
-		echo CHtml::dropDownList('motherTounge',null,$list,array('empty' => 'Language','class'=>'validate[required] width60')); ?>
-		<?php echo $form->error($model,'motherTounge'); ?>
+					<select class="width60">
+						<option>Malayalam</option>
+						<option>Tamil</option>
+						<option>Hindi</option>
+					</select>
 				</div>
 			</li>
 			<li>
-					<div class="left"><?php echo $form->labelEx($model,'religion'); ?></div>
+				<div class="left">Religion</div>
 				<div class="right">
-				<?php $records = Religion::model()->findAll("active = 1");
-		$list = CHtml::listData($records, 'religionId', 'name');
-		echo CHtml::dropDownList('religion',null,$list,array('empty' => 'Religion','class'=>'validate[required] width60')); ?>
-		<?php echo $form->error($model,'religion'); ?>
+					<select class="width60">
+						<option>Hindu</option>
+						<option>Muslim</option>
+						<option>Christian</option>
+					</select>
 				</div>
 			</li>
 			<li>
-				<div class="left"><?php echo $form->labelEx($model,'caste'); ?></div>
+				<div class="left">Caste / Division</div>
 				<div class="right">
-				<?php $records = Caste::model()->findAll("active = 1");
-		$list = CHtml::listData($records, 'casteId', 'name');
-		echo CHtml::dropDownList('caste',null,$list,array('empty' => 'Caste','class'=>'validate[required] width60')); ?>
-		<?php echo $form->error($model,'caste'); ?>
+					<select class="width60">
+						<option>Menon</option>
+						<option>Nair</option>
+						<option>Ezhava</option>
+					</select>
 				</div>
 			</li>
 			<li>
-				<div class="left"><?php echo $form->labelEx($model,'country'); ?></div>
+				<div class="left">Country</div>
 				<div class="right">
-				<?php $records = Country::model()->findAll("active = 1");
-		$list = CHtml::listData($records, 'countryId', 'name');
-		echo CHtml::dropDownList('country',null,$list,array('empty' => 'Country','class'=>'validate[required] width60')); ?>
-		<?php echo $form->error($model,'country'); ?>
+					<select class="width60">
+						<option>India</option>
+						<option>US</option>
+						<option>UK</option>
+					</select>
 				</div>
 			</li>
 			<li>
-				<div class="left"><?php echo $form->labelEx($model,'state'); ?></div>
+				<div class="left">State</div>
 				<div class="right">
-				<?php $records = States::model()->findAll("active = 1");
-		$list = CHtml::listData($records, 'stateId', 'name');
-		echo CHtml::dropDownList('state',null,$list,array('empty' => 'State','class'=>'validate[required] width60')); ?>
-		<?php echo $form->error($model,'state'); ?>
+					<select class="width60">
+						<option>Kerala</option>
+						<option>Tamilnadu</option>
+						<option>Karnadaka</option>
+					</select>
 				</div>
 			</li>
 			<li>
-				<div class="left"><?php echo $form->labelEx($model,'mobileNo'); ?></div>
+				<div class="left">Mobile No.</div>
 				<div class="right">
-					<?php echo $form->textField($model,'mobileNo',array('class'=>'validate[required,funcCall[validatePhone]]')); ?>
-					<?php echo $form->error($model,'mobileNo'); ?>
-				</div>
-
-			</li>
-			<li>
-<div class="left"><?php echo $form->labelEx($model,'landNo'); ?></div>
-				<div class="right">
-					<?php echo $form->textField($model,'landNo',array('class'=>'validate[required,funcCall[validatePhone]]')); ?>
-					<?php echo $form->error($model,'landNo'); ?>
+					<input type="text" />
 				</div>
 			</li>
 			<li>
-					<div class="left"><?php echo $form->labelEx($model,'emailId'); ?></div>
+				<div class="left">E-mail</div>
 				<div class="right">
-					<?php echo $form->textField($model,'emailId',array('class'=>'validate[required, funcCall[checkEmailValidation]]')); ?>
-		<?php echo $form->error($model,'emailId'); ?>
+					<input type="text" />
 				</div>
 			</li>
 			<li>
-				<div class="left"><?php echo $form->labelEx($model,'password'); ?></div>
+				<div class="left">Login Password</div>
 				<div class="right">
-					<?php echo $form->passwordField($model,'password',array('class'=>'validate[required]')); ?>
-					<?php echo $form->error($model,'password'); ?>
+					<input type="text" />
 				</div>
 			</li>
 			<li>
@@ -249,21 +245,10 @@
 			<li>
 				<div class="right left-m40">
 					<div class="button-contnr">
-						<?php echo CHtml::resetButton('Reset',array('class' =>'type1b')); ?>
-						<?php echo CHtml::submitButton('Submit',array('class'=>'type1b')); ?>
+						<a class="type1" href="#">Reset</a>
+						<a class="type1" href="member-welcome.htm">Submit</a>
 					</div>
 				</div>
 			</li> 	
-			<?php $this->endWidget(); ?>
 		</ul>
 	</section>
-	
-<script type="text/javascript">
-$(document).ready(function(){
-    $("#users-register-form").validationEngine('attach');
-    $("#users-paid-form").validationEngine('attach');
-  });
-
-
-</script>	
-    
