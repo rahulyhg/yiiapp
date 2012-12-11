@@ -2,7 +2,6 @@
 
 class UserController extends Controller
 {
-	
 	  public function beforeAction(CAction $action)
         {
         	
@@ -24,7 +23,6 @@ class UserController extends Controller
                 }
         }   
 	  
-		
 	
 	public function actionRegister()
 	{
@@ -106,6 +104,12 @@ class UserController extends Controller
 
 	public function actionFamilyPic(){
 		
+	}
+	
+	public function actionTest()
+	{
+		$user = Users::model()->findByPk(1);
+		$this->render("partner");
 	}
 	
 	public function actionContact()

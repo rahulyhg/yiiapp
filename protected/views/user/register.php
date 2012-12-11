@@ -262,9 +262,9 @@
 	</section>
 	<aside class="rightbar-contnr">
 		<div class="searchID">
-		<form id="idSearch"  name="idSearch" method="get"  action="/search/byid">
-			<input name="id" type="text" class="validate[required]"  placeholder="Search By ID / Keyword" / />
-			<a class="type2" href="javascript:idSearch.submit();">Search</a>
+		<form id="keywordSearch"  name="keywordSearch" method="get"  action="/search/byid">
+			<input name="id" type="text" class="validate[required]"  placeholder="Search By ID / Keyword" />
+			<?php echo CHtml::submitButton('Search',array('class'=>'type1b')); ?>
 		</form>	
 			
 		</div>
