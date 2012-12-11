@@ -10,7 +10,7 @@ class GuestController extends Controller
 	
 	public function actionForget()
 	{
-		$this->layout= '//layouts/single';
+		$this->layout= '//layouts/popup';
 		if(isset($_POST['email']))
 		{
 			$user = Users::model()->findByAttributes(array('emailId'=>$_POST['email']));
