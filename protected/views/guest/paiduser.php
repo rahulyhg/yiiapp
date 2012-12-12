@@ -125,7 +125,7 @@
 				<div class="left"> </div>
 				<div class="right">
 					<h4>Enter Your Pin Number Here</h4>
-					<input type="text" />
+					<?php echo $form->textField($model,'coupon',array('class'=>'validate[required]')); ?>
 					<h4>or Call us +91 8891 680376</h4>
 				</div>
 			</li>
