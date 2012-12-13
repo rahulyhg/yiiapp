@@ -440,7 +440,7 @@
 				<input type="radio" name="ctc" class="validate[required]" value="1" /> <span>Annual </span>
 			</div>
 			<div class="useRs">
-				<input class="wid100" type="text" id="income" class="validate[required,custom[integer]]"
+				<input type="text" id="income" class="validate[required,custom[integer]] wid100"
 									name="income" placeholder="Use Rupees" /> <span
 					class="perM">1,00,000 per month </span>
 			</div>
@@ -577,16 +577,16 @@
 		<div class="title">Who can view album</div>
 		<div class="info">
 			<div class="check">
-				<input type="checkbox" name="all" /> <span>All</span>
+				<input type="checkbox" name="family[]" value="all" /> <span>All</span>
 			</div>
 			<div class="check">
-				<input type="checkbox" name="subscribers" /> <span>Subscribers</span>
+				<input type="checkbox" name="family[]" value="subscribers" /> <span>Subscribers</span>
 			</div>
 			<div class="check">
-				<input type="checkbox" name="member" /> <span>Loged Members</span>
+				<input type="checkbox" value="member" name="family[]"/> <span>Loged Members</span>
 			</div>
 			<div class="check">
-				<input type="checkbox" name="request"/> <span>By Request</span>
+				<input type="checkbox" value="request" name="family[]"/> <span>By Request</span>
 			</div>
 		</div>
 	</li>
@@ -644,7 +644,7 @@
 
 <script type="text/javascript">
 $(document).ready(function(){
-    $("#userContact").validationEngine('attach');
+
   });
 
 

@@ -26,6 +26,8 @@ class SiteController extends Controller
         {
         		if($action->id == 'logout')
         		return true;
+        		if($action->id == 'error')
+        		return true;
                 $user = Yii::app()->session->get('user');
                 if(isset($user)) {
                         $this->redirect(array('/mypage'));

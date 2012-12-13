@@ -161,8 +161,8 @@
 						    echo CHtml::dropDownList('star',null,$list,array('class'=>'left ar','multiple'=>'multiple')); ?>
 						
 						<div class="ar-btn">
-							<input class="add type2" value="Add" onclick="return add('star','star1') type="button">
-							<input class="remove type2" value="Remove" onclick="return add('star1','star') type="button">
+							<input class="add type2" value="Add" onclick="return add('star','star1')" type="button">
+							<input class="remove type2" value="Remove" onclick="return add('star1','star')" type="button">
 						</div>
 						<select class="right ar" id="star1" name="star1[]" multiple="multiple">
 						</select>

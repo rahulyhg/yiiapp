@@ -14,7 +14,7 @@
  * @property integer $heightTo
  * @property integer $physicalStatus
  * @property integer $religion
- * @property integer $caste
+ * @property string $caste
  * @property string $subcaste
  * @property integer $manglik
  * @property integer $dosham
@@ -64,9 +64,9 @@ class Partnerpreferences extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('ageFrom, ageTo, maritalStatus, haveChildren, heightFrom, heightTo, physicalStatus, religion, caste, manglik, dosham, sudham, annualIncome', 'numerical', 'integerOnly'=>true),
+			array('ageFrom, ageTo, maritalStatus, haveChildren, heightFrom, heightTo, physicalStatus, religion, manglik, dosham, sudham, annualIncome', 'numerical', 'integerOnly'=>true),
 			array('userId', 'length', 'max'=>20),
-			array('subcaste, star, eatingHabits, drinkingHabits, smokingHabits, languages, countries, states, districts, places, citizenship, occupation, partnerDescription', 'safe'),
+			array('caste, subcaste, star, eatingHabits, drinkingHabits, smokingHabits, languages, countries, states, districts, places, citizenship, occupation, partnerDescription', 'safe'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
 			array('preferenceId, userId, ageFrom, ageTo, maritalStatus, haveChildren, heightFrom, heightTo, physicalStatus, religion, caste, subcaste, manglik, dosham, sudham, star, eatingHabits, drinkingHabits, smokingHabits, languages, countries, states, districts, places, citizenship, occupation, annualIncome, partnerDescription', 'safe', 'on'=>'search'),
@@ -82,8 +82,6 @@ class Partnerpreferences extends CActiveRecord
 		// class name for the relations automatically generated below.
 		return array(
 			'user' => array(self::BELONGS_TO, 'Users', 'userId'),
-			'religionData' => array(self::HAS_ONE, 'Religion', 'religionId'),
-			'casteData' => array(self::HAS_ONE, 'Caste', 'casteId'),
 		);
 	}
 
@@ -145,7 +143,7 @@ class Partnerpreferences extends CActiveRecord
 		$criteria->compare('heightTo',$this->heightTo);
 		$criteria->compare('physicalStatus',$this->physicalStatus);
 		$criteria->compare('religion',$this->religion);
-		$criteria->compare('caste',$this->caste);
+		$criteria->compare('caste',$this->caste,true);
 		$criteria->compare('subcaste',$this->subcaste,true);
 		$criteria->compare('manglik',$this->manglik);
 		$criteria->compare('dosham',$this->dosham);

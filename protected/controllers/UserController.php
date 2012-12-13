@@ -98,8 +98,12 @@ class UserController extends Controller
 				}
 				
 				
-		}
 		$this->render('contacts',array('user'=>$user,'userPersonal'=>$userPersonal));
+		}
+		else 
+		{
+		$this->redirect(array('/site'));
+		}
 	}
 
 	public function actionFamilyPic(){
@@ -108,8 +112,9 @@ class UserController extends Controller
 	
 	public function actionTest()
 	{
-		$user = Users::model()->findByPk(1);
-		$this->render("partner");
+		$user = Users::model()->findByPk(3);
+		$userPersonal = $user->userpersonaldetails;
+		$this->render('contacts',array('user'=>$user,'userPersonal'=>$userPersonal));
 	}
 	
 	public function actionContact()
@@ -117,6 +122,7 @@ class UserController extends Controller
 		$user = Yii::app()->session->get('user');
 		$userPersonal = $user->userpersonaldetails;
 		$address = new Address();
+		$paddress = new Address();
 		$contact = new Usercontactdetails();
 		
 			$physical = new Physicaldetails();
@@ -140,24 +146,47 @@ class UserController extends Controller
 		$userPersonal->placeId = $_POST['place'];
 		$userPersonal->save();
 			
+		//communication address
 		$address->userId = $user->userId;
-		if(isset($_POST['house']))
-		$address->houseName = $_POST['house'];
-		if(isset($_POST['houseplace']))
-		$address->place = $_POST['houseplace'];
-		if(isset($_POST['post']))
-		$address->postoffice = $_POST['post'];
-		if(isset($_POST['postcode']))
-		$address->pincode = $_POST['postcode'];
-		if(isset($_POST['housecity']))
-		$address->city = $_POST['housecity'];
-		if(isset($_POST['housedistrict']))
-		$address->district = $_POST['housedistrict'];
-		if(isset($_POST['housestate']))
-		$address->state = $_POST['housestate'];
-		if(isset($_POST['housecountry']))
-		$address->country  = $_POST['housecountry'];
+		if(isset($_POST['house1']))
+		$address->houseName = $_POST['house1'];
+		if(isset($_POST['houseplace1']))
+		$address->place = $_POST['houseplace1'];
+		if(isset($_POST['post1']))
+		$address->postoffice = $_POST['post1'];
+		if(isset($_POST['postcode1']))
+		$address->pincode = $_POST['postcode1'];
+		if(isset($_POST['housecity1']))
+		$address->city = $_POST['housecity1'];
+		if(isset($_POST['housedistrict1']))
+		$address->district = $_POST['housedistrict1'];
+		if(isset($_POST['housestate1']))
+		$address->state = $_POST['housestate1'];
+		if(isset($_POST['housecountry1']))
+		$address->country  = $_POST['housecountry1'];
+		$address->addresType = 1;
 		$address->save();
+		
+		//permanent address
+		$paddress->userId = $user->userId;
+		if(isset($_POST['house']))
+		$paddress->houseName = $_POST['house'];
+		if(isset($_POST['houseplace']))
+		$paddress->place = $_POST['houseplace'];
+		if(isset($_POST['post']))
+		$paddress->postoffice = $_POST['post'];
+		if(isset($_POST['postcode']))
+		$paddress->pincode = $_POST['postcode'];
+		if(isset($_POST['housecity']))
+		$paddress->city = $_POST['housecity'];
+		if(isset($_POST['housedistrict']))
+		$paddress->district = $_POST['housedistrict'];
+		if(isset($_POST['housestate']))
+		$paddress->state = $_POST['housestate'];
+		if(isset($_POST['housecountry']))
+		$paddress->country  = $_POST['housecountry'];
+		$paddress->addresType = 0;
+		$paddress->save();
 			
 		//contact details	
 		$contact->userId = $user->userId;
@@ -445,6 +474,44 @@ class UserController extends Controller
 		$time = $_POST['timeFrom1'].':'.$_POST['fromA1'].'-'.$_POST['timeTo1'].':'.$_POST['toA1'];
 		$reference1->referCallFrom  = $time;
 		}
+		$reference1->save();
+		
+		
+		$reference2 = new Reference();
+		$reference2->userId = $user->userId;
+		if(isset($_POST['relation2']))
+		$reference2->relation = $_POST['relation2'];
+		if(isset($_POST['name2']))
+		$reference2->referName = $_POST['name2'];
+		if(isset($_POST['house2']))
+		$reference2->referHouseName = $_POST['house2'];
+		if(isset($_POST['place1']))
+		$reference2->referPlace = $_POST['place2'];
+		if(isset($_POST['city2']))
+		$reference2->referCity = $_POST['city2'];
+		if(isset($_POST['state2']))
+		$reference2->referState = $_POST['state2'];
+		if(isset($_POST['pin2']))
+		$reference2->referPostcode = $_POST['pin2'];
+		if(isset($_POST['post2']))
+		$reference2->referPostOffice = $_POST['post2'];
+		if(isset($_POST['district2']))
+		$reference2->referDistrict = $_POST['district2'];
+		if(isset($_POST['country2']))
+		$reference2->referCountry = $_POST['country2'];
+		if(isset($_POST['email2']))
+		$reference2->referEmail = $_POST['email2'];
+		if(isset($_POST['occupation2']))
+		$reference2->referOccupation = $_POST['occupation2'];
+		if(isset($_POST['timeFrom2']) && isset($_POST['fromA2']) && isset($_POST['timeTo2']) && isset($_POST['toA2'])){
+		$time = $_POST['timeFrom2'].':'.$_POST['fromA2'].'-'.$_POST['timeTo2'].':'.$_POST['toA2'];
+		$reference2->referCallFrom  = $time;
+		}
+		$reference2->save();
+		
+		
+		
+		
 		if(isset($_POST['reference']))
 		{
 				$privacy = new Privacy();
@@ -454,7 +521,7 @@ class UserController extends Controller
 				$privacy->save();
 		}
 		
-		$reference1->save();
+		
 		$this->render('profilepicture');
 		//here we have to show the documents and album upload page
 		//then show profile complete page
@@ -471,6 +538,7 @@ class UserController extends Controller
 		$user = Yii::app()->session->get('user');
 		
 		$partner = new Partnerpreferences();
+		
 		$partner->userId = $user->userId;
 		if(isset($_POST['ageFrom']))
 		$partner->ageFrom = $_POST['ageFrom'];
@@ -478,6 +546,7 @@ class UserController extends Controller
 		$partner->ageTo = $_POST['ageTo'];
 		if(isset($_POST['maritial']))
 		$partner->maritalStatus = implode(",", $_POST['maritial']);
+		
 		if(isset($_POST['child']))
 		$partner->haveChildren = $_POST['child'];
 		if(isset($_POST['heightFrom']))
@@ -488,12 +557,10 @@ class UserController extends Controller
 		$partner->physicalStatus = $_POST['status'];
 		if(isset($_POST['religion']))
 		$partner->religion = $_POST['religion'];
-		if(isset($_POST['caste']))
-		$partner->caste = $_POST['caste'];
-		if(isset($_POST['subcaste']))
-		$partner->subcaste = implode(",", $_POST['subcaste']);
-		if(isset($_POST['star']))
-		$partner->star = implode(",", $_POST['star']);
+		if(isset($_POST['caste1']))
+		$partner->caste = implode(",", $_POST['caste1']);
+		if(isset($_POST['star1']))
+		$partner->star = implode(",", $_POST['star1']);
 		if(isset($_POST['jathakam']))
 		$partner->sudham = $_POST['jathakam'];
 		if(isset($_POST['dhosham']))
@@ -524,7 +591,6 @@ class UserController extends Controller
 		$partner->partnerDescription = $_POST['partnerDesc'];
 		
 		$partner->save();
-		
 		$this->render("hobbies");
 	}
 	

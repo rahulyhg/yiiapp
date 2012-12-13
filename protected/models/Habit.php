@@ -96,18 +96,4 @@ class Habit extends CActiveRecord
 			'criteria'=>$criteria,
 		));
 	}
-		public function beforeSave()
-        {
-                if(parent::beforeSave())
-                {
-                      if( !empty($this->food) || !empty($this->smoking) || !empty($this->drinking))
-                      return true;
-                      else
-                      return false;
-                      
-                      
-                }
-                else
-        		return true;
-        }
 }
