@@ -23,8 +23,9 @@
 			</div>
 			<?php echo CHtml::submitButton('Login',array('class'=>'type1b','tabindex'=>'3')); ?>
 		<?php echo CHtml::endForm(); ?>
+				</div>
 		<?php }?>
-		</div>
+
 		
 		
 <script type="text/javascript">

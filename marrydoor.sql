@@ -4,7 +4,7 @@ USE `domianfo_marrydoor`;
 -- ---------- Table for users --------------- 
 
 create table users(userId BIGINT UNIQUE NOT NULL AUTO_INCREMENT, marryId VARCHAR(100) UNIQUE, 
-emailId VARCHAR(100) NOT NULL,  password VARCHAR(100) NOT NULL, name VARCHAR(250) NOT NULL, 
+emailId VARCHAR(100) NOT NULL UNIQUE,  password VARCHAR(100) NOT NULL, name VARCHAR(250) NOT NULL, 
 dob DATETIME NOT NULL DEFAULT '0000-00-00 00:00:00', gender char(1) NOT NULL DEFAULT 'M', motherTounge int(10) NOT NULL, createdOn DATETIME NOT NULL DEFAULT '0000-00-00 00:00:00',
 active TINYINT(5) NOT NULL, handicapped TINYINT(5) NOT NULL, highlighted TINYINT(5) NOT NULL, userType TINYINT NOT NULL, PRIMARY KEY(userId))ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;
 
@@ -18,7 +18,7 @@ DEFAULT CHARSET=utf8;
 
 -- ------Table for userPersonalDetails------------
 
-create table userpersonaldetails(personalDetailsId BIGINT UNIQUE NOT NULL AUTO_INCREMENT, userId BIGINT NOT NULL, casteId INT(10) NOT NULL DEFAULT 0, religionId INT(10) NOT NULL DEFAULT 0, countryId INT(10) NOT NULL DEFAULT 0, stateId INT(10) NOT NULL DEFAULT 0, distictId INT(10) NOT NULL DEFAULT 0, placeId INT(10) NOT NULL DEFAULT 0, mobilePhone INT(10) NOT NULL, landPhone INT(15) NOT NULL, intercasteable TINYINT NOT NULL DEFAULT 0, createdBy TINYINT NOT NULL DEFAULT 0, maritalStatus TINYINT NOT NULL DEFAULT 0, PRIMARY KEY(personalDetailsId), FOREIGN KEY (userId) REFERENCES users(userId))ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;
+create table userpersonaldetails(personalDetailsId BIGINT UNIQUE NOT NULL AUTO_INCREMENT, userId BIGINT NOT NULL, casteId INT(10) NOT NULL DEFAULT 0, religionId INT(10) NOT NULL DEFAULT 0, countryId INT(10) NOT NULL DEFAULT 0, stateId INT(10) NOT NULL DEFAULT 0, distictId INT(10) NOT NULL DEFAULT 0, placeId INT(10) NOT NULL DEFAULT 0, mobilePhone BIGINT(15) NOT NULL, landPhone BIGINT(15) NOT NULL, intercasteable TINYINT NOT NULL DEFAULT 0, createdBy TINYINT NOT NULL DEFAULT 0, maritalStatus TINYINT NOT NULL DEFAULT 0, PRIMARY KEY(personalDetailsId), FOREIGN KEY (userId) REFERENCES users(userId))ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;
 
 -- --------Table for userContactDetails--------------
 
@@ -328,3 +328,8 @@ JOIN users RU ON M.receiverId = RU.userId
 LEFT JOIN photos SP ON (M.senderId = SP.userId AND SP.profileImage = 1)
 LEFT JOIN photos RP ON (M.receiverId = RP.userId AND RP.profileImage = 1);
 
+
+
+ALTER TABLE users ADD UNIQUE (emailId);
+ALTER TABLE `userpersonaldetails` CHANGE `landPhone` `landPhone` BIGINT( 15 ) NOT NULL 
+ALTER TABLE `userpersonaldetails` CHANGE `mobilePhone` `mobilePhone` BIGINT( 15 ) NOT NULL 

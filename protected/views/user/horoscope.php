@@ -122,13 +122,13 @@
 					</div>
 					<div class="info">
 						<div class="radio wid90">
-							<input name="sudha" type="radio" value="1"> <span>Yes</span>
+							<input name="chova" type="radio" value="1"> <span>Yes</span>
 						</div>
 						<div class="radio wid90">
-							<input name="sudha" type="radio" value="0"> <span>No</span>
+							<input name="chova" type="radio" value="0"> <span>No</span>
 						</div>
 						<div class="radio wid90">
-							<input name="sudha" type="radio" value="2"><span>Don't Know</span>
+							<input name="chova" type="radio" value="2"><span>Don't Know</span>
 						</div>
 					</div>
 				</li>

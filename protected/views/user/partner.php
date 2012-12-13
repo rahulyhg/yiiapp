@@ -144,10 +144,10 @@
 					</div>
 					<div class="info">
 						<div class="check ">
-							<input name="created" type="checkbox"  /> <span>Yes</span>
+							<input name="dhosham" type="checkbox"  /> <span>Yes</span>
 						</div>
 						<div class="check ">
-							<input name="created" type="checkbox"  /> <span>No </span>
+							<input name="dhosham" type="checkbox"  /> <span>No </span>
 						</div>
 					</div>
 				</li>
@@ -235,8 +235,8 @@
 						    echo CHtml::dropDownList('language',null,$list,array('class'=>'left ar','multiple'=>'multiple')); ?>
 						
 						<div class="ar-btn">
-							<input class="add type2" value="Add" onclick="return add('language','language1') type="button">
-							<input class="remove type2" value="Remove" onclick="return add('language1','language') type="button">
+							<input class="add type2" value="Add" onclick="return add('language','language1')" type="button">
+							<input class="remove type2" value="Remove" onclick="return add('language1','language')" type="button">
 						</div>
 						<select class="right ar" id="language1" name="language1[]" multiple="multiple">
 						</select>

@@ -141,20 +141,20 @@ mark {background-color: #826DC9; color: #fff; font-style: italic; font-weight: b
 @font-face {
     font-family: "HelveticaCondensed";
     font-style: normal;
-    src: url("http://media.marrydoor.com/font/HelveticaCondensedMedium.ttf") format("opentype");
+    src: url("http://marrydoor.com/font/HelveticaCondensedMedium.ttf") format("opentype");
 }
 @font-face {
     font-family: "GraublauWeb";
-    src: url("http://media.marrydoor.com/font/GraublauWeb.otf") format("opentype");
+    src: url("http://marrydoor.com/font/GraublauWeb.otf") format("opentype");
 }
 @font-face {
     font-family: "Tallys";
-    src: url("http://media.marrydoor.com/font/Tallys_15.otf") format("opentype");
+    src: url("http://marrydoor.com/font/Tallys_15.otf") format("opentype");
 }
 @font-face {
     font-family: "GraublauWeb";
     font-weight: 900;
-    src: url("http://media.marrydoor.com/font/GraublauWebBold.otf") format("opentype");
+    src: url("http://marrydoor.com/font/GraublauWebBold.otf") format("opentype");
 }
 .graublau {
     color: #999999;
@@ -163,10 +163,10 @@ mark {background-color: #826DC9; color: #fff; font-style: italic; font-weight: b
 }
 
 @font-face{
-    font-family: 'WebRupee';src: url('http://media.marrydoor.com/font/WebRupee.V2.0.eot');src: local('WebRupee'),
-    url('http://media.marrydoor.com/font/WebRupee.V2.0.ttf') format('truetype'),
-    url('http://media.marrydoor.com/font/WebRupee.V2.0.woff') format('woff'),
-    url('http://media.marrydoor.com/font/WebRupee.V2.0.svg') format('svg');
+    font-family: 'WebRupee';src: url('http://marrydoor.com/font/WebRupee.V2.0.eot');src: local('WebRupee'),
+    url('http://marrydoor.com/font/WebRupee.V2.0.ttf') format('truetype'),
+    url('http://marrydoor.com/font/WebRupee.V2.0.woff') format('woff'),
+    url('http://marrydoor.com/font/WebRupee.V2.0.svg') format('svg');
     font-weight: normal;
     font-style: normal;
 }

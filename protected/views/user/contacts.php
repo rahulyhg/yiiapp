@@ -14,9 +14,9 @@
  *  @version <Revision>
  */
 ?>
+<form id="userContact" enctype="multipart/form-data" name="userContact" method="post" action="/user/contact">
 
 <section class="data-contnr"> <article class="section">
-<form id="userContact" enctype="multipart/form-data" name="userContact" method="post" action="/user/contact">
 <h1 class="message">Your life partner is just a click away!</h1>
 <h5>
 	<span class="sup">*</span>marked fields are mandatory
@@ -40,7 +40,7 @@
 		</div>
 		<div class="info">
 			<div class="radio wid90">
-				<input type="radio" name="profileFor" value="0"> <span>Myself</span>
+				<input type="radio" name="profileFor" class="validate[required]" value="0"> <span>Myself</span>
 			</div>
 			<div class="radio wid90">
 				<input type="radio" name="profileFor" class="validate[required]"
@@ -196,27 +196,27 @@
 		<div class="title">Permanent Address</div>
 		<div class="info">
 			<div class="inner-row">
-			<input type="text" name="house1" id="house" class="validate[required]"
+			<input type="text" name="house1" id="housep" class="validate[required]"
 						placeholder="House Name / No." />
 			</div>
 			<div class="inner-row">
-			<input type="text" name="houseplace1" id="place" class="validate[required]"
+			<input type="text" name="houseplace1" id="placep" class="validate[required]"
 						placeholder="Place" />
 			</div>
 			<div class="inner-row">
-			<input type="text" name="housecity1" id="city" class="validate[required]"
+			<input type="text" name="housecity1" id="cityp" class="validate[required]"
 						placeholder="City" />
-				<input type="text" name="housedistrict1" id="district" class="validate[required]"
+				<input type="text" name="housedistrict1" id="districtp" class="validate[required]"
 						placeholder="District" />
 			</div>
 			<div class="inner-row">
-				<input type="text" name="housestate1" id="state" class="validate[required]"
+				<input type="text" name="housestate1" id="statep" class="validate[required]"
 						placeholder="State" />
-				<input type="text" name="housecountry1" id="country" class="validate[required]"
+				<input type="text" name="housecountry1" id="countryp" class="validate[required]"
 						placeholder="Country" />
 			</div>
 			<div class="inner-row">
-				<input type="text" name="postcode1" id="postcode" class="validate[required,custom[integer],maxSize[6]]"
+				<input type="text" name="postcode1" id="postcodep" class="validate[required,custom[integer],maxSize[6]]"
 						placeholder="Post Code" />
 			</div>
 		</div>
@@ -245,28 +245,28 @@
 		<div class="title">Facebook URL</div>
 		<div class="info">
 			<input type="text"
-							name="facebook" id="facebook" class="validate[required] addres_form" /> 
+							name="facebook" id="facebook" class="validate[required]" /> 
 		</div>
 	</li>
 	<li>
 		<div class="title">Skype</div>
 		<div class="info">
 			<input
-							type="text" class="validate[required] addres_form" name="skype" id="skype" /> 
+							type="text" class="validate[required]" name="skype" id="skype" /> 
 		</div>
 	</li>
 	<li>
 		<div class="title">Google IM</div>
 		<div class="info">
 			<input
-							type="text" class="validate[required] addres_form" name="google" id="google" /> 
+							type="text" class="validate[required]" name="google" id="google" /> 
 		</div>
 	</li>
 	<li>
 		<div class="title">Yahoo IM</div>
 		<div class="info">
 			<input
-							type="text" class="validate[required] addres_form" name="yahoo" id="yahoo" />
+							type="text" class="validate[required]" name="yahoo" id="yahoo" />
 		</div>
 	</li>
 	<li>
@@ -350,7 +350,7 @@
 					<input type="radio" name="physical" value="0"><span>Normal</span>
 				</div>
 				<div class="radio">
-					<input type="radio" name="physical" value="1"><span><a href="#">Physically
+					<input type="radio" name="physical" value="1"><span><a href="javascript: void(0)">Physically
 							challenged</a> </span>
 				</div>
 			</div>
@@ -440,7 +440,7 @@
 				<input type="radio" name="ctc" class="validate[required]" value="1" /> <span>Annual </span>
 			</div>
 			<div class="useRs">
-				<input class="wid100" type="text" id="income"
+				<input class="wid100" type="text" id="income" class="validate[required,custom[integer]]"
 									name="income" placeholder="Use Rupees" /> <span
 					class="perM">1,00,000 per month </span>
 			</div>
@@ -550,7 +550,7 @@
 			<input type="text"  name="brothers" class="validate[required,custom[integer]]"
 								id="brothers" />
 			<div class="married">
-				<input type="text" name="brothersMarry" class="validate[required,custom[integer]]"
+				<input type="text" name="brothersMarry" placeholder="Brother Married" class="validate[required,custom[integer]]"
 								id="brothersMarry" />
 			</div>
 		</div>
@@ -561,7 +561,7 @@
 			<input type="text"  name="sisters" class="validate[required,custom[integer]]"
 								id="sisters" />
 			<div class="married">
-				<input type="text" name="sistersMarry" class="validate[required,custom[integer]]"
+				<input type="text" name="sistersMarry" placeholder="Sisters Married" class="validate[required,custom[integer]]"
 								id="sistersMarry" />
 			</div>
 		</div>
@@ -570,7 +570,7 @@
 		<div class="title"></div>
 		<div class="info">
 		  <?php echo CHtml::activeFileField($user, 'familyAlbum'); ?>
-			<a href="#" class="upload">UPLOAD YOUR FAMILY PHOTOS</a>
+			UPLOAD YOUR FAMILY PHOTOS
 		</div>
 	</li>
 	<li class="whoM">
@@ -605,23 +605,21 @@
 	<li>
 		<div class="title"></div>
 		<div class="info">
-		<textarea name="familyDesc" rows="2" cols="20" class="validate[required] text-input tab_300b">
-
-</textarea>
 			<textarea rows="2" cols="20" name="myDesc" class="validate[required]"
 				placeholder="Enter your personal details, qualification, profession, interests etc. Do not write your contact details here. If you do so, your ID will be rejected by our automated system."></textarea>
 		</div>
 	</li>
 	<li>
 		<div class="buttonContnr3">
-			<a href="#" class="type2">Submit</a> <a href="#" class="type2">Reset</a>
+			<?php echo CHtml::resetButton('Reset',array('class' =>'type1b')); ?>
+			<?php echo CHtml::submitButton('Submit',array('class'=>'type1b')); ?>
 		</div>
 	</li>
 </ul>
-</form>
 </article> 
 
 </section>
+</form>
 <aside class="rightbar-contnr">
 <div class="subscribe-box">
 	<div class="sub-now">
