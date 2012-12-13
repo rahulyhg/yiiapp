@@ -644,7 +644,7 @@
 
 <script type="text/javascript">
 $(document).ready(function(){
-
+    $("#userContact").validationEngine('attach');
   });
 
 
