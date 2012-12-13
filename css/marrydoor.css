@@ -177,7 +177,7 @@
     padding: 0;
     border:0;
     box-shadow: 0 0 0 0;
-    background: transparent url("http://media.marrydoor.com/images/marrydoor.png") no-repeat -39px 0;
+    background: transparent url("http://marrydoor.com/images/marrydoor.png") no-repeat -39px 0;
 }
 .profile .image-contnr .img-controls a.prev:hover{
     background-position:-39px -18px !important;
@@ -191,7 +191,7 @@
     padding: 0;
     border:0;
     box-shadow: 0 0 0 0;
-    background: transparent url("http://media.marrydoor.com/images/marrydoor.png") no-repeat -60px 0;
+    background: transparent url("http://marrydoor.com/images/marrydoor.png") no-repeat -60px 0;
 }
 .profile .image-contnr .img-controls a.next:hover{
     background-position:-60px -18px !important;
@@ -328,7 +328,7 @@
     padding: 0;
     border:0;
     box-shadow: 0 0 0 0;
-    background: transparent url("http://media.marrydoor.com/images/marrydoor.png") no-repeat -39px 0;
+    background: transparent url("http://marrydoor.com/images/marrydoor.png") no-repeat -39px 0;
 }
 .profileR .image-contnrs .img-controls a.prev:hover{
     background-position:-39px -18px !important;
@@ -342,7 +342,7 @@
     padding: 0;
     border:0;
     box-shadow: 0 0 0 0;
-    background: transparent url("http://media.marrydoor.com/images/marrydoor.png") no-repeat -60px 0;
+    background: transparent url("http://marrydoor.com/images/marrydoor.png") no-repeat -60px 0;
 }
 .profileR .image-contnrs .img-controls a.next:hover{
     background-position:-60px -18px !important;
@@ -1552,7 +1552,7 @@ article.section ul li .info .checked{
 .mainPro .noC li a.prevs{
     width: 10px;
     height: 12px;
-    background: url("http://media.marrydoor.com/images/marrydoor.png") no-repeat -38px 0;
+    background: url("http://marrydoor.com/images/marrydoor.png") no-repeat -38px 0;
     margin-top: 2px;
 }
 .mainPro .noC li a.prevs:hover{
@@ -1561,7 +1561,7 @@ article.section ul li .info .checked{
 .mainPro .noC li a.nexts{
     width: 10px;
     height: 12px;
-    background: url("http://media.marrydoor.com/images/marrydoor.png") no-repeat -60px 0;
+    background: url("http://marrydoor.com/images/marrydoor.png") no-repeat -60px 0;
     margin-top: 2px;
 }
 .mainPro .noC li a.nexts:hover{
@@ -1793,7 +1793,7 @@ article.section ul li .info .checked{
     padding-left: 12px;
     color: #939598;
     font:normal 13px/14px arial,helvetica,sans-serif;
-    background: url("http://media.marrydoor.com/images/marrydoor.png") no-repeat -1023px -264px;
+    background: url("http://marrydoor.com/images/marrydoor.png") no-repeat -1023px -264px;
 }
 .interstTab ul.tab-data li .recvd_message{
     width: 80%;
@@ -1802,7 +1802,7 @@ article.section ul li .info .checked{
     padding-left: 12px;
     color: #939598;
     font:normal 13px/14px arial,helvetica,sans-serif;
-    background: url("http://media.marrydoor.com/images/marrydoor.png") no-repeat -1023px -288px;
+    background: url("http://marrydoor.com/images/marrydoor.png") no-repeat -1023px -288px;
 }
 .interstTab ul.tab-data li .accept{
     bottom: 0 !important;
@@ -1834,7 +1834,7 @@ article.section ul li .info .checked{
     width: 11px;
     float: right;
     margin-right: 4px;
-    background: url("http://media.marrydoor.com/images/marrydoor.png") no-repeat -306px -78px;
+    background: url("http://marrydoor.com/images/marrydoor.png") no-repeat -306px -78px;
 }
 .interstTab ul.tab-data li .msge_data .close:hover{
     background-position:-306px -64px;
@@ -2299,7 +2299,7 @@ article.section ul li .info .checked{
 .page404 .md404{
     width: 351px;
     height:501px;
-    background: url("http://media.marrydoor.com/images/404.png") no-repeat -20px 0;
+    background: url("http://marrydoor.com/images/404.png") no-repeat -20px 0;
     position: absolute;
     left: 0;
     top: 0;
