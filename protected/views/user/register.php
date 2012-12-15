@@ -257,7 +257,7 @@
 	<aside class="rightbar-contnr">
 		<div class="searchID">
 		<form id="keywordSearch"  name="keywordSearch" method="get"  action="/search/byid">
-			<input name="id" type="text" class="validate[required]"  placeholder="Search By ID / Keyword" />
+			<input name="id" type="text" class="required"  placeholder="Search By ID / Keyword" />
 			<?php echo CHtml::submitButton('Search',array('class'=>'type1b')); ?>
 		</form>	
 			
@@ -283,9 +283,9 @@
 
 <script type="text/javascript">
 $(document).ready(function(){
-    $("#users-register-form").validationEngine('attach');
-    $("#keywordSearch").validationEngine('attach');
-
+	$("#users-register-form").validationEngine('attach');
+	$("#keywordSearch").validate();
+    
     $("input:reset").click(function() {       // apply to reset button's click event
         this.form.reset();                    // reset the form
         // clear the form error validations      
