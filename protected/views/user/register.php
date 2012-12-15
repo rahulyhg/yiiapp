@@ -33,7 +33,7 @@
 			<li>
 				<div class="left"><?php echo $form->labelEx($model,'gender'); ?></div>
 				<div class="right">
-				<?php echo CHtml::dropDownList('gender',null,array('' =>'Gender','F'=>'Female','M'=>'Male'),array('prompt'=>'Gender','class'=>'validate[required] width35')); ?>
+				<?php echo CHtml::dropDownList('gender',null,array('empty' =>'Gender','F'=>'Female','M'=>'Male'),array('class'=>'validate[required] width35')); ?>
 				</div>
 			</li>
 			<li>
@@ -84,7 +84,7 @@
 			<li>
 				<div class="left"><?php echo $form->labelEx($model,'mobileNo'); ?></div>
 				<div class="right">
-					<?php echo $form->textField($model,'mobileNo',array('class'=>'validate[required,funcCall[validatePhone]]')); ?>
+					<?php echo $form->textField($model,'mobileNo',array('class'=>'validate[required,minSize[10]]')); ?>
 					<?php echo $form->error($model,'mobileNo'); ?>
 				</div>
 			</li>
