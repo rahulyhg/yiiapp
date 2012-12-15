@@ -71,7 +71,7 @@ class UserController extends Controller
 				$userPersonal->countryId = $_POST['country'];
 				$userPersonal->stateId = $_POST['state'];
 				$userPersonal->mobilePhone = $_POST['UserForm']['mobileNo'];
-				$userPersonal->landPhone = $_POST['UserForm']['landNo'];
+				//$userPersonal->landPhone = $_POST['UserForm']['landNo'];
 				$userPersonal->save();
 					
 				$transaction->commit();
@@ -112,7 +112,7 @@ class UserController extends Controller
 	
 	public function actionTest()
 	{
-		$user = Users::model()->findByPk(3);
+		$user = Users::model()->findByPk(1);
 		$userPersonal = $user->userpersonaldetails;
 		$this->render('contacts',array('user'=>$user,'userPersonal'=>$userPersonal));
 	}

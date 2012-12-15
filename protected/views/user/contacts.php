@@ -227,13 +227,13 @@
 			<?php echo $userPersonal->mobilePhone; ?>  <a href="#">Edit</a>
 		</div>
 	</li>
-	<li>
+	<!-- <li>
 		<div class="title">Landline No.</div>
 		<div class="info">
 			<?php 
 						echo $userPersonal->landPhone ?>  <a href="#">Edit</a>
 		</div>
-	</li>
+	</li> -->
 	<li>
 		<div class="title">Altranative Mobile No.</div>
 		<div class="info">

@@ -88,13 +88,7 @@
 					<?php echo $form->error($model,'mobileNo'); ?>
 				</div>
 			</li>
-			<li>
-				<div class="left"><?php echo $form->labelEx($model,'landNo'); ?></div>
-				<div class="right">
-					<?php echo $form->textField($model,'landNo',array('class'=>'validate[required,funcCall[validatePhone]]')); ?>
-					<?php echo $form->error($model,'landNo'); ?>
-				</div>
-			</li>
+			
 			<li>
 				<div class="left"><?php echo $form->labelEx($model,'emailId'); ?></div>
 				<div class="right">
@@ -290,8 +284,16 @@
 <script type="text/javascript">
 $(document).ready(function(){
     $("#users-register-form").validationEngine('attach');
-    $("#users-search-searchForm").validationEngine('attach');
     $("#keywordSearch").validationEngine('attach');
+
+    $("input:reset").click(function() {       // apply to reset button's click event
+        this.form.reset();                    // reset the form
+        // clear the form error validations      
+		$("#users-register-form").validationEngine('hideAll');
+         return false;                         // prevent reset button from resetting again
+    });
+
+    
   });
 
 </script>

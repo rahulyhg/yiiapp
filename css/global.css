@@ -7,6 +7,7 @@ html, body, body div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquot
 	vertical-align: baseline;
 	background: transparent;
 }
+
 article, aside, figure, footer, header, hgroup, nav, section {display: block;}
 img,
 object,
@@ -477,6 +478,7 @@ body{
     background: #7c51a1;
     color: #f1effa;
     border: 1px solid #7c51a1;
+	text-decoration: none;
 }
 .type1b{
     width:65px;
@@ -495,23 +497,25 @@ body{
     color: #f1effa;
 	text-decoration: none !important;
 }
+
 .type2{
-    width:65px;
-    background: none repeat scroll 0 0 #f1effa;
-    color: #7c51a1;
+    width:65px !important;
+    background:#f1effa !important;
+    color: #7c51a1 !important;
     float: right;
-    font: 12px/22px arial,helvetica,sans-serif;
+    font:normal 12px/22px arial,helvetica,sans-serif;
     margin:18px 0 0 0;
     text-align: center;
     text-decoration: none;
-	padding:3px 0 !important;
-	border: none 0;
+    padding:1px 0 0 !important;
+    border: none 0 !important;
 }
 .type2:hover{
     background: #7c51a1;
     color: #f1effa;
-	text-decoration: none !important;
+    text-decoration: none !important;
 }
+
 .type3{
     width:65px;
     background: none repeat scroll 0 0 #f1effa;
@@ -1108,18 +1112,20 @@ h5{
     margin-bottom: 5px;
 	margin-top: -8px;
 }
-.rightbar-contnr .searchID input{
+
+.rightbar-contnr .searchID input {
     background: none repeat scroll 0 0 #FFFFFF;
     border: 1px solid #E7E8E9;
     color: #939598;
     font: 13px/15px arial,helvetica,sans-serif;
     height: 21px;
     padding-left: 4px;
-    width:175px;
+    width: 175px;
 }
-.rightbar-contnr .searchID a{
+.rightbar-contnr .searchID a {
     margin: 0 !important;
 }
+
 
 .social{
     width:37px;
@@ -1467,9 +1473,9 @@ h5{
     text-decoration: none;
     float: left;
 }
-.header ul.nav-bar li.menu a:hover{
-    color:#876099;
-    background-position: right -12px;
+.header ul.nav-bar li.menu a:hover, .header ul.nav-bar li.menu .select{
+    color:#876099 !important;
+    background-position: right -12px !important;
 }
 .header ul.nav-bar li.menu .sub{
     padding:10px 5px 10px 10px;
@@ -1853,6 +1859,35 @@ h5{
 	text-align: center;
     margin:5px 0 0 0;
 }
+.notiTabData li .noti_head{
+    float: left;
+    width:100%;
+	margin: 4px 0 0;
+	color: #876099;
+	font: normal 16px/18px arial,helvetica,sans-serif;
+}
+.notiTabData li .noti_message{
+    float: left;
+    width:100%;
+	margin:8px 0 4px 0 ;
+	color: #939598;
+	font: normal 14px/18px arial,helvetica,sans-serif;
+	text-align: justify;
+}
+.notiTabData li .noti_message span{
+	color: #408EF8;
+	font: normal 18px/18px arial,helvetica,sans-serif;
+}
+.notiTabData li .noti_sn{
+	width: 100%;
+    float: left;
+	margin:4px 0 0 ;
+	text-align: center;
+}
+.notiTabData li .noti_sn a{
+	color: #408EF8;
+	font: normal 24px/25px arial,helvetica,sans-serif;
+}
 .interstTab .optns{
     width: 100%;
     float: left;
@@ -1991,8 +2026,27 @@ h5{
 .standalone{
 	width: 372px !important;
 }
-
-
+.coffee{
+    position: fixed;
+    top:65%;
+    right:-2px;
+    border-top-left-radius: 3px;
+    border-bottom-left-radius: 3px;
+    display: block;
+}
+.coffee a{
+    width:27px;
+    height: 28px;
+    float: left;
+    padding: 8px 5px;
+    text-decoration: none;
+	background:#e7e7e7 url("http://marrydoor.com/images/marrydoor.png") no-repeat -523px 8px;
+	border-top-left-radius: 3px;
+    border-bottom-left-radius: 3px;
+}
+.coffee a:hover{
+    background:#f2e9e5 url("http://marrydoor.com/images/marrydoor.png") no-repeat -601px 8px;
+}
 .type1b{
     width:65px;
     background: none repeat scroll 0 0 #f1effa;
@@ -2010,3 +2064,16 @@ h5{
     color: #f1effa;
         text-decoration: none !important;
 	}	
+	
+.rightbar-contnr .searchID input {
+    background: none repeat scroll 0 0 #FFFFFF;
+    border: 1px solid #E7E8E9;
+    color: #939598;
+    font: 13px/15px arial,helvetica,sans-serif;
+    height: 21px;
+    padding-left: 4px;
+    width: 175px;
+}
+.rightbar-contnr .searchID a {
+    margin: 0 !important;
+}
