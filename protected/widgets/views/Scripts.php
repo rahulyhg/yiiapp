@@ -5,7 +5,9 @@
     <script src="<?php echo Yii::app()->params['resourceUrl']; ?>/js/modernizr-1.7.min.js"></script>
 	<script src="<?php echo Yii::app()->params['resourceUrl']; ?>/js/inr.js"></script>
 	<script src="<?php echo Yii::app()->params['resourceUrl']; ?>/js/marrydoor.js"></script>
+	<!-- colorbox js and css -->
 	<script src="<?php echo Yii::app()->params['resourceUrl']; ?>/js/jquery.colorbox-min.js"></script>
+	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->params['resourceUrl']; ?>/css/colorbox.css" />
 	<script type="text/javascript" src="<?php echo Yii::app()->params['resourceUrl']; ?>/js/jquery.validationEngine.js" charset="utf-8"></script>
 	<script type="text/javascript" src="<?php echo Yii::app()->params['resourceUrl']; ?>/js/jquery.validationEngine-en.js" charset="utf-8"></script>
 	<script type="text/javascript" src="<?php echo Yii::app()->params['resourceUrl']; ?>/js/formvalidation.js" charset="utf-8"></script>

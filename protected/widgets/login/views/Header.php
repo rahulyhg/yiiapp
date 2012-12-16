@@ -19,7 +19,7 @@
 			<div class="login-contnr">
 				<p>Password</p>
 				<input type="password" class="required" tabindex="2" id="password" name="LoginForm[password]" />
-				<a href="/guest/forget">Forget Password?</a>
+				<a href="/guest/forget" id="forgotPassword">Forget Password?</a>
 			</div>
 			<?php echo CHtml::submitButton('Login',array('class'=>'type2b','tabindex'=>'3')); ?>
 		<?php echo CHtml::endForm(); ?>
@@ -32,6 +32,8 @@
 $(document).ready(function(){
     //$("#LoginForm").validationEngine('attach');
     $("#LoginForm").validate();
+
+    $("#forgotPassword").colorbox({iframe:true, width:"850", height:"500"});
   });
 
 

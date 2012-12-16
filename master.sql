@@ -83,7 +83,6 @@ insert into astrodate_master(name) values ("Aswathi"), ("Bharani"),("Karthika"),
 
 ("Moolam"), ("Thiruvonam"), ("Avittam"), ("Chadayam"), ("Pooruttathi"), ("Uthirattathi"), ("Revathi");
 
-insert into districts(districtId,name) values(1,"Alapuzha"), (2, "CALICUIT"),(3, "IDUKKI"),(4,"KANNUR"),(5,"KASARGOD"),(6,"KOTTAYAM"), (7,"MALAPPURAM"),(8,"PALAKKAD"),(9,"ERNAKULAM"),(10,"PATHANAMTHITTA"),(11,"THRISSUR"),(12,"THIRUVANANTHAPURAM"),(13,"WAYANAD");
 
 -- religion table
 
