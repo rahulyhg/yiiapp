@@ -113,13 +113,13 @@
 				</li>
 				<li>
 					<div class="title">
-						Religion 
+						Religion <span class="sup">*</span>
 					</div>
 					<div class="info">
 					<?php $records = Religion::model()->findAll("active = 1");
   
 		$list = CHtml::listData($records, 'religionId', 'name');
-		echo CHtml::dropDownList('religion',null,$list,array('empty' => 'Religion','class'=>'wid160')); ?>
+		echo CHtml::dropDownList('religion',null,$list,array('empty' => 'Religion','class'=>'validate[required] wid160')); ?>
 					</div>
 				</li>
 				<li>
