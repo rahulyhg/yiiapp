@@ -7,7 +7,9 @@ html, body, body div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquot
 	vertical-align: baseline;
 	background: transparent;
 }
-
+div, p{
+	cursor: default;
+}
 article, aside, figure, footer, header, hgroup, nav, section {display: block;}
 img,
 object,
@@ -72,7 +74,6 @@ pre, code, kbd, samp {font-family: monospace, sans-serif;}
 
 /* hand cursor on clickable elements */
 .clickable,
-label, 
 input[type=button], 
 input[type=submit], 
 button {cursor: pointer;}
@@ -481,23 +482,23 @@ body{
 	text-decoration: none;
 }
 .type1b{
-    width:65px;
-    background: none repeat scroll 0 0 #f1effa;
-    color: #7c51a1;
+	height: 22px;
     float: left;
-    font: 12px/17px arial,helvetica,sans-serif;
-    margin:0 10px 0 0;
-    text-align: center;
+    font: normal 12px/14px arial,tahoma,sans-serif;
+    color: #7c51a1;
     text-decoration: none;
-	padding:3px 0 !important;
-	border: none 0;
+    text-transform: capitalize;
+    background:#f1effa;
+    padding:0 14px;
+    border: 0;
+    margin: 0;
 }
 .type1b:hover{
     background: #7c51a1;
     color: #f1effa;
-	text-decoration: none !important;
+    border: 0 !important;
+	text-decoration: none;
 }
-
 .type2{
     width:65px !important;
     background:#f1effa !important;
@@ -515,7 +516,24 @@ body{
     color: #f1effa;
     text-decoration: none !important;
 }
-
+.type2b{
+    width:65px;
+	height: 23px;
+    background: none repeat scroll 0 0 #f1effa;
+    color: #7c51a1;
+    float: right;
+    font: 12px/22px arial,helvetica,sans-serif;
+    margin:18px 0 0 0;
+    text-align: center;
+    text-decoration: none;
+	padding:0 !important;
+	border: none 0;
+}
+.type2b:hover{
+    background: #7c51a1;
+    color: #f1effa;
+	text-decoration: none !important;
+}
 .type3{
     width:65px;
     background: none repeat scroll 0 0 #f1effa;
@@ -1113,16 +1131,17 @@ h5{
 	margin-top: -8px;
 }
 
-.rightbar-contnr .searchID input {
+.rightbar-contnr .searchID input[type="text"]{
     background: none repeat scroll 0 0 #FFFFFF;
     border: 1px solid #E7E8E9;
     color: #939598;
     font: 13px/15px arial,helvetica,sans-serif;
     height: 21px;
     padding-left: 4px;
-    width: 175px;
+    width:175px;
+	float: left;
 }
-.rightbar-contnr .searchID a {
+.rightbar-contnr .searchID input{
     margin: 0 !important;
 }
 
@@ -1241,7 +1260,7 @@ h5{
 .subscribe-box .benefits{
     width: 100%;
     float: left;
-    font: normal 20px/22px HelveticaCondensed,helvetica,arial,sans-serif;
+    font: normal 18px/22px HelveticaCondensed,helvetica,arial,sans-serif;
     text-transform: uppercase;
     color: #7C51A1;
 }
@@ -2047,33 +2066,4 @@ h5{
 .coffee a:hover{
     background:#f2e9e5 url("http://marrydoor.com/images/marrydoor.png") no-repeat -601px 8px;
 }
-.type1b{
-    width:65px;
-    background: none repeat scroll 0 0 #f1effa;
-    color: #7c51a1;
-    float: left;
-    font: 12px/17px arial,helvetica,sans-serif;
-    margin:0 10px 0 0;
-    text-align: center;
-    text-decoration: none;
-        padding:3px 0 !important;
-        border: none 0;
-}
-.type1b:hover{
-    background: #7c51a1;
-    color: #f1effa;
-        text-decoration: none !important;
-	}	
 	
-.rightbar-contnr .searchID input {
-    background: none repeat scroll 0 0 #FFFFFF;
-    border: 1px solid #E7E8E9;
-    color: #939598;
-    font: 13px/15px arial,helvetica,sans-serif;
-    height: 21px;
-    padding-left: 4px;
-    width: 175px;
-}
-.rightbar-contnr .searchID a {
-    margin: 0 !important;
-}

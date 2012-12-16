@@ -34,20 +34,16 @@
 }
 
 .formError .formErrorContent {
-	width: 100%;
-	background: #876099;
+	width:100%;
+	background: #7C51A1;
 	position:relative;
 	color: #fff;
 	width: 150px;
 	font-size: 11px;
-	border: 2px solid #ddd;
-	box-shadow: 0 0 6px #000;
-	-moz-box-shadow: 0 0 6px #000;
-	-webkit-box-shadow: 0 0 6px #000;
+	border: 1px solid #ddd;
+	box-shadow: 0 0 6px -2px #000;
 	padding: 4px 10px 4px 10px;
-	border-radius: 6px;
-	-moz-border-radius: 6px;
-	-webkit-border-radius: 6px;
+	border-radius: 3px;
 }
 
 .greenPopup .formErrorContent {
@@ -85,7 +81,7 @@ body.rtl .formError .formErrorArrow {
 	-webkit-box-shadow: 0 2px 3px #444;
 	font-size: 0px;
 	height: 1px;
-	background: #ee0101;
+	background: #7C51A1;
 	margin: 0 auto;
 	line-height: 0;
 	font-size: 0;

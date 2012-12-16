@@ -257,8 +257,8 @@
 	<aside class="rightbar-contnr">
 		<div class="searchID">
 		<form id="keywordSearch"  name="keywordSearch" method="get"  action="/search/byid">
-			<input name="id" type="text" class="required"  placeholder="Search By ID / Keyword" />
-			<?php echo CHtml::submitButton('Search',array('class'=>'type1b')); ?>
+			<input name="id" type="text" class="validate[required]"  placeholder="Search By ID / Keyword" />
+			<?php echo CHtml::submitButton('Search',array('class'=>'type2b')); ?>
 		</form>	
 			
 		</div>
@@ -284,7 +284,7 @@
 <script type="text/javascript">
 $(document).ready(function(){
 	$("#users-register-form").validationEngine('attach');
-	$("#keywordSearch").validate();
+	$("#keywordSearch").validationEngine('attach');
     
     $("input:reset").click(function() {       // apply to reset button's click event
         this.form.reset();                    // reset the form
@@ -292,7 +292,7 @@ $(document).ready(function(){
 		$("#users-register-form").validationEngine('hideAll');
          return false;                         // prevent reset button from resetting again
     });
-
+        
     
   });
 

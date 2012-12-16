@@ -21,7 +21,7 @@
 				<input type="password" class="required" tabindex="2" id="password" name="LoginForm[password]" />
 				<a href="/guest/forget">Forget Password?</a>
 			</div>
-			<?php echo CHtml::submitButton('Login',array('class'=>'type2','tabindex'=>'3')); ?>
+			<?php echo CHtml::submitButton('Login',array('class'=>'type2b','tabindex'=>'3')); ?>
 		<?php echo CHtml::endForm(); ?>
 				</div>
 		<?php }?>

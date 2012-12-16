@@ -490,6 +490,10 @@
     font:normal 13px/20px arial,helvetica,sans-serif;
     color: #939598;
 }
+.membership-contnr ul.tab-data li .left label{
+    font:normal 13px/20px arial,helvetica,sans-serif;
+    color: #939598;
+}
 .membership-contnr ul.tab-data li .right{
     width:60%;
     float: right;
@@ -538,7 +542,7 @@
     float: right;
     margin: 7px 11% 0 0;
 }
-.membership-contnr ul.tab-data li .button-contnr a{
+.membership-contnr ul.tab-data li .button-contnr input{
     margin: 0 2px 0 0;
 }
 .membership-contnr ul.tab-data li .buttonContnr{
@@ -631,7 +635,7 @@
     float: right;
     margin: 0 9% 0 0;
 }
-.basic-search ul.search-data li .button-contnr a{
+.basic-search ul.search-data li .button-contnr input{
     margin: 0 2px 0 0;
 }
 .basic-search ul.search-data li .right .check-contnr{
