@@ -1,317 +1,180 @@
-<!--left-content-->
-                <div id="content-left-member-11">   
-
-
- <p class="text_pink-hd">Add Photos</p>
- 
- <div class="clear"></div>
- 
- 
-<p class="txt_bld_14"><span class="text_pink">Its make your profile more visibile</span></p><br />
-<div class="space-new"><br /></div>
-
-<p class="txt_rg">Happy Valentine's Day everyone! To show our love, we are running a sale for you guys Happy Valentine's Day everyone! To show our love, we are running a sale for you guys Happy Valentine's Day everyone!</p>
-
-<?php if(!empty($photos)):?>
-<!--  photo lists starts -->
-
-<div class="line"></div>
-
-<?php foreach($photos as $photo):?>
-<div class="image_13"><!--image_12-->
-<a href="#"><img src="<?php echo Utilities::getProfileImage($user->marryId,$photo->imageName); ?>" class="image" border="0" width="110" height="120"/></a>
-<p class="space-5px">&nbsp;</p>
- <p class="txt_bld-10"><a href="<?php echo Yii::app()->params['homeUrl']?>/user/profilepicture/r/setimage/pId/<?php echo $photo->photoId?>/uId/<?php echo $user->userId?>">Make as profile picture</a>
-
- <p class="txt_bld-10"><a href="<?php echo Yii::app()->params['homeUrl']?>/user/profilepicture/r/deleteimage/pId/<?php echo $photo->photoId?>/uId/<?php echo $user->userId?>" class="txt_link">Delete</a></p>
-
-</div><!--/image_12--><!--/image_12-->
-
-<?php endforeach;?>
-<div class="clear"></div>
-
-
-
-<div class="space"><br /></div>
-<div class="line"></div>
-
-<!-- photo lists ends -->
-<?php endif;?>
-<p class="txt_rg">You can add one more photo in this album</p>
-
-<div class="list_div_1b"><!--list_div_1-->
-<p class="txt_bld">&nbsp;</p>
-</div><!--/list_div_1-->
-
-<div class="list_div_260"><!--list_div_1-->
-<p class="txt_bld-10-new2">Select an image file on your computer</p>
-</div><!--/list_div_1-->
-
-<div class="clear"></div>
-
-<div class="list_div_1"><!--list_div_1-->
-<p class="txt_bld">Upload  Photo</p>
-</div><!--/list_div_1-->
-
-
-
-
-
-<div class="list_div_2"><!--list_div_2-->
-
-<form action="<?php echo Yii::app()->params['homeUrl'] ?>/user/profilepicture" method="post" enctype="multipart/form-data">
-<input type="hidden" name="photoCount" id="photoCount" value="2" />
- <input type="file" name="profilePhoto_1" id="profilePhoto_1"  class="fileStyle"/>
-
- <br />
- <div id="photoContainer" style="margin-bottom:10px;"></div>
-  <div>
-  <input type="button" name="morephoto" id="morephoto" class="btnStyle" value="Add more" onClick="addMoreFiles()"; /></div>
-	<div class="clearSpace"></div>
-  <div>
-  <input type="submit" name="uploadphoto" id="uploadphoto" class="btnStyle" value="Upload" /></div>
-
-  </form>
- </div>
-<!--/list_div_2-->
-
-
-<div class="clear"></div>
-
-
-
-
-
-
-
-<div class="line"></div>
-<p class="space-15px">&nbsp;</p>
-
- <div class="list_div_1"><!--list_div_1-->
-<p class="txt_bldn">Who can view above detals</p>
-</div><!--/list_div_1-->
-
-
-
-
-
-<div class="list_class-451">
-          
-          <p class="radio-2b">
-                            <input type="checkbox" name="register" value="myself">
-            &nbsp;All</p>
-          <p class="radio-2b">
-            <input type="checkbox" name="register2" value="relative" />
-  &nbsp;Subscribers</p>
-          <p class="radio-2b">
-            <input type="checkbox" name="register" value="relative" />
-  &nbsp;Loged Members</p>
-          <p class="radio-2b">
-            <input type="checkbox" name="register" value="relative" />
-  &nbsp;By Request</p>
-</div>
-<!--/list_div_2-->
-
-<div class="clear"></div>
-
-
-
-<p class="space-15px">&nbsp;</p>
-<div class="line"></div>
-
-
-
- <p class="text_pink-hd">Add Documents</p>
- 
- <div class="clear"></div>
-
-<p class="txt_bld_14"><span class="text_pink">Its make your profile more visibile</span></p><br />
-
-
-
-
-
-<p class="txt_rg">Happy Valentine's Day everyone! To show our love, we are running a sale for you guys Happy Valentine's Day everyone! To show our love, we are running a sale for you guys Happy Valentine's Day everyone! To show our love, we are running a sale for you guys Happy Valentine's Day everyone! To show ou r love, we are running a sale for you guys Happy Valentine's Day everyone! To show our love, we are running a sale for you guys Happy Valentine's Day everyone! To show our love, we are running a sale for you guys</p>
-
-
-
-<div class="space"><br /></div>
-
-<?php if(!empty($documents)):?>
-<!-- list of documents starts -->
-<div class="line"></div>
-<?php foreach($documents as $document):?>
-<div class="image_13"><!--image_12-->
-
-<a href="#">
-<img src="<?php echo Yii::app()->params['mediaUrl']; ?>/photo_2_blank.jpg" class="image" border="0" /></a>
-
- <p class="txt_bld-10"><br />
-<a href="<?php echo Yii::app()->params['homeUrl']?>/user/profilepicture/r/deletedocument/dId/<?php echo $document->documentId?>/uId/<?php echo $user->userId?>" class="txt_link">Delete</a></p>
-
-</div><!--/image_12-->
-<?php endforeach; ?>
-
-<div class="clear"></div>
-
-
-
-<div class="space"><br /></div>
-<div class="line"></div>
-<!-- documents list ends here -->
-<?php endif; ?>
-<p class="txt_rg">You can add one more photo in this album</p>
-
-
-<div class="list_div_1b"><!--list_div_1-->
-<p class="txt_bld">&nbsp;</p>
-</div><!--/list_div_1-->
-
-<div class="list_div_260"><!--list_div_1-->
-<p class="txt_bld-10-new2">Select an image file on your computer</p>
-</div><!--/list_div_1-->
-
-<div class="clear"></div>
-
-<div class="list_div_1"><!--list_div_1-->
-<p class="txt_bld">Upload  Photo</p>
-</div><!--/list_div_2-->
-
-
-
-
-
-<div class="list_div_2"><!--list_div_2-->
-
-<form action="<?php echo Yii::app()->params['homeUrl'] ?>/user/profilepicture" method="post" enctype="multipart/form-data">
-  <input type="hidden" name="documentCount" id="documentCount"  value="2" />
- <input type="file" name="profileDocument_1" id="profileDocument_1" size="19" class="fileStyle" />
-<div style="float:left; width:40%;">
-<div class="list_div_1-doc"><!--list_div_1-->
-<p class="txt_bldn">Type of Document*</p>
-</div><!--/list_div_1-->
-
-<div class="list_div_3b">
-
- <select class="select_small_140" id="documentType_1" name="documentType_1">
- <option value="1">Passport</option>
- <option value="2">Voters ID</option>
- <option value="3">PAN Card</option>
- </select>
-
-
- <div class="space"><p></p></div>
- 
-
- </div><!--/list_div_2-->
- </div>
- 
-<div class="clear"></div>
- <div id="documentContainer" style="margin-bottom:10px;"></div>
-
-              
-   </div>
-<!--/list_div_2-->
-
-
-
-
-
- 
- 
- 
- 
- 
-<div class="clear"></div>
- <div class="div_ww">
- <div class="div_rr" style="width:100%;">
-
-                  <div>
-  <input type="button" name="moredocuments" id="moredocuments" class="btnStyle" value="Add more" onClick="addMoreDocuments();" /></div>
-	<div class="clearSpace"></div>
-  <div>
-  <input type="submit" name="uploaddocuments" id="uploaddocuments" class="btnStyle" value="Upload" /></div>
-  </form>
-                
-</div>  
-</div>
-
-
-
-
-
-
-
-<div class="clear"></div><div class="line"></div>
-<p class="space-15px">&nbsp;</p>
-
-
-
-<div class="div_ww">
-  <div class="list_div_1"><!--list_div_1-->
-<p class="txt_bldn">Who can view above detals</p>
-</div><!--/list_div_1-->
-
-<div class="list_div_300">
-<p class="radio-4">
-          <input type="radio" name="view" value="myself">&nbsp;Subscribers</p>
-                 <p class="radio-4">
-                            <input type="radio" name="view" value="son">&nbsp;By request</p>
-   </div>       
- </div>
-<!--/list_div_2-->
-
-<div class="clear"></div>
-
-<div class="div_rr">
-
-                <a class="focus-sub" href="#">Submit</a> </div>
-
-
-
-
-
-
-<div class="clear"></div>
-  <div class="space-10px"><p>&nbsp;<br /></p></div>            
-                
-			  </div><!--left-member-content closing-->
-                <!--content-right-member-->
-                <div id="content-right-member-full">
-                
-<img src="<?php echo Yii::app()->params['mediaUrl']; ?>/hedding_specifications.jpg" class="img_heading0" />
-
-
-<div class="line_sm-new"></div>
-
-<div class="div_r_div"><!--div_r_div-->
-<p class="txt_btm_10"><img src="<?php echo Yii::app()->params['mediaUrl']; ?>/tickmark.jpg" class="image" />&nbsp;You can add</p>
-<img src="<?php echo Yii::app()->params['mediaUrl']; ?>/image_1.jpg" class="image_mdown_10" />
-<p class="txt_btm_10">front View</p>
-<img src="<?php echo Yii::app()->params['mediaUrl']; ?>/image_1.jpg" class="image_mdown_10" />
-<p class="txt_btm_10">front View</p>
-<img src="<?php echo Yii::app()->params['mediaUrl']; ?>/image_1.jpg" class="image_mdown_10" />
-<p class="txt_btm_10">front View</p>
-
-
-
-</div><!--/div_r_div-->
-
-
-<div class="line_ver"></div>
-
-<div class="div_r_div"><!--div_r_div-->
-<p class="txt_btm_10"><img src="<?php echo Yii::app()->params['mediaUrl']; ?>/intomark.jpg" class="image" />&nbsp;You can't add</p>
-<img src="<?php echo Yii::app()->params['mediaUrl']; ?>/image_1.jpg" class="image_mdown_10" />
-<p class="txt_btm_10">front View</p>
-<img src="<?php echo Yii::app()->params['mediaUrl']; ?>/image_1.jpg" class="image_mdown_10" />
-<p class="txt_btm_10">front View</p>
-<img src="<?php echo Yii::app()->params['mediaUrl']; ?>/image_1.jpg" class="image_mdown_10" />
-<p class="txt_btm_10">front View</p>
-
-</div><!--/div_r_div-->
-
-                
-                
-                </div>
-              <!--content-right-member closing-->
+	<section class="data-contnr">
+		<article class="section">
+		<?php if(!empty($photos)):?>
+			<ul class="no-padd">
+				<li class="mTnone">
+					<h1 class="message">Why Add  Photos </h1>
+					<h5 class="color">To make your profile stand out</h5>
+				</li>
+			</ul>
+			<ul class="no-padd">
+				<li>
+					<p class="width100">By adding a photo, you get better responses from exact matches. A profile pictures assures a visitor that you are not fake. You can limit the access of your pictures by clicking the below options.</p>
+					<h5>Please mouse hover on a photo to use as ur profile picture or to delete</h5>
+				</li>
+			</ul>
+			<?php else:?>
+			<ul class="no-padd">
+				<li class="mTnone">
+					<h1 class="message">Add Photos</h1>
+					<h5 class="color">A picture is worth thousand words!</h5>
+				</li>
+			</ul>
+			<ul>
+				<li>
+					<p class="width100">By adding your picture you increase the credibility of your profile and can get better responses. Photos plays a major role in getting a better match, so go ahead adding one.</p>
+				</li>
+				<li class="mTnone">
+					<a href="<?php echo Utilities::createAbsoluteUrl('user','photoupload'); ?>" class="upload" id="photoUpload">UPLOAD YOUR PHOTOS</a>
+				</li>
+			</ul>
+			<?php endif;?>
+			<?php if(!empty($photos)):?>
+			<ul class="no-padd">
+				<li>
+				<?php foreach($photos as $photo):?>
+					<div class="photoOpt">
+						<div class="ppOpts">
+							<p><a href="<?php echo Utilities::getMediaUrl();?>/user/profilepicture/r/setimage/pId/<?php echo $photo->photoId?>/uId/<?php echo $user->userId?>" title="click to make this ur profile picture">Use as Profile Picture</a></p>
+							<p><a href="<?php echo Utilities::getMediaUrl();?>/user/profilepicture/r/deleteimage/pId/<?php echo $photo->photoId?>/uId/<?php echo $user->userId?>" title="click to delete this picture">Delete</a></p>
+						</div>
+						<img src="<?php echo Utilities::getProfileImage($user->marryId,$photo->imageName); ?>" alt="" />
+					</div>
+				<?php endforeach;?>	
+				</li>
+			</ul>
+			<ul class="no-padd">
+				<li>
+					<p class="width100">You can add one more photo in this album</p>
+				</li>
+				<li>
+					<a href="<?php echo Utilities::createAbsoluteUrl('user','photoupload'); ?>" class="upload" id="photoUpload">UPLOAD YOUR PHOTOS</a>
+				</li>
+				<li>
+					<div class="title">
+						Who can view above detals
+					</div>
+					<div class="info">
+						<div class="check">
+							<input type="checkbox"  /> <span>Subscribers</span>
+						</div>
+						<div class="check">
+							<input type="checkbox"  /> <span>By Request</span>
+						</div>
+					</div>
+				</li>
+			</ul>
+			<?php endif;?>
+			<?php if(!empty($documents)):?>
+			<ul class="no-padd">
+				<li >
+					<h1 class="message">Why Add Documents </h1>
+				</li>
+			</ul>
+			<ul class="no-padd">
+				<li>
+					<p class="width100 no-marg">Documents are not only a proof to your claims, but also a way to attract candidates who are suitable for your age, qualification and profession.</p>
+					<h5 class="mT20">Please mouse hover on a photo to delete.</h5>
+				</li>
+			</ul>
+			<ul class="no-padd">
+				<li>
+				<?php foreach($documents as $document):?>
+					<div class="docOpt">
+						<div class="ppOpts">
+							<p>Passport</p>
+							<p><a href="<?php echo Yii::app()->params['homeUrl']?>/user/profilepicture/r/deletedocument/dId/<?php echo $document->documentId?>/uId/<?php echo $user->userId?>" title="click to delete this picture">Delete</a></p>
+						</div>
+						<img src="./images/user/doc1.png" alt="" />
+					</div>
+				<?php endforeach; ?>	
+				</li>
+			</ul>
+			<ul class="no-padd">
+				<li>
+					<p class="width100 no-marg">You can add one more document in this album</p>
+				</li>
+				<li>
+					<a href="<?php echo Utilities::createAbsoluteUrl('user','documentupload'); ?>" class="upload" id="documentUpload">UPLOAD YOUR Documents</a>
+				</li>
+				<li>
+					<div class="title">
+						Who can view above detals
+					</div>
+					<div class="info">
+						<div class="check">
+							<input type="checkbox"  /> <span>Subscribers</span>
+						</div>
+						<div class="check">
+							<input type="checkbox"  /> <span>By Request</span>
+						</div>
+					</div>
+				</li>
+				<li>
+					<a href="#" class="type2">Next</a>
+				</li>
+			</ul>
+			<?php else:?>
+			<ul class="no-padd">
+				<li>
+					<h1 class="message">Add Documents </h1>
+					<h5 class="color">Documents are proof to your claims!</h5>
+				</li>
+			</ul>
+			<ul class="no-padd">
+				<li>
+					<p class="width100">Let the documents validate your claims about job, salary, age etc. By adding valid documents you are telling yours is trust worthy profile.</p>
+				</li>
+				<li class="mTnone">
+					<a href="<?php echo Utilities::createAbsoluteUrl('user','documentupload'); ?>" class="upload" id="documentUpload">UPLOAD YOUR DOCUMENTS</a>
+				</li>
+			</ul>
+			<?php endif;?>
+		</article>
+	</section>
+	
+	<section class="rightbar-contnr">
+		<div class="photo-spec-contnr">
+			<div class="lArrow"></div>
+			<div class="head-text">Specifications for Photo Upload</div>
+			<div class="leftC">
+				<div class="can">You can add</div>
+				<div class="pCont">
+					<img src="<?php echo Utilities::getMediaUrl(); ?>/user/passport.png" alt="" />
+					<span>Passport size</span>
+				</div>
+				<div class="pCont">
+					<img src="<?php echo Utilities::getMediaUrl(); ?>/user/front.png" alt="" />
+					<span>Front view</span>
+				</div>
+				<div class="pCont">
+					<img src="<?php echo Utilities::getMediaUrl(); ?>/user/full-size.png" alt="" />
+					<span>Full view</span>
+				</div>
+			</div>
+			<div class="rightC">
+				<div class="cant">You can't add</div>
+				<div class="pCont mL24">
+					<img src="<?php echo Utilities::getMediaUrl(); ?>/user/not-clear.png" alt="" />
+					<span>Face not clear</span>
+				</div>
+				<div class="pCont mL24">
+					<img src="<?php echo Utilities::getMediaUrl(); ?>/user/blured.png" alt="" />
+					<span>Blured</span>
+				</div>
+				<div class="pCont mL24">
+					<img src="<?php echo Utilities::getMediaUrl(); ?>/user/group.png" alt="" />
+					<span>Group photo</span>
+				</div>
+			</div>	
+		</div>
+	</section>
+
+	<script type="text/javascript">
+$(document).ready(function(){
+    $("#photoUpload").colorbox({iframe:true, width:"850", height:"500"});
+    $("#documentUpload").colorbox({iframe:true, width:"850", height:"500"});
+  });
+
+
+</script>
