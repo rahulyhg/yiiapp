@@ -2,8 +2,13 @@
         <a href="http://marrydoor.com" class="logo" ></a>
                 <?php $userName = Yii::app()->session->get('username');?>
                 <?php $user = Yii::app()->session->get('user');?>
-  <?php if(isset($userName)) {?>
-  			<div class="welcome-message">Hi <a href="edit-my-profile.htm" class="mdL"><?php echo $userName; echo " ".$user['marryId']?> </a> | <a class="logout" href="/site/logout">Logout</a></div>
+ <?php if(isset($userName)) {?>
+  			<div class="welcome-message">
+  			<span class="color">
+  			<?php echo $userName; echo " ".$user['marryId']?> 
+  			</span>
+  			|
+  			<a class="logout" href="/site/logout">Logout</a></div>
   			
   			<?php } else {?>
   			   <div class="welcome-message">Welcome Guest!</div>
