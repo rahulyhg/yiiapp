@@ -32,11 +32,11 @@
 						Prefered Age <span class="sup">*</span>
 					</div>
 					<div class="info">
-					<?php echo CHtml::dropDownList('ageFrom',null,Utilities::getAge(),array('class'=>'wid50')); ?>
+					<?php echo CHtml::dropDownList('ageFrom',null,Utilities::getAge(),array('empty' => 'Age','class'=>'validate[required] wid50')); ?>
 						
 						<div class="married">
 							<span class="text">to</span>
-							<?php echo CHtml::dropDownList('ageTo',null,Utilities::getAge(),array('class'=>'wid50')); ?>
+							<?php echo CHtml::dropDownList('ageTo',null,Utilities::getAge(),array('empty' => 'Age','class'=>'validate[required] wid50')); ?>
 							<span class="text">years</span>
 						</div>
 					</div>
@@ -47,19 +47,19 @@
 					</div>
 					<div class="info">
 						<div class="check ">
-							<INPUT type="checkbox" value="4" name="maritial[]"> <span>Any</span>
+							<INPUT type="checkbox" class="validate[required] checkbox" value="4" name="maritial[]"> <span>Any</span>
 						</div>
 						<div class="check ">
-							<INPUT type="checkbox" value="0" name="maritial[]"> <span>Unmarried </span>
+							<INPUT type="checkbox" class="validate[required] checkbox" value="0" name="maritial[]"> <span>Unmarried </span>
 						</div>
 						<div class="check ">
-							<INPUT type="checkbox" value="1" name="maritial[]"> <span>Widow/Widower</span>
+							<INPUT type="checkbox" class="validate[required] checkbox" value="1" name="maritial[]"> <span>Widow/Widower</span>
 						</div>
 						<div class="check ">
-							<INPUT type="checkbox" value="2" name="maritial[]"> <span>Divorced </span>
+							<INPUT type="checkbox" class="validate[required] checkbox" value="2" name="maritial[]"> <span>Divorced </span>
 						</div>
 						<div class="check ">
-							<INPUT type="checkbox" value="3" name="maritial[]"> <span>Awaiting divorce</span>
+							<INPUT type="checkbox" class="validate[required] checkbox" value="3" name="maritial[]"> <span>Awaiting divorce</span>
 						</div>
 					</div>
 				</li>
@@ -69,16 +69,16 @@
 					</div>
 					<div class="info">
 						<div class="radio mR14">
-							<input type="radio" name="child" value="0"> <span>Doesn't matter</span>
+							<input type="radio" name="child" class="validate[required] radio" value="0"> <span>Doesn't matter</span>
 						</div>
 						<div class="radio mR14">
-							<input type="radio" name="child" value="1"> <span>Yes. living together </span>
+							<input type="radio" name="child" class="validate[required] radio" value="1"> <span>Yes. living together </span>
 						</div>
 						<div class="radio mR14">
-							<input type="radio" name="child" value="2"> <span>Yes. not living together</span>
+							<input type="radio" name="child" class="validate[required] radio" value="2"> <span>Yes. not living together</span>
 						</div>
 						<div class="radio mR14">
-							<input type="radio" name="child" value="3"> <span>No </span>
+							<input type="radio" name="child" class="validate[required] radio" value="3"> <span>No </span>
 						</div>
 					</div>
 				</li>
@@ -87,11 +87,11 @@
 						Height <span class="sup">*</span>
 					</div>
 					<div class="info">
-					 <?php echo CHtml::dropDownList('heightFrom',null,Utilities::getHeights(),array('class'=>'wid120')); ?>
+					 <?php echo CHtml::dropDownList('heightFrom',null,Utilities::getHeights(),array('empty' => 'Height','class'=>'validate[required] wid120')); ?>
 						
 						<div class="married">
 							<span class="text">to</span>
-						<?php echo CHtml::dropDownList('heightFrom',null,Utilities::getHeights(),array('class'=>'wid120')); ?>
+						<?php echo CHtml::dropDownList('heightTo',null,Utilities::getHeights(),array('empty' => 'Height','class'=>'validate[required] wid120')); ?>
 						</div>
 					</div>
 				</li>
@@ -101,13 +101,13 @@
 					</div>
 					<div class="info">
 						<div class="radio mR14">
-							<input type="radio" name="status" value="0"> <span>Normal</span>
+							<input type="radio" class="validate[required] checkbox" name="status" value="0"> <span>Normal</span>
 						</div>
 						<div class="radio mR14">
-							<input type="radio" name="status" value="1"><span><a href="#">Disabled</a> </span>
+							<input type="radio" name="status" class="validate[required] checkbox" value="1"><span><a href="#">Disabled</a> </span>
 						</div>
 						<div class="radio mR14">
-							<input type="radio" name="status" value="2"><span>Doesn't matter </span>
+							<input type="radio" name="status" class="validate[required] checkbox" value="2"><span>Doesn't matter </span>
 						</div>
 					</div>
 				</li>
@@ -255,7 +255,7 @@
 							<input class="add type2" value="Add" onclick="return add('country','country1')" type="button">
 							<input class="remove type2" value="Remove" onclick="return add('country1','country')" type="button">
 						</div>
-						<select class="right ar" id="country1" name="country1[]" multiple="multiple">
+						<select class="validate[required] right ar" id="country1" name="country1[]" multiple="multiple">
 						</select>
 					</div>
 				</li>
@@ -272,7 +272,7 @@
 							<input class="add type2" value="Add" onclick="return add('citizen','citizen1')" type="button">
 							<input class="remove type2" value="Remove" onclick="return add('citizen1','citizen')" type="button">
 						</div>
-						<select class="right ar" id="citizen1" name="citizen1[]" multiple="multiple">
+						<select class="validate[required] right ar" id="citizen1" name="citizen1[]" multiple="multiple">
                         </select>
 						
 					</div>
@@ -290,7 +290,7 @@
 							<input class="add type2" value="Add" onclick="return add('state','state1')" type="button">
 							<input class="remove type2" value="Remove" onclick="return add('state1','state')" type="button">
 						</div>
-						<select class="right ar" id="state1" name="state1[]" multiple="multiple">
+						<select class="validate[required] right ar" id="state1" name="state1[]" multiple="multiple">
 						</select>
 					</div>
 				</li>
@@ -391,3 +391,20 @@
 			<a class="subNow" href="subscribe-now.htm">Subscribe Now</a>
 		</div>
 	</aside>
+	
+	<script type="text/javascript">
+$(document).ready(function(){
+	$("#userPartner").validationEngine('attach');
+    
+    $("input:reset").click(function() {       // apply to reset button's click event
+        this.form.reset();                    // reset the form
+        // clear the form error validations      
+		$("#userPartner").validationEngine('hideAll');
+         return false;                         // prevent reset button from resetting again
+    });
+        
+    
+  });
+
+</script>
+	
