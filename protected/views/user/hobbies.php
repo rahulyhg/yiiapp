@@ -584,3 +584,11 @@
 		</div>
 	</aside>
 
+<script type="text/javascript">
+
+$(document).ready(function(){ 
+	$('<a href="/user/hobby">Skip this page|</a> ').insertBefore('.logout');
+	
+});
+
+</script>

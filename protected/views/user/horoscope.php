@@ -378,3 +378,12 @@
 			<a class="subNow" href="subscribe-now.htm">Subscribe Now</a>
 		</div>
 	</aside>
+	
+	<script type="text/javascript">
+
+$(document).ready(function(){
+	$('<a href="/user/horoupload">Skip this page|</a> ').insertBefore('.logout');
+	
+});
+
+</script>

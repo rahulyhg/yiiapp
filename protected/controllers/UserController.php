@@ -4,6 +4,7 @@ class UserController extends Controller
 {
 	  public function beforeAction(CAction $action)
         {
+	        	
         		if($action->id == 'register')
         		return true;
                 $user = Yii::app()->session->get('user');
@@ -112,8 +113,9 @@ class UserController extends Controller
 	public function actionTest()
 	{
 		$user = Users::model()->findByPk(1);
+		Yii::app()->session->add('user',$user);
 		$userPersonal = $user->userpersonaldetails;
-		$this->render('contacts',array('user'=>$user,'userPersonal'=>$userPersonal));
+		$this->render("hobbies");
 	}
 	
 	public function actionContact()
@@ -143,6 +145,14 @@ class UserController extends Controller
 		$userPersonal->distictId = $_POST['district'];
 		if(isset($_POST['place']))
 		$userPersonal->placeId = $_POST['place'];
+		if(isset($_POST['caste']))
+		$userPersonal->casteId = $_POST['caste'];
+		if(isset($_POST['religion']))
+		$userPersonal->religionId = $_POST['religion'];
+		if(isset($_POST['country']))
+		$userPersonal->countryId = $_POST['country'];
+		if(isset($_POST['mobile']))
+		$userPersonal->mobilePhone = $_POST['mobile'];
 		$userPersonal->save();
 			
 		//communication address

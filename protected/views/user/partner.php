@@ -104,7 +104,7 @@
 							<input type="radio" class="validate[required] checkbox" name="status" value="0"> <span>Normal</span>
 						</div>
 						<div class="radio mR14">
-							<input type="radio" name="status" class="validate[required] checkbox" value="1"><span><a href="#">Disabled</a> </span>
+							<input type="radio" name="status" class="validate[required] checkbox" value="1"><span>Disabled </span>
 						</div>
 						<div class="radio mR14">
 							<input type="radio" name="status" class="validate[required] checkbox" value="2"><span>Doesn't matter </span>

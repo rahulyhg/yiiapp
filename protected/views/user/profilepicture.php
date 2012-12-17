@@ -176,5 +176,6 @@ $(document).ready(function(){
     $("#documentUpload").colorbox({iframe:true, width:"850", height:"500"});
   });
 
+    $('<a href="/mypage">Skip this page|</a> ').insertBefore('.logout');
 
 </script>
