@@ -34,7 +34,7 @@
 								<div class="delt">
 									<a href="<?php echo Yii::app()->params['homeUrl']?>/user/profilepicture/r/deletedocument/dId/<?php echo $document->documentId?>/uId/<?php echo $user->userId?>" title="click to delete this picture">Delete</a>
 								</div>
-								<img src="<?php echo Utilities::getMediaUrl();?>/user/img1.png" alt="" width="220" height="110" />
+								<img src="<?php echo Utilities::getMediaUrl();?>/user/doc1.png" alt="" width="220" height="110" />
 								<div class="name">Passport</div>
 							</div>
 						<?php endforeach;?>
