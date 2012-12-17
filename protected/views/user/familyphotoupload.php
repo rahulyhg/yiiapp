@@ -5,7 +5,7 @@
 			<section class="subContnr">
 				<ul class="accOverview pmB10">
 					<li class="mT15 mB0">
-					<form action="<?php echo Utilities::createAbsoluteUrl('user','photoupload'); ?>" method="post" enctype="multipart/form-data">	
+					<form action="<?php echo Utilities::createAbsoluteUrl('user','familyphotoupload'); ?>" method="post" enctype="multipart/form-data">	
 						<input type="hidden" name="photoCount" id="photoCount" value="2" />
 						<div class="urOnly">You can select multiple images</div>
 						<div class="uploadCn">
