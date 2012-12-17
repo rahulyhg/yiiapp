@@ -35,8 +35,8 @@
 				<?php foreach($photos as $photo):?>
 					<div class="photoOpt">
 						<div class="ppOpts">
-							<p><a href="<?php echo Utilities::getMediaUrl();?>/user/profilepicture/r/setimage/pId/<?php echo $photo->photoId?>/uId/<?php echo $user->userId?>" title="click to make this ur profile picture">Use as Profile Picture</a></p>
-							<p><a href="<?php echo Utilities::getMediaUrl();?>/user/profilepicture/r/deleteimage/pId/<?php echo $photo->photoId?>/uId/<?php echo $user->userId?>" title="click to delete this picture">Delete</a></p>
+							<p><a href="<?php echo Yii::app()->params['homeUrl']?>/user/profilepicture/r/setimage/pId/<?php echo $photo->photoId?>/uId/<?php echo $user->userId?>" title="click to make this ur profile picture">Use as Profile Picture</a></p>
+							<p><a href="<?php echo Yii::app()->params['homeUrl']?>/user/profilepicture/r/deleteimage/pId/<?php echo $photo->photoId?>/uId/<?php echo $user->userId?>" title="click to delete this picture">Delete</a></p>
 						</div>
 						<img src="<?php echo Utilities::getProfileImage($user->marryId,$photo->imageName); ?>" alt="" />
 					</div>
@@ -71,8 +71,8 @@
 				<?php foreach($familyPhotos as $photo):?>
 					<div class="photoOpt">
 						<div class="ppOpts">
-							<p><a href="<?php echo Utilities::getMediaUrl();?>/user/profilepicture/r/setimage/pId/<?php echo $photo->photoId?>/uId/<?php echo $user->userId?>" title="click to make this ur profile picture">Use as Profile Picture</a></p>
-							<p><a href="<?php echo Utilities::getMediaUrl();?>/user/profilepicture/r/deleteimage/pId/<?php echo $photo->photoId?>/uId/<?php echo $user->userId?>" title="click to delete this picture">Delete</a></p>
+							<p><a href="<?php echo Yii::app()->params['homeUrl']?>/user/profilepicture/r/setimage/pId/<?php echo $photo->photoId?>/uId/<?php echo $user->userId?>" title="click to make this ur profile picture">Use as Profile Picture</a></p>
+							<p><a href="<?php echo Yii::app()->params['homeUrl']?>/user/profilepicture/r/deleteimage/pId/<?php echo $photo->photoId?>/uId/<?php echo $user->userId?>" title="click to delete this picture">Delete</a></p>
 						</div>
 						<img src="<?php echo Utilities::getProfileImage($user->marryId,$photo->imageName); ?>" alt="" />
 					</div>
@@ -223,9 +223,9 @@
 
 	<script type="text/javascript">
 $(document).ready(function(){
-    $("#photoUpload").colorbox({iframe:true, width:"850", height:"500"});
-    $("#documentUpload").colorbox({iframe:true, width:"850", height:"500"});
-    $("#familyphotoUpload").colorbox({iframe:true, width:"850", height:"500"});
+    $("#photoUpload").colorbox({iframe:true, width:"860", height:"500"});
+    $("#documentUpload").colorbox({iframe:true, width:"860", height:"500"});
+    $("#familyphotoUpload").colorbox({iframe:true, width:"860", height:"500"});
   });
 
     $('<a href="/mypage">Skip this page|</a> ').insertBefore('.logout');

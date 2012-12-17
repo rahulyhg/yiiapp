@@ -27,8 +27,8 @@
 						<?php foreach($photos as $photo):?>
 							<div class="upCn">
 								<div class="ppOpts">
-									<p><a title="click to make this ur profile picture" href="<?php echo Utilities::getMediaUrl();?>/user/profilepicture/r/setimage/pId/<?php echo $photo->photoId?>/uId/<?php echo $user->userId?>">Use as Profile Picture</a></p>
-									<p><a title="click to delete this picture" href="<?php echo Utilities::getMediaUrl();?>/user/profilepicture/r/deleteimage/pId/<?php echo $photo->photoId?>/uId/<?php echo $user->userId?>">Delete</a></p>
+									<p><a title="click to make this ur profile picture" href="<?php echo Yii::app()->params['homeUrl']?>/user/profilepicture/r/setimage/pId/<?php echo $photo->photoId?>/uId/<?php echo $user->userId?>">Use as Profile Picture</a></p>
+									<p><a title="click to delete this picture" href="<?php echo Yii::app()->params['homeUrl']?>/user/profilepicture/r/deleteimage/pId/<?php echo $photo->photoId?>/uId/<?php echo $user->userId?>">Delete</a></p>
 								</div>
 								<img src="<?php echo Utilities::getProfileImage($user->marryId,$photo->imageName); ?>" alt="" width="210" height="110" />
 							</div>
