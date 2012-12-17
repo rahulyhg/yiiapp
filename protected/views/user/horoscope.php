@@ -342,10 +342,10 @@
 					</div>
 					<div class="info">
 						<div class="check">
-							<input type="radio" name="reference" value="subscribers"> <span>Subscribers</span>
+							<input type="checkbox" name="reference[]" value="subscribers"> <span>Subscribers</span>
 						</div>
 						<div class="check">
-							<input type="radio" name="reference" value="request"> <span>By Request</span>
+							<input type="checkbox" name="reference[]" value="request"> <span>By Request</span>
 						</div>
 					</div>
 				</li>
