@@ -1289,12 +1289,14 @@ h5{
     background: #22b9f1;
     margin: 20px 0 10px 108px;
 }
-.subscribe-box a.subNow{
+.subscribe-box .subNow{
     width: 100%;
     float: left;
     font: normal 24px/26px HelveticaCondensed,helvetica,arial,sans-serif;
     margin: 10px 0 20px 0;
     text-transform: uppercase;
+    text-decoration: none;
+    color: #408EF8;
 }
 .rightbar-contnr .photo-spec-contnr{
     width: 228px;

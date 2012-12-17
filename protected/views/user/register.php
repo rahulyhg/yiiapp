@@ -33,7 +33,7 @@
 			<li>
 				<div class="left"><?php echo $form->labelEx($model,'gender'); ?></div>
 				<div class="right">
-				<?php echo CHtml::dropDownList('gender',null,array('empty' =>'Gender','F'=>'Female','M'=>'Male'),array('class'=>'validate[required] width35')); ?>
+				<?php echo CHtml::dropDownList('gender',null,array('F'=>'Female','M'=>'Male'),array('empty' =>'Gender','class'=>'validate[required] width35')); ?>
 				</div>
 			</li>
 			<li>
@@ -276,7 +276,7 @@
 				Message candidates directly
 			</p>
 			<div class="divider"> </div>
-			<a class="subNow" href="#">Subscribe Now</a>
+			<div class="subNow">Subscribe Now</div>
 		</div>
 	</aside>
 
@@ -292,7 +292,35 @@ $(document).ready(function(){
 		$("#users-register-form").validationEngine('hideAll');
          return false;                         // prevent reset button from resetting again
     });
-        
+    
+    $(".membership-contnr").click(function(){
+    	$("#keywordSearch").validationEngine('hideAll');
+    	$("#LoginForm").validationEngine('hideAll');
+    	
+    });  
+    $(".rightbar-contnr").click(function(){
+    	$("#users-register-form").validationEngine('hideAll');
+    	$("#LoginForm").validationEngine('hideAll');
+    	
+    });
+
+    $(".basic-search").click(function(){
+    	$("#users-register-form").validationEngine('hideAll');
+    	$("#keywordSearch").validationEngine('hideAll');
+    	$("#LoginForm").validationEngine('hideAll');
+    	
+    });
+
+    $(".footer").click(function(){
+    	$("#users-register-form").validationEngine('hideAll');
+    	$("#keywordSearch").validationEngine('hideAll');
+    	$("#LoginForm").validationEngine('hideAll');
+    	
+    });
+    
+    
+    
+    
     
   });
 
