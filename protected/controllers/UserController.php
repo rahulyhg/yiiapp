@@ -36,7 +36,7 @@ class UserController extends Controller
 				//users table
 				$dob = $_POST['year'].'-'.$_POST['month'].'-'.$_POST['date'];
 				$user->emailId = $_POST['UserForm']['emailId'];
-				$user->password = new CDbExpression("MD5({$_POST['UserForm']['password']})");
+				$user->password = new CDbExpression("MD5('{$_POST['UserForm']['password']}')");
 				$user->name = $_POST['UserForm']['name'];
 				$password = $_POST['UserForm']['password'];
 				if(isset($_POST['date']) && isset($_POST['month']) && isset($_POST['year']) )
@@ -71,7 +71,7 @@ class UserController extends Controller
 				$userPersonal->countryId = $_POST['country'];
 				$userPersonal->stateId = $_POST['state'];
 				$userPersonal->mobilePhone = $_POST['UserForm']['mobileNo'];
-				//$userPersonal->landPhone = $_POST['UserForm']['landNo'];
+				$userPersonal->landPhone = $_POST['UserForm']['mobileNo'];
 				$userPersonal->save();
 					
 				$transaction->commit();
