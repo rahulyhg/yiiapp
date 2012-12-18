@@ -294,20 +294,20 @@ $(document).ready(function(){
     });
     
     $(".membership-contnr").click(function(){
-    	$("#keywordSearch").validationEngine('hideAll');
-    	$("#LoginForm").validationEngine('hideAll');
+    	$("#keywordSearch").validationEngine('hide');
+    	$("#LoginForm").validationEngine('hide');
     	
     });  
     $(".rightbar-contnr").click(function(){
-    	$("#users-register-form").validationEngine('hideAll');
-    	$("#LoginForm").validationEngine('hideAll');
+    	$("#users-register-form").validationEngine('hide');
+    	$("#LoginForm").validationEngine('hide');
     	
     });
 
     $(".basic-search").click(function(){
-    	$("#users-register-form").validationEngine('hideAll');
-    	$("#keywordSearch").validationEngine('hideAll');
-    	$("#LoginForm").validationEngine('hideAll');
+    	$("#users-register-form").validationEngine('hide');
+    	$("#keywordSearch").validationEngine('hide');
+    	$("#LoginForm").validationEngine('hide');
     	
     });
 

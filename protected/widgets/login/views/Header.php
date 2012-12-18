@@ -39,8 +39,8 @@ $(document).ready(function(){
     //$("#LoginForm").validate();
 	
 	 $(".user-login").click(function(){
-    	$("#users-register-form").validationEngine('hideAll');
-    	$("#keywordSearch").validationEngine('hideAll');
+    	$("#users-register-form").validationEngine('hide');
+    	$("#keywordSearch").validationEngine('hide');
     	
     });
 	
