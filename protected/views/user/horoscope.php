@@ -110,9 +110,10 @@
 					</div>
 				</li>
 				<li>
-					<div class="title"> </div>
+					<div class="title">Upload Grahanila </div>
 					<div class="fileUp">
-					<?php echo CHtml::activeFileField($model, 'horoscopeFile'); ?>
+					<input type="file" id="Horoscopes_horoscopeFile" name="horoscopeFile">
+					<span>Browse</span>
 					</div>
 				</li>
 				<li>

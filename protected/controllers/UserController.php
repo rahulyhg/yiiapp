@@ -4,7 +4,6 @@ class UserController extends Controller
 {
 	  public function beforeAction(CAction $action)
         {
-	        	
         		if($action->id == 'register')
         		return true;
                 $user = Yii::app()->session->get('user');
@@ -115,7 +114,7 @@ class UserController extends Controller
 		$user = Users::model()->findByPk(1);
 		Yii::app()->session->add('user',$user);
 		$userPersonal = $user->userpersonaldetails;
-		$this->render("hobbies");
+		$this->render('horoscope',array('model' => new Horoscopes()));
 	}
 	
 	public function actionContact()
@@ -393,16 +392,17 @@ class UserController extends Controller
 		if(isset($_POST['sign']))
 		$horoscope->sign = $_POST['sign'];
 		
-			if(isset($_POST['Horoscopes']['horoscopeFile'])){
-			$file = CUploadedFile::getInstance($horoscope,'horoscopeFile');
-			if(isset($file) && !empty($file->name))
-			{
-			$extension = strtolower(Utilities::getExtension($file->name));  
+			if(!$_FILES['horoscopeFile']['error']){
+			$file = $_FILES['horoscopeFile'];
+			$fileName=basename( $_FILES['horoscopeFile']['name']);   
+			$extension = strtolower(Utilities::getExtension($fileName));  	
 			if(Utilities::isValidImageExtension($extension)){         
-			$path = Utilities::getDirectory('images',array('horoscope',$user->marryId)); 	
-			$file->saveAs($path.$user->marryId.'-'.$file->name);
-            $horoscope->horoscopeFile = $user->marryId.'-'.$file->name;
-			}
+				$path = Utilities::getDirectory('images',array('horoscope',$user->marryId));
+				$fileName = $user->marryId.".".$extension;
+				$targetPath = Utilities::getFullFilePath($path, $fileName);
+				if(Utilities::uploadFile($_FILES['horoscopeFile']['tmp_name'], $targetPath)) {
+	            $horoscope->horoscopeFile = $fileName;
+				}
 			}
 			}
 		$horoscope->save();
