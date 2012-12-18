@@ -494,6 +494,12 @@
     font:normal 13px/20px arial,helvetica,sans-serif;
     color: #939598;
 }
+
+.basic-search ul.search-data li .left label{
+    font:normal 13px/20px arial,helvetica,sans-serif;
+    color: #939598;
+}
+
 .membership-contnr ul.tab-data li .right{
     width:60%;
     float: right;
@@ -2398,3 +2404,8 @@ article.section ul li .info .checked{
     text-decoration: none;
 }
 
+
+.membership-contnr ul.tab-data li .left label {
+    color: #939598;
+    font: 13px/20px arial,helvetica,sans-serif;
+}
