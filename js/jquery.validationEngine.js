@@ -230,7 +230,7 @@
 		/**
 		* Typically called when user exists a field using tab or a mouse click, triggers a field
 		* validation
-		
+		*/
 		_onFieldEvent: function(event) {
 			var field = $(this);
 			var form = field.closest('form');
@@ -247,7 +247,7 @@
 			}, (event.data) ? event.data.delay : 0);
 
 		},
-		*/
+		
 		/**
 		* Called when the form is submited, shows prompts accordingly
 		*

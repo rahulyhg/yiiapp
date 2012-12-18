@@ -111,9 +111,8 @@
 				</li>
 				<li>
 					<div class="title"> </div>
-					<div class="info">
+					<div class="fileUp">
 					<?php echo CHtml::activeFileField($model, 'horoscopeFile'); ?>
-						<a class="upload" href="#">UPLOAD YOUR GRAHANILA</a>
 					</div>
 				</li>
 				<li>
