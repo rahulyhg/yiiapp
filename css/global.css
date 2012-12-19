@@ -2069,31 +2069,3 @@ h5{
     background:#f2e9e5 url("http://marrydoor.com/images/marrydoor.png") no-repeat -601px 8px;
 }
 	
-/*style for input type file*/
-.fileUp{
-	width: 200px;
-	float: left;
-	margin-right: 10px;
-	overflow: hidden;
-	position: relative;
-	border: 1px solid #E7E8E9;
-}
-.fileUp input{
-	position: absolute;
-	left: 0;
-	top: 0;
-	opacity: 0;
-	transform: translate(-40px, 0px) scale(2);
-	direction: ltr;
-	cursor: pointer;
-}
-.fileUp span{
-	background: #F1EFFA;
-    color: #7C51A1;
-    float: right;
-    font: 12px/22px arial,helvetica,sans-serif;
-    height: 22px;
-    text-align: center;
-    width: 65px;
-}
-	

@@ -111,10 +111,11 @@
 				</li>
 				<li>
 					<div class="title">Upload Grahanila </div>
-					<div class="fileUp">
-					<input type="file" id="Horoscopes_horoscopeFile" name="horoscopeFile">
-					<span>Browse</span>
-					</div>
+					
+					
+					<div id='file_browse_wrapper'>
+<input type='file' id='file_browse'>
+</div>
 				</li>
 				<li>
 					<div class="title">

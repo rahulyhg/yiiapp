@@ -387,6 +387,16 @@ class Utilities
      return $weights; 	
  }
  
+ public static function getBrotherCount()
+ {
+ 	$weights = array();
+     foreach( range(0,5) as $weight){
+   $weights[$weight] = $weight;
+     }
+     return $weights; 	
+ }
+ 
+ 
  public static function getHomeUrl()
  {
  	return Yii::app()->params['homeUrl']; 

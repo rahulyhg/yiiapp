@@ -114,7 +114,7 @@ class UserController extends Controller
 		$user = Users::model()->findByPk(1);
 		Yii::app()->session->add('user',$user);
 		$userPersonal = $user->userpersonaldetails;
-		$this->render('horoscope',array('model' => new Horoscopes()));
+		$this->render('contacts',array('user'=>$user,'userPersonal'=>$userPersonal));
 	}
 	
 	public function actionContact()
@@ -392,6 +392,7 @@ class UserController extends Controller
 		if(isset($_POST['sign']))
 		$horoscope->sign = $_POST['sign'];
 		
+			if(isset($_FILES['horoscopeFile'])){
 			if(!$_FILES['horoscopeFile']['error']){
 			$file = $_FILES['horoscopeFile'];
 			$fileName=basename( $_FILES['horoscopeFile']['name']);   
@@ -403,6 +404,7 @@ class UserController extends Controller
 				if(Utilities::uploadFile($_FILES['horoscopeFile']['tmp_name'], $targetPath)) {
 	            $horoscope->horoscopeFile = $fileName;
 				}
+			}
 			}
 			}
 		$horoscope->save();

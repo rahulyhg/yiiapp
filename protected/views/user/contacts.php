@@ -127,7 +127,7 @@
 		 <?php
 		$country = Country::model()->findbyPk($user->userpersonaldetails->countryId);
 		?>
-		<div id="country" style="display:none">
+		<div class="info" id="country" style="display:none">
 		<?php $records = Country::model()->findAll("active = 1");
 		$list = CHtml::listData($records, 'countryId', 'name');
 		echo CHtml::dropDownList('country',$user->userpersonaldetails->countryId,$list,array('empty' => 'Country','class'=>'validate[required] wid150')); ?>
@@ -293,7 +293,7 @@
 		<div class="title">Who can view above detals</div>
 		<div class="info">
 			<div class="check">
-				<input type="radio" name="pcontact" value="subscribers"><span>Subscribers</span>
+				<input type="radio" name="pcontact" value="subscribers" checked="checked"><span>Subscribers</span>
 			</div>
 			<div class="check">
 				<input type="radio" name="pcontact" value="request"> <span>By Request</span>
@@ -308,7 +308,7 @@
 			Height in cm<span class="sup">*</span>
 		</div>
 		<div class="info">
-		<input type="text" class="validate[required,custom[integer],min[100],max[250]] addres_form" name="height" id="height" />
+		<?php echo CHtml::dropDownList('height',null,Utilities::getHeights(),array('empty' => 'Height','class'=>'validate[required] wid150')); ?>
 		</div>
 	</li>
 	<li>
@@ -316,7 +316,7 @@
 			Weight in kg<span class="sup">*</span>
 		</div>
 		<div class="info">
-			<input type="text" class="validate[required,custom[integer],min[30],max[150]] addres_form" name="weight" id="weight" />
+		<?php echo CHtml::dropDownList('weight',null,Utilities::getWeight(),array('empty' => 'Weight in Kg','class'=>'validate[required] wid150')); ?>
 		</div>
 	</li>
 	<li>
@@ -567,43 +567,24 @@
 	<li>
 		<div class="title">Brothers</div>
 		<div class="info">
-			<input type="text"  name="brothers" 
-								id="brothers" />
+		<?php echo CHtml::dropDownList('brothers',null,Utilities::getBrotherCount(),array('class'=>'wid50')); ?>
 			<div class="married">
-				<input type="text" name="brothersMarry" placeholder="Brother Married" 
-								id="brothersMarry" />
+			<span class="text">Married</span>
+				<?php echo CHtml::dropDownList('brothersMarry',null,Utilities::getBrotherCount(),array('class'=>'wid50')); ?>
 			</div>
 		</div>
 	</li>
 	<li>
 		<div class="title">Sisters</div>
 		<div class="info">
-			<input type="text"  name="sisters" 
-								id="sisters" />
+		<?php echo CHtml::dropDownList('sisters',null,Utilities::getBrotherCount(),array('class'=>'wid50')); ?>
 			<div class="married">
-				<input type="text" name="sistersMarry" placeholder="Sisters Married" 
-								id="sistersMarry" />
+			<span class="text">Married</span>
+			<?php echo CHtml::dropDownList('sistersMarry',null,Utilities::getBrotherCount(),array('class'=>'wid50')); ?>
 			</div>
 		</div>
 	</li>
 	
-	<li class="whoM">
-		<div class="title">Who can view album</div>
-		<div class="info">
-			<div class="check">
-				<input type="checkbox" name="family[]" value="all" /> <span>All</span>
-			</div>
-			<div class="check">
-				<input type="checkbox" name="family[]" value="subscribers" /> <span>Subscribers</span>
-			</div>
-			<div class="check">
-				<input type="checkbox" value="member" name="family[]"/> <span>Loged Members</span>
-			</div>
-			<div class="check">
-				<input type="checkbox" value="request" name="family[]"/> <span>By Request</span>
-			</div>
-		</div>
-	</li>
 	<li>
 		<div class="title">About My family</div>
 		<div class="info">
@@ -651,7 +632,7 @@
 		members <br /> Message candidates directly
 	</p>
 	<div class="divider"></div>
-	<a class="subNow" href="subscribe-now.htm">Subscribe Now</a>
+	<div class="subNow" >Subscribe Now</div>
 </div>
 </aside>
 

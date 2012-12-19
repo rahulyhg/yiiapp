@@ -84,7 +84,7 @@
 			<li>
 				<div class="left"><?php echo $form->labelEx($model,'mobileNo'); ?></div>
 				<div class="right">
-					<?php echo $form->textField($model,'mobileNo',array('class'=>'validate[required,minSize[10]]')); ?>
+					<?php echo $form->textField($model,'mobileNo',array('class'=>'validate[required,minSize[10],maxSize[10],custom[onlyNumberSp]]')); ?>
 					<?php echo $form->error($model,'mobileNo'); ?>
 				</div>
 			</li>
