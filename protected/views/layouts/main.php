@@ -25,7 +25,8 @@
 		 <?php $this->widget('application.widgets.login.Header'); ?>
 		<!-- login header ends -->
 		<!-- menu -->
-		<?php $this->widget('application.widgets.menu.Main'); ?> 
+		<?php if(Yii::app()->controller->id != 'user') {?>
+		<?php $this->widget('application.widgets.menu.Main');} ?> 
         <!-- menu ends -->
     </header>
     <!-- header ends -->
