@@ -580,7 +580,7 @@
 				Message candidates directly
 			</p>
 			<div class="divider"> </div>
-			<a class="subNow" href="subscribe-now.htm">Subscribe Now</a>
+			<div class="subNow">Subscribe Now</div>
 		</div>
 	</aside>
 
