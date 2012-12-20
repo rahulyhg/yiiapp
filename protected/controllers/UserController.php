@@ -237,10 +237,7 @@ class UserController extends Controller
 		$education->employedIn = $_POST['employed'];
 		if(isset($_POST['income']) && !empty($_POST['income']))
 		{
-		if(isset($_POST['ctc']) && $_POST['ctc'] == '12')
 		$education->yearlyIncome = intval($_POST['income']);
-		else if(isset($_POST['ctc']))
-		$education->yearlyIncome = intval($_POST['income'])*12;
 		}
 		$education->save();
 			

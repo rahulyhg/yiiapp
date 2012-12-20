@@ -32,11 +32,11 @@
 						Prefered Age <span class="sup">*</span>
 					</div>
 					<div class="info">
-					<?php echo CHtml::dropDownList('ageFrom',null,Utilities::getAge(),array('empty' => 'Age','class'=>'validate[required] wid50')); ?>
+					<?php echo CHtml::dropDownList('ageFrom',null,Utilities::getAge(),array('empty' => 'Age','class'=>'validate[required] wid120')); ?>
 						
 						<div class="married">
 							<span class="text">to</span>
-							<?php echo CHtml::dropDownList('ageTo',null,Utilities::getAge(),array('empty' => 'Age','class'=>'validate[required] wid50')); ?>
+							<?php echo CHtml::dropDownList('ageTo',null,Utilities::getAge(),array('empty' => 'Age','class'=>'validate[required] wid120')); ?>
 							<span class="text">years</span>
 						</div>
 					</div>
@@ -140,7 +140,7 @@
 				</li>
 				<li>
 					<div class="title">
-						Manglik
+						Manglik (chovvaadhosham)
 					</div>
 					<div class="info">
 						<div class="check ">
@@ -350,7 +350,7 @@
 						Annual Income
 					</div>
 					<div class="info">
-						<input type="text" id="income" name="income" placeholder="Use Rupees" />   
+					<?php echo CHtml::dropDownList('income',null,Utilities::getAnnualIncome(),array('empty' => 'Income','class'=>'wid150')); ?>
 					</div>
 				</li>
 				<li>

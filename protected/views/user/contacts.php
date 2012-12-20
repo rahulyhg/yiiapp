@@ -453,17 +453,7 @@
 	<li>
 		<div class="title">Income</div>
 		<div class="info">
-			<div class="radio wid100">
-				<input type="radio" name="ctc" class="validate[required]" value="12" /> <span>Monthly</span>
-			</div>
-			<div class="radio wid80">
-				<input type="radio" name="ctc" class="validate[required]" value="1" /> <span>Annual </span>
-			</div>
-			<div class="useRs">
-				<input type="text" id="income" class="validate[required,custom[integer]] wid100"
-									name="income" placeholder="Use Rupees" /> <span
-					class="perM">1,00,000 per month </span>
-			</div>
+		<?php echo CHtml::dropDownList('income',null,Utilities::getAnnualIncome(),array('empty' => 'Income','class'=>'wid150')); ?>
 		</div>
 	</li>
 </ul>
