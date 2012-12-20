@@ -297,7 +297,7 @@ class UserController extends Controller
 				$privacy = new Privacy();
 				$privacy->userId = $user->userId;
 				$privacy->items = 'contact';
-				$privacy->privacy = $_POST['pcontact'];
+				$privacy->privacy = implode(',', $_POST['pcontact']);
 				$privacy->save();	
 		}
 		if(isset($_POST['family']))
@@ -380,8 +380,8 @@ class UserController extends Controller
 		$horoscope->state = $_POST['state'];
 		if(isset($_POST['country']))
 		$horoscope->country = $_POST['country'];
-		if(isset($_POST['time']))
-		$horoscope->time = $_POST['time'];
+		if(isset($_POST['hours']) || isset($_POST['minutes']) || isset($_POST['seconds']) || isset($_POST['am']))
+		$horoscope->time = $_POST['hours'].'-'.$_POST['minutes'.'-'.$_POST['seconds'].' ,'.$_POST['am']];
 		if(isset($_POST['chova']))
 		$horoscope->dosham = $_POST['chova'];
 		if(isset($_POST['sudha']))

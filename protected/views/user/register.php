@@ -319,7 +319,12 @@ $(document).ready(function(){
     });
     
     
-    
+    $('input').on("keyup", function(e) {
+    	   var code = e.charCode || e.keyCode; // use charCode for firefox
+    	  if (code == 13) {               
+    	    e.preventDefault();
+    	  }
+    	});
     
     
   });

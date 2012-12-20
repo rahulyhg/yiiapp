@@ -107,9 +107,13 @@
 		$list = CHtml::listData($records, 'casteId', 'name');
 		echo CHtml::dropDownList('caste',$user->userpersonaldetails->casteId,$list,array('empty' => 'Caste','class'=>'validate[required] wid150')); ?>
 			</div>
-			
-			
-			<div class="special">Are you willing to marry from other communities</div>
+			</div>
+	</li>
+	<li>		
+			<div class="title">
+			Are you willing to marry from other communities
+			</div>
+		<div class="info">
 			<div class="radio wid60">
 				<input type="radio" class="validate[required]" name="interCaste"
 					value="1"><span>Yes</span>
@@ -118,7 +122,7 @@
 				<input type="radio" class="validate[required]" name="interCaste"
 					value="0"> <span>No</span>
 			</div>
-		</div>
+		</div>	
 	</li>
 	<li>
 		<div class="title">
@@ -184,27 +188,27 @@
 		</div>
 		<div class="info">
 			<div class="inner-row">
-			<input type="text" name="house" id="house" class="validate[required]"
+			<input type="text" name="house" id="house" class="validate[required,minSize[3],custom[onlyLetterSp]]"
 						placeholder="House Name / No." />
 			</div>
 			<div class="inner-row">
-			<input type="text" name="houseplace" id="houseplace" class="validate[required]"
+			<input type="text" name="houseplace" id="houseplace" class="validate[required,minSize[3],custom[onlyLetterSp]]"
 						placeholder="Place" />
 			</div>
 			<div class="inner-row">
 			<input type="text" name="housecity" id="city" class="validate[required]"
 						placeholder="City" />
-				<input type="text" name="housedistrict" id="housedistrict" class="validate[required]"
+				<input type="text" name="housedistrict" id="housedistrict" class="validate[required,minSize[3],custom[onlyLetterSp]]"
 						placeholder="District" />
 			</div>
 			<div class="inner-row">
-				<input type="text" name="housestate" id="statec" class="validate[required]"
+				<input type="text" name="housestate" id="statec" class="validate[required,minSize[3],custom[onlyLetterSp]]"
 						placeholder="State" />
-				<input type="text" name="housecountry" id="housecountry" class="validate[required]"
+				<input type="text" name="housecountry" id="housecountry" class="validate[required,minSize[3],custom[onlyLetterSp]]"
 						placeholder="Country" />
 			</div>
 			<div class="inner-row">
-				<input type="text" name="postcode" id="postcode" class="validate[required,custom[integer],maxSize[6]]"
+				<input type="text" name="postcode" id="postcode" class="validate[required,custom[onlyNumberSp],minSize[6],maxSize[6]]"
 						placeholder="Post Code" />
 			</div>
 		</div>
@@ -213,27 +217,27 @@
 		<div class="title">Permanent Address</div>
 		<div class="info">
 			<div class="inner-row">
-			<input type="text" name="house1" id="housep" 
+			<input type="text" name="house1" id="housep" class="validate[minSize[3],custom[onlyLetterSp]]"
 						placeholder="House Name / No." />
 			</div>
 			<div class="inner-row">
-			<input type="text" name="houseplace1" id="placep" 
+			<input type="text" name="houseplace1" id="placep" class="validate[minSize[3],custom[onlyLetterSp]]"
 						placeholder="Place" />
 			</div>
 			<div class="inner-row">
-			<input type="text" name="housecity1" id="cityp" 
+			<input type="text" name="housecity1" id="cityp" class="validate[minSize[3],custom[onlyLetterSp]]"
 						placeholder="City" />
-				<input type="text" name="housedistrict1" id="districtp" 
+				<input type="text" name="housedistrict1" id="districtp" class="validate[minSize[3],custom[onlyLetterSp]]"
 						placeholder="District" />
 			</div>
 			<div class="inner-row">
-				<input type="text" name="housestate1" id="statep" 
+				<input type="text" name="housestate1" id="statep" class="validate[minSize[3],custom[onlyLetterSp]]"
 						placeholder="State" />
-				<input type="text" name="housecountry1" id="countryp" 
+				<input type="text" name="housecountry1" id="countryp" class="validate[minSize[3],custom[onlyLetterSp]]"
 						placeholder="housecountry1" />
 			</div>
 			<div class="inner-row">
-				<input type="text" name="postcode1" id="postcodep" 
+				<input type="text" name="postcode1" id="postcodep" class="validate[custom[onlyNumberSp],minSize[6],maxSize[6]]" 
 						placeholder="Post Code" />
 			</div>
 		</div>
@@ -292,11 +296,12 @@
 	<li>
 		<div class="title">Who can view above detals</div>
 		<div class="info">
+		<div class="check">
+							<input type="checkbox" name="pcontact" value="subscribers" checked="checked"><span>Subscribers</span>
+						</div>
+		
 			<div class="check">
-				<input type="radio" name="pcontact" value="subscribers" checked="checked"><span>Subscribers</span>
-			</div>
-			<div class="check">
-				<input type="radio" name="pcontact" value="request"> <span>By Request</span>
+				<input type="checkbox" name="pcontact" value="request"> <span>By Request</span>
 			</div>
 		</div>
 	</li>
@@ -367,10 +372,10 @@
 		<div class="info">
 			<div class="inner-row">
 				<div class="radio wid90">
-					<input type="radio" name="physical" value="0"><span>Normal</span>
+					<input type="radio" name="physical" class="validate[required]"  value="0"><span>Normal</span>
 				</div>
 				<div class="radio">
-					<input type="radio" name="physical" value="1">
+					<input type="radio" name="physical" class="validate[required]"  value="1">
 					<span>Physically	challenged</span>
 				</div>
 			</div>

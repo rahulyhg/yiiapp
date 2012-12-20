@@ -81,10 +81,15 @@
 				</li>
 				<li>
 					<div class="title">
-						Time Correction  
+						Time of birth  
 					</div>
 					<div class="info">
-				<input type="text" name="time" id="time" placeholder="Time" />						
+					
+					<?php echo CHtml::dropDownList('hours',null,Utilities::getTime(),array('empty'=>'Hour','class'=>'wid70 mR5')); ?>
+					<?php echo CHtml::dropDownList('minutes',null,Utilities::getMinutes(),array('empty'=>'Minutes','class'=>'wid70 mR5')); ?>
+					<?php echo CHtml::dropDownList('seconds',null,Utilities::getMinutes(),array('empty'=>'Seconds','class'=>'wid70 mR5')); ?>
+					<?php echo CHtml::dropDownList('am',null,Utilities::getMeridiem(),array('empty'=>'AM/PM','class'=>'wid50 mR5')); ?>	
+     										
 					</div>
 				</li>
 				<li>
@@ -222,9 +227,9 @@
 					</div>
 					<div class="info">
 					<?php echo CHtml::dropDownList('timeFrom0',null,Utilities::getTime(),array('class'=>'wid70 mR5')); ?>
-	<?php echo CHtml::dropDownList('fromA0',null,Utilities::getMeridiem(),array('class'=>'wid50 mR5')); ?>	
-     <?php echo CHtml::dropDownList('timeTo0',null,Utilities::getTime(),array('class'=>'wid70 mR5')); ?>
-     <?php echo CHtml::dropDownList('toA0',null,Utilities::getMeridiem(),array('class'=>'wid50')); ?>
+					<?php echo CHtml::dropDownList('fromA0',null,Utilities::getMeridiem(),array('class'=>'wid50 mR5')); ?>	
+     				<?php echo CHtml::dropDownList('timeTo0',null,Utilities::getTime(),array('class'=>'wid70 mR5')); ?>
+     				<?php echo CHtml::dropDownList('toA0',null,Utilities::getMeridiem(),array('class'=>'wid50')); ?>
 					</div>
 				</li>
 			</ul>
