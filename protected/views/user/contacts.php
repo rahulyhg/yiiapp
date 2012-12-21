@@ -115,11 +115,11 @@
 			</div>
 		<div class="info">
 			<div class="radio wid60">
-				<input type="radio" class="validate[required]" name="interCaste"
+				<input type="radio"  name="interCaste"
 					value="1"><span>Yes</span>
 			</div>
 			<div class="radio wid60">
-				<input type="radio" class="validate[required]" name="interCaste"
+				<input type="radio"  name="interCaste"
 					value="0"> <span>No</span>
 			</div>
 		</div>	
@@ -297,11 +297,11 @@
 		<div class="title">Who can view above detals</div>
 		<div class="info">
 		<div class="check">
-							<input type="checkbox" name="pcontact" value="subscribers" checked="checked"><span>Subscribers</span>
+							<input type="checkbox" name="pcontact[]" value="subscribers" checked="checked"><span>Subscribers</span>
 						</div>
 		
 			<div class="check">
-				<input type="checkbox" name="pcontact" value="request"> <span>By Request</span>
+				<input type="checkbox" name="pcontact[]" value="request"> <span>By Request</span>
 			</div>
 		</div>
 	</li>
