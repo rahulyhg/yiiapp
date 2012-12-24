@@ -28,7 +28,7 @@
 			<li>
 				<div class="left"><?php echo $form->labelEx($model,'name'); ?></div>
 				<div class="right">
-					<?php echo $form->textField($model,'name',array('class' =>'validate[required]')); ?>
+					<?php echo $form->textField($model,'name',array('class' =>'validate[required,minSize[3],custom[onlyLetterSp]]')); ?>
 					<?php echo $form->error($model,'name'); ?>
 				</div>
 			</li>
@@ -95,22 +95,16 @@
 			<li>
 				<div class="left"><?php echo $form->labelEx($model,'mobileNo'); ?></div>
 				<div class="right">
-					<?php echo $form->textField($model,'mobileNo',array('class'=>'validate[required,funcCall[validatePhone]]')); ?>
+					<?php echo $form->textField($model,'mobileNo',array('class'=>'validate[required,minSize[10],maxSize[10],custom[onlyNumberSp]]')); ?>
 					<?php echo $form->error($model,'mobileNo'); ?>
 				</div>
 
 			</li>
-			<li>
-<div class="left"><?php echo $form->labelEx($model,'landNo'); ?></div>
-				<div class="right">
-					<?php echo $form->textField($model,'landNo',array('class'=>'validate[required,funcCall[validatePhone]]')); ?>
-					<?php echo $form->error($model,'landNo'); ?>
-				</div>
-			</li>
+			
 			<li>
 					<div class="left"><?php echo $form->labelEx($model,'emailId'); ?></div>
 				<div class="right">
-					<?php echo $form->textField($model,'emailId',array('class'=>'validate[required, funcCall[checkEmailValidation]]')); ?>
+					<?php echo $form->textField($model,'emailId',array('class'=>'validate[required,custom[email]]')); ?>
 		<?php echo $form->error($model,'emailId'); ?>
 				</div>
 			</li>
