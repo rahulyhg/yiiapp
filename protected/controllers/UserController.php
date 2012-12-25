@@ -311,7 +311,8 @@ class UserController extends Controller
 		//$url = Yii::app()->createUrl('mypage/index');
 		//$this->redirect($url);
 		//$this->render('hobbies');
-		$this->render('success',array('user'=>$user));
+		$this->render("partner");
+		
 	}
 	public function actionHobby()
 	{
@@ -537,7 +538,7 @@ class UserController extends Controller
 	public function actionShowpartner()
 	{
 		
-		$this->render("partner");
+		$this->render("hobbies");
 	}
 	
 	public function actionPartner()
@@ -598,7 +599,8 @@ class UserController extends Controller
 		$partner->partnerDescription = $_POST['partnerDesc'];
 		
 		$partner->save();
-		$this->render("hobbies");
+		$this->render('success',array('user'=>$user));
+		
 	}
 	
 	

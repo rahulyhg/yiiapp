@@ -14,17 +14,19 @@
 *  @version <Revision>
 */
 ?>
+
+
     <section class="data-contnr">
         <h1 class="mB10">Quick Search</h1>
         <form id="quickSearch"  name="quickSearch" method="post"  action="/search/quick">
         <ul class="accOverview mT12">
 			<li class="mB10">
 				<div class="radC">
-				<input type="radio" value="M" name="gender">
+				<input type="radio" value="M" name="gender" />
 					<span>Male</span>
 				</div>
 				<div class="radC">
-					<input type="radio" value="F" name="gender">
+					<input type="radio" value="F" name="gender" />
 					<span>Female</span>
 				</div>
 				<div class="selC">
