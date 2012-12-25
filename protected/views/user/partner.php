@@ -364,8 +364,8 @@
 				</li>
 				<li>
 					<div class="buttonContnr3">
-						<input type="reset" value="Reset" name="yt1" class="type1b"> 
-						<input type="submit" value="Submit" name="yt0" class="type1b">
+						<input type="reset" value="Reset" name="yt1" class="type1b mR5"> 
+						<input type="submit" value="Submit" name="yt0" class="type1b mL5">
 					</div>
 				</li>
 			</ul>

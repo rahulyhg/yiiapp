@@ -601,8 +601,8 @@
 	</li>
 	<li>
 		<div class="buttonContnr3">
-			<?php echo CHtml::resetButton('Reset',array('class' =>'type1b')); ?>
-			<?php echo CHtml::submitButton('Submit',array('class'=>'type1b')); ?>
+			<?php echo CHtml::resetButton('Reset',array('class' =>'type1b mR5')); ?>
+			<?php echo CHtml::submitButton('Submit',array('class'=>'type1b mL5')); ?>
 		</div>
 	</li>
 </ul>

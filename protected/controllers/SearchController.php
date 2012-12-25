@@ -3,14 +3,31 @@
 class SearchController extends Controller
 {
 	
-	public function actionSearch()
+	
+	/**
+	 * if the user is not logged in show the index page , otherwise show the regular page
+	 * Enter description here ...
+	 */
+	public function actionIndex()
 	{
-		$this->render('advance');
+		$user = Yii::app()->session->get('user');
+		if(!isset($user))
+		{
+			$this->render('index');
+		}
+		else
+		{
+			$this->render('regular');
+		}
 	}
 	
-	  public function beforeAction(CAction $action)
+	
+	  /*public function beforeAction(CAction $action)
         {
+        		return true;
         		if($action->id == 'byid')
+        		return true;
+        		if($action->id == 'basic')
         		return true;
                 $user = Yii::app()->session->get('user');
                 if(!isset($user)) {
@@ -20,7 +37,7 @@ class SearchController extends Controller
                 return true;
         }  
 	
-	
+		*/
 	
 	//search from front page
 	public function actionBasic()
@@ -153,6 +170,7 @@ class SearchController extends Controller
 		
 	}
 	
+	//basic search from the search page
 	public function actionRegular()
 	{
 		$user = Yii::app()->session->get('user');

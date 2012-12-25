@@ -381,7 +381,7 @@ class UserController extends Controller
 		if(isset($_POST['country']))
 		$horoscope->country = $_POST['country'];
 		if(isset($_POST['hours']) || isset($_POST['minutes']) || isset($_POST['seconds']) || isset($_POST['am']))
-		$horoscope->time = $_POST['hours'].'-'.$_POST['minutes'.'-'.$_POST['seconds'].' ,'.$_POST['am']];
+		$horoscope->time = $_POST['hours'].'-'.$_POST['minutes'].'-'.$_POST['seconds'].' ,'.$_POST['am'];
 		if(isset($_POST['chova']))
 		$horoscope->dosham = $_POST['chova'];
 		if(isset($_POST['sudha']))
