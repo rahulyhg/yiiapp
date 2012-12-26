@@ -15,617 +15,566 @@
 */
 ?>
 
-            
-            <!--head closing-->
-            <!--main-content-->
-            <div id="main-content">
-            	<!--left-content-->
-                <div id="content-left-4">
-  <div class="div_ww">
-<div class="list_div_1"><!--list_div_1-->
 
 
 
-  <a href="#"><img src="<?php echo Yii::app()->params['mediaUrl']; ?>/model_men.jpg" border="0" class="model_img" /></a>
-<div class="clear"></div>
-<div class="no_box_2"><!--no_box-->
-	
-	<div class="mrgn_4_arrw"><a href="#"></a></div>
-    
-	<div class="left"><a href="#"><img src="<?php echo Yii::app()->params['mediaUrl']; ?>/mode_small.jpg" border="0" /></a><a href="#"><img src="<?php echo Yii::app()->params['mediaUrl']; ?>/mode_small.jpg" border="0" /></a><a href="#"><img src="<?php echo Yii::app()->params['mediaUrl']; ?>/mode_small.jpg" border="0" /></a></div>
-    
-<div class="mrgn_4_arrw_11"><a href="#"></a></div>
-</div><!--no_box_2-->
-</div>
-
-
-
-<div style="float:left; width:70%;">
-
-<div class="sub_nav">
-<p class="log_color_in_sub"><span class="m_left_15"><a href="contact-details.html" target="_blank">Contact</a>&nbsp;&nbsp;&nbsp;<a href="document.html" target="_blank">Document</a>&nbsp;&nbsp;&nbsp;<a href="reference-contact-details.html" target="_blank">Reference</a>&nbsp;&nbsp;&nbsp;<a href="family.html" target="_blank">Family album</a> &nbsp;&nbsp;&nbsp;<a href="album.html">Personnel album</a>&nbsp;&nbsp;&nbsp;<a href="astro-details.html" target="_blank">Astro Details</a></span></p>
-</div>
-
-
-<p class="log_color_blue_add">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#">&nbsp;Short List</a>   |  <a href="#">Block</a>   |  <a href="#">Forwards</a>  |  <a href="#" onclick="window.print();">Print</a></p>
-
-
-<div class="list_div_2sm"><!--list_div_2sm-->
-<p class="txt_rg_raj"><strong>Name</strong><br /> 		
-Religion / Cast <br />		
-Age<br /> 		
-Height <br />		
-Place<br /> 		
-Education<br /> 		
-Occupation<br /> 	
-
-Activity status	<br />	
-&nbsp;	
-</p>
-
-</div>
-
-<div class="list_div_3"><!--list_div_3-->
-<?php $heightArray = Utilities::getHeights()?>
-<p class="txt_rg_raj">
-:    <span class="txt_level"><strong><?php echo $model->name?>(<?php echo $model->marryId ?>)</strong></span><br />
-:    <span class="txt_level"><?php if(isset($model->userpersonaldetails->religion))echo $model->userpersonaldetails->religion->name ?>/ <?php if(isset($model->userpersonaldetails->caste))echo $model->userpersonaldetails->caste->name ?></span><br />
-:    <span class="txt_level"><?php echo Utilities::getAgeFromDateofBirth($model->dob)?> Years </span><br />
-:    <span class="txt_level"><?php if(isset($model->physicaldetails->heightId))echo $heightArray[$model->physicaldetails->heightId]; ?></span><br />
-:    <span class="txt_level"><?php if(isset($model->userpersonaldetails->place))echo $model->userpersonaldetails->place->name ?>, <?php if(isset($model->userpersonaldetails->state))echo $model->userpersonaldetails->state->name ?>, <?php if(isset($model->userpersonaldetails->country))echo $model->userpersonaldetails->country->name ?></span><br />
-:	<span class="txt_level"><?php if(isset($model->educations->education))echo $model->educations->education->name ?></span><br />
-:    <span class="txt_level"><?php if(isset($model->educations->occupation))echo $model->educations->occupation->name ?></span><br />
-  
-:   <span class="txt_level">2 days beefore</span><br />
-&nbsp;
-</p>
-</div>
-
-
-<div class="right_mgntp-sub">
-<?php  $user = Yii::app()->session->get('user');
-if(isset($user)){
-?>
-<?php 
-
- $isInterest = $user->interestSender(array('condition'=>"receiverId = {$model->userId}"));
- $isBookMarked = $user->bookmark(array('condition'=>"FIND_IN_SET('{$model->userId}',profileIDs)")); 
- $isMessage = $user->messageSender(array('condition'=>"receiverId = {$model->userId}"));
- if(!isset($isInterest) || empty($isInterest)) {
- ?>
-<a href="#" id="<?php echo $model->userId ?>" class="exp-sub-less">Express Interest</a>
-<?php }?>
-<?php if(!isset($isBookMarked) || empty($isBookMarked)) {?> 
-<a href="#" id="<?php echo $model->userId ?>" class="exp-sub-add-less">Bookmark</a>
-<?php }?>
-<?php if(!isset($isMessage) || empty($isMessage)) {?>
-<a href="#" id="<?php echo $model->userId ?>" class="exp-sub-send-less">Send Message</a> 
-   <?php }
-}
-   ?> 
-
-</div>
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-</div>
-
-
-
-
-<div class="clear"></div>
-<div class="line_new_r"></div>
-<div class="space-15px"><p>&nbsp;</p></div>
-
-<p class="log_color_sub"><a href="#personal">Personal</a>  |  <a href="#professional">Professional</a>   |  <a href="#family">Family</a>   |  <a href="#partner">Partner Preference</a>   |  <a href="#">Hobbies & Interests</a></p>
-
-<div class="clear"></div>
-<div class="space-15px"><p>&nbsp;</p></div>
-
-<div class="clear"></div>
-
-<div class="clear"></div>
-
-
-
-  <p class="txt_rg"><span class="text_pink-hd"><a name="personal"></a>Personal information</span><br /> in my own words</p>
-                <p class="space-15px">&nbsp;</p>
-                
-                
-<p class="txt_rg"><?php if(isset($model->familyprofiles->userDesc))echo $model->familyprofiles->userDesc  ?></p>
-<br />
-<div class="clear"></div>
-  <p class="text_pink-hd">Basic details</p>
-                <p class="space-25px">&nbsp;</p>
-
-
-<div class="clear"></div>
-
-<div class="table_box"><!--table_box-->
-<div class="row_one">
-<p class="txt_rg">Name <br />		
-Age<br />			
-Height<br />			
-Language<br />			
-Marital Status		
-</p>
-
-</div>
-<div class="row_two">
-<p class="txt_rg">
-:<span class="txt_level"><?php echo $model->name ?></span><br />	
-:<span class="txt_level">  <?php if(isset($model->dob))echo Utilities::getAgeFromDateofBirth($model->dob)?> Years</span><br />	
-:<span class="txt_level">   <?php if(isset($model->physicaldetails->heightId))echo $heightArray[$model->physicaldetails->heightId]; ?></span> <br />	
-:<span class="txt_level">   Language </span><br />	
-:<span class="txt_level">   <?php $marry = Utilities::getMaritalStatus(); if(isset($model->userpersonaldetails->maritalStatus))echo $marry[$model->userpersonaldetails->maritalStatus]?></span>
-</p>
-</div>
-
-</div><!--table_box-->
-
-<div class="table_box_one"><!--table_box_one-->
-<div class="row_one">
-<p class="txt_rg">Body Type / Complexion <br />		
-Physical Status<br />			
-Weight<br />			
-Blood Groupe		
-</p>
-
-</div>
-<div class="row_two">
-<p class="txt_rg">
-<?php $bodyType = Utilities::getBodyType(); $bodyColor = Utilities::getBodyColor();$physicalStatus = Utilities::physicalStatus()?>
-:<span class="txt_level">    <?php if(isset($model->physicaldetails->bodyType))echo $bodyType[$model->physicaldetails->bodyType]?>/<?php if(isset($model->physicaldetails->complexion))echo $bodyType[$model->physicaldetails->complexion]?></span><br />	
-:<span class="txt_level">   <?php if(isset($model->physicaldetails->physicalStatus))echo $physicalStatus[$model->physicaldetails->physicalStatus]?></span><br />	
-:<span class="txt_level">   <?php if(isset($model->physicaldetails->weight))echo $model->physicaldetails->weight?> Kgs</span> <br />	
-:<span class="txt_level">   Not Specified</span><br />	
-</p>
-</div>
-
-</div><!--table_box_one-->
-
-<div class="clear"></div>
-<div class="line_new_edit"></div>
-
-<div class="clear"></div>
-<div class="space-15px"><p>&nbsp;</p></div>
-
-
- <p class="text_pink-hd">Religious information</p>
-                <p class="space-25px">&nbsp;</p>
-
-
-<div class="clear"></div>
-
-<div class="table_box"><!--table_box-->
-<div class="row_one">
-<p class="txt_rg">Religion<br />		
-Physical Status<br /><br />			
-Caste / Sub Caste<br />			
-Horoscope Match<br />			
-</p>
-
-</div>
-<div class="row_two">
-<p class="txt_rg">
-:<span class="txt_level">  <?php if(isset($model->userpersonaldetails->religion))echo $model->userpersonaldetails->religion->name ?></span><br />	
-:<span class="txt_level">  Muslim - Others / Not</span> <br />
-<span class="txt_level">&nbsp;&nbsp;<?php if(isset($model->userpersonaldetails->caste))echo $model->userpersonaldetails->caste->name ?></span><br />	
-:<span class="txt_level">   Doesn't matter</span> <br />	
-:<span class="txt_level">   Not Specified</span><br />	
-</div>
-
-</div><!--table_box-->
-
-<div class="clear"></div>
-<div class="line_new_edit"></div>
-
-<div class="space-15px"><p>&nbsp;</p></div>
-
-<div class="clear"></div>
-
- <p class="text_pink-hd">lifestyle</p>
-                <p class="space-25px">&nbsp;</p>
-
-<div class="clear"></div>
-
-<div class="table_box"><!--table_box-->
-<div class="row_one">
-<p class="txt_rg">Eating Habits<br />		
-Smoking habits<br />			
-Caste / Sub Caste<br />			
-</p>
-<?php $food = Utilities::getFood();
+    <section class="data-contnr mT8">
+        <div class="mainPro">
+			<div class="photoC">
+				<a class="ppC" href="#">
+					<img src="./images/user/profile1.png" alt="Bharath Gopi" title="Bharath Gopi" />
+				</a>
+				<ul class="noC">
+					<li><a href="#" class="prevs" ></a></li>
+					<li><a href="#" >1</a></li>
+					<li><a href="#" >2</a></li>
+					<li><a href="#" >3</a></li>
+					<li><a href="#" >4</a></li>
+					<li><a href="#" >5</a></li>
+					<li><a href="#" class="nexts" ></a></li>
+				</ul>
+			</div>
+			<?php $heightArray = Utilities::getHeights()?>
+			<ul class="myPd">
+				<li>
+					<div class="leftCt">Name</div>
+					<div class="rightCt">
+						<strong>:</strong> <span><?php echo $model->name?>(<?php echo $model->marryId ?>)</span>
+					</div>
+				</li>
+				<li>
+					<div class="leftCt">Religion / Cast </div>
+					<div class="rightCt">
+						<strong>:</strong> <span><?php if(isset($model->userpersonaldetails->religion))echo $model->userpersonaldetails->religion->name ?>/ <?php if(isset($model->userpersonaldetails->caste))echo $model->userpersonaldetails->caste->name ?></span>
+					</div>
+				</li>
+				<li>
+					<div class="leftCt">Age</div>
+					<div class="rightCt">
+						<strong>:</strong> <span><?php echo Utilities::getAgeFromDateofBirth($model->dob)?> Years </span>
+					</div>
+				</li>
+				<li>
+					<div class="leftCt">Height</div>
+					<div class="rightCt">
+						<strong>:</strong> <span><?php if(isset($model->physicaldetails->heightId))echo $heightArray[$model->physicaldetails->heightId]; ?></span>
+					</div>
+				</li>
+				<li>
+					<div class="leftCt">Place</div>
+					<div class="rightCt">
+						<strong>:</strong> <span><?php if(isset($model->userpersonaldetails->place))echo $model->userpersonaldetails->place->name ?>, <?php if(isset($model->userpersonaldetails->state))echo $model->userpersonaldetails->state->name ?>, <?php if(isset($model->userpersonaldetails->country))echo $model->userpersonaldetails->country->name ?></span>
+					</div>
+				</li>
+				<li>
+					<div class="leftCt">Education</div>
+					<div class="rightCt">
+						<strong>:</strong> <span><?php if(isset($model->educations->education))echo $model->educations->education->name ?></span>
+					</div>
+				</li>
+				<li>
+					<div class="leftCt">Occupation</div>
+					<div class="rightCt">
+						<strong>:</strong> <span><?php if(isset($model->educations->occupation))echo $model->educations->occupation->name ?></span>
+					</div>
+				</li>
+				<li>
+					<div class="leftCt">Activity status	</div>
+					<div class="rightCt">
+						<strong>:</strong> <span>2 days before</span>
+					</div>
+				</li>
+			</ul>
+			<ul class="pageOpt">
+				<li>
+					<div class="butCo mL0">
+						<a href="#">Contact</a>
+					</div>
+					<div class="butCo">
+						<a href="#">Document</a>
+					</div>
+					<div class="butCo">
+						<a href="#">Reference </a>
+					</div>
+					<div class="butCo">
+						<a href="#">Family album</a>
+					</div>
+					<div class="butCo">
+						<a href="#">Personal album</a>
+					</div>
+					<div class="butCo">
+						<a href="#">Astro Details</a>
+					</div>
+				</li>
+			</ul>
+		</div>
+		<?php  $user = Yii::app()->session->get('user');
+		if(isset($user)){
+			$isInterest = $user->interestSender(array('condition'=>"receiverId = {$model->userId}"));
+ 			$isBookMarked = $user->bookmark(array('condition'=>"FIND_IN_SET('{$model->userId}',profileIDs)")); 
+ 			$isMessage = $user->messageSender(array('condition'=>"receiverId = {$model->userId}"));
+ 
+		?>	
+		<div class="optBtnC">
+			
+			<?php if(!isset($isInterest) || empty($isInterest)) {?>
+			<a id="<?php echo $model->userId ?>" href="#">Express Interest</a>
+			<?php }
+			if(!isset($isMessage) || empty($isMessage)) {
+			?>
+			<a id="<?php echo $model->userId ?>"  href="#">Send Message</a>
+			<?php } if(!isset($isBookMarked) || empty($isBookMarked)) {?> 
+			<a id="<?php echo $model->userId ?>" href="#">Bookmark</a>
+			<?php }?>
+			<a href="#">Block this user</a>
+		</div>
+		<?php }?>
+		<div class="editContr pT10">
+			<div class="hText">Personal Information</div>
+			<div class="subText">In my own words</div>
+			<p ><?php if(isset($model->familyprofiles->userDesc))echo $model->familyprofiles->userDesc  ?></p>
+		</div>
+		<div class="editContr pT10">
+			
+			<div class="hText">Basic Details</div>
+			<ul class="detSec width50">
+				<li>
+					<div class="leftCtn">Name</div>
+					<div class="rightCtn">
+						<strong>:</strong> <span><?php echo $model->name ?></span>
+					</div>
+				</li>
+				<li>
+					<div class="leftCtn">Age</div>
+					<div class="rightCtn">
+						<strong>:</strong> <span><?php if(isset($model->dob))echo Utilities::getAgeFromDateofBirth($model->dob)?> Years</span>
+					</div>
+				</li>
+				<li>
+					<div class="leftCtn">Height</div>
+					<div class="rightCtn">
+						<strong>:</strong> <span> <?php if(isset($model->physicaldetails->heightId))echo $heightArray[$model->physicaldetails->heightId]; ?></span>
+					</div>
+				</li>
+				<li>
+				<?php 
+				$model->motherTounge
+				
+				?>
+					<div class="leftCtn">Language</div>
+					<div class="rightCtn">
+						<strong>:</strong> <span><?php if(isset($model->motherTounge)) echo Utilities::getLanguageForId($model->motherTounge)?></span>
+					</div>
+				</li>
+				<li>
+					<div class="leftCtn">Marital Status</div>
+					<div class="rightCtn">
+						<strong>:</strong> <span><?php $marry = Utilities::getMaritalStatus(); if(isset($model->userpersonaldetails->maritalStatus))echo $marry[$model->userpersonaldetails->maritalStatus]?></span>
+					</div>
+				</li>
+			</ul>
+			<?php $bodyType = Utilities::getBodyType(); $bodyColor = Utilities::getBodyColor();$physicalStatus = Utilities::physicalStatus()?>
+			<ul class="detSec width50">
+				<li>
+					<div class="leftCtn">Body Type / Complexion</div>
+					<div class="rightCtn">
+						<strong>:</strong> <span><?php if(isset($model->physicaldetails->bodyType))echo $bodyType[$model->physicaldetails->bodyType]?>/<?php if(isset($model->physicaldetails->complexion))echo $bodyType[$model->physicaldetails->complexion]?></span>
+					</div>
+				</li>
+				<li>
+					<div class="leftCtn">Physical Status</div>
+					<div class="rightCtn">
+						<strong>:</strong> <span><?php if(isset($model->physicaldetails->physicalStatus))echo $physicalStatus[$model->physicaldetails->physicalStatus]?></span>
+					</div>
+				</li>
+				<li>
+					<div class="leftCtn">Weight</div>
+					<div class="rightCtn">
+						<strong>:</strong> <span><?php if(isset($model->physicaldetails->weight))echo $model->physicaldetails->weight?></span>
+					</div>
+				</li>
+				<li>
+					<div class="leftCtn">Blood Group</div>
+					<div class="rightCtn">
+						<strong>:</strong> <span>Not Specified</span>
+					</div>
+				</li>
+			</ul>
+		</div>
+		<div class="editContr pT10">
+			
+			<div class="hText">Religious Information</div>
+			<ul class="detSec width50">
+				<li>
+					<div class="leftCtn">Religion</div>
+					<div class="rightCtn">
+						<strong>:</strong> <span><?php if(isset($model->userpersonaldetails->religion))echo $model->userpersonaldetails->religion->name ?></span>
+					</div>
+				</li>
+				<li>
+					<div class="leftCtn">Physical Status</div>
+					<div class="rightCtn">
+						<strong>:</strong> <span>Muslim - Others / Not Specified</span>
+					</div>
+				</li>
+				<li>
+					<div class="leftCtn">Caste / Sub Caste</div>
+					<div class="rightCtn">
+						<strong>:</strong> <span><?php if(isset($model->userpersonaldetails->caste))echo $model->userpersonaldetails->caste->name ?></span>
+					</div>
+				</li>
+				<li>
+					<div class="leftCtn">Horoscope Match</div>
+					<div class="rightCtn">
+						<strong>:</strong> <span>Not Specified</span>
+					</div>
+				</li>
+			</ul>
+		</div>
+		<div class="editContr pT10">
+		<?php $food = Utilities::getFood();
 $smoke = Utilities::getSmoke();
 $drink= Utilities::getDrink();
 
-?>
-</div>
-<div class="row_two">
-<p class="txt_rg">
-:<span class="txt_level"></span><?php if(isset($model->habits->food))echo $food[$model->habits->food]?><br />	
-:<span class="txt_level">   <?php if(isset($model->habits->smoking))echo $smoke[$model->habits->smoking]?></span><br />	
-:<span class="txt_level">   Doesn't matter</span> <br />	
-</p>
-</div>
-
-</div>
-<div class="table_box_one"><!--table_box_one-->
-<div class="row_one">
-<p class="txt_rg">Drinking habits<br />		
-</p>
-
-</div>
-
-<div class="row_two">
-<p class="txt_rg">
-:<span class="txt_level">   <?php if(isset($model->habits->drinking))echo $drink[$model->habits->drinking]?></span><br />	
-</p>
-</div>
-
-</div><!--table_box_one-->
-
-<div class="clear"></div>
-
-
-
-<div class="clear"></div>
-
-<div class="line_new_edit"></div>
-
-<div class="space-15px"><p>&nbsp;</p></div>
-
-<div class="clear"></div>
-
- <p class="text_pink-hd">Locations</p>
-                <p class="space-25px">&nbsp;</p>
-
-
-<div class="clear"></div>
-
-<div class="table_box"><!--table_box-->
-<div class="row_one">
-<p class="txt_rg">Country <br />		
-State<br />			
-Citizenship<br />			
-</p>
-
-</div>
-<div class="row_two">
-<p class="txt_rg">
-:<span class="txt_level"> <?php if(isset($model->userpersonaldetails->country))echo $model->userpersonaldetails->country->name ?> </span><br />	
-:<span class="txt_level"> <?php if(isset($model->userpersonaldetails->state))echo $model->userpersonaldetails->state->name ?> </span><br />	
-:<span class="txt_level">  </span><br />	
-</p>
-</div>
-
-</div><!--table_box-->
-
-
-<div class="table_box_one"><!--table_box_one-->
-
-
-<div class="row_one">
-<p class="txt_rg">City <br />		
-Resident Status<br />			
-</p>
-
-</div>
-
-<div class="row_two">
-<p class="txt_rg">
-:<span class="txt_level">   <?php if(isset($model->userpersonaldetails->place))echo $model->userpersonaldetails->place->name ?></span><br />	
-:<span class="txt_level">   Citizen</span><br />	
-</p>
-</div>
-
-</div><!--table_box_one-->
-<div class="clear"></div>
-
-<div class="line_new_edit"></div>
-
-<div class="space-15px"><p>&nbsp;</p></div>
-
-<div class="clear"></div>
-
-
- <p class="text_pink-hd"><a name="professional"></a>Proffessional information</p>
-                <p class="space-25px">&nbsp;</p>
-
-
-
-<div class="clear"></div>
-
-<div class="table_box"><!--table_box-->
-<div class="row_one">
-<p class="txt_rg">Education Category<br />		
-Occupation<br />			
-Education in Detail<br />
-Occupation in Detail<br />			
-Employed in<br />
-Annual Income		
+?>	
+			<div class="hText">Lifestyle</div>
+			<ul class="detSec width50">
+				<li>
+					<div class="leftCtn">Eating Habits</div>
+					<div class="rightCtn">
+						<strong>:</strong> <span><?php if(isset($model->habits->food))echo $food[$model->habits->food]?></span>
+					</div>
+				</li>
+				<li>
+					<div class="leftCtn">Smoking habits</div>
+					<div class="rightCtn">
+						<strong>:</strong> <span><?php if(isset($model->habits->smoking))echo $smoke[$model->habits->smoking]?></span>
+					</div>
+				</li>
+				<li>
+					<div class="leftCtn">Caste / Sub Caste</div>
+					<div class="rightCtn">
+						<strong>:</strong> <span>Doesn't matter</span>
+					</div>
+				</li>
+			</ul>
+			<ul class="detSec width50">
+				<li>
+					<div class="leftCtn">Drinking habits</div>
+					<div class="rightCtn">
+						<strong>:</strong> <span><?php if(isset($model->habits->drinking))echo $drink[$model->habits->drinking]?></span>
+					</div>
+				</li>
+			</ul>
+		</div>
+		<div class="editContr pT10">
 			
-</p>
-<?php $job = Utilities::getJob()?>
-</div>
-<div class="row_two">
-<p class="txt_rg">
-:<span class="txt_level">   <?php if(isset($model->educations->education))echo $model->educations->education->name ?></span><br />	
-:<span class="txt_level">   <?php if(isset($model->educations->occupation))echo $model->educations->occupation->name ?></span><br />	
-:<span class="txt_level">   completed MBA </span> <br />
-:<span class="txt_level">   MBA / PGDM </span> <br />	
-:<span class="txt_level">   <?php if(isset($model->educations->employedIn))echo $job[$model->educations->employedIn]?></span> <br />
-:<span class="txt_level">   <?php if(isset($model->educations->yearlyIncome))echo $model->educations->yearlyIncome?></span> <br />	
-	
-</p>
-</div>
+			<div class="hText">Location</div>
+			<ul class="detSec width50">
+				<li>
+					<div class="leftCtn">Country</div>
+					<div class="rightCtn">
+						<strong>:</strong> <span><?php if(isset($model->userpersonaldetails->country))echo $model->userpersonaldetails->country->name ?> </span>
+					</div>
+				</li>
+				<li>
+					<div class="leftCtn">State</div>
+					<div class="rightCtn">
+						<strong>:</strong> <span><?php if(isset($model->userpersonaldetails->state))echo $model->userpersonaldetails->state->name ?></span>
+					</div>
+				</li>
+				<li>
+					<div class="leftCtn">Citizenship</div>
+					<div class="rightCtn">
+						<strong>:</strong> <span>India</span>
+					</div>
+				</li>
+			</ul>
+			<ul class="detSec width50">
+				<li>
+					<div class="leftCtn">City</div>
+					<div class="rightCtn">
+						<strong>:</strong> <span><?php if(isset($model->userpersonaldetails->place))echo $model->userpersonaldetails->place->name ?></span>
+					</div>
+				</li>
+				<li>
+					<div class="leftCtn">Resident Status</div>
+					<div class="rightCtn">
+						<strong>:</strong> <span>Citizen </span>
+					</div>
+				</li>
+			</ul>
+		</div>
+		<div class="editContr pT10">
+			<?php $job = Utilities::getJob()?>
+			<div class="hText">Professional Information</div>
+			<ul class="detSec width50">
+				<li>
+					<div class="leftCtn">Education Category</div>
+					<div class="rightCtn">
+						<strong>:</strong> <span> <?php if(isset($model->educations->education))echo $model->educations->education->name ?></span>
+					</div>
+				</li>
+				<li>
+					<div class="leftCtn">Occupation</div>
+					<div class="rightCtn">
+						<strong>:</strong> <span><?php if(isset($model->educations->occupation))echo $model->educations->occupation->name ?></span>
+					</div>
+				</li>
+				<li>
+					<div class="leftCtn">Education in Detail</div>
+					<div class="rightCtn">
+						<strong>:</strong> <span>completed MBA </span>
+					</div>
+				</li>
+				<li>
+					<div class="leftCtn">Occupation in Detail</div>
+					<div class="rightCtn">
+						<strong>:</strong> <span>MBA / PGDM </span>
+					</div>
+				</li>
+				<li>
+					<div class="leftCtn">Employed in</div>
+					<div class="rightCtn">
+						<strong>:</strong> <span> <?php if(isset($model->educations->employedIn))echo $job[$model->educations->employedIn]?></span>
+					</div>
+				</li>
+				<li>
+					<div class="leftCtn">Annual Income</div>
+					<div class="rightCtn">
+						<strong>:</strong> <span><?php if(isset($model->educations->yearlyIncome))echo $model->educations->yearlyIncome?></span>
+					</div>
+				</li>
+			</ul>
+		</div>
+		<div class="editContr pT10">
+			<?php $familyValues = Utilities::getFamilyValues();$familyType = Utilities::getFamilyType();$familyStatus = Utilities::getFamilyStatus();?>
+			<div class="hText">Family Details</div>
+			<ul class="detSec width50">
+				<li>
+					<div class="leftCtn">Family Values</div>
+					<div class="rightCtn">
+						<strong>:</strong> <span><?php if(isset($model->familyprofiles->familyValues))echo $familyValues[$model->familyprofiles->familyValues]?> </span>
+					</div>
+				</li>
+				<li>
+					<div class="leftCtn">Family Type</div>
+					<div class="rightCtn">
+						<strong>:</strong> <span><?php if(isset($model->familyprofiles->familyType))echo $familyType[$model->familyprofiles->familyType]?></span>
+					</div>
+				</li>
+				<li>
+					<div class="leftCtn">Family Status</div>
+					<div class="rightCtn">
+						<strong>:</strong> <span><?php if(isset($model->familyprofiles->familyValues))echo $familyStatus[$model->familyprofiles->familyValues]?></span>
+					</div>
+				</li>
+				<li>
+					<div class="leftCtn">Ancestral Origin</div>
+					<div class="rightCtn">
+						<strong>:</strong> <span>Valluvanad</span>
+					</div>
+				</li>
+				<li class="mT10">
+					<div class="leftCtn">Family album</div>
+					<div class="rightCtn">
+						<strong>:</strong> <span><a href="#">Viwe my family album (5 Photos)</a></span>
+					</div>
+				</li>
+			</ul>
+			<ul class="detSec width50">
+				<li>
+					<div class="leftCtn">Father's Occupation</div>
+					<div class="rightCtn">
+						<strong>:</strong> <span>Business</span>
+					</div>
+				</li>
+				<li>
+					<div class="leftCtn">Mother's Occupation</div>
+					<div class="rightCtn">
+						<strong>:</strong> <span>Nil</span>
+					</div>
+				</li>
+				<li>
+					<div class="leftCtn">No of Brother(s)</div>
+					<div class="rightCtn">
+						<strong>:</strong> <span><?php if(isset($model->familyprofiles->brothers))echo $model->familyprofiles->brothers?> / <?php if(isset($model->familyprofiles->brotherMarried))echo $model->familyprofiles->brotherMarried.' Married' ?>  </span>
+					</div>
+				</li>
+				<li>
+					<div class="leftCtn">No of Sister(s)</div>
+					<div class="rightCtn">
+						<strong>:</strong> <span><?php if(isset($model->familyprofiles->sisters))echo $model->familyprofiles->sisters?> /<?php if(isset($model->familyprofiles->SisterMarried))echo $model->familyprofiles->SisterMarried.' Married'?> </span>
+					</div>
+				</li>
+			</ul>
+		</div>
+		<div class="editContr pT10">
+			
+			<div class="hText">About my family</div>
+			<p ><?php if(isset($model->familyprofiles->familyDesc))echo $model->familyprofiles->familyDesc?>.</p>
+		</div>
+		<div class="editContr pT10">
+			
+			<div class="hText">My Partner Preference</div>
+			<ul class="detSec width100">
+				<li>
+					<div class="leftCtn">Groom's Age</div>
+					<div class="rightCtn">
+						<strong>:</strong> <span><?php if(isset($partner->ageFrom))echo $partner->ageFrom; echo ' - ';if(isset($partner->ageTo))echo $partner->ageTo.' Years'; ?></span>
+					</div>
+				</li>
+				<li>
+					<div class="leftCtn">Height</div>
+					<div class="rightCtn">
+						<strong>:</strong> <span><?php if(isset($partner->heightTo))echo $heightArray[$partner->heightTo]; ?> / <?php if(isset($partner->heightFrom))echo $heightArray[$partner->heightFrom]; ?></span>
+					</div>
+				</li>
+				<li>
+					<div class="leftCtn">Marital status</div>
+					<div class="rightCtn">
+						<strong>:</strong> <span><?php if(isset($partner->maritalStatus))echo $marry[$partner->maritalStatus];?></span>
+					</div>
+				</li>
+				<li>
+					<div class="leftCtn">Physical Status</div>
+					<div class="rightCtn">
+						<strong>:</strong> <span><?php if(isset($partner->physicalStatus))echo $physicalStatus[$partner->physicalStatus]?></span>
+					</div>
+				</li>
+				<li class="mT10">
+					<div class="leftCtn">Mother Tongue</div>
+					<div class="rightCtn">
+						<strong>:</strong> <span><?php if(isset($partner->languages))echo Utilities::getValueForIds(new Languages(), $partner->languages, 'languageId')?></span>
+					</div>
+				</li>
+				<li>
+					<div class="leftCtn">Religion</div>
+					<div class="rightCtn">
+						<strong>:</strong> <span> <?php if(isset($partner->religionData->name))echo $partner->religionData->name?></span>
+					</div>
+				</li>
+				<li>
+					<div class="leftCtn">Caste</div>
+					<div class="rightCtn">
+						<strong>:</strong> <span> <?php if(isset($partner->casteData->name))echo $partner->casteData->name?></span>
+					</div>
+				</li>
+				<li>
+					<div class="leftCtn">Sub Caste</div>
+					<div class="rightCtn">
+						<strong>:</strong> <span><?php if(isset($partner->subcaste))echo Utilities::getValueForIds(new Subcaste(), $partner->subcaste, 'subcasteId')?></span>
+					</div>
+				</li>
+				<li>
+					<div class="leftCtn">Eating Habit</div>
+					<div class="rightCtn">
+						<strong>:</strong> <span><?php if(isset($partner->eatingHabits))echo Utilities::getArrayValues(Utilities::getFood(), $partner->eatingHabits)?></span>
+					</div>
+				</li>
+				<li class="mT10">
+					<div class="leftCtn">Smoking Habits</div>
+					<div class="rightCtn">
+						<strong>:</strong> <span><?php if(isset($partner->smokingHabits))echo Utilities::getArrayValues(Utilities::getSmoke(), $partner->smokingHabits)?></span>
+					</div>
+				</li>
+				<li>
+					<div class="leftCtn">Drinking Habits</div>
+					<div class="rightCtn">
+						<strong>:</strong> <span><?php if(isset($partner->drinkingHabits))echo Utilities::getArrayValues(Utilities::getDrink(), $partner->drinkingHabits)?></span>
+					</div>
+				</li>
+				<li>
+					<div class="leftCtn">Education</div>
+					<div class="rightCtn">
+						<strong>:</strong> <span>Bachelors - Engineering / Computers, Medicine - General / Dental / Surgeon /...</span>
+					</div>
+				</li>
+				<li>
+					<div class="leftCtn">Occupation</div>
+					<div class="rightCtn">
+						<strong>:</strong> <span><?php if(isset($partner->occupation))echo Utilities::getValueForIds(new OccupationMaster(), $partner->occupation, 'occupationId')?></span>
+					</div>
+				</li>
+				<li>
+					<div class="leftCtn">Annual Income</div>
+					<div class="rightCtn">
+						<strong>:</strong> <span><?php if(isset($partner->annualIncome))echo $partner->annualIncome; ?></span>
+					</div>
+				</li>
+				<li>
+					<div class="leftCtn">Country</div>
+					<div class="rightCtn">
+						<strong>:</strong> <span><?php if(isset($partner->countries)) echo Utilities::getValueForIds(new Country(), $partner->countries, 'countryId')?></span>
+					</div>
+				</li>
+				<li>
+					<div class="leftCtn">Residing State</div>
+					<div class="rightCtn">
+						<strong>:</strong> <span><?php if(isset($partner->states))echo Utilities::getValueForIds(new States(), $partner->states, 'stateId')?></span>
+					</div>
+				</li>
+				<li>
+					<div class="leftCtn">Citizenship</div>
+					<div class="rightCtn">
+						<strong>:</strong> <span> <?php if(isset($partner->citizenship))echo Utilities::getValueForIds(new Country(), $partner->citizenship, 'countryId')?></span>
+					</div>
+				</li>
+				<li>
+					<div class="leftCtn">Residing City</div>
+					<div class="rightCtn">
+						<strong>:</strong> <span><?php if(isset($partner->places))echo Utilities::getValueForIds(new Places(), $partner->places, 'placeId')?></span>
+					</div>
+				</li>
+			</ul>
+		</div>
+		<div class="editContr pT10">
+			
+			<div class="hText">About my partner</div>
+			<p><?php if(isset($partner->partnerDescription))echo $partner->partnerDescription; ?></p>
+		</div>
+	<?php  $user = Yii::app()->session->get('user');
+		if(isset($user)){
+			$isInterest = $user->interestSender(array('condition'=>"receiverId = {$model->userId}"));
+ 			$isBookMarked = $user->bookmark(array('condition'=>"FIND_IN_SET('{$model->userId}',profileIDs)")); 
+ 			$isMessage = $user->messageSender(array('condition'=>"receiverId = {$model->userId}"));
+ 
+		?>	
+		<div class="optBtnC">
+			
+			<?php if(!isset($isInterest) || empty($isInterest)) {?>
+			<a id="<?php echo $model->userId ?>" href="#">Express Interest</a>
+			<?php }
+			if(!isset($isMessage) || empty($isMessage)) {
+			?>
+			<a id="<?php echo $model->userId ?>"  href="#">Send Message</a>
+			<?php } if(!isset($isBookMarked) || empty($isBookMarked)) {?> 
+			<a id="<?php echo $model->userId ?>" href="#">Bookmark</a>
+			<?php }?>
+			<a href="#">Block this user</a>
+		</div>
+		<?php }?>
+
+    </section>
+	<aside class="rightbar-contnr">
+		<div class="subscribe-box">
+			<div class="sub-now">Subscribe Now!<br /><span>Only for</span></div>
+			<div class="digit"><span class="WebRupee">Rs.</span>200</div>
+			<div class="for">For 3 Months</div>
+			<div class="divider"> </div>
+			<div class="benefit">Benefits of Subscribing </div>
+			<p>
+				Real time update about profile visitors <br />
+				Access key details of other users<br />
+				Contact candidates directly  <br />
+				View horoscope of members <br />
+				Message candidates directly
+			</p>
+			<div class="divider"> </div>
+			<a class="subNow" href="subscribe-now.htm">Subscribe Now</a>
+		</div>
+	</aside>
 
-</div><!--table_box-->
-<div class="clear"></div>
-
-<div class="line_new_edit"></div>
-<div class="right"><span class="txt_rg"><a href="#top">Top</a></span></div>
-<div class="space-15px"><p>&nbsp;</p></div>
-<div class="clear"></div>
-
- <p class="text_pink-hd"><a name="family"></a>Family details</p>
-                <p class="space-25px">&nbsp;</p>
-
-
-<div class="clear"></div>
-
- <div class="table_box"><!--table_box-->
-<div class="row_one">
-<p class="txt_rg">Family Values<br />		
-Family Type<br />			
-Family Status<br />
-Ancestral Origin<br /><br />			
-Family album<br />		
-</p>
-<?php $familyValues = Utilities::getFamilyValues();$familyType = Utilities::getFamilyType();$familyStatus = Utilities::getFamilyStatus();?>
-</div>
-<div class="row_two">
-<p class="txt_rg">
-:<span class="txt_level">  <?php if(isset($model->familyprofiles->familyValues))echo $familyValues[$model->familyprofiles->familyValues]?> </span><br />	
-:<span class="txt_level"> <?php if(isset($model->familyprofiles->familyType))echo $familyType[$model->familyprofiles->familyType]?></span><br /> 	
-:<span class="txt_level">   <?php if(isset($model->familyprofiles->familyValues))echo $familyStatus[$model->familyprofiles->familyValues]?></span> <br />
-:<span class="txt_level"> MBA / PGDM </span> <br /><br />
-:<span class="txt_level">View my album <a href="family.html" target="_blank">(5 Photos)</a></span> <br />	
-</p>
-</div>
-
-</div><!--table_box-->
-
-<div class="table_box_one"><!--table_box_one-->
-
-
-<div class="row_one">
-<p class="txt_rg">Father's Occupation <br />		
-Physical Status<br />			
-Weight<br />			
-Blood Groupe</p>
-
-</div>
-<div class="row_two">
-<p class="txt_rg">
-:<span class="txt_level"></span> business<br />	
-:<span class="txt_level">   nil </span><br />	
-:<span class="txt_level"> 1   </span> <br />	
-:<span class="txt_level">   2/2 married</span><br />	
-</p>
-</div>
-
-</div><!--table_box_one-->
-
-<div class="clear"></div>
-
-<div class="line_new_edit"></div>
-
-<div class="space-15px"><p>&nbsp;</p></div>
-
-<div class="clear"></div>
-
-
- <p class="text_pink-hd">About my family</p>
-                <p class="space-25px">&nbsp;</p>
-
-<p class="txt_rg"><?php if(isset($model->familyprofiles->familyDesc))echo $model->familyprofiles->familyDesc?>.</p>
-
-<div class="clear"></div>
-
-<div class="line_new_edit"></div>
-
-<div class="space-15px"><p>&nbsp;</p></div>
-
-<div class="clear"></div>
-
- <p class="text_pink-hd"><a name="partner"></a>My partner preference</p>
-                <p class="space-25px">&nbsp;</p>
-
-<div class="clear"></div>
-
-<div class="table_box_large"><!--table_box-->
-<div class="row_one">
-<p class="txt_rg">Age<br />		
-Height<br />			
-Marital status<br />
-Physical Status<br />		
-Mother Tongue<br />
-Religion<br />		
-Caste<br />		
-Sub Caste<br />		
-Eating Habits<br />		
-Smoking Habits<br />		
-Drinking Habits<br />		
-Education<br />	
-Occupation<br />		
-Annual Income<br />		
-Country<br />		
-Residing State<br />		
-Citizenship<br />		
-Residing City<br />		
-</p>
-
-</div>
-<?php $partner = $model->partnerpreferences?>
-<div class="row_three">
-<p class="txt_rg">
-:<span class="txt_level">   <?php if(isset($partner->ageFrom))echo $partner->ageFrom; echo ' - ';if(isset($partner->ageTo))echo $partner->ageTo.' Years'; ?></span><br />	
-:<span class="txt_level">  <?php if(isset($partner->heightTo))echo $heightArray[$partner->heightTo]; ?> / <?php if(isset($partner->heightFrom))echo $heightArray[$partner->heightFrom]; ?></span><br />	
-:<span class="txt_level">   <?php if(isset($partner->maritalStatus))echo $marry[$partner->maritalStatus];?></span> <br />
-:<span class="txt_level">    <?php if(isset($partner->physicalStatus))echo $physicalStatus[$partner->physicalStatus]?></span> <br />
-:<span class="txt_level">   <?php if(isset($partner->languages))echo Utilities::getValueForIds(new Languages(), $partner->languages, 'languageId')?></span> <br />
-:<span class="txt_level">   <?php if(isset($partner->religionData->name))echo $partner->religionData->name?></span> <br />
-:<span class="txt_level">   <?php if(isset($partner->casteData->name))echo $partner->casteData->name?></span> <br />
-:<span class="txt_level">   <?php if(isset($partner->subcaste))echo Utilities::getValueForIds(new Subcaste(), $partner->subcaste, 'subcasteId')?></span> <br />
-:<span class="txt_level">   <?php if(isset($partner->eatingHabits))echo Utilities::getArrayValues(Utilities::getFood(), $partner->eatingHabits)?></span> <br />
-:<span class="txt_level">   <?php if(isset($partner->smokingHabits))echo Utilities::getArrayValues(Utilities::getSmoke(), $partner->smokingHabits)?></span> <br />
-:<span class="txt_level">   <?php if(isset($partner->drinkingHabits))echo Utilities::getArrayValues(Utilities::getDrink(), $partner->drinkingHabits)?></span> <br />
-:<span class="txt_level">   Bachelors - Engineering / Computers, Medicine - General </span><br/> 
-:<span class="txt_level">   <?php if(isset($partner->occupation))echo Utilities::getValueForIds(new OccupationMaster(), $partner->occupation, 'occupationId')?></span> <br />
-:<span class="txt_level">   <?php if(isset($partner->annualIncome))echo $partner->annualIncome; ?></span> <br />
-:<span class="txt_level">   <?php if(isset($partner->countries)) echo Utilities::getValueForIds(new Country(), $partner->countries, 'countryId')?></span> <br />
-:<span class="txt_level">   <?php if(isset($partner->states))echo Utilities::getValueForIds(new States(), $partner->states, 'stateId')?></span> <br />
-:<span class="txt_level">   <?php if(isset($partner->citizenship))echo Utilities::getValueForIds(new Country(), $partner->citizenship, 'countryId')?></span> <br />
-:<span class="txt_level">   <?php if(isset($partner->places))echo Utilities::getValueForIds(new Places(), $partner->places, 'placeId')?></span> <br />
-</p>
-</div>
-
-</div><!--table_box-->
-
-<div class="clear"></div>
-
-<div class="line_new_edit"></div>
-
-<div class="space-15px"><p>&nbsp;</p></div>
-
-<div class="clear"></div>
-
-
- <p class="text_pink-hd">About my partner</p>
-                <p class="space-25px">&nbsp;</p>
-
-
-<div class="clear"></div>
-
-<p class="txt_rg"><?php if(isset($partner->partnerDescription))echo $partner->partnerDescription; ?></p>
-<br />
-<div class="clear"></div>
-
-
-
-<div class="line"></div>
-
-<div class="left"><p class="text_blue"><a href="#">Short List</a>   |  <a href="#">Block</a>   |  <a href="#">Forwards</a>  |  <a href="#" onclick="window.print();">Print</a></p>
-</div>
-
-<div class="right_mgntp-sub">
-<?php 
-if(isset($user)){
- if(!isset($isInterest) || empty($isInterest)) {
- ?>
-<a href="#" id="<?php echo $model->userId ?>" class="exp-sub-less">Express Interest</a>
-<?php }?>
-<?php if(!isset($isBookMarked) || empty($isBookMarked)) {?> 
-<a href="#" id="<?php echo $model->userId ?>" class="exp-sub-add-less">Bookmark</a>
-<?php }?>
-<?php if(!isset($isMessage) || empty($isMessage)) {?>
-<a href="#" id="<?php echo $model->userId ?>" class="exp-sub-send-less">Send Message</a> 
-   <?php } 
-}
-   ?>
-
-</div>
-
-
- </div><!--left-content closing-->
-                <!--left-content-->
-                <div id="content-right_small">
-               	  <div class="div_r_1_11"><!--div_r-->
-
-<p class="text_20_gery">Subscribe Now!<br />
-Only for</p>
-
-
-<a href="#"><img src="<?php echo Yii::app()->params['mediaUrl']; ?>/img_200.jpg" class="left"  border="0" width="100%"/></a>
-
-<div class="clear"></div>
-
-<div class="line"></div>
-
-<p class="text_20_cntr">Benefits For Subsciribed Users</p>
-
-<p class="text_18_cntr">Contact members directly<br />
-Send personalised messaages<br />
-View Album, Documents, and contact<br /> 
-details<br />
-View horoscope of members<br />
-Express Unlimited interest<br />
-Plus other exclusive paid membership <br />
-benefits</p>
-
-
-
-<div class="line"></div>
-
-<p class="text_20_cntr">Payment Options</p>
-
-<p class="text_banner">You have three payment options, 
-Choose any one for you Only for</p>
-
-<div class="center_icon" >
-<img src="<?php echo Yii::app()->params['mediaUrl']; ?>/1_round.jpg" /></div>
-
-<p class="text_20_cntr">Activation Coupon</p>
-
-<p class="text_banner">You can subscribe through activation coupon which you can purchase from your nearest re-sellers. <span class="span_blue"> Click here</span> to find your nearest re-seller</p>
-
-
-<div class="center_icon" >
-<img src="<?php echo Yii::app()->params['mediaUrl']; ?>/2_round.jpg" /></div>
-
-<p class="text_20_cntr">NetBanking</p>
-
-<p class="text_banner">We are accepting major banks Net Transfer and Debit card transaction through Online. <span class="span_blue"> Click here</span> to find our banking partners</p>
-
-
-<div class="center_icon" >
-<img src="<?php echo Yii::app()->params['mediaUrl']; ?>/3_round.jpg" /></div>
-
-<p class="text_20_cntr">Credit card and Paypal</p>
-
-<p class="text_banner">We are accepting Visa, Master and Rupay cards and paypal.<span class="span_blue"> Click here</span> to go payment page.<br />
-  <br />
-</p>
-
-
-<p class="text_20_blue">SUBSCRIBE NOW! </p>
-</div>
-                    
-                    
-                    
-                    
-                    
-                
-                </div>
-                <!--right-content closing-->
-            </div>
-            <!--main-content closing-->
             
  <script type="text/javascript">
 $(document).ready(function() {

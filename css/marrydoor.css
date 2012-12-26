@@ -1508,6 +1508,7 @@ article.section ul li .info .checked{
     float: left;
     min-height:100px;
     border-top: 1px solid #E9EAEA;
+     position: relative;
 }
 .mainPro .photoC{
     width: 180px;
@@ -2408,4 +2409,18 @@ article.section ul li .info .checked{
 .membership-contnr ul.tab-data li .left label {
     color: #939598;
     font: 13px/20px arial,helvetica,sans-serif;
+}
+
+/*search by ID additional class*/
+.mainPro .pageOpt{
+    width: 470px;
+    float: left;
+    position: absolute;
+    right: 10px;
+    bottom: 3px;
+}
+.mainPro .pageOpt li {
+    float: left;
+    margin:1px 0 0;
+    width: 100%;
 }
