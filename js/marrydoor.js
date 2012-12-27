@@ -129,12 +129,7 @@ $(document).ready(function(){
             $(this).hide();    
         });
     });
-	
-	
-	$(".headerForgetPassword").colorbox({iframe:true, width:"855px", height:"355px"});
-	$("#popUpClose").click(function(){
-		parent.$.fn.colorbox.close();
-	});
+
 });
 //notification tab
 $(function(){
@@ -176,6 +171,11 @@ $(function(){
 				function addMoreFiles()
 				{
 
+					//get total count
+					var totalCount = document.getElementById("totalCount").value;
+					alert(totalCount);
+					totalCount = parseInt(totalCount);
+					if(totalCount < 5){
 					// get the current element count
 					var count = document.getElementById("photoCount").value;
 					//Create an input type dynamically.
@@ -193,11 +193,19 @@ $(function(){
 				    container.appendChild(element);
 				    count = parseInt(count) + 1;
 				    document.getElementById("photoCount").value = count;
+				    document.getElementById("totalCount").value = totalCount + 1;
+					}else{
+						alert('You can upload only 5 images');
+					}
 				}
 
 				function addMoreDocuments()
 				{
 
+					//get total count
+					var totalCount = document.getElementById("totalCount").value;
+					totalCount = parseInt(totalCount);
+					if(totalCount < 5){
 					// get the current element count
 					var count = document.getElementById("documentCount").value;
 					//Create an input type dynamically.
@@ -238,12 +246,23 @@ $(function(){
 				    
 				    count = parseInt(count) + 1;
 				    document.getElementById("documentCount").value = count;
+				    document.getElementById("totalCount").value = totalCount + 1;
+					}else{
+						alert('You can upload only 5 documents');
+					}
 				}
 				
 		// function to change the picture in album page
 
 		function changeAlbumPicture(image){
 			$("#albumImageContainer").attr("src", image);
+		}
+		
+		function closeOverlay()
+		{
+			parent.$.fn.colorbox.close();
+			parent.window.location.href = parent.window.location;
+			
 		}
 		
 		$(document).ready(function(){

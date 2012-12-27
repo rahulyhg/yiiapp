@@ -654,6 +654,7 @@ class UserController extends Controller
 		$user = Yii::app()->session->get('user');
   		$photos = new Photos();
   		$documents = new Documents();
+  		$album = new Album();
 
 		if(isset($_GET['r']) && $_GET['r'] == 'setimage'){   // set the profile image
 			$photoId = (int)trim($_GET['pId']);
@@ -681,6 +682,22 @@ class UserController extends Controller
 				$this->redirect(Yii::app()->params['homeUrl']."/user/profilepicture");
 				Yii::app()->end();	
 			}
+		}elseif(isset($_GET['r']) && $_GET['r'] == 'deletealbumimage'){   // delete the image
+			$photoId = (int)trim($_GET['pId']);
+			$userId = (int)trim($_GET['uId']);
+			$user = Yii::app()->session->get('user');
+			if($user->userId == $userId){
+				$photo = $album->find('albumId='.$photoId);
+				$path = Utilities::getDirectory('images',array('album',$user->marryId));
+				$targetFile = Utilities::getFullFilePath($path, $photo->imageName);
+				if(file_exists($targetFile)){
+					if(unlink($targetFile)){
+						$album->deleteByPk($photoId);
+					}
+				}
+				$this->redirect(Yii::app()->params['homeUrl']."/user/profilepicture");
+				Yii::app()->end();	
+			}
 		}elseif(isset($_GET['r']) && $_GET['r'] == 'deletedocument'){   // delete the document
 			$documentId = (int)trim($_GET['dId']);
 			$userId = (int)trim($_GET['uId']);
@@ -700,7 +717,8 @@ class UserController extends Controller
 		}
 		$photosList = $photos->findAll('userId='.$user->userId);
 		$documentList = $documents->findAll('userId='.$user->userId);
-		$this->render('profilepicture',array('photos'=>$photosList,'user'=>$user,'documents'=>$documentList));
+		$albumList = $album->findAll('userId='.$user->userId.' and type=1');
+		$this->render('profilepicture',array('photos'=>$photosList,'user'=>$user,'documents'=>$documentList, 'familyPhotos'=>$albumList));
 	}
 	
 	public function actionPhotoupload()
@@ -782,7 +800,7 @@ class UserController extends Controller
 	{
 	
 		$user = Yii::app()->session->get('user');
-  		$photos = new Photos();
+  		$photos = new Album();
   		
 		//Upload the profile photo
   		$photoCount = isset($_POST['photoCount']) ? $_POST['photoCount']:1; 
@@ -792,16 +810,16 @@ class UserController extends Controller
 				$fileName=basename( $_FILES['profilePhoto_'.$i]['name']);   
 				$extension = strtolower(Utilities::getExtension($fileName));  
 				if(Utilities::isValidImageExtension($extension)){         
-				 	$path = Utilities::getDirectory('images',array('profile',$user->marryId)); 
+				 	$path = Utilities::getDirectory('images',array('album',$user->marryId)); 
 				 	$fileName = $user->marryId.date("his").".".$extension; 
 					$targetPath = Utilities::getFullFilePath($path, $fileName);
 					if(Utilities::uploadFile($_FILES['profilePhoto_'.$i]['tmp_name'], $targetPath)) {
 						//code to insert to db
-						$photos = new Photos();
-						$photos->updateAll(array('profileImage'=>0),'userId='.$user->userId);  // unset the existing 
+						$photos = new Album();
 						$photos->userId = $user->userId;
 						$photos->imageName = $fileName;
-						$photos->profileImage = 1;
+						$photos->type = 1;
+						$photos->active = 1;
 						$photos->save();
 						
 					}else{
@@ -812,6 +830,26 @@ class UserController extends Controller
 			}
 			sleep(1); // set a time delay to upload
   		}
+  		
+  		// delete the image
+		if(isset($_GET['r']) && $_GET['r'] == 'deleteimage'){   // delete the image
+			$photoId = (int)trim($_GET['pId']);
+			$userId = (int)trim($_GET['uId']);
+			$user = Yii::app()->session->get('user');
+			if($user->userId == $userId){
+				$photo = $photos->find('albumId='.$photoId);
+				$path = Utilities::getDirectory('images',array('album',$user->marryId));
+				$targetFile = Utilities::getFullFilePath($path, $photo->imageName);
+				if(file_exists($targetFile)){
+					if(unlink($targetFile)){
+						$photos->deleteByPk($photoId);
+					}
+				}
+			 	$this->redirect(Yii::app()->params['homeUrl']."/user/familyphotoupload");
+				Yii::app()->end();
+			}
+		}
+		
   		$photosList = $photos->findAll('userId='.$user->userId);
 		$this->layout= '//layouts/popup';
 		$this->render('familyphotoupload',array('photos'=>$photosList,'user'=>$user));

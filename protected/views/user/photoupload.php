@@ -7,6 +7,7 @@
 					<li class="mT15 mB0">
 					<form action="<?php echo Utilities::createAbsoluteUrl('user','photoupload'); ?>" method="post" enctype="multipart/form-data">	
 						<input type="hidden" name="photoCount" id="photoCount" value="2" />
+						<input type="hidden" name="totalCount" id="totalCount" value="<?php echo !empty($photos)? count($photos):1;?>" />
 						<div class="urOnly">You can select multiple images</div>
 						<div class="uploadCn">
 							<input type="file" name="profilePhoto_1" id="profilePhoto_1" />
@@ -52,7 +53,7 @@
 						</div>
 					</li>
 					<li>
-						<a href="#" class="type4 wid80">Update</a>
+						<a href="#" class="type4 wid80" onclick='javascript:closeOverlay();'>Update</a>
 					</li>
 				</ul>
 			</section>

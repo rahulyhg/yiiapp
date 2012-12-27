@@ -7,6 +7,7 @@
 					<li class="mT15 mB0">
 					<form action="<?php echo Utilities::createAbsoluteUrl('user','familyphotoupload'); ?>" method="post" enctype="multipart/form-data">	
 						<input type="hidden" name="photoCount" id="photoCount" value="2" />
+						<input type="hidden" name="totalCount" id="totalCount" value="<?php echo !empty($photos)? count($photos):1;?>" />
 						<div class="urOnly">You can select multiple images</div>
 						<div class="uploadCn">
 							<input type="file" name="profilePhoto_1" id="profilePhoto_1" />
@@ -27,10 +28,10 @@
 						<?php foreach($photos as $photo):?>
 							<div class="upCn">
 								<div class="ppOpts">
-									<p><a title="click to make this ur profile picture" href="<?php echo Yii::app()->params['homeUrl']?>/user/profilepicture/r/setimage/pId/<?php echo $photo->photoId?>/uId/<?php echo $user->userId?>">Use as Profile Picture</a></p>
-									<p><a title="click to delete this picture" href="<?php echo Yii::app()->params['homeUrl']?>/user/profilepicture/r/deleteimage/pId/<?php echo $photo->photoId?>/uId/<?php echo $user->userId?>">Delete</a></p>
+									<!--  <p><a title="click to make this ur profile picture" href="<?php echo Yii::app()->params['homeUrl']?>/user/profilepicture/r/setimage/pId/<?php echo $photo->albumId?>/uId/<?php echo $user->userId?>">Use as Profile Picture</a></p>-->
+									<p><a title="click to delete this picture" href="<?php echo Yii::app()->params['homeUrl']?>/user/profilepicture/r/deleteimage/pId/<?php echo $photo->albumId?>/uId/<?php echo $user->userId?>">Delete</a></p>
 								</div>
-								<img src="<?php echo Utilities::getProfileImage($user->marryId,$photo->imageName); ?>" alt="" width="210" height="110" />
+								<img src="<?php echo Utilities::getAlbumImage($user->marryId,$photo->imageName); ?>" alt="" width="210" height="110" />
 							</div>
 						<?php endforeach;?>
 						</div>
@@ -52,7 +53,7 @@
 						</div>
 					</li>
 					<li>
-						<a href="#" class="type4 wid80">Update</a>
+						<a href="#" class="type4 wid80" onclick='javascript:closeOverlay();'>Update</a>
 					</li>
 				</ul>
 			</section>

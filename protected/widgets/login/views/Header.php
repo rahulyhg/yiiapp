@@ -3,13 +3,21 @@
                 <?php $userName = Yii::app()->session->get('username');?>
                 <?php $user = Yii::app()->session->get('user');?>
  <?php if(isset($userName)) {?>
+ 			<!-- notification drop down -->
+ 			<?php $this->widget('application.widgets.menu.Dropdownmenu'); ?> 
+ 			<!-- drop down end -->
   			<div class="welcome-message">
   			<span class="color">
   			<?php echo $userName; echo " ".$user['marryId']?> 
   			</span>
   			|
   			<a class="logout" href="/site/logout">Logout</a></div>
-  			
+  			<!-- search box -->
+  			<div class="search-container">
+            <input type="text" placeholder="Search By ID / Keyword" />
+            <a class="type2" href="profile-page.htm" >Search</a>
+            </div>
+            <!-- search box end -->
   			<?php } else {?>
   			   <div class="welcome-message">Welcome Guest!</div>
 			  			
@@ -44,7 +52,7 @@ $(document).ready(function(){
     	
     });
 	
-    $("#forgotPassword").colorbox({iframe:true, width:"850", height:"500"});
+    $("#forgotPassword").colorbox({iframe:true, width:"850", height:"355"});
   });
 
 

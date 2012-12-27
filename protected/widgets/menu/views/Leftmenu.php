@@ -1,126 +1,109 @@
- <?php
- 	// get the user details from session value
- 	$user = Yii::app()->session->get('user'); 
- 	$profileImage = $user->photos(array('condition'=>'profileImage = 1'));
- 	if(count($profileImage) > 0){
- 		$image = $profileImage[0]->imageName;
- 	}else{
- 		$image = '';
- 	}
- ?>
-        <!--profile details-section-->
-        	<div class="profile_200">
- 
- 
-     <a href="<?php echo Utilities::createAbsoluteUrl('album','',array()); ?>"><img src="<?php echo Utilities::getProfileImage($user->marryId,$image) ?>" border="0" class="mrgn_5top" /></a>
-	      <p class="mrgn_25"><span class="text_pink_13"><a href="/mypage"><?php echo $user->name?></a></span></p>
-                <div class="clear"></div>
-                <div class="line"></div>
-                
-                <div class="div_ww">
-                <img src="<?php echo Utilities::getMediaUrl() ?>/img_03more.jpg" class="left" style="width:100%;" /> </div>
-                
-                    
-        <p class="text_blue_15">REMAINING. <a href="#">RE-CHARGE&nbsp;NOW</a></p>    
-        
-        
-              <div class="clear"></div>
-                <div class="line_sm"></div>
-                 <span  class="innersidelinks-still-l"><a href="<?php echo Utilities::createAbsoluteUrl('mypage','index',array()); ?>">My Page</a></span><p class="space-5px">&nbsp;</p>
-                  <span  class="innersidelinks-l"><a href="<?php echo Utilities::createAbsoluteUrl('mypage','myprofile',array()); ?>">My Profile</a></span><p class="space-5px">&nbsp;</p>
-                  <span  class="innersidelinks-l"><a href="<?php echo Utilities::createAbsoluteUrl('mypage','account',array()); ?>">My Account</a></span><p class="space-5px">&nbsp;</p>
-              
-                  <span  class="innersidelinks-l"><a href="<?php echo Utilities::createAbsoluteUrl('privacy','index',array()); ?>">My Settings</a></span>
-              <div class="clear"></div>
-                <div class="line_sm"></div>
-                <p class="txt_bld-15"><img src="<?php echo Utilities::getMediaUrl() ?>/arrow_small_right.jpg" />&nbsp;&nbsp;&nbsp;Messages</p>
-                	<p class="bullettext"><a href="<?php echo Utilities::createAbsoluteUrl('message','',array()); ?>">Inbox <?php echo count($user->messageReceiver); ?></a></p>
-                	<p class="bullettext"><a href="<?php echo Utilities::createAbsoluteUrl('message','outbox',array()); ?>">Outbox <?php echo count($user->messageSender); ?></a></p>
-                	<p class="bullettext"><a href="<?php echo Utilities::createAbsoluteUrl('message','delivery',array()); ?>">Delivery Report 3</a></p>
-<div class="clear"></div>
-                <div class="line_sm"></div>
-                <p class="txt_bld-15"><img src="<?php echo Utilities::getMediaUrl() ?>/arrow_small_right.jpg" />&nbsp;&nbsp;&nbsp;Interest</p>
-                <p class="bullettext"><a href="<?php echo Utilities::createAbsoluteUrl('interest','sent',array()); ?>">Sent <?php echo count($user->interestSender); ?></a></p>
-                
-                	<p class="bullettext"><a href="<?php echo Utilities::createAbsoluteUrl('interest','received',array()); ?>">Recived <?php echo count($user->interestReceiver); ?></a></p>
-                	
-                	<p class="bullettext"><a href="<?php echo Utilities::createAbsoluteUrl('interest','declined',array()); ?>">Decliened 7</a></p>
-                	<p class="bullettext"><a href="<?php echo Utilities::createAbsoluteUrl('interest','accepted',array()); ?>">Accepted by me 1</a>                </p>
-               	<div class="line_sm"></div>
-                <p class="txt_bld-15"><img src="<?php echo Utilities::getMediaUrl() ?>/arrow_small_right.jpg" />&nbsp;&nbsp;&nbsp;Album</p>
-              
-              
-              
-               <p class="bullettext"><a href="<?php echo Utilities::createAbsoluteUrl('album','sent',array()); ?>">Sent <?php //echo count($user->albumSender); ?></a></p>
-                
-                	<p class="bullettext"><a href="<?php echo Utilities::createAbsoluteUrl('album','received',array()); ?>">Recived <?php //echo count($user->albumReceiver); ?></a></p>
-                	
-                	<p class="bullettext"><a href="<?php echo Utilities::createAbsoluteUrl('album','declined',array()); ?>">Declined 3</a></p>
-<p class="bullettext"><a href="<?php echo Utilities::createAbsoluteUrl('album','accepted',array()); ?>">Accepted by me 1</a>              </p>
-<div class="line_sm"></div>
-                <p class="txt_bld-15"><img src="<?php echo Utilities::getMediaUrl() ?>/arrow_small_right.jpg" />&nbsp;&nbsp;&nbsp;Documents</p>
-                
-                
-                
-               <p class="bullettext"><a href="<?php echo Utilities::createAbsoluteUrl('document','sent',array()); ?>">Sent <?php echo count($user->documentSender); ?></a></p>
-               <p class="bullettext"><a href="<?php echo Utilities::createAbsoluteUrl('document','received',array()); ?>">Recived <?php echo count($user->documentReceiver); ?></a></p>
-               <p class="bullettext"><a href="<?php echo Utilities::createAbsoluteUrl('document','declined',array()); ?>">Declined 3</a></p>
-               <p class="bullettext"><a href="<?php echo Utilities::createAbsoluteUrl('document','accepted',array()); ?>">Accepted by me 1</a></p>
-<div class="line_sm"></div>
-                <p class="txt_bld-15"><img src="<?php echo Utilities::getMediaUrl() ?>/arrow_small_right.jpg" />&nbsp;&nbsp;&nbsp;Contacts</p>
-                
-                
-               <p class="bullettext"><a href="<?php echo Utilities::createAbsoluteUrl('contact','sent',array()); ?>">Sent <?php echo count($user->contactSender); ?></a></p>
-               <p class="bullettext"><a href="<?php echo Utilities::createAbsoluteUrl('contact','received',array()); ?>">Recived <?php echo count($user->contactReceiver); ?></a></p>
-               <p class="bullettext"><a href="<?php echo Utilities::createAbsoluteUrl('contact','declined',array()); ?>">Declined 3</a></p>
-               <p class="bullettext"><a href="<?php echo Utilities::createAbsoluteUrl('contact','accepted',array()); ?>">Accepted by me 1</a></p>
-<div class="line_sm"></div>
-                <p class="txt_bld-15"><img src="<?php echo Utilities::getMediaUrl() ?>/arrow_small_right.jpg" />&nbsp;&nbsp;&nbsp;Famili album</p>
-                <p class="bullettext"><a href="<?php echo Utilities::createAbsoluteUrl('family','sent',array()); ?>">Sent <?php echo count($user->familyAlbumSender); ?></a></p>
-                <p class="bullettext"><a href="<?php echo Utilities::createAbsoluteUrl('family','received',array()); ?>">Recived <?php echo count($user->familyAlbumReceiver); ?></a></p>
-                <p class="bullettext"><a href="<?php echo Utilities::createAbsoluteUrl('family','declined',array()); ?>">Declined 3</a></p>
-                <p class="bullettext"><a href="<?php echo Utilities::createAbsoluteUrl('family','accepted',array()); ?>">Accepted by me 1</a></p>
-<div class="clear"></div>
-                <div class="line_sm"></div>
-                
-                
-                    <span  class="innersidelinks-l"><a href="<?php echo Utilities::createAbsoluteUrl('user','document',array()); ?>">My Document</a></span>
-              <p class="space-5px">&nbsp;</p>
- 
-                  <span  class="innersidelinks-l"><a href="<?php echo Utilities::createAbsoluteUrl('mypage','addressbook',array()); ?>">My Address Book</a></span><p class="space-5px">&nbsp;</p>
-                  <span  class="innersidelinks-l"><a href="<?php echo Utilities::createAbsoluteUrl('mypage','reference',array()); ?>">My Refference</a></span><p class="space-5px">&nbsp;</p>
-                  <span  class="innersidelinks-l"><a href="<?php echo Utilities::createAbsoluteUrl('shortlist','index',array()); ?>">My Shortlist</a></span>
-              <p class="space-5px">&nbsp;</p>
-                  <span  class="innersidelinks-l"><a href="<?php echo Utilities::createAbsoluteUrl('bookmark','index',array()); ?>">My bookmarks</a></span>
-              <p class="space-5px">&nbsp;</p>
-                  <span  class="innersidelinks-l"><a href="<?php echo Utilities::createAbsoluteUrl('mypage','contact',array()); ?>">My Contact Details</a></span>
-                  <p class="space-5px">&nbsp;</p>
-                  <span  class="innersidelinks-l"><a href="<?php echo Utilities::createAbsoluteUrl('user','partner',array()); ?>">My Partner Preference</a></span>
-                  <p class="space-5px">&nbsp;</p>
-                  <span  class="innersidelinks-l"><a href="<?php echo Utilities::createAbsoluteUrl('mypage','payment',array()); ?>">My payment Summery</a></span>
-                  
-                  
-  <div class="clear"></div>
-                <div class="line_sm"></div>                
-                  <div style="float:left; width:96%;">     
-                <img src="<?php echo Utilities::getMediaUrl() ?>/img_advert.jpg" class="left" style="width:100%;"/> </div>
-                
-                
-                <div class="clear"></div>
-                <div class="line_sm"></div>
-                
-                <div style="float:left; width:96%;">  
-                <img src="<?php echo Utilities::getMediaUrl() ?>/do-you-like.jpg" class="left" style="width:100%;" /> </div>
-                
-               
-                <div class="clear"></div>
-                <p class="txt_bld">Suggest to a friend</p>
-              <p class="txt_bld-10">Use comma to seperate each ids</p><p class="space-10px">&nbsp;</p>
-                <form>
-                <input type="text" class="select_small_180"  placeholder="Friends Email ID"/>               
-                
-                <a class="invite" href="#">Invite</a>
-                </form>
-  </div>
-              
-  <!--profile details closing--> 
+    <aside class="left-bar-container">
+		<ul class="left-bar-data">
+            <li>
+				<a href="my-page.htm"><img src="./images/user/profile.png" alt="" /></a>
+				<a href="my-page.htm" class="pName">Biju George</a>
+			</li>
+        </ul>
+		<ul class="left-bar-data">
+			<li>
+				<div class="moreDay"><span>03</span> More Days</div>
+				<div class="remain">Remaining. <a href="recharge-now.htm" >Re-Charge Now</a></div>
+			</li>
+        </ul>
+        <ul class="left-bar-data">
+            <li><a href="my-page.htm" class="select headLink">My Page</a></li>
+            <li><a href="edit-my-profile.htm" class="headLink">My Profile</a></li>
+            <li><a href="my-account.htm" class="headLink">My Account</a></li>
+            <li>
+				<a href="my-documents.htm" class="headLink">My Documents</a>
+				<a class="infoB" href="javascript:void(0)">?</a>
+				<div class="infoBox">
+					<div class="iArrow"></div>
+					<div class="iHead">What is My Document</div>
+					<p>Documents such as passport, ration card, voters ID, pan card, bank passbook, school certificate, university certificate are considered as my documents.</p>
+				</div>
+			</li>
+			<li><a href="my-album.htm" class="headLink">My Album</a></li>
+            <li><a href="my-family-album.htm" class="headLink">My Family album</a></li>
+            <li><a href="my-astro-details.htm" class="headLink">My Astro details</a></li>
+			<li>
+				<a href="my-reference-contact.htm" class="headLink">My Reference</a>
+				<a class="infoB" href="javascript:void(0)">?</a>
+				<div class="infoBox">
+					<div class="iArrow"></div>
+					<div class="iHead">What is My Reference</div>
+					<p>My reference is where you can add the references of people who can vouch for your character. You can add teachers and important people in your locality as your references. </p>
+				</div>
+			</li>
+            <li><a href="my-contact.htm" class="headLink">My Contact details</a></li>
+            <li>
+				<a href="shortlisted-profiles.htm" class="headLink">My Shortlists</a>
+				<a class="infoB" href="javascript:void(0)">?</a>
+				<div class="infoBox">
+					<div class="iArrow"></div>
+					<div class="iHead">What is My Shortlists</div>
+					<p>You might get interested in many profiles and many people might show interest in your profile. If the interest is mutually accepted, you can short list the profiles you want to contact later. </p>
+				</div>
+			</li>
+			<li>
+				<a href="bookmarked-profiles.htm" class="headLink">My Bookmarks</a>
+				<a class="infoB" href="javascript:void(0)">?</a>
+				<div class="infoBox">
+					<div class="iArrow"></div>
+					<div class="iHead">What is My Bookmarks</div>
+					<p>Bookmark is a way to keep the profiles of your interest aside and check them in detail later. You can see the bookmarks when you long on next time.</p>
+				</div>
+			</li>
+            <li>
+				<a href="my-addressbook.htm" class="headLink">My Addressbook</a>
+				<a class="infoB" href="javascript:void(0)">?</a>
+				<div class="infoBox">
+					<div class="iArrow"></div>
+					<div class="iHead">What is My Addressbook</div>
+					<p>Address book is a place to where you can import the address to my address book. This way you can access the details later without visiting a particular profile again. </p>
+				</div>
+			</li>
+			<li><a href="payment-summery.htm" class="headLink">My Payment summery</a></li>
+			<li><a href="my-settings.htm" class="headLink">My Settings</a></li>
+        </ul>
+        <ul class="left-bar-data">
+            <li>
+				<a href="my-messages.htm" class="headLink ">Message </a>
+				<div class="dataCont">
+					<div class="row"><a href="my-messages.htm" class="innLink">Inbox 25</a></div>
+					<div class="row"><a href="my-messages.htm" class="innLink">Outbox 35</a></div>
+					<div class="row"><a href="my-messages.htm" class="innLink">Delivery aknowledgement 10</a></div>
+				</div>
+			</li>
+        </ul>
+		<ul class="left-bar-data">
+            <li>
+				<a href="my-requests.htm" class="headLink ">Request </a>
+				<div class="dataCont">
+					<div class="row"><a href="my-requests.htm" class="innLink">Sent 75</a></div>
+					<div class="row"><a href="my-requests.htm" class="innLink">Recieved 35</a></div>
+					<div class="row"><a href="my-requests.htm" class="innLink">Declined 25</a></div>
+				</div>
+			</li>
+        </ul>
+		<ul class="left-bar-data">
+            <li>
+				<a href="my-interests.htm" class="headLink ">Interest </a>
+				<div class="dataCont">
+					<div class="row"><a href="my-interests.htm" class="innLink">Sent 75</a></div>
+					<div class="row"><a href="my-interests.htm" class="innLink">Recieved 35</a></div>
+					<div class="row"><a href="my-interests.htm" class="innLink">Declined 25</a></div>
+				</div>
+			</li>
+        </ul>
+		<ul class="left-bar-data">
+            <li>
+				<div class="mdAddT1 mT12">Want to invite a friend to </div>
+				<div class="mdAddT2">marrydoor ?</div>
+				<h5>Key in e-mail ids separated by comma</h5>
+				<input type="text" placeholder="Friends Email ID" />
+				<a href="#" class="type2 no-marg">Invite</a>
+			</li>
+        </ul>
+    </aside>

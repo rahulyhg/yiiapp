@@ -71,10 +71,10 @@
 				<?php foreach($familyPhotos as $photo):?>
 					<div class="photoOpt">
 						<div class="ppOpts">
-							<p><a href="<?php echo Yii::app()->params['homeUrl']?>/user/profilepicture/r/setimage/pId/<?php echo $photo->photoId?>/uId/<?php echo $user->userId?>" title="click to make this ur profile picture">Use as Profile Picture</a></p>
-							<p><a href="<?php echo Yii::app()->params['homeUrl']?>/user/profilepicture/r/deleteimage/pId/<?php echo $photo->photoId?>/uId/<?php echo $user->userId?>" title="click to delete this picture">Delete</a></p>
+							<!--  <p><a href="<?php echo Yii::app()->params['homeUrl']?>/user/profilepicture/r/setimage/pId/<?php echo $photo->albumId?>/uId/<?php echo $user->userId?>" title="click to make this ur profile picture">Use as Profile Picture</a></p>-->
+							<p><a href="<?php echo Yii::app()->params['homeUrl']?>/user/profilepicture/r/deletealbumimage/pId/<?php echo $photo->albumId?>/uId/<?php echo $user->userId?>" title="click to delete this picture">Delete</a></p>
 						</div>
-						<img src="<?php echo Utilities::getProfileImage($user->marryId,$photo->imageName); ?>" alt="" />
+						<img src="<?php echo Utilities::getAlbumImage($user->marryId,$photo->imageName); ?>" alt="" />
 					</div>
 				<?php endforeach;?>	
 				</li>
@@ -84,7 +84,7 @@
 					<p class="width100">You can add one more photo in this album</p>
 				</li>
 				<li>
-					<a href="<?php echo Utilities::createAbsoluteUrl('user','photoupload'); ?>" class="upload" id="photoUpload">UPLOAD YOUR PHOTOS</a>
+					<a href="<?php echo Utilities::createAbsoluteUrl('user','familyphotoupload'); ?>" class="upload" id="familyphotoUpload">UPLOAD YOUR PHOTOS</a>
 				</li>
 				<li>
 					<div class="title">
@@ -102,7 +102,7 @@
 			</ul>
 			<?php else:?>
 			<ul class="no-padd">
-				<li class="mTnone">
+				<li>
 					<h1 class="message">Add Family Photos</h1>
 					<h5 class="color">A picture is worth thousand words!</h5>
 				</li>
@@ -223,9 +223,9 @@
 
 	<script type="text/javascript">
 $(document).ready(function(){
-    $("#photoUpload").colorbox({iframe:true, width:"860", height:"500"});
-    $("#documentUpload").colorbox({iframe:true, width:"860", height:"500"});
-    $("#familyphotoUpload").colorbox({iframe:true, width:"860", height:"500"});
+    $("#photoUpload").colorbox({iframe:true, width:"845", height:"420"});
+    $("#familyphotoUpload").colorbox({iframe:true, width:"845", height:"420"});
+    $("#documentUpload").colorbox({iframe:true, width:"845", height:"420"});
   });
 
     $('<a href="/mypage">Skip this page|</a> ').insertBefore('.logout');

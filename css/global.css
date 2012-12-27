@@ -785,7 +785,7 @@ h5{
 	margin: 0 15px 10px 0 !important;
 }
 .subWrapper{
-	width: 800px;
+	width: 810px; /*800px*/
 	margin: 0 auto;
 	position: relative;
 }
@@ -1977,8 +1977,10 @@ h5{
 .subContent {
     border: 10px solid #F8F8F8;
     float: left;
-    margin: 10px 0 0;
-    padding: 10px;
+    /*margin: 10px 0 0;
+    padding: 10px;*/
+    margin: 5px 0 0;
+    padding: 13px;
 }
 .infoB{
 	font:bold 11px/15px tahoma,arial,helvetica,sans-serif;

@@ -331,6 +331,7 @@ LEFT JOIN photos RP ON (M.receiverId = RP.userId AND RP.profileImage = 1);
 
 
 ALTER TABLE users ADD UNIQUE (emailId);
-ALTER TABLE `userpersonaldetails` CHANGE `landPhone` `landPhone` BIGINT( 15 ) NOT NULL 
-ALTER TABLE `userpersonaldetails` CHANGE `mobilePhone` `mobilePhone` BIGINT( 15 ) NULL DEFAULT NULL 
-ALTER TABLE `partnerpreferences` CHANGE `caste` `caste` TEXT NULL DEFAULT NULL 
+ALTER TABLE `userpersonaldetails` CHANGE `landPhone` `landPhone` BIGINT( 15 ) NOT NULL; 
+ALTER TABLE `userpersonaldetails` CHANGE `mobilePhone` `mobilePhone` BIGINT( 15 ) NULL DEFAULT NULL; 
+ALTER TABLE `partnerpreferences` CHANGE `caste` `caste` TEXT NULL DEFAULT NULL; 
+ALTER TABLE  `album` ADD  `type` INT( 1 ) NOT NULL DEFAULT  '0' COMMENT  '0-profile, 1- family' AFTER  `description`
