@@ -119,7 +119,7 @@
 				<div class="left"> </div>
 				<div class="right">
 					<h4>Enter Your Pin Number Here</h4>
-					<?php echo $form->textField($model,'coupon',array('class'=>'validate[required]')); ?>
+					<?php echo $form->textField($model,'coupon',array('class'=>'validate[required,minSize[15],maxSize[15]]')); ?>
 					<h4>or Call us +91 8891 680376</h4>
 				</div>
 			</li>
@@ -159,6 +159,13 @@
 $(document).ready(function(){
     $("#users-register-form").validationEngine('attach');
   });
+
+$("input:reset").click(function() {       // apply to reset button's click event
+    this.form.reset();                    // reset the form
+    // clear the form error validations      
+	$("#users-register-form").validationEngine('hideAll');
+     return false;                         // prevent reset button from resetting again
+});
 
 
 </script>	
