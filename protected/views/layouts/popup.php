@@ -23,7 +23,7 @@
 <!--	pop up starts here-->
 <div class="pop-contnr">
 	<div class="subWrapper">
-	<a class="pop-closed" id="popUpClose" href="#" onclick='javascript:parent.$.fn.colorbox.close();'>x</a>
+	<!--  <a class="pop-closed" id="popUpClose" href="#" onclick='javascript:parent.$.fn.colorbox.close();'>x</a>-->
 <!-- content -->
 	<?php echo $content; ?>
 	<!-- content ends -->
