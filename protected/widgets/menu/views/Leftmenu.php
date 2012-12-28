@@ -1,8 +1,18 @@
+ <?php
+ 	// get the user details from session value
+ 	$user = Yii::app()->session->get('user'); 
+ 	$profileImage = $user->photos(array('condition'=>'profileImage = 1'));
+ 	if(count($profileImage) > 0){
+ 		$image = $profileImage[0]->imageName;
+ 	}else{
+ 		$image = '';
+ 	}
+ ?>
     <aside class="left-bar-container">
 		<ul class="left-bar-data">
             <li>
-				<a href="my-page.htm"><img src="./images/user/profile.png" alt="" /></a>
-				<a href="my-page.htm" class="pName">Biju George</a>
+				<a href="<?php echo Utilities::createAbsoluteUrl('album','',array()); ?>"><img src="<?php echo Utilities::getProfileImage($user->marryId,$image) ?>" alt="" /></a>
+				<a href="<?php echo Utilities::createAbsoluteUrl('mypage','',array()); ?>" class="pName"><?php echo $user->name?></a>
 			</li>
         </ul>
 		<ul class="left-bar-data">
@@ -12,11 +22,11 @@
 			</li>
         </ul>
         <ul class="left-bar-data">
-            <li><a href="my-page.htm" class="select headLink">My Page</a></li>
-            <li><a href="edit-my-profile.htm" class="headLink">My Profile</a></li>
-            <li><a href="my-account.htm" class="headLink">My Account</a></li>
+            <li><a href="<?php echo Utilities::createAbsoluteUrl('mypage','index',array()); ?>" class="select headLink">My Page</a></li>
+            <li><a href="<?php echo Utilities::createAbsoluteUrl('mypage','myprofile',array()); ?>" class="headLink">My Profile</a></li>
+            <li><a href="<?php echo Utilities::createAbsoluteUrl('mypage','account',array()); ?>" class="headLink">My Account</a></li>
             <li>
-				<a href="my-documents.htm" class="headLink">My Documents</a>
+				<a href="<?php echo Utilities::createAbsoluteUrl('mypage','document',array()); ?>" class="headLink">My Documents</a>
 				<a class="infoB" href="javascript:void(0)">?</a>
 				<div class="infoBox">
 					<div class="iArrow"></div>
@@ -24,11 +34,11 @@
 					<p>Documents such as passport, ration card, voters ID, pan card, bank passbook, school certificate, university certificate are considered as my documents.</p>
 				</div>
 			</li>
-			<li><a href="my-album.htm" class="headLink">My Album</a></li>
-            <li><a href="my-family-album.htm" class="headLink">My Family album</a></li>
-            <li><a href="my-astro-details.htm" class="headLink">My Astro details</a></li>
+			<li><a href="<?php echo Utilities::createAbsoluteUrl('album','',array('mId'=>$user->marryId)); ?>" class="headLink">My Album</a></li>
+            <li><a href="<?php echo Utilities::createAbsoluteUrl('album','family',array()); ?>" class="headLink">My Family album</a></li>
+            <li><a href="<?php echo Utilities::createAbsoluteUrl('user','astro',array()); ?>" class="headLink">My Astro details</a></li>
 			<li>
-				<a href="my-reference-contact.htm" class="headLink">My Reference</a>
+				<a href="<?php echo Utilities::createAbsoluteUrl('user','references',array()); ?>" class="headLink">My Reference</a>
 				<a class="infoB" href="javascript:void(0)">?</a>
 				<div class="infoBox">
 					<div class="iArrow"></div>
@@ -36,9 +46,9 @@
 					<p>My reference is where you can add the references of people who can vouch for your character. You can add teachers and important people in your locality as your references. </p>
 				</div>
 			</li>
-            <li><a href="my-contact.htm" class="headLink">My Contact details</a></li>
+            <li><a href="<?php echo Utilities::createAbsoluteUrl('user','contact',array()); ?>" class="headLink">My Contact details</a></li>
             <li>
-				<a href="shortlisted-profiles.htm" class="headLink">My Shortlists</a>
+				<a href="<?php echo Utilities::createAbsoluteUrl('user','shortlist',array()); ?>" class="headLink">My Shortlists</a>
 				<a class="infoB" href="javascript:void(0)">?</a>
 				<div class="infoBox">
 					<div class="iArrow"></div>
@@ -47,7 +57,7 @@
 				</div>
 			</li>
 			<li>
-				<a href="bookmarked-profiles.htm" class="headLink">My Bookmarks</a>
+				<a href="<?php echo Utilities::createAbsoluteUrl('user','bookmark',array()); ?>" class="headLink">My Bookmarks</a>
 				<a class="infoB" href="javascript:void(0)">?</a>
 				<div class="infoBox">
 					<div class="iArrow"></div>
@@ -56,7 +66,7 @@
 				</div>
 			</li>
             <li>
-				<a href="my-addressbook.htm" class="headLink">My Addressbook</a>
+				<a href="<?php echo Utilities::createAbsoluteUrl('user','addressbook',array()); ?>" class="headLink">My Addressbook</a>
 				<a class="infoB" href="javascript:void(0)">?</a>
 				<div class="infoBox">
 					<div class="iArrow"></div>
@@ -64,16 +74,16 @@
 					<p>Address book is a place to where you can import the address to my address book. This way you can access the details later without visiting a particular profile again. </p>
 				</div>
 			</li>
-			<li><a href="payment-summery.htm" class="headLink">My Payment summery</a></li>
-			<li><a href="my-settings.htm" class="headLink">My Settings</a></li>
+			<li><a href="<?php echo Utilities::createAbsoluteUrl('mypage','payment',array()); ?>" class="headLink">My Payment summery</a></li>
+			<li><a href="<?php echo Utilities::createAbsoluteUrl('user','settings',array()); ?>" class="headLink">My Settings</a></li>
         </ul>
         <ul class="left-bar-data">
             <li>
 				<a href="my-messages.htm" class="headLink ">Message </a>
 				<div class="dataCont">
-					<div class="row"><a href="my-messages.htm" class="innLink">Inbox 25</a></div>
-					<div class="row"><a href="my-messages.htm" class="innLink">Outbox 35</a></div>
-					<div class="row"><a href="my-messages.htm" class="innLink">Delivery aknowledgement 10</a></div>
+					<div class="row"><a href="<?php echo Utilities::createAbsoluteUrl('message','',array()); ?>" class="innLink">Inbox <?php echo count($user->messageReceiver); ?></a></div>
+					<div class="row"><a href="<?php echo Utilities::createAbsoluteUrl('message','sent',array()); ?>" class="innLink">Outbox <?php echo count($user->messageSender); ?></a></div>
+					<div class="row"><a href="<?php echo Utilities::createAbsoluteUrl('message','acknowledgment',array()); ?>" class="innLink">Delivery aknowledgement 10</a></div>
 				</div>
 			</li>
         </ul>
@@ -81,9 +91,9 @@
             <li>
 				<a href="my-requests.htm" class="headLink ">Request </a>
 				<div class="dataCont">
-					<div class="row"><a href="my-requests.htm" class="innLink">Sent 75</a></div>
-					<div class="row"><a href="my-requests.htm" class="innLink">Recieved 35</a></div>
-					<div class="row"><a href="my-requests.htm" class="innLink">Declined 25</a></div>
+					<div class="row"><a href="<?php echo Utilities::createAbsoluteUrl('user','request',array()); ?>" class="innLink">Sent 75</a></div>
+					<div class="row"><a href="<?php echo Utilities::createAbsoluteUrl('user','request',array()); ?>" class="innLink">Recieved 35</a></div>
+					<div class="row"><a href="<?php echo Utilities::createAbsoluteUrl('user','request',array()); ?>" class="innLink">Declined 25</a></div>
 				</div>
 			</li>
         </ul>
@@ -91,9 +101,9 @@
             <li>
 				<a href="my-interests.htm" class="headLink ">Interest </a>
 				<div class="dataCont">
-					<div class="row"><a href="my-interests.htm" class="innLink">Sent 75</a></div>
-					<div class="row"><a href="my-interests.htm" class="innLink">Recieved 35</a></div>
-					<div class="row"><a href="my-interests.htm" class="innLink">Declined 25</a></div>
+					<div class="row"><a href="<?php echo Utilities::createAbsoluteUrl('interest','sent',array()); ?>" class="innLink">Sent <?php echo count($user->interestSender); ?></a></div>
+					<div class="row"><a href="<?php echo Utilities::createAbsoluteUrl('interest','received',array()); ?>" class="innLink">Recieved <?php echo count($user->interestReceiver); ?></a></div>
+					<div class="row"><a href="<?php echo Utilities::createAbsoluteUrl('interest','declined',array()); ?>" class="innLink">Declined 25</a></div>
 				</div>
 			</li>
         </ul>

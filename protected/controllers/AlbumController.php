@@ -106,4 +106,8 @@ class AlbumController extends Controller
 		$this->render('add',array('message'=>$message));
 	}
 	
+	public function actionFamily()
+	{
+		$this->render('family');
+	}
 }

@@ -221,4 +221,8 @@ class MypageController extends Controller
 	}
 	
 	
+	public function actionDocument()
+	{
+		$this->render('document');
+	}
 }
