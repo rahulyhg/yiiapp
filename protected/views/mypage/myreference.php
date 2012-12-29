@@ -1,276 +1,178 @@
-<?php
-/*
- *
- * $Id$
- --------------------------------------------------------------------------------------------------------------------------
- * Information contained in this file is the intellectual property of Ladbrokes Plc
- * Copyright © 2012 MarryDorr. All Rights Reserved.
- * ---------------------------------------------------------------------------------------------------------------------------
- *
- * @author  Ageesh K Gopinath
- * @title myreference.php
- * @description <Description of this class>
- *  @filesource <URL>
- *  @version <Revision>
- */
-?>
-
-
-<!--head closing-->
-<!--main-content-->
-<div id="main-content">
-	<!--left-content-->
-
-  <?php $this->widget('application.widgets.menu.Leftmenu'); ?>
-	<!--center profile details closing-->
-	<div id="content-right-02">
-		<div class="div_mdla">
-
-			<p class="text_pink-hd">My Refference</p>
-			<div class="right">
-				<a href="#" onmouseout="MM_swapImgRestore()"
-					onmouseover="MM_swapImage('Image24','','<?php echo Yii::app()->params['mediaUrl']; ?>/add_new_ref.jpg',1)"><img
-					src="<?php echo Yii::app()->params['mediaUrl']; ?>/add_new_ref_ash.jpg"
-					name="Image24" width="120" height="22" border="0" id="Image24"
-					class="button_request" /> </a>
-			</div>
-			<div class="space-10px">
-					<p>&nbsp;</p>
+    <?php $this->widget('application.widgets.menu.Leftmenu'); ?>
+<section class="data-contnr2">
+        <ul class="accOverview pmB10">
+			<li class="mT8">
+				<a href="#" class="type4">Add New Referance</a>
+			</li>
+			<li>
+				<div class="refHead">
+					<div class="headT">Referance Person 1</div> <a href="#">Edit</a> | <a href="#">Delete</a>
 				</div>
-			<div class="clear"></div>
-			<div class="line-new-1"></div>
-
-			<?php foreach ($referenceList as $key => $model) { ?>
-				
-			
-			<div class="div_mdl_space_left_sub">
-				<p class="left2">
-					<span class="text_pink"><strong><b>Refference Person</b>
-							&nbsp;&nbsp;&nbsp;1</strong> </span>
-				</p>
-				<p class="txt_color_1"></p>
-			</div>
-
-			<p class="txt_color_1">
-				<span class="text_blue"><strong><a href="#">Edit</a> </strong> </span>
-			</p>
-
-
-			<div class="clear"></div>
-
-
-
-
-			<div class="div_mdl_space_1">
-				<!--div_mdl_space_1-->
-
-				<div class="div_mdl_space_left_sub">
-					<!--div_mdl_space_left-->
-
-					<p class="txt_bld_nm">Contact Persons Name</p>
+			</li>
+			<li>
+				<div class="leftC">Contact Persons Name</div>
+				<div class="rightC">
+					<strong>:</strong> <span>Biju George</span>
 				</div>
-				<!--/div_mdl_space_left-->
-
-				<div class="div_mdl_space_mdl_sub">
-					<!--div_mdl_space_mdl-->
-
-					<p class="txt_nm"><?php if(isset($model->referName))echo $model->referName ?></p>
+			</li>
+			<li>
+				<div class="leftC">Convineance Time to call</div>
+				<div class="rightC">
+					<strong>:</strong> <span>7.00 p.m. to 9.30 p.m.</span>
 				</div>
-				<!--/div_mdl_space_mdl-->
-
-			</div>
-			<!--/div_mdl_space_1-->
-
-
-			<div class="div_mdl_space_1">
-				<!--div_mdl_space_1-->
-
-				<div class="div_mdl_space_left_sub">
-					<!--div_mdl_space_left-->
-
-					<p class="txt_bld_nm">Convineance Time to call</p>
+			</li>
+			<li>
+				<div class="leftC">Mobile No.</div>
+				<div class="rightC">
+					<strong>:</strong> <span>+91 98471 87600 </span>
 				</div>
-				<!--/div_mdl_space_left-->
-
-				<div class="div_mdl_space_mdl_sub">
-					<!--div_mdl_space_mdl-->
-
-					<p class="txt_nm"><?php if(isset($model->referCallFrom))echo $model->referCallFrom ?></p>
-
+			</li>
+			<li>
+				<div class="leftC">Communication address</div>
+				<div class="rightC">
+					<strong>:</strong>
+					<div class="addrs">
+						<span>an Ezy Innovations,</span>
+						<span>Kaloor P.O., </span>
+						<span>Kochi,</span>
+						<span>Kerala, India</span>
+						<span>Pin 686 101</span>
+					</div>
 				</div>
-				<!--/div_mdl_space_mdl-->
-
-
-
-
-			</div>
-			<!--/div_mdl_space_1-->
-			<!--  
-			<div class="div_mdl_space_1">
-				<div class="div_mdl_space_left_sub">
-					<p class="txt_bld_nm">Mobile No.</p>
+			</li>
+			<li>
+				<div class="leftC">Email ID.</div>
+				<div class="rightC">
+					<strong>:</strong> <span>shanoj.ks@gmail.com</span>
 				</div>
-				<div class="div_mdl_space_mdl_sub">
-					<p class="txt_nm">+91 98471 87600</p>
+			</li>
+			<li>
+				<div class="leftC">Occupation</div>
+				<div class="rightC">
+					<strong>:</strong> <span>Teacher</span>
 				</div>
-			
-			 -->
-
-
-
-
-			<div class="div_mdl_space_1">
-				<div class="div_mdl_space_left_sub">
-					<p class="txt_bld_nm">Communication address</p>
+			</li>
+			<li>
+				<div class="leftC">Relation with boy</div>
+				<div class="rightC">
+					<strong>:</strong> <span>Cusin</span>
 				</div>
-
-				<div class="div_mdl_space_mdl_sub">
-					<!--div_mdl_space_mdl-->
-					<p class="txt_nm">
-					<?php if(isset($model->referHouseName)) echo $model->referHouseName; echo "<br /> "; 
-					if(isset($model->referPlace))echo $model->referPlace; echo "<br/>"; 	
-					if(isset($model->referCity))echo $model->referCity; echo "<br/>"; 
-					if(isset($model->referState))echo $model->referState;
-					  	if(isset($model->referPostcode))echo $model->referPostcode; echo "<br/>"; 
-					  	if(isset($model->referPostOffice))echo $model->referPostOffice;  echo "<br/>";	
-					  	if(isset($model->referDistrict))echo $model->referDistrict;
-					  	echo ","; 
-					  	if(isset($model->referCountry))echo $model->referCountry ?>
-					</p>
+			</li>
+		</ul>
+		<ul class="accOverview pmB10">
+			<li>
+				<div class="refHead">
+					<div class="headT">Referance Person 2</div> <a href="#">Edit</a> | <a href="#">Delete</a>
 				</div>
-				<!--/div_mdl_space_mdl-->
-
-
-
-			</div>
-			<!--/div_mdl_space_1-->
-
-			<div class="div_mdl_space_1">
-				<!--div_mdl_space_1-->
-
-				<div class="div_mdl_space_left_sub">
-					<!--div_mdl_space_left-->
-
-					<p class="txt_bld">Email ID.</p>
+			</li>
+			<li>
+				<div class="leftC">Contact Persons Name</div>
+				<div class="rightC">
+					<strong>:</strong> <span>Biju George</span>
 				</div>
-				<!--/div_mdl_space_left-->
-
-				<div class="div_mdl_space_mdl_sub">
-					<!--div_mdl_space_mdl-->
-					<p class="txt_nm"><?php if(isset($model->referEmail))echo $model->referEmail ?></p>
-
+			</li>
+			<li>
+				<div class="leftC">Convineance Time to call</div>
+				<div class="rightC">
+					<strong>:</strong> <span>7.00 p.m. to 9.30 p.m.</span>
 				</div>
-				<!--/div_mdl_space_mdl-->
-
-
-
-			</div>
-			<!--/div_mdl_space_1-->
-
-			<div class="div_mdl_space_1">
-				<!--div_mdl_space_1-->
-
-				<div class="div_mdl_space_left_sub">
-					<!--div_mdl_space_left-->
-
-					<p class="txt_bld">Occupation</p>
+			</li>
+			<li>
+				<div class="leftC">Mobile No.</div>
+				<div class="rightC">
+					<strong>:</strong> <span>+91 98471 87600 </span>
 				</div>
-				<!--/div_mdl_space_left-->
-
-				<div class="div_mdl_space_mdl_sub">
-					<!--div_mdl_space_mdl-->
-
-					<p class="txt_nm"><?php if(isset($model->referOccupation))echo $model->referOccupation ?></p>
+			</li>
+			<li>
+				<div class="leftC">Communication address</div>
+				<div class="rightC">
+					<strong>:</strong>
+					<div class="addrs">
+						<span>an Ezy Innovations,</span>
+						<span>Kaloor P.O., </span>
+						<span>Kochi,</span>
+						<span>Kerala, India</span>
+						<span>Pin 686 101</span>
+					</div>
 				</div>
-				<!--/div_mdl_space_mdl-->
-
-
-
-
-			</div>
-			<!--/div_mdl_space_1-->
-
-			<div class="div_mdl_space_1">
-				<!--div_mdl_space_1-->
-
-				<div class="div_mdl_space_left_sub">
-					<!--div_mdl_space_left-->
-
-					<p class="txt_bld">Relation with boy</p>
+			</li>
+			<li>
+				<div class="leftC">Email ID.</div>
+				<div class="rightC">
+					<strong>:</strong> <span>shanoj.ks@gmail.com</span>
 				</div>
-				<!--/div_mdl_space_left-->
-
-				<div class="div_mdl_space_mdl_sub">
-					<!--div_mdl_space_mdl-->
-
-					<p class="txt_nm"><?php if(isset($model->relation))echo $model->relation  ?></p>
-
+			</li>
+			<li>
+				<div class="leftC">Occupation</div>
+				<div class="rightC">
+					<strong>:</strong> <span>Teacher</span>
 				</div>
-				<!--/div_mdl_space_mdl-->
-
-				<div class="clear"></div>
-				<div class="line-new-1"></div>
-				<div class="space-10px">
-					<p>&nbsp;</p>
+			</li>
+			<li>
+				<div class="leftC">Relation with boy</div>
+				<div class="rightC">
+					<strong>:</strong> <span>Cusin</span>
 				</div>
-				<div class="clear"></div>
-
-			</div>
-
-		<?php }?>
-
-			
-				<div class="clear"></div>
-
-				<div class="space-10px">
-					<p>&nbsp;</p>
+			</li>
+		</ul>
+		<ul class="accOverview pmB10">
+			<li>
+				<div class="refHead">
+					<div class="headT">Referance Person 3</div> <a href="#">Edit</a> | <a href="#">Delete</a>
 				</div>
-				<div class="clear"></div>
-
-				<div class="right">
-					<a href="#" onmouseout="MM_swapImgRestore()"
-						onmouseover="MM_swapImage('Image25','','<?php echo Yii::app()->params['mediaUrl']; ?>/add_new_ref.jpg',1)"
-						class="button"><img
-						src="<?php echo Yii::app()->params['mediaUrl']; ?>/add_new_ref_ash.jpg"
-						name="Image25" width="120" height="22" border="0" id="Image25" />
-					</a>
+			</li>
+			<li>
+				<div class="leftC">Contact Persons Name</div>
+				<div class="rightC">
+					<strong>:</strong> <span>Biju George</span>
 				</div>
-			</div>
-
-
-
-
-			<div class="clear"></div>
-			<div class="space-10px">
-				<p>
-					&nbsp;<br /> <br />
-				</p>
-			</div>
-		</div>
-
-
-
-	<!--closing central profile details closing-->
-
-	<!--left-content closing-->
-	<!--left-content-->
-
-	<div id="content-right-small-1">
-		<div class="div_r_1">
-			<!--div_r-->
-
-			<p class="text_20_gery">
-				<a href="payment_benefits.html">Subscribe Now!</a><br /> Only for
-			</p>
-
-			<img src="<?php echo Yii::app()->params['mediaUrl']; ?>/img_200.jpg"
-				class="left" border="0" />
-			<p class="text_20_gery">For 3 Months</p>
-
-			<div class="clear"></div>
-		</div>
-
-	</div>
-</div>
-<p class="clear">&nbsp;</p>
-
+			</li>
+			<li>
+				<div class="leftC">Convineance Time to call</div>
+				<div class="rightC">
+					<strong>:</strong> <span>7.00 p.m. to 9.30 p.m.</span>
+				</div>
+			</li>
+			<li>
+				<div class="leftC">Mobile No.</div>
+				<div class="rightC">
+					<strong>:</strong> <span>+91 98471 87600 </span>
+				</div>
+			</li>
+			<li>
+				<div class="leftC">Communication address</div>
+				<div class="rightC">
+					<strong>:</strong>
+					<div class="addrs">
+						<span>an Ezy Innovations,</span>
+						<span>Kaloor P.O., </span>
+						<span>Kochi,</span>
+						<span>Kerala, India</span>
+						<span>Pin 686 101</span>
+					</div>
+				</div>
+			</li>
+			<li>
+				<div class="leftC">Email ID.</div>
+				<div class="rightC">
+					<strong>:</strong> <span>shanoj.ks@gmail.com</span>
+				</div>
+			</li>
+			<li>
+				<div class="leftC">Occupation</div>
+				<div class="rightC">
+					<strong>:</strong> <span>Teacher</span>
+				</div>
+			</li>
+			<li>
+				<div class="leftC">Relation with boy</div>
+				<div class="rightC">
+					<strong>:</strong> <span>Cusin</span>
+				</div>
+			</li>
+			<li>
+				<a href="#" class="type4">Add New Referance</a>
+			</li>
+		</ul>
+    </section>
+	<?php $this->widget('application.widgets.menu.Rightmenu'); ?>

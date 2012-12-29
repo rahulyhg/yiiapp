@@ -225,4 +225,24 @@ class MypageController extends Controller
 	{
 		$this->render('document');
 	}
+	
+	public function actionAstro()
+	{
+		$this->render('astro');
+	}
+	
+	public function actionShortlist()
+	{
+		$this->render('shortlist');
+	}
+	
+	public function actionBookmark()
+	{
+		$this->render('bookmark');
+	}
+	
+	public function actionSettings()
+	{
+		$this->render('settings');
+	}
 }

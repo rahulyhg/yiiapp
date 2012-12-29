@@ -36,9 +36,9 @@
 			</li>
 			<li><a href="<?php echo Utilities::createAbsoluteUrl('album','',array('mId'=>$user->marryId)); ?>" class="headLink">My Album</a></li>
             <li><a href="<?php echo Utilities::createAbsoluteUrl('album','family',array()); ?>" class="headLink">My Family album</a></li>
-            <li><a href="<?php echo Utilities::createAbsoluteUrl('user','astro',array()); ?>" class="headLink">My Astro details</a></li>
+            <li><a href="<?php echo Utilities::createAbsoluteUrl('mypage','astro',array()); ?>" class="headLink">My Astro details</a></li>
 			<li>
-				<a href="<?php echo Utilities::createAbsoluteUrl('user','references',array()); ?>" class="headLink">My Reference</a>
+				<a href="<?php echo Utilities::createAbsoluteUrl('mypage','reference',array()); ?>" class="headLink">My Reference</a>
 				<a class="infoB" href="javascript:void(0)">?</a>
 				<div class="infoBox">
 					<div class="iArrow"></div>
@@ -46,9 +46,9 @@
 					<p>My reference is where you can add the references of people who can vouch for your character. You can add teachers and important people in your locality as your references. </p>
 				</div>
 			</li>
-            <li><a href="<?php echo Utilities::createAbsoluteUrl('user','contact',array()); ?>" class="headLink">My Contact details</a></li>
+            <li><a href="<?php echo Utilities::createAbsoluteUrl('mypage','contact',array()); ?>" class="headLink">My Contact details</a></li>
             <li>
-				<a href="<?php echo Utilities::createAbsoluteUrl('user','shortlist',array()); ?>" class="headLink">My Shortlists</a>
+				<a href="<?php echo Utilities::createAbsoluteUrl('mypage','shortlist',array()); ?>" class="headLink">My Shortlists</a>
 				<a class="infoB" href="javascript:void(0)">?</a>
 				<div class="infoBox">
 					<div class="iArrow"></div>
@@ -57,7 +57,7 @@
 				</div>
 			</li>
 			<li>
-				<a href="<?php echo Utilities::createAbsoluteUrl('user','bookmark',array()); ?>" class="headLink">My Bookmarks</a>
+				<a href="<?php echo Utilities::createAbsoluteUrl('mypage','bookmark',array()); ?>" class="headLink">My Bookmarks</a>
 				<a class="infoB" href="javascript:void(0)">?</a>
 				<div class="infoBox">
 					<div class="iArrow"></div>
@@ -66,7 +66,7 @@
 				</div>
 			</li>
             <li>
-				<a href="<?php echo Utilities::createAbsoluteUrl('user','addressbook',array()); ?>" class="headLink">My Addressbook</a>
+				<a href="<?php echo Utilities::createAbsoluteUrl('mypage','addressbook',array()); ?>" class="headLink">My Addressbook</a>
 				<a class="infoB" href="javascript:void(0)">?</a>
 				<div class="infoBox">
 					<div class="iArrow"></div>
@@ -75,7 +75,7 @@
 				</div>
 			</li>
 			<li><a href="<?php echo Utilities::createAbsoluteUrl('mypage','payment',array()); ?>" class="headLink">My Payment summery</a></li>
-			<li><a href="<?php echo Utilities::createAbsoluteUrl('user','settings',array()); ?>" class="headLink">My Settings</a></li>
+			<li><a href="<?php echo Utilities::createAbsoluteUrl('mypage','settings',array()); ?>" class="headLink">My Settings</a></li>
         </ul>
         <ul class="left-bar-data">
             <li>
