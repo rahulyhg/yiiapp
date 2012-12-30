@@ -1,232 +1,216 @@
-
-           
-            <!--main-content-->
-            <div id="main-content">
-            	<!--left-content-->
   
-   <?php $this->widget('application.widgets.menu.Leftmenu'); ?>   
+  	<?php 
+  	$user = Yii::app()->session->get('user');
+  	if(isset($user))
+   $this->widget('application.widgets.menu.Leftmenu'); ?>   
   
-  
-  			<div id="content-left">
-  			  <!--closing central profile details closing-->
-              <!--left-content closing-->
-              <!--left-content-->
 
-                <!--bottom-content closing-->
-             
-					
-
-<?php if($search == 'advance' || $search == 'regular') {?>
-<p class="txt_bld"><span class="text_pink">Its make your profile more visibile</span></p>
-
-						<?php 
-	if(isset($searchText)){ ?>
-	<p class="txt_10px"><?php echo $searchText;?></p>
-<?php }?> 
-					
-
-<?php }?>
-<div class="clear"></div>
-
-
-
-                	<div id="content-left-2">
-                    
-                      <p class="text_pink-hd">Highlighted Profiles</p>
-                        
-                          <?php $user = Yii::app()->session->get('user');?>
-  						<?php if(isset($user) && $user->highlighted != 1) {?>
-                       <a class="high-light" href="/highlight" ">Highlight your profile</a>
-                      <?php }?>
-                       
-                    
-              </div>
-  <?php 
+    <section class="data-contnr3">
+        <div class="page-head">Search Result</div>
+        <div class="page-subhead">Get the best results instantly </div>
+        <?php if(isset($searchText)) { ?>
+        <div class="search-result"><span>Your keywords:</span> <?php echo $searchText; ?></div>
+        <?php }?>
+        <div class="content-section highPro">
+            <div class="headBtn">
+                <div class="hText">Highlighted Profiles</div>
+                <?php if(isset($user) && $user->highlighted != 1) {?>
+                <a href="#" class="type4 ">HIGHLIGHT YOUR PROFILE</a>
+                 <?php }?>
+            </div>
+            <?php 
   $heightArray = Utilities::getHeights();
   $index = 0;
   foreach ($highLight as $value) { ?>
-  
-  	<div <?php if($index > 1) echo "id='high{$index}'";?> class="<?php if($index % 2 == 0) { echo 'search_div_lfth';} else{ echo 'search_div_righth';}?>" ><!--search_div_lft-->
-						<p class="space-25px">&nbsp;</p>
-                        <a href="album.html"><img src="<?php echo Yii::app()->params['mediaUrl']; ?>/photo_5.jpg" border="0" class="search_div_img" /></a>
-        				<p class="graytext">Name </p>
-                        <p class="full-col">:</p>
-                        <p class="gray-rt-link"> <a href="<?php echo 'byid?id='.$value->marryId ?>"><?php echo $value->name; echo '( '.$value->marryId.' )' ;?></a></p>
-                        <p class="graytext">Religion / Cas</p>
-                        <p class="full-col">:</p>
-                        <p class="gray-rt"> <?php if(isset($value->userpersonaldetails->religion))echo $value->userpersonaldetails->religion->name ;?> , <?php if(isset($value->userpersonaldetails->caste))echo $value->userpersonaldetails->caste->name ;?> &nbsp;</p>
-                        <p class="graytext">Age </p>
-                        <p class="full-col">:</p>
-                        <p class="gray-rt"> <?php echo Utilities::getAgeFromDateofBirth($value->dob); ?>Years &nbsp;</p>
-                        <p class="graytext">Height </p>
-                        <p class="full-col">:</p>
-                        <p class="gray-rt"> <?php if(isset($value->physicaldetails->heightId))echo $heightArray[$value->physicaldetails->heightId]; ?> &nbsp;</p>
-                        <p class="graytext">Place </p>
-                        <p class="full-col">:</p>
-                        <p class="gray-rt"> <?php if(isset($value->userpersonaldetails->place))echo $value->userpersonaldetails->place->name ?>, <?php if(isset($value->userpersonaldetails->state))echo $value->userpersonaldetails->state->name ?>, <?php if(isset($value->userpersonaldetails->country))echo $value->userpersonaldetails->country->name?> &nbsp;</p>
-                        <p class="graytext">Education </p>
-                        <p class="full-col">:</p>
-                        <p class="gray-rt"><?php if(isset($value->educations->education))echo $value->educations->education->name?> &nbsp;</p>
-                        <p class="graytext">Occupation </p>
-                        <p class="full-col">:</p>
-                        <p class="gray-rt"> <?php if(isset($value->educations->occupation))echo $value->educations->occupation->name ?> &nbsp;</p>
-                        <p class="blue-text-01"><a href="<?php echo 'byid/id/'.$value->marryId ?>">View Full Profile</a></p>
-                      <div class="clear"></div>
-                      	<div class="pages-1">
-                        
-                   
-                   <div class="arrow">
-                   
-                     <a href="#" ><img src="<?php echo Yii::app()->params['mediaUrl']; ?>/arrow_small_right.jpg" name="Image67" width="7" height="13" border="0" id="Image67" /></a></div>
+            <div <?php if($index > 1) echo "id='high{$index}'";?> class="profile">
+                <div class="image-contnr">
+                    <a href="#"><img src="http://marrydoor.com/images/user/ajith.jpg" alt="" /></a>
+                    <div class="img-controls">
+                        <a href="#" class="prev"></a>
+                        <div class="numbers">
+                            <span>1</span> of <span>6</span>
                         </div>
-<div class="clear"></div>
- 
- <?php 
- 
+                        <a href="#" class="next"></a>
+                    </div>
+                </div>
+                <div class="profile-details">
+                    <ul class="details-contnr">
+                        <li>
+                            <div class="title">Name</div>
+                            <div class="info">: <a href="<?php echo 'byid?id='.$value->marryId ?>" class="color" ><?php echo $value->name; echo '( '.$value->marryId.' )' ;?></a></div>
+                        </li>
+                        <li>
+                            <div class="title">Religion / Cast </div>
+                            <div class="info">: <?php if(isset($value->userpersonaldetails->religion))echo $value->userpersonaldetails->religion->name ;?> , <?php if(isset($value->userpersonaldetails->caste))echo $value->userpersonaldetails->caste->name ;?> </div>
+                        </li>
+                        <li>
+                            <div class="title">Age</div>
+                            <div class="info">: <?php echo Utilities::getAgeFromDateofBirth($value->dob); ?>Years </div>
+                        </li>
+                        <li>
+                            <div class="title">Height</div>
+                            <div class="info">: <?php if(isset($value->physicaldetails->heightId))echo $heightArray[$value->physicaldetails->heightId]; ?> </div>
+                        </li>
+                        <li>
+                            <div class="title">Place</div>
+                            <div class="info">: <?php if(isset($value->userpersonaldetails->place))echo $value->userpersonaldetails->place->name ?>, <?php if(isset($value->userpersonaldetails->state))echo $value->userpersonaldetails->state->name ?>, <?php if(isset($value->userpersonaldetails->country))echo $value->userpersonaldetails->country->name?> </div>
+                        </li>
+                        <li>
+                            <div class="title">Education</div>
+                            <div class="info">: <?php if(isset($value->educations->education))echo $value->educations->education->name?></div>
+                        </li>
+                        <li>
+                            <div class="title">Occupation</div>
+                            <div class="info">: <?php if(isset($value->educations->occupation))echo $value->educations->occupation->name?></div>
+                        </li>
+                    </ul>
+                    <a class="view-full" href="<?php echo 'byid/id/'.$value->marryId ?>">View Full Profile</a>
+                </div>
+                <div class="button-contnr">
+                <?php 
+ if(isset($user)){
  $isInterest = $user->interestSender(array('condition'=>"receiverId = {$value->userId}"));
  $isBookMarked = $user->bookmark(array('condition'=>"FIND_IN_SET('{$value->userId}',profileIDs)")); 
  $isMessage = $user->messageSender(array('condition'=>"receiverId = {$value->userId}"));
  if(!isset($isInterest) || empty($isInterest)) {
  ?>
-<a href="#" id="<?php echo $value->userId ?>" class="exp-sub">Express Interest</a>
-<?php }?>
-<?php if(!isset($isBookMarked) || empty($isBookMarked)) {?> 
-<a href="#" id="<?php echo $value->userId ?>" class="exp-sub-add">Bookmark</a>
-<?php }?>
+                    <a href="#" class="global">Express Interest</a>
+                   <?php }?>
+<?php if(!isset($isBookMarked) || empty($isBookMarked)) {?>  
+                    
+                    <a href="#" class="global">Bookmark</a>
+                    <?php }?>
 <?php if(!isset($isMessage) || empty($isMessage)) {?>
-<a href="#" id="<?php echo $value->userId ?>" class="exp-sub-send">Send Message</a> 
-   <?php } ?> 
-
-
-
-</div><!--/search_div_lft-->
-  	
-  	
-  	
- <?php $index++; }?>                  
-
-              
-              
-                        <p class="clear"></p>
-                        <p class="line"></p>
-                          <?php if(sizeof($highLight) > 2 ) {?>
-                        <div class="right"><span class="text_blue-right"><strong><a href="#">View More Highligted Profiles</a></strong></span></div><p class="clear"></p>
-                       <?php }?> 
-                        <?php if(sizeof($normal) > 0 ) {?>
-                        <p class="text_pink-16">Latest Matches For You</p><p class="space-15px">&nbsp;</p>
-                    		<?php if(isset($totalPage) && intval($totalPage) > 1) { ?>
-							<div class="view-1">
-        <div class="first-new"><span class="fir"><a class="fpnl" href="#">First </a></span></div>
-
-        <div class="first-new"><span class="pre"><a class="fpnl" href="#">Previous </a></span></div>
-              
-		 <div class="first-new"><span class="next"><a class="fpnl" href="#">Next</a></span></div>
-                        
-                <div class="first-new"><span class="last"><a class="fpnl" href="#">Last</a></span></div>            </div>	
-            <?php }?>
-							
-							<p class="clear"></p>                        
-                        <p class="line"></p>
-                       <?php }?>
-                     
-                     <div class="left">    
-
-						</div>
-						
-   <?php 
-  
-  $index1 = 1;
-  foreach ($normal as $value) { ?>
-                   
-  	<div id="<?php echo 'normal'.$index1?>" class="<?php if($index1 % 2 != 0) { echo 'search_div_lft';} else{ echo 'search_div_right';}?>" <?php if(intval($totalPage) > 1 && $index1 > 10 ) {?> style="display:none" <?php }?>><!--search_div_lft-->
-						<p class="space-25px">&nbsp;</p>
-                        <a href="album.html"><img src="<?php echo Yii::app()->params['mediaUrl']; ?>/photo_5.jpg" border="0" class="search_div_img" /></a>
-        				<p class="graytext">Name </p>
-                        <p class="full-col">:</p>
-                        <p class="gray-rt-link"> <a href="<?php echo 'byid?id='.$value->marryId ?>"><?php echo $value->name; echo '( '.$value->marryId.' )' ;?></a></p>
-                        <p class="graytext">Religion / Cas</p>
-                        <p class="full-col">:</p>
-                        <p class="gray-rt"> <?php if(isset($value->userpersonaldetails->religion))echo $value->userpersonaldetails->religion->name ;?> , <?php if(isset($value->userpersonaldetails->caste))echo $value->userpersonaldetails->caste->name ;?> &nbsp;</p>
-                        <p class="graytext">Age </p>
-                        <p class="full-col">:</p>
-                        <p class="gray-rt"> <?php echo Utilities::getAgeFromDateofBirth($value->dob); ?>Years &nbsp;</p>
-                        <p class="graytext">Height </p>
-                        <p class="full-col">:</p>
-                        <p class="gray-rt"> <?php if(isset($value->physicaldetails->heightId))echo $heightArray[$value->physicaldetails->heightId];  ?> &nbsp;</p>
-                        <p class="graytext">Place </p>
-                        <p class="full-col">:</p>
-                        <p class="gray-rt"> <?php if(isset($value->userpersonaldetails->place))echo $value->userpersonaldetails->place->name ?>, <?php if(isset($value->userpersonaldetails->state))echo $value->userpersonaldetails->state->name ?>, <?php if(isset($value->userpersonaldetails->country))echo $value->userpersonaldetails->country->name ?> &nbsp;</p>
-                        <p class="graytext">Education </p>
-                        <p class="full-col">:</p>
-                        <p class="gray-rt"><?php if(isset($value->educations->education))echo $value->educations->education->name ?> &nbsp;</p>
-                        <p class="graytext">Occupation </p>
-                        <p class="full-col">:</p>
-                        <p class="gray-rt"> <?php if(isset($value->educations->occupation))echo $value->educations->occupation->name ?> &nbsp;</p>
-                        <p class="blue-text-01"><a href="<?php echo 'byid/id/'.$value->marryId ?>">View Full Profile</a></p>
-                      <div class="clear"></div>
-                      	<div class="pages-1">
-                        
-                   
-                   <div class="arrow">
-                   
-                     <a href="#" ><img src="<?php echo Yii::app()->params['mediaUrl']; ?>/arrow_small_right.jpg" name="Image67" width="7" height="13" border="0" id="Image67" /></a></div>
-                        </div>
-<div class="clear"></div>
-  
-   <?php 
- 
- $isInterest = $user->interestSender(array('condition'=>"receiverId = {$value->userId}"));
- $isBookMarked = $user->bookmark(array('condition'=>"FIND_IN_SET('{$value->userId}',profileIDs)")); 
- $isMessage = $user->messageSender(array('condition'=>"receiverId = {$value->userId}"));
- if(!isset($isInterest) || empty($isInterest)) {
- ?>
-<a href="#" id="<?php echo $value->userId ?>" class="exp-sub">Express Interest</a>
-<?php }?>
-<?php if(!isset($isBookMarked) || empty($isBookMarked)) {?> 
-<a href="#"  id="<?php echo $value->userId ?>" class="exp-sub-add">Bookmark</a>
-<?php }?>
-<?php if(!isset($isMessage) || empty($isMessage)) {?>
-<a href="#"  id="<?php echo $value->userId ?>" class="exp-sub-send">Send Message</a> 
-   <?php } ?> 
-
-</div><!--/search_div_lft-->
-  	
-  	
-
-<?php $index1++; }?>						
-                        
-						<p class="clear"></p>
-                        <p class="line"></p>
-                       
-                       
-                     <div class="left">   
-
-						</div>
-                        
-          <?php if(isset($totalPage) && intval($totalPage) > 1) { ?>
-                        <div class="view-1">
-          <div class="first-new"><span class="fir"><a class="fpnl" href="#">First </a></span></div>
-
-        <div class="first-new"><span class="pre"><a class="fpnl" href="#">Previous </a></span></div>
-              
-		 <div class="first-new"><span class="next"><a class="fpnl" href="#">Next</a></span></div>
-                        
-                <div class="first-new"><span class="last"><a class="fpnl" href="#">Last</a></span></div>
-                </div>              
-          
-          <input type="hidden" value="<?php echo $totalPage?>" name="totalPage" />
+                    <a href="#" class="global">Send Message</a>
+                   <?php }
+  } ?>   
+                </div>
+            </div>
+            <?php $index++; }?>
+            <?php if(sizeof($highLight) > 2 ) {?>
+            <div id="right" class="footBtn">
+                <a href="#" class="viewM ">View More Highlighted Profiles</a>
+            </div>
+            <?php }?> 
+        </div>
+        <?php if(sizeof($normal) > 0 ) {?>
+        <div class="page-content-head">Matches for you</div>
+        <?php if(isset($totalPage) && intval($totalPage) > 1) { ?>
+        <div class="pagination-contnr">
+            <div class="select-contnr"><input type="checkbox" /> Select All</div>
+            <a href="#">Express Interest</a>
+            <a href="#">Bookmark</a>
+           <?php if(isset($totalPage) && intval($totalPage) > 1) { ?>
+            <ul class="pagination">
+                <li><span class="fir"><a href="#">First</a></span></li>
+                <li><span class="nex"><a href="#">Next</a></span></li>
+                <li><span class="pre"><a href="#">Previous</a></span></li>
+                <li><span class="last"><a href="#">Last</a></span></li>
+            </ul>
+            <input type="hidden" value="<?php echo $totalPage?>" name="totalPage" />
           <input type="hidden" value="1" name="currentPage" />
           <input type="hidden" value="<?php echo $totalUser ?>" name="user" />
           <input type="hidden" value="1" name="firstPage" />
            <input type="hidden" value="<?php echo $totalPage?>" name="lastPage" />
                  <?php } ?>       
-            
-			  <p class="clear">&nbsp;</p><p class="space-10px">&nbsp;</p>
+          
+        </div>
+        <?php }?>
+        <?php }?>
+        
+        <div class="content-section">
+        <?php 
+  	$index1 = 1;
+  	foreach ($normal as $value) { ?>
+            <div  id="<?php echo 'normal'.$index1?>" class="profile" <?php if(intval($totalPage) > 1 && $index1 > 10 ) {?> style="display:none" <?php }?>>
+                <div class="check-contnr"><input type="checkbox" /> Select</div>
+                <div class="image-contnr">
+                    <a href="#"><img src="http://marrydoor.com/images/user/ajith.jpg" alt="" /></a>
+                    <div class="img-controls">
+                        <a href="#" class="prev"></a>
+                        <div class="numbers">
+                            <span>1</span> of <span>6</span>
+                        </div>
+                        <a href="#" class="next"></a>
+                    </div>
+                </div>
+                <div class="profile-details">
+                    <ul class="details-contnr">
+                        <li>
+                            <div class="title">Name</div>
+                            <div class="info">: <a href="<?php echo 'byid?id='.$value->marryId ?>" class="color" ><?php echo $value->name; echo '( '.$value->marryId.' )' ;?></a></div>
+                        </li>
+                        <li>
+                            <div class="title">Religion / Cast </div>
+                            <div class="info">: <?php if(isset($value->userpersonaldetails->religion))echo $value->userpersonaldetails->religion->name ;?> , <?php if(isset($value->userpersonaldetails->caste))echo $value->userpersonaldetails->caste->name ;?> </div>
+                        </li>
+                        <li>
+                            <div class="title">Age</div>
+                            <div class="info">: <?php echo Utilities::getAgeFromDateofBirth($value->dob); ?> Years </div>
+                        </li>
+                        <li>
+                            <div class="title">Height</div>
+                            <div class="info">: <?php if(isset($value->physicaldetails->heightId))echo $heightArray[$value->physicaldetails->heightId];  ?></div>
+                        </li>
+                        <li>
+                            <div class="title">Place</div>
+                            <div class="info">: <?php if(isset($value->userpersonaldetails->place))echo $value->userpersonaldetails->place->name ?>, <?php if(isset($value->userpersonaldetails->state))echo $value->userpersonaldetails->state->name ?>, <?php if(isset($value->userpersonaldetails->country))echo $value->userpersonaldetails->country->name ?> </div>
+                        </li>
+                        <li>
+                            <div class="title">Education</div>
+                            <div class="info">: <?php if(isset($value->educations->education))echo $value->educations->education->name ?> </div>
+                        </li>
+                        <li>
+                            <div class="title">Occupation</div>
+                            <div class="info">: <?php if(isset($value->educations->occupation))echo $value->educations->occupation->name ?></div>
+                        </li>
+                    </ul>
+                    <a class="view-full" href="<?php echo 'byid/id/'.$value->marryId ?>">View Full Profile</a>
+                </div>
+                <div class="button-contnr">
+                <?php 
+ if(isset($user)) {
+ $isInterest = $user->interestSender(array('condition'=>"receiverId = {$value->userId}"));
+ $isBookMarked = $user->bookmark(array('condition'=>"FIND_IN_SET('{$value->userId}',profileIDs)")); 
+ $isMessage = $user->messageSender(array('condition'=>"receiverId = {$value->userId}"));
+ if(!isset($isInterest) || empty($isInterest)) {
+ ?>
+                    <a href="#" class="global">Express Interest</a>
+   <?php }?>
+<?php if(!isset($isBookMarked) || empty($isBookMarked)) {?> 
+                    <a href="#" class="global">Bookmark</a>
+   <?php }?>
+<?php if(!isset($isMessage) || empty($isMessage)) {?>
+                    <a href="#" class="global">Send Message</a>
+                    <?php }
+  	}
+  	?>
+                </div>
+            </div>
+        <?php $index1++; }?>						
+           
+        </div>
+        <div class="pagination-contnr">
+            <div class="select-contnr"><input type="checkbox" /> Select All</div>
+            <a href="#">Express Interest</a>
+            <a href="#">Bookmark</a>
+             <?php if(isset($totalPage) && intval($totalPage) > 1) { ?>
+            <ul class="pagination">
+                <li><span class="fir"><a href="#">First</a></span></li>
+                <li><span class="nex"><a href="#">Next</a></span></li>
+                <li><span class="pre"><a href="#">Previous</a></span></li>
+                <li><span class="last"><a href="#">Last</a></span></li>
+            </ul>
+            <input type="hidden" value="<?php echo $totalPage?>" name="totalPage" />
+          <input type="hidden" value="1" name="currentPage" />
+          <input type="hidden" value="<?php echo $totalUser ?>" name="user" />
+          <input type="hidden" value="1" name="firstPage" />
+           <input type="hidden" value="<?php echo $totalPage?>" name="lastPage" />
+                 <?php } ?>       
+          
+        </div>
+    </section>
 
-                <!--bottom-content-->
-              </div>
-         
- </div>
  
    <script type="text/javascript">
 
@@ -236,16 +220,16 @@
 	$("div[id^='high']").hide();
 	
 
-	$('.right').click(function(){
+	$('#right').click(function(){
 		
-		if($('div.right a').text() == 'Hide')
+		if($('div#right a').text() == 'Hide')
 		{
-			$('div.right a').text("View More Highligted Profiles");
+			$('div#right a').text("View More Highligted Profiles");
 			$("div[id^='high']").hide("slow").fadeOut("slow");
 
 		}
 		else{
-		$('div.right a').text("Hide");
+		$('div#right a').text("Hide");
 		$("div[id^='high']").show("slow").fadeIn("slow");
 
 		}
@@ -270,7 +254,7 @@
 		
 		
 	$('.fir').click(function (){
-		$('.next').show();
+		$('.nex').show();
 		$('.fir').hide();
 		$('.last').show();
 		currentPage = parseInt($("input[name='currentPage']").val());
@@ -279,8 +263,7 @@
 			return;
 		}
 		$('.pre').hide();
-		$('.search_div_lft').hide();
-		$('.search_div_right').hide();
+		$('div[id^="normal"]').hide();
 		var example = 10;
 		for (var i= 1; i <= example; i++)
 		{
@@ -294,15 +277,14 @@
 		});
 
 	$('.pre').click(function (){
-		$('.next').show();
+		$('.nex').show();
 		$('.last').show();
 		currentPage = parseInt($("input[name='currentPage']").val());
 		if(currentPage == 1)
 		{
 			return;
 		}	
-		$('.search_div_lft').hide();
-		$('.search_div_right').hide();
+		$('div[id^="normal"]').hide();
 		currentPage = currentPage - 1;
 		var index = currentPage * 10;
 		for (var i = index - 9;  i <=  index; i++)
@@ -313,7 +295,7 @@
 		$("input[name='currentPage']").val(currentPage);
 	});
 
-	$('.next').click(function (){
+	$('.nex').click(function (){
 		$('.pre').show();
 		$('.fir').show();
 		
@@ -323,9 +305,7 @@
 		{
 			return;
 		}	
-		$('.search_div_lft').hide();
-		$('.search_div_right').hide();
-		
+		$('div[id^="normal"]').hide();
 		var index = currentPage * 10;
 		currentPage = currentPage + 1;
 		
@@ -343,7 +323,7 @@
 
 	$('.last').click(function (){
 		$('.pre').show();
-		$('.next').hide();
+		$('.nex').hide();
 		$('.fir').show();
 		$('.last').hide();
 		currentPage = parseInt($("input[name='currentPage']").val());
@@ -353,8 +333,7 @@
 		{
 			return;
 		}	
-		$('.search_div_lft').hide();
-		$('.search_div_right').hide();
+		$('div[id^="normal"]').hide();
 		var index = lastPage -1 ;
 		for (var i = (index * 10) + 1;  i <= totalUser; i++)
 		{

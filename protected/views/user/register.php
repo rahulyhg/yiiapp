@@ -227,13 +227,13 @@
 			<li>
 				<div class="left"><?php echo $searchForm->labelEx($searchModel,'bodyType'); ?></div>
 				<div class="right">
-				<?php echo CHtml::dropDownList('bodyType',null,Utilities::getBodyType(),array('class'=>'width90')); ?>
+				<?php echo CHtml::dropDownList('bodyType',null,Utilities::getBodyType(),array('empty' => 'Body Type','class'=>'width90')); ?>
 				</div>
 			</li>
 			<li>
 				<div class="left"><?php echo $searchForm->labelEx($searchModel,'bodyColor'); ?></div>
 				<div class="right">
-				<?php echo CHtml::dropDownList('bodyColor',null,Utilities::getBodyColor(),array('class'=>'width90')); ?>
+				<?php echo CHtml::dropDownList('bodyColor',null,Utilities::getBodyColor(),array('empty' => 'Body Color','class'=>'width90')); ?>
 				</div>
 			</li>
 			<li>
