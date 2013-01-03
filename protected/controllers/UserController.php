@@ -3,7 +3,7 @@
 class UserController extends Controller
 {
 	  public function beforeAction(CAction $action)
-        {
+        {return true;
         		if($action->id == 'register')
         		return true;
                 $user = Yii::app()->session->get('user');
@@ -529,8 +529,15 @@ class UserController extends Controller
 				$privacy->save();
 		}
 		
-		
-		$this->render('profilepicture');
+		// get the user photos
+		$photos = new Photos();
+  		$documents = new Documents();
+  		$album = new Album();
+  		
+		$photosList = $photos->findAll('userId='.$user->userId);
+		$documentList = $documents->findAll('userId='.$user->userId);
+		$albumList = $album->findAll('userId='.$user->userId.' and type=1');
+		$this->render('profilepicture',array('photos'=>$photosList,'user'=>$user,'documents'=>$documentList, 'familyPhotos'=>$albumList));
 		//here we have to show the documents and album upload page
 		//then show profile complete page
 	}

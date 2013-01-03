@@ -46,7 +46,7 @@
 							<input type="checkbox"> <span>Subscribers</span>
 						</div>
 						<div class="check ">
-							<input type="checkbox"> <span>Loged Members</span>
+							<input type="checkbox"> <span>Logged Members</span>
 						</div>
 						<div class="check ">
 							<input type="checkbox"> <span>By request</span>

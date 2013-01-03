@@ -1981,6 +1981,7 @@ h5{
     padding: 10px;*/
     margin: 5px 0 0;
     padding: 13px;
+    box-shadow:10px 10px 5px #888888;
 }
 .infoB{
 	font:bold 11px/15px tahoma,arial,helvetica,sans-serif;

@@ -44,22 +44,30 @@
 				</li>
 			</ul>
 			<ul class="no-padd">
+				<?php if(count($photos) < 5) {?>
 				<li>
 					<p class="width100">You can add one more photo in this album</p>
 				</li>
 				<li>
 					<a href="<?php echo Utilities::createAbsoluteUrl('user','photoupload'); ?>" class="upload" id="photoUpload">UPLOAD YOUR PHOTOS</a>
 				</li>
+				<?php }?>
 				<li>
 					<div class="title">
 						Who can view above detals
 					</div>
 					<div class="info">
 						<div class="check">
-							<input type="checkbox"  /> <span>Subscribers</span>
+							<input type="checkbox" name="profilepictureview" checked="checked"  /> <span>All</span>
 						</div>
 						<div class="check">
-							<input type="checkbox"  /> <span>By Request</span>
+							<input type="checkbox" name="profilepictureview"  /> <span>Subscribers</span>
+						</div>
+						<div class="check">
+							<input type="checkbox" name="profilepictureview"  /> <span>Logged Members</span>
+						</div>
+						<div class="check">
+							<input type="checkbox" name="profilepictureview"  /> <span>By request</span>
 						</div>
 					</div>
 				</li>
@@ -80,22 +88,30 @@
 				</li>
 			</ul>
 			<ul class="no-padd">
+				<?php if(count($familyPhotos) < 5){?>
 				<li>
 					<p class="width100">You can add one more photo in this album</p>
 				</li>
 				<li>
 					<a href="<?php echo Utilities::createAbsoluteUrl('user','familyphotoupload'); ?>" class="upload" id="familyphotoUpload">UPLOAD YOUR PHOTOS</a>
 				</li>
+				<?php } ?>
 				<li>
 					<div class="title">
 						Who can view above detals
 					</div>
 					<div class="info">
 						<div class="check">
-							<input type="checkbox"  /> <span>Subscribers</span>
+							<input type="checkbox" name="familyalbumeview" checked="checked" /> <span>All</span>
 						</div>
 						<div class="check">
-							<input type="checkbox"  /> <span>By Request</span>
+							<input type="checkbox" name="familyalbumeview" /> <span>Subscribers</span>
+						</div>
+						<div class="check">
+							<input type="checkbox" name="familyalbumeview" /> <span>Logged Members</span>
+						</div>
+						<div class="check">
+							<input type="checkbox" name="familyalbumeview" /> <span>By request</span>
 						</div>
 					</div>
 				</li>
@@ -142,22 +158,30 @@
 				</li>
 			</ul>
 			<ul class="no-padd">
+				<?php if(count($documents) < 5) {?>
 				<li>
 					<p class="width100 no-marg">You can add one more document in this album</p>
 				</li>
 				<li>
 					<a href="<?php echo Utilities::createAbsoluteUrl('user','documentupload'); ?>" class="upload" id="documentUpload">UPLOAD YOUR Documents</a>
 				</li>
+				<?php }?>
 				<li>
 					<div class="title">
 						Who can view above detals
 					</div>
 					<div class="info">
 						<div class="check">
-							<input type="checkbox"  /> <span>Subscribers</span>
+							<input type="checkbox" name="documenteview" checked="checked" /> <span>All</span>
 						</div>
 						<div class="check">
-							<input type="checkbox"  /> <span>By Request</span>
+							<input type="checkbox" name="documenteview"  /> <span>Subscribers</span>
+						</div>
+						<div class="check">
+							<input type="checkbox" name="documenteview"  /> <span>Logged Members</span>
+						</div>
+						<div class="check">
+							<input type="checkbox" name="documenteview"  /> <span>By request</span>
 						</div>
 					</div>
 				</li>
