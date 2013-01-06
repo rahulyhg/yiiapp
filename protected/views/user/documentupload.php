@@ -6,6 +6,7 @@
 				<ul class="accOverview pmB10">
 					<li class="mT15 mB0">
 					<form action="<?php echo Utilities::createAbsoluteUrl('user','documentupload'); ?>" method="post" enctype="multipart/form-data">
+						<?php if(count($documents) < 5){?>
 						<input type="hidden" name="documentCount" id="documentCount"  value="2" />
 						<input type="hidden" name="totalCount" id="totalCount" value="<?php echo !empty($documents)? count($documents):1;?>" />
 						<div class="urOnly">Upload Your Docs Only in any Image formate</div>
@@ -22,6 +23,7 @@
 							<a href="#" class="type3" name="moredocuments" id="moredocuments"  onClick="addMoreDocuments();">Add More</a>
 							<input type="submit" name="uploaddocuments" id="uploaddocuments" class="type3" value="Upload" />
 						</div>
+						<?php }?>
 						<?php if(!empty($documents)):?>
 						<h5 class="width100 mT30">Please mouse hover on a document to delete or cancel.</h5>
 						<?php endif; ?>
@@ -33,9 +35,9 @@
 						<?php foreach($documents as $document):?>
 							<div class="upCn">
 								<div class="delt">
-									<a href="<?php echo Yii::app()->params['homeUrl']?>/user/profilepicture/r/deletedocument/dId/<?php echo $document->documentId?>/uId/<?php echo $user->userId?>" title="click to delete this picture">Delete</a>
+									<a href="<?php echo Yii::app()->params['homeUrl']?>/user/documentupload/r/deletedocument/dId/<?php echo $document->documentId?>/uId/<?php echo $user->userId?>" title="click to delete this picture">Delete</a>
 								</div>
-								<img src="<?php echo Utilities::getMediaUrl();?>/user/doc1.png" alt="" width="220" height="110" />
+								<img src="<?php echo Utilities::getMediaUrl();?>/user/doc1.png" alt="" width="135" height="70" />
 								<div class="name">Passport</div>
 							</div>
 						<?php endforeach;?>
@@ -52,7 +54,7 @@
 						</div>
 					</li>
 					<li>
-						<a href="#" class="type4 wid80" onclick='javascript:closeOverlay();'>Update</a>
+						<a href="#" class="type4 wid80" onclick='javascript:closeOverlay();'>Cancel</a>&nbsp;<a href="#" class="type4 wid80" onclick='javascript:closeOverlay();'>Submit</a>
 					</li>
 				</ul>
 			</section>

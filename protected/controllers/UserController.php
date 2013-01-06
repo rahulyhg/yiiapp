@@ -3,7 +3,7 @@
 class UserController extends Controller
 {
 	  public function beforeAction(CAction $action)
-        {return true;
+        {
         		if($action->id == 'register')
         		return true;
                 $user = Yii::app()->session->get('user');
@@ -534,10 +534,72 @@ class UserController extends Controller
   		$documents = new Documents();
   		$album = new Album();
   		
+  		//phoot and document action
+  		
+	if(isset($_GET['r']) && $_GET['r'] == 'setimage'){   // set the profile image
+			$photoId = (int)trim($_GET['pId']);
+			$userId = (int)trim($_GET['uId']);
+			$user = Yii::app()->session->get('user');
+			if($user->userId == $userId){
+				$photos->updateAll(array('profileImage'=>0),'userId='.$userId);  // unset the existing
+				$photos->updateAll(array('profileImage'=>1),'photoId='.$photoId);  // set the new image
+				$this->redirect(Yii::app()->params['homeUrl']."/user/horoupload");
+				Yii::app()->end();
+			}
+		}elseif(isset($_GET['r']) && $_GET['r'] == 'deleteimage'){   // delete the image
+			$photoId = (int)trim($_GET['pId']);
+			$userId = (int)trim($_GET['uId']);
+			$user = Yii::app()->session->get('user');
+			if($user->userId == $userId){
+				$photo = $photos->find('photoId='.$photoId);
+				$path = Utilities::getDirectory('images',array('profile',$user->marryId));
+				$targetFile = Utilities::getFullFilePath($path, $photo->imageName);
+				if(file_exists($targetFile)){
+					if(unlink($targetFile)){
+						$photos->deleteByPk($photoId);
+					}
+				}
+				$this->redirect(Yii::app()->params['homeUrl']."/user/horoupload");
+				Yii::app()->end();	
+			}
+		}elseif(isset($_GET['r']) && $_GET['r'] == 'deletealbumimage'){   // delete the image
+			$photoId = (int)trim($_GET['pId']);
+			$userId = (int)trim($_GET['uId']);
+			$user = Yii::app()->session->get('user');
+			if($user->userId == $userId){
+				$photo = $album->find('albumId='.$photoId);
+				$path = Utilities::getDirectory('images',array('album',$user->marryId));
+				$targetFile = Utilities::getFullFilePath($path, $photo->imageName);
+				if(file_exists($targetFile)){
+					if(unlink($targetFile)){
+						$album->deleteByPk($photoId);
+					}
+				}
+				$this->redirect(Yii::app()->params['homeUrl']."/user/horoupload");
+				Yii::app()->end();	
+			}
+		}elseif(isset($_GET['r']) && $_GET['r'] == 'deletedocument'){   // delete the document
+			$documentId = (int)trim($_GET['dId']);
+			$userId = (int)trim($_GET['uId']);
+			$user = Yii::app()->session->get('user');
+			if($user->userId == $userId){
+				$document = $documents->find('documentId='.$documentId);
+				$path = Utilities::getDirectory('images',array('documents',$user->marryId));
+				$targetFile = Utilities::getFullFilePath($path, $document->documentName);
+				if(file_exists($targetFile)){
+					if(unlink($targetFile)){
+						$documents->deleteByPk($documentId);
+					}
+				}
+				$this->redirect(Yii::app()->params['homeUrl']."/user/horoupload");
+				Yii::app()->end();	
+			}
+		}
+		
 		$photosList = $photos->findAll('userId='.$user->userId);
 		$documentList = $documents->findAll('userId='.$user->userId);
 		$albumList = $album->findAll('userId='.$user->userId.' and type=1');
-		$this->render('profilepicture',array('photos'=>$photosList,'user'=>$user,'documents'=>$documentList, 'familyPhotos'=>$albumList));
+		$this->render('horoupload',array('photos'=>$photosList,'user'=>$user,'documents'=>$documentList, 'familyPhotos'=>$albumList));
 		//here we have to show the documents and album upload page
 		//then show profile complete page
 	}
@@ -762,6 +824,34 @@ class UserController extends Controller
 			}
 			sleep(1); // set a time delay to upload
   		}
+  		// photo delete action
+		if(isset($_GET['r']) && $_GET['r'] == 'setimage'){   // set the profile image
+				$photoId = (int)trim($_GET['pId']);
+				$userId = (int)trim($_GET['uId']);
+				$user = Yii::app()->session->get('user');
+				if($user->userId == $userId){
+					$photos->updateAll(array('profileImage'=>0),'userId='.$userId);  // unset the existing
+					$photos->updateAll(array('profileImage'=>1),'photoId='.$photoId);  // set the new image
+					$this->redirect(Yii::app()->params['homeUrl']."/user/photoupload");
+					Yii::app()->end();
+				}
+			}elseif(isset($_GET['r']) && $_GET['r'] == 'deleteimage'){   // delete the image
+				$photoId = (int)trim($_GET['pId']);
+				$userId = (int)trim($_GET['uId']);
+				$user = Yii::app()->session->get('user');
+				if($user->userId == $userId){
+					$photo = $photos->find('photoId='.$photoId);
+					$path = Utilities::getDirectory('images',array('profile',$user->marryId));
+					$targetFile = Utilities::getFullFilePath($path, $photo->imageName);
+					if(file_exists($targetFile)){
+						if(unlink($targetFile)){
+							$photos->deleteByPk($photoId);
+						}
+					}
+					$this->redirect(Yii::app()->params['homeUrl']."/user/photoupload");
+					Yii::app()->end();	
+				}
+			}
   		$photosList = $photos->findAll('userId='.$user->userId);
 		$this->layout= '//layouts/popup';
 		$this->render('photoupload',array('photos'=>$photosList,'user'=>$user));
@@ -798,6 +888,24 @@ class UserController extends Controller
 			}
 			sleep(1); // set a time delay to upload
   		}
+		if(isset($_GET['r']) && $_GET['r'] == 'deletedocument'){   // delete the document
+			$documentId = (int)trim($_GET['dId']);
+			$userId = (int)trim($_GET['uId']);
+			$user = Yii::app()->session->get('user');
+			if($user->userId == $userId){
+				$document = $documents->find('documentId='.$documentId);
+				$path = Utilities::getDirectory('images',array('documents',$user->marryId));
+				$targetFile = Utilities::getFullFilePath($path, $document->documentName);
+				if(file_exists($targetFile)){
+					if(unlink($targetFile)){
+						$documents->deleteByPk($documentId);
+					}
+				}
+				$this->redirect(Yii::app()->params['homeUrl']."/user/documentupload");
+				Yii::app()->end();	
+			}
+		}
+		
   		$documentList = $documents->findAll('userId='.$user->userId);
 		$this->layout= '//layouts/popup';
 		$this->render('documentupload',array('documents'=>$documentList,'user'=>$user));

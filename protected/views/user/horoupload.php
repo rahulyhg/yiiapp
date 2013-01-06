@@ -38,9 +38,9 @@
 							<?php if($photo->profileImage == 1){ ?>
 							<p>This is your Profile Picture</p>
 							<?php }else{?>
-							<p><a href="<?php echo Yii::app()->params['homeUrl']?>/user/profilepicture/r/setimage/pId/<?php echo $photo->photoId?>/uId/<?php echo $user->userId?>" title="click to make this ur profile picture">Use as Profile Picture</a></p>
+							<p><a href="<?php echo Yii::app()->params['homeUrl']?>/user/horoupload/r/setimage/pId/<?php echo $photo->photoId?>/uId/<?php echo $user->userId?>" title="click to make this ur profile picture">Use as Profile Picture</a></p>
 							<?php }?>
-							<p><a href="<?php echo Yii::app()->params['homeUrl']?>/user/profilepicture/r/deleteimage/pId/<?php echo $photo->photoId?>/uId/<?php echo $user->userId?>" title="click to delete this picture">Delete</a></p>
+							<p><a href="<?php echo Yii::app()->params['homeUrl']?>/user/horoupload/r/deleteimage/pId/<?php echo $photo->photoId?>/uId/<?php echo $user->userId?>" title="click to delete this picture">Delete</a></p>
 						</div>
 						<img src="<?php echo Utilities::getProfileImage($user->marryId,$photo->imageName); ?>" alt="" />
 					</div>
@@ -83,8 +83,8 @@
 				<?php foreach($familyPhotos as $photo):?>
 					<div class="photoOpt">
 						<div class="ppOpts">
-							<!--  <p><a href="<?php echo Yii::app()->params['homeUrl']?>/user/profilepicture/r/setimage/pId/<?php echo $photo->albumId?>/uId/<?php echo $user->userId?>" title="click to make this ur profile picture">Use as Profile Picture</a></p>-->
-							<p><a href="<?php echo Yii::app()->params['homeUrl']?>/user/profilepicture/r/deletealbumimage/pId/<?php echo $photo->albumId?>/uId/<?php echo $user->userId?>" title="click to delete this picture">Delete</a></p>
+							<!--  <p><a href="<?php echo Yii::app()->params['homeUrl']?>/user/horoupload/r/setimage/pId/<?php echo $photo->albumId?>/uId/<?php echo $user->userId?>" title="click to make this ur profile picture">Use as Profile Picture</a></p>-->
+							<p><a href="<?php echo Yii::app()->params['homeUrl']?>/user/horoupload/r/deletealbumimage/pId/<?php echo $photo->albumId?>/uId/<?php echo $user->userId?>" title="click to delete this picture">Delete</a></p>
 						</div>
 						<img src="<?php echo Utilities::getAlbumImage($user->marryId,$photo->imageName); ?>" alt="" />
 					</div>
@@ -154,7 +154,7 @@
 					<div class="docOpt">
 						<div class="ppOpts">
 							<p>Passport</p>
-							<p><a href="<?php echo Yii::app()->params['homeUrl']?>/user/profilepicture/r/deletedocument/dId/<?php echo $document->documentId?>/uId/<?php echo $user->userId?>" title="click to delete this picture">Delete</a></p>
+							<p><a href="<?php echo Yii::app()->params['homeUrl']?>/user/horoupload/r/deletedocument/dId/<?php echo $document->documentId?>/uId/<?php echo $user->userId?>" title="click to delete this picture">Delete</a></p>
 						</div>
 						<img src="<?php echo Utilities::getMediaUrl();?>/user/doc1.png" alt="" width="220" height="110" />
 					</div>
@@ -251,7 +251,7 @@
 
 	<script type="text/javascript">
 $(document).ready(function(){
-	$("#photoUpload").colorbox({iframe:true, width:"860", height:"615",overlayClose: false});
+    $("#photoUpload").colorbox({iframe:true, width:"860", height:"615",overlayClose: false});
     $("#familyphotoUpload").colorbox({iframe:true, width:"860", height:"615",overlayClose: false});
     $("#documentUpload").colorbox({iframe:true, width:"860", height:"615",overlayClose: false});
   });

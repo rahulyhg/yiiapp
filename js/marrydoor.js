@@ -173,7 +173,6 @@ $(function(){
 
 					//get total count
 					var totalCount = document.getElementById("totalCount").value;
-					alert(totalCount);
 					totalCount = parseInt(totalCount);
 					if(totalCount < 5){
 					// get the current element count

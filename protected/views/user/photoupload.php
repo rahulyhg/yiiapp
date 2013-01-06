@@ -6,6 +6,7 @@
 				<ul class="accOverview pmB10">
 					<li class="mT15 mB0">
 					<form action="<?php echo Utilities::createAbsoluteUrl('user','photoupload'); ?>" method="post" enctype="multipart/form-data">	
+						<?php if(count($photos) < 5){?>
 						<input type="hidden" name="photoCount" id="photoCount" value="2" />
 						<input type="hidden" name="totalCount" id="totalCount" value="<?php echo !empty($photos)? count($photos):1;?>" />
 						<div class="urOnly">You can select multiple images</div>
@@ -17,6 +18,7 @@
 							<a href="#" class="type3" name="morephoto" id="morephoto" onClick="addMoreFiles()";>Add More</a>
 							<input type="submit" name="uploadphoto" id="uploadphoto" class="type3" value="Upload" />
 						</div>
+						<?php }?>
 						<?php if(!empty($photos)):?>
 						<h5 class="width100 mT30">Please mouse hover on a photo to use as profile picture or delete or cancel.</h5>
 						<?php endif; ?>
@@ -28,10 +30,14 @@
 						<?php foreach($photos as $photo):?>
 							<div class="upCn">
 								<div class="ppOpts">
-									<p><a title="click to make this ur profile picture" href="<?php echo Yii::app()->params['homeUrl']?>/user/profilepicture/r/setimage/pId/<?php echo $photo->photoId?>/uId/<?php echo $user->userId?>">Use as Profile Picture</a></p>
-									<p><a title="click to delete this picture" href="<?php echo Yii::app()->params['homeUrl']?>/user/profilepicture/r/deleteimage/pId/<?php echo $photo->photoId?>/uId/<?php echo $user->userId?>">Delete</a></p>
+									<?php if($photo->profileImage == 1){ ?>
+									<p>This is your Profile Picture</p>
+									<?php }else{?>
+									<p><a title="click to make this ur profile picture" href="<?php echo Yii::app()->params['homeUrl']?>/user/photoupload/r/setimage/pId/<?php echo $photo->photoId?>/uId/<?php echo $user->userId?>">Use as Profile Picture</a></p>
+									<?php }?>
+									<p><a title="click to delete this picture" href="<?php echo Yii::app()->params['homeUrl']?>/user/photoupload/r/deleteimage/pId/<?php echo $photo->photoId?>/uId/<?php echo $user->userId?>">Delete</a></p>
 								</div>
-								<img src="<?php echo Utilities::getProfileImage($user->marryId,$photo->imageName); ?>" alt="" width="210" height="110" />
+								<img src="<?php echo Utilities::getProfileImage($user->marryId,$photo->imageName); ?>" alt="" width="135" height="70" />
 							</div>
 						<?php endforeach;?>
 						</div>
@@ -53,7 +59,7 @@
 						</div>
 					</li>
 					<li>
-						<a href="#" class="type4 wid80" onclick='javascript:closeOverlay();'>Update</a>
+						<a href="#" class="type4 wid80" onclick='javascript:closeOverlay();'>Cancel</a>&nbsp;<a href="#" class="type4 wid80" onclick='javascript:closeOverlay();'>Submit</a>
 					</li>
 				</ul>
 			</section>
