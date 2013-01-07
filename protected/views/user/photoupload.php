@@ -4,11 +4,11 @@
 			</section>
 			<section class="subContnr">
 				<ul class="accOverview pmB10">
+					<form action="<?php echo Utilities::createAbsoluteUrl('user','photoupload'); ?>" method="post" enctype="multipart/form-data">
 					<li class="mT15 mB0">
-					<form action="<?php echo Utilities::createAbsoluteUrl('user','photoupload'); ?>" method="post" enctype="multipart/form-data">	
 						<?php if(count($photos) < 5){?>
 						<input type="hidden" name="photoCount" id="photoCount" value="2" />
-						<input type="hidden" name="totalCount" id="totalCount" value="<?php echo !empty($photos)? count($photos):1;?>" />
+						<input type="hidden" name="totalCount" id="totalCount" value="<?php echo !empty($photos)? count($photos)+1:1;?>" />
 						<div class="urOnly">You can select multiple images</div>
 						<div class="uploadCn">
 							<input type="file" name="profilePhoto_1" id="profilePhoto_1" />
@@ -22,7 +22,7 @@
 						<?php if(!empty($photos)):?>
 						<h5 class="width100 mT30">Please mouse hover on a photo to use as profile picture or delete or cancel.</h5>
 						<?php endif; ?>
-					</form>
+					
 					</li>
 					<?php if(!empty($photos)):?>
 					<li >
@@ -59,7 +59,9 @@
 						</div>
 					</li>
 					<li>
-						<a href="#" class="type4 wid80" onclick='javascript:closeOverlay();'>Cancel</a>&nbsp;<a href="#" class="type4 wid80" onclick='javascript:closeOverlay();'>Submit</a>
+						<input type="button" name="cancelPhoto" id="cancelPhoto" value="Cancel" class="type2b" onclick='javascript:closeOverlay();' />
+						<input type="submit" name="updatePhoto" id="updatePhoto" value="Submit" class="type2b" />
 					</li>
+				</form>
 				</ul>
 			</section>

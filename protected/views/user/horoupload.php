@@ -50,7 +50,7 @@
 			<ul class="no-padd">
 				<?php if(count($photos) < 5) {?>
 				<li>
-					<p class="width100">You can add one more photo in this album</p>
+					<p class="width100">You can add <?php echo 5-count($photos);?> more photo in this album</p>
 				</li>
 				<li>
 					<a href="<?php echo Utilities::createAbsoluteUrl('user','photoupload'); ?>" class="upload" id="photoUpload">UPLOAD YOUR PHOTOS</a>

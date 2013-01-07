@@ -552,11 +552,16 @@ class UserController extends Controller
 			$user = Yii::app()->session->get('user');
 			if($user->userId == $userId){
 				$photo = $photos->find('photoId='.$photoId);
+				$profileStatus = $photo->profileImage;
 				$path = Utilities::getDirectory('images',array('profile',$user->marryId));
 				$targetFile = Utilities::getFullFilePath($path, $photo->imageName);
 				if(file_exists($targetFile)){
 					if(unlink($targetFile)){
 						$photos->deleteByPk($photoId);
+						if($profileStatus == 1){
+							$query = 'update photos set profileImage = 1 where userId ='.$user->userId.' limit 1';
+							Utilities::executeRawQuery($query);
+						}
 					}
 				}
 				$this->redirect(Yii::app()->params['homeUrl']."/user/horoupload");
@@ -596,7 +601,11 @@ class UserController extends Controller
 			}
 		}
 		
-		$photosList = $photos->findAll('userId='.$user->userId);
+		// remove the unwanted records from table
+		$query = 'delete from photos where userId ='.$user->userId.' and active = 2';
+		Utilities::executeRawQuery($query);
+							
+		$photosList = $photos->findAll('userId='.$user->userId.' and active=1');
 		$documentList = $documents->findAll('userId='.$user->userId);
 		$albumList = $album->findAll('userId='.$user->userId.' and type=1');
 		$this->render('horoupload',array('photos'=>$photosList,'user'=>$user,'documents'=>$documentList, 'familyPhotos'=>$albumList));
@@ -742,10 +751,15 @@ class UserController extends Controller
 			if($user->userId == $userId){
 				$photo = $photos->find('photoId='.$photoId);
 				$path = Utilities::getDirectory('images',array('profile',$user->marryId));
+				$profileStatus = $photo->profileImage;
 				$targetFile = Utilities::getFullFilePath($path, $photo->imageName);
 				if(file_exists($targetFile)){
 					if(unlink($targetFile)){
 						$photos->deleteByPk($photoId);
+						if($profileStatus == 1){
+								$query = 'update photos set profileImage = 1 where userId ='.$user->userId.' limit 1';
+								Utilities::executeRawQuery($query);
+							}
 					}
 				}
 				$this->redirect(Yii::app()->params['homeUrl']."/user/profilepicture");
@@ -810,10 +824,16 @@ class UserController extends Controller
 					if(Utilities::uploadFile($_FILES['profilePhoto_'.$i]['tmp_name'], $targetPath)) {
 						//code to insert to db
 						$photos = new Photos();
-						$photos->updateAll(array('profileImage'=>0),'userId='.$user->userId);  // unset the existing 
+						//$photos->updateAll(array('profileImage'=>0),'userId='.$user->userId);  // unset the existing 
 						$photos->userId = $user->userId;
 						$photos->imageName = $fileName;
-						$photos->profileImage = 1;
+						$photos->active = 2;   // temperory record
+						$profilePics = $photos->findAll('userId='.$user->userId.' and profileImage=1');
+						if(count($profilePics) > 0){
+							$photos->profileImage = 0;
+						}else{
+							$photos->profileImage = 1;
+						}
 						$photos->save();
 						
 					}else{
@@ -841,16 +861,29 @@ class UserController extends Controller
 				$user = Yii::app()->session->get('user');
 				if($user->userId == $userId){
 					$photo = $photos->find('photoId='.$photoId);
+					$profileStatus = $photo->profileImage;
 					$path = Utilities::getDirectory('images',array('profile',$user->marryId));
 					$targetFile = Utilities::getFullFilePath($path, $photo->imageName);
 					if(file_exists($targetFile)){
 						if(unlink($targetFile)){
 							$photos->deleteByPk($photoId);
+							if($profileStatus == 1){
+								$query = 'update photos set profileImage = 1 where userId ='.$user->userId.' limit 1';
+								Utilities::executeRawQuery($query);
+							}
 						}
 					}
 					$this->redirect(Yii::app()->params['homeUrl']."/user/photoupload");
 					Yii::app()->end();	
 				}
+			}elseif(isset($_POST['updatePhoto'])){
+				$query = 'update photos set active = 1 where userId ='.$user->userId.' and active = 2';
+				Utilities::executeRawQuery($query);
+				?>
+				<script type="text/javascript">
+				parent.window.location.href = '<?php echo Utilities::createAbsoluteUrl('user','horoupload'); ?>';
+				</script>
+				<?php 
 			}
   		$photosList = $photos->findAll('userId='.$user->userId);
 		$this->layout= '//layouts/popup';

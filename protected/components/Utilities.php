@@ -592,4 +592,11 @@ return array('49'=>'Belove 50000','50'=>'50000','60'=>'60000','70'=>'70000',
 			
 			return $strTimeSpent;	
 	}
+	
+	public static function executeRawQuery($query)
+	{
+		$connection=Yii::app()->db;
+		$command=$connection->createCommand($query);
+		$command->execute();
+	}
 }
