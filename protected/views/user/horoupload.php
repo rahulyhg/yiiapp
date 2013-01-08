@@ -58,20 +58,20 @@
 				<?php }?>
 				<li>
 					<div class="title">
-						Who can view above detals
+						Who can view above details
 					</div>
 					<div class="info">
 						<div class="check">
-							<input type="checkbox" name="profilepictureview" checked="checked"  /> <span>All</span>
+							<input type="checkbox" name="profilepictureview" id="profilepictureview" <?php  if($settings->privacy == 'all'){ ?> checked="checked" <?php } ?> value="all"> <span>All</span>
 						</div>
 						<div class="check">
-							<input type="checkbox" name="profilepictureview"  /> <span>Subscribers</span>
+							<input type="checkbox" name="profilepictureview" id="profilepictureview" value="subscribers" <?php  if($settings->privacy == 'subscribers'){ ?> checked="checked" <?php } ?>> <span>Subscribers</span>
 						</div>
 						<div class="check">
-							<input type="checkbox" name="profilepictureview"  /> <span>Logged Members</span>
+							<input type="checkbox" name="profilepictureview" id="profilepictureview" value="member" <?php  if($settings->privacy == 'member'){ ?> checked="checked" <?php } ?>> <span>Logged Members</span>
 						</div>
 						<div class="check">
-							<input type="checkbox" name="profilepictureview"  /> <span>By request</span>
+							<input type="checkbox" name="profilepictureview" id="profilepictureview" value="request" <?php  if($settings->privacy == 'request'){ ?> checked="checked" <?php } ?>> <span>By request</span>
 						</div>
 					</div>
 				</li>
@@ -251,9 +251,9 @@
 
 	<script type="text/javascript">
 $(document).ready(function(){
-    $("#photoUpload").colorbox({iframe:true, width:"860", height:"615",overlayClose: false});
-    $("#familyphotoUpload").colorbox({iframe:true, width:"860", height:"615",overlayClose: false});
-    $("#documentUpload").colorbox({iframe:true, width:"860", height:"615",overlayClose: false});
+    $("#photoUpload").colorbox({iframe:true, width:"860", height:"620",overlayClose: false});
+    $("#familyphotoUpload").colorbox({iframe:true, width:"860", height:"620",overlayClose: false});
+    $("#documentUpload").colorbox({iframe:true, width:"860", height:"620",overlayClose: false});
   });
 
     $('<a href="/mypage">Skip this page|</a> ').insertBefore('.logout');

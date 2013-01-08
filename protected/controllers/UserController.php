@@ -533,7 +533,7 @@ class UserController extends Controller
 		$photos = new Photos();
   		$documents = new Documents();
   		$album = new Album();
-  		
+  		$privacy = new Privacy();
   		//phoot and document action
   		
 	if(isset($_GET['r']) && $_GET['r'] == 'setimage'){   // set the profile image
@@ -608,7 +608,8 @@ class UserController extends Controller
 		$photosList = $photos->findAll('userId='.$user->userId.' and active=1');
 		$documentList = $documents->findAll('userId='.$user->userId);
 		$albumList = $album->findAll('userId='.$user->userId.' and type=1');
-		$this->render('horoupload',array('photos'=>$photosList,'user'=>$user,'documents'=>$documentList, 'familyPhotos'=>$albumList));
+		$settings = $privacy->find("userId=".$user->userId. " and items='album'");
+		$this->render('horoupload',array('photos'=>$photosList,'user'=>$user,'documents'=>$documentList, 'familyPhotos'=>$albumList,'settings'=>$settings));
 		//here we have to show the documents and album upload page
 		//then show profile complete page
 	}
@@ -809,6 +810,7 @@ class UserController extends Controller
 	
 		$user = Yii::app()->session->get('user');
   		$photos = new Photos();
+  		$privacy = new Privacy();
   		
 		//Upload the profile photo
   		$photoCount = isset($_POST['photoCount']) ? $_POST['photoCount']:1; 
@@ -877,8 +879,21 @@ class UserController extends Controller
 					Yii::app()->end();	
 				}
 			}elseif(isset($_POST['updatePhoto'])){
+				// update the temp images to active one
 				$query = 'update photos set active = 1 where userId ='.$user->userId.' and active = 2';
 				Utilities::executeRawQuery($query);
+				// update the photo privacy settings
+				$visibility = isset($_POST['profilepictureview']) ? trim($_POST['profilepictureview']): 'all';
+				$settings = $privacy->find("userId=".$user->userId." and items = 'album'");
+				if(count($settings) > 0 ){  // update new settings
+					$query = "update privacy set privacy = '".$visibility."' where userId =".$user->userId." and items = 'album'";
+					Utilities::executeRawQuery($query);
+				}else{
+					$privacy->userId = $user->userId;
+					$privacy->items = 'album';
+					$privacy->privacy = $visibility;
+					$privacy->save();
+				}
 				?>
 				<script type="text/javascript">
 				parent.window.location.href = '<?php echo Utilities::createAbsoluteUrl('user','horoupload'); ?>';
@@ -886,8 +901,9 @@ class UserController extends Controller
 				<?php 
 			}
   		$photosList = $photos->findAll('userId='.$user->userId);
+  		$settings = $privacy->find("userId=".$user->userId. " and items='album'");
 		$this->layout= '//layouts/popup';
-		$this->render('photoupload',array('photos'=>$photosList,'user'=>$user));
+		$this->render('photoupload',array('photos'=>$photosList,'user'=>$user,'settings'=>$settings));
 	}
 	
 	public function actionDocumentupload()

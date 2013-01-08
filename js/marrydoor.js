@@ -257,11 +257,20 @@ $(function(){
 			$("#albumImageContainer").attr("src", image);
 		}
 		
-		function closeOverlay()
+		function closeOverlay(url)
 		{
 			parent.$.fn.colorbox.close();
-			parent.window.location.href = parent.window.location;
-			
+			//parent.window.location.href = parent.window.location;
+			clearTempValues(url);
+		}
+		
+		function clearTempValues(urlToPost){
+
+			$.ajax({
+				  type: "POST",
+				  url: urlToPost,
+				  data: { }
+				})
 		}
 		
 		$(document).ready(function(){

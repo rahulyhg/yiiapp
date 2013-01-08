@@ -599,4 +599,18 @@ return array('49'=>'Belove 50000','50'=>'50000','60'=>'60000','70'=>'70000',
 		$command=$connection->createCommand($query);
 		$command->execute();
 	}
+	
+	public function getRequestProtocol(){
+			$protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' || $_SERVER['SERVER_PORT'] == 443) ? 'https' : 'http';
+			return $protocol;
+	}
+	
+	public static function getSelfUrl() {
+    	$selfUrl = self::getRequestProtocol()."://".$_SERVER['SERVER_NAME'].'/';
+        return $selfUrl;
+    }
+    
+	public static function getCurrentUrl(){
+    	return self::getRequestProtocol()."://".$_SERVER["SERVER_NAME"].$_SERVER["REQUEST_URI"];
+    }
 }

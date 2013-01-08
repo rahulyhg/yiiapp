@@ -46,20 +46,20 @@
 					<li class="mT25">
 						<div class="whoCan">Who can view Album</div>
 						<div class="check ">
-							<input type="checkbox"> <span>All</span>
+							<input type="checkbox" name="profilepictureview" id="profilepictureview" <?php  if($settings->privacy == 'all'){ ?> checked="checked" <?php } ?> value="all"> <span>All</span>
 						</div>
 						<div class="check ">
-							<input type="checkbox"> <span>Subscribers</span>
+							<input type="checkbox" name="profilepictureview" id="profilepictureview" value="subscribers" <?php  if($settings->privacy == 'subscribers'){ ?> checked="checked" <?php } ?>> <span>Subscribers</span>
 						</div>
 						<div class="check ">
-							<input type="checkbox"> <span>Logged Members</span>
+							<input type="checkbox" name="profilepictureview" id="profilepictureview" value="member" <?php  if($settings->privacy == 'member'){ ?> checked="checked" <?php } ?>> <span>Logged Members</span>
 						</div>
 						<div class="check ">
-							<input type="checkbox"> <span>By request</span>
+							<input type="checkbox" name="profilepictureview" id="profilepictureview" value="request" <?php  if($settings->privacy == 'request'){ ?> checked="checked" <?php } ?>> <span>By request</span>
 						</div>
 					</li>
 					<li>
-						<input type="button" name="cancelPhoto" id="cancelPhoto" value="Cancel" class="type2b" onclick='javascript:closeOverlay();' />
+						<input type="button" name="cancelPhoto" id="cancelPhoto" value="Cancel" class="type2b" onclick="javascript:closeOverlay('<?php echo Utilities::createAbsoluteUrl('ajax','photoclear')?>');" />
 						<input type="submit" name="updatePhoto" id="updatePhoto" value="Submit" class="type2b" />
 					</li>
 				</form>
