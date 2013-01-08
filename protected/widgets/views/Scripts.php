@@ -1,17 +1,17 @@
-	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->params['resourceUrl']; ?>/css/marrydoor.css" />
-    <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->params['resourceUrl']; ?>/css/global.css" />
-    <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->params['resourceUrl']; ?>/css/validationEngine.jquery.css"/>
-    <script src="<?php echo Yii::app()->params['resourceUrl']; ?>/js/jquery1.7.2.min.js"></script>
-    <script src="<?php echo Yii::app()->params['resourceUrl']; ?>/js/modernizr-1.7.min.js"></script>
-	<script src="<?php echo Yii::app()->params['resourceUrl']; ?>/js/inr.js"></script>
-	<script src="<?php echo Yii::app()->params['resourceUrl']; ?>/js/marrydoor.js"></script>
+	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->params['resourceUrl']; ?>/css/marrydoor.css?version=<?php echo Yii::app()->params['version']?>" />
+    <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->params['resourceUrl']; ?>/css/global.css?version=<?php echo Yii::app()->params['version']?>" />
+    <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->params['resourceUrl']; ?>/css/validationEngine.jquery.css?version=<?php echo Yii::app()->params['version']?>"/>
+    <script src="<?php echo Yii::app()->params['resourceUrl']; ?>/js/jquery1.7.2.min.js?version=<?php echo Yii::app()->params['version']?>"></script>
+    <script src="<?php echo Yii::app()->params['resourceUrl']; ?>/js/modernizr-1.7.min.js?version=<?php echo Yii::app()->params['version']?>"></script>
+	<script src="<?php echo Yii::app()->params['resourceUrl']; ?>/js/inr.js?version=<?php echo Yii::app()->params['version']?>"></script>
+	<script src="<?php echo Yii::app()->params['resourceUrl']; ?>/js/marrydoor.js?version=<?php echo Yii::app()->params['version']?>"></script>
 	<!-- colorbox js and css -->
-	<script src="<?php echo Yii::app()->params['resourceUrl']; ?>/js/jquery.colorbox-min.js"></script>
-	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->params['resourceUrl']; ?>/css/colorbox.css" />
-	<script type="text/javascript" src="<?php echo Yii::app()->params['resourceUrl']; ?>/js/jquery.validationEngine.js" charset="utf-8"></script>
-	<script type="text/javascript" src="<?php echo Yii::app()->params['resourceUrl']; ?>/js/jquery.validationEngine-en.js" charset="utf-8"></script>
-	<script type="text/javascript" src="<?php echo Yii::app()->params['resourceUrl']; ?>/js/formvalidation.js" charset="utf-8"></script>
-	<script type="text/javascript" src="<?php echo Yii::app()->params['resourceUrl']; ?>/js/jquery.validate.js" charset="utf-8"></script>
+	<script src="<?php echo Yii::app()->params['resourceUrl']; ?>/js/jquery.colorbox-min.js?version=<?php echo Yii::app()->params['version']?>"></script>
+	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->params['resourceUrl']; ?>/css/colorbox.css?version=<?php echo Yii::app()->params['version']?>" />
+	<script type="text/javascript" src="<?php echo Yii::app()->params['resourceUrl']; ?>/js/jquery.validationEngine.js?version=<?php echo Yii::app()->params['version']?>" charset="utf-8"></script>
+	<script type="text/javascript" src="<?php echo Yii::app()->params['resourceUrl']; ?>/js/jquery.validationEngine-en.js?version=<?php echo Yii::app()->params['version']?>" charset="utf-8"></script>
+	<script type="text/javascript" src="<?php echo Yii::app()->params['resourceUrl']; ?>/js/formvalidation.js?version=<?php echo Yii::app()->params['version']?>" charset="utf-8"></script>
+	<script type="text/javascript" src="<?php echo Yii::app()->params['resourceUrl']; ?>/js/jquery.validate.js?version=<?php echo Yii::app()->params['version']?>" charset="utf-8"></script>
 
 <style type="text/css">
 * { font-family: Verdana; font-size: 96%; }

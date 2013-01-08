@@ -117,5 +117,6 @@ return array(
 		'scriptUrl' => 'http://scripts.marrydoor.com',
 		'sslScriptUrl' => 'https://scripts.marrydoor.com',
 		'ftpPath' => 'E:\project\marrydoor',
+		'version' => '1.0',
 	),
 );
