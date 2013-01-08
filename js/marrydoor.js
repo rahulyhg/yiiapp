@@ -251,6 +251,92 @@ $(function(){
 					}
 				}
 				
+				function addMoreFamilyPhotos()
+				{
+
+					//get total count
+					var totalCount = document.getElementById("totalCount").value;
+					totalCount = parseInt(totalCount);
+					if(totalCount < 5){
+					// get the current element count
+					var count = document.getElementById("photoCount").value;
+					//Create an input type dynamically.
+				    var element = document.createElement("input");
+				     //Assign different attributes to the element.
+				    element.setAttribute("type", "file");
+				    element.setAttribute("value", "");
+				    element.setAttribute("name", "profilePhoto_"+count);
+				    element.setAttribute("id", "profilePhoto_"+count);
+				    element.setAttribute("class", "fileStyle");
+				 
+				    var container = document.getElementById("photoContainer");
+				 
+				    //Append the element in page (in span).
+				    container.appendChild(element);
+
+				    // create the select box
+				    
+				    var element = document.createElement("select");
+				     //Assign different attributes to the element.
+				    element.setAttribute("name", "photoRelation_"+count);
+				    element.setAttribute("id", "photoRelation_"+count);
+				    element.setAttribute("class", "select_small_140");
+
+				    var option = document.createElement("option");
+				    option.setAttribute("value", "0");
+				    option.innerHTML = 'Who is this';
+				    element.appendChild(option);
+				    
+				    var option = document.createElement("option");
+				    option.setAttribute("value", "1");
+				    option.innerHTML = 'Father';
+				    element.appendChild(option);
+				    
+				    var option = document.createElement("option");
+				    option.setAttribute("value", "2");
+				    option.innerHTML = 'Mother';
+				    element.appendChild(option);
+				    
+				    var option = document.createElement("option");
+				    option.setAttribute("value", "3");
+				    option.innerHTML = 'Brother';
+				    element.appendChild(option);
+				    container.appendChild(element);
+				    
+				    var option = document.createElement("option");
+				    option.setAttribute("value", "4");
+				    option.innerHTML = 'Sister';
+				    element.appendChild(option);
+				    container.appendChild(element);
+				    
+				    count = parseInt(count) + 1;
+				    document.getElementById("photoCount").value = count;
+				    document.getElementById("totalCount").value = totalCount + 1;
+					}else{
+						alert('You can upload only 5 photos');
+					}
+				}
+		
+			function uploadFamilyPhoto(){
+				$.each($("select"), function(i,v) {
+				    var theTag = v.tagName;
+				    var theElement = $(v);
+				    var theValue = theElement.val();
+				    if(theValue == 0){
+				    	alert('select the picture description');
+				    	flag = false;
+				    	return false;
+				    }else{
+				    	flag = true;
+				    }
+				});
+				
+				if(flag){
+					$("#frmFamilyPhoto").submit();
+				}else{
+					return false;
+				}
+			}
 		// function to change the picture in album page
 
 		function changeAlbumPicture(image){

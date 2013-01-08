@@ -46,9 +46,10 @@ class Album extends CActiveRecord
 			array('imageName', 'length', 'max'=>100),
 			array('description', 'length', 'max'=>200),
 			array('type', 'numerical', 'integerOnly'=>true),
+			array('photorelation', 'numerical', 'integerOnly'=>true),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('albumId, userId, imageName, description, type, active', 'safe', 'on'=>'search'),
+			array('albumId, userId, imageName, description, type, photorelation, active', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -75,6 +76,7 @@ class Album extends CActiveRecord
 			'imageName' => 'Image Name',
 			'description' => 'Description',
 			'type' => 'Type',
+			'photorelation' => 'Who is this',
 			'active' => 'Active',
 		);
 	}
@@ -95,6 +97,7 @@ class Album extends CActiveRecord
 		$criteria->compare('imageName',$this->imageName,true);
 		$criteria->compare('description',$this->description,true);
 		$criteria->compare('type',$this->type,true);
+		$criteria->compare('photorelation',$this->type,true);
 		$criteria->compare('active',$this->active);
 
 		return new CActiveDataProvider($this, array(

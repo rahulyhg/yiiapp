@@ -94,7 +94,7 @@
 			<ul class="no-padd">
 				<?php if(count($familyPhotos) < 5){?>
 				<li>
-					<p class="width100">You can add one more photo in this album</p>
+					<p class="width100">You can add <?php echo 5-count($familyPhotos);?> more photo in this album</p>
 				</li>
 				<li>
 					<a href="<?php echo Utilities::createAbsoluteUrl('user','familyphotoupload'); ?>" class="upload" id="familyphotoUpload">UPLOAD YOUR PHOTOS</a>
@@ -102,20 +102,20 @@
 				<?php } ?>
 				<li>
 					<div class="title">
-						Who can view above detals
+						Who can view above details
 					</div>
 					<div class="info">
 						<div class="check">
-							<input type="checkbox" name="familyalbumeview" checked="checked" /> <span>All</span>
+							<input type="checkbox" name="familypictureview" id="familypictureview" <?php  if($familysettings->privacy == 'all'){ ?> checked="checked" <?php } ?> value="all"> <span>All</span>
 						</div>
 						<div class="check">
-							<input type="checkbox" name="familyalbumeview" /> <span>Subscribers</span>
+							<input type="checkbox" name="familypictureview" id="familypictureview" value="subscribers" <?php  if($familysettings->privacy == 'subscribers'){ ?> checked="checked" <?php } ?>> <span>Subscribers</span>
 						</div>
 						<div class="check">
-							<input type="checkbox" name="familyalbumeview" /> <span>Logged Members</span>
+							<input type="checkbox" name="familypictureview" id="familypictureview" value="member" <?php  if($familysettings->privacy == 'member'){ ?> checked="checked" <?php } ?>> <span>Logged Members</span>
 						</div>
 						<div class="check">
-							<input type="checkbox" name="familyalbumeview" /> <span>By request</span>
+							<input type="checkbox" name="familypictureview" id="familypictureview" value="request" <?php  if($familysettings->privacy == 'request'){ ?> checked="checked" <?php } ?>> <span>By request</span>
 						</div>
 					</div>
 				</li>
@@ -252,7 +252,7 @@
 	<script type="text/javascript">
 $(document).ready(function(){
     $("#photoUpload").colorbox({iframe:true, width:"860", height:"620",overlayClose: false});
-    $("#familyphotoUpload").colorbox({iframe:true, width:"860", height:"620",overlayClose: false});
+    $("#familyphotoUpload").colorbox({iframe:true, width:"860", height:"640",overlayClose: false});
     $("#documentUpload").colorbox({iframe:true, width:"860", height:"620",overlayClose: false});
   });
 

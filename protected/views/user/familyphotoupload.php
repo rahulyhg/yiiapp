@@ -5,24 +5,31 @@
 			<section class="subContnr">
 				<ul class="accOverview pmB10">
 					<li class="mT15 mB0">
-					<form action="<?php echo Utilities::createAbsoluteUrl('user','familyphotoupload'); ?>" method="post" enctype="multipart/form-data">	
+					<form action="<?php echo Utilities::createAbsoluteUrl('user','familyphotoupload'); ?>" method="post" enctype="multipart/form-data" id="frmFamilyPhoto">	
 						<?php if(count($photos) < 5){?>
 						<input type="hidden" name="photoCount" id="photoCount" value="2" />
-						<input type="hidden" name="totalCount" id="totalCount" value="<?php echo !empty($photos)? count($photos):1;?>" />
+						<input type="hidden" name="totalCount" id="totalCount" value="<?php echo !empty($photos)? count($photos)+1:1;?>" />
 						<div class="urOnly">You can select multiple images</div>
 						<div class="uploadCn">
 							<input type="file" name="profilePhoto_1" id="profilePhoto_1" />
 						</div>
+						<select class="wid200" name="photoRelation_1" id="photoRelation_1">
+								<option value="0">Who is this</option>
+								<option value="1">Father</option>
+								<option value="2">Mother</option>
+								<option value="3">Brother</option>
+								<option value="4">Sister</option>
+							</select>
 						<div id="photoContainer" style="margin-bottom:10px;"></div>
 						<div class="uploadCn mT5">
-							<a href="#" class="type3" name="morephoto" id="morephoto" onClick="addMoreFiles()";>Add More</a>
-							<input type="submit" name="uploadphoto" id="uploadphoto" class="type3" value="Upload" />
+							<a href="#" class="type3" name="morephoto" id="morephoto" onclick="addMoreFamilyPhotos()";>Add More</a>
+							<input type="button" name="uploadphoto" id="uploadphoto" class="type3" value="Upload" onclick="uploadFamilyPhoto();" />
 						</div>
 						<?php }?>
 						<?php if(!empty($photos)):?>
 						<h5 class="width100 mT30">Please mouse hover on a photo to use as profile picture or delete or cancel.</h5>
 						<?php endif; ?>
-					</form>
+					
 					</li>
 					<?php if(!empty($photos)):?>
 					<li >
@@ -42,21 +49,23 @@
 					<li class="mT25">
 						<div class="whoCan">Who can view Album</div>
 						<div class="check ">
-							<input type="checkbox"> <span>All</span>
+							<input type="checkbox" name="familypictureview" id="familypictureview" <?php  if($settings->privacy == 'all'){ ?> checked="checked" <?php } ?> value="all"> <span>All</span>
 						</div>
 						<div class="check ">
-							<input type="checkbox"> <span>Subscribers</span>
+							<input type="checkbox" name="familypictureview" id="familypictureview" value="subscribers" <?php  if($settings->privacy == 'subscribers'){ ?> checked="checked" <?php } ?>> <span>Subscribers</span>
 						</div>
 						<div class="check ">
-							<input type="checkbox"> <span>Loged Members</span>
+							<input type="checkbox" name="familypictureview" id="familypictureview" value="member" <?php  if($settings->privacy == 'member'){ ?> checked="checked" <?php } ?>> <span>Logged Members</span>
 						</div>
 						<div class="check ">
-							<input type="checkbox"> <span>By request</span>
+							<input type="checkbox" name="familypictureview" id="familypictureview" value="request" <?php  if($settings->privacy == 'request'){ ?> checked="checked" <?php } ?>> <span>By request</span>
 						</div>
 					</li>
 
 					<li>
-						<a href="#" class="type4 wid80" onclick='javascript:closeOverlay();'>Cancel</a>&nbsp;<a href="#" class="type4 wid80" onclick='javascript:closeOverlay();'>Submit</a>
+						<input type="button" name="cancelPhoto" id="cancelPhoto" value="Cancel" class="type2b" onclick="javascript:closeOverlay('<?php echo Utilities::createAbsoluteUrl('ajax','familyphotoclear')?>');" />
+						<input type="submit" name="updatePhoto" id="updatePhoto" value="Submit" class="type2b" />
 					</li>
+					</form>
 				</ul>
 			</section>
