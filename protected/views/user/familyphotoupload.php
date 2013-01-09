@@ -12,15 +12,17 @@
 						<div class="urOnly">You can select multiple images</div>
 						<div class="uploadCn">
 							<input type="file" name="profilePhoto_1" id="profilePhoto_1" />
-						</div>
-						<select class="wid200" name="photoRelation_1" id="photoRelation_1">
+							<select class="wid200" name="photoRelation_1" id="photoRelation_1">
 								<option value="0">Who is this</option>
 								<option value="1">Father</option>
 								<option value="2">Mother</option>
 								<option value="3">Brother</option>
 								<option value="4">Sister</option>
 							</select>
-						<div id="photoContainer" style="margin-bottom:10px;"></div>
+						</div>
+						<!-- dynamic data will populate here -->
+						<div id="photoContainer" style="margin-bottom:10px;">
+						</div>
 						<div class="uploadCn mT5">
 							<a href="#" class="type3" name="morephoto" id="morephoto" onclick="addMoreFamilyPhotos()";>Add More</a>
 							<input type="button" name="uploadphoto" id="uploadphoto" class="type3" value="Upload" onclick="uploadFamilyPhoto();" />
@@ -63,8 +65,8 @@
 					</li>
 
 					<li>
-						<input type="button" name="cancelPhoto" id="cancelPhoto" value="Cancel" class="type2b" onclick="javascript:closeOverlay('<?php echo Utilities::createAbsoluteUrl('ajax','familyphotoclear')?>');" />
-						<input type="submit" name="updatePhoto" id="updatePhoto" value="Submit" class="type2b" />
+						<input type="button" name="cancelPhoto" id="cancelPhoto" value="Cancel" class="type2b mL5" onclick="javascript:closeOverlay('<?php echo Utilities::createAbsoluteUrl('ajax','familyphotoclear')?>');" />
+						<input type="submit" name="updatePhoto" id="updatePhoto" value="Submit" class="type2b mL5" />
 					</li>
 					</form>
 				</ul>

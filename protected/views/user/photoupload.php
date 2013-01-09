@@ -59,8 +59,8 @@
 						</div>
 					</li>
 					<li>
-						<input type="button" name="cancelPhoto" id="cancelPhoto" value="Cancel" class="type2b" onclick="javascript:closeOverlay('<?php echo Utilities::createAbsoluteUrl('ajax','photoclear')?>');" />
-						<input type="submit" name="updatePhoto" id="updatePhoto" value="Submit" class="type2b" />
+						<input type="button" name="cancelPhoto" id="cancelPhoto" value="Cancel" class="type2b mL5" onclick="javascript:closeOverlay('<?php echo Utilities::createAbsoluteUrl('ajax','photoclear')?>');" />
+						<input type="submit" name="updatePhoto" id="updatePhoto" value="Submit" class="type2b mL5" />
 					</li>
 				</form>
 				</ul>
