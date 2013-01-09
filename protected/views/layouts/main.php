@@ -10,8 +10,8 @@
 	<meta name="author" content="Loloos Technolab Pvt. Ltd.">
 	<meta name="Copyright" content="Copyright &#169; Loloos Technolab Pvt. Ltd. 2012 | All Rights Reserved.">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-	<link rel="shortcut icon" href="http://media.marrydoor.com/images/favicon.ico">
-    <link rel=icon type="image/ico" href="http://media.marrydoor.com/images/favicon.ico">
+	<link rel="shortcut icon" href="http://marrydoor.com/images/favicon.ico">
+    <link rel=icon type="image/ico" href="http://marrydoor.com/images/favicon.ico">
     <!-- scripts widgets -->
 	<?php $this->widget('application.widgets.Scripts'); ?>
 	<!-- scripts ends -->

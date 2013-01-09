@@ -1,16 +1,35 @@
   
   	<?php 
   	$user = Yii::app()->session->get('user');
+  	 $heightArray = Utilities::getHeights();
   	if(isset($user))
    $this->widget('application.widgets.menu.Leftmenu'); ?>   
-  
+  	
+  	
 
-    <section class="data-contnr3">
+    <section class="data-contnr3 searchRslt">
+    	<h1 class="mTB12">Search your life partner </h1>
+        <p>An easy way to find out your life partner. By choosing the right options you can easily find out the profiles that matches you. </p>
+		<ul class="tab-head">
+			<li id="tab1">
+				<a id="tab1" href="/search" class=" ">Basic Search</a>
+			</li>
+			<li id="tab2"> 
+				<a id="tab2" href="/search" class="type3">Advanced Search</a>
+			</li>
+			<li id="tab3">
+				<a id="tab3" href="/search" class="type3">Keyword Search</a>
+			</li>
+			<li id="tab4">
+				<a id="tab4" href="/search" class="type3">Search by ID</a>
+			</li>
+		</ul>
         <div class="page-head">Search Result</div>
         <div class="page-subhead">Get the best results instantly </div>
         <?php if(isset($searchText)) { ?>
         <div class="search-result"><span>Your keywords:</span> <?php echo $searchText; ?></div>
         <?php }?>
+         <?php if(sizeof($highLight) > 0 ) {?>
         <div class="content-section highPro">
             <div class="headBtn">
                 <div class="hText">Highlighted Profiles</div>
@@ -19,7 +38,7 @@
                  <?php }?>
             </div>
             <?php 
-  $heightArray = Utilities::getHeights();
+ 
   $index = 0;
   foreach ($highLight as $value) { ?>
             <div <?php if($index > 1) echo "id='high{$index}'";?> class="profile">
@@ -93,6 +112,7 @@
             </div>
             <?php }?> 
         </div>
+        <?php }?>
         <?php if(sizeof($normal) > 0 ) {?>
         <div class="page-content-head">Matches for you</div>
         <?php if(isset($totalPage) && intval($totalPage) > 1) { ?>

@@ -616,30 +616,17 @@
 					</li>
 				</ul>
 				<ul>
-					<li>
-						<h3>Keywords</h3>
-					</li>
-					<li>
-						<p>Enter keywords within quotes and for more than one keyword use a comma separator between words. Example: "Good looking", "Well settled", etc. Keywords are searched against the profile description of a member.</p>
-					</li>
-					<li>
-						<div class="title">
-							Keyword
-						</div>
-						<div class="info">
-							<input type="text" class="wid180" name="rkeyword" />
-						</div>
-					</li>
+					
 					<li>
 						<div class="title">
 							Show profile
 						</div>
 						<div class="info">
 							<div class="check wid220">
-								<input type="checkbox" name="profile[]" value="photo" /> <span>Only With Photo</span>
+								<input type="checkbox" name="profile[]" value="p" /> <span>Only With Photo</span>
 							</div>
 							<div class="check ">
-								<input type="checkbox" name="profile[]" value="horoscope" /><span>Only With horoscope</span>
+								<input type="checkbox" name="profile[]" value="h" /><span>Only With horoscope</span>
 							</div>
 						</div>
 					</li>

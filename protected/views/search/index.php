@@ -251,7 +251,6 @@
 					<li>
 						<div class="buttonContnr2 mT20">
 							<a class="type4" href="javascript:regularSearch.submit();" >Search</a>
-							<a class="type4" href="#">Save Search</a>
 						</div>
 					</li>
 				</ul>
@@ -613,20 +612,6 @@
 				</ul>
 				<ul>
 					<li>
-						<h3>Keywords</h3>
-					</li>
-					<li>
-						<p>Enter keywords within quotes and for more than one keyword use a comma separator between words. Example: "Good looking", "Well settled", etc. Keywords are searched against the profile description of a member.</p>
-					</li>
-					<li>
-						<div class="title">
-							Keyword
-						</div>
-						<div class="info">
-							<input type="text" class="wid180" name="rkeyword" />
-						</div>
-					</li>
-					<li>
 						<div class="title">
 							Show profile
 						</div>
@@ -661,7 +646,6 @@
 					<li>
 						<div class="buttonContnr2 mT20">
 							<a class="type4" href="javascript:advanceSearch.submit();"  href="#">Search</a>
-							<a class="type4" href="#">Save Search</a>
 						</div>
 					</li>
 				</ul>
