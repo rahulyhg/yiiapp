@@ -354,6 +354,15 @@ body{
 .mB10{
 	margin:0 0 10px 0 !important;
 }
+.mB20{
+	margin-bottom: 20px !important;
+}
+.mB25{
+	margin-bottom: 25px !important;
+}
+.mB15{
+	margin-bottom: 15px !important;
+}
 .mB0{
 	margin-bottom: 0 !important;
 }
@@ -618,6 +627,22 @@ body{
     color: #f1effa;
 	text-decoration: none !important;
 }
+.type8{
+    background: none repeat scroll 0 0 #f1effa;
+    color: #7c51a1;
+    float: left;
+    font: 14px/22px arial,helvetica,sans-serif;
+    height: 23px;
+    margin:0;
+    text-align: center;
+    text-decoration: none;
+	padding: 0 20px !important;
+}
+.type8:hover{
+    background: #7c51a1;
+    color: #f1effa;
+	text-decoration: none !important;
+}
 .min-height{
 	min-height: 215px !important;
 }
@@ -645,12 +670,13 @@ body{
     height: 28px;
     margin:0;
     text-align: center;
-    text-decoration: none;
+    text-decoration: none !important;
 	text-transform: uppercase;
 }
 .upload:hover{
     background: #7c51a1;
     color: #f1effa;
+	text-decoration: none !important;
 }
 input[type="text"] {
 	height: 20px;
@@ -884,12 +910,14 @@ h5{
 	text-align: justify;
 }
 .subFooter{
-    width: 100%;
+    width: 810px;
     float: left;
     height: 20px;
     background: #7c51a1;
-	position: relative;
+	position: absolute;
 	z-index: 7;
+	left: -1px;
+	bottom: -1px;
 }
 .subFooter ul.footer-links{
     width:100%;
@@ -1975,13 +2003,13 @@ h5{
 	padding: 0 0 4px !important;
 }
 .subContent {
-    border: 10px solid #F8F8F8;
+    border: 1px solid #F8F8F8;
     float: left;
-    /*margin: 10px 0 0;
-    padding: 10px;*/
+    background: #fff;
     margin: 5px 0 0;
     padding: 13px;
-    box-shadow:5px 5px 5px #888888;
+    box-shadow:0px 0px 5px #888888;
+    position: relative;
 }
 .infoB{
 	font:bold 11px/15px tahoma,arial,helvetica,sans-serif;

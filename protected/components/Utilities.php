@@ -613,4 +613,15 @@ return array('49'=>'Belove 50000','50'=>'50000','60'=>'60000','70'=>'70000',
 	public static function getCurrentUrl(){
     	return self::getRequestProtocol()."://".$_SERVER["SERVER_NAME"].$_SERVER["REQUEST_URI"];
     }
+    
+    	public static function getChova()
+	{
+		return array('0'=>'No','1'=>'Yes','2'=> 'Do not know');
+	}
+	
+	public static function getSudham()
+	{
+		return array('0'=>'No','1'=>'Yes','2'=> 'Do not know');
+	}
+    
 }

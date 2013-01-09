@@ -2424,3 +2424,8 @@ article.section ul li .info .checked{
     margin:1px 0 0;
     width: 100%;
 }
+
+.searchRslt{
+    width: 960px !important;
+    margin-left: 0 !important;
+}

@@ -10,20 +10,12 @@
     <section class="data-contnr3 searchRslt">
     	<h1 class="mTB12">Search your life partner </h1>
         <p>An easy way to find out your life partner. By choosing the right options you can easily find out the profiles that matches you. </p>
-		<ul class="tab-head">
-			<li id="tab1">
-				<a id="tab1" href="/search" class=" ">Basic Search</a>
-			</li>
-			<li id="tab2"> 
-				<a id="tab2" href="/search" class="type3">Advanced Search</a>
-			</li>
-			<li id="tab3">
-				<a id="tab3" href="/search" class="type3">Keyword Search</a>
-			</li>
-			<li id="tab4">
-				<a id="tab4" href="/search" class="type3">Search by ID</a>
-			</li>
-		</ul>
+		<div class="page-head mB25">
+	    <a class="type8 mR5" href="/search" >Basic Search</a>
+	    <a class="type8 mR5" href="/search" >Advanced Search</a>
+	    <a class="type8 mR5" href="/search" >Keyword Search</a>
+	    <a class="type8 mR5" href="/search" >Search by ID</a>
+		</div>
         <div class="page-head">Search Result</div>
         <div class="page-subhead">Get the best results instantly </div>
         <?php if(isset($searchText)) { ?>
