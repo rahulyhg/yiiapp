@@ -19,9 +19,199 @@ class SearchController extends Controller
 		{
 			$this->render('regular');
 		}
+		
+		
 	}
 	
 	
+	public function actionSave()
+	{
+		$user = Yii::app()->session->get('user');
+		
+		$saveSearch = new Savesearch();
+		
+		if(isset($_POST['ageTo']))
+		{
+			$saveSearch->ageTo = $_POST['ageTo'];
+		}
+		if(isset($_POST['ageFrom']))
+		{
+			$saveSearch->ageFrom = $_POST['ageFrom'];
+		}
+			
+		if(isset($_POST['gender']))
+		{
+			$saveSearch->gender = $_POST['gender']; 
+		}
+		
+		if(isset($_POST['heightFrom']))
+		$saveSearch->heightFrom = $_POST['heightFrom'];
+		if(isset($_POST['heightTo']))
+		$saveSearch->heightTo = $_POST['heightTo'];
+		
+		if(isset($_POST['religion']) && !empty($_POST['religion']))
+		{
+			$saveSearch->religion = $_POST['religion'];
+		}
+		
+		if(isset($_POST['caste1']))
+		{
+			$caste  = implode(",",$_POST['caste1']);
+			$saveSearch->caste = $caste;
+		
+		}
+		
+		if(isset($_POST['status']))
+		{
+			$mstatus = implode(",",$_POST['status']);
+			$saveSearch->maritalStatus = $mstatus;
+			//maritalStatus 	
+		}
+		
+		if(isset($_POST['language1']) && !empty($_POST['language1']))
+		{
+			$language = implode(",",$_POST['language1']);
+			$saveSearch->motherTounge = $language;
+		}
+		
+		if(isset($_POST['education1']))
+		{
+			$education = implode(",", $_POST['education1']);
+			$saveSearch->education = $education;
+		}
+		
+		if(isset($_POST['country1']))
+		{
+			$country = implode(",", $_POST['country1']);
+			$saveSearch->countries = $country;
+		}
+		
+		if(isset($_POST['profile']))
+		{
+			foreach ($_POST['profile'] as $value) {
+				if($value == 'p')
+				$saveSearch->photo = '1';
+				else if ($value == 'h')
+				$saveSearch->horoscope = '1';
+			}
+		}
+		
+		if(isset($_POST['show']))
+		{
+			$show = implode(",", $_POST['show']);
+			$saveSearch->showprofile = $show;
+			
+		}
+		
+		if(isset($_POST['status']))
+		{
+			
+			$mstatus = implode(",", $_POST['status']);
+			$saveSearch->maritalStatus = $mstatus;
+		}
+		
+		
+		if(isset($_POST['state']) && !empty($_POST['state']))
+		{
+			$saveSearch->state = $_POST['state']; 	
+		}
+		
+		
+		if(isset($_POST['district']) && !empty($_POST['district']))
+		{
+			$saveSearch->district = $_POST['district']; 
+		}
+		
+		
+		if(isset($_POST['pstatus']))
+		{
+			
+			if($_POST['pstatus'] == 'N')
+			{
+				$searchText.= "Physical status as doesn't matter";	
+			}
+			if($_POST['pstatus'] == '0')
+			{
+				$condition .= " AND physicalStatus = {$status}";
+				$searchText.= "Physical status as normal";
+			}
+			if($_POST['pstatus'] == '1')
+			{
+				$condition .= " AND physicalStatus = {$status}";
+				$searchText.= "Physical status as physically challenged";
+			}
+			
+		}
+		
+		
+		if(isset($_POST['occupation1']))
+		{
+			$occupation = implode(",", $_POST['occupation1']);
+			$saveSearch->occupation  = $occupation;
+		}
+		
+		if(isset($_POST['income']) && !empty($_POST['income']))
+		{
+			$saveSearch->annualIncome  = $_POST['income'];
+		}
+		
+		if(isset($_POST['star1']))
+		{
+			$stars = implode(",", $_POST['star1']);
+			$saveSearch->star = $stars;
+		}
+		
+		
+		if(isset($_POST['sudha']))
+		{
+			$sudha = implode(",", $_POST['sudha']);
+			$saveSearch->sudham = $sudha;
+		}
+		
+		
+		if(isset($_POST['chova']))
+		{
+			$chova = implode(",", $_POST['chova']);
+			$saveSearch->dosham = $chova;
+		}
+		
+		if(isset($_POST['eat']))
+		{
+			$eat = implode(",", $_POST['eat']);
+			$saveSearch->eating = $eat;
+		}	
+		
+		if(isset($_POST['drink']))
+		{
+			//drinkingHabits
+			$drink = implode(",", $_POST['drink']);
+			$saveSearch->drinking = $drink;
+			
+		}
+
+		if(isset($_POST['smoke']))
+		{
+			//smokingHabits
+			$smoke = implode(",", $_POST['smoke']);
+			$saveSearch->smoking = $smoke;
+		}
+		
+		if(isset($_POST['profile']))
+		{
+			$profile = implode(",", $_POST['profile']);
+			$saveSearch->showprofile = $profile;
+		}
+		if(isset($_POST['show']))
+		{
+			$show = implode(",", $_POST['show']);
+			$saveSearch->showTo = $show;
+		}
+		
+		$saveSearch->userId = $user->userId;
+		$user->saveSearch = $saveSearch;
+		$user->saveSearch->save();
+		$this->render('regular');
+	}	
 	  /*public function beforeAction(CAction $action)
         {
         		return true;
@@ -307,23 +497,7 @@ class SearchController extends Controller
 		if(isset($user)) {
 		if(isset($_POST['show']))
 		{
-			foreach ($_POST['show'] as $value) {
-				if($value == "ignore")
-				{
-					
-				}
-				if($value == "contact"){
-					
-				}
-				if($value == "shortlist"){
-					
-				}
-				if($value == "view"){
-					
-				}
-				
-			}
-			
+			$show = implode(",", $_POST['show']);
 			
 		}
 		}

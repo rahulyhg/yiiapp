@@ -117,6 +117,7 @@ class Users extends CActiveRecord
 			'album' => array(self::HAS_MANY, 'Album', 'userId'),
 			'profileUpdates' => array(self::HAS_ONE, 'ProfileUpdates', 'userId'),
 			'profileBlock' => array(self::HAS_ONE, 'ProfileBlock', 'userId'),
+			'saveSearch' => array(self::HAS_ONE, 'Savesearch', 'userId'),
 		
 		);
 	}

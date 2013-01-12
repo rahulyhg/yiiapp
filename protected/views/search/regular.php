@@ -239,23 +239,23 @@
 						</div>
 						<div class="info">
 							<div class="check wid220">
-								<input type="checkbox" value="ignore" name="show[]"><span>Ignored Profiles</span>
+								<input type="checkbox" value="0" name="show[]"><span>Ignored Profiles</span>
 							</div>
 							<div class="check wid220">
-								<input type="checkbox" value="contact" name="show[]"><span>Profiles already contacted</span>
+								<input type="checkbox" value="1" name="show[]"><span>Profiles already contacted</span>
 							</div>
 							<div class="check wid220">
-								<input type="checkbox" value="view" name="show[]"><span>Viewed Profiles</span>
+								<input type="checkbox" value="2" name="show[]"><span>Viewed Profiles</span>
 							</div>
 							<div class="check ">
-								<input type="checkbox" value="shortlist" name="show[]"><span>Shortlisted Profiles</span>
+								<input type="checkbox" value="3" name="show[]"><span>Shortlisted Profiles</span>
 							</div>
 						</div>
 					</li>
 					<li>
 						<div class="buttonContnr2 mT20">
 							<a class="type4" href="javascript:regularSearch.submit();" >Search</a>
-							<a class="type4" href="#">Save Search</a>
+							<a class="type4" id="searchButton" href="#">Save Search</a>
 						</div>
 					</li>
 				</ul>
@@ -636,23 +636,23 @@
 						</div>
 						<div class="info">
 							<div class="check wid220">
-								<input type="checkbox" name="show[]" value="ignore" /><span>Ignored Profiles</span>
+								<input type="checkbox" name="show[]" value="0" /><span>Ignored Profiles</span>
 							</div>
 							<div class="check wid220">
-								<input type="checkbox" name="show[]" value="contact" /><span>Profiles already contacted</span>
+								<input type="checkbox" name="show[]" value="1" /><span>Profiles already contacted</span>
 							</div>
 							<div class="check wid220">
-								<input type="checkbox" name="show[]" value="view" /><span>Viewed Profiles</span>
+								<input type="checkbox" name="show[]" value="2" /><span>Viewed Profiles</span>
 							</div>
 							<div class="check ">
-								<input type="checkbox" name="show[]" value="shortlist" /><span>Shortlisted Profiles</span>
+								<input type="checkbox" name="show[]" value="3" /><span>Shortlisted Profiles</span>
 							</div>
 						</div>
 					</li>
 					<li>
 						<div class="buttonContnr2 mT20">
 							<a class="type4" href="javascript:advanceSearch.submit();"  href="#">Search</a>
-							<a class="type4" href="#">Save Search</a>
+							<a class="type4" id="searchButtons" href="#">Save Search</a>
 						</div>
 					</li>
 				</ul>
@@ -712,14 +712,15 @@
 $(document).ready(function() {
 
 	$('#searchButton').click(function() {	
-	$('<input>').attr({
-	    type: 'hidden',
-	    id: 'search',
-	    name: 'search',
-	    value: 'save'
-	}).appendTo('#regularSearch');
-	  $('#regularSearch').submit();
+		$("#regularSearch").attr("action","/search/save");
+	  	$('#regularSearch').submit();
 	});
+
+	$('#searchButtons').click(function() {	
+		$("#advanceSearch").attr("action","/search/save");
+	    $("#advanceSearch").submit();	
+	});
+	
 });
 
 

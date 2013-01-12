@@ -623,5 +623,11 @@ return array('49'=>'Belove 50000','50'=>'50000','60'=>'60000','70'=>'70000',
 	{
 		return array('0'=>'No','1'=>'Yes','2'=> 'Do not know');
 	}
+	
+	public static function getShowProfileForSearch()
+	{
+		return array('0'=>'ignore','1'=>'contact','2'=>'shortlist','3'=>'view');				
+	}
+	
     
 }
