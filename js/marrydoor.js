@@ -228,21 +228,63 @@ $(function(){
 				    element.setAttribute("name", "documentType_"+count);
 				    element.setAttribute("id", "documentType_"+count);
 				    element.setAttribute("class", "select_small_140");
-
+				    
+				    var option = document.createElement("option");
+				    option.setAttribute("value", "0");
+				    option.innerHTML = 'Select Document Type';
+				    element.appendChild(option);
+				    
 				    var option = document.createElement("option");
 				    option.setAttribute("value", "1");
 				    option.innerHTML = 'Passport';
 				    element.appendChild(option);
+				    
 				    var option = document.createElement("option");
 				    option.setAttribute("value", "2");
 				    option.innerHTML = 'Voters ID';
 				    element.appendChild(option);
+				    
 				    var option = document.createElement("option");
 				    option.setAttribute("value", "3");
 				    option.innerHTML = 'PAN Card';
 				    element.appendChild(option);
-				    container.appendChild(element);
 				    
+				    var option = document.createElement("option");
+				    option.setAttribute("value", "4");
+				    option.innerHTML = 'ADHAR Card';
+				    element.appendChild(option);
+				    
+				    var option = document.createElement("option");
+				    option.setAttribute("value", "5");
+				    option.innerHTML = 'Ration Card';
+				    element.appendChild(option);
+				    
+				    var option = document.createElement("option");
+				    option.setAttribute("value", "6");
+				    option.innerHTML = 'University Certificate';
+				    element.appendChild(option);
+				    
+				    var option = document.createElement("option");
+				    option.setAttribute("value", "7");
+				    option.innerHTML = 'SSLC Book';
+				    element.appendChild(option);
+				    
+				    var option = document.createElement("option");
+				    option.setAttribute("value", "8");
+				    option.innerHTML = 'Bank Pass Book';
+				    element.appendChild(option);
+				    
+				    var option = document.createElement("option");
+				    option.setAttribute("value", "9");
+				    option.innerHTML = 'Driving Licence';
+				    element.appendChild(option);
+				    
+				    var option = document.createElement("option");
+				    option.setAttribute("value", "10");
+				    option.innerHTML = 'Birth Certificate';
+				    element.appendChild(option);
+				    
+				    container.appendChild(element);
 				    count = parseInt(count) + 1;
 				    document.getElementById("documentCount").value = count;
 				    document.getElementById("totalCount").value = totalCount + 1;
@@ -337,7 +379,28 @@ $(function(){
 					return false;
 				}
 			}
-		// function to change the picture in album page
+			
+			function uploadDocuments(){
+				$.each($("select"), function(i,v) {
+				    var theTag = v.tagName;
+				    var theElement = $(v);
+				    var theValue = theElement.val();
+				    if(theValue == 0){
+				    	alert('select the document type');
+				    	flag = false;
+				    	return false;
+				    }else{
+				    	flag = true;
+				    }
+				});
+				
+				if(flag){
+					$("#frmDocuments").submit();
+				}else{
+					return false;
+				}
+			}
+			
 
 		function changeAlbumPicture(image){
 			$("#albumImageContainer").attr("src", image);

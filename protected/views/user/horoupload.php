@@ -153,7 +153,7 @@
 				<?php foreach($documents as $document):?>
 					<div class="docOpt">
 						<div class="ppOpts">
-							<p>Passport</p>
+							<p><?php echo Utilities::getDocumentType($document->documentType)?></p>
 							<p><a href="<?php echo Yii::app()->params['homeUrl']?>/user/horoupload/r/deletedocument/dId/<?php echo $document->documentId?>/uId/<?php echo $user->userId?>" title="click to delete this picture">Delete</a></p>
 						</div>
 						<img src="<?php echo Utilities::getMediaUrl();?>/user/doc1.png" alt="" width="220" height="110" />
@@ -175,17 +175,11 @@
 						Who can view above detals
 					</div>
 					<div class="info">
-						<div class="check">
-							<input type="checkbox" name="documenteview" checked="checked" /> <span>All</span>
+						<div class="check ">
+						<input type="checkbox" name="documentview" id="documentview" value="subscribers" <?php  if($documentsettings->privacy == 'subscribers'){ ?> checked="checked" <?php } ?>> <span>Subscribers</span>
 						</div>
-						<div class="check">
-							<input type="checkbox" name="documenteview"  /> <span>Subscribers</span>
-						</div>
-						<div class="check">
-							<input type="checkbox" name="documenteview"  /> <span>Logged Members</span>
-						</div>
-						<div class="check">
-							<input type="checkbox" name="documenteview"  /> <span>By request</span>
+						<div class="check ">
+							<input type="checkbox" name="documentview" id="documentview" value="request" <?php  if($documentsettings->privacy == 'request'){ ?> checked="checked" <?php } ?>> <span>By request</span>
 						</div>
 					</div>
 				</li>
