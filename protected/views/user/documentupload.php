@@ -9,6 +9,7 @@
 						<?php if(count($documents) < 5){?>
 						<input type="hidden" name="documentCount" id="documentCount"  value="2" />
 						<input type="hidden" name="totalCount" id="totalCount" value="<?php echo !empty($documents)? count($documents)+1:1;?>" />
+						<input type="hidden" name="updateDocument" id="updateDocument"  value="" />
 						<div class="urOnly">Upload Your Docs Only in any Image format</div>
 						<div class="uploadCn">
 							<input type="file" name="profileDocument_1" id="profileDocument_1" />
@@ -45,7 +46,7 @@
 								<div class="delt">
 									<a href="<?php echo Yii::app()->params['homeUrl']?>/user/documentupload/r/deletedocument/dId/<?php echo $document->documentId?>/uId/<?php echo $user->userId?>" title="click to delete this picture">Delete</a>
 								</div>
-								<img src="<?php echo Utilities::getMediaUrl();?>/user/doc1.png" alt="" width="135" height="70" />
+								<img src="<?php echo Utilities::getDocumentImage($user->marryId,$document->documentName); ?>" alt="" width="135" height="70" />
 								<div class="name"><?php echo Utilities::getDocumentType($document->documentType)?></div>
 							</div>
 						<?php endforeach;?>
@@ -63,7 +64,7 @@
 					</li>
 					<li>
 						<input type="button" name="cancelDocument" id="cancelDocument" value="Cancel" class="type2b mL5" onclick="javascript:closeOverlay('<?php echo Utilities::createAbsoluteUrl('ajax','documentclear')?>');" />
-						<input type="submit" name="updateDocument" id="updateDocument" value="Submit" class="type2b mL5" />
+						<input type="button" name="submitDoc" id="submitDoc" value="Submit" class="type2b mL5" onclick="submitDocuments();" />
 					</li>
 					</form>
 				</ul>

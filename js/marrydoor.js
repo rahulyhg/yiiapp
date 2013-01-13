@@ -380,6 +380,27 @@ $(function(){
 				}
 			}
 			
+			function submitFamilyPhoto(){
+				var count = document.getElementById('photoCount').value;
+				for(i=1;i<count;i++){
+					var file = document.getElementById('profilePhoto_'+i).value;
+					var select = document.getElementById('photoRelation_'+i).value;
+					if(file !='' && select == 0){
+						flag = false;
+					}else{
+						flag = true;
+					}
+				}
+				
+				if(flag){
+					$("#updatePhoto").val('updatePhoto');
+					$("#frmFamilyPhoto").submit();
+				}else{
+					alert('Please fill the required fields before submit');
+				}
+
+			}
+			
 			function uploadDocuments(){
 				$.each($("select"), function(i,v) {
 				    var theTag = v.tagName;
@@ -399,6 +420,27 @@ $(function(){
 				}else{
 					return false;
 				}
+			}
+			
+			function submitDocuments(){
+				var count = document.getElementById('documentCount').value;
+				for(i=1;i<count;i++){
+					var file = document.getElementById('profileDocument_'+i).value;
+					var select = document.getElementById('documentType_'+i).value;
+					if(file !='' && select == 0){
+						flag = false;
+					}else{
+						flag = true;
+					}
+				}
+				
+				if(flag){
+					$("#updateDocument").val('updateDocument');
+					$("#frmDocuments").submit();
+				}else{
+					alert('Please fill the required fields before submit');
+				}
+
 			}
 			
 

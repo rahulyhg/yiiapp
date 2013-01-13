@@ -983,7 +983,7 @@ class UserController extends Controller
 				$this->redirect(Yii::app()->params['homeUrl']."/user/documentupload");
 				Yii::app()->end();	
 			}
-		}elseif(isset($_POST['updateDocument'])){
+		}elseif(isset($_POST['updateDocument']) && $_POST['updateDocument'] != ""){
 				// update the temp images to active one
 				$query = 'update documents set active = 1 where userId ='.$user->userId.' and active = 2';
 				Utilities::executeRawQuery($query);
@@ -1066,7 +1066,7 @@ class UserController extends Controller
 			 	$this->redirect(Yii::app()->params['homeUrl']."/user/familyphotoupload");
 				Yii::app()->end();
 			}
-		}elseif(isset($_POST['updatePhoto'])){
+		}elseif(isset($_POST['updatePhoto']) && $_POST['updatePhoto'] !=""){
 				// update the temp images to active one
 				$query = 'update album set active = 1 where userId ='.$user->userId.' and active = 2 and type=1';
 				Utilities::executeRawQuery($query);

@@ -696,7 +696,7 @@ article.section{
 article.section .message{
     color: #7C51A1;
     width:90%;
-    margin: 0 0 6px;
+    margin: 10px 0 6px;
     line-height: 22px !important;
 }
 article.section .sup{

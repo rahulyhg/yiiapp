@@ -9,6 +9,7 @@
 						<?php if(count($photos) < 5){?>
 						<input type="hidden" name="photoCount" id="photoCount" value="2" />
 						<input type="hidden" name="totalCount" id="totalCount" value="<?php echo !empty($photos)? count($photos)+1:1;?>" />
+						<input type="hidden" name="updatePhoto" id="updatePhoto" value="" />
 						<div class="urOnly">You can select multiple images</div>
 						<div class="uploadCn">
 							<input type="file" name="profilePhoto_1" id="profilePhoto_1" />
@@ -66,7 +67,7 @@
 
 					<li>
 						<input type="button" name="cancelPhoto" id="cancelPhoto" value="Cancel" class="type2b mL5" onclick="javascript:closeOverlay('<?php echo Utilities::createAbsoluteUrl('ajax','familyphotoclear')?>');" />
-						<input type="submit" name="updatePhoto" id="updatePhoto" value="Submit" class="type2b mL5" />
+						<input type="button" name="submitPhoto" id="submitPhoto" value="Submit" class="type2b mL5" onclick="submitFamilyPhoto();" />
 					</li>
 					</form>
 				</ul>

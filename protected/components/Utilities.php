@@ -333,6 +333,13 @@ class Utilities
 			return Yii::app()->params['mediaUrl']."/profile/noimage.jpg";
 		}
 	}
+	public static function getDocumentImage($marryId,$imageName){
+		if($imageName != ''){
+			return Yii::app()->params['mediaUrl']."/documents/".$marryId."/".$imageName;
+		}else{
+			return Yii::app()->params['mediaUrl']."/profile/noimage.jpg";
+		}
+	}
 	
 	public static function isValidDocumentExtension($extension){
 		if(in_array($extension,array('txt','doc','docx','pdf','rft','jpg','jpeg','png'))){
