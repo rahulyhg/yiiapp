@@ -608,13 +608,18 @@ class UserController extends Controller
 		// remove the unwanted records from album table
 		$query = 'delete from album where userId ='.$user->userId.' and active = 2 and type=1';
 		Utilities::executeRawQuery($query);
+		
+		// remove the unwanted records from album table
+		$query = 'delete from documents where userId ='.$user->userId.' and active = 2';
+		Utilities::executeRawQuery($query);
 							
 		$photosList = $photos->findAll('userId='.$user->userId.' and active=1');
-		$documentList = $documents->findAll('userId='.$user->userId);
+		$documentList = $documents->findAll('userId='.$user->userId.' and active=1');
 		$albumList = $album->findAll('userId='.$user->userId.' and type=1 and active=1');
 		$settings = $privacy->find("userId=".$user->userId. " and items='album'");
 		$familysettings = $privacy->find("userId=".$user->userId. " and items='family'");
-		$this->render('horoupload',array('photos'=>$photosList,'user'=>$user,'documents'=>$documentList, 'familyPhotos'=>$albumList,'settings'=>$settings, 'familysettings'=>$familysettings));
+		$documentsettings = $privacy->find("userId=".$user->userId. " and items='documents'");
+		$this->render('horoupload',array('photos'=>$photosList,'user'=>$user,'documents'=>$documentList, 'familyPhotos'=>$albumList,'settings'=>$settings, 'familysettings'=>$familysettings, 'documentsettings'=>$documentsettings));
 		//here we have to show the documents and album upload page
 		//then show profile complete page
 	}
@@ -739,15 +744,17 @@ class UserController extends Controller
   		$photos = new Photos();
   		$documents = new Documents();
   		$album = new Album();
-
-		if(isset($_GET['r']) && $_GET['r'] == 'setimage'){   // set the profile image
+		$privacy = new Privacy();
+  		//phoot and document action
+  		
+	if(isset($_GET['r']) && $_GET['r'] == 'setimage'){   // set the profile image
 			$photoId = (int)trim($_GET['pId']);
 			$userId = (int)trim($_GET['uId']);
 			$user = Yii::app()->session->get('user');
 			if($user->userId == $userId){
 				$photos->updateAll(array('profileImage'=>0),'userId='.$userId);  // unset the existing
 				$photos->updateAll(array('profileImage'=>1),'photoId='.$photoId);  // set the new image
-				$this->redirect(Yii::app()->params['homeUrl']."/user/profilepicture");
+				$this->redirect(Yii::app()->params['homeUrl']."/user/horoupload");
 				Yii::app()->end();
 			}
 		}elseif(isset($_GET['r']) && $_GET['r'] == 'deleteimage'){   // delete the image
@@ -756,19 +763,19 @@ class UserController extends Controller
 			$user = Yii::app()->session->get('user');
 			if($user->userId == $userId){
 				$photo = $photos->find('photoId='.$photoId);
-				$path = Utilities::getDirectory('images',array('profile',$user->marryId));
 				$profileStatus = $photo->profileImage;
+				$path = Utilities::getDirectory('images',array('profile',$user->marryId));
 				$targetFile = Utilities::getFullFilePath($path, $photo->imageName);
 				if(file_exists($targetFile)){
 					if(unlink($targetFile)){
 						$photos->deleteByPk($photoId);
 						if($profileStatus == 1){
-								$query = 'update photos set profileImage = 1 where userId ='.$user->userId.' limit 1';
-								Utilities::executeRawQuery($query);
-							}
+							$query = 'update photos set profileImage = 1 where userId ='.$user->userId.' limit 1';
+							Utilities::executeRawQuery($query);
+						}
 					}
 				}
-				$this->redirect(Yii::app()->params['homeUrl']."/user/profilepicture");
+				$this->redirect(Yii::app()->params['homeUrl']."/user/horoupload");
 				Yii::app()->end();	
 			}
 		}elseif(isset($_GET['r']) && $_GET['r'] == 'deletealbumimage'){   // delete the image
@@ -784,7 +791,7 @@ class UserController extends Controller
 						$album->deleteByPk($photoId);
 					}
 				}
-				$this->redirect(Yii::app()->params['homeUrl']."/user/profilepicture");
+				$this->redirect(Yii::app()->params['homeUrl']."/user/horoupload");
 				Yii::app()->end();	
 			}
 		}elseif(isset($_GET['r']) && $_GET['r'] == 'deletedocument'){   // delete the document
@@ -800,14 +807,30 @@ class UserController extends Controller
 						$documents->deleteByPk($documentId);
 					}
 				}
-				$this->redirect(Yii::app()->params['homeUrl']."/user/profilepicture");
+				$this->redirect(Yii::app()->params['homeUrl']."/user/horoupload");
 				Yii::app()->end();	
 			}
 		}
-		$photosList = $photos->findAll('userId='.$user->userId);
-		$documentList = $documents->findAll('userId='.$user->userId);
-		$albumList = $album->findAll('userId='.$user->userId.' and type=1');
-		$this->render('profilepicture',array('photos'=>$photosList,'user'=>$user,'documents'=>$documentList, 'familyPhotos'=>$albumList));
+		
+		// remove the unwanted records from photos table
+		$query = 'delete from photos where userId ='.$user->userId.' and active = 2';
+		Utilities::executeRawQuery($query);
+		
+		// remove the unwanted records from album table
+		$query = 'delete from album where userId ='.$user->userId.' and active = 2 and type=1';
+		Utilities::executeRawQuery($query);
+		
+		// remove the unwanted records from album table
+		$query = 'delete from documents where userId ='.$user->userId.' and active = 2';
+		Utilities::executeRawQuery($query);
+							
+		$photosList = $photos->findAll('userId='.$user->userId.' and active=1');
+		$documentList = $documents->findAll('userId='.$user->userId.' and active=1');
+		$albumList = $album->findAll('userId='.$user->userId.' and type=1 and active=1');
+		$settings = $privacy->find("userId=".$user->userId. " and items='album'");
+		$familysettings = $privacy->find("userId=".$user->userId. " and items='family'");
+		$documentsettings = $privacy->find("userId=".$user->userId. " and items='documents'");
+		$this->render('profilepicture',array('photos'=>$photosList,'user'=>$user,'documents'=>$documentList, 'familyPhotos'=>$albumList,'settings'=>$settings, 'familysettings'=>$familysettings, 'documentsettings'=>$documentsettings));
 	}
 	
 	public function actionPhotoupload()
@@ -915,10 +938,11 @@ class UserController extends Controller
 	{
 		$user = Yii::app()->session->get('user');
   		$documents = new Documents();
+  		$privacy = new Privacy();
 		//upload profile document
   		$documentCount = isset($_POST['documentCount']) ? $_POST['documentCount']:1;
   		for($i = 1; $i < $documentCount; $i++){
-			if (!empty($_FILES['profileDocument_'.$i]['tmp_name'])){   // upload the documents
+			if (!empty($_FILES['profileDocument_'.$i]['tmp_name']) && $_POST['documentType_'.$i] != 0){   // upload the documents
 				$file = $_FILES['profileDocument_'.$i];
 				$documentType = trim($_POST['documentType_'.$i]);
 				$fileName=basename( $_FILES['profileDocument_'.$i]['name']);   
@@ -933,6 +957,7 @@ class UserController extends Controller
 						$documents->userId = $user->userId;
 						$documents->documentName = $fileName;
 						$documents->documentType = $documentType;
+						$documents->active = 2;   // temperory record
 						$documents->save();
 					}else{
 						echo "There was an error uploading the file, please try again!";
@@ -958,11 +983,33 @@ class UserController extends Controller
 				$this->redirect(Yii::app()->params['homeUrl']."/user/documentupload");
 				Yii::app()->end();	
 			}
-		}
+		}elseif(isset($_POST['updateDocument'])){
+				// update the temp images to active one
+				$query = 'update documents set active = 1 where userId ='.$user->userId.' and active = 2';
+				Utilities::executeRawQuery($query);
+				// update the photo privacy settings
+				$visibility = isset($_POST['documentview']) ? trim($_POST['documentview']): 'subscribers';
+				$settings = $privacy->find("userId=".$user->userId." and items = 'documents'");
+				if(count($settings) > 0 ){  // update new settings
+					$query = "update privacy set privacy = '".$visibility."' where userId =".$user->userId." and items = 'documents'";
+					Utilities::executeRawQuery($query);
+				}else{
+					$privacy->userId = $user->userId;
+					$privacy->items = 'documents';
+					$privacy->privacy = $visibility;
+					$privacy->save();
+				}
+				?>
+				<script type="text/javascript">
+				parent.window.location.href = '<?php echo Utilities::createAbsoluteUrl('user','horoupload'); ?>';
+				</script>
+				<?php 
+			}
 		
   		$documentList = $documents->findAll('userId='.$user->userId);
+  		$settings = $privacy->find("userId=".$user->userId. " and items='documents'");
 		$this->layout= '//layouts/popup';
-		$this->render('documentupload',array('documents'=>$documentList,'user'=>$user));
+		$this->render('documentupload',array('documents'=>$documentList,'user'=>$user,'documentsettings'=>$settings));
 	}
 	
 	public function actionFamilyphotoupload()
@@ -975,7 +1022,7 @@ class UserController extends Controller
 		//Upload the profile photo
   		$photoCount = isset($_POST['photoCount']) ? $_POST['photoCount']:1; 
   		for($i = 1; $i < $photoCount; $i++){		  
-		if (!empty($_FILES['profilePhoto_'.$i]['tmp_name'])){  
+		if (!empty($_FILES['profilePhoto_'.$i]['tmp_name']) && $_POST['photoRelation_'.$i] != 0){  
 				$file = $_FILES['profilePhoto_'.$i];
 				$fileName=basename( $_FILES['profilePhoto_'.$i]['name']);   
 				$extension = strtolower(Utilities::getExtension($fileName));  

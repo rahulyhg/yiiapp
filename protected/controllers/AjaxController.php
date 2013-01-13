@@ -34,4 +34,12 @@ class AjaxController extends Controller
 		$query = 'delete from album where userId ='.$user->userId.' and type=1 and active = 2';
 		Utilities::executeRawQuery($query);
 	}
+	
+	public function actionDocumentclear()
+	{
+		$user = Yii::app()->session->get('user');
+		// remove the unwanted records from table
+		$query = 'delete from documents where userId ='.$user->userId.' and active = 2';
+		Utilities::executeRawQuery($query);
+	}
 }

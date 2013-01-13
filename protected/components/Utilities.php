@@ -629,5 +629,38 @@ return array('49'=>'Belove 50000','50'=>'50000','60'=>'60000','70'=>'70000',
 		return array('0'=>'ignore','1'=>'contact','2'=>'shortlist','3'=>'view');				
 	}
 	
-    
+    public static function getDocumentType($value){
+    	switch($value){
+    		case 1:
+    		return 'Passport';
+    		break;
+    		case 2:
+    		return 'Voters ID';
+    		break;
+    		case 3:
+    		return 'PAN Card';
+    		break;
+    		case 4:
+    		return 'ADHAR Card';
+    		break;
+    		case 5:
+    		return 'Ration Card';
+    		break;
+    		case 6:
+    		return 'University Certificate';
+    		break;
+    		case 7:
+    		return 'SSLC Book';
+    		break;
+    		case 8:
+    		return 'Bank Pass Book';
+    		break;
+    		case 9:
+    		return 'Driving Licence';
+    		break;
+    		case 10:
+    		return 'Birth Certificate';
+    		break;
+    	}
+    }
 }
