@@ -229,25 +229,7 @@
 							</div>
 						</div>
 					</li>
-					<li>
-						<div class="title">
-							Don't show
-						</div>
-						<div class="info">
-							<div class="check wid220">
-								<input type="checkbox" value="ignore" name="show[]"><span>Ignored Profiles</span>
-							</div>
-							<div class="check wid220">
-								<input type="checkbox" value="contact" name="show[]"><span>Profiles already contacted</span>
-							</div>
-							<div class="check wid220">
-								<input type="checkbox" value="view" name="show[]"><span>Viewed Profiles</span>
-							</div>
-							<div class="check ">
-								<input type="checkbox" value="shortlist" name="show[]"><span>Shortlisted Profiles</span>
-							</div>
-						</div>
-					</li>
+					
 					<li>
 						<div class="buttonContnr2 mT20">
 							<a class="type4" href="javascript:regularSearch.submit();" >Search</a>
@@ -624,25 +606,7 @@
 							</div>
 						</div>
 					</li>
-					<li>
-						<div class="title">
-							Don't show
-						</div>
-						<div class="info">
-							<div class="check wid220">
-								<input type="checkbox" name="show[]" value="ignore" /><span>Ignored Profiles</span>
-							</div>
-							<div class="check wid220">
-								<input type="checkbox" name="show[]" value="contact" /><span>Profiles already contacted</span>
-							</div>
-							<div class="check wid220">
-								<input type="checkbox" name="show[]" value="view" /><span>Viewed Profiles</span>
-							</div>
-							<div class="check ">
-								<input type="checkbox" name="show[]" value="shortlist" /><span>Shortlisted Profiles</span>
-							</div>
-						</div>
-					</li>
+				
 					<li>
 						<div class="buttonContnr2 mT20">
 							<a class="type4" href="javascript:advanceSearch.submit();"  href="#">Search</a>

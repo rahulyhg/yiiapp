@@ -488,9 +488,9 @@ class SearchController extends Controller
 		{
 			foreach ($_POST['profile'] as $value) {
 				if($value == 'p')
-				$condition .= " AND photo = 1 ";
+				$condition .= " AND photo IS NOT NULL ";
 				else if ($value == 'h')
-				$condition .= " AND horoscope = 1 ";
+				$condition .= " AND horoscope IS NOT NULL ";
 			}
 		}
 		
@@ -852,9 +852,9 @@ class SearchController extends Controller
 			$profile = implode(",", $_POST['profile']);
 			foreach ($profile as $value) {
 				if($value == 'h')
-				$condition .= " AND FIND_IN_SET('{$smoke}',smokingHabits)";
+				$condition .= " AND photo IS NOT NULL";
 				if($value == 'p')
-				$condition .= " AND FIND_IN_SET('{$smoke}',smokingHabits)";
+				$condition .= " AND horoscope IS NOT NULL";
 			}
 		}
 		if(isset($_POST['show']))
