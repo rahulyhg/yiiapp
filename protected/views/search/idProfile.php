@@ -78,14 +78,24 @@
 						<strong>:</strong> <span><?php if(isset($model->educations->occupation))echo $model->educations->occupation->name ?></span>
 					</div>
 				</li>
+				
+			</ul>
+			
+			<ul class="myPd">
+				<li>
+					<div class="leftCt">Account details </div>
+					<div class="rightCt">
+						<strong>:</strong> <span><?php echo Utilities::getCurrentUserStatus($model)?></span>
+					</div>
+				</li>
 				<li>
 					<div class="leftCt">Activity status	</div>
 					<div class="rightCt">
-						<strong>:</strong> <span>2 days before</span>
+						<strong>:</strong> <span><?php echo Utilities::getUserActivityStatus($model);?></span>
 					</div>
 				</li>
 			</ul>
-			<ul class="pageOpt">
+			<ul class="myPd">
 				<li>
 					<div class="butCo mL0">
 						<a href="#">Contact</a>

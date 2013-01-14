@@ -84,7 +84,7 @@
 			<li>
 				<div class="left"><?php echo $form->labelEx($model,'mobileNo'); ?></div>
 				<div class="right">
-					<?php echo $form->textField($model,'mobileNo',array('class'=>'validate[required,minSize[10],maxSize[10],custom[onlyNumberSp]]')); ?>
+					<?php echo $form->textField($model,'mobileNo',array('class'=>'validate[required,minSize[10],maxSize[10],custom[onlyNumberSp],funcCall[checkMobile]]')); ?>
 					<?php echo $form->error($model,'mobileNo'); ?>
 				</div>
 			</li>
@@ -92,7 +92,7 @@
 			<li>
 				<div class="left"><?php echo $form->labelEx($model,'emailId'); ?></div>
 				<div class="right">
-					<?php echo $form->textField($model,'emailId',array('class'=>'validate[required,custom[email]]')); ?>
+					<?php echo $form->textField($model,'emailId',array('class'=>'validate[required,custom[email],funcCall[checkEmail]]')); ?>
 		<?php echo $form->error($model,'emailId'); ?>
 				</div>
 			</li>
@@ -328,5 +328,71 @@ $(document).ready(function(){
     
     
   });
+
+
+function checkEmail(field, rules, i, options){
+
+	var pattern = new RegExp(options.allrules.email.regex);
+    if (!pattern.test(field.val())) {
+		return false;
+	}
+	var sAvailable = 'This email is available.';
+	var sUnavailable = 'This email is already used. Please try another.';
+	var email = false;		
+	$.ajax({
+	type: 'GET',
+	url: '/ajax/useremail',
+	dataType: 'json',
+	cache: false,
+	success: function(availability) {
+	email = availability;
+	
+},
+data: {email : $('#UserForm_emailId').val()},
+async: false
+});
+
+			// return success status
+		
+	
+		if (email == true) {
+		return sUnavailable;
+		}else{ 
+			return true;
+		}
+
+}
+
+
+function checkMobile(field, rules, i, options){
+
+	
+	var sAvailable = 'This mobile number is available.';
+	var sUnavailable = 'This mobile number is already used. Please try another.';
+	var mobile = false;		
+	$.ajax({
+	type: 'GET',
+	url: '/ajax/usermobile',
+	dataType: 'json',
+	cache: false,
+	success: function(availability) {
+	mobile = availability;
+	
+},
+data: {mobile : $('#UserForm_mobileNo').val()},
+async: false
+});
+
+		if (mobile == true) {
+			return sUnavailable;
+		}else{
+			return true; 
+		}
+
+}
+
+
+
+
 
 </script>

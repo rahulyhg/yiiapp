@@ -607,6 +607,13 @@ return array('49'=>'Belove 50000','50'=>'50000','60'=>'60000','70'=>'70000',
 		$command->execute();
 	}
 	
+	public static function executeSQLQuery($query)
+	{
+		$connection=Yii::app()->db;
+		$command=$connection->createCommand($query);
+		return $command->query();
+	}
+	
 	public function getRequestProtocol(){
 			$protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' || $_SERVER['SERVER_PORT'] == 443) ? 'https' : 'http';
 			return $protocol;
@@ -670,4 +677,45 @@ return array('49'=>'Belove 50000','50'=>'50000','60'=>'60000','70'=>'70000',
     		break;
     	}
     }
+    
+    public static function getUserActivityStatus($user)
+    {
+    	if(isset($user)){
+    		if(isset($user->userloggeddetails))
+    		{
+    			$time = Utilities::executeSQLQuery("SELECT loggedIn  FROM `userloggeddetails` WHERE userId = {$user->userId} order by loggedIn DESC limit 1");
+    			if(isset($time) && !empty($time))
+    			{
+    				foreach($time as $row)
+					{		
+    				return Utilities::getTimeDuration($row['loggedIn']);
+					}
+    			}
+    			else
+    			return "No activity";
+    		}
+    	}
+    	else
+    	return "No activity";
+    	
+    }
+    
+    public static  function getCurrentUserStatus($user)
+    {
+    	if(isset($user))
+    	{
+    		$userArray  = Utilities::getUserStatus();
+    		$userStatus = $userArray[$user->userType];
+    		if(isset($userStatus))
+    		return $userStatus;
+    		else
+    		return $userArray[0];		
+    	}
+    }
+  	public static function getUserStatus()
+    {
+    	return array('0'=> 'Normal', '1' => 'Subscribed');
+    }  
+    
+  
 }

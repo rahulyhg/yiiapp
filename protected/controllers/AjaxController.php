@@ -4,9 +4,12 @@ class AjaxController extends Controller
 {
 	
       
-	 public function beforeAction()
+	 public function beforeAction(CAction $action)
         {
                 $user = Yii::app()->session->get('user');
+                
+                if($action->id == 'useremail' || $action->id == 'usermobile')
+        		return true;
                 if(!isset($user)) {
                         $this->redirect(Yii::app()->user->loginUrl);
                         return false;
@@ -42,4 +45,29 @@ class AjaxController extends Controller
 		$query = 'delete from documents where userId ='.$user->userId.' and active = 2';
 		Utilities::executeRawQuery($query);
 	}
+	
+	public function actionUseremail()
+	{
+			$condition = "emailId = '{$_GET['email']}' ";
+			$record = Users::model()->find(array('condition' => $condition));
+			if(isset($record) && $record['emailId'] != null){
+				echo json_encode(TRUE);	
+			}
+			else
+			echo json_encode(FALSE);
+			Yii::app()->end();
+	}
+	
+	public function actionUsermobile()
+	{
+			$condition = "mobilePhone = '{$_GET['mobile']}' ";
+			$record = Userpersonaldetails::model()->find(array('condition' => $condition));
+			if(isset($record) && $record['mobilePhone'] != null){
+				echo json_encode(TRUE);	
+			}
+			else
+			echo json_encode(FALSE);
+			Yii::app()->end();
+	}
+	
 }
