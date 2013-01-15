@@ -339,7 +339,7 @@ ALTER TABLE  `album` ADD  `type` INT( 1 ) NOT NULL DEFAULT  '0' COMMENT  '0-prof
 ALTER TABLE  `album` ADD  `photorelation` INT( 1 ) NOT NULL DEFAULT  '0' COMMENT  '1-father, 2- mother,3-brother, 4- sister' AFTER  `type`;
 
 
-create table savesearch(id BIGINT UNIQUE NOT NULL AUTO_INCREMENT,userId BIGINT NOT NULL, 
+create table savesearch(id BIGINT UNIQUE NOT NULL AUTO_INCREMENT,userId BIGINT NOT NULL,searchName varchar(100) NOT NULL, 
 gender char(1),ageFrom INT(10),ageTo INT(10),
 maritalStatus TINYINT, heightFrom INT(10),
 heightTo INT(10), physicalStatus TINYINT, religion INT(10), state INT(10) ,district INT(10) ,occupation TEXT , residentStatus INT(10),

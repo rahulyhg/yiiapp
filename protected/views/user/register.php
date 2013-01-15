@@ -92,7 +92,7 @@
 			<li>
 				<div class="left"><?php echo $form->labelEx($model,'emailId'); ?></div>
 				<div class="right">
-					<?php echo $form->textField($model,'emailId',array('class'=>'validate[required,custom[email],funcCall[checkEmail]]')); ?>
+					<?php echo $form->textField($model,'emailId',array('class'=>'validate[required,funcCall[checkEmailValidation], funcCall[checkEmail]]')); ?>
 		<?php echo $form->error($model,'emailId'); ?>
 				</div>
 			</li>
@@ -332,10 +332,7 @@ $(document).ready(function(){
 
 function checkEmail(field, rules, i, options){
 
-	var pattern = new RegExp(options.allrules.email.regex);
-    if (!pattern.test(field.val())) {
-		return false;
-	}
+	
 	var sAvailable = 'This email is available.';
 	var sUnavailable = 'This email is already used. Please try another.';
 	var email = false;		
@@ -391,7 +388,12 @@ async: false
 
 }
 
-
+function checkEmailValidation(field, rules, i, options) {
+	var pattern = new RegExp(options.allrules.email.regex);
+    if (field.val().length && !pattern.test(field.val())) {
+		return options.allrules.email.alertText;
+	}
+}
 
 
 

@@ -2100,3 +2100,58 @@ h5{
     background:#f2e9e5 url("http://marrydoor.com/images/marrydoor.png") no-repeat -601px 8px;
 }
 	
+/*save search box*/
+.saveSbox{
+    padding:10px;
+    position: absolute;
+    left: 10px;
+    top:26px;
+    border: 1px solid #c7c9cb;
+    background: #fff;
+    box-shadow: 0 0 6px -2px #666;
+    text-align: left;
+    z-index: 777;
+}
+.saveSbox .tarrow{
+    width:22px;
+    height: 14px;
+    position: absolute;
+    left: 44%;
+    top:-14px;
+    background:transparent url("../images/marrydoor.png") no-repeat -735px 0px;
+}
+.saveSbox .cont{
+    float: left;
+    background: #fff;
+}
+.saveSbox .cont .head{
+    float: left;
+    width: 100%;
+    background: #fff;
+    border-bottom: 1px solid #E9EAEA;
+    margin-top: 4px;
+}
+.saveSbox .cont .head span{
+    float: left;
+    font: normal 12px/13px arial,helvetica,sans-serif;
+    color: #939598;
+    margin-bottom: 3px;
+}
+.saveSbox .cont .head a{
+    float: right;
+    font: normal 12px/13px arial,helvetica,sans-serif;
+    color: red;
+    text-decoration: none;
+}
+.saveSbox .cont .row{
+    float: left;
+    width: 100%;
+    margin-bottom: 5px;
+}
+.saveSbox .cont .row input{
+    float: left;
+    width: 96%;
+    font: normal 12px/13px arial,helvetica,sans-serif;
+    color: #999;
+    margin:12px 0 6px 0;
+}

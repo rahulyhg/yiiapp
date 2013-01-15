@@ -257,6 +257,20 @@
 							<a class="type4" href="javascript:regularSearch.submit();" >Search</a>
 							<a class="type4" id="searchButton" href="#">Save Search</a>
 						</div>
+						<div class="saveSbox" style="display:block">
+							<div class="tarrow"></div>
+							<div class="cont wid140">
+								<div class="head">
+									<span>Save Your Search</span>
+								</div>
+								<div class="row">
+									<input type="text" placeholder="Mysearch1" />
+								</div>
+								<div class="row">
+									<a class="type5" href="#">Save & Search</a>
+								</div>
+							</div>
+						</div>
 					</li>
 				</ul>
 			</form>	

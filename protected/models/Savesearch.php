@@ -6,6 +6,7 @@
  * The followings are the available columns in table 'savesearch':
  * @property string $id
  * @property string $userId
+ * @property string $searchName
  * @property string $gender
  * @property integer $ageFrom
  * @property integer $ageTo
@@ -66,11 +67,12 @@ class Savesearch extends CActiveRecord
 		return array(
 			array('ageFrom, ageTo, maritalStatus, heightFrom, heightTo, physicalStatus, religion, state, district, residentStatus, annualIncome, dosham, sudham, photo, horoscope', 'numerical', 'integerOnly'=>true),
 			array('userId', 'length', 'max'=>20),
+			array('searchName', 'length', 'max'=>100),
 			array('gender', 'length', 'max'=>1),
 			array('occupation, motherTounge, countries, caste, education, star, eating, drinking, smoking, showTo', 'safe'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, userId, gender, ageFrom, ageTo, maritalStatus, heightFrom, heightTo, physicalStatus, religion, state, district, occupation, residentStatus, motherTounge, countries, caste, education, annualIncome, star, dosham, sudham, eating, drinking, smoking, photo, horoscope, showTo', 'safe', 'on'=>'search'),
+			array('id, userId, searchName, gender, ageFrom, ageTo, maritalStatus, heightFrom, heightTo, physicalStatus, religion, state, district, occupation, residentStatus, motherTounge, countries, caste, education, annualIncome, star, dosham, sudham, eating, drinking, smoking, photo, horoscope, showTo', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -94,6 +96,7 @@ class Savesearch extends CActiveRecord
 		return array(
 			'id' => 'ID',
 			'userId' => 'User',
+			'searchName' => 'Search Name',
 			'gender' => 'Gender',
 			'ageFrom' => 'Age From',
 			'ageTo' => 'Age To',
@@ -136,6 +139,7 @@ class Savesearch extends CActiveRecord
 
 		$criteria->compare('id',$this->id,true);
 		$criteria->compare('userId',$this->userId,true);
+		$criteria->compare('searchName',$this->searchName,true);
 		$criteria->compare('gender',$this->gender,true);
 		$criteria->compare('ageFrom',$this->ageFrom);
 		$criteria->compare('ageTo',$this->ageTo);

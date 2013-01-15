@@ -82,8 +82,9 @@
                 },
                 "email": {
                     // HTML5 compatible email regex ( http://www.whatwg.org/specs/web-apps/current-work/multipage/states-of-the-type-attribute.html#    e-mail-state-%28type=email%29 )
-                    "regex": /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/,
+                    "regex": /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+(@[a-zA-Z0-9-]{3,})+(\.[a-zA-Z0-9-]{2,})/,
                     "alertText": "* Invalid email address"
+
                 },
                 "integer": {
                     "regex": /^[\-\+]?\d+$/,
@@ -146,6 +147,22 @@
                     // if you provide an "alertTextOk", it will show as a green prompt when the field validates
                     "alertTextOk": "* This username is available",
                     "alertText": "* This user is already taken",
+                    "alertTextLoad": "* Validating, please wait"
+                },
+                "ajaxEmailCallPhp": {
+                    "url": "ajax/useremail",
+                    // you may want to pass extra data on the ajax call
+                    // if you provide an "alertTextOk", it will show as a green prompt when the field validates
+                    "alertTextOk": "* This email is available",
+                    "alertText": "* This email is already registered",
+                    "alertTextLoad": "* Validating, please wait"
+                },
+                "ajaxMobileCallPhp": {
+                    "url": "ajax/usermobile",
+                    // you may want to pass extra data on the ajax call
+                    // if you provide an "alertTextOk", it will show as a green prompt when the field validates
+                    "alertTextOk": "* This email is available",
+                    "alertText": "* This email is already registered",
                     "alertTextLoad": "* Validating, please wait"
                 },
                 "ajaxNameCall": {
