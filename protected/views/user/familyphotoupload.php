@@ -6,10 +6,10 @@
 				<ul class="accOverview pmB10">
 					<li class="mT15 mB0">
 					<form action="<?php echo Utilities::createAbsoluteUrl('user','familyphotoupload'); ?>" method="post" enctype="multipart/form-data" id="frmFamilyPhoto">	
-						<?php if(count($photos) < 5){?>
 						<input type="hidden" name="photoCount" id="photoCount" value="2" />
 						<input type="hidden" name="totalCount" id="totalCount" value="<?php echo !empty($photos)? count($photos)+1:1;?>" />
-						<input type="hidden" name="updatePhoto" id="updatePhoto" value="" />
+						<input type="hidden" name="updatePhoto" id="updatePhoto" value="" />						
+						<?php if(count($photos) < 5){?>
 						<div class="urOnly">You can select multiple images</div>
 						<div class="uploadCn">
 							<input type="file" name="profilePhoto_1" id="profilePhoto_1" />

@@ -6,10 +6,10 @@
 				<ul class="accOverview pmB10">
 					<li class="mT15 mB0">
 					<form action="<?php echo Utilities::createAbsoluteUrl('user','documentupload'); ?>" method="post" enctype="multipart/form-data"  id="frmDocuments">
-						<?php if(count($documents) < 5){?>
-						<input type="hidden" name="documentCount" id="documentCount"  value="2" />
-						<input type="hidden" name="totalCount" id="totalCount" value="<?php echo !empty($documents)? count($documents)+1:1;?>" />
-						<input type="hidden" name="updateDocument" id="updateDocument"  value="" />
+					<input type="hidden" name="documentCount" id="documentCount"  value="2" />
+					<input type="hidden" name="totalCount" id="totalCount" value="<?php echo !empty($documents)? count($documents)+1:1;?>" />
+					<input type="hidden" name="updateDocument" id="updateDocument"  value="" />						
+					<?php if(count($documents) < 5){?>
 						<div class="urOnly">Upload Your Docs Only in any Image format</div>
 						<div class="uploadCn">
 							<input type="file" name="profileDocument_1" id="profileDocument_1" />

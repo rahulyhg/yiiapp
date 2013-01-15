@@ -199,7 +199,7 @@
 			<ul class="no-padd">
 				<?php if(count($documents) < 5) {?>
 				<li>
-					<p class="width100 no-marg">You can add one more document in this album</p>
+					<p class="width100 no-marg">You can add <?php echo 5-count($documents);?> more document in this album</p>
 				</li>
 				<li>
 					<a href="<?php echo Utilities::createAbsoluteUrl('user','documentupload'); ?>" class="upload" id="documentUpload">UPLOAD YOUR Documents</a>

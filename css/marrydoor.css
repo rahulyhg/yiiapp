@@ -913,7 +913,6 @@ article.section ul li .info .checked{
 }
 .photoOpt img{
     height: 120px;
-    margin:0 0 2px 0;
 }
 .photoOpt .aLink{
     margin:0;
@@ -934,7 +933,8 @@ article.section ul li .info .checked{
     position: relative;
 }
 .docOpt img{
-    margin:0 0 2px 0;
+    margin:0;
+    height: 120px;
 }
 .docOpt .aLink{
     margin:0;
@@ -956,8 +956,7 @@ article.section ul li .info .checked{
 }
 .ppOpts{
     width: 100%;
-    /*height:80px;*/
-    padding-top: 40px;
+    height:100%;
     position: absolute;
     left: 0px;
     top: 0px;
@@ -967,12 +966,14 @@ article.section ul li .info .checked{
 }
 .ppOpts p{
     width: 100% !important;
-    height: 30px;
     float: left;
     text-align: center !important;
-    color: #fff;
-    font: 12px/12px verdana,arial,helvetica,sans-serif;
-    margin: 0;
+    color: #fff !important;
+    font: 12px/12px verdana,arial,helvetica,sans-serif !important;
+    margin:10px 0 0 !important;
+}
+.ppOpts p:first-child{
+    margin-top: 26px !important;
 }
 .ppOpts a{
     margin: 5px 0 0;
@@ -2177,6 +2178,8 @@ article.section ul li .info .checked{
     margin:20px 15px 25px 0;
 }
 .upUrF .upCn img{
+    width: 90px;
+    height: 90px;
     float: left;
     border: 1px solid #888;
 }
@@ -2186,14 +2189,10 @@ article.section ul li .info .checked{
 .upUrF .upCn:hover .ppOpts{
     display: block;
 }
-.ppOpts p{
-    color: #fff;
-    margin: 0;
-}
+
 .upUrF .upCn .delt, .upUrF .upLodn .delt{
     width: 100%;
-    height:70px;
-    padding-top: 50px;
+    height:92px;
     color: #fff;
     position: absolute;
     left: 0px;
