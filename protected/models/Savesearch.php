@@ -10,7 +10,7 @@
  * @property string $gender
  * @property integer $ageFrom
  * @property integer $ageTo
- * @property integer $maritalStatus
+ * @property string $maritalStatus
  * @property integer $heightFrom
  * @property integer $heightTo
  * @property integer $physicalStatus
@@ -23,7 +23,8 @@
  * @property string $countries
  * @property string $caste
  * @property string $education
- * @property integer $annualIncome
+ * @property integer $annualIncomeFrom
+ * @property integer $annualIncomeTo
  * @property string $star
  * @property integer $dosham
  * @property integer $sudham
@@ -65,14 +66,14 @@ class Savesearch extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('ageFrom, ageTo, maritalStatus, heightFrom, heightTo, physicalStatus, religion, state, district, residentStatus, annualIncome, dosham, sudham, photo, horoscope', 'numerical', 'integerOnly'=>true),
+			array('ageFrom, ageTo, heightFrom, heightTo, physicalStatus, religion, state, district, residentStatus, annualIncomeFrom, annualIncomeTo, dosham, sudham, photo, horoscope', 'numerical', 'integerOnly'=>true),
 			array('userId', 'length', 'max'=>20),
 			array('searchName', 'length', 'max'=>100),
 			array('gender', 'length', 'max'=>1),
-			array('occupation, motherTounge, countries, caste, education, star, eating, drinking, smoking, showTo', 'safe'),
+			array('maritalStatus, occupation, motherTounge, countries, caste, education, star, eating, drinking, smoking, showTo', 'safe'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, userId, searchName, gender, ageFrom, ageTo, maritalStatus, heightFrom, heightTo, physicalStatus, religion, state, district, occupation, residentStatus, motherTounge, countries, caste, education, annualIncome, star, dosham, sudham, eating, drinking, smoking, photo, horoscope, showTo', 'safe', 'on'=>'search'),
+			array('id, userId, searchName, gender, ageFrom, ageTo, maritalStatus, heightFrom, heightTo, physicalStatus, religion, state, district, occupation, residentStatus, motherTounge, countries, caste, education, annualIncomeFrom, annualIncomeTo, star, dosham, sudham, eating, drinking, smoking, photo, horoscope, showTo', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -113,7 +114,8 @@ class Savesearch extends CActiveRecord
 			'countries' => 'Countries',
 			'caste' => 'Caste',
 			'education' => 'Education',
-			'annualIncome' => 'Annual Income',
+			'annualIncomeFrom' => 'Annual Income From',
+			'annualIncomeTo' => 'Annual Income To',
 			'star' => 'Star',
 			'dosham' => 'Dosham',
 			'sudham' => 'Sudham',
@@ -143,7 +145,7 @@ class Savesearch extends CActiveRecord
 		$criteria->compare('gender',$this->gender,true);
 		$criteria->compare('ageFrom',$this->ageFrom);
 		$criteria->compare('ageTo',$this->ageTo);
-		$criteria->compare('maritalStatus',$this->maritalStatus);
+		$criteria->compare('maritalStatus',$this->maritalStatus,true);
 		$criteria->compare('heightFrom',$this->heightFrom);
 		$criteria->compare('heightTo',$this->heightTo);
 		$criteria->compare('physicalStatus',$this->physicalStatus);
@@ -156,7 +158,8 @@ class Savesearch extends CActiveRecord
 		$criteria->compare('countries',$this->countries,true);
 		$criteria->compare('caste',$this->caste,true);
 		$criteria->compare('education',$this->education,true);
-		$criteria->compare('annualIncome',$this->annualIncome);
+		$criteria->compare('annualIncomeFrom',$this->annualIncomeFrom);
+		$criteria->compare('annualIncomeTo',$this->annualIncomeTo);
 		$criteria->compare('star',$this->star,true);
 		$criteria->compare('dosham',$this->dosham);
 		$criteria->compare('sudham',$this->sudham);

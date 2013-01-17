@@ -166,7 +166,7 @@
 							<input class="add type2" value="Add" onclick="return add('rcaste','rcaste1')" type="button">
 							<input class="remove type2" value="Remove" onclick="return add('rcaste1','rcaste')" type="button">
 							</div>
-								<select class="right ar" id="rcaste1" name="caste1[]" multiple="multiple"></select>
+								<select class="right ar" id="rcaste1" name="caste1" multiple="multiple"></select>
 						</div>
 					</li>
 					<li>
@@ -182,7 +182,7 @@
 							<input class="add type2" value="Add" onclick="return add('rlanguage','rlanguage1')" type="button">
 							<input class="remove type2" value="Remove" onclick="return add('rlanguage1','rlanguage')" type="button">
 						</div>
-						<select class="right ar" id="rlanguage1" name="language1[]" multiple="multiple">
+						<select class="right ar" id="rlanguage1" name="language1" multiple="multiple">
 						</select>
 							
 						</div>
@@ -200,7 +200,7 @@
 							<input class="add type2" value="Add" onclick="return add('rcountry','rcountry1')" type="button">
 							<input class="remove type2" value="Remove" onclick="return add('rcountry1','rcountry')" type="button">
 						</div>
-						<select class="right ar" id="rcountry1" name="country1[]" multiple="multiple">
+						<select class="right ar" id="rcountry1" name="country1" multiple="multiple">
 						</select>
 						</div>
 					</li>
@@ -216,7 +216,7 @@
 							<input class="add type2" value="Add" onclick="return add('reducation','reducation1')" type="button">
 							<input class="remove type2" value="Remove" onclick="return add('reducation1','reducation')"type="button">
 						</div>
-						<select class="right ar" id="reducation1" name="education1[]" multiple="multiple">
+						<select class="right ar" id="reducation1" name="education1" multiple="multiple">
 						</select>
 						</div>
 					</li>
@@ -254,23 +254,24 @@
 					</li>
 					<li>
 						<div class="buttonContnr2 mT20">
+							<a class="type4" id="rsearchButton" href="#">Save Search</a>
 							<a class="type4" href="javascript:regularSearch.submit();" >Search</a>
-							<a class="type4" id="searchButton" href="#">Save Search</a>
-						</div>
-						<div class="saveSbox" style="display:block">
+							<div class="saveSbox" id="rsaveBox" style="display:none">
 							<div class="tarrow"></div>
 							<div class="cont wid140">
 								<div class="head">
 									<span>Save Your Search</span>
 								</div>
 								<div class="row">
-									<input type="text" placeholder="Mysearch1" />
+									<input type="text" id="searchName" name="searchName" placeholder="Mysearch1" />
 								</div>
-								<div class="row">
-									<a class="type5" href="#">Save & Search</a>
+								<div class="row" id="rsearchSubmit" >
+									<a class="type5" href="#">Save </a>
 								</div>
 							</div>
 						</div>
+						</div>
+						
 					</li>
 				</ul>
 			</form>	
@@ -372,7 +373,7 @@
 							<input class="add type2" value="Add" onclick="return add('alanguage','alanguage1')" type="button">
 							<input class="remove type2" value="Remove" onclick="return add('alanguage1','alanguage')" type="button">
 						</div>
-						<select class="right ar" id="alanguage1" name="language1[]" multiple="multiple">
+						<select class="right ar" id="alanguage1" name="language1" multiple="multiple">
 						</select>
 						
 						</div>
@@ -390,7 +391,7 @@
 							<input class="add type2" value="Add" onclick="return add('acountry','acountry1')" type="button">
 							<input class="remove type2" value="Remove" onclick="return add('acountry1','acountry')" type="button">
 						</div>
-						<select class="right ar" id="acountry1" name="acountry1[]" multiple="multiple">
+						<select class="right ar" id="acountry1" name="country1" multiple="multiple">
 						</select>
 						</div>
 					</li>
@@ -413,6 +414,7 @@
 		$list = CHtml::listData($records, 'districtId', 'name');
 		echo CHtml::dropDownList('district',null,$list,array('empty' => 'District','class'=>'wid150')); ?>						</div>
 					</li>
+					<!--  
 					<li>
 						<div class="title">
 							Resident status
@@ -438,6 +440,7 @@
 							</div>
 						</div>
 					</li>
+					-->
 				</ul>
 				<ul>
 					<li>
@@ -465,7 +468,7 @@
 							<input class="add type2" value="Add" onclick="return add('acaste','acaste1')" type="button">
 							<input class="remove type2" value="Remove" onclick="return add('acaste1','acaste')" type="button">
 							</div>
-								<select class="right ar" id="acaste1" name="caste1[]" multiple="multiple"></select>
+								<select class="right ar" id="acaste1" name="caste1" multiple="multiple"></select>
 						</div>
 					</li>
 				</ul>
@@ -505,10 +508,10 @@
 							Annual Income is Rs:
 						</div>
 						<div class="info">
-							<?php echo CHtml::dropDownList('income',null,Utilities::getAnnualIncome(),array('empty' => 'Income','class'=>'wid120')); ?>
+							<?php echo CHtml::dropDownList('incomeFrom',null,Utilities::getAnnualIncome(),array('empty' => 'Income','class'=>'wid120')); ?>
 							<div class="married">
 								<span class="text">to</span>
-								<?php echo CHtml::dropDownList('income',null,Utilities::getAnnualIncome(),array('empty' => 'Income','class'=>'wid120')); ?>
+								<?php echo CHtml::dropDownList('incomeTo',null,Utilities::getAnnualIncome(),array('empty' => 'Income','class'=>'wid120')); ?>
 							</div>
 						</div>
 					</li>
@@ -556,13 +559,13 @@
 						</div>
 						<div class="info">
 							<div class="radio mR14">
-								<input type="radio" name="chova" value=""> <span>Yes</span>
+								<input type="radio" name="chova" value="1"> <span>Yes</span>
 							</div>
 							<div class="radio mR14">
-								<input type="radio" name="chova" value=""> <span>No</span>
+								<input type="radio" name="chova" value="0"> <span>No</span>
 							</div>
 							<div class="radio mR14">
-								<input type="radio" name="chova" value=""> <span>Don't Know</span>
+								<input type="radio" name="chova" value="2"> <span>Don't Know</span>
 							</div>
 						</div>
 					</li>
@@ -577,7 +580,7 @@
 						</div>
 						<div class="info">
 							<div class="check ">
-								<input type="checkbox" name="eat[]" value="A" /><span>Any</span>
+								<input type="checkbox" name="eat[]" value="3" /><span>Any</span>
 							</div>
 							<div class="check ">
 								<input type="checkbox" name="eat[]" value="0" /> <span>Vegitarian </span>
@@ -596,7 +599,7 @@
 						</div>
 						<div class="info">
 							<div class="check ">
-								<input type="checkbox" name="drink[]" value="A" /><span>Any</span>
+								<input type="checkbox" name="drink[]" value="3" /><span>Any</span>
 							</div>
 							<div class="check ">
 								<input type="checkbox" name="drink[]" value="0" /><span>Non-drinker </span>
@@ -615,7 +618,7 @@
 						</div>
 						<div class="info">
 							<div class="check ">
-								<input type="checkbox" name="smoke[]" value="A" /><span>All</span>
+								<input type="checkbox" name="smoke[]" value="3" /><span>Any</span>
 							</div>
 							<div class="check ">
 								<input type="checkbox" name="smoke[]" value="0" /><span>Non-smoker</span>
@@ -665,8 +668,22 @@
 					</li>
 					<li>
 						<div class="buttonContnr2 mT20">
-							<a class="type4" href="javascript:advanceSearch.submit();"  href="#">Search</a>
 							<a class="type4" id="searchButtons" href="#">Save Search</a>
+							<a class="type4" href="javascript:advanceSearch.submit();"  href="#">Search</a>
+							<div class="saveSbox" id="advsave" style="display:none">
+							<div class="tarrow"></div>
+							<div class="cont wid140">
+								<div class="head">
+									<span>Save Your Search</span>
+								</div>
+								<div class="row">
+									<input type="text" name="searchName" placeholder="Mysearch1" />
+								</div>
+								<div class="row" id="advSearch">
+									<a class="type5" href="#">Save </a>
+								</div>
+							</div>
+						</div>
 						</div>
 					</li>
 				</ul>
@@ -725,14 +742,38 @@
  <script type="text/javascript">
 $(document).ready(function() {
 
-	$('#searchButton').click(function() {	
-		$("#regularSearch").attr("action","/search/save");
-	  	$('#regularSearch').submit();
+	$('#rsearchButton').click(function() {	
+	  	$('#rsaveBox').show();
+	  	$('#rsearchButton').hide();
+	  	
 	});
 
+	$('#rsearchSubmit').click(function() {
+		$("#regularSearch").attr("action","/search/save");
+		$('<input>').attr({
+		    type: 'hidden',
+		    name: 'searchName',
+		    value: $('#searchName').val(),
+		}).appendTo('#regularSearch');
+		$("#regularSearch").submit();
+		$('#rsaveBox').hide();
+	});
+
+	$('#advSearch').click(function() {
+	$("#advanceSearch").attr("action","/search/save");
+	$('<input>').attr({
+	    type: 'hidden',
+	    name: 'searchName',
+	    value: $('#searchName').val(),
+	}).appendTo('#advanceSearch');
+    $("#advanceSearch").submit();
+    $('#advsave').hide();
+	});
+	
 	$('#searchButtons').click(function() {	
-		$("#advanceSearch").attr("action","/search/save");
-	    $("#advanceSearch").submit();	
+		$('#advsave').show();
+		$('#searchButtons').hide();
+			
 	});
 	
 });

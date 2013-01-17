@@ -341,9 +341,9 @@ ALTER TABLE  `album` ADD  `photorelation` INT( 1 ) NOT NULL DEFAULT  '0' COMMENT
 
 create table savesearch(id BIGINT UNIQUE NOT NULL AUTO_INCREMENT,userId BIGINT NOT NULL,searchName varchar(100) NOT NULL, 
 gender char(1),ageFrom INT(10),ageTo INT(10),
-maritalStatus TINYINT, heightFrom INT(10),
+maritalStatus TEXT, heightFrom INT(10),
 heightTo INT(10), physicalStatus TINYINT, religion INT(10), state INT(10) ,district INT(10) ,occupation TEXT , residentStatus INT(10),
-motherTounge TEXT,countries TEXT ,caste TEXT,education TEXT , annualIncome INT,star TEXT,dosham INT(10) , sudham INT(10), eating TEXT,
+motherTounge TEXT,countries TEXT ,caste TEXT,education TEXT , annualIncomeFrom INT,annualIncomeTo INT,star TEXT,dosham INT(10) , sudham INT(10), eating TEXT,
 drinking TEXT, smoking TEXT,photo TINYINT,horoscope TINYINT,showTo TEXT,
 PRIMARY KEY(id), FOREIGN KEY (userId) REFERENCES users(userId))ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;
 

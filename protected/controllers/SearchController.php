@@ -23,6 +23,31 @@ class SearchController extends Controller
 		
 	}
 	
+	public function actionShow()
+	{
+		
+		$user = Yii::app()->session->get('user');
+		if(!isset($user))
+		{
+			$this->render('index');
+		}
+		else
+		{
+			//if(isset($_GET['searchName']))
+			//{
+				//$searchName = $_GET['searchName'];
+				$searchName = "test";
+				$search = Savesearch::model()->findByAttributes(array('userId'=>$user->userId,'searchName'=>$searchName));
+				if(isset($search) && $search->searchName == $searchName)
+				$this->render('advance',array('searchItem'=>$search));
+				else
+				$this->render('regular');
+			//}
+			//else {
+			//	$this->render('regular');
+			//}
+		}
+	}
 	
 	public function actionSave()
 	{
@@ -33,6 +58,10 @@ class SearchController extends Controller
 		if(isset($_POST['ageTo']))
 		{
 			$saveSearch->ageTo = $_POST['ageTo'];
+		}
+		if(isset($_POST['searchName']))
+		{
+			$saveSearch->searchName = $_POST['searchName'];
 		}
 		if(isset($_POST['ageFrom']))
 		{
@@ -743,7 +772,7 @@ class SearchController extends Controller
 		
 		if(isset($_POST['caste1']) && !empty($_POST['caste1']))
 		{
-		$caste = implode(",",$_POST['caste']);
+		$caste = implode(",",$_POST['caste1']);
 		$condition .= " AND FIND_IN_SET('{$caste}',casteId) ";
 		$searchText.= "Caste as ". Utilities::getValueForIds(new Caste(), $caste, 'casteId')." , ";
 		
@@ -772,7 +801,7 @@ class SearchController extends Controller
 		{
 			$country = implode(",", $_POST['country1']);
 			$condition .= " AND FIND_IN_SET('{$country}',countryId)";
-			$searchText.= "Country as ". Utilities::getValueForIds(new Country(), $_POST['country1'], 'countryId')." , ";
+			$searchText.= "Country as ". Utilities::getValueForIds(new Country(), $country, 'countryId')." , ";
 			
 		}
 		
@@ -781,7 +810,7 @@ class SearchController extends Controller
 			$education = implode(",", $_POST['education1']);
 			$condition .= " AND FIND_IN_SET('{$education}',educationId)";
 			
-			$searchText.= "Education as ". Utilities::getValueForIds(new EducationMaster(), $_POST['education1'], 'educationId')." , ";
+			$searchText.= "Education as ". Utilities::getValueForIds(new EducationMaster(), $education, 'educationId')." , ";
 			
 		}
 		
@@ -790,20 +819,20 @@ class SearchController extends Controller
 			$occupation = implode(",", $_POST['occupation1']);
 			$condition .= " AND FIND_IN_SET('{$occupation}',occupationId)";
 			
-			$searchText.= "Education as ". Utilities::getValueForIds(new OccupationMaster(), $_POST['occupation1'], 'occupationId')." , ";
+			$searchText.= "Education as ". Utilities::getValueForIds(new OccupationMaster(), $occupation, 'occupationId')." , ";
 		}
 		
-		if(isset($_POST['income']) && !empty($_POST['income']))
+		if(isset($_POST['incomeFrom']) && !empty($_POST['incomeFrom']) && isset($_POST['incomeTo']) && !empty($_POST['incomeTo']))
 		{
-			$condition .= " AND annualIncome = {$_POST['income']}";
-			$searchText.= "Income as ". $_POST['income']. " ,";
+			$condition .= " AND annualIncome BETWEEN {$_POST['incomeFrom']} AND {$_POST['incomeTo']}";
+			$searchText.= "Income as between {$_POST['incomeFrom']} and {$_POST['incomeTo']} ,";
 		}
 		
 		if(isset($_POST['star1']))
 		{
 			$stars = implode(",", $_POST['star1']);
 			$condition .= " AND FIND_IN_SET('{$stars}',star)";
-			$searchText.= "Stars as ". Utilities::getValueForIds(new SignsMaster(), $_POST['star1'], 'signId')." , ";
+			$searchText.= "Stars as ". Utilities::getValueForIds(new SignsMaster(), $stars, 'signId')." , ";
 		}
 		
 		

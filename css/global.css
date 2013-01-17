@@ -2101,7 +2101,10 @@ h5{
 }
 	
 /*save search box*/
+
+
 .saveSbox{
+	width: 220px;
     padding:10px;
     position: absolute;
     left: 10px;
@@ -2146,7 +2149,7 @@ h5{
 .saveSbox .cont .row{
     float: left;
     width: 100%;
-    margin-bottom: 5px;
+	margin-bottom: 5px;
 }
 .saveSbox .cont .row input{
     float: left;

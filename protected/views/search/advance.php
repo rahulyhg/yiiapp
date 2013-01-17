@@ -8,587 +8,994 @@
 * ---------------------------------------------------------------------------------------------------------------------------
 *
 * @author  Ageesh K Gopinath
-* @title advance.php
+* @title regular.php
 * @description <Description of this class>
 *  @filesource <URL>
 *  @version <Revision>
 */
 ?>
-
-           
-            <!--main-content-->
-            <div id="main-content">
-            	<!--left-content-->
   
-  <?php $this->widget('application.widgets.menu.Leftmenu'); ?>
+		  <?php $this->widget('application.widgets.menu.Leftmenu'); ?>
   
-<div id="content-left">
-<div class="line_sm"></div>
-
- <p class="text_pink-hd">Quick Search</p>
-                <p class="space-25px">&nbsp;</p>
 
 
 
-<div class="list_div_780"><!--list_div_780-->
-
-
-<form id="quickSearch"  name="quickSearch" method="post"  action="/search/quick">
-<p class="radio-70">
-<input type="radio" value="M" name="gender">&nbsp;&nbsp;Male</p>
-<p class="radio-70">
-<input type="radio" value="F" name="gender">&nbsp;&nbsp;Female</p>
-
-<p class="left"> &nbsp;&nbsp;Age&nbsp;&nbsp;</p>
-<?php echo CHtml::dropDownList('ageFrom',null,Utilities::getAge(),array('class'=>'select_45')); ?>
-  
- <p class="left">&nbsp;&nbsp;To&nbsp;&nbsp;&nbsp;</p>
- <?php echo CHtml::dropDownList('ageTo',null,Utilities::getAge(),array('class'=>'select_45')); ?>
-  
- 
-<p class="mgn_10_newb">Religion </p>
-<?php $records = Religion::model()->findAll("active = 1");
+  <section class="data-contnr3">
+        <h1 class="mB10">Quick Search</h1>
+        <form id="quickSearch"  name="quickSearch" method="post"  action="/search/quick">
+        <ul class="accOverview mT12">
+			<li class="mB10">
+				<div class="radC">
+				<input type="radio" value="M" name="gender" />
+					<span>Male</span>
+				</div>
+				<div class="radC">
+					<input type="radio" value="F" name="gender" />
+					<span>Female</span>
+				</div>
+				<div class="selC">
+					<span>Age</span>
+					<?php echo CHtml::dropDownList('ageFrom',null,Utilities::getAge(),array('class'=>'wid50')); ?>
+				</div>
+				<div class="selC">
+					<span>to</span>
+					<?php echo CHtml::dropDownList('ageTo',null,Utilities::getAge(),array('class'=>'wid50')); ?>
+				</div>
+				<div class="selC">
+					<span>Religion</span>
+					<?php $records = Religion::model()->findAll("active = 1");
 		$list = CHtml::listData($records, 'religionId', 'name');
-		echo CHtml::dropDownList('religion',null,$list,array('empty' => 'Religion','class'=>'select_120')); ?>
- 
-<p class="mgn_10_newb">Caste</p>
-<?php $records = Caste::model()->findAll("active = 1");
+		echo CHtml::dropDownList('religion',null,$list,array('empty' => 'Religion','class'=>'wid130')); ?>
+				</div>
+				<div class="selC">
+					<span>Cast</span>
+					<?php $records = Caste::model()->findAll("active = 1");
 		$list = CHtml::listData($records, 'casteId', 'name');
-		echo CHtml::dropDownList('caste',null,$list,array('empty' => 'Caste','class'=>'select_120')); ?>
- 
-                          <a href="javascript:quickSearch.submit();" class="srch-sub">Search</a>
-
-</form>
-
-
-<div class="clear"></div>
-
-
-
-
- </div><!--/list_div_780-->
-
-
-<div class="clear"></div>
-<div class="line"></div>
-
- <p class="text_pink-hd">Advanced Search</p>
-                <p class="space-25px">&nbsp;</p>
-
-
-<div class="list_div_780-02"><!--list_div_780-->
-
-<p class="txt_rg">Happy Valentine's Day everyone! To show our love, we are running a sale for you guys Happy Valentine's Day everyone! To show our love, we are running a sale for you guys Happy Valentine's Day everyone! Happy Valentine's Day everyone! To show our love, we are.</p>
-</div><!--/list_div_780-->
-
-<a href="/search/regular" class="regular">Regular Search</a>
- <a href="/search/advance" class="regular">Advanced Search</a>
-
- <a href="/search/keyword" class="regular">Key Word Search</a>
-  <a href="/search/byid" class="regular"> Search by ID</a>
-
-
-
-  
-  <div class="clear"></div>    
-
-      
- 
-    <div class="line"></div>      
-<form id="advanceSearch"  name="advanceSearch" method="post"  action="/search/advance">        
-        
-                    <div class="list_class-5">
-                      <p class="txt_bld">Gender</p>
-                    </div>
-                    <div class="list_class-6">
-                   	<p class="radio_sub">
-                    <input type="radio" name="gender" value="M">
-                    &nbsp;&nbsp;Male</p>
-                    <p class="radio-2">
-                    <input type="radio" name="gender" value="F">
-                    &nbsp;&nbsp;Female</p>
-        </div>
-                    
-                    
-                    <div class="clear"></div>
-                    
-                    
-                    <div class="list_class-5">
-                      <p class="txt_bld">Age</p>
-                    </div>
-    
-    
-                    
-<div class="list_class-6">
-   
-   <?php echo CHtml::dropDownList('ageFrom',null,Utilities::getAge(),array('class'=>'select_45')); ?>
-                       <p class="left">To&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
-<?php echo CHtml::dropDownList('ageTo',null,Utilities::getAge(),array('class'=>'select_45')); ?>
-                    
-      </div>
-                    
-                    <div class="list_class-5">
-                      <p class="txt_bld">Height</p>
-        </div>
-        
-        <div class="list_class-6">
-  <div class="list_class-textfield-smallb">
-  <?php echo CHtml::dropDownList('heightFrom',null,Utilities::getHeights(),array('class'=>'select_small')); ?>
-  
-  </div>
-  <p class="left">To&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
-          <div class="list_class-textfield-small">
-<?php echo CHtml::dropDownList('heightTo',null,Utilities::getHeights(),array('class'=>'select_small')); ?>
-          </div>
-</div>
-
-<div class="list_class-5">
-
-                      <p class="txt_bld">Marital Status</p>
-      </div>
-<div class="list_class-6">
-                     <span class="radio-2-new">
-<input type="checkbox" name="status[]" value="0" />
-&nbsp;&nbsp;Unmarried</span>
-  <span class="radio-2-newb">
-        <input type="checkbox" name="status[]" value="1" />
-        &nbsp;&nbsp;&nbsp;Widower</span>
-        <span class="radio-2-newc">
-        &nbsp;&nbsp;
-        <input type="checkbox" name="status[]" value="2" />
-        &nbsp;&nbsp;Divorced</span>
-        <span class="radio-2">
-       <input type="checkbox" name="status[]" value="3" />
-        &nbsp;&nbsp;Awaiting Divorce</span>  
-      </div>
-        <div class="clear"></div>
-
-<div class="list_class-5">
-                      <p class="txt_bld">Religion
-</p>
-      </div>        
-<div class="list_class-6">
-  <div class="list_class-textfield-small">
-  <?php $records = Religion::model()->findAll("active = 1");
-		$list = CHtml::listData($records, 'religionId', 'name');
-		echo CHtml::dropDownList('religion',null,$list,array('empty' => 'Religion','class'=>'select_small')); ?>
-  </div>
-  </div>
-        <div class="clear"></div>
-<div class="list_class-5">
-                      <p class="txt_bld">Residing State
-
-</p>
-      </div>        
-<div class="list_class-6">
-  <div class="list_class-textfield-small">
-  
-  <?php $records = States::model()->findAll("active = 1");
-		$list = CHtml::listData($records, 'stateId', 'name');
-		echo CHtml::dropDownList('state',null,$list,array('empty' => 'State','class'=>'select_small')); ?>
-    
-  </div>
-  </div>
-        <div class="clear"></div>
-<div class="list_class-5">
-                      <p class="txt_bld">Residing District
-
-</p>
-      </div>        
-<div class="list_class-6">
-  <div class="list_class-textfield-small">
-     <?php $records = Districts::model()->findAll("active = 1");
-		$list = CHtml::listData($records, 'districtId', 'name');
-		echo CHtml::dropDownList('district',null,$list,array('empty' => 'District','class'=>'select_small')); ?>
-    
-  </div>
-  </div>
- 
-                    <p class="clear"></p>
-        <div class="list_class-5">
-                      <p class="txt_bld">Mother Tounge
- </p>
-        </div>
-<div class="list_class-6">
-                        <div>
-                        <?php $records = Languages::model()->findAll("active = 1");
-							$list = CHtml::listData($records, 'languageId', 'name');
-						    echo CHtml::dropDownList('language',null,$list,array('class'=>'tab_200','multiple'=>'multiple')); ?>
-                        </div>                        
-        
-                        
-                        <div class="list_div_mdl">
-                        					
-                        					<a class="ad-rm" href="#" onclick="return add('language','language1')">Add</a>
-   											<p class="space-5px">&nbsp;</p>
-                                     		<a class="ad-rm" href="#" onclick="return add('language1','language')">Remove</a>
+		echo CHtml::dropDownList('caste',null,$list,array('empty' => 'Caste','class'=>'wid130')); ?>
+				</div>
+				<a href="javascript:quickSearch.submit();" class="type2 no-marg">Search</a>
+			</li>
+		</ul>
+		</form>
+		<h1 class="mTB12">Search your life partner</h1>
+                <p>An easy way to find out your life partner. By choosing the right options you can easily find out the profiles that matches you. </p>
+		<ul class="tab-head">
+			<li id="tab1">
+				<a id="tab1" href="#" class="select ">Basic Search</a>
+			</li>
+			<li id="tab2"> 
+				<a id="tab2" href="#" class="type3 ">Advanced Search</a>
+			</li>
+			<li id="tab3">
+				<a id="tab3" href="#" class="type3 ">Keyword Search</a>
+			</li>
+			<li id="tab4">
+				<a id="tab4" href="#" class="type3">Search by ID</a>
+			</li>
+		</ul>
+			<?php 
+	if(isset($error))
+	echo $error;
+	?>        
+		
+		<div id="tab1_data" class="tab-data" style="display: block;">
+		
+			<article class="section width100 no-padd">
+			<form id="regularSearch"  name="regularSearch" method="post"  action="/search/regular">
+				<ul>
+					<li>
+						<div class="title">
+							Gender
 						</div>
-                        
-                        <div>
-                        <select class="tab_200" id="language1" name="language1[]" multiple="multiple">
-                        </select>
-                        </div>
-                        </div>
-        
-                
-                    <p class="clear"></p>
-                    <div class="list_class-5">
-                      <p class="txt_bld">Cast
- </p>
-                    </div>
-<div class="list_class-6">
-                        <div>
-                        <?php $records = Caste::model()->findAll("active = 1");
+						<div class="info">
+							<div class="radio mR14 wid80">
+								<input type="radio" value="M" <?php if($searchItem->gender == 'M'){?> checked="checked" <?php }?> name="gender"> <span>Male</span>
+							</div>
+							<div class="radio">
+								<input type="radio" value="F" <?php if($searchItem->gender == 'F'){?> checked="checked" <?php }?> name="gender"><span>Female</span>
+							</div>
+						</div>
+					</li>
+					<li>
+						<div class="title">
+							Age 
+						</div>
+						<div class="info">
+						
+						<?php echo CHtml::dropDownList('ageFrom',null,Utilities::getAge(),array('class'=>'wid50','options' => array($searchItem->ageFrom =>array('selected'=>true)))); ?>
+							<div class="married">
+								<span class="text">to</span>
+							<?php echo CHtml::dropDownList('ageTo',null,Utilities::getAge(),array('class'=>'wid50','options' => array($searchItem->ageTo =>array('selected'=>true)))); ?>
+								<span class="text">years</span>
+							</div>
+						</div>
+					</li>
+					<li>
+						<div class="title">
+							Height 
+						</div>
+						<div class="info">
+						<?php echo CHtml::dropDownList('heightFrom',null,Utilities::getHeights(),array('class'=>'wid120','options' => array($searchItem->heightFrom =>array('selected'=>true)))); ?>
+							
+							<div class="married">
+								<span class="text">to</span>
+								<?php echo CHtml::dropDownList('heightTo',null,Utilities::getHeights(),array('class'=>'wid120','options' => array($searchItem->heightTo =>array('selected'=>true)))); ?>
+							</div>
+						</div>
+					</li>
+					<li>
+						<div class="title">
+							Marital status 
+						</div>
+						<?php 
+						$unMarry = false;
+							$widower = false;
+							$divorce = false;
+							$adivorce = false;
+						if(isset($searchItem->maritalStatus))
+						{
+							
+							$maritalStatus = explode(",", $searchItem->maritalStatus);
+							
+							$unMarry = in_array(0,$maritalStatus);
+							$widower = in_array(1,$maritalStatus);
+							$divorce = in_array(2,$maritalStatus);
+							$adivorce = in_array(3,$maritalStatus);
+						}
+						?>
+						<div class="info">
+							<div class="check wid110">
+								
+								<input type="checkbox" value="0" <?php if($unMarry != false ) {?> checked="checked" <?php } ?> name="status[]"><span>Unmarried </span>
+							</div>
+							<div class="check wid110">
+							<input type="checkbox" value="1" <?php if($widower != false ) {?> checked="checked" <?php } ?> name="status[]">	
+								<span>Widower </span>
+							</div>
+							<div class="check wid110">
+								<input type="checkbox" <?php if($divorce != false ) {?> checked="checked" <?php } ?>  value="2" name="status[]"><span>Divorced </span>
+							</div>
+							<div class="check ">
+								<input type="checkbox" value="3" <?php if($adivorce != false ) {?> checked="checked" <?php } ?>   name="status[]"><span>Awaiting divorce </span>
+							</div>
+						</div>
+					</li>
+					<li>
+						<div class="title">
+							Religion
+						</div>
+						<div class="info">
+						<?php $records = Religion::model()->findAll("active = 1");
+							$list = CHtml::listData($records, 'religionId', 'name');
+							echo CHtml::dropDownList('religion',null,$list,array('empty' => 'Religion','class'=>'wid150','options' => array($searchItem->religion => array('selected'=>true)))); ?>
+												
+						</div>
+					</li>
+					<li>
+						<div class="title">
+							Cast
+						</div>
+						<div class="info">
+							<?php 
+							if(isset($searchItem->caste))
+							$records = Caste::model()->findAll(array('condition'=> "casteId NOT IN({$searchItem->caste})"));
+							else
+							$records = Caste::model()->findAll("active=1");
+							
 							$list = CHtml::listData($records, 'casteId', 'name');
-						    echo CHtml::dropDownList('caste',null,$list,array('class'=>'tab_200','multiple'=>'multiple')); ?>
-                        </div>                        
-        
-                        
-                        <div class="list_div_mdl">
-                        					
-                        					<a class="ad-rm" href="#" onclick="return add('caste','caste1')">Add</a>
-                                           <p class="space-5px">&nbsp;</p>
-                                     		<a class="ad-rm" href="#" onclick="return add('caste1','caste')">Remove</a>
+						    echo CHtml::dropDownList('rcaste',null,$list,array('class'=>'left ar','multiple'=>'multiple')); ?>
+							<div class="ar-btn">
+							<input class="add type2" value="Add" onclick="return add('rcaste','rcaste1')" type="button">
+							<input class="remove type2" value="Remove" onclick="return add('rcaste1','rcaste')" type="button">
+							</div>
+							<?php
+							if(isset($searchItem->caste)) 
+							$recordsf = Caste::model()->findAll(array('condition'=> "casteId IN({$searchItem->caste})"));
+							else
+							$recordsf = array();
+							
+							$list = CHtml::listData($recordsf, 'casteId', 'name');
+						    echo CHtml::dropDownList('caste1',null,$list,array('class'=>'right ar','id'=>'rcaste1','multiple'=>'multiple')); ?>
 						</div>
-                        
-                        <div>
-                        <select class="tab_200" id="caste1" name="caste1[]" multiple="multiple">
-                        </select>
-                        </div>
-                        </div>
-
-  <p class="clear"></p>
-  
-
-  <p class="clear"></p>
-  <div class="line"></div>
- 
- <p class="text_pink-hd">Habits</p>
-                <p class="space-25px">&nbsp;</p>
-
-
-  <p class="clear"></p>
-   
-
- <div class="list_class-5">
- <p class="txt_bld">Physical status * </p>
- </div>
-<div class="list_class-6">
-	    <p class="radio-2-sub">
-                    <input type="radio" name="pstatus" value="N">
-                    &nbsp;&nbsp;Doesn’t Matter</p>
-          <p class="radio-2">
-                    <input type="radio" name="pstatus" value="0">
-          &nbsp;&nbsp;Normal</p>
-                    <p class="radio-2">
-                    <input type="radio" name="pstatus" value="1">
-                    &nbsp;&nbsp;Physically challenged </p>
-      </div>
-                    <p class="clear"></p>
-                    <div class="list_class-5">
-                      <p class="txt_bld">Country Living In
-
- </p>
-                    </div>
-
-
-<div class="list_class-6">
-                        <div>
-                        <?php $records = Country::model()->findAll("active = 1");
+					</li>
+					<li>
+						<div class="title">
+							Mother Tongue
+						</div>
+						<div class="info">
+							<?php 
+							
+							if(isset($searchItem->motherTounge))
+							$records = Languages::model()->findAll(array('condition'=> "languageId NOT IN({$searchItem->motherTounge})"));
+							else 
+							$records = Languages::model()->findAll("active=1");
+							
+							$list = CHtml::listData($records, 'languageId', 'name');
+						    echo CHtml::dropDownList('rlanguage',null,$list,array('class'=>'left ar','multiple'=>'multiple')); ?>
+						
+						<div class="ar-btn">
+							<input class="add type2" value="Add" onclick="return add('rlanguage','rlanguage1')" type="button">
+							<input class="remove type2" value="Remove" onclick="return add('rlanguage1','rlanguage')" type="button">
+						</div>
+						<?php 
+							if(isset($searchItem->motherTounge))
+							$frecords = Languages::model()->findAll(array('condition'=> "languageId IN({$searchItem->motherTounge})"));
+							else
+							$frecords = array();
+							$list = CHtml::listData($frecords, 'languageId', 'name');
+						    echo CHtml::dropDownList('language1',null,$list,array('class'=>'right ar','id'=>'rlanguage1','multiple'=>'multiple')); ?>
+							
+						</div>
+					</li>
+					<li>
+						<div class="title">
+							Country
+						</div>
+						<div class="info">
+							
+							<?php 
+							if(isset($searchItem->countries))
+							$records = Country::model()->findAll(array('condition'=> "countryId NOT IN({$searchItem->countries})"));
+							else
+							$records = Country::model()->findAll("active=1");
+							
 							$list = CHtml::listData($records, 'countryId', 'name');
-						    echo CHtml::dropDownList('country',null,$list,array('class'=>'tab_200','multiple'=>'multiple')); ?>
-                        </div>                        
-        
-                        
-                        <div class="list_div_mdl">
-                        					
-                        					<a class="ad-rm" href="#" onclick="return add('country','country1')">Add</a>
-   											<p class="space-5px">&nbsp;</p>
-                                     		<a class="ad-rm" href="#" onclick="return add('country1','country')">Remove</a>
+						    echo CHtml::dropDownList('rcountry',null,$list,array('class'=>'left ar','multiple'=>'multiple')); ?>
+						
+						<div class="ar-btn">
+							<input class="add type2" value="Add" onclick="return add('rcountry','rcountry1')" type="button">
+							<input class="remove type2" value="Remove" onclick="return add('rcountry1','rcountry')" type="button">
 						</div>
-                        
-                        <div>
-                        <select class="tab_200" id="country1" name="country1[]" multiple="multiple">
-                        </select>
-                        </div>
-                        </div>        
-
-  <div class="clear"></div>
-
-                    <p class="clear"></p>
-        <div class="list_class-5">
-                      <p class="txt_bld">Education
-
- </p>
-        </div>
-<div class="list_class-6">
-                        <div>
-                        <?php $records = EducationMaster::model()->findAll("active = 1");
+							<?php 
+							if(isset($searchItem->countries))
+							$frecords = Country::model()->findAll(array('condition'=> "countryId IN({$searchItem->countries})"));
+							else
+							$frecords = array();
+							
+							$list = CHtml::listData($frecords, 'countryId', 'name');
+						    echo CHtml::dropDownList('country1',null,$list,array('class'=>'right ar','id'=>'rcountry1','multiple'=>'multiple')); ?>
+						</div>
+					</li>
+					<li>
+						<div class="title">
+							Education
+						</div>
+						<div class="info">
+							
+						    <?php 
+						    if(isset($searchItem->education))
+						    $records = EducationMaster::model()->findAll(array('condition'=> "educationId NOT IN({$searchItem->education})"));
+						    else
+						    $records = EducationMaster::model()->findAll("active=1");
+						    
 							$list = CHtml::listData($records, 'educationId', 'name');
-						    echo CHtml::dropDownList('education',null,$list,array('class'=>'tab_200','multiple'=>'multiple')); ?>
-                        </div>                        
-        
-                        
-                        <div class="list_div_mdl">
-                        					
-                        					<a class="ad-rm" href="#" onclick="return add('education','education1')">Add</a>
-                                           
-   											<p class="space-5px">&nbsp;</p>
-                                     		<a class="ad-rm" href="#" onclick="return add('education1','education')">Remove</a>
+						    echo CHtml::dropDownList('reducation',null,$list,array('class'=>'left ar','multiple'=>'multiple')); ?>
+						<div class="ar-btn">
+							<input class="add type2" value="Add" onclick="return add('reducation','reducation1')" type="button">
+							<input class="remove type2" value="Remove" onclick="return add('reducation1','reducation')"type="button">
 						</div>
-                        
-                        <div>
-                        <select class="tab_200" id="education1" name="education1[]" multiple="multiple">
-                        </select>
-                        </div>
-                        </div>                
-                    <p class="clear"></p>
-                    <div class="list_class-5">
-                      <p class="txt_bld">Occupation
-
- </p>
-                    </div>
-<div class="list_class-6">
-                        <div>
-                        <?php $records = OccupationMaster::model()->findAll("active = 1");
+						<?php 
+						if(isset($searchItem->education))
+						    $records = EducationMaster::model()->findAll(array('condition'=> "educationId IN({$searchItem->education})"));
+						    else
+						    $records = array();
+						    
+							$list = CHtml::listData($records, 'educationId', 'name');
+						    echo CHtml::dropDownList('education1',null,$list,array('class'=>'right ar','id'=>'reducation1','multiple'=>'multiple')); ?>
+						</div>
+					</li>
+					<li>
+						<div class="title">
+							Show profile
+						</div>
+						
+						<div class="info">
+							<div class="check wid220">
+								<input type="checkbox" <?php if($searchItem->photo == 1) {?> checked="checked" <?php } ?>   value="P" name="profile[]"><span>Only With Photo</span>
+							</div>
+							<div class="check ">
+								<input type="checkbox" <?php if($searchItem->horoscope == 1) {?> checked="checked" <?php } ?> value="h" name="profile[]"><span>Only With horoscope</span>
+							</div>
+						</div>
+					</li>
+					<li>
+						<div class="title">
+							Don't show
+						</div>
+						<?php
+							$ignore = false;
+							$contacted = false;
+							$view = false;
+							$shortlisted = false;
+						if(isset($searchItem->showTo))
+						{
+							$maritalStatus = explode(",", $searchItem->showTo);
+							$ignore = in_array(0,$maritalStatus);
+							$contacted = in_array(1,$maritalStatus);
+							$view = in_array(2,$maritalStatus);
+							$maritalStatus = in_array(3,$maritalStatus);
+						}
+						?>
+						<div class="info">
+							<div class="check wid220">
+								<input type="checkbox" value="0" <?php if($ignore != false) {?> checked="checked" <?php } ?>   name="show[]"><span>Ignored Profiles</span>
+							</div>
+							<div class="check wid220">
+								<input type="checkbox" value="1" <?php if($contacted != false) {?> checked="checked" <?php } ?> name="show[]"><span>Profiles already contacted</span>
+							</div>
+							<div class="check wid220">
+								<input type="checkbox" value="2" <?php if($view != false) {?> checked="checked" <?php } ?> name="show[]"><span>Viewed Profiles</span>
+							</div>
+							<div class="check ">
+								<input type="checkbox" value="3" <?php if($shortlisted != false) {?> checked="checked" <?php } ?>  name="show[]"><span>Shortlisted Profiles</span>
+							</div>
+						</div>
+					</li>
+					<li>
+						<div class="buttonContnr2 mT20">
+							<a class="type4" id="rsearchButton" href="#">Save Search</a>
+							<a class="type4" href="javascript:regularSearch.submit();" >Search</a>
+							<div class="saveSbox" id="rsaveBox" style="display:none">
+							<div class="tarrow"></div>
+							<div class="cont wid140">
+								<div class="head">
+									<span>Save Your Search</span>
+								</div>
+								<div class="row">
+									<input type="text" id="searchName" <?php if(isset($searchItem->searchName)) {?> value="<?php echo $searchItem->searchName?>" <?php } ?>  name="searchName" placeholder="Mysearch1" />
+								</div>
+								<div class="row" id="rsearchSubmit" >
+									<a class="type5" href="#">Save </a>
+								</div>
+							</div>
+						</div>
+						</div>
+						
+					</li>
+				</ul>
+			</form>	
+			</article>
+		</div>
+		<div id="tab2_data" class="tab-data" style="display: none;">
+			<article class="section width100 no-padd">
+			<form id="advanceSearch"  name="advanceSearch" method="post"  action="/search/advance">        
+				<ul>
+					<li>
+						<div class="title">
+							Gender
+						</div>
+						<div class="info">
+							<div class="radio mR14 wid80">
+								<input type="radio" name="gender" <?php if($searchItem->gender == 'M'){?> checked="checked" <?php }?> value="M"><span>Male</span>
+							</div>
+							<div class="radio">
+								<input type="radio" name="gender" <?php if($searchItem->gender == 'F'){?> checked="checked" <?php }?>  value="F"><span>Female</span>
+							</div>
+						</div>
+					</li>
+					<li>
+						<div class="title">
+							Age 
+						</div>
+						<div class="info">
+						<?php echo CHtml::dropDownList('ageFrom',null,Utilities::getAge(),array('class'=>'wid50','options' => array($searchItem->ageFrom =>array('selected'=>true)))); ?>
+							<div class="married">
+								<span class="text">to</span>
+							<?php echo CHtml::dropDownList('ageTo',null,Utilities::getAge(),array('class'=>'wid50','options' => array($searchItem->ageTo =>array('selected'=>true)))); ?>
+								<span class="text">years</span>
+							</div>
+						</div>
+					</li>
+					<li>
+						<div class="title">
+							Height 
+						</div>
+						<div class="info">
+						<?php echo CHtml::dropDownList('heightFrom',null,Utilities::getHeights(),array('class'=>'wid120','options' =>array($searchItem->heightFrom =>array('selected'=>true)))); ?>
+							
+							<div class="married">
+								<span class="text">to</span>
+							<?php echo CHtml::dropDownList('heightTo',null,Utilities::getHeights(),array('class'=>'wid120','options' =>array($searchItem->heightTo =>array('selected'=>true)))); ?>
+							</div>
+						</div>
+					</li>
+					<li>
+						<div class="title">
+							Physical status 
+						</div>
+						
+						<div class="info">
+							<div class="radio wid110">
+								<input type="radio" <?php if($searchItem->physicalStatus == 'N'){?> checked="checked" <?php }?> name="pstatus" value="N"><span>Doesn't matter</span>
+							</div>
+							<div class="radio wid110">
+								<input type="radio" name="pstatus" <?php if($searchItem->physicalStatus == '0'){?> checked="checked" <?php }?> value="0"><span>Normal</span>
+							</div>
+							<div class="radio ">
+								<input type="radio" name="pstatus" <?php if($searchItem->physicalStatus == '1'){?> checked="checked" <?php }?> value="1"><span>Physically challenged </span>
+							</div>
+						</div>
+					</li>
+					<li>
+						<div class="title">
+							Marital status 
+						</div>
+						<?php 
+							$unMarry = false;
+							$widower = false;
+							$divorce = false;
+							$adivorce = false;
+						if(isset($searchItem->maritalStatus))
+						{
+							
+							$maritalStatus = explode(",", $searchItem->maritalStatus);
+							
+							$unMarry = in_array(0,$maritalStatus);
+							$widower = in_array(1,$maritalStatus);
+							$divorce = in_array(2,$maritalStatus);
+							$adivorce = in_array(3,$maritalStatus);
+						}
+						?>
+						<div class="info">
+							<div class="check wid110">
+								
+								<input type="checkbox" value="0" <?php if($unMarry != false ) {?> checked="checked" <?php } ?> name="status[]"><span>Unmarried </span>
+							</div>
+							<div class="check wid110">
+							<input type="checkbox" value="1" <?php if($widower != false ) {?> checked="checked" <?php } ?> name="status[]">	
+								<span>Widower </span>
+							</div>
+							<div class="check wid110">
+								<input type="checkbox" <?php if($divorce != false ) {?> checked="checked" <?php } ?>  value="2" name="status[]"><span>Divorced </span>
+							</div>
+							<div class="check ">
+								<input type="checkbox" value="3" <?php if($adivorce != false ) {?> checked="checked" <?php } ?>   name="status[]"><span>Awaiting divorce </span>
+							</div>
+						</div>
+					</li>
+				</ul>
+				<ul>
+					<li>
+						<h3>Location</h3>
+					</li>
+					<li>
+						<div class="title">
+							Mother Tongue
+						</div>
+						<div class="info">
+							<?php 
+							if(isset($searchItem->motherTounge))
+							$records = Languages::model()->findAll(array('condition'=> "languageId NOT IN({$searchItem->motherTounge})"));
+							else
+							$records = Languages::model()->findAll("active = 1");
+							
+							$list = CHtml::listData($records, 'languageId', 'name');
+						    echo CHtml::dropDownList('alanguage',null,$list,array('class'=>'left ar','multiple'=>'multiple')); ?>
+						
+						<div class="ar-btn">
+							<input class="add type2" value="Add" onclick="return add('alanguage','alanguage1')" type="button">
+							<input class="remove type2" value="Remove" onclick="return add('alanguage1','alanguage')" type="button">
+						</div>
+						<?php 
+							if(isset($searchItem->motherTounge))
+							$records = Languages::model()->findAll(array('condition'=> "languageId IN({$searchItem->motherTounge})"));
+							else
+							$records = array();
+							$list = CHtml::listData($records, 'languageId', 'name');
+						    echo CHtml::dropDownList('language1',null,$list,array('class'=>'right ar','id'=>'alanguage1','multiple'=>'multiple')); ?>
+						
+						</div>
+					</li>
+					<li>
+						<div class="title">
+							Country Living In 
+						</div>
+						<div class="info">
+								<?php 
+								
+							if(isset($searchItem->countries))
+							$records = Country::model()->findAll(array('condition'=> "countryId NOT IN({$searchItem->countries})"));
+							else
+							$records = Country::model()->findAll("active=1");
+							$list = CHtml::listData($records, 'countryId', 'name');
+						    echo CHtml::dropDownList('acountry',null,$list,array('class'=>'left ar','multiple'=>'multiple')); ?>
+						
+						<div class="ar-btn">
+							<input class="add type2" value="Add" onclick="return add('acountry','acountry1')" type="button">
+							<input class="remove type2" value="Remove" onclick="return add('acountry1','acountry')" type="button">
+						</div>
+						<?php 
+							if(isset($searchItem->countries))
+							$records = Country::model()->findAll(array('condition'=> "countryId IN({$searchItem->countries})"));
+							else
+							$records = array();
+							$list = CHtml::listData($records, 'countryId', 'name');
+						    echo CHtml::dropDownList('country1',null,$list,array('class'=>'right ar','id'=>'acountry1','multiple'=>'multiple')); 
+						    
+						    ?>
+						</div>
+					</li>
+					<li>
+						<div class="title">
+							Residing state 
+						</div>
+						<div class="info">
+						<?php $records = States::model()->findAll("active = 1");
+		$list = CHtml::listData($records, 'stateId', 'name');
+		echo CHtml::dropDownList('state',null,$list,array('empty' => 'State','class'=>'wid150','options' => array($searchItem->state =>array('selected'=>true)))); ?>
+						</div>
+					</li>
+					<li>
+						<div class="title">
+							Residing district
+						</div>
+						<div class="info">
+<?php $records = Districts::model()->findAll("active = 1");
+		$list = CHtml::listData($records, 'districtId', 'name');
+		echo CHtml::dropDownList('district',null,$list,array('empty' => 'District','class'=>'wid150','options' => array($searchItem->state =>array('selected'=>true)))); ?>						</div>
+					</li>
+					<!-- 
+					<li>
+						<div class="title">
+							Resident status
+						</div>
+						<div class="info">
+							<div class="radio mR14">
+								<input type="radio"  name="created"> <span>Any </span>
+							</div>
+							<div class="radio mR14">
+								<input type="radio" name="created"> <span>Citizen </span>
+							</div>
+							<div class="radio mR14">
+								<input type="radio" name="created"> <span>Permanent Resident </span>
+							</div>
+							<div class="radio mR14">
+								<input type="radio" name="created"> <span>Student Visa</span>
+							</div>
+							<div class="radio mR14">
+								<input type="radio" name="created"> <span>Temporary Visa</span>
+							</div>
+							<div class="radio ">
+								<input type="radio" name="created"> <span>Work Permit</span>
+							</div>
+						</div>
+					</li>
+					 -->
+				</ul>
+				<ul>
+					<li>
+						<h3>Cast and religion</h3>
+					</li>
+					<li>
+						<div class="title">
+							Religion
+						</div>
+						<div class="info">
+						<?php $records = Religion::model()->findAll("active = 1");
+		$list = CHtml::listData($records, 'religionId', 'name');
+		echo CHtml::dropDownList('religion',null,$list,array('empty' => 'Religion','class'=>'wid150','options' => array($searchItem->religion => array('selected'=>true)))); ?>
+						</div>
+					</li>
+					<li>
+						<div class="title">
+							Cast
+						</div>
+						<div class="info">
+							<?php $records = Caste::model()->findAll(array('condition'=> "casteId NOT IN({$searchItem->caste})"));
+							$list = CHtml::listData($records, 'casteId', 'name');
+							echo CHtml::dropDownList('acaste',null,$list,array('class'=>'left ar','multiple'=>'multiple')); ?>
+							<div class="ar-btn">
+							<input class="add type2" value="Add" onclick="return add('acaste','acaste1')" type="button">
+							<input class="remove type2" value="Remove" onclick="return add('acaste1','acaste')" type="button">
+							</div>
+							<?php 
+							$recordsf = Caste::model()->findAll(array('condition'=> "casteId IN({$searchItem->caste})"));
+							$list = CHtml::listData($recordsf, 'casteId', 'name');
+						    echo CHtml::dropDownList('caste1',null,$list,array('class'=>'right ar','id'=>'acaste1','multiple'=>'multiple')); ?>
+							
+						</div>
+					</li>
+				</ul>
+				<ul>
+					<li>
+						<h3>Education and Occupation</h3>
+					</li>
+					<li>
+						<div class="title">
+							Education
+						</div>
+						<div class="info">
+						     <?php 
+   						     if(isset($searchItem->education))
+						    $records = EducationMaster::model()->findAll(array('condition'=> "educationId NOT IN({$searchItem->education})"));
+						    else
+						    $records = EducationMaster::model()->findAll("active=1");
+							$list = CHtml::listData($records, 'educationId', 'name');
+						    echo CHtml::dropDownList('education',null,$list,array('class'=>'left ar','multiple'=>'multiple')); ?>
+						<div class="ar-btn">
+							<input class="add type2" value="Add" onclick="return add('education','aeducation1')" type="button">
+							<input class="remove type2" value="Remove" onclick="return add('aeducation1','education')"type="button">
+						</div>
+						<?php 
+   						     if(isset($searchItem->education))
+						    $records = EducationMaster::model()->findAll(array('condition'=> "educationId IN({$searchItem->education})"));
+						    else
+						    $records = array();
+							$list = CHtml::listData($records, 'educationId', 'name');
+						    echo CHtml::dropDownList('education1',null,$list,array('class'=>'right ar','id'=>'aeducation1','multiple'=>'multiple')); 
+						    ?>
+						</div>
+					</li>
+					<li>
+						<div class="title">
+							Occupation
+						</div>
+						<div class="info">
+						<?php 
+							if(isset($searchItem->occupation))
+							$records = OccupationMaster::model()->findAll(array('condition'=> "occupationId NOT IN({$searchItem->occupation})"));
+						    else
+						    $records = OccupationMaster::model()->findAll("active = 1");
 							$list = CHtml::listData($records, 'occupationId', 'name');
-						    echo CHtml::dropDownList('occupation',null,$list,array('class'=>'tab_200','multiple'=>'multiple')); ?>
-                        </div>                        
-        
-                        
-                        <div class="list_div_mdl">
-                        					
-                        					<a class="ad-rm" href="#" onclick="return add('occupation','occupation1')">Add</a>
-   											<p class="space-5px">&nbsp;</p>
-                                     		<a class="ad-rm" href="#" onclick="return add('occupation1','occupation')">Remove</a>
+						    echo CHtml::dropDownList('occupation',null,$list,array('class'=>'left ar','multiple'=>'multiple')); ?>
+									
+							<div class="ar-btn">
+							<input class="add type2" value="Add"  onclick="return add('occupation','occupation1')" type="button">
+							<input class="remove type2" value="Remove" onclick="return add('occupation1','occupation')"type="button">
+							</div>
+							
+							<?php 
+							if(isset($searchItem->occupation))
+							$records = OccupationMaster::model()->findAll(array('condition'=> "occupationId NOT IN({$searchItem->occupation})"));
+						    else
+						    $records = array();
+							$list = CHtml::listData($records, 'occupationId', 'name');
+						    echo CHtml::dropDownList('occupation1',null,$list,array('class'=>'right ar','multiple'=>'multiple')); ?>
 						</div>
-                        
-                        <div>
-                        <select class="tab_200" id="occupation1" name="occupation1[]" multiple="multiple">
-                        </select>
-                        </div>
-                        </div>
-  <p class="clear"></p>
- <div class="list_class-5">
- <p class="txt_bld">Anual income
-</p>
- </div>
- <div class="list_class-6">
-   <div class="list_class-textfield-small">
-     <input type="text" class="small_form_1" id="income" name="income" placeholder="Use Rupees" />
-   </div>
- </div>
- 
-  <p class="clear"></p>
-  <div class="line"></div>
-
-
-
- <p class="text_pink-hd">Habits</p>
-                <p class="space-25px">&nbsp;</p>
-
-
-
-
-                    <p class="clear"></p>
-                    <div class="list_class-5">
-                      <p class="txt_bld">Star
-</p>
-                    </div>
-<div class="list_class-6">
-                        <div>
-                        <?php $records = SignsMaster::model()->findAll("active = 1");
+					</li>
+					<li>
+						<div class="title">
+							Annual Income is Rs:
+						</div>
+						<div class="info">
+							<?php echo CHtml::dropDownList('incomeFrom',null,Utilities::getAnnualIncome(),array('empty' => 'Income','class'=>'wid120')); ?>
+							<div class="married">
+								<span class="text">to</span>
+								<?php echo CHtml::dropDownList('incomeTo',null,Utilities::getAnnualIncome(),array('empty' => 'Income','class'=>'wid120')); ?>
+							</div>
+						</div>
+					</li>
+				</ul>
+				<ul>
+					<li>
+						<h3>Astro Details</h3>
+					</li>
+					<li>
+						<div class="title">
+							Star
+						</div>
+						<div class="info">
+						<?php 
+							if(isset($searchItem->star))
+							$records = SignsMaster::model()->findAll(array('condition'=> "signId NOT IN({$searchItem->star})"));
+						    else
+						   $records = SignsMaster::model()->findAll("active = 1");
+						
 							$list = CHtml::listData($records, 'signId', 'name');
-						    echo CHtml::dropDownList('star',null,$list,array('class'=>'tab_200','multiple'=>'multiple')); ?>
-                        </div>                        
-        
-                        
-                        <div class="list_div_mdl">
-                        					
-                        					<a class="ad-rm" href="#" onclick="return add('star','star1')">Add</a>
-                                           
-   											<p class="space-5px">&nbsp;</p>
-                                     		<a class="ad-rm" href="#" onclick="return add('star1','star')">Remove</a>
+						    echo CHtml::dropDownList('star',null,$list,array('class'=>'left ar','multiple'=>'multiple')); ?>
+									
+							<div class="ar-btn">
+							<input class="add type2" value="Add"  onclick="return add('star','star1')" type="button">
+							<input class="remove type2" value="Remove" onclick="return add('star1','star')" "type="button">
+							</div>
+							<?php 
+							if(isset($searchItem->star))
+							$records = SignsMaster::model()->findAll(array('condition'=> "signId NOT IN({$searchItem->star})"));
+						    else
+						   $records = array();
+							$list = CHtml::listData($records, 'signId', 'name');
+						    echo CHtml::dropDownList('star1',null,$list,array('class'=>'right ar','multiple'=>'multiple')); ?>
+							
 						</div>
-                        
-                        <div>
-                        <select class="tab_200" id="star1" name="star1[]" multiple="multiple">
-                        </select>
-                        </div>
-                        </div>                        
-		 
- <p class="clear"></p>
-
-                    <p class="clear"></p>
-                    <div class="list_class-5">
-                      <p class="txt_bld">Sub Caste</p>
-                    </div>
-						<div class="list_class-6">
-                        <div>
-                        <?php $records = Subcaste::model()->findAll("active = 1");
-							$list = CHtml::listData($records, 'subcasteId', 'name');
-						    echo CHtml::dropDownList('subcaste',null,$list,array('class'=>'tab_200','multiple'=>'multiple')); ?>
-                        </div>                        
-        
-                        
-                        <div class="list_div_mdl">
-                        					
-                        					<a class="ad-rm" href="#" onclick="return add('subcaste','subcaste1')">Add</a>
-                                           
-   											<p class="space-5px">&nbsp;</p>
-                                     		<a class="ad-rm" href="#" onclick="return add('subcaste1','subcaste')">Remove</a>
+					</li>
+					<li>
+						<div class="title">
+							Sudha Jathakam
 						</div>
-                        
-                        <div>
-                        <select class="tab_200" id="subcaste1" name="subcaste1[]" multiple="multiple">
-                        </select>
-                        </div>
-                        </div>
-        
-                    <p class="clear"></p>
-        <div class="list_class-5">
-                      <p class="txt_bld">Eating habits
-</p>
-        </div>
- 
-<div class="list_class-6">
-  <p><span class="radio-2-new">
-    <input type="checkbox" name="eat[]" value="brother" />
-    &nbsp;&nbsp;Any</span>
-  <span class="radio-2-newb">
-        <input type="checkbox" name="eat[]" value="0" />
-        &nbsp;&nbsp;Vegetarian </span>
-         <span class="radio-2-newc">
-        &nbsp;&nbsp;&nbsp;<input type="checkbox" name="eat[]" value="1" />
-        &nbsp;&nbsp;Non Vegetarian</span>
-        <span class="radio-2-new"><input type="checkbox" name="eat[]" value="2" />
-        &nbsp;&nbsp;Eggetarian</span>
-      </div> 
- 
-                    <p class="clear"></p>
-                    <div class="list_class-5">
-                      <p class="txt_bld">Drinking
-</p>
-                    </div>
- 
-<div class="list_class-6"><span class="radio-2-new">
-<input type="checkbox" name="drink[]" value="A" />
-&nbsp;&nbsp;Any</span>
-  <span class="radio-2-newb">
-        <input type="checkbox" name="drink[]" value="0" />
-        &nbsp;&nbsp;&nbsp;Non drinker</span>
-        <span class="radio-2-newc">
-        &nbsp;&nbsp;&nbsp;<input type="checkbox" name="drink[]" value="2" />
-        &nbsp;&nbsp;Light / Social drinker</span>
-        <span class="radio-2">
-       <input type="checkbox" name="drink[]" value="1" />
-        &nbsp;&nbsp;Regular drinker</span></div> 
- 
-                    <p class="clear"></p>
-                    <div class="list_class-5">
-                      <p class="txt_bld">Smoking</p>
-                    </div>
- 
-<div class="list_class-6"><span class="radio-2-new">
-<input type="checkbox" name="smoke[]" value="A" />
-&nbsp;&nbsp;Any</span>
-  <span class="radio-2-newb">
-        <input type="checkbox" name="smoke[]" value="0" />
-        &nbsp;&nbsp;&nbsp;Non&nbsp;Smoker</span>
-        <span class="radio-2-newc">
-        &nbsp;&nbsp;
-        <input type="checkbox" name="smoke[]" value="1" />
-        &nbsp;&nbsp;Light / Social drinker</span>
-        <span class="radio-2">
-       <input type="checkbox" name="smoke[]" value="2" />
-        &nbsp;&nbsp;Regular smoker</span></div> 
- 
- 
-  <p class="clear"></p>
-  <div class="line"></div>
+						<div class="info">
+							<div class="radio mR14">
+								<input type="radio" name="sudha" <?php if($searchItem->sudham == 1) {?> checked="checked" <?php } ?> value="1"> <span>Yes</span>
+							</div>
+							<div class="radio mR14">
+								<input type="radio" name="sudha" <?php if($searchItem->sudham != false && $searchItem->sudham == 0) {?> checked="checked" <?php } ?> value="0"> <span>No</span>
+							</div>
+							<div class="radio mR14">
+								<input type="radio" name="sudha" <?php if($searchItem->sudham == 2) {?> checked="checked" <?php } ?> value="2"> <span>Don't Know</span>
+							</div>
+						</div>
+					</li>
+					<li>
+						<div class="title">
+							Chovva Dosham
+						</div>
+						<div class="info">
+							<div class="radio mR14">
+								<input type="radio" name="chova" <?php if($searchItem->dosham == 1) {?> checked="checked" <?php } ?> value="1"> <span>Yes</span>
+							</div>
+							<div class="radio mR14">
+								<input type="radio" name="chova" <?php if($searchItem->dosham != false && $searchItem->dosham == 0) {?> checked="checked" <?php } ?> value="0"> <span>No</span>
+							</div>
+							<div class="radio mR14">
+								<input type="radio" name="chova" <?php if($searchItem->dosham == 2) {?> checked="checked" <?php } ?>value="2"> <span>Don't Know</span>
+							</div>
+						</div>
+					</li>
+				</ul>
+				<ul>
+					<li>
+						<h3>Favourite Cuisine</h3>
+					</li>
+					<li>
+						<div class="title">
+							Eating habits
+						</div>
+						<?php
+							$all = false;
+							$veg = false;
+							$non = false;
+							$egg = false;
+						if(isset($searchItem->eating))
+						{
+							$maritalStatus = explode(",", $searchItem->eating);
+							$veg = in_array(0,$maritalStatus);
+							$non = in_array(1,$maritalStatus);
+							$egg = in_array(2,$maritalStatus);
+							$all = in_array(3,$maritalStatus);
+						}
+						?>
+						<div class="info">
+							<div class="check ">
+								<input type="checkbox" name="eat[]" <?php if($all != false) {?> checked="checked" <?php } ?> value="3" /><span>Any</span>
+							</div>
+							<div class="check ">
+								<input type="checkbox" name="eat[]" <?php if($veg != false) {?> checked="checked" <?php } ?> value="0" /> <span>Vegitarian </span>
+							</div>
+							<div class="check ">
+								<input type="checkbox" name="eat[]" <?php if($non != false) {?> checked="checked" <?php } ?> value="1" /><span>Non Vegitarian</span>
+							</div>
+							<div class="check ">
+								<input type="checkbox" name="eat[]" <?php if($egg != false) {?> checked="checked" <?php } ?> value="2" /><span>Eggetarian </span>
+							</div>
+						</div>
+					</li>
+					<li>
+						<div class="title">
+							Drinking
+						</div>
+						<?php
+							$any = false;
+							$light = false;
+							$non = false;
+							$reg = false;
+						if(isset($searchItem->eating))
+						{
+							$maritalStatus = explode(",", $searchItem->eating);
+							$non = in_array(0,$maritalStatus);
+							$reg = in_array(1,$maritalStatus);
+							$light = in_array(2,$maritalStatus);
+							$any = in_array(3,$maritalStatus);
+						}
+						?>
+						<div class="info">
+							<div class="check ">
+								<input type="checkbox" name="drink[]" <?php if($any != false) {?> checked="checked" <?php } ?> value="3" /><span>Any</span>
+							</div>
+							<div class="check ">
+								<input type="checkbox" name="drink[]" <?php if($non != false) {?> checked="checked" <?php } ?> value="0" /><span>Non-drinker </span>
+							</div>
+							<div class="check ">
+								<input type="checkbox" name="drink[]" <?php if($light != false) {?> checked="checked" <?php } ?> value="2" /><span>Light / Social drinker</span>
+							</div>
+							<div class="check ">
+								<input type="checkbox" name="drink[]" <?php if($reg != false) {?> checked="checked" <?php } ?> value="1" /><span>Regular drinker </span>
+							</div>
+						</div>
+					</li>
+					<li>
+						<div class="title">
+							Smoking
+						</div>
+						<?php
+							$any = false;
+							$light = false;
+							$non = false;
+							$reg = false;
+						if(isset($searchItem->eating))
+						{
+							$maritalStatus = explode(",", $searchItem->eating);
+							$non = in_array(0,$maritalStatus);
+							$reg = in_array(1,$maritalStatus);
+							$light = in_array(2,$maritalStatus);
+							$any = in_array(3,$maritalStatus);
+						}
+						?>
+						<div class="info">
+							<div class="check ">
+								<input type="checkbox" name="smoke[]" <?php if($any != false) {?> checked="checked" <?php } ?>  value="3" /><span>Any</span>
+							</div>
+							<div class="check ">
+								<input type="checkbox" name="smoke[]" <?php if($non != false) {?> checked="checked" <?php } ?>  value="0" /><span>Non-smoker</span>
+							</div>
+							<div class="check ">
+								<input type="checkbox" name="smoke[]" <?php if($light != false) {?> checked="checked" <?php } ?>  value="2" /><span>Light / Social smoker</span>
+							</div>
+							<div class="check ">
+								<input type="checkbox" name="smoke[]" <?php if($reg != false) {?> checked="checked" <?php } ?>  value="1" /><span>Regular smoker </span>
+							</div>
+						</div>
+					</li>
+				</ul>
+				<ul>
+					
+					<li>
+						<div class="title">
+							Show profile
+						</div>
+						<div class="info">
+							<div class="check wid220">
+								<input type="checkbox" name="profile[]" value="p" <?php if($searchItem->photo == 1) {?> checked="checked" <?php } ?> /> <span>Only With Photo</span>
+							</div>
+							<div class="check ">
+								<input type="checkbox" name="profile[]" value="h" <?php if($searchItem->horoscope == 1) {?> checked="checked" <?php } ?>/><span>Only With horoscope</span>
+							</div>
+						</div>
+					</li>
+					<li>
+						<div class="title">
+							Don't show
+						</div>
+						<?php
+							$ignore = false;
+							$contacted = false;
+							$view = false;
+							$shortlisted = false;
+						if(isset($searchItem->showTo))
+						{
+							$maritalStatus = explode(",", $searchItem->showTo);
+							$ignore = in_array(0,$maritalStatus);
+							$contacted = in_array(1,$maritalStatus);
+							$view = in_array(2,$maritalStatus);
+							$maritalStatus = in_array(3,$maritalStatus);
+						}
+						?>
+						
+						<div class="info">
+							<div class="check wid220">
+								<input type="checkbox" value="0" <?php if($ignore != false) {?> checked="checked" <?php } ?>   name="show[]"><span>Ignored Profiles</span>
+							</div>
+							<div class="check wid220">
+								<input type="checkbox" value="1" <?php if($contacted != false) {?> checked="checked" <?php } ?> name="show[]"><span>Profiles already contacted</span>
+							</div>
+							<div class="check wid220">
+								<input type="checkbox" value="2" <?php if($view != false) {?> checked="checked" <?php } ?> name="show[]"><span>Viewed Profiles</span>
+							</div>
+							<div class="check ">
+								<input type="checkbox" value="3" <?php if($shortlisted != false) {?> checked="checked" <?php } ?>  name="show[]"><span>Shortlisted Profiles</span>
+							</div>
+						</div>
+					</li>
+					<li>
+						<div class="buttonContnr2 mT20">
+							<a class="type4" id="searchButtons" href="#">Save Search</a>
+							<a class="type4" href="javascript:advanceSearch.submit();"  href="#">Search</a>
+							<div class="saveSbox" id="advsave" style="display:none">
+							<div class="tarrow"></div>
+							<div class="cont wid140">
+								<div class="head">
+									<span>Save Your Search</span>
+								</div>
+								<div class="row">
+									<input type="text" <?php if(isset($searchItem->searchName)) {?> value="<?php echo $searchItem->searchName?>" <?php } ?> name="searchName" placeholder="Mysearch1" />
+								</div>
+								<div class="row" id="advSearch">
+									<a class="type5" href="#">Save </a>
+								</div>
+							</div>
+						</div>
+						</div>
+					</li>
+				</ul>
+				</form>
+			</article>
+		</div>
+		<div id="tab3_data" class="tab-data" style="display: none;">
+			<div class="sId">
+				<p>Enter a Keyword of the member whose profile you would like to see.</p>
+				<div class="sec">
+				<form id="keywordSearch"  name="keywordSearch" method="post"  action="/search/keyword">
+					<div class="text"> Enter a Keyword</div>
+					<input type="text" name="keyword" id="keyword" />
+					<a href="javascript:keywordSearch.submit();" class="type3 wid100">Search</a>
+					<a  href="javascript:keywordSearch.reset();" class="type3">Reset</a>
+				</form>	
+				</div>
+			</div>
+			
+		</div>
+		<div id="tab4_data" class="tab-data" style="display: none;">
+			<div class="sId">
+				<p>Enter the Matrimony ID of the member whose profile you would like to see.</p>
+				<div class="sec">
+				<form id="idSearch"  name="idSearch" method="get"  action="/search/byid">
+					<div class="text"> Matrimony ID </div>
+					<input type="text" name="id" id="id" />
+					<a href="javascript:idSearch.submit();" class="type3 wid100">View Profile</a>
+					<a href="javascript:idSearch.reset();" class="type3">Reset</a>
+				</form>	
+				</div>
+			</div>
+		</div>
+    </section>
+	<aside class="rightbar-contnr">
+		<div class="subscribe-box">
+			<div class="sub-now">Subscribe Now!<br /><span>Only for</span></div>
+			<div class="digit"><span class="WebRupee">Rs.</span>200</div>
+			<div class="for">For 3 Months</div>
+			<div class="divider"> </div>
+			<div class="benefit">Benefits of Subscribing </div>
+			<p>
+				Real time update about profile visitors <br />
+				Access key details of other users<br />
+				Contact candidates directly  <br />
+				View horoscope of members <br />
+				Message candidates directly
+			</p>
+			<div class="divider"> </div>
+			<a class="subNow" href="subscribe-now.htm">Subscribe Now</a>
+		</div>
+	</aside>
 
 
-
-                    <p class="clear"></p>
-        <div class="list_class-5">
-                      <p class="txt_bld">Show profile
-
-</p>
-        </div>
- 
-<div class="list_class-6">
-<span class="radio-2-newc">
-    <input type="checkbox" name="profile[]" value="photo" />
-    &nbsp;&nbsp;Only With Photo</span>
-  <span class="radio-2">
-        <input type="checkbox" name="profile[]" value="horoscope" />
-        &nbsp;&nbsp;Only With horoscope </span></div> 
- 
-                    <p class="clear"></p>
-             <!--      <div class="list_class-5">
-                      <p class="txt_bld">Don't show
-
-</p>
-                    </div>
- 
-<div class="list_class-6"><span class="radio-2-newc">
-<input type="checkbox" name="show[]" value="ignore" />
-&nbsp; Ignored Profiles </span><span class="radio-2">
-       <input type="checkbox" name="show[]" value="contact" />
-        &nbsp;&nbsp;Profiles already contacted</span>
-        <div class="clear"></div>
-        
-   <span class="radio-2-newc">     <input type="checkbox" name="show[]" value="view" />
-&nbsp;&nbsp;Viewed Profiles</span><span class="radio-2">
-        <input type="checkbox" name="show[]" value="shortlist" />
-      &nbsp;&nbsp;Shortlisted Profiles</span></div>  -->
- 
-                    <p class="clear"></p>
-                    <p class="clear"></p>
-                    
-                    
-
-
-                                       
-                    
-                    
-<div class="list_class-6">
-
-
-
-                   
-                   <a href="javascript:advanceSearch.submit();" class="srch-sub-bottom">Search</a>
-                    <a class="srch-sub-save" id="searchButton" href="#">Save Search</a>
       
-      </div>
-        
-</form>        
-        
-        
-         
- 
-</div>
-<!--/closing-rightside-div-->
- 
-<div class="clear"></div>
-<div class="space-25px"><p>&nbsp;</p></div>
-<!--right-content closing-->
- </div>
-            <!--main-content closing-->
-            
-<script type="text/javascript">
+ <script type="text/javascript">
 $(document).ready(function() {
 
-	$('#searchButton').click(function() {	
+	$('#rsearchButton').click(function() {	
+	  	$('#rsaveBox').show();
+	  	$('#rsearchButton').hide();
+	  	
+	});
+
+	$('#rsearchSubmit').click(function() {
+		$("#regularSearch").attr("action","/search/save");
+		$('<input>').attr({
+		    type: 'hidden',
+		    name: 'searchName',
+		    value: $('#searchName').val(),
+		}).appendTo('#regularSearch');
+		$("#regularSearch").submit();
+		$('#rsaveBox').hide();
+	});
+
+	$('#advSearch').click(function() {
+	$("#advanceSearch").attr("action","/search/save");
 	$('<input>').attr({
 	    type: 'hidden',
-	    id: 'search',
-	    name: 'search',
-	    value: 'save'
+	    name: 'searchName',
+	    value: $('#searchName').val(),
 	}).appendTo('#advanceSearch');
-	  $('#advanceSearch').submit();
+    $("#advanceSearch").submit();
+    $('#advsave').hide();
 	});
+	
+	$('#searchButtons').click(function() {	
+		$('#advsave').show();
+		$('#searchButtons').hide();
+			
+	});
+	
 });
 
 
-</script>    
+</script>      
+      
