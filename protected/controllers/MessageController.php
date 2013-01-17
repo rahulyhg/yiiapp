@@ -40,7 +40,16 @@ class MessageController extends Controller
 		$messages = $command->queryAll();
 		$this->render('acknowledgement');
 	}
-
+	
+	public function actionConversation()
+	{
+		$user = Yii::app()->session->get('user');
+		$sql = "SELECT * FROM view_messages WHERE receiverId = {$user->userId} and status = 2";
+		$command=Yii::app()->db->createCommand($sql);
+		$messages = $command->queryAll();
+		$this->render('conversation');
+	}
+	
 	public function actionCompose()
 	{
 		$user = Yii::app()->session->get('user');

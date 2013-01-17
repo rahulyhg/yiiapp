@@ -7,226 +7,607 @@
 * Copyright © 2012 MarryDorr. All Rights Reserved.
 * ---------------------------------------------------------------------------------------------------------------------------
 *
-* @author  Ageesh K Gopinath
+* @author  Dileep Gopalan
 * @title receive.php
 * @description <Description of this class>
 *  @filesource <URL>
 *  @version <Revision>
 */
 ?>
-
-
-            <div id="main-content">
-            	<!--left-content-->
-
-	  <?php $this->widget('application.widgets.menu.Leftmenu'); ?>
-
-  <!--center profile details closing--> 
-  			<div id="content-right-02"> 
-              <div class="div_mdla">
-                   <p class="space-3px">&nbsp;</p>
-              <div class="line-new-1"></div>
-			  
-			  
-            
-             <p class="text_pink-hd">Interest Recieved</p>
-            <p class="clear"></p>
-              <div class="space-15px">&nbsp;</div>
-              <div style="float:right">
-              
-              <a class="recive" href="#">Accept</a>
-               <a class="recive" href="#">Decline</a>
-</div>
-                <div class="left">
-                <INPUT type="checkbox"  class="selection" name="selection" >
-                <span class="bullettext_select">&nbsp;Select all&nbsp;</span>
-                              <div class="clear"></div>
-                              <div class="line"></div>
-
-
-                              <div class="clear"></div>
-                <!--div_msg_fullbox-->   
-                                           
- <?php 
-  $heightArray = Utilities::getHeights();
-  if(isset($user)){
-  foreach ($user as $value) { ?>     
-                
-                
-                  <!--div_msg_fullbox-->   <div class="msgbox-full_interest">
-                  
-                 <form id="receiver"  name="receiver" method="post"  action="/interest"> 
-                <div style="float:left; padding-right:5px;">
-                 <input type="checkbox" name="user" class="case" value="<?php echo $value->userId?>" />
-                 <input type="hidden" name="userId" class="case" value="<?php echo $value->userId?>" />
-                 </div>
-                 <div class="ii_div">
-                   <a href="album.html"><img src="<?php echo Yii::app()->params['mediaUrl']; ?>/model_thumb/thumb_1.jpg" border="0" class="imageicon" /></a> </div>
-                  <div style="float:left; padding:5px 0px 0px 10px;">
-                 <p> <span class="text_blue_b"><a href="<?php echo 'byid?id='.$value->marryId ?>"><?php echo $value->name; echo '( '.$value->marryId.' )' ;?></a></span> (You expressed interest on <?php echo date('d-M-Y',strtotime($interest[$value->userId]));?>)</p>
-                  <p class="txt_rg"><?php echo $value->religion;?> , <?php echo $value->caste;?> &nbsp;, <?php echo $value->age ?>Years &nbsp; - <?php if(isset($value->heightId)) echo $heightArray[$value->heightId]; ?> &nbsp;
-<?php echo $value->place.', '.$value->state.', '.$value->country; ?> &nbsp;</p>
- <p class="innersidelinks-still-l0">Interest Sent you, 2 Minuts ago</p>
-                  </div>
-                  
-				<a class="rec-sub" href="#">Decline</a>
-                <a class="rec-sub" href="#">Accept</a>
-                 </form> 
-                 <div class="clear"></div> 
-                 </div>
-                
-
-      <?php }
-  }
-  else
-  {
-  	echo "No interests sent so far";
-  }
-      ?> 
-          
-               <form id="interest"  name="interest" method="post"  action="/interest">
-			
-			</form>  
-
-               <!--div_closing_msg_fullbox--> 
-               
-               
-
-                  <div class="space-35px">&nbsp;</div>
-                  <div class="left">
-                <INPUT type="checkbox"  class="selection" name="selection"  >
-                <span class="bullettext_select">&nbsp;Select all&nbsp;</span></div>
-              <div style="float:right">
-
-              <a class="recive" href="#">Accept</a>
-              <a class="recive" href="#">Decline</a>
-		   </div>
+      <?php $this->widget('application.widgets.menu.Leftmenu'); ?>
+   <section class="data-contnr2">
+        <h1 class="mB10">Interests</h1>
+        <div class="interstTab">
+			<div class="edit-option">
+				<div class="check">
+					<input type="checkbox" />
+					<span>Sellect All</span>
+				</div>
+				<div class="check">
+					<span><a href="#">Delete</a></span>
+				</div>
+			</div>
+			<ul class="tab-head">
+				<li id="tab1">
+					<a id="tab1" href="#" class="select">Recieved</a>
+				</li>
+				<li id="tab2"> 
+					<a id="tab2" href="#" >Sent</a>
+				</li>
+				<li id="tab3">
+					<a id="tab3" href="#" >Accepted</a>
+				</li>
+				<li id="tab4">
+					<a id="tab4" href="#" >Declined</a>
+				</li>
+			</ul>
+			<!-- received starts here -->
+			<ul id="tab1_data" class="tab-data" style="display: block;">
+				<li>
+					<input type="checkbox" />
+					<a href="#"><img src="./images/user/anu.jpg" alt="" /></a>
+					<div class="int_head">
+						<a href="#" >Biju George</a>
+						<span>(Expressed interest on 15th Augest 2012)</span>
+					</div> 
+					<div class="pDetails">Chrishtian, R.c., 29 Years - 5' 4'', 167 cm</div>
+					<div class="pDetails">Ankamaly, Kerala, India</div>
+					<a href="#" class="type6 accept">Accept</a>
+					<a href="#" class="type6 decline">Decline</a>
+				</li>
+				<li>
+					<input type="checkbox" />
+					<a href="#"><img src="./images/user/interest_default.png" alt="" /></a>
+					<div class="int_head">
+						<a href="#" >Biju George</a>
+						<span>(Expressed interest on 15th Augest 2012)</span>
+					</div> 
+					<div class="pDetails">Chrishtian, R.c., 29 Years - 5' 4'', 167 cm</div>
+					<div class="pDetails">Ankamaly, Kerala, India</div>
+					<a href="#" class="type6 accept">Accept</a>
+					<a href="#" class="type6 decline">Decline</a>
+				</li>
+				<li>
+					<input type="checkbox" />
+					<a href="#"><img src="./images/user/priya.jpg" alt="" /></a>
+					<div class="int_head">
+						<a href="#" >Biju George</a>
+						<span>(Expressed interest on 15th Augest 2012)</span>
+					</div> 
+					<div class="pDetails">Chrishtian, R.c., 29 Years - 5' 4'', 167 cm</div>
+					<div class="pDetails">Ankamaly, Kerala, India</div>
+					<a href="#" class="type6 accept">Accept</a>
+					<a href="#" class="type6 decline">Decline</a>
+				</li>
+				<li>
+					<input type="checkbox" />
+					<a href="#"><img src="./images/user/athira.jpg" alt="" /></a>
+					<div class="int_head">
+						<a href="#" >Biju George</a>
+						<span>(Expressed interest on 15th Augest 2012)</span>
+					</div> 
+					<div class="pDetails">Chrishtian, R.c., 29 Years - 5' 4'', 167 cm</div>
+					<div class="pDetails">Ankamaly, Kerala, India</div>
+					<a href="#" class="type6 accept">Accept</a>
+					<a href="#" class="type6 decline">Decline</a>
+				</li>
+				<li>
+					<input type="checkbox" />
+					<a href="#"><img src="./images/user/priya.jpg" alt="" /></a>
+					<div class="int_head">
+						<a href="#" >Biju George</a>
+						<span>(Expressed interest on 15th Augest 2012)</span>
+					</div> 
+					<div class="pDetails">Chrishtian, R.c., 29 Years - 5' 4'', 167 cm</div>
+					<div class="pDetails">Ankamaly, Kerala, India</div>
+					<a href="#" class="type6 accept">Accept</a>
+					<a href="#" class="type6 decline">Decline</a>
+				</li>
+				<li>
+					<input type="checkbox" />
+					<a href="#"><img src="./images/user/interest_default.png" alt="" /></a>
+					<div class="int_head">
+						<a href="#" >Biju George</a>
+						<span>(Expressed interest on 15th Augest 2012)</span>
+					</div> 
+					<div class="pDetails">Chrishtian, R.c., 29 Years - 5' 4'', 167 cm</div>
+					<div class="pDetails">Ankamaly, Kerala, India</div>
+					<a href="#" class="type6 accept">Accept</a>
+					<a href="#" class="type6 decline">Decline</a>
+				</li>
+				<li>
+					<input type="checkbox" />
+					<a href="#"><img src="./images/user/nayana.jpg" alt="" /></a>
+					<div class="int_head">
+						<a href="#" >Biju George</a>
+						<span>(Expressed interest on 15th Augest 2012)</span>
+					</div> 
+					<div class="pDetails">Chrishtian, R.c., 29 Years - 5' 4'', 167 cm</div>
+					<div class="pDetails">Ankamaly, Kerala, India</div>
+					<a href="#" class="type6 accept">Accept</a>
+					<a href="#" class="type6 decline">Decline</a>
+				</li>
+				<li>
+					<input type="checkbox" />
+					<a href="#"><img src="./images/user/priya.jpg" alt="" /></a>
+					<div class="int_head">
+						<a href="#" >Biju George</a>
+						<span>(Expressed interest on 15th Augest 2012)</span>
+					</div> 
+					<div class="pDetails">Chrishtian, R.c., 29 Years - 5' 4'', 167 cm</div>
+					<div class="pDetails">Ankamaly, Kerala, India</div>
+					<a href="#" class="type6 accept">Accept</a>
+					<a href="#" class="type6 decline">Decline</a>
+				</li>
+				<li>
+					<input type="checkbox" />
+					<a href="#"><img src="./images/user/interest_default.png" alt="" /></a>
+					<div class="int_head">
+						<a href="#" >Biju George</a>
+						<span>(Expressed interest on 15th Augest 2012)</span>
+					</div> 
+					<div class="pDetails">Chrishtian, R.c., 29 Years - 5' 4'', 167 cm</div>
+					<div class="pDetails">Ankamaly, Kerala, India</div>
+					<a href="#" class="type6 accept">Accept</a>
+					<a href="#" class="type6 decline">Decline</a>
+				</li>
+				<li>
+					<input type="checkbox" />
+					<a href="#"><img src="./images/user/interest_default.png" alt="" /></a>
+					<div class="int_head">
+						<a href="#" >Biju George</a>
+						<span>(Expressed interest on 15th Augest 2012)</span>
+					</div> 
+					<div class="pDetails">Chrishtian, R.c., 29 Years - 5' 4'', 167 cm</div>
+					<div class="pDetails">Ankamaly, Kerala, India</div>
+					<a href="#" class="type6 accept">Accept</a>
+					<a href="#" class="type6 decline">Decline</a>
+				</li>
+				<li>
+					<input type="checkbox" />
+					<a href="#"><img src="./images/user/athira.jpg" alt="" /></a>
+					<div class="int_head">
+						<a href="#" >Biju George</a>
+						<span>(Expressed interest on 15th Augest 2012)</span>
+					</div> 
+					<div class="pDetails">Chrishtian, R.c., 29 Years - 5' 4'', 167 cm</div>
+					<div class="pDetails">Ankamaly, Kerala, India</div>
+					<a href="#" class="type6 accept">Accept</a>
+					<a href="#" class="type6 decline">Decline</a>
+				</li>
+			</ul>
+			<!-- received ends here -->
+			<!-- sent starts here -->
+			<ul id="tab2_data" class="tab-data" style="display: none;">
+				<li>
+					<input type="checkbox" />
+					<a href="#"><img src="./images/user/priya.jpg" alt="" /></a>
+					<div class="int_head">
+						<a href="#" >Biju George</a>
+						<span>(You expressed interest on 12th Jan. 2012)</span>
+					</div> 
+					<div class="pDetails">Chrishtian, R.c., 29 Years - 5' 4'', 167 cm</div>
+					<div class="pDetails">Ankamaly, Kerala, India</div>
+					<a href="#" class="type6 decline">Cancel</a>
+				</li>
+				<li>
+					<input type="checkbox" />
+					<a href="#"><img src="./images/user/athira.jpg" alt="" /></a>
+					<div class="int_head">
+						<a href="#" >Biju George</a>
+						<span>(You expressed interest on 12th Jan. 2012)</span>
+					</div> 
+					<div class="pDetails">Chrishtian, R.c., 29 Years - 5' 4'', 167 cm</div>
+					<div class="pDetails">Ankamaly, Kerala, India</div>
+					<a href="#" class="type6 decline">Cancel</a>
+				</li>
+				<li>
+					<input type="checkbox" />
+					<a href="#"><img src="./images/user/ajith.jpg" alt="" /></a>
+					<div class="int_head">
+						<a href="#" >Biju George</a>
+						<span>(You expressed interest on 12th Jan. 2012)</span>
+					</div> 
+					<div class="pDetails">Chrishtian, R.c., 29 Years - 5' 4'', 167 cm</div>
+					<div class="pDetails">Ankamaly, Kerala, India</div>
+					<a href="#" class="type6 decline">Cancel</a>
+				</li>
+				<li>
+					<input type="checkbox" />
+					<a href="#"><img src="./images/user/interest_default.png" alt="" /></a>
+					<div class="int_head">
+						<a href="#" >Biju George</a>
+						<span>(You expressed interest on 12th Jan. 2012)</span>
+					</div> 
+					<div class="pDetails">Chrishtian, R.c., 29 Years - 5' 4'', 167 cm</div>
+					<div class="pDetails">Ankamaly, Kerala, India</div>
+					<a href="#" class="type6 decline">Cancel</a>
+				</li>
+				<li>
+					<input type="checkbox" />
+					<a href="#"><img src="./images/user/rans.jpg" alt="" /></a>
+					<div class="int_head">
+						<a href="#" >Biju George</a>
+						<span>(You expressed interest on 12th Jan. 2012)</span>
+					</div> 
+					<div class="pDetails">Chrishtian, R.c., 29 Years - 5' 4'', 167 cm</div>
+					<div class="pDetails">Ankamaly, Kerala, India</div>
+					<a href="#" class="type6 decline">Cancel</a>
+				</li>
+				<li>
+					<input type="checkbox" />
+					<a href="#"><img src="./images/user/interest_default.png" alt="" /></a>
+					<div class="int_head">
+						<a href="#" >Biju George</a>
+						<span>(You expressed interest on 12th Jan. 2012)</span>
+					</div> 
+					<div class="pDetails">Chrishtian, R.c., 29 Years - 5' 4'', 167 cm</div>
+					<div class="pDetails">Ankamaly, Kerala, India</div>
+					<a href="#" class="type6 decline">Cancel</a>
+				</li>
+				<li>
+					<input type="checkbox" />
+					<a href="#"><img src="./images/user/priya.jpg" alt="" /></a>
+					<div class="int_head">
+						<a href="#" >Biju George</a>
+						<span>(You expressed interest on 12th Jan. 2012)</span>
+					</div> 
+					<div class="pDetails">Chrishtian, R.c., 29 Years - 5' 4'', 167 cm</div>
+					<div class="pDetails">Ankamaly, Kerala, India</div>
+					<a href="#" class="type6 decline">Cancel</a>
+				</li>
+				<li>
+					<input type="checkbox" />
+					<a href="#"><img src="./images/user/athira.jpg" alt="" /></a>
+					<div class="int_head">
+						<a href="#" >Biju George</a>
+						<span>(You expressed interest on 12th Jan. 2012)</span>
+					</div> 
+					<div class="pDetails">Chrishtian, R.c., 29 Years - 5' 4'', 167 cm</div>
+					<div class="pDetails">Ankamaly, Kerala, India</div>
+					<a href="#" class="type6 decline">Cancel</a>
+				</li>
+				<li>
+					<input type="checkbox" />
+					<a href="#"><img src="./images/user/biju.jpg" alt="" /></a>
+					<div class="int_head">
+						<a href="#" >Biju George</a>
+						<span>(You expressed interest on 12th Jan. 2012)</span>
+					</div> 
+					<div class="pDetails">Chrishtian, R.c., 29 Years - 5' 4'', 167 cm</div>
+					<div class="pDetails">Ankamaly, Kerala, India</div>
+					<a href="#" class="type6 decline">Cancel</a>
+				</li>
+				<li>
+					<input type="checkbox" />
+					<a href="#"><img src="./images/user/interest_default.png" alt="" /></a>
+					<div class="int_head">
+						<a href="#" >Biju George</a>
+						<span>(You expressed interest on 12th Jan. 2012)</span>
+					</div> 
+					<div class="pDetails">Chrishtian, R.c., 29 Years - 5' 4'', 167 cm</div>
+					<div class="pDetails">Ankamaly, Kerala, India</div>
+					<a href="#" class="type6 decline">Cancel</a>
+				</li>
+				<li>
+					<input type="checkbox" />
+					<a href="#"><img src="./images/user/nayana.jpg" alt="" /></a>
+					<div class="int_head">
+						<a href="#" >Biju George</a>
+						<span>(You expressed interest on 12th Jan. 2012)</span>
+					</div> 
+					<div class="pDetails">Chrishtian, R.c., 29 Years - 5' 4'', 167 cm</div>
+					<div class="pDetails">Ankamaly, Kerala, India</div>>
+					<a href="#" class="type6 decline">Cancel</a>
+				</li>
+				<li>
+					<input type="checkbox" />
+					<a href="#"><img src="./images/user/interest_default.png" alt="" /></a>
+					<div class="int_head">
+						<a href="#" >Biju George</a>
+						<span>(You expressed interest on 12th Jan. 2012)</span>
+					</div> 
+					<div class="pDetails">Chrishtian, R.c., 29 Years - 5' 4'', 167 cm</div>
+					<div class="pDetails">Ankamaly, Kerala, India</div>
+					<a href="#" class="type6 decline">Cancel</a>
+				</li>
+			</ul>
+			<!-- sent end here -->
+			<!-- accepted starts here -->
+			<ul id="tab3_data" class="tab-data" style="display: none;">
+				<li>
+					<div class="optns">
+						<div class="option_cont">
+							<a href="#">Accepted by me</a> |
+							<a href="#">Accepted you</a> 
+						</div>
+					</div>
+				</li>
+				<li>
+					<input type="checkbox" />
+					<a href="#"><img src="./images/user/athira.jpg" alt="" /></a>
+					<div class="int_head">
+						<a href="#" >Biju George</a>
+						<span>(She accepted your interest on 07th July 2012)</span>
+					</div> 
+					<div class="pDetails">Chrishtian, R.c., 29 Years - 5' 4'', 167 cm</div>
+					<div class="pDetails">Ankamaly, Kerala, India</div>
+					<a href="#" class="type6 decline">Cancel my request</a>
+				</li>
+				<li>
+					<input type="checkbox" />
+					<a href="#"><img src="./images/user/priya.jpg" alt="" /></a>
+					<div class="int_head">
+						<a href="#" >Biju George</a>
+						<span>(You accepted her interest on 07th July 2012)</span>
+					</div> 
+					<div class="pDetails">Chrishtian, R.c., 29 Years - 5' 4'', 167 cm</div>
+					<div class="pDetails">Ankamaly, Kerala, India</div>
+					<a href="#" class="type6 decline">Decline</a>
+				</li>
+				<li>
+					<input type="checkbox" />
+					<a href="#"><img src="./images/user/interest_default.png" alt="" /></a>
+					<div class="int_head">
+						<a href="#" >Biju George</a>
+						<span>(She accepted your interest on 07th July 2012)</span>
+					</div> 
+					<div class="pDetails">Chrishtian, R.c., 29 Years - 5' 4'', 167 cm</div>
+					<div class="pDetails">Ankamaly, Kerala, India</div>
+					<a href="#" class="type6 decline">Cancel my request</a>
+				</li>
+				<li>
+					<input type="checkbox" />
+					<a href="#"><img src="./images/user/anu.jpg" alt="" /></a>
+					<div class="int_head">
+						<a href="#" >Biju George</a>
+						<span>(She accepted your interest on 07th July 2012)</span>
+					</div> 
+					<div class="pDetails">Chrishtian, R.c., 29 Years - 5' 4'', 167 cm</div>
+					<div class="pDetails">Ankamaly, Kerala, India</div>
+					<a href="#" class="type6 decline">Cancel my request</a>
+				</li>
+				<li>
+					<input type="checkbox" />
+					<a href="#"><img src="./images/user/priya.jpg" alt="" /></a>
+					<div class="int_head">
+						<a href="#" >Biju George</a>
+						<span>(You accepted her interest on 07th July 2012)</span>
+					</div> 
+					<div class="pDetails">Chrishtian, R.c., 29 Years - 5' 4'', 167 cm</div>
+					<div class="pDetails">Ankamaly, Kerala, India</div>
+					<a href="#" class="type6 decline">Decline</a>
+				</li>
+				<li>
+					<input type="checkbox" />
+					<a href="#"><img src="./images/user/priya.jpg" alt="" /></a>
+					<div class="int_head">
+						<a href="#" >Biju George</a>
+						<span>(You accepted her interest on 07th July 2012)</span>
+					</div> 
+					<div class="pDetails">Chrishtian, R.c., 29 Years - 5' 4'', 167 cm</div>
+					<div class="pDetails">Ankamaly, Kerala, India</div>
+					<a href="#" class="type6 decline">Decline</a>
+				</li>
+				<li>
+					<input type="checkbox" />
+					<a href="#"><img src="./images/user/athira.jpg" alt="" /></a>
+					<div class="int_head">
+						<a href="#" >Biju George</a>
+						<span>(She accepted your interest on 07th July 2012)</span>
+					</div> 
+					<div class="pDetails">Chrishtian, R.c., 29 Years - 5' 4'', 167 cm</div>
+					<div class="pDetails">Ankamaly, Kerala, India</div>
+					<a href="#" class="type6 decline">Cancel my request</a>
+				</li>
+				<li>
+					<input type="checkbox" />
+					<a href="#"><img src="./images/user/priya.jpg" alt="" /></a>
+					<div class="int_head">
+						<a href="#" >Biju George</a>
+						<span>(She accepted your interest on 07th July 2012)</span>
+					</div> 
+					<div class="pDetails">Chrishtian, R.c., 29 Years - 5' 4'', 167 cm</div>
+					<div class="pDetails">Ankamaly, Kerala, India</div>
+					<a href="#" class="type6 decline">Cancel my request</a>
+				</li>
+				<li>
+					<input type="checkbox" />
+					<a href="#"><img src="./images/user/interest_default.png" alt="" /></a>
+					<div class="int_head">
+						<a href="#" >Biju George</a>
+						<span>(She accepted your interest on 07th July 2012)</span>
+					</div> 
+					<div class="pDetails">Chrishtian, R.c., 29 Years - 5' 4'', 167 cm</div>
+					<div class="pDetails">Ankamaly, Kerala, India</div>
+					<a href="#" class="type6 decline">Cancel my request</a>
+				</li>
+				<li>
+					<input type="checkbox" />
+					<a href="#"><img src="./images/user/priya.jpg" alt="" /></a>
+					<div class="int_head">
+						<a href="#" >Biju George</a>
+						<span>(You accepted her interest on 07th July 2012)</span>
+					</div> 
+					<div class="pDetails">Chrishtian, R.c., 29 Years - 5' 4'', 167 cm</div>
+					<div class="pDetails">Ankamaly, Kerala, India</div>
+					<a href="#" class="type6 decline">Decline</a>
+				</li>
+				<li>
+					<input type="checkbox" />
+					<a href="#"><img src="./images/user/interest_default.png" alt="" /></a>
+					<div class="int_head">
+						<a href="#" >Biju George</a>
+						<span>(She accepted your interest on 07th July 2012)</span>
+					</div> 
+					<div class="pDetails">Chrishtian, R.c., 29 Years - 5' 4'', 167 cm</div>
+					<div class="pDetails">Ankamaly, Kerala, India</div>
+					<a href="#" class="type6 decline">Cancel my request</a>
+				</li>
+			</ul>
+			<!-- accepted ends here -->
+			<!-- declined starts here -->
+			<ul id="tab4_data" class="tab-data" style="display: none;">
+				<li>
+					<div class="optns">
+						<div class="option_cont">
+							<a href="#">By You</a> |
+							<a href="#">Sent to You</a> 
+						</div>
+					</div>
+				</li>
+				<li>
+					<input type="checkbox" />
+					<a href="#"><img src="./images/user/priya.jpg" alt="" /></a>
+					<div class="int_head">
+						<a href="#" >Biju George</a>
+						<span>(She expressed interest on 22th October 2012)</span>
+					</div> 
+					<div class="pDetails">Chrishtian, R.c., 29 Years - 5' 4'', 167 cm</div>
+					<div class="pDetails">Ankamaly, Kerala, India</div>
+					<div class="pAction">You declined her interest on 25th October 2012</div>
+					<a href="#" class="type6 decline">Accept interest</a>
+				</li>
+				<li>
+					<input type="checkbox" />
+					<a href="#"><img src="./images/user/anu.jpg" alt="" /></a>
+					<div class="int_head">
+						<a href="#" >Biju George</a>
+						<span>(She expressed interest on 22th October 2012)</span>
+					</div> 
+					<div class="pDetails">Chrishtian, R.c., 29 Years - 5' 4'', 167 cm</div>
+					<div class="pDetails">Ankamaly, Kerala, India</div>
+					<div class="pAction">You declined her interest on 25th October 2012</div>
+					<a href="#" class="type6 decline">Accept interest</a>
+				</li>
+				<li>
+					<input type="checkbox" />
+					<a href="#"><img src="./images/user/interest_default.png" alt="" /></a>
+					<div class="int_head">
+						<a href="#" >Biju George</a>
+						<span>(You expressed interest on 22th October 2012)</span>
+					</div> 
+					<div class="pDetails">Chrishtian, R.c., 29 Years - 5' 4'', 167 cm</div>
+					<div class="pDetails">Ankamaly, Kerala, India</div>
+					<div class="pAction">She declined your interest on 25th October 2012</div>
+				</li>
+				<li>
+					<input type="checkbox" />
+					<a href="#"><img src="./images/user/athira.jpg" alt="" /></a>
+					<div class="int_head">
+						<a href="#" >Biju George</a>
+						<span>(She expressed interest on 22th October 2012)</span>
+					</div> 
+					<div class="pDetails">Chrishtian, R.c., 29 Years - 5' 4'', 167 cm</div>
+					<div class="pDetails">Ankamaly, Kerala, India</div>
+					<div class="pAction">You declined her interest on 25th October 2012</div>
+					<a href="#" class="type6 decline">Accept interest</a>
+				</li>
+				<li>
+					<input type="checkbox" />
+					<a href="#"><img src="./images/user/nayana.jpg" alt="" /></a>
+					<div class="int_head">
+						<a href="#" >Biju George</a>
+						<span>(You expressed interest on 22th October 2012)</span>
+					</div> 
+					<div class="pDetails">Chrishtian, R.c., 29 Years - 5' 4'', 167 cm</div>
+					<div class="pDetails">Ankamaly, Kerala, India</div>
+					<div class="pAction">She declined your interest on 25th October 2012</div>
+				</li>
+				<li>
+					<input type="checkbox" />
+					<a href="#"><img src="./images/user/interest_default.png" alt="" /></a>
+					<div class="int_head">
+						<a href="#" >Biju George</a>
+						<span>(You expressed interest on 22th October 2012)</span>
+					</div> 
+					<div class="pDetails">Chrishtian, R.c., 29 Years - 5' 4'', 167 cm</div>
+					<div class="pDetails">Ankamaly, Kerala, India</div>
+					<div class="pAction">She declined your interest on 25th October 2012</div>
+				</li>
+				<li>
+					<input type="checkbox" />
+					<a href="#"><img src="./images/user/priya.jpg" alt="" /></a>
+					<div class="int_head">
+						<a href="#" >Biju George</a>
+						<span>(She expressed interest on 22th October 2012)</span>
+					</div> 
+					<div class="pDetails">Chrishtian, R.c., 29 Years - 5' 4'', 167 cm</div>
+					<div class="pDetails">Ankamaly, Kerala, India</div>
+					<div class="pAction">You declined her interest on 25th October 2012</div>
+					<a href="#" class="type6 decline">Accept interest</a>
+				</li>
+				<li>
+					<input type="checkbox" />
+					<a href="#"><img src="./images/user/anu.jpg" alt="" /></a>
+					<div class="int_head">
+						<a href="#" >Biju George</a>
+						<span>(She expressed interest on 22th October 2012)</span>
+					</div> 
+					<div class="pDetails">Chrishtian, R.c., 29 Years - 5' 4'', 167 cm</div>
+					<div class="pDetails">Ankamaly, Kerala, India</div>
+					<div class="pAction">You declined her interest on 25th October 2012</div>
+					<a href="#" class="type6 decline">Accept interest</a>
+				</li>
+				<li>
+					<input type="checkbox" />
+					<a href="#"><img src="./images/user/interest_default.png" alt="" /></a>
+					<div class="int_head">
+						<a href="#" >Biju George</a>
+						<span>(You expressed interest on 22th October 2012)</span>
+					</div> 
+					<div class="pDetails">Chrishtian, R.c., 29 Years - 5' 4'', 167 cm</div>
+					<div class="pDetails">Ankamaly, Kerala, India</div>
+					<div class="pAction">She declined your interest on 25th October 2012</div>
+				</li>
+				<li>
+					<input type="checkbox" />
+					<a href="#"><img src="./images/user/athira.jpg" alt="" /></a>
+					<div class="int_head">
+						<a href="#" >Biju George</a>
+						<span>(She expressed interest on 22th October 2012)</span>
+					</div> 
+					<div class="pDetails">Chrishtian, R.c., 29 Years - 5' 4'', 167 cm</div>
+					<div class="pDetails">Ankamaly, Kerala, India</div>
+					<div class="pAction">You declined her interest on 25th October 2012</div>
+					<a href="#" class="type6 decline">Accept interest</a>
+				</li>
+				<li>
+					<input type="checkbox" />
+					<a href="#"><img src="./images/user/nayana.jpg" alt="" /></a>
+					<div class="int_head">
+						<a href="#" >Biju George</a>
+						<span>(You expressed interest on 22th October 2012)</span>
+					</div> 
+					<div class="pDetails">Chrishtian, R.c., 29 Years - 5' 4'', 167 cm</div>
+					<div class="pDetails">Ankamaly, Kerala, India</div>
+					<div class="pAction">She declined your interest on 25th October 2012</div>
+				</li>
+				<li>
+					<input type="checkbox" />
+					<a href="#"><img src="./images/user/interest_default.png" alt="" /></a>
+					<div class="int_head">
+						<a href="#" >Biju George</a>
+						<span>(You expressed interest on 22th October 2012)</span>
+					</div> 
+					<div class="pDetails">Chrishtian, R.c., 29 Years - 5' 4'', 167 cm</div>
+					<div class="pDetails">Ankamaly, Kerala, India</div>
+					<div class="pAction">She declined your interest on 25th October 2012</div>
+				</li>
+			</ul>
+			<!-- declined ends here -->
 		</div>
-
-               </div> 
-  <!--closing central profile details closing-->      
-              
-                <!--left-content closing-->
-                <!--left-content-->
-                
-                <div id="content-right-small-1">
-               	  <div class="div_r_1"><!--div_r-->
-
-<p class="text_20_gery"><a href="payment_benefits.html">Subscribe Now!</a><br />
-Only for</p>
-<div style="float:left; width:96%;"> 
-<img src="<?php echo Yii::app()->params['mediaUrl']; ?>/img_200.jpg" class="left"  border="0" style="width:100%;" />
-</div>
-<p class="text_20_gery">For 3 Months</p>
-
-<div class="clear"></div>
-               	  </div>
-              
-              </div></div>
- </div>
- 
-   <script type="text/javascript">
-$(document).ready(function() {
-
-	$('.rec-sub').click(function (){
-
-		if($(this).text() == 'Accept')
-		 {
-
-			 $('<input>').attr({
-				    type: 'hidden',
-				    id: 'sent',
-				    name: 'key',
-				    value: 'accept'
-				}).appendTo('#receiver');
-				  $('#receiver').submit(); 
-			 
-		 }	 	
-
-		 if($(this).text() == 'Decline')
-		 {
-
-			 $('<input>').attr({
-				    type: 'hidden',
-				    id: 'sent',
-				    name: 'key',
-				    value: 'decline'
-				}).appendTo('#receiver');
-				  $('#receiver').submit(); 
-			 
-		 }	
-		
-		
-	});
-	
-	 $('.selection').change(function () {
-
-		 if($(this).attr("checked")){
-			 $('input:checkbox').attr('checked','checked');
-		}else{ 
-			$('input:checkbox').removeAttr('checked');
-		}
-		 
-	 }); 	
-
-	 $('.case').change(function () {
-		$('.selection').attr("checked",false);
-		 });
-	 
-	 $('.recive').click(function (){
-		 var  allVal= [];
-		 if($("input:checkbox[name=user]:checked").length == 0)
-		 {
-			alert('Please select any one of profile to remove');
-			return false;
-		 }		 
-				 
-		 $("input:checkbox[name=user]:checked").each(function(){
-			 allVal.push($(this).val());
-		 });
-
-		 if($(this).text() == 'Accept')
-		 {
-
-			 $('<input>').attr({
-				    type: 'hidden',
-				    id: 'sent',
-				    name: 'key',
-				    value: 'accept'
-				}).appendTo('#interest');
-			 $('<input>').attr({
-				    type: 'hidden',
-				    id: 'userId',
-				    name: 'userId',
-				    value: allVal
-				}).appendTo('#interest');
-				  $('#interest').submit(); 
-			 
-		 }	 	
-
-		 if($(this).text() == 'Decline')
-		 {
-
-			 $('<input>').attr({
-				    type: 'hidden',
-				    id: 'sent',
-				    name: 'key',
-				    value: 'decline'
-				}).appendTo('#interest');
-			 $('<input>').attr({
-				    type: 'hidden',
-				    id: 'userId',
-				    name: 'userId',
-				    value: allVal
-				}).appendTo('#interest');
-				  $('#interest').submit(); 
-			 
-		 }	
-		 
-	 });
-		 //		
-});
-
-
-</script> 
- 
+		<div class="interstTab">
+			<div class="edit-option">
+				<div class="check">
+					<input type="checkbox" />
+					<span>Sellect All</span>
+				</div>
+				<div class="check">
+					<span><a href="#">Delete</a></span>
+				</div>
+			</div>
+		</div>
+    </section>
+      <?php $this->widget('application.widgets.menu.Rightmenu'); ?>
+  

@@ -79,31 +79,31 @@
         </ul>
         <ul class="left-bar-data">
             <li>
-				<a href="my-messages.htm" class="headLink ">Message </a>
+				<a href="<?php echo Utilities::createAbsoluteUrl('message','',array()); ?>" class="headLink ">Message </a>
 				<div class="dataCont">
 					<div class="row"><a href="<?php echo Utilities::createAbsoluteUrl('message','',array()); ?>" class="innLink">Inbox <?php echo count($user->messageReceiver); ?></a></div>
 					<div class="row"><a href="<?php echo Utilities::createAbsoluteUrl('message','sent',array()); ?>" class="innLink">Outbox <?php echo count($user->messageSender); ?></a></div>
-					<div class="row"><a href="<?php echo Utilities::createAbsoluteUrl('message','acknowledgment',array()); ?>" class="innLink">Delivery aknowledgement 10</a></div>
+					<div class="row"><a href="<?php echo Utilities::createAbsoluteUrl('message','acknowledgement',array()); ?>" class="innLink">Delivery aknowledgement 10</a></div>
 				</div>
 			</li>
         </ul>
 		<ul class="left-bar-data">
             <li>
-				<a href="my-requests.htm" class="headLink ">Request </a>
+				<a href="<?php echo Utilities::createAbsoluteUrl('request','sent',array()); ?>" class="headLink ">Request </a>
 				<div class="dataCont">
-					<div class="row"><a href="<?php echo Utilities::createAbsoluteUrl('user','request',array()); ?>" class="innLink">Sent 75</a></div>
-					<div class="row"><a href="<?php echo Utilities::createAbsoluteUrl('user','request',array()); ?>" class="innLink">Recieved 35</a></div>
-					<div class="row"><a href="<?php echo Utilities::createAbsoluteUrl('user','request',array()); ?>" class="innLink">Declined 25</a></div>
+					<div class="row"><a href="<?php echo Utilities::createAbsoluteUrl('request','sent',array()); ?>" class="innLink">Sent 75</a></div>
+					<div class="row"><a href="<?php echo Utilities::createAbsoluteUrl('request','receive',array()); ?>" class="innLink">Recieved 35</a></div>
+					<div class="row"><a href="<?php echo Utilities::createAbsoluteUrl('request','decline',array()); ?>" class="innLink">Declined 25</a></div>
 				</div>
 			</li>
         </ul>
 		<ul class="left-bar-data">
             <li>
-				<a href="my-interests.htm" class="headLink ">Interest </a>
+				<a href="<?php echo Utilities::createAbsoluteUrl('interest','sent',array()); ?>" class="headLink ">Interest </a>
 				<div class="dataCont">
 					<div class="row"><a href="<?php echo Utilities::createAbsoluteUrl('interest','sent',array()); ?>" class="innLink">Sent <?php echo count($user->interestSender); ?></a></div>
-					<div class="row"><a href="<?php echo Utilities::createAbsoluteUrl('interest','received',array()); ?>" class="innLink">Recieved <?php echo count($user->interestReceiver); ?></a></div>
-					<div class="row"><a href="<?php echo Utilities::createAbsoluteUrl('interest','declined',array()); ?>" class="innLink">Declined 25</a></div>
+					<div class="row"><a href="<?php echo Utilities::createAbsoluteUrl('interest','receive',array()); ?>" class="innLink">Recieved <?php echo count($user->interestReceiver); ?></a></div>
+					<div class="row"><a href="<?php echo Utilities::createAbsoluteUrl('interest','decline',array()); ?>" class="innLink">Declined 25</a></div>
 				</div>
 			</li>
         </ul>

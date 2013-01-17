@@ -1,129 +1,399 @@
-<!--main-content-->
-            <div id="main-content">
-            	<!--left-content-->
+<?php
+/*
+*
+* $Id$
+--------------------------------------------------------------------------------------------------------------------------
+* Information contained in this file is the intellectual property of Ladbrokes Plc
+* Copyright © 2012 MarryDorr. All Rights Reserved.
+* ---------------------------------------------------------------------------------------------------------------------------
+*
+* @author  Dileep Gopalan
+* @title index.php
+* @description <Description of this class>
+*  @filesource <URL>
+*  @version <Revision>
+*/
+?>
+      <?php $this->widget('application.widgets.menu.Leftmenu'); ?>
+<section class="data-contnr2">
+        <h1 class="mB10">Messages</h1>
+        <div class="interstTab">
+			<div class="edit-option">
+				<div class="check">
+					<input type="checkbox" />
+					<span>Sellect All</span>
+				</div>
+				<div class="check">
+					<span><a href="#">Delete</a></span>
+				</div>
+			</div>
+			<ul class="tab-head">
+				<li id="tab1">
+					<a id="tab1" href="#" class="select ">Inbox</a>
+				</li>
+				<li id="tab2"> 
+					<a id="tab2" href="#" >Outbox</a>
+				</li>
+				<li id="tab3">
+					<a id="tab3" href="#" style="width: 166px;">Delivery acknowledgement</a>
+				</li>
+			</ul>
+			<!--  inbox starts here -->
+			<ul id="tab1_data" class="tab-data" style="display: block;">
+				<li>
+					<input type="checkbox" />
+					<a href="#"><img src="./images/user/biju.jpg" alt="" /></a>
+					<a href="my-messages-conversation.htm" class="user_name">Biju George</a>
+					<div class="user_message">Your friends messages will show here. This is a test message..</div>
+					<div class="msge_data">
+						<a href="#" class="close"></a>
+						<div class="date">September 7</div>
+					</div>
+				</li>
+				<li class="unread">
+					<input type="checkbox" />
+					<a href="#"><img src="./images/user/amar.jpg" alt="" /></a>
+					<a href="my-messages-conversation.htm" class="user_name">Biju George</a>
+					<div class="user_message">Your friends messages will show here. This is a test message..</div>
+					<div class="msge_data">
+						<a href="#" class="close"></a>
+						<div class="date">September 7</div>
+					</div>
+				</li>
+				<li class="unread">
+					<input type="checkbox" />
+					<a href="#"><img src="./images/user/nayana.jpg" alt="" /></a>
+					<a href="my-messages-conversation.htm" class="user_name">Biju George</a>
+					<div class="user_message">Your friends messages will show here. This is a test message..</div>
+					<div class="msge_data">
+						<a href="#" class="close"></a>
+						<div class="date">September 7</div>
+					</div>
+				</li>
+				<li>
+					<input type="checkbox" />
+					<a href="#"><img src="./images/user/anu.jpg" alt="" /></a>
+					<a href="my-messages-conversation.htm" class="user_name">Biju George</a>
+					<div class="user_message">Your friends messages will show here. This is a test message..</div>
+					<div class="msge_data">
+						<a href="#" class="close"></a>
+						<div class="date">September 7</div>
+					</div>
+				</li>
+				<li>
+					<input type="checkbox" />
+					<a href="#"><img src="./images/user/ajith.jpg" alt="" /></a>
+					<a href="my-messages-conversation.htm" class="user_name">Biju George</a>
+					<div class="user_message">Your friends messages will show here. This is a test message..</div>
+					<div class="msge_data">
+						<a href="#" class="close"></a>
+						<div class="date">September 7</div>
+					</div>
+				</li>
+				<li class="unread">
+					<input type="checkbox" />
+					<a href="#"><img src="./images/user/athira.jpg" alt="" /></a>
+					<a href="my-messages-conversation.htm" class="user_name">Biju George</a>
+					<div class="user_message">Your friends messages will show here. This is a test message..</div>
+					<div class="msge_data">
+						<a href="#" class="close"></a>
+						<div class="date">September 7</div>
+					</div>
+				</li>
+				<li>
+					<input type="checkbox" />
+					<a href="#"><img src="./images/user/shef.jpg" alt="" /></a>
+					<a href="my-messages-conversation.htm" class="user_name">Biju George</a>
+					<div class="user_message">Your friends messages will show here. This is a test message..</div>
+					<div class="msge_data">
+						<a href="#" class="close"></a>
+						<div class="date">September 7</div>
+					</div>
+				</li>
+				<li>
+					<input type="checkbox" />
+					<a href="#"><img src="./images/user/priya.jpg" alt="" /></a>
+					<a href="my-messages-conversation.htm" class="user_name">Biju George</a>
+					<div class="user_message">Your friends messages will show here. This is a test message..</div>
+					<div class="msge_data">
+						<a href="#" class="close"></a>
+						<div class="date">September 7</div>
+					</div>
+				</li>
+				<li>
+					<input type="checkbox" />
+					<a href="#"><img src="./images/user/athira.jpg" alt="" /></a>
+					<a href="my-messages-conversation.htm" class="user_name">Biju George</a>
+					<div class="user_message">Your friends messages will show here. This is a test message..</div>
+					<div class="msge_data">
+						<a href="#" class="close"></a>
+						<div class="date">September 7</div>
+					</div>
+				</li>
+				<li>
+					<input type="checkbox" />
+					<a href="#"><img src="./images/user/interest_default.png" alt="" /></a>
+					<a href="my-messages-conversation.htm" class="user_name">Biju George</a>
+					<div class="user_message">Your friends messages will show here. This is a test message..</div>
+					<div class="msge_data">
+						<a href="#" class="close"></a>
+						<div class="date">September 7</div>
+					</div>
+				</li>
+				<li>
+					<input type="checkbox" />
+					<a href="#"><img src="./images/user/arun.jpg" alt="" /></a>
+					<a href="my-messages-conversation.htm" class="user_name">Biju George</a>
+					<div class="user_message">Your friends messages will show here. This is a test message..</div>
+					<div class="msge_data">
+						<a href="#" class="close"></a>
+						<div class="date">September 7</div>
+					</div>
+				</li>
+				<li>
+					<input type="checkbox" />
+					<a href="#"><img src="./images/user/interest_default.png" alt="" /></a>
+					<a href="my-messages-conversation.htm" class="user_name">Biju George</a>
+					<div class="user_message">Your friends messages will show here. This is a test message..</div>
+					<div class="msge_data">
+						<a href="#" class="close"></a>
+						<div class="date">September 7</div>
+					</div>
+				</li>
+				<li>
+					<input type="checkbox" />
+					<a href="#"><img src="./images/user/rans.jpg" alt="" /></a>
+					<a href="my-messages-conversation.htm" class="user_name">Biju George</a>
+					<div class="user_message">Your friends messages will show here. This is a test message..</div>
+					<div class="msge_data">
+						<a href="#" class="close"></a>
+						<div class="date">September 7</div>
+					</div>
+				</li>
+				<li>
+					<input type="checkbox" />
+					<a href="#"><img src="./images/user/nayana.jpg" alt="" /></a>
+					<a href="my-messages-conversation.htm" class="user_name">Biju George</a>
+					<div class="user_message">Your friends messages will show here. This is a test message..</div>
+					<div class="msge_data">
+						<a href="#" class="close"></a>
+						<div class="date">September 7</div>
+					</div>
+				</li>
+			</ul>
+			<!--  inbox ends here -->
+			<!--  outbox starts here -->
+			<ul id="tab2_data" class="tab-data" style="display: none;">
+				<li class="unread">
+					<input type="checkbox" />
+					<a href="#"><img src="./images/user/nayana.jpg" alt="" /></a>
+					<a href="my-messages-conversation.htm" class="user_name">Biju George</a>
+					<div class="sent_message">Your friends messages will show here. This is a test message..</div>
+					<div class="msge_data">
+						<a href="#" class="close"></a>
+						<div class="date">September 7</div>
+					</div>
+				</li>
+				<li>
+					<input type="checkbox" />
+					<a href="#"><img src="./images/user/anu.jpg" alt="" /></a>
+					<a href="my-messages-conversation.htm" class="user_name">Biju George</a>
+					<div class="sent_message">Your friends messages will show here. This is a test message..</div>
+					<div class="msge_data">
+						<a href="#" class="close"></a>
+						<div class="date">September 7</div>
+					</div>
+				</li>
+				<li>
+					<input type="checkbox" />
+					<a href="#"><img src="./images/user/ajith.jpg" alt="" /></a>
+					<a href="my-messages-conversation.htm" class="user_name">Biju George</a>
+					<div class="sent_message">Your friends messages will show here. This is a test message..</div>
+					<div class="msge_data">
+						<a href="#" class="close"></a>
+						<div class="date">September 7</div>
+					</div>
+				</li>
+				<li class="unread">
+					<input type="checkbox" />
+					<a href="#"><img src="./images/user/athira.jpg" alt="" /></a>
+					<a href="my-messages-conversation.htm" class="user_name">Biju George</a>
+					<div class="sent_message">Your friends messages will show here. This is a test message..</div>
+					<div class="msge_data">
+						<a href="#" class="close"></a>
+						<div class="date">September 7</div>
+					</div>
+				</li>
+				<li>
+					<input type="checkbox" />
+					<a href="#"><img src="./images/user/shef.jpg" alt="" /></a>
+					<a href="my-messages-conversation.htm" class="user_name">Biju George</a>
+					<div class="sent_message">Your friends messages will show here. This is a test message..</div>
+					<div class="msge_data">
+						<a href="#" class="close"></a>
+						<div class="date">September 7</div>
+					</div>
+				</li>
+				<li>
+					<input type="checkbox" />
+					<a href="#"><img src="./images/user/priya.jpg" alt="" /></a>
+					<a href="my-messages-conversation.htm" class="user_name">Biju George</a>
+					<div class="sent_message">Your friends messages will show here. This is a test message..</div>
+					<div class="msge_data">
+						<a href="#" class="close"></a>
+						<div class="date">September 7</div>
+					</div>
+				</li>
+				<li>
+					<input type="checkbox" />
+					<a href="#"><img src="./images/user/athira.jpg" alt="" /></a>
+					<a href="my-messages-conversation.htm" class="user_name">Biju George</a>
+					<div class="sent_message">Your friends messages will show here. This is a test message..</div>
+					<div class="msge_data">
+						<a href="#" class="close"></a>
+						<div class="date">September 7</div>
+					</div>
+				</li>
+				<li>
+					<input type="checkbox" />
+					<a href="#"><img src="./images/user/interest_default.png" alt="" /></a>
+					<a href="my-messages-conversation.htm" class="user_name">Biju George</a>
+					<div class="sent_message">Your friends messages will show here. This is a test message..</div>
+					<div class="msge_data">
+						<a href="#" class="close"></a>
+						<div class="date">September 7</div>
+					</div>
+				</li>
+				<li>
+					<input type="checkbox" />
+					<a href="#"><img src="./images/user/arun.jpg" alt="" /></a>
+					<a href="my-messages-conversation.htm" class="user_name">Biju George</a>
+					<div class="sent_message">Your friends messages will show here. This is a test message..</div>
+					<div class="msge_data">
+						<a href="#" class="close"></a>
+						<div class="date">September 7</div>
+					</div>
+				</li>
+				<li>
+					<input type="checkbox" />
+					<a href="#"><img src="./images/user/interest_default.png" alt="" /></a>
+					<a href="my-messages-conversation.htm" class="user_name">Biju George</a>
+					<div class="sent_message">Your friends messages will show here. This is a test message..</div>
+					<div class="msge_data">
+						<a href="#" class="close"></a>
+						<div class="date">September 7</div>
+					</div>
+				</li>
+				<li>
+					<input type="checkbox" />
+					<a href="#"><img src="./images/user/rans.jpg" alt="" /></a>
+					<a href="my-messages-conversation.htm" class="user_name">Biju George</a>
+					<div class="sent_message">Your friends messages will show here. This is a test message..</div>
+					<div class="msge_data">
+						<a href="#" class="close"></a>
+						<div class="date">September 7</div>
+					</div>
+				</li>
+				<li>
+					<input type="checkbox" />
+					<a href="#"><img src="./images/user/nayana.jpg" alt="" /></a>
+					<a href="my-messages-conversation.htm" class="user_name">Biju George</a>
+					<div class="sent_message">Your friends messages will show here. This is a test message..</div>
+					<div class="msge_data">
+						<a href="#" class="close"></a>
+						<div class="date">September 7</div>
+					</div>
+				</li>
+			</ul>
+			<!--  outbox ends here -->
+			<!--  acknoledge starts here -->
+			<ul id="tab3_data" class="tab-data" style="display: none;">
+				<li>
+					<input type="checkbox" />
+					<a href="#"><img src="./images/user/anu.jpg" alt="" /></a>
+					<a href="my-messages-conversation.htm" class="user_name">Biju George</a>
+					<div class="user_message">She saw your message on 07/07/12 7.30 pm</div>
+					<div class="msge_data">
+						<a href="#" class="close"></a>
+					</div>
+				</li>
+				<li>
+					<input type="checkbox" />
+					<a href="#"><img src="./images/user/nayana.jpg" alt="" /></a>
+					<a href="my-messages-conversation.htm" class="user_name">Biju George</a>
+					<div class="user_message">She saw your message on 07/07/12 7.30 pm</div>
+					<div class="msge_data">
+						<a href="#" class="close"></a>
+					</div>
+				</li>
+				<li>
+					<input type="checkbox" />
+					<a href="#"><img src="./images/user/priya.jpg" alt="" /></a>
+					<a href="my-messages-conversation.htm" class="user_name">Biju George</a>
+					<div class="user_message">She saw your message on 07/07/12 7.30 pm</div>
+					<div class="msge_data">
+						<a href="#" class="close"></a>
+					</div>
+				</li>
+				<li>
+					<input type="checkbox" />
+					<a href="#"><img src="./images/user/athira.jpg" alt="" /></a>
+					<a href="my-messages-conversation.htm" class="user_name">Biju George</a>
+					<div class="user_message">She saw your message on 07/07/12 7.30 pm</div>
+					<div class="msge_data">
+						<a href="#" class="close"></a>
+					</div>
+				</li>
+				<li>
+					<input type="checkbox" />
+					<a href="#"><img src="./images/user/nayana.jpg" alt="" /></a>
+					<a href="my-messages-conversation.htm" class="user_name">Biju George</a>
+					<div class="user_message">She saw your message on 07/07/12 7.30 pm</div>
+					<div class="msge_data">
+						<a href="#" class="close"></a>
+					</div>
+				</li>
+				<li>
+					<input type="checkbox" />
+					<a href="#"><img src="./images/user/priya.jpg" alt="" /></a>
+					<a href="my-messages-conversation.htm" class="user_name">Biju George</a>
+					<div class="user_message">She saw your message on 07/07/12 7.30 pm</div>
+					<div class="msge_data">
+						<a href="#" class="close"></a>
+					</div>
+				</li>
+				<li>
+					<input type="checkbox" />
+					<a href="#"><img src="./images/user/anu.jpg" alt="" /></a>
+					<a href="my-messages-conversation.htm" class="user_name">Biju George</a>
+					<div class="user_message">She saw your message on 07/07/12 7.30 pm</div>
+					<div class="msge_data">
+						<a href="#" class="close"></a>
+					</div>
+				</li>
+				<li>
+					<input type="checkbox" />
+					<a href="#"><img src="./images/user/nayana.jpg" alt="" /></a>
+					<a href="my-messages-conversation.htm" class="user_name">Biju George</a>
+					<div class="user_message">She saw your message on 07/07/12 7.30 pm</div>
+					<div class="msge_data">
+						<a href="#" class="close"></a>
+					</div>
+				</li>
+			</ul>
+			<!--  acknoledge ends here -->
+		</div>
+		<div class="interstTab">
+			<div class="edit-option">
+				<div class="check">
+					<input type="checkbox" />
+					<span>Sellect All</span>
+				</div>
+				<div class="check">
+					<span><a href="#">Delete</a></span>
+				</div>
+			</div>
+		</div>
+    </section>
+      <?php $this->widget('application.widgets.menu.Rightmenu'); ?>
   
-    
-        <!-- left menu -->
-        <?php $this->widget('application.widgets.menu.Leftmenu'); ?>
-        <!-- /left menu -->
-  <!--center profile details closing--> 
-  			<div id="content-right-02"> 
-              <div class="div_mdla">
-             <div class="line_sm"></div>
-			  
-			
- <p class="text_pink-hd">Acknowledgement Received</p>
- <div class="space-35px"><p>&nbsp;<br /><br /></p></div>
-  
-            
-              
-              <div style="float:right">
-             
-             <a class="recive" href="<?php echo Utilities::createAbsoluteUrl('message','index');?>">Recived</a>
-
-              <a class="sm-send" href="<?php echo Utilities::createAbsoluteUrl('message','sent');?>">Sent</a>
-                          <a class="acknl" href="<?php echo Utilities::createAbsoluteUrl('message','acknowledgement');?>">Delivery Acknowledgement</a>
-
-             
-             
-             
-             </div>
-                <div class="left">
-                <INPUT type="checkbox" name="select" >
-                <span class="bullettext_select">&nbsp;Select all&nbsp;</span>
-                <span class="bullettext_select">&nbsp;<a href="#">Delete</a></span>                </div>
-                              <div class="clear"></div>
-                              <div class="line"></div>
-                            
-                <div class="space-15px">&nbsp;</div>
-                              <div class="clear"></div>
-                <?php if(!empty($message)):?>              
-                 <?php foreach($message as $message):?>              
-                <!--div_msg_fullbox-->   <div class="msgbox-full_large">
-                <div style="float:left; padding-right:5px;">
-                 <INPUT type="checkbox" name="select" class="checkicon">
-                 </div>
-                 <div style="float:left;">
-                <a href="<?php echo Utilities::createAbsoluteUrl('album','index',array('mId' => $message['senderMarryId']));?>"> <img src="<?php echo Utilities::getProfileImage($message['senderMarryId'],$message['senderImageName']) ?>" height="60" width="40"  border="0"/></a>
-                 </div>
-                  <div style="float:left; padding:5px 0px 0px 10px;">
-                 <p> <span class="text_blue_b"><a href="<?php echo Utilities::createAbsoluteUrl('mypage','index');?>"><?php echo $message['senderName']; ?></a></span></p>
-                  <p class="txt_rg"><?php echo $message['message']; ?></p>
- <p class="innersidelinks-still-l0"><?php echo Utilities::getTimeDuration($message['sendDate']); ?></p>
-                  </div>
-                  
-                  <a class="replay" href="#">Replay</a>
-           
-                  
-                  <div class="clear"></div>
-                  
-              
-                  
-                 </div>
-                 
-              <div class="clear"></div>             
-               <?php endforeach;?>  
-               <?php else: ?>  
-                 <!--div_msg_fullbox-->   <div class="msgbox-full_large">
-                 	<?php echo Yii::t('error','noMessages'); ?>
-                 </div>
-               <?php endif;?>
-                 
-                  <div class="left">
-                <INPUT type="checkbox" name="select" >
-                <span class="bullettext_select">&nbsp;Select all&nbsp;</span>
-                <span class="bullettext_select">&nbsp;<a href="#">Delete</a></span>  </div>
-             
-              <div style="float:right">
-             
-             <a class="recive" href="<?php echo Utilities::createAbsoluteUrl('message','index');?>">Recived</a>
-
-              <a class="sm-send" href="<?php echo Utilities::createAbsoluteUrl('message','sent');?>">Sent</a>
-                          <a class="acknl" href="<?php echo Utilities::createAbsoluteUrl('message','acknowledgement');?>">Delivery Acknowledgement</a>
-             
-             
-             </div>
-                 
-                 
-                 
-                      
-                 
-                 
-               <!--div_closing_msg_fullbox-->    
-                 <div class="clear"></div>
-                    
-                    
-              </div><!--div_closing_msg_fullbox--><!--div_closing_msg_fullbox--><!--div_closing_msg_fullbox--><!--div_closing_msg_fullbox--> 
-                     
-                       
-                       
-
-              <div class="space-35px"></div>
-  			</div> 
-  <!--closing central profile details closing-->      
-              
-                <!--left-content closing-->
-                <!--left-content-->
-                
-                <div id="content-right-small-1">
-               	  <div class="div_r_1"><!--div_r-->
-
-<p class="text_20_gery"><a href="payment_benefits.html">Subscribe Now!</a><br />
-Only for</p>
-
-  <div class="div_ww"> 
-<img src="images/img_200.jpg" class="left" style="width:100%;"  border="0"/>
-</div>
-
-<p class="text_20_gery">For 3 Months</p>
-
-
-<div class="clear"></div>
-               	  </div>
-              
-              </div></div>
-                <p class="clear">&nbsp;</p>
-                
-                <!--right-content closing-->
-</div>
-            <!--main-content closing-->
