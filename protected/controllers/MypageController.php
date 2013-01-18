@@ -245,4 +245,9 @@ class MypageController extends Controller
 	{
 		$this->render('settings');
 	}
+	
+	public function actionHighlightprofile()
+	{
+		$this->render('highlightprofile');
+	}
 }
