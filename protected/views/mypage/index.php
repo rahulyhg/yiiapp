@@ -8,22 +8,6 @@
 * ---------------------------------------------------------------------------------------------------------------------------
 *
 * @author  Ageesh K Gopinath
-* @title index.php
-* @description <Description of this class>
-*  @filesource <URL>
-*  @version <Revision>
-*/
-?>
-<?php
-/*
-*
-* $Id$
---------------------------------------------------------------------------------------------------------------------------
-* Information contained in this file is the intellectual property of MarryDoor Plc
-* Copyright © 2012 MarryDorr. All Rights Reserved.
-* ---------------------------------------------------------------------------------------------------------------------------
-*
-* @author  Ageesh K Gopinath
 * @title mypage.php
 * @description <Description of this class>
 *  @filesource <URL>
@@ -39,7 +23,7 @@
 				<a class="type4 " href="highlight-profile.htm">HIGHLIGHT YOUR PROFILE</a>
 			</div>
 			<div class="profileR">
-				<div class="image-contnrs">
+				<!--<div class="image-contnrs">
 					<a href="#"><img alt="" src="./images/user/thumbnail.jpg"></a>
 					<div class="img-controls">
 						<a class="prev" href="#"></a>
@@ -48,7 +32,8 @@
 						</div>
 						<a class="next" href="#"></a>
 					</div>
-				</div>
+				</div>-->
+				<?php $this->widget('application.widgets.Profilepicture',array('userId'=>1)); ?> 
 				<div class="profile-detail">
 					<ul class="details-contnrs">
 						<li>
