@@ -8,6 +8,7 @@
  * @property string $userId
  * @property string $imageName
  * @property integer $profileImage
+ * @property integer $active
  *
  * The followings are the available model relations:
  * @property Users $user
@@ -40,12 +41,12 @@ class Photos extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('profileImage', 'numerical', 'integerOnly'=>true),
+			array('profileImage, active', 'numerical', 'integerOnly'=>true),
 			array('userId', 'length', 'max'=>20),
 			array('imageName', 'length', 'max'=>100),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('photoId, userId, imageName, profileImage', 'safe', 'on'=>'search'),
+			array('photoId, userId, imageName, profileImage, active', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -71,6 +72,7 @@ class Photos extends CActiveRecord
 			'userId' => 'User',
 			'imageName' => 'Image Name',
 			'profileImage' => 'Profile Image',
+			'active' => 'Active',
 		);
 	}
 
@@ -89,6 +91,7 @@ class Photos extends CActiveRecord
 		$criteria->compare('userId',$this->userId,true);
 		$criteria->compare('imageName',$this->imageName,true);
 		$criteria->compare('profileImage',$this->profileImage);
+		$criteria->compare('active',$this->active);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
