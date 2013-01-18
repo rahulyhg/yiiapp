@@ -233,12 +233,12 @@ class MypageController extends Controller
 	
 	public function actionShortlist()
 	{
-		$this->render('shortlist');
+		$this->forward('//shortlist/index');
 	}
 	
 	public function actionBookmark()
 	{
-		$this->render('bookmark');
+		$this->forward('//bookmark/index');
 	}
 	
 	public function actionSettings()

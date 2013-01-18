@@ -44,6 +44,7 @@ class SiteController extends Controller
 	 */
 	public function actionIndex()
 	{
+		Yii::app()->params['loginError'] = NULL;
 		$searchModel = new SearchForm();
 		$model = new UserForm();
 		$this->render('//user/register',array('model'=>$model,'searchModel' =>$searchModel));
@@ -104,6 +105,7 @@ class SiteController extends Controller
 			// validate user input and redirect to the previous page if valid
 			if($model->login())
 			{
+				Yii::app()->params['loginError'] = NULL;
 				$user = Yii::app()->session->get('user');
 				$userloggeddetails = new Userloggeddetails();
 				$userloggeddetails->userId = $user->userId;
@@ -113,9 +115,10 @@ class SiteController extends Controller
 			}
 			else
 			{	
+				Yii::app()->params['loginError'] = true;
 				$searchModel = new SearchForm();
 				$model = new UserForm();
-				$this->render('//user/register',array('model'=>$model,'searchModel' =>$searchModel,"loginError"=>"true"));
+				$this->render('//user/register',array('model'=>$model,'searchModel' =>$searchModel,'loginError'=>UserIdentity::ERROR_USERNAME_INVALID));
 				
 			}
 		}

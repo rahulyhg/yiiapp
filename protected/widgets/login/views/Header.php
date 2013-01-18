@@ -22,6 +22,7 @@
   			   <div class="welcome-message">Welcome Guest!</div>
 			  			
         <div class="user-login">
+        <?php   if ( isset(Yii::app()->params['loginError']) && !empty(Yii::app()->params['loginError']) ) echo "Invalid user credentials";?>
 <?php echo CHtml::beginForm(Yii::app()->createUrl('site/login'),'post',array('name'=>'LoginForm','id'=>'LoginForm'));?>
 			<div class="login-contnr">
 				<p>E-Mail / User ID</p>

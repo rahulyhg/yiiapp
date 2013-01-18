@@ -20,6 +20,6 @@ class Profilepicture extends CWidget
     {
         $photos = new Photos();
 		$this->photosList = $photos->findAll('userId='.$this->userId.' and active=1 order by profileImage');
-		$this->renderFile(dirname(__FILE__)  . DIRECTORY_SEPARATOR . 'views' . DIRECTORY_SEPARATOR .'Profilepicture.php', array('photosList' => $this->photosList));
+		$this->renderFile(dirname(__FILE__)  . DIRECTORY_SEPARATOR . 'views' . DIRECTORY_SEPARATOR .'Profilepicture.php', array('photosList' => $this->photosList,'userId'=>$this->userId));
     }
 }
