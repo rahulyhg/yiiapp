@@ -237,6 +237,7 @@ class SearchController extends Controller
 		}
 		
 		$saveSearch->userId = $user->userId;
+		$user->saveSearch->deleteAll();
 		$user->saveSearch = $saveSearch;
 		$user->saveSearch->save();
 		$this->render('regular');

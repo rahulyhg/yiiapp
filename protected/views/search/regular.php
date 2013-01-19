@@ -263,7 +263,7 @@
 									<span>Save Your Search</span>
 								</div>
 								<div class="row">
-									<input type="text" id="searchName" name="searchName" placeholder="Mysearch1" />
+									<input type="text" id="rsearchName" name="searchName" placeholder="Mysearch1" />
 								</div>
 								<div class="row" id="rsearchSubmit" >
 									<a class="type5" href="#">Save </a>
@@ -750,10 +750,15 @@ $(document).ready(function() {
 
 	$('#rsearchSubmit').click(function() {
 		$("#regularSearch").attr("action","/search/save");
+		if($('#rsearchName').val().length == 0)
+		{
+		$('#rsearchName').validationEngine('showPrompt', 'Please enter name to save search', 'error', true);
+		return false;
+		}
 		$('<input>').attr({
 		    type: 'hidden',
 		    name: 'searchName',
-		    value: $('#searchName').val(),
+		    value: $('#rsearchName').val(),
 		}).appendTo('#regularSearch');
 		$("#regularSearch").submit();
 		$('#rsaveBox').hide();
@@ -761,6 +766,11 @@ $(document).ready(function() {
 
 	$('#advSearch').click(function() {
 	$("#advanceSearch").attr("action","/search/save");
+	if($('#searchName').val().length == 0)
+	{
+	$('#searchName').validationEngine('showPrompt', 'Please enter name to save search', 'error', true);
+	return false;
+	}
 	$('<input>').attr({
 	    type: 'hidden',
 	    name: 'searchName',
@@ -775,6 +785,10 @@ $(document).ready(function() {
 		$('#searchButtons').hide();
 			
 	});
+
+	$("#advanceSearch").validationEngine('attach');
+	$("#regularSearch").validationEngine('attach');
+	
 	
 });
 

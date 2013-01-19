@@ -33,11 +33,6 @@
                 <li><span class="pre"><a href="#">Previous</a></span></li>
                 <li><span class="last"><a href="#">Last</a></span></li>
             </ul>
-            <input type="hidden" value="<?php echo $totalPage?>" name="totalPage" />
-          <input type="hidden" value="1" name="currentPage" />
-          <input type="hidden" value="<?php echo $totalUser ?>" name="user" />
-          <input type="hidden" value="1" name="firstPage" />
-           <input type="hidden" value="<?php echo $totalPage?>" name="lastPage" />
                  <?php } ?> 
         </div>
         <?php }?>
