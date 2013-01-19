@@ -320,7 +320,12 @@ class Utilities
 	
 	public static function getProfileImage($marryId,$imageName){
 		if($imageName != ''){
-			return Yii::app()->params['mediaUrl']."/profile/".$marryId."/".$imageName;
+			$file = Yii::app()->params['mediaUrl']."/profile/".$marryId."/".$imageName;
+			if (file_exists($file)){
+				return $file;
+			}else{
+				return Yii::app()->params['mediaUrl']."/profile/noimage.jpg";
+			}
 		}else{
 			return Yii::app()->params['mediaUrl']."/profile/noimage.jpg";
 		}
@@ -328,14 +333,24 @@ class Utilities
 	
 	public static function getAlbumImage($marryId,$imageName){
 		if($imageName != ''){
-			return Yii::app()->params['mediaUrl']."/album/".$marryId."/".$imageName;
+			$file = Yii::app()->params['mediaUrl']."/album/".$marryId."/".$imageName;
+			if (file_exists($file)){
+				return $file;
+			}else{
+				return Yii::app()->params['mediaUrl']."/profile/noimage.jpg";
+			}
 		}else{
 			return Yii::app()->params['mediaUrl']."/profile/noimage.jpg";
 		}
 	}
 	public static function getDocumentImage($marryId,$imageName){
 		if($imageName != ''){
-			return Yii::app()->params['mediaUrl']."/documents/".$marryId."/".$imageName;
+			$file = Yii::app()->params['mediaUrl']."/documents/".$marryId."/".$imageName;
+			if (file_exists($file)){
+				return $file;
+			}else{
+				return Yii::app()->params['mediaUrl']."/profile/noimage.jpg";
+			}
 		}else{
 			return Yii::app()->params['mediaUrl']."/profile/noimage.jpg";
 		}
@@ -422,16 +437,16 @@ class Utilities
  
  public static function getAnnualIncome()
  {
-return array('49'=>'Belove 50000','50'=>'50000','60'=>'60000','70'=>'70000',
-'80'=>'80000','90'=>'90000','110'=>'110000','120'=>'120000','130'=>'130000'
-,'140'=>'140000','150'=>'150000','160'=>'160000','170'=>'170000','180'=>'180000',
-'190'=>'190000','200'=>'2 Lakhs','250'=>'2.5 lakhs','300'=>'3 Lakhs','400'=>'4 Lakhs',
-'500'=>'5 Lakhs','600'=>'6 Lakhs','700'=>'7 Lakhs','800'=>'8 Lakhs','900'=>'9 Lakhs',
-'1000'=>'10 Lakhs','1200'=>'12 Lakhs','1400'=>'14 Lakhs','1600'=>'16 Lakhs','1800'=>'18 Lakhs',
-'2000'=>'20 Lakhs','2500'=>'25 Lakhs','3000'=>'30 Lakhs','3500'=>'35 Lakhs','4000'=>'40 Lakhs',
-'4500'=>'45 Lakhs','5000'=>'50 Lakhs','5500'=>'55 Lakhs','6000'=>'60 Lakhs','6500'=>'65 Lakhs',
-'7000'=>'70 Lakhs','7500'=>'75 Lakhs','8000'=>'80 Lakhs','8500'=>'85 Lakhs','9000'=>'90 Lakhs',
-'9500'=>'95 Lakhs','10000'=>'1 crore','10001'=>'Above 1 crore');
+	return array('49'=>'Belove 50000','50'=>'50000','60'=>'60000','70'=>'70000',
+	'80'=>'80000','90'=>'90000','110'=>'110000','120'=>'120000','130'=>'130000'
+	,'140'=>'140000','150'=>'150000','160'=>'160000','170'=>'170000','180'=>'180000',
+	'190'=>'190000','200'=>'2 Lakhs','250'=>'2.5 lakhs','300'=>'3 Lakhs','400'=>'4 Lakhs',
+	'500'=>'5 Lakhs','600'=>'6 Lakhs','700'=>'7 Lakhs','800'=>'8 Lakhs','900'=>'9 Lakhs',
+	'1000'=>'10 Lakhs','1200'=>'12 Lakhs','1400'=>'14 Lakhs','1600'=>'16 Lakhs','1800'=>'18 Lakhs',
+	'2000'=>'20 Lakhs','2500'=>'25 Lakhs','3000'=>'30 Lakhs','3500'=>'35 Lakhs','4000'=>'40 Lakhs',
+	'4500'=>'45 Lakhs','5000'=>'50 Lakhs','5500'=>'55 Lakhs','6000'=>'60 Lakhs','6500'=>'65 Lakhs',
+	'7000'=>'70 Lakhs','7500'=>'75 Lakhs','8000'=>'80 Lakhs','8500'=>'85 Lakhs','9000'=>'90 Lakhs',
+	'9500'=>'95 Lakhs','10000'=>'1 crore','10001'=>'Above 1 crore');
  }
  
  

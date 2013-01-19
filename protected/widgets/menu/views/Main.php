@@ -5,16 +5,16 @@
 				<div class="sub" style="display:none">
 					<div class="arrow"></div>
 					<div class="data wid140">
-						<a class="width100" href="my-contact.htm">Contact Details</a>
-						<a class="width100" href="my-reference-contact.htm">My Reference</a>
-						<a class="width100" href="my-documents.htm">My Documents</a>
-						<a class="width100" href="shortlisted-profiles.htm">Shortlist</a>
-						<a class="width100" href="bookmarked-profiles.htm">Bookmarks</a>
-						<a class="width100" href="my-addressbook.htm">My Address Book</a>
-						<a class="width100" href="my-partner-preferance.htm">Partner preference</a>
-						<a class="width100" href="payment-summery.htm">My Payment summury</a>
-						<a class="width100" href="my-account.htm">My Account</a>
-						<a class="width100" href="my-settings.htm">Privacy settings</a>
+						<a class="width100" href="<?php echo Utilities::createAbsoluteUrl('contact','index')?>">Contact Details</a>
+						<a class="width100" href="<?php echo Utilities::createAbsoluteUrl('contact','reference')?>">My Reference</a>
+						<a class="width100" href="<?php echo Utilities::createAbsoluteUrl('mypage','document')?>">My Documents</a>
+						<a class="width100" href="<?php echo Utilities::createAbsoluteUrl('shortlist','index')?>">Shortlist</a>
+						<a class="width100" href="<?php echo Utilities::createAbsoluteUrl('bookmark','index')?>">Bookmarks</a>
+						<a class="width100" href="<?php echo Utilities::createAbsoluteUrl('addressbook','index')?>">My Address Book</a>
+						<a class="width100" href="<?php echo Utilities::createAbsoluteUrl('mypage','partnerpreference')?>">Partner preference</a>
+						<a class="width100" href="<?php echo Utilities::createAbsoluteUrl('mypage','payment')?>">My Payment summury</a>
+						<a class="width100" href="<?php echo Utilities::createAbsoluteUrl('mypage','myaccount')?>">My Account</a>
+						<a class="width100" href="<?php echo Utilities::createAbsoluteUrl('mypage','settings')?>">Privacy settings</a>
 						<a class="width100" href="my-settings.htm">Deactivate account</a>
 						<a class="width100" href="my-settings.htm">Delete account</a>
 					</div>

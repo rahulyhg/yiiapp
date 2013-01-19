@@ -250,4 +250,9 @@ class MypageController extends Controller
 	{
 		$this->render('highlightprofile');
 	}
+	
+	public function actionPartnerpreference()
+	{
+		$this->render('partnerpreference');
+	}
 }
