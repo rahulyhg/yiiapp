@@ -34,16 +34,7 @@
   $index = 0;
   foreach ($highLight as $value) { ?>
             <div <?php if($index > 1) echo "id='high{$index}'";?> class="profile">
-                <div class="image-contnr">
-                    <a href="#"><img src="http://marrydoor.com/images/user/ajith.jpg" alt="" /></a>
-                    <div class="img-controls">
-                        <a href="#" class="prev"></a>
-                        <div class="numbers">
-                            <span>1</span> of <span>6</span>
-                        </div>
-                        <a href="#" class="next"></a>
-                    </div>
-                </div>
+                <?php $this->widget('application.widgets.Profilepicture',array($value->userId)); ?>
                 <div class="profile-details">
                     <ul class="details-contnr">
                         <li>
@@ -136,16 +127,7 @@
   	foreach ($normal as $value) { ?>
             <div  id="<?php echo 'normal'.$index1?>" class="profile" <?php if(intval($totalPage) > 1 && $index1 > 10 ) {?> style="display:none" <?php }?>>
                 <div class="check-contnr"><input type="checkbox" /> Select</div>
-                <div class="image-contnr">
-                    <a href="#"><img src="http://marrydoor.com/images/user/ajith.jpg" alt="" /></a>
-                    <div class="img-controls">
-                        <a href="#" class="prev"></a>
-                        <div class="numbers">
-                            <span>1</span> of <span>6</span>
-                        </div>
-                        <a href="#" class="next"></a>
-                    </div>
-                </div>
+                <?php $this->widget('application.widgets.Profilepicture',array($value->userId)); ?>
                 <div class="profile-details">
                     <ul class="details-contnr">
                         <li>

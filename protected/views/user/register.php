@@ -50,16 +50,22 @@
 				<div class="right">
 				<?php $records = Religion::model()->findAll("active = 1");
 		$list = CHtml::listData($records, 'religionId', 'name');
-		echo CHtml::dropDownList('religion',null,$list,array('empty' => 'Religion','class'=>'validate[required] width60')); ?>
+		echo CHtml::dropDownList('religion',null,$list,array('empty' => 'Religion','class'=>'validate[required] width90','id'=>'sReligion','ajax' => array(
+                        'type'=>'POST',
+                        'url'=>CController::createUrl('Ajax/updateCaste'), 
+                        'dataType'=>'json',
+                        'data'=>array('religionId'=>'js:this.value'),  
+                        'success'=>'function(data) {
+                            $("#uCaste").html(data.dropDownCastes);
+                        }',
+            ))); ?>
 		<?php echo $form->error($model,'religion'); ?>
 				</div>
 			</li>
 			<li>
 				<div class="left"><?php echo $form->labelEx($model,'caste'); ?></div>
 				<div class="right">
-				<?php $records = Caste::model()->findAll("active = 1");
-		$list = CHtml::listData($records, 'casteId', 'name');
-		echo CHtml::dropDownList('caste',null,$list,array('empty' => 'Caste','class'=>'validate[required] width60')); ?>
+	<?php 		echo CHtml::dropDownList('caste','',array(),array('prompt' => 'Caste','id'=>'uCaste','class'=>'validate[required] width60')); ?>
 		<?php echo $form->error($model,'caste'); ?>
 				</div>
 			</li>
@@ -68,7 +74,17 @@
 				<div class="right">
 				<?php $records = Country::model()->findAll("active = 1");
 		$list = CHtml::listData($records, 'countryId', 'name');
-		echo CHtml::dropDownList('country',null,$list,array('empty' => 'Country','class'=>'validate[required] width60')); ?>
+		echo CHtml::dropDownList('country',null,$list,array('empty' => 'Country','class'=>'validate[required] width60','ajax' => array(
+                        'type'=>'POST',
+                        'url'=>CController::createUrl('Ajax/updateState'), 
+                        'dataType'=>'json',
+                        'data'=>array('countryId'=>'js:this.value'),  
+                        'success'=>'function(data) {
+                            $("#state").html(data.dropDownStates);
+                        }',
+            )
+		
+		)); ?>
 		<?php echo $form->error($model,'country'); ?>
 				</div>
 			</li>
@@ -77,7 +93,7 @@
 				<div class="right">
 				<?php $records = States::model()->findAll("active = 1");
 		$list = CHtml::listData($records, 'stateId', 'name');
-		echo CHtml::dropDownList('state',null,$list,array('empty' => 'State','class'=>'validate[required] width60')); ?>
+		echo CHtml::dropDownList('state',null,$list,array('prompt' => 'State','class'=>'validate[required] width60')); ?>
 		<?php echo $form->error($model,'state'); ?>
 				</div>
 			</li>
@@ -176,7 +192,15 @@
 				<div class="right">
 				<?php $records = Religion::model()->findAll("active = 1");
 		$list = CHtml::listData($records, 'religionId', 'name');
-		echo CHtml::dropDownList('religion',null,$list,array('empty' => 'Religion','class'=>'width90')); ?>
+		echo CHtml::dropDownList('religion',null,$list,array('empty' => 'Religion','class'=>'width90','ajax' => array(
+                        'type'=>'POST',
+                        'url'=>CController::createUrl('Ajax/updateCaste'), 
+                        'dataType'=>'json',
+                        'data'=>array('religionId'=>'js:this.value'),  
+                        'success'=>'function(data) {
+                            $("#sCaste").html(data.dropDownCastes);
+                        }',
+            ))); ?>
 		<?php echo $searchForm->error($searchModel,'religion'); ?>
 				</div>
 			</li>
@@ -184,9 +208,8 @@
 				<div class="left"><?php echo $searchForm->labelEx($searchModel,'caste'); ?></div>
 				<div class="right">
 				
-		<?php $records = Caste::model()->findAll("active = 1");
-		$list = CHtml::listData($records, 'casteId', 'name');
-		echo CHtml::dropDownList('caste',null,$list,array('empty' => 'Caste','class'=>'width90')); ?>
+		<?php 
+		echo CHtml::dropDownList('caste','',array(),array('prompt' => 'Caste','id'=>'sCaste','class'=>'width90')); ?>
 		<?php echo $searchForm->error($searchModel,'caste'); ?>
 				</div>
 			</li>
@@ -195,17 +218,25 @@
 				<div class="right">
 				<?php $records = States::model()->findAll("active = 1");
 		$list = CHtml::listData($records, 'stateId', 'name');
-		echo CHtml::dropDownList('state',null,$list,array('empty' => 'State','class'=>'width90')); ?>
+		echo CHtml::dropDownList('state',null,$list,array('empty' => 'State','class'=>'width90','ajax' => array(
+                        'type'=>'POST',
+                        'url'=>CController::createUrl('Ajax/updateDistrict'), 
+                        'dataType'=>'json',
+                        'data'=>array('stateId'=>'js:this.value'),  
+                        'success'=>'function(data) {
+                            $("#district").html(data.dropDownDist);
+                        }',
+            ))); ?>
 		<?php echo $searchForm->error($searchModel,'state'); ?>
 				</div>
 			</li>
 			<li>
 				<div class="left"><?php echo $searchForm->labelEx($searchModel,'district'); ?></div>
 				<div class="right">
-				<?php $records = Districts::model()->findAll("active = 1");
-		$list = CHtml::listData($records, 'districtId', 'name');
-		echo CHtml::dropDownList('district',null,$list,array('empty' => 'District','class'=>'width90')); ?>
-		<?php echo $searchForm->error($searchModel,'district'); ?>
+				<?php 
+					
+					echo CHtml::dropDownList('district',null,array(),array('prompt' => 'District','class'=>'width90')); ?>
+					<?php echo $searchForm->error($searchModel,'district'); ?>
 				</div>
 			</li>
 			<li>
@@ -363,7 +394,9 @@ async: false
 
 function checkMobile(field, rules, i, options){
 
-	
+	 if ($('#UserForm_mobileNo').val() == 0) {
+			return true;
+		}
 	var sAvailable = 'This mobile number is available.';
 	var sUnavailable = 'This mobile number is already used. Please try another.';
 	var mobile = false;		

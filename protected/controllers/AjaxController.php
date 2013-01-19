@@ -8,7 +8,7 @@ class AjaxController extends Controller
         {
                 $user = Yii::app()->session->get('user');
                 
-                if($action->id == 'useremail' || $action->id == 'usermobile')
+                if($action->id == 'useremail' || $action->id == 'usermobile' || $action->id == 'updateCaste' || $action->id == 'updateState' || $action->id == 'updateDistrict' )
         		return true;
                 if(!isset($user)) {
                         $this->redirect(Yii::app()->user->loginUrl);
@@ -68,6 +68,52 @@ class AjaxController extends Controller
 			else
 			echo json_encode(FALSE);
 			Yii::app()->end();
+	}
+	
+	public function actionUpdateDistrict()
+	{
+		//States
+            $records = Districts::model()->findAll('stateId=:stateId and active=1', array(':stateId'=>(int) $_POST['stateId']));
+            $list = CHtml::listData($records, 'districtId', 'name');
+            $dropDownDist = "<option value=''>Select District</option>"; 
+            foreach($list as $value=>$name)
+                $dropDownDist .= CHtml::tag('option', array('value'=>$value),CHtml::encode($name),true);
+ 
+            // return data (JSON formatted)
+            echo CJSON::encode(array(
+              'dropDownDist'=>$dropDownDist,
+            ));
+	}
+	
+	public function actionUpdateState()
+	{
+		//States
+            $records = States::model()->findAll('countryId=:countryId and active=1', array(':countryId'=>(int) $_POST['countryId']));
+            $list = CHtml::listData($records, 'stateId', 'name');
+            $dropDownStates = "<option value=''>Select State</option>"; 
+            foreach($list as $value=>$name)
+                $dropDownStates .= CHtml::tag('option', array('value'=>$value),CHtml::encode($name),true);
+ 
+            // return data (JSON formatted)
+            echo CJSON::encode(array(
+              'dropDownStates'=>$dropDownStates,
+            ));
+	}
+	
+	public function actionUpdateCaste()
+	{
+		//Castes
+            $records = Caste::model()->findAll('religionId=:religionId and active=1', array(':religionId'=>(int) $_POST['religionId']));
+            $list = CHtml::listData($records, 'casteId', 'name');
+            $dropDownCastes = "<option value=''>Select Caste</option>"; 
+            foreach($list as $value=>$name)
+                $dropDownCastes .= CHtml::tag('option', array('value'=>$value),CHtml::encode($name),true);
+ 
+            // return data (JSON formatted)
+            echo CJSON::encode(array(
+              'dropDownCastes'=>$dropDownCastes,
+            ));
+		
 	}
 	
 }
