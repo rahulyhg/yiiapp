@@ -321,7 +321,7 @@ class Utilities
 	public static function getProfileImage($marryId,$imageName){
 		if($imageName != ''){
 			$file = Yii::app()->params['mediaUrl']."/profile/".$marryId."/".$imageName;
-			if (file_exists($file)){
+			if (@file_get_contents($file)){
 				return $file;
 			}else{
 				return Yii::app()->params['mediaUrl']."/profile/noimage.jpg";
@@ -334,7 +334,7 @@ class Utilities
 	public static function getAlbumImage($marryId,$imageName){
 		if($imageName != ''){
 			$file = Yii::app()->params['mediaUrl']."/album/".$marryId."/".$imageName;
-			if (file_exists($file)){
+			if (@file_get_contents($file)){
 				return $file;
 			}else{
 				return Yii::app()->params['mediaUrl']."/profile/noimage.jpg";
@@ -346,7 +346,7 @@ class Utilities
 	public static function getDocumentImage($marryId,$imageName){
 		if($imageName != ''){
 			$file = Yii::app()->params['mediaUrl']."/documents/".$marryId."/".$imageName;
-			if (file_exists($file)){
+			if (@file_get_contents($file)){
 				return $file;
 			}else{
 				return Yii::app()->params['mediaUrl']."/profile/noimage.jpg";
