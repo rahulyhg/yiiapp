@@ -792,6 +792,20 @@ $(document).ready(function() {
 	
 });
 
+$(document).ready(function() {
+	
+	var tabid = '<?php echo $tab?>';
+	 $('.tab-head > li > a').each(function(){
+           $(this).removeClass();
+        });
+	 $('a#'+tabid).addClass('select');	
+ $('.tab-data').each(function(){
+       $(this).hide();
+    });
+ 	$('#'+tabid+'_data').show();
+});
+
 
 </script>      
+      
       
