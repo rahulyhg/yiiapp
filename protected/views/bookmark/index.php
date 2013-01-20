@@ -15,56 +15,44 @@
 */
 ?>
 
-  
+          
     	  <?php $this->widget('application.widgets.menu.Leftmenu'); ?>
     	  
     	  
-    	  
-    	  
-  <section class="data-contnr3">
+    	   <section class="data-contnr3">
         <div class="page-head">Bookmarked Profiles</div>
         
          <?php if(isset($users)){ ?>
         <div class="pagination-contnr">
             <div class="select-contnr"><input type="checkbox" /> Select All</div>
-            <a href="#">Express Interest</a>
             <a href="#">Remove Bookmark</a>
-                        <?php if(isset($totalPage) && intval($totalPage) > 1) { ?>
+            <?php if(isset($totalPage) && intval($totalPage) > 1) { ?>
             <ul class="pagination">
                 <li><span class="fir"><a href="#">First</a></span></li>
                 <li><span class="nex"><a href="#">Next</a></span></li>
                 <li><span class="pre"><a href="#">Previous</a></span></li>
                 <li><span class="last"><a href="#">Last</a></span></li>
             </ul>
-                 <?php } ?>
+                 <?php } ?> 
         </div>
         <?php }?>
         <?php if(!isset($users)) {
 					
-						echo  "No short listed profiles";
+						echo  "No bookmarked profiles";
 					}?>
-        
+					
         <div class="content-section">
-        
         <?php 
-   $user = Yii::app()->session->get('user');     
+        $user = Yii::app()->session->get('user');
   $heightArray = Utilities::getHeights();
   $index1 = 1;
   if(isset($users)){
   foreach ($users as $value) { ?>
             <div  id="<?php echo 'normal'.$index1?>" class="profile" <?php if(intval($totalPage) > 1 && $index1 > 10 ) {?> style="display:none" <?php }?>>
                 <div class="check-contnr"><input type="checkbox" /> Select</div>
-                <div class="image-contnr">
-                    <a href="#"><img src="./images/user/thumbnail.jpg" alt="" /></a>
-                    <div class="img-controls">
-                        <a href="#" class="prev"></a>
-                        <div class="numbers">
-                            <span>1</span> of <span>6</span>
-                        </div>
-                        <a href="#" class="next"></a>
-                    </div>
-                </div>
-               <div class="profile-details">
+                <?php $this->widget('application.widgets.Profilepicture',array('userId'=>$value->userId,'marryId'=>$value->marryId)); ?>
+                
+                <div class="profile-details">
                     <ul class="details-contnr">
                         <li>
                             <div class="title">Name</div>
@@ -98,27 +86,29 @@
                     <a class="view-full" href="<?php echo 'byid/id/'.$value->marryId ?>">View Full Profile</a>
                 </div>
                 <div class="button-contnr">
-                 <?php 
+                <?php 
  $isInterest = $user->interestSender(array('condition'=>"receiverId = {$value->userId}"));
  $isBookMarked = $user->bookmark(array('condition'=>"FIND_IN_SET('{$value->userId}',profileIDs)")); 
  $isMessage = $user->messageSender(array('condition'=>"receiverId = {$value->userId}"));
  ?>
-                    <a href="#" class="global bookPad">Express Interest</a>
                     <a href="#" class="global bookPad">Remove Bookmark</a>
+                    <?php if(!isset($isMessage) || empty($isMessage)) {?>
                     <a href="#" class="global bookPad">Send Message</a>
+                    <?php }?>
+                    <a href="#" class="global bookPad">Decline Interest</a>
+                     
                 </div>
             </div>
-            
-            <?php $index1++; }
-  			}
-            ?>
     
+<?php $index1++; }
+  }
+?>						
+          
         </div>
         <div class="pagination-contnr">
             <div class="select-contnr"><input type="checkbox" /> Select All</div>
-            <a href="#">Express Interest</a>
             <a href="#">Remove Bookmark</a>
-             <?php if(isset($totalPage) && intval($totalPage) > 1) { ?>
+            <?php if(isset($totalPage) && intval($totalPage) > 1) { ?>
             <ul class="pagination">
                 <li><span class="fir"><a href="#">First</a></span></li>
                 <li><span class="nex"><a href="#">Next</a></span></li>
@@ -136,24 +126,7 @@
     </section>
     	  
     	  
-    	  
-    	  
-    	  
-    	  
-    	  
-    	  
-    	  
-    	  
-    	  
-    	  
-    	  
-    	  
-    	  
-    	  
-    	  
-    	  
-    	  
-  
+ 
   <script type="text/javascript">
 $(document).ready(function() {
 
@@ -255,6 +228,9 @@ $(document).ready(function() {
 		$("input[name='currentPage']").val(lastPage);
 		
 	});
+	
+
+	
 	 $('.selection').change(function () {
 
 		 if($(this).attr("checked")){

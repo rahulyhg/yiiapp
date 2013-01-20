@@ -6,8 +6,11 @@
    $this->widget('application.widgets.menu.Leftmenu'); ?>   
   	
   	
-
+	<?php if(isset($user)) { ?> 
+    <section class="data-contnr3">
+    <?php } else {?>
     <section class="data-contnr3 searchRslt">
+    <?php } ?>
     	<h1 class="mTB12">Search your life partner </h1>
         <p>An easy way to find out your life partner. By choosing the right options you can easily find out the profiles that matches you. </p>
 		<div class="page-head mB25">
@@ -34,7 +37,7 @@
   $index = 0;
   foreach ($highLight as $value) { ?>
             <div <?php if($index > 1) echo "id='high{$index}'";?> class="profile">
-                <?php $this->widget('application.widgets.Profilepicture',array($value->userId)); ?>
+            <?php $this->widget('application.widgets.Profilepicture',array('userId'=>$value->userId,'marryId'=>$value->marryId)); ?>
                 <div class="profile-details">
                     <ul class="details-contnr">
                         <li>
@@ -127,7 +130,7 @@
   	foreach ($normal as $value) { ?>
             <div  id="<?php echo 'normal'.$index1?>" class="profile" <?php if(intval($totalPage) > 1 && $index1 > 10 ) {?> style="display:none" <?php }?>>
                 <div class="check-contnr"><input type="checkbox" /> Select</div>
-                <?php $this->widget('application.widgets.Profilepicture',array($value->userId)); ?>
+                <?php $this->widget('application.widgets.Profilepicture',array('userId'=>$value->userId,'marryId'=>$value->marryId)); ?>
                 <div class="profile-details">
                     <ul class="details-contnr">
                         <li>

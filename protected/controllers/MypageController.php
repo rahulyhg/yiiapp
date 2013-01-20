@@ -243,7 +243,7 @@ class MypageController extends Controller
 	
 	public function actionSettings()
 	{
-		$this->render('settings');
+		$this->render('//privacy');
 	}
 	
 	public function actionHighlightprofile()
