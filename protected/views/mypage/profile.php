@@ -14,64 +14,57 @@
 *  @version <Revision>
 */
 ?>
+<?php 
+$user = Yii::app()->session->get('user');
+$heightArray = Utilities::getHeights();
+?>
     <section class="data-contnr mT8">
         <div class="mainPro">
 			<div class="photoC">
-				<a class="ppC" href="#">
-					<span class="ppCinn">Change profile picture</span>
-					<img src="./images/user/profile1.png" alt="Bharath Gopi" title="Bharath Gopi" />
-				</a>
-				<ul class="noC">
-					<li><a href="#" class="prevs" ></a></li>
-					<li><a href="#" >1</a></li>
-					<li><a href="#" >2</a></li>
-					<li><a href="#" >3</a></li>
-					<li><a href="#" >4</a></li>
-					<li><a href="#" >5</a></li>
-					<li><a href="#" class="nexts" ></a></li>
-				</ul>
+				<!-- load the profile picture -->
+				<?php $this->widget('application.widgets.Profilepicture',array('userId'=>$user->userId,'marryId'=>$user->marryId)); ?> 
 			</div>
 			<ul class="myPd">
 				<li>
 					<div class="leftCt">Name</div>
 					<div class="rightCt">
-						<strong>:</strong> <span>Lilly Joseph (E204235)</span>
+						<strong>:</strong> <span><?php echo $user->name ?> (<?php echo $user->marryId ?>)</span>
 					</div>
 				</li>
 				<li>
 					<div class="leftCt">Religion / Cast </div>
 					<div class="rightCt">
-						<strong>:</strong> <span>Chrishtian, R.c.</span>
+						<strong>:</strong> <span><?php if(isset($user->userpersonaldetails->religion))echo $user->userpersonaldetails->religion->name ;?> , <?php if(isset($user->userpersonaldetails->caste))echo $user->userpersonaldetails->caste->name ;?></span>
 					</div>
 				</li>
 				<li>
 					<div class="leftCt">Age</div>
 					<div class="rightCt">
-						<strong>:</strong> <span>29 Years </span>
+						<strong>:</strong> <span><?php echo Utilities::getAgeFromDateofBirth($user->dob); ?> Years </span>
 					</div>
 				</li>
 				<li>
 					<div class="leftCt">Height</div>
 					<div class="rightCt">
-						<strong>:</strong> <span>5' 4'', 167 cm</span>
+						<strong>:</strong> <span><?php if(isset($user->physicaldetails->heightId))echo $heightArray[$user->physicaldetails->heightId]; ?></span>
 					</div>
 				</li>
 				<li>
 					<div class="leftCt">Place</div>
 					<div class="rightCt">
-						<strong>:</strong> <span>Ankamaly, Kerala, India</span>
+						<strong>:</strong> <span><?php if(isset($user->userpersonaldetails->place))echo $user->userpersonaldetails->place->name ?></span>
 					</div>
 				</li>
 				<li>
 					<div class="leftCt">Education</div>
 					<div class="rightCt">
-						<strong>:</strong> <span>Bsc Chemistry</span>
+						<strong>:</strong> <span><?php if(isset($user->educations->education))echo $user->educations->education->name?></span>
 					</div>
 				</li>
 				<li>
 					<div class="leftCt">Occupation</div>
 					<div class="rightCt">
-						<strong>:</strong> <span>Actor</span>
+						<strong>:</strong> <span><?php if(isset($user->educations->occupation))echo $user->educations->occupation->name ?></span>
 					</div>
 				</li>
 			</ul>
@@ -92,28 +85,23 @@
 		</div>
 		<div class="editOpt">
 			<div class="butCo">
-				<a href="#">Contact</a>
-				<a href="#">(Edit)</a>
+				<a href="<?php echo Utilities::createAbsoluteUrl('contact','details'); ?>" id="contactDetails">Contact</a>
+				<a href="<?php echo Utilities::createAbsoluteUrl('contact','detailsedit'); ?>" id="contactDetailsEdit">(Edit)</a>
 			</div>
 			<div class="butCo">
-				<a href="#">Document</a>
-				<a href="#">(Edit)</a>
+				<a href="<?php echo Utilities::createAbsoluteUrl('user','documentupload'); ?>" id="documentUpload">Document(Edit)</a>
 			</div>
 			<div class="butCo">
-				<a href="#">Reference </a>
-				<a href="#">(Edit)</a>
+				<a href="<?php echo Utilities::createAbsoluteUrl('contact','referenceedit'); ?>" id="referenceEdit">Reference(Edit)</a>
 			</div>
 			<div class="butCo">
-				<a href="#">Family album</a>
-				<a href="#">(Edit)</a>
+				<a href="<?php echo Utilities::createAbsoluteUrl('user','familyphotoupload'); ?>" id="familyphotoUpload">Family album (Edit)</a>
 			</div>
 			<div class="butCo">
-				<a href="#">Personal album</a>
-				<a href="#">(Edit)</a>
+				<a href="<?php echo Utilities::createAbsoluteUrl('user','photoupload'); ?>" id="photoUpload">Personal album (Edit)</a>
 			</div>
 			<div class="butCo">
-				<a href="#">Astro Details</a>
-				<a href="#">(Edit)</a>
+				<a href="<?php echo Utilities::createAbsoluteUrl('contact','astroedit'); ?>" id="astroEdit">Astro Details(Edit)</a>
 			</div>
 		</div>
 		<div class="editContr">
@@ -513,5 +501,19 @@
 			<p>Expecting moderately religious with high family values and well educated.Expecting moderately religious with high family values and well educated.Expecting moderately religious with high family values and well educated.Expecting moderately religious with high family values and well educated.Expecting moderately religious with high family values and well educated.Expecting moderately religious with high family values and well educated.Expecting moderately religious with high family values </p>
 		</div>
     </section>
+    	<script type="text/javascript">
+$(document).ready(function(){
+    $("#photoUpload").colorbox({iframe:true, width:"860", height:"620",overlayClose: false});
+    $("#familyphotoUpload").colorbox({iframe:true, width:"860", height:"640",overlayClose: false});
+    $("#documentUpload").colorbox({iframe:true, width:"860", height:"620",overlayClose: false});
+    $("#contactDetails").colorbox({iframe:true, width:"860", height:"900",overlayClose: false});
+    $("#contactDetailsEdit").colorbox({iframe:true, width:"860", height:"900",overlayClose: false});
+    $("#referenceEdit").colorbox({iframe:true, width:"860", height:"900",overlayClose: false});
+    $("#astroEdit").colorbox({iframe:true, width:"860", height:"900",overlayClose: false});
+  });
+
+    $('<a href="/mypage">Skip this page|</a> ').insertBefore('.logout');
+
+</script>
       <?php $this->widget('application.widgets.menu.Rightmenu'); ?>
   

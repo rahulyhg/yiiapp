@@ -60,5 +60,28 @@ class ContactController extends Controller
 		}
 		$this->render('reference');
 	}
-
+	
+	public function actionDetails()
+	{
+		$this->layout= '//layouts/popup';
+		$this->render('details');
+	}
+	
+	public function actionDetailsedit()
+	{
+		$this->layout= '//layouts/popup';
+		$this->render('detailsedit');
+	}
+	
+	public function actionReferenceedit()
+	{
+		$this->layout= '//layouts/popup';
+		$this->render('referenceedit');
+	}
+	
+	public function actionAstroedit()
+	{
+		$this->layout= '//layouts/popup';
+		$this->render('astroedit');
+	}
 }

@@ -244,6 +244,7 @@ class MypageController extends Controller
 	
 	public function actionProfile()
 	{
+		$user = Yii::app()->session->get('user');
 		$this->render('profile');
 	}
 	
