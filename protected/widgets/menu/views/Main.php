@@ -25,10 +25,10 @@
 				<div class="sub" style="display:none">
 					<div class="arrow"></div>
 					<div class="data wid140">
-						<a class="width100" href="edit-my-profile.htm">View Profile</a>
-						<a class="width100" href="edit-my-profile.htm">Edit Profile</a>
-						<a class="width100" href="my-album.htm">Change Profile picture</a>
-						<a class="width100" href="my-album.htm">Add New Picture</a>
+						<a class="width100" href="<?php echo Utilities::createAbsoluteUrl('mypage','profile')?>">View Profile</a>
+						<a class="width100" href="<?php echo Utilities::createAbsoluteUrl('mypage','profile')?>">Edit Profile</a>
+						<a class="width100" href="<?php echo Utilities::createAbsoluteUrl('album','index')?>">Change Profile picture</a>
+						<a class="width100" href="<?php echo Utilities::createAbsoluteUrl('album','index')?>">Add New Picture</a>
 					</div>
 				</div>
             </li>
@@ -37,16 +37,16 @@
 				<div class="sub" style="display:none">
 					<div class="arrow"></div>
 					<div class="data wid140">
-						<a class="width100" href="my-messages.htm">Recived Message</a>
-						<a class="width100" href="my-messages.htm">Sent Message</a>
+						<a class="width100" href="<?php echo Utilities::createAbsoluteUrl('message','index')?>">Recived Message</a>
+						<a class="width100" href="<?php echo Utilities::createAbsoluteUrl('message','index')?>">Sent Message</a>
 						<div class="dividr"></div>
-						<a class="width100" href="my-interests.htm">Recived Interest</a>
-						<a class="width100" href="my-interests.htm">Sent Interest</a>
-						<a class="width100" href="my-interests.htm">Declained Interest</a>
+						<a class="width100" href="<?php echo Utilities::createAbsoluteUrl('interest','sent')?>">Recived Interest</a>
+						<a class="width100" href="<?php echo Utilities::createAbsoluteUrl('interest','sent')?>">Sent Interest</a>
+						<a class="width100" href="<?php echo Utilities::createAbsoluteUrl('interest','sent')?>">Declained Interest</a>
 						<div class="dividr"></div>
-						<a class="width100" href="my-requests.htm">Recived Request</a>
-						<a class="width100" href="my-requests.htm">Sent Request</a>
-						<a class="width100" href="my-requests.htm">Declained Request</a>
+						<a class="width100" href="<?php echo Utilities::createAbsoluteUrl('request','sent')?>">Recived Request</a>
+						<a class="width100" href="<?php echo Utilities::createAbsoluteUrl('request','sent')?>">Sent Request</a>
+						<a class="width100" href="<?php echo Utilities::createAbsoluteUrl('request','sent')?>">Declained Request</a>
 					</div>
 				</div>
             </li>
@@ -66,22 +66,22 @@
 						</div>
 					</div>
 					<div class="data wid120">
-						<a class="width100" href="search.htm">Basic Search </a>
-						<a class="width100" href="search.htm">Advanced Search</a>
-						<a class="width100" href="search.htm">Saved Search</a>
-						<a class="width100" href="search.htm">Search by ID</a>
-						<a class="width100" href="search.htm">Search by Keyword</a>
+						<a class="width100" href="<?php echo Utilities::createAbsoluteUrl('search','index')?>">Basic Search </a>
+						<a class="width100" href="<?php echo Utilities::createAbsoluteUrl('search','index')?>">Advanced Search</a>
+						<a class="width100" href="<?php echo Utilities::createAbsoluteUrl('search','index')?>">Saved Search</a>
+						<a class="width100" href="<?php echo Utilities::createAbsoluteUrl('search','index')?>">Search by ID</a>
+						<a class="width100" href="<?php echo Utilities::createAbsoluteUrl('search','index')?>">Search by Keyword</a>
 					</div>
 				</div>
 				<?php }else{?>
 					<div class="sub" style="display:none">
 					<div class="arrow"></div>
 					<div class="data wid140">
-						<a class="width100" href="search.htm">Basic Search </a>
-						<a class="width100" href="search.htm">Advanced Search</a>
-						<a class="width100" href="search.htm">Saved Search</a>
-						<a class="width100" href="search.htm">Search by ID</a>
-						<a class="width100" href="search.htm">Search by Keyword</a>
+						<a class="width100" href="<?php echo Utilities::createAbsoluteUrl('search','index')?>">Basic Search </a>
+						<a class="width100" href="<?php echo Utilities::createAbsoluteUrl('search','index')?>">Advanced Search</a>
+						<a class="width100" href="<?php echo Utilities::createAbsoluteUrl('search','index')?>">Saved Search</a>
+						<a class="width100" href="<?php echo Utilities::createAbsoluteUrl('search','index')?>">Search by ID</a>
+						<a class="width100" href="<?php echo Utilities::createAbsoluteUrl('search','index')?>">Search by Keyword</a>
 					</div>
 				</div>
 				<?php }?>
@@ -91,9 +91,9 @@
 				<div class="sub" style="display:none">
 					<div class="arrow"></div>
 					<div class="data wid140">
-						<a class="width100" href="subscribe-now.htm">Subscribe Now</a>
-						<a class="width100" href="recharge-now.htm">Recharge Now</a>
-						<a class="width100" href="payment-summery.htm">My Payment Summury</a>
+						<a class="width100" href="<?php echo Utilities::createAbsoluteUrl('payment','index')?>">Subscribe Now</a>
+						<a class="width100" href="<?php echo Utilities::createAbsoluteUrl('payment','recharge')?>">Recharge Now</a>
+						<a class="width100" href="<?php echo Utilities::createAbsoluteUrl('payment','summary')?>">My Payment Summury</a>
 					</div>
 				</div>
             </li>

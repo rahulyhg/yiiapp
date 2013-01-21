@@ -52,4 +52,8 @@ window.onload=loadImg_<?php echo $userId; ?>;
 	<a class="next" href="javascript:void(0);" onClick="next_<?php echo $userId ?>();"></a>
 </div>
 </div>
+<?php }else{?>
+<div class="image-contnrs">
+	<a href="#"><img id="imgSrc" name="imgSrc" alt="" src="<?php echo Utilities::getProfileImage($marryId,'');?>"></a>
+</div>
 <?php }?>

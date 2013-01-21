@@ -74,7 +74,7 @@
 					<p>Address book is a place to where you can import the address to my address book. This way you can access the details later without visiting a particular profile again. </p>
 				</div>
 			</li>
-			<li><a href="<?php echo Utilities::createAbsoluteUrl('mypage','payment',array()); ?>" class="headLink">My Payment summery</a></li>
+			<li><a href="<?php echo Utilities::createAbsoluteUrl('payment','summary',array()); ?>" class="headLink">My Payment summery</a></li>
 			<li><a href="<?php echo Utilities::createAbsoluteUrl('mypage','settings',array()); ?>" class="headLink">My Settings</a></li>
         </ul>
         <ul class="left-bar-data">

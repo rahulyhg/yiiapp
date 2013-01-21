@@ -154,20 +154,6 @@ class MypageController extends Controller
 		$this->render('myaccount',array('profileCount' => $profileCount['pCount']));
 	}
 	
-	public function actionPayment()
-	{
-		$loggedUser = Yii::app()->session->get('user');
-		$payments = $loggedUser->payment(array('order'=> 'startdate ASC'));
-		if(isset($payments ) && sizeof($payments) > 0)
-		{
-			$this->render('payment',array('payment' =>$payments));
-		}
-		else
-		{
-			$this->render('payment');
-		}
-	}
-
 
 	public function actionAddressbook()
 	{
@@ -255,4 +241,10 @@ class MypageController extends Controller
 	{
 		$this->render('partnerpreference');
 	}
+	
+	public function actionProfile()
+	{
+		$this->render('profile');
+	}
+	
 }
