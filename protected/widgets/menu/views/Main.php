@@ -56,21 +56,23 @@
 				<?php if(Yii::app()->session->itemAt('user')) {?>
 				<div class="sub wid270" style="display:none">
 					<div class="arrow"></div>
+					<?php $user = Yii::app()->session->get('user');
+					if(isset($user->saveSearch)) {
+					?>
 					<div class="data wid140">
 						<div class="saved">Saved Search</div>
-						<div class="searchby">Search 1 by shanoj</div>
+						<div class="searchby"><?php echo $user->saveSearch->searchName?></div>
 						<div class="options">
-							<a href="#">Edit</a>
-							<a href="#">Delete</a>
-							<a href="#">Search</a>
+							<a href="/search/show?searchName=<?php echo $user->saveSearch->searchName?>">Edit</a>
+							<a href="/search/delete?searchName=<?php echo $user->saveSearch->searchName?>"">Delete</a>
 						</div>
 					</div>
+					<?php }?>
 					<div class="data wid120">
 						<a class="width100" href="<?php echo Utilities::createAbsoluteUrl('search','index')?>">Basic Search </a>
-						<a class="width100" href="<?php echo Utilities::createAbsoluteUrl('search','index')?>">Advanced Search</a>
-						<a class="width100" href="<?php echo Utilities::createAbsoluteUrl('search','index')?>">Saved Search</a>
-						<a class="width100" href="<?php echo Utilities::createAbsoluteUrl('search','index')?>">Search by ID</a>
-						<a class="width100" href="<?php echo Utilities::createAbsoluteUrl('search','index')?>">Search by Keyword</a>
+						<a class="width100" href="<?php echo Utilities::createAbsoluteUrl('search','advance')?>">Advanced Search</a>
+						<a class="width100" href="<?php echo Utilities::createAbsoluteUrl('search','byid')?>">Search by ID</a>
+						<a class="width100" href="<?php echo Utilities::createAbsoluteUrl('search','keyword')?>">Search by Keyword</a>
 					</div>
 				</div>
 				<?php }else{?>
@@ -78,10 +80,9 @@
 					<div class="arrow"></div>
 					<div class="data wid140">
 						<a class="width100" href="<?php echo Utilities::createAbsoluteUrl('search','index')?>">Basic Search </a>
-						<a class="width100" href="<?php echo Utilities::createAbsoluteUrl('search','index')?>">Advanced Search</a>
-						<a class="width100" href="<?php echo Utilities::createAbsoluteUrl('search','index')?>">Saved Search</a>
-						<a class="width100" href="<?php echo Utilities::createAbsoluteUrl('search','index')?>">Search by ID</a>
-						<a class="width100" href="<?php echo Utilities::createAbsoluteUrl('search','index')?>">Search by Keyword</a>
+						<a class="width100" href="<?php echo Utilities::createAbsoluteUrl('search','advance')?>">Advanced Search</a>
+						<a class="width100" href="<?php echo Utilities::createAbsoluteUrl('search','byid')?>">Search by ID</a>
+						<a class="width100" href="<?php echo Utilities::createAbsoluteUrl('search','keyword')?>">Search by Keyword</a>
 					</div>
 				</div>
 				<?php }?>

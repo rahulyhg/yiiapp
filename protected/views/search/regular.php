@@ -166,7 +166,7 @@
 							<input class="add type2" value="Add" onclick="return add('rcaste','rcaste1')" type="button">
 							<input class="remove type2" value="Remove" onclick="return add('rcaste1','rcaste')" type="button">
 							</div>
-								<select class="right ar" id="rcaste1" name="caste1" multiple="multiple"></select>
+								<select class="right ar" id="rcaste1" name="caste1[]" multiple="multiple"></select>
 						</div>
 					</li>
 					<li>
@@ -182,7 +182,7 @@
 							<input class="add type2" value="Add" onclick="return add('rlanguage','rlanguage1')" type="button">
 							<input class="remove type2" value="Remove" onclick="return add('rlanguage1','rlanguage')" type="button">
 						</div>
-						<select class="right ar" id="rlanguage1" name="language1" multiple="multiple">
+						<select class="right ar" id="rlanguage1" name="language1[]" multiple="multiple">
 						</select>
 							
 						</div>
@@ -200,7 +200,7 @@
 							<input class="add type2" value="Add" onclick="return add('rcountry','rcountry1')" type="button">
 							<input class="remove type2" value="Remove" onclick="return add('rcountry1','rcountry')" type="button">
 						</div>
-						<select class="right ar" id="rcountry1" name="country1" multiple="multiple">
+						<select class="right ar" id="rcountry1" name="country1[]" multiple="multiple">
 						</select>
 						</div>
 					</li>
@@ -216,7 +216,7 @@
 							<input class="add type2" value="Add" onclick="return add('reducation','reducation1')" type="button">
 							<input class="remove type2" value="Remove" onclick="return add('reducation1','reducation')"type="button">
 						</div>
-						<select class="right ar" id="reducation1" name="education1" multiple="multiple">
+						<select class="right ar" id="reducation1" name="education1[]" multiple="multiple">
 						</select>
 						</div>
 					</li>
@@ -468,7 +468,7 @@
 							<input class="add type2" value="Add" onclick="return add('acaste','acaste1')" type="button">
 							<input class="remove type2" value="Remove" onclick="return add('acaste1','acaste')" type="button">
 							</div>
-								<select class="right ar" id="acaste1" name="caste1" multiple="multiple"></select>
+								<select class="right ar" id="acaste1" name="caste1[]" multiple="multiple"></select>
 						</div>
 					</li>
 				</ul>

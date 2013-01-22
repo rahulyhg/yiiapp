@@ -33,19 +33,47 @@ class SearchController extends Controller
 		}
 		else
 		{
-			//if(isset($_GET['searchName']))
-			//{
-				//$searchName = $_GET['searchName'];
-				$searchName = "test";
+			if(isset($_GET['searchName']))
+			{
+				$searchName = $_GET['searchName'];
 				$search = Savesearch::model()->findByAttributes(array('userId'=>$user->userId,'searchName'=>$searchName));
 				if(isset($search) && $search->searchName == $searchName)
 				$this->render('advance',array('searchItem'=>$search));
 				else
 				$this->render('regular');
-			//}
-			//else {
-			//	$this->render('regular');
-			//}
+			}
+			else {
+				$this->render('regular',array('tab'=>'tab1'));
+			}
+		}
+	}
+	
+	public function actionDelete()
+	{
+		
+		$user = Yii::app()->session->get('user');
+		if(!isset($user))
+		{
+			$this->render('index');
+		}
+		else
+		{
+			if(isset($_GET['searchName']))
+			{
+				$searchName = $_GET['searchName'];
+				$search = Savesearch::model()->findByAttributes(array('userId'=>$user->userId,'searchName'=>$searchName));
+				if(isset($search) && $search->searchName == $searchName)
+				{
+					$user->saveSearch->deleteAll();
+					$this->render('regular',array('tab'=>'tab1'));
+				}
+				else
+				$this->render('regular',array('tab'=>'tab1'));
+				
+			}
+			else {
+				$this->render('regular');
+			}
 		}
 	}
 	
@@ -55,6 +83,7 @@ class SearchController extends Controller
 		
 		$saveSearch = new Savesearch();
 		
+		if(isset($_POST['searchName'])){
 		if(isset($_POST['ageTo']))
 		{
 			$saveSearch->ageTo = $_POST['ageTo'];
@@ -240,7 +269,12 @@ class SearchController extends Controller
 		$user->saveSearch->deleteAll();
 		$user->saveSearch = $saveSearch;
 		$user->saveSearch->save();
-		$this->render('regular');
+		$this->render('regular',array('tab'=>'tab1'));
+		}
+		else {
+		$this->render('regular',array('tab'=>'tab1'));	
+		}
+		
 	}	
 	  /*public function beforeAction(CAction $action)
         {

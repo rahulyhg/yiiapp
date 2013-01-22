@@ -195,7 +195,7 @@
 							$recordsf = array();
 							
 							$list = CHtml::listData($recordsf, 'casteId', 'name');
-						    echo CHtml::dropDownList('caste1',null,$list,array('class'=>'right ar','id'=>'rcaste1','multiple'=>'multiple')); ?>
+						    echo CHtml::dropDownList('caste1[]',null,$list,array('class'=>'right ar','id'=>'rcaste1','multiple'=>'multiple')); ?>
 						</div>
 					</li>
 					<li>
@@ -223,7 +223,7 @@
 							else
 							$frecords = array();
 							$list = CHtml::listData($frecords, 'languageId', 'name');
-						    echo CHtml::dropDownList('language1',null,$list,array('class'=>'right ar','id'=>'rlanguage1','multiple'=>'multiple')); ?>
+						    echo CHtml::dropDownList('language1[]',null,$list,array('class'=>'right ar','id'=>'rlanguage1','multiple'=>'multiple')); ?>
 							
 						</div>
 					</li>
@@ -253,7 +253,7 @@
 							$frecords = array();
 							
 							$list = CHtml::listData($frecords, 'countryId', 'name');
-						    echo CHtml::dropDownList('country1',null,$list,array('class'=>'right ar','id'=>'rcountry1','multiple'=>'multiple')); ?>
+						    echo CHtml::dropDownList('country1[]',null,$list,array('class'=>'right ar','id'=>'rcountry1','multiple'=>'multiple')); ?>
 						</div>
 					</li>
 					<li>
@@ -281,7 +281,7 @@
 						    $records = array();
 						    
 							$list = CHtml::listData($records, 'educationId', 'name');
-						    echo CHtml::dropDownList('education1',null,$list,array('class'=>'right ar','id'=>'reducation1','multiple'=>'multiple')); ?>
+						    echo CHtml::dropDownList('education1[]',null,$list,array('class'=>'right ar','id'=>'reducation1','multiple'=>'multiple')); ?>
 						</div>
 					</li>
 					<li>
@@ -482,7 +482,7 @@
 							else
 							$records = array();
 							$list = CHtml::listData($records, 'languageId', 'name');
-						    echo CHtml::dropDownList('language1',null,$list,array('class'=>'right ar','id'=>'alanguage1','multiple'=>'multiple')); ?>
+						    echo CHtml::dropDownList('language1[]',null,$list,array('class'=>'right ar','id'=>'alanguage1','multiple'=>'multiple')); ?>
 						
 						</div>
 					</li>
@@ -510,7 +510,7 @@
 							else
 							$records = array();
 							$list = CHtml::listData($records, 'countryId', 'name');
-						    echo CHtml::dropDownList('country1',null,$list,array('class'=>'right ar','id'=>'acountry1','multiple'=>'multiple')); 
+						    echo CHtml::dropDownList('country1[]',null,$list,array('class'=>'right ar','id'=>'acountry1','multiple'=>'multiple')); 
 						    
 						    ?>
 						</div>
@@ -581,7 +581,12 @@
 							Cast
 						</div>
 						<div class="info">
-							<?php $records = Caste::model()->findAll(array('condition'=> "casteId NOT IN({$searchItem->caste})"));
+							<?php 
+							if(isset($searchItem->caste))
+							$records = Caste::model()->findAll(array('condition'=> "casteId NOT IN({$searchItem->caste})"));
+							else
+							$records = Caste::model()->findAll("active=1");
+							
 							$list = CHtml::listData($records, 'casteId', 'name');
 							echo CHtml::dropDownList('acaste',null,$list,array('class'=>'left ar','multiple'=>'multiple')); ?>
 							<div class="ar-btn">
@@ -589,9 +594,13 @@
 							<input class="remove type2" value="Remove" onclick="return add('acaste1','acaste')" type="button">
 							</div>
 							<?php 
+							if(isset($searchItem->caste)) 
 							$recordsf = Caste::model()->findAll(array('condition'=> "casteId IN({$searchItem->caste})"));
+							else
+							$recordsf = array();
+							
 							$list = CHtml::listData($recordsf, 'casteId', 'name');
-						    echo CHtml::dropDownList('caste1',null,$list,array('class'=>'right ar','id'=>'acaste1','multiple'=>'multiple')); ?>
+						    echo CHtml::dropDownList('caste1[]',null,$list,array('class'=>'right ar','id'=>'acaste1','multiple'=>'multiple')); ?>
 							
 						</div>
 					</li>
@@ -622,7 +631,7 @@
 						    else
 						    $records = array();
 							$list = CHtml::listData($records, 'educationId', 'name');
-						    echo CHtml::dropDownList('education1',null,$list,array('class'=>'right ar','id'=>'aeducation1','multiple'=>'multiple')); 
+						    echo CHtml::dropDownList('education1[]',null,$list,array('class'=>'right ar','id'=>'aeducation1','multiple'=>'multiple')); 
 						    ?>
 						</div>
 					</li>
@@ -650,7 +659,7 @@
 						    else
 						    $records = array();
 							$list = CHtml::listData($records, 'occupationId', 'name');
-						    echo CHtml::dropDownList('occupation1',null,$list,array('class'=>'right ar','multiple'=>'multiple')); ?>
+						    echo CHtml::dropDownList('occupation1[]',null,$list,array('class'=>'right ar','multiple'=>'multiple')); ?>
 						</div>
 					</li>
 					<li>
@@ -694,7 +703,7 @@
 						    else
 						   $records = array();
 							$list = CHtml::listData($records, 'signId', 'name');
-						    echo CHtml::dropDownList('star1',null,$list,array('class'=>'right ar','multiple'=>'multiple')); ?>
+						    echo CHtml::dropDownList('star1[]',null,$list,array('class'=>'right ar','multiple'=>'multiple')); ?>
 							
 						</div>
 					</li>
