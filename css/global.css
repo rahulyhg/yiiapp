@@ -1456,6 +1456,7 @@ h5{
     float: right;
     margin:6px 0 0 0;
     text-align: left;
+    position: relative;
 }
 .header .user-login .login-contnr{
     width:181px;
@@ -2158,3 +2159,31 @@ h5{
     color: #999;
     margin:12px 0 6px 0;
 }
+
+/*login error message class starts*/
+.logError{
+	width: 240px;
+    padding:10px;
+    position: absolute;
+    left: 62px;
+    top:51px;
+    border: 1px solid #c7c9cb;
+    background: #fff;
+    box-shadow: 0 0 6px -2px #666;
+    text-align: center;
+    z-index: 777;
+	color: #FF0751;
+}
+.logError .tarrow{
+    width:22px;
+    height: 14px;
+    position: absolute;
+    left: 44%;
+    top:-14px;
+    background:transparent url("../images/marrydoor.png") no-repeat -735px 0px;
+}
+.logError .cont{
+    float: left;
+    background: #fff;
+}
+/*login error message class ends*/

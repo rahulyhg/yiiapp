@@ -14,15 +14,17 @@
   			<a class="logout" href="/site/logout">Logout</a></div>
   			<!-- search box -->
   			<div class="search-container">
-            <input type="text" placeholder="Search By ID / Keyword" />
-            <a class="type2" href="profile-page.htm" >Search</a>
+			<form id="hkeywordSearch"  name="hkeywordSearch" method="get"  action="/search/byid">
+            <input name="id" type="text" class="validate[required]"  placeholder="Search By ID" />
+            <?php echo CHtml::submitButton('Search',array('class'=>'type2b')); ?>
+			</form>	
             </div>
             <!-- search box end -->
   			<?php } else {?>
   			   <div class="welcome-message">Welcome Guest!</div>
 			  			
         <div class="user-login">
-        <?php   if ( isset(Yii::app()->params['loginError']) && !empty(Yii::app()->params['loginError']) ) echo "Invalid user credentials";?>
+        
 <?php echo CHtml::beginForm(Yii::app()->createUrl('site/login'),'post',array('name'=>'LoginForm','id'=>'LoginForm'));?>
 			<div class="login-contnr">
 				<p>E-Mail / User ID</p>
@@ -37,6 +39,14 @@
 			</div>
 			<?php echo CHtml::submitButton('Login',array('class'=>'type2b','tabindex'=>'3')); ?>
 		<?php echo CHtml::endForm(); ?>
+		<?php   if ( isset(Yii::app()->params['loginError']) && !empty(Yii::app()->params['loginError']) ){ ?>
+		<div class="logError" style="display:block">
+        <div class="tarrow"></div>
+				<div class="cont">
+					Invalid user credentials
+				</div>
+        </div>
+        <?php }?>
 				</div>
 		<?php }?>
 
@@ -46,6 +56,8 @@
 $(document).ready(function(){
     $("#LoginForm").validationEngine('attach');
     //$("#LoginForm").validate();
+	
+	$("#hkeywordSearch").validationEngine('attach');
 	
 	 $(".user-login").click(function(){
     	$("#users-register-form").validationEngine('hide');
