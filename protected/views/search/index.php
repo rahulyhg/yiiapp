@@ -594,6 +594,20 @@
 				</ul>
 				<ul>
 					<li>
+						<h3>Keywords</h3>
+					</li>
+					<li>
+						<p>Enter keywords within quotes and for more than one keyword use a comma separator between words. Example: "Good looking", "Well settled", etc. Keywords are searched against the profile description of a member.</p>
+					</li>
+					<li>
+						<div class="title">
+							Keyword
+						</div>
+						<div class="info">
+							<input type="text" name="keyword" class="wid180" />
+						</div>
+					</li>
+					<li>
 						<div class="title">
 							Show profile
 						</div>
@@ -622,7 +636,7 @@
 				<div class="sec">
 				<form id="keywordSearch"  name="keywordSearch" method="post"  action="/search/keyword">
 					<div class="text"> Enter a Keyword</div>
-					<input type="text" name="keyword" id="keyword" />
+					<input type="text" name="keyword" id="keyword" placeholder="Eg: f,24 or male,28 or name"/>
 					<a href="javascript:keywordSearch.submit();" class="type3 wid100">Search</a>
 					<a  href="javascript:keywordSearch.reset();" class="type3">Reset</a>
 				</form>	

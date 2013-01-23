@@ -22,6 +22,7 @@
  * @property string $motherTounge
  * @property string $countries
  * @property string $caste
+ * @property string $keyword
  * @property string $education
  * @property integer $annualIncomeFrom
  * @property integer $annualIncomeTo
@@ -70,10 +71,10 @@ class Savesearch extends CActiveRecord
 			array('userId', 'length', 'max'=>20),
 			array('searchName', 'length', 'max'=>100),
 			array('gender', 'length', 'max'=>1),
-			array('maritalStatus, occupation, motherTounge, countries, caste, education, star, eating, drinking, smoking, showTo', 'safe'),
+			array('maritalStatus, occupation, motherTounge, countries, caste, keyword, education, star, eating, drinking, smoking, showTo', 'safe'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, userId, searchName, gender, ageFrom, ageTo, maritalStatus, heightFrom, heightTo, physicalStatus, religion, state, district, occupation, residentStatus, motherTounge, countries, caste, education, annualIncomeFrom, annualIncomeTo, star, dosham, sudham, eating, drinking, smoking, photo, horoscope, showTo', 'safe', 'on'=>'search'),
+			array('id, userId, searchName, gender, ageFrom, ageTo, maritalStatus, heightFrom, heightTo, physicalStatus, religion, state, district, occupation, residentStatus, motherTounge, countries, caste, keyword, education, annualIncomeFrom, annualIncomeTo, star, dosham, sudham, eating, drinking, smoking, photo, horoscope, showTo', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -113,6 +114,7 @@ class Savesearch extends CActiveRecord
 			'motherTounge' => 'Mother Tounge',
 			'countries' => 'Countries',
 			'caste' => 'Caste',
+			'keyword' => 'Keyword',
 			'education' => 'Education',
 			'annualIncomeFrom' => 'Annual Income From',
 			'annualIncomeTo' => 'Annual Income To',
@@ -157,6 +159,7 @@ class Savesearch extends CActiveRecord
 		$criteria->compare('motherTounge',$this->motherTounge,true);
 		$criteria->compare('countries',$this->countries,true);
 		$criteria->compare('caste',$this->caste,true);
+		$criteria->compare('keyword',$this->keyword,true);
 		$criteria->compare('education',$this->education,true);
 		$criteria->compare('annualIncomeFrom',$this->annualIncomeFrom);
 		$criteria->compare('annualIncomeTo',$this->annualIncomeTo);

@@ -219,6 +219,10 @@ class SearchController extends Controller
 			$saveSearch->star = $stars;
 		}
 		
+		if(isset($_POST['keyword']) && !empty($_POST['keyword']))
+		{
+			$saveSearch->keyword  = $_POST['keyword'];
+		}
 		
 		if(isset($_POST['sudha']))
 		{
@@ -465,15 +469,7 @@ class SearchController extends Controller
 		$user = Yii::app()->session->get('user');
 		if(isset($_POST['ageFrom']) && isset($_POST['ageTo']))
 		{
-			if(isset($user)){	
-				$scondition = "FIND_IN_SET('{$user->userId}',profileIDs)";
-				$profileBlock = ProfileBlock::model()->findAll(array('condition'=>$scondition));
-				$blockId = array();
-				foreach ($profileBlock as $key => $value) {
-					$blockId[] = $value->userId;
-				}
-				$blockIdList = implode(",", $blockId);
-			}
+			
 			
 			if(isset($_POST['ageFrom']))
 			$ageFrom = $_POST['ageFrom'];
@@ -558,38 +554,68 @@ class SearchController extends Controller
 				}
 			}
 		
-			if(isset($user)) {
-			if(isset($_POST['show']))
-			{
-				$show = implode(",", $_POST['show']);
-				
-			}
-			}
-		
 		
 			$usersV = ViewUsers::model()->findAll(array('condition'=>$condition,'order'=> 'createdOn DESC' ));
 		
-			if(isset($user)){
-			$profileBlock = $user->profileBlock;
-			if(isset($profileBlock->profileIDs))
-			{
-				$blockedIds = explode(",", $profileBlock->profileIDs);
-			}
-			}
-			$userIds = array();
-			foreach ($usersV as $key => $value) {
-				if(isset($blockedIds) && !in_array($value->userId, $blockedIds))
-				$userIds[] = $value->userId;
-				else if(!isset($blockedIds))
-				$userIds[] = $value->userId; 
-			}
-		
-			$userList = implode(",", $userIds);
 			
+		$userIds = array();
+		$userList = null;
+		foreach ($usersV as $key => $value) {
+			$userIds[] = $value->userId; 
+		}
+		$userList = implode(",", $userIds);
+		
+			
+			if(isset($_POST['show']) && !empty($_POST['show']))
+		{
 			if(isset($user))
-			$scondition = " userId in ({$userList}) and userId != {$user->userId} ";
-			else 
-			$scondition = " userId in ({$userList}) ";
+			{
+				$maritalStatus = $_POST['show'];
+				$contacted = in_array(1,$maritalStatus);
+				$blockedIds = null;
+				$short = null;
+				$viewProfile = null;
+
+				if(in_array(0,$maritalStatus))
+				{
+					$searchText.= "Do not show ignored profiles ,";
+					if($user->profileBlock){
+						$blockedIds	= $user->profileBlock->profileIDs;
+					}
+				}
+
+				if(in_array(2,$maritalStatus)){
+					$searchText.= "Do not show viewed profiles ,";
+					if($user->profileUser)
+					{
+						$viewProfile = $user->profileUser->visitedId;
+					}
+				}
+
+				if(in_array(3,$maritalStatus)){
+					$searchText.= "Do not show shortlisted profiles ,";
+					if($user->shortlist)
+					{
+						$short = $user->shortlist->profileID;
+					}
+				}
+				
+				$scondition = " userId in ({$userList})";
+				
+				if(!empty($blockedIds))
+				$scondition .= " and userId NOT IN ($blockedIds)";
+				
+				if(!empty($viewProfile))
+				$scondition .= " and userId NOT IN ($viewProfile)";
+				
+				if(!empty($short))
+				$scondition .= " and userId NOT IN ($short)";
+
+			}
+			
+		}else {
+			$scondition = " userId in ({$userList})";
+		}
 			
 			$users = array();
 		
@@ -849,6 +875,16 @@ class SearchController extends Controller
 			
 		}
 		
+		if(isset($_POST['keyword']) && !empty($_POST['keyword']))
+		{
+			
+			$condition .= " AND userDesc like '%{$_POST['keyword']}%'";
+			$searchText.= "Keyword as ".$_POST['keyword']; 
+			
+		}
+		
+		
+		
 		if(isset($_POST['education1']))
 		{
 			$education = implode(",", $_POST['education1']);
@@ -920,58 +956,79 @@ class SearchController extends Controller
 			$searchText.= "Smoking habits as ".Utilities::getArrayValues(Utilities::getSmoke(), $smoke) ;
 		}
 		
-		if(isset($_POST['profile']))
-		{
-			$profile = implode(",", $_POST['profile']);
-			foreach ($profile as $value) {
-				if($value == 'h')
-				$condition .= " AND photo IS NOT NULL";
-				if($value == 'p')
-				$condition .= " AND horoscope IS NOT NULL";
-			}
-		}
-		if(isset($_POST['show']))
-		{
-			$show = implode(",", $_POST['show']);
-		}
-		
-		 if(isset($_POST['search']) && $_POST['search'] == 'save')
-		 {
-		 	
-		 }
 		
 		if(isset($_POST['profile']))
 		{
 			foreach ($_POST['profile'] as $value) {
-				if($value == 'p')
-				$condition .= " AND photo = 1 ";
-				else if ($value == 'h')
-				$condition .= " AND horoscope = 1 ";
+				if($value == 'p'){
+				$condition .= " AND photo IS NOT NULL ";
+				$searchText.= "Users with photo ,";
+				}
+				else if ($value == 'h'){
+				$condition .= " AND horoscope IS NOT NULL";
+				$searchText.= "Users with horoscope ,";
+				}
 			}
 		}
 		
 		$usersV = ViewUsers::model()->findAll(array('condition'=>$condition,'order'=> 'createdOn DESC' ));
-		
-		
 		
 		$userIds = array();
 		$userList = null;
 		foreach ($usersV as $key => $value) {
 			$userIds[] = $value->userId; 
 		}
+		$userList = implode(",", $userIds);
 		
-		if(isset($user)) {	
-		$pcondition = "FIND_IN_SET('{$user->userId}',profileIDs)";
-		$profileBlock = ProfileBlock::model()->findAll(array('condition'=>$pcondition));	
-		$blockId = array();
-		foreach ($profileBlock as $key => $value) {
-			$blockId[] = $value->userId;
-		}
-		$blockIdList = array_diff($usersV,$blockId);
-		$userList = implode(",", $blockIdList);
-		$scondition = " userId in ({$userList}) and userId != {$user->userId} ";
+			
+		if(isset($_POST['show']) && !empty($_POST['show']))
+		{
+			if(isset($user))
+			{
+				$maritalStatus = $_POST['show'];
+				$contacted = in_array(1,$maritalStatus);
+				$blockedIds = null;
+				$short = null;
+				$viewProfile = null;
+
+				if(in_array(0,$maritalStatus))
+				{
+					$searchText.= "Do not show ignored profiles ,";
+					if($user->profileBlock){
+						$blockedIds	= $user->profileBlock->profileIDs;
+					}
+				}
+
+				if(in_array(2,$maritalStatus)){
+					$searchText.= "Do not show viewed profiles ,";
+					if($user->profileUser)
+					{
+						$viewProfile = $user->profileUser->visitedId;
+					}
+				}
+
+				if(in_array(3,$maritalStatus)){
+					$searchText.= "Do not show shortlisted profiles ,";
+					if($user->shortlist)
+					{
+						$short = $user->shortlist->profileID;
+					}
+				}
+				
+				$scondition = " userId in ({$userList})";
+				
+				if(!empty($blockedIds))
+				$scondition .= " and userId NOT IN ($blockedIds)";
+				
+				if(!empty($viewProfile))
+				$scondition .= " and userId NOT IN ($viewProfile)";
+				
+				if(!empty($short))
+				$scondition .= " and userId NOT IN ($short)";
+
+			}
+			
 		}else {
-			$userList = implode(",", $userIds);
 			$scondition = " userId in ({$userList})";
 		}
 		

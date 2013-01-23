@@ -845,7 +845,20 @@
 					</li>
 				</ul>
 				<ul>
-					
+					<li>
+						<h3>Keywords</h3>
+					</li>
+					<li>
+						<p>Enter keywords within quotes and for more than one keyword use a comma separator between words. Example: "Good looking", "Well settled", etc. Keywords are searched against the profile description of a member.</p>
+					</li>
+					<li>
+						<div class="title">
+							Keyword
+						</div>
+						<div class="info">
+							<input type="text" name="keyword" value="<?php echo $searchItem->horoscope?>"class="wid180" />
+						</div>
+					</li>
 					<li>
 						<div class="title">
 							Show profile

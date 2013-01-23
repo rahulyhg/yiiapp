@@ -15,9 +15,9 @@
         <p>An easy way to find out your life partner. By choosing the right options you can easily find out the profiles that matches you. </p>
 		<div class="page-head mB25">
 	    <a class="type8 mR5" href="/search" >Basic Search</a>
-	    <a class="type8 mR5" href="/search" >Advanced Search</a>
-	    <a class="type8 mR5" href="/search" >Keyword Search</a>
-	    <a class="type8 mR5" href="/search" >Search by ID</a>
+	    <a class="type8 mR5" href="/search/advance" >Advanced Search</a>
+	    <a class="type8 mR5" href="/search/keyword" >Keyword Search</a>
+	    <a class="type8 mR5" href="/search/byid" >Search by ID</a>
 		</div>
         <div class="page-head">Search Result</div>
         <div class="page-subhead">Get the best results instantly </div>

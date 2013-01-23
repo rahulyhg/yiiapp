@@ -46,9 +46,29 @@ class HighlightController extends Controller
 			$isHighLighted = true;
 			$payment = new Payment();
 			$paypment->userID = $users->userId;
+			$payment->save();
 			
 		}
 		$this->render('index',array('isHighLighted'=> $isHighLighted));
+	}
+	
+	public function actionShow()
+	{
+		$user = $user = Yii::app()->session->get('user');
+		$condition = "highlighted = 1";
+		$users = Users::model()->findAll(array('condition'=>$condition,'order'=> 'createdOn DESC' ));
+		
+		if(sizeof($users) > 0)
+		{
+			
+		$totalUser = sizeof($users);
+		$totalPage = ceil($totalUser/10);	
+		$this->render('highlights',array('users'=>$users,'totalUser'=>$totalUser,'totalPage' => $totalPage));
+		}
+		else
+		{
+			$this->render('highlights');
+		}
 	}
 
 }
