@@ -3,12 +3,12 @@
 <?php 
 $j=0;
 foreach($photosList as $photo){ ?>
-<a  class="test_<?php echo $userId; ?>" href="<?php echo Utilities::getProfileImage($marryId,$photo->imageName);?>" title="<?php echo $photo->imageName; ?>"></a>
+<a  class="group<?php echo $userId; ?>" href="<?php echo Utilities::getProfileImage($marryId,$photo->imageName);?>" title="<?php echo $photo->imageName; ?>"></a>
 <?php $j++;
  } ?>
  <script language="javascript">
 $(document).ready(function(){
-	$('.test1_<?php echo $userId; ?>').colorbox({rel:'test_<?php echo $userId; ?>'});
+	$('.group<?php echo $userId; ?>').colorbox({rel:'group<?php echo $userId; ?>'});
 })
 </script>
 </div>
@@ -56,7 +56,7 @@ window.onload=loadImg_<?php echo $userId; ?>;
 
 </script>
 <div class="image-contnr">
-<a href="#"><img class="test1_<?php echo $userId?>" id="imgSrc_<?php echo $userId ?>" name="imgSrc_<?php echo $userId ?>" alt="" src="./images/user/thumbnail.jpg"></a>
+<a href="<?php echo Utilities::getProfileImage($marryId,$photo->imageName);?>" class="group<?php echo $userId?>" title="<?php echo $photo->imageName ?>"><img id="imgSrc_<?php echo $userId ?>" name="imgSrc_<?php echo $userId ?>" alt="" src="href="<?php echo Utilities::getProfileImage($marryId,$photo->imageName);?>"></a>
 <div class="img-controls">
 	<a class="prev" href="javascript:void(0);" onClick="prev_<?php echo $userId ?>();"></a>
 	<div class="numbers">
