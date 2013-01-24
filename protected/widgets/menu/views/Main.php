@@ -64,7 +64,7 @@
 						<div class="searchby"><?php echo $user->saveSearch->searchName?></div>
 						<div class="options">
 							<a href="/search/show?searchName=<?php echo $user->saveSearch->searchName?>">Edit</a>
-							<a href="/search/delete?searchName=<?php echo $user->saveSearch->searchName?>"">Delete</a>
+							<a href="/search/delete?searchName=<?php echo $user->saveSearch->searchName?>">Delete</a>
 						</div>
 					</div>
 					<?php }?>

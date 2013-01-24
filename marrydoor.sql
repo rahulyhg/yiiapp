@@ -348,4 +348,19 @@ motherTounge TEXT,countries TEXT ,caste TEXT,keyword TEXT,education TEXT , annua
 drinking TEXT, smoking TEXT,photo TINYINT,horoscope TINYINT,showTo TEXT,
 PRIMARY KEY(id), FOREIGN KEY (userId) REFERENCES users(userId))ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;
 
+-- view to get the visitor details
+
+DROP VIEW IF EXISTS view_profile;
+
+CREATE VIEW view_profile AS SELECT PV.*,U.name,U.marryId,U.dob,FLOOR( DATEDIFF( CURRENT_DATE, U.dob) /365 ) as age,U.gender,UP.casteId as casteId,C.name as caste,UP.religionId as religionId, R.name as religion,UP.countryId,CO.name as country,UP.stateId,S.name as state,UP.distictId,D.name as district,UP.placeId as placeId, PL.name as place
+FROM profileviews PV
+JOIN users U ON PV.visitedId = U.userId
+LEFT JOIN userpersonaldetails UP ON PV.visitedId = UP.userId
+LEFT JOIN caste C ON UP.casteId = C.casteId
+LEFT JOIN religion R ON UP.religionId = R.religionId
+LEFT JOIN country CO ON UP.countryId = CO.countryId
+LEFT JOIN states S ON UP.stateId = S.stateId
+LEFT JOIN districts D ON UP.distictId = D.districtId
+LEFT JOIN places PL ON UP.placeId = PL.placeId;
+
 
