@@ -7,16 +7,19 @@
  * @property string $profileViewId
  * @property string $userID
  * @property string $visitedId
+ * @property integer $counter
+ * @property string $visitTime
  *
  * The followings are the available model relations:
  * @property Users $user
+ * @property Users $visited
  */
-class ProfileViews extends CActiveRecord
+class Profileviews extends CActiveRecord
 {
 	/**
 	 * Returns the static model of the specified AR class.
 	 * @param string $className active record class name.
-	 * @return ProfileViews the static model class
+	 * @return Profileviews the static model class
 	 */
 	public static function model($className=__CLASS__)
 	{
@@ -39,11 +42,12 @@ class ProfileViews extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('userID', 'length', 'max'=>20),
-			array('visitedId', 'safe'),
+			array('counter', 'numerical', 'integerOnly'=>true),
+			array('userID, visitedId', 'length', 'max'=>20),
+			array('visitTime', 'safe'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('profileViewId, userID, visitedId', 'safe', 'on'=>'search'),
+			array('profileViewId, userID, visitedId, counter, visitTime', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -56,6 +60,7 @@ class ProfileViews extends CActiveRecord
 		// class name for the relations automatically generated below.
 		return array(
 			'user' => array(self::BELONGS_TO, 'Users', 'userID'),
+			'visited' => array(self::BELONGS_TO, 'Users', 'visitedId'),
 		);
 	}
 
@@ -68,6 +73,8 @@ class ProfileViews extends CActiveRecord
 			'profileViewId' => 'Profile View',
 			'userID' => 'User',
 			'visitedId' => 'Visited',
+			'counter' => 'Counter',
+			'visitTime' => 'Visit Time',
 		);
 	}
 
@@ -85,6 +92,8 @@ class ProfileViews extends CActiveRecord
 		$criteria->compare('profileViewId',$this->profileViewId,true);
 		$criteria->compare('userID',$this->userID,true);
 		$criteria->compare('visitedId',$this->visitedId,true);
+		$criteria->compare('counter',$this->counter);
+		$criteria->compare('visitTime',$this->visitTime,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

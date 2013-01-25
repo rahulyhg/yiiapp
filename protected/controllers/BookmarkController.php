@@ -39,31 +39,43 @@ class BookmarkController extends Controller
 		}
 		
 	}
-
-	// Uncomment the following methods and override them if needed
-	/*
-	public function filters()
+	
+	public function actionRemove()
 	{
-		// return the filter configuration for this controller, e.g.:
-		return array(
-			'inlineFilterName',
-			array(
-				'class'=>'path.to.FilterClass',
-				'propertyName'=>'propertyValue',
-			),
-		);
+		if(isset($_POST['userId']) && !empty($_POST['userId']))
+		{
+			//change this from session
+			$usersList = Yii::app()->session->get('user');
+			
+			$sql = "DELETE FROM bookmark WHERE userID = '{$usersList->userId}' AND profileIDs IN({$_POST['userId']})";
+			$command=Yii::app()->db->createCommand($sql);
+			$results=$command->query();
+			
+			$this->forward('index');	
+		}
+	}
+	
+	
+	public function actionAdd()
+	{
+		if(isset($_POST['userId']) && !empty($_POST['userId']))
+		{
+			//change this from session
+			$usersList = Yii::app()->session->get('user');
+			if(isset($usersList->bookmark->profileIDs) && !empty($usersList->bookmark->profileIDs))
+			{
+			if(is_array($_POST['userId']))
+			{
+				$values = implode(",", $_POST['userId']);
+				$usersList->bookmark->profileIDs = $usersList->bookmark->profileIDs.','.$values;
+			}
+			else {
+				$usersList->bookmark->profileIDs = $usersList->bookmark->profileIDs.','.$_POST['userId'];
+			}					
+				$usersList->bookmark->save();
+			}
+			$this->forward('index');	
+		}
 	}
 
-	public function actions()
-	{
-		// return external action classes, e.g.:
-		return array(
-			'action1'=>'path.to.ActionClass',
-			'action2'=>array(
-				'class'=>'path.to.AnotherActionClass',
-				'propertyName'=>'propertyValue',
-			),
-		);
-	}
-	*/
 }

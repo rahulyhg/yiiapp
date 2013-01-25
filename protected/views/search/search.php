@@ -37,7 +37,7 @@
   $index = 0;
   foreach ($highLight as $value) { ?>
             <div <?php if($index > 1) echo "id='high{$index}'";?> class="profile">
-            <?php $this->widget('application.widgets.Profilepicture',array('userId'=>$value->userId,'marryId'=>$value->marryId)); ?>
+            <?php $this->widget('application.widgets.Profilepicturelist',array('userId'=>$value->userId,'marryId'=>$value->marryId)); ?>
                 <div class="profile-details">
                     <ul class="details-contnr">
                         <li>

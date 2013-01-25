@@ -1084,46 +1084,27 @@ class SearchController extends Controller
 		if(isset($_GET['id']))
 		{
 			$user = Users::model()->findByAttributes(array('marryId'=>$_GET['id']));
-			/*$loggedUser = Yii::app()->session->get('user');
-			$scondition = "FIND_IN_SET('{$loggedUser->userId}',profileIDs)";
-			$profileBlock = ProfileBlock::model()->findAll(array('condition'=>$scondition));
-			
-			$blockId = array();
-		foreach ($profileBlock as $key => $value) {
-			$blockId[] = $value->userId;
-		} 
-		
-			
-			if(sizeof($blockId) > 0 )
-			{
-				
-				if(in_array($loggedUser->userId, $blockId))
-				{
-					$model = "The user has not authorize you to view his/her profile.";
-					$this->render('byid',array('model' => $model));
-					return;
-				}
-			}*/
+			$loggedUser = Yii::app()->session->get('user');
 			if(isset($user->name))
 			{
 						
 				if(isset($loggedUser)){
-				if(isset($loggedUser->profileUser)){
-					$arrayList = explode(",",$loggedUser->profileUser->visitedId);
-					if(!in_array($user->userId,$arrayList))
+					if(isset($loggedUser->profileUser) && !empty($loggedUser->profileUser))
+					
 					{
-					$arrayList[] = $user->userId; 	
-					$visitedId = implode(",", $arrayList);
-					$loggedUser->profileUser->visitedId = $visitedId ;
-					$loggedUser->profileUser->save();
+						if( $loggedUser->profileUser->visitedId == $user->userId){
+						$loggedUser->profileUser->counter = $loggedUser->profileUser->counter + 1;  
+						$loggedUser->profileUser->visitTime = new CDbExpression('NOW()');
+						$loggedUser->profileUser->save();
+						}
 					}
-				}
-				else {
+					else{
 					$profileView = new ProfileViews();
 					$profileView->userID = $loggedUser->userId;
 					$profileView->visitedId = $user->userId;
+					$profileView->visitTime = new CDbExpression('NOW()');
 					$profileView->save(); 
-				}
+					}
 				}
 				$this->render('idProfile',array('model'=>$user));
 			}
@@ -1208,21 +1189,7 @@ class SearchController extends Controller
 				
 			}
 			
-		if(isset($user)) {	
-		$profileBlock = $user->profileBlock;
-		$blockedIds = array();
-		if(isset($profileBlock->profileIDs))
-		{
-			$blockedIds = explode(",", $profileBlock->profileIDs);
-		}	
-		if(isset($blockIdList) && sizeof($blockId) > 0 )
-		$scondition .= " AND userId NOT IN({$blockIdList})";
-		}
-		
-		
 		$users = Users::model()->findAll(array('condition'=>$condition,'order'=> 'createdOn DESC' ));
-		
-		
 		
 		$highLightUser = array();
 		$normalUser = array();

@@ -50,7 +50,7 @@
   foreach ($users as $value) { ?>
             <div  id="<?php echo 'normal'.$index1?>" class="profile" <?php if(intval($totalPage) > 1 && $index1 > 10 ) {?> style="display:none" <?php }?>>
                 <div class="check-contnr"><input type="checkbox" /> Select</div>
-                <?php $this->widget('application.widgets.Profilepicture',array('userId'=>$value->userId,'marryId'=>$value->marryId)); ?>
+                <?php $this->widget('application.widgets.Profilepicturelist',array('userId'=>$value->userId,'marryId'=>$value->marryId)); ?>
                 
                 <div class="profile-details">
                     <ul class="details-contnr">

@@ -104,8 +104,7 @@ create table messages(messageId BIGINT UNIQUE NOT NULL AUTO_INCREMENT, senderId 
 create table shortlist(shortlistId BIGINT UNIQUE NOT NULL AUTO_INCREMENT, userID BIGINT NOT NULL, profileID text NOT NULL, PRIMARY KEY(shortlistId),FOREIGN KEY (userID) REFERENCES users(userId))ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;
 
 -- --table for profileViews---
-
-create table profileviews(profileViewId BIGINT UNIQUE NOT NULL AUTO_INCREMENT, userID BIGINT NOT NULL, visitedId text NOT NULL, PRIMARY KEY(profileViewId),FOREIGN KEY (userID) REFERENCES users(userId))ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;
+create table profileviews(profileViewId BIGINT UNIQUE NOT NULL AUTO_INCREMENT, userID BIGINT NOT NULL, visitedId BIGINT NOT NULL,counter INT NOT NULL DEFAULT 0,visitTime DATETIME NOT NULL DEFAULT '0000-00-00 00:00:00' , PRIMARY KEY(profileViewId),FOREIGN KEY (userID) REFERENCES users(userId),FOREIGN KEY (visitedId) REFERENCES users(userId))ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;
 
 -- --table for country
 

@@ -47,10 +47,11 @@ class ShortlistController extends Controller
 			//change this from session
 			$usersList = Yii::app()->session->get('user');
 			
-			$sql = "DELETE FROM shortlist WHERE userID = '1' AND profileID IN({$_POST['userId']})";
+			$sql = "DELETE FROM shortlist WHERE userID = '{$usersList->userId}' AND profileID IN({$_POST['userId']})";
 			$command=Yii::app()->db->createCommand($sql);
 			$results=$command->query();
 			
+			//change this to ajax based call
 			$this->forward('index');	
 		}
 	}

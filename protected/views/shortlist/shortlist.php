@@ -24,8 +24,8 @@
         
          <?php if(isset($users)){ ?>
         <div class="pagination-contnr">
-            <div class="select-contnr"><input type="checkbox" /> Select All</div>
-            <a href="#">Remove Shortlist</a>
+            <div class="select-contnr"><input type="checkbox" class="selection" name="selection" /> Select All</div>
+            <a id="rmv-large" href="#">Remove Shortlist</a>
             <?php if(isset($totalPage) && intval($totalPage) > 1) { ?>
             <ul class="pagination">
                 <li><span class="fir"><a href="#">First</a></span></li>
@@ -49,7 +49,7 @@
   if(isset($users)){
   foreach ($users as $value) { ?>
             <div  id="<?php echo 'normal'.$index1?>" class="profile" <?php if(intval($totalPage) > 1 && $index1 > 10 ) {?> style="display:none" <?php }?>>
-                <div class="check-contnr"><input type="checkbox" /> Select</div>
+                <div class="check-contnr"><input type="checkbox" name="userId" value="<?php echo $value->userId ?>"/> Select</div>
                 <?php $this->widget('application.widgets.Profilepicturelist',array('userId'=>$value->userId,'marryId'=>$value->marryId)); ?>
                 
                 <div class="profile-details">
@@ -91,11 +91,11 @@
  $isBookMarked = $user->bookmark(array('condition'=>"FIND_IN_SET('{$value->userId}',profileIDs)")); 
  $isMessage = $user->messageSender(array('condition'=>"receiverId = {$value->userId}"));
  ?>
-                    <a href="#" class="global bookPad">Remove Shortlist</a>
+                    <a href="#" id="<?php echo $value->userId ?>" class="global bookPad">Remove Shortlist</a>
                     <?php if(!isset($isMessage) || empty($isMessage)) {?>
-                    <a href="#" class="global bookPad">Send Message</a>
+                    <a href="#" id="<?php echo $value->userId ?>" class="global bookPad">Send Message</a>
                     <?php }?>
-                    <a href="#" class="global bookPad">Decline Interest</a>
+                    <a href="#"  id="<?php echo $value->userId ?>" class="global bookPad">Decline Interest</a>
                      
                 </div>
             </div>
@@ -230,7 +230,7 @@ $(document).ready(function() {
 	});
 	
 
-	
+	//check for selection all button
 	 $('.selection').change(function () {
 
 		 if($(this).attr("checked")){
@@ -240,12 +240,14 @@ $(document).ready(function() {
 		}
 		 
 	 }); 	
-
+	 
+	//if anyone of the checkbox is clicked then uncheck the select all
 	 $('.case').change(function () {
 		$('.selection').attr("checked",false);
 		 });
-	 
-	 $('.rmv-large').click(function (){
+
+	 //if checkall is selected then append all userid
+	 $('#rmv-large').click(function (){
 		 var  allVal= [];
 		 if($("input:checkbox[name=userId]:checked").length == 0)
 		 {
@@ -256,17 +258,56 @@ $(document).ready(function() {
 			 allVal.push($(this).val());
 		 });
 
-		 $('<input>').attr({
-			    type: 'hidden',
-			    id: 'userId',
-			    name: 'userId',
-			    value: allVal
-			}).appendTo('#shortlist');
-			  $('#shortlist').submit(); 
+		 alert(allVal); 
 		  
 	 });
 		 //		
 });
+
+
+function setInterest(userId) {
+    
+   //generate the parameter for the php script
+  
+   $.ajax({
+       url: "/interest/insert",  
+       type: "POST",        
+       data: {"userId":userId},     
+       cache: false,
+       success: function (response) {  
+           //hide the progress bar
+          return true; 
+                  
+       },       
+       error: function (){
+           return false;
+       }
+   });
+}
+
+function setBookmark() {
+    
+	    //generate the parameter for the php script
+	   
+	    $.ajax({
+	        url: "/bookmark/insert",  
+	        type: "POST",        
+	        data: data,     
+	        cache: false,
+	        success: function (html) {  
+	         
+	            //hide the progress bar
+	            $('#loading').hide();   
+	             
+	            //add the content retrieved from ajax and put it in the #content div
+	            $('#content').html(html);
+	             
+	            //display the body with fadeIn transition
+	            $('#content').fadeIn('slow');       
+	        }       
+	    });
+	}
+
 
 
 </script>    

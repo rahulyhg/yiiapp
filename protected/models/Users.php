@@ -108,7 +108,7 @@ class Users extends CActiveRecord
 			'contactSender' => array(self::HAS_MANY, 'ContactRequest', 'senderId'),
 			'contactReceiver' => array(self::HAS_MANY, 'ContactRequest', 'receiverId'),
 			'privacy' => array(self::HAS_MANY, 'Privacy', 'userId'),
-			'profileUser' => array(self::HAS_ONE, 'ProfileViews', 'userID'),
+			'profileUser' => array(self::HAS_MANY, 'ProfileViews', 'userID'),
 			'shortlist' => array(self::HAS_ONE, 'Shortlist', 'userID'),
 			'search' => array(self::HAS_ONE, 'Search', 'userId'),
 			'payment' => array(self::HAS_MANY, 'Payment', 'userID'),
