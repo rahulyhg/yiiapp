@@ -1089,21 +1089,22 @@ class SearchController extends Controller
 			{
 						
 				if(isset($loggedUser)){
-					if(isset($loggedUser->profileUser) && !empty($loggedUser->profileUser))
 					
+					$profileView = Profileviews::model()->findByAttributes(array('visitedId'=>$user->userId,'userID'=>$loggedUser->userId ));
+					if(isset($profileView))
 					{
-						if( $loggedUser->profileUser->visitedId == $user->userId){
-						$loggedUser->profileUser->counter = $loggedUser->profileUser->counter + 1;  
-						$loggedUser->profileUser->visitTime = new CDbExpression('NOW()');
-						$loggedUser->profileUser->save();
-						}
+						$profileView->counter = $profileView->counter + 1;
+						$profileView->visitTime  = new CDbExpression('NOW()');
+						$profileView->save();
 					}
-					else{
-					$profileView = new ProfileViews();
-					$profileView->userID = $loggedUser->userId;
-					$profileView->visitedId = $user->userId;
-					$profileView->visitTime = new CDbExpression('NOW()');
-					$profileView->save(); 
+					else
+					{
+						$prfile = new Profileviews();
+						$prfile->counter = 1;
+						$prfile->visitTime  = new CDbExpression('NOW()');
+						$prfile->visitedId = $user->userId;
+						$prfile->userID = $loggedUser->userId; 
+						$prfile->save();
 					}
 				}
 				$this->render('idProfile',array('model'=>$user));

@@ -29,270 +29,33 @@
 			</li>
 		</ul>
 		<div id="tab1_data" class="tab-data vTD" style="display: block;">
+			 <?php foreach ($normal as $value) { ?>
 			<div class="profile">
-                <div class="check-contnr"><input type="checkbox" /> Select</div>
-                <div class="image-contnr">
-                    <a href="#"><img src="./images/user/thumbnail.jpg" alt="" /></a>
-                    <div class="img-controls">
-                        <a href="#" class="prev"></a>
-                        <div class="numbers">
-                            <span>1</span> of <span>6</span>
-                        </div>
-                        <a href="#" class="next"></a>
-                    </div>
-                </div>
+			<?php $this->widget('application.widgets.Profilepicture',array('userId'=>$value->userId,'marryId'=>$value->marryId)); ?>
+                
                 <div class="profile-details">
                     <ul class="details-contnr">
                         <li>
-                            <a class="color" href="#">Bharat Gopi (MD123456)</a>
+                            <a href="<?php echo 'byid?id='.$value->marryId ?>" class="color" ><?php echo $value->name; echo '( '.$value->marryId.' )' ;?></a>
                         </li>
                         <li>
-                            <div class="p-info">female, 23, hindu, varma </div>
+                            <div class="p-info"> <?php echo Utilities::getAgeFromDateofBirth($value->dob); ?>,<?php echo $value->religion;?> , <?php echo $value->caste;?> </div>
                         </li>
                         <li>
-                            <div class="p-info">Cochin, Kerala</div>
+                            <div class="p-info"><?php echo $value->place ?>, <?php echo $value->state?> </div>
                         </li>
                         <li>
-                            <div class="viewed">viewed 250 times</div>
+                            <div class="viewed">viewed <?php echo $value->counter ?> times</div>
                         </li>
                         <li>
-                            <div class="last-view">Last viewed at: 27th July, 7:45pm</div>
+                            <div class="last-view">Last viewed at: <?php echo date("jS \of F Y , h:i A", strtotime($value->visitTime));?></div>
                         </li>
                     </ul>
-                    <a class="view-full" href="#">View Full Profile</a>
+                    <a class="view-full" href="<?php echo 'byid/id/'.$value->marryId ?>">View Full Profile</a>
                 </div>
             </div>
-			<div class="profile">
-                <div class="check-contnr"><input type="checkbox" /> Select</div>
-                <div class="image-contnr">
-                    <a href="#"><img src="./images/user/thumbnail.jpg" alt="" /></a>
-                    <div class="img-controls">
-                        <a href="#" class="prev"></a>
-                        <div class="numbers">
-                            <span>1</span> of <span>6</span>
-                        </div>
-                        <a href="#" class="next"></a>
-                    </div>
-                </div>
-                <div class="profile-details">
-                    <ul class="details-contnr">
-                        <li>
-                            <a class="color" href="#">Bharat Gopi (MD123456)</a>
-                        </li>
-                        <li>
-                            <div class="p-info">female, 23, hindu, varma </div>
-                        </li>
-                        <li>
-                            <div class="p-info">Cochin, Kerala</div>
-                        </li>
-                        <li>
-                            <div class="viewed">viewed 250 times</div>
-                        </li>
-                        <li>
-                            <div class="last-view">Last viewed at: 27th July, 7:45pm</div>
-                        </li>
-                    </ul>
-                    <a class="view-full" href="#">View Full Profile</a>
-                </div>
-            </div>
-			<div class="profile">
-                <div class="check-contnr"><input type="checkbox" /> Select</div>
-                <div class="image-contnr">
-                    <a href="#"><img src="./images/user/thumbnail.jpg" alt="" /></a>
-                    <div class="img-controls">
-                        <a href="#" class="prev"></a>
-                        <div class="numbers">
-                            <span>1</span> of <span>6</span>
-                        </div>
-                        <a href="#" class="next"></a>
-                    </div>
-                </div>
-                <div class="profile-details">
-                    <ul class="details-contnr">
-                        <li>
-                            <a class="color" href="#">Bharat Gopi (MD123456)</a>
-                        </li>
-                        <li>
-                            <div class="p-info">female, 23, hindu, varma </div>
-                        </li>
-                        <li>
-                            <div class="p-info">Cochin, Kerala</div>
-                        </li>
-                        <li>
-                            <div class="viewed">viewed 250 times</div>
-                        </li>
-                        <li>
-                            <div class="last-view">Last viewed at: 27th July, 7:45pm</div>
-                        </li>
-                    </ul>
-                    <a class="view-full" href="#">View Full Profile</a>
-                </div>
-            </div>
-			<div class="profile">
-                <div class="check-contnr"><input type="checkbox" /> Select</div>
-                <div class="image-contnr">
-                    <a href="#"><img src="./images/user/thumbnail.jpg" alt="" /></a>
-                    <div class="img-controls">
-                        <a href="#" class="prev"></a>
-                        <div class="numbers">
-                            <span>1</span> of <span>6</span>
-                        </div>
-                        <a href="#" class="next"></a>
-                    </div>
-                </div>
-                <div class="profile-details">
-                    <ul class="details-contnr">
-                        <li>
-                            <a class="color" href="#">Bharat Gopi (MD123456)</a>
-                        </li>
-                        <li>
-                            <div class="p-info">female, 23, hindu, varma </div>
-                        </li>
-                        <li>
-                            <div class="p-info">Cochin, Kerala</div>
-                        </li>
-                        <li>
-                            <div class="viewed">viewed 250 times</div>
-                        </li>
-                        <li>
-                            <div class="last-view">Last viewed at: 27th July, 7:45pm</div>
-                        </li>
-                    </ul>
-                    <a class="view-full" href="#">View Full Profile</a>
-                </div>
-            </div>
-			<div class="profile">
-                <div class="check-contnr"><input type="checkbox" /> Select</div>
-                <div class="image-contnr">
-                    <a href="#"><img src="./images/user/thumbnail.jpg" alt="" /></a>
-                    <div class="img-controls">
-                        <a href="#" class="prev"></a>
-                        <div class="numbers">
-                            <span>1</span> of <span>6</span>
-                        </div>
-                        <a href="#" class="next"></a>
-                    </div>
-                </div>
-                <div class="profile-details">
-                    <ul class="details-contnr">
-                        <li>
-                            <a class="color" href="#">Bharat Gopi (MD123456)</a>
-                        </li>
-                        <li>
-                            <div class="p-info">female, 23, hindu, varma </div>
-                        </li>
-                        <li>
-                            <div class="p-info">Cochin, Kerala</div>
-                        </li>
-                        <li>
-                            <div class="viewed">viewed 250 times</div>
-                        </li>
-                        <li>
-                            <div class="last-view">Last viewed at: 27th July, 7:45pm</div>
-                        </li>
-                    </ul>
-                    <a class="view-full" href="#">View Full Profile</a>
-                </div>
-            </div>
-			<div class="profile">
-                <div class="check-contnr"><input type="checkbox" /> Select</div>
-                <div class="image-contnr">
-                    <a href="#"><img src="./images/user/thumbnail.jpg" alt="" /></a>
-                    <div class="img-controls">
-                        <a href="#" class="prev"></a>
-                        <div class="numbers">
-                            <span>1</span> of <span>6</span>
-                        </div>
-                        <a href="#" class="next"></a>
-                    </div>
-                </div>
-                <div class="profile-details">
-                    <ul class="details-contnr">
-                        <li>
-                            <a class="color" href="#">Bharat Gopi (MD123456)</a>
-                        </li>
-                        <li>
-                            <div class="p-info">female, 23, hindu, varma </div>
-                        </li>
-                        <li>
-                            <div class="p-info">Cochin, Kerala</div>
-                        </li>
-                        <li>
-                            <div class="viewed">viewed 250 times</div>
-                        </li>
-                        <li>
-                            <div class="last-view">Last viewed at: 27th July, 7:45pm</div>
-                        </li>
-                    </ul>
-                    <a class="view-full" href="#">View Full Profile</a>
-                </div>
-            </div>
-			<div class="profile">
-                <div class="check-contnr"><input type="checkbox" /> Select</div>
-                <div class="image-contnr">
-                    <a href="#"><img src="./images/user/thumbnail.jpg" alt="" /></a>
-                    <div class="img-controls">
-                        <a href="#" class="prev"></a>
-                        <div class="numbers">
-                            <span>1</span> of <span>6</span>
-                        </div>
-                        <a href="#" class="next"></a>
-                    </div>
-                </div>
-                <div class="profile-details">
-                    <ul class="details-contnr">
-                        <li>
-                            <a class="color" href="#">Bharat Gopi (MD123456)</a>
-                        </li>
-                        <li>
-                            <div class="p-info">female, 23, hindu, varma </div>
-                        </li>
-                        <li>
-                            <div class="p-info">Cochin, Kerala</div>
-                        </li>
-                        <li>
-                            <div class="viewed">viewed 250 times</div>
-                        </li>
-                        <li>
-                            <div class="last-view">Last viewed at: 27th July, 7:45pm</div>
-                        </li>
-                    </ul>
-                    <a class="view-full" href="#">View Full Profile</a>
-                </div>
-            </div>
-			<div class="profile">
-                <div class="check-contnr"><input type="checkbox" /> Select</div>
-                <div class="image-contnr">
-                    <a href="#"><img src="./images/user/thumbnail.jpg" alt="" /></a>
-                    <div class="img-controls">
-                        <a href="#" class="prev"></a>
-                        <div class="numbers">
-                            <span>1</span> of <span>6</span>
-                        </div>
-                        <a href="#" class="next"></a>
-                    </div>
-                </div>
-                <div class="profile-details">
-                    <ul class="details-contnr">
-                        <li>
-                            <a class="color" href="#">Bharat Gopi (MD123456)</a>
-                        </li>
-                        <li>
-                            <div class="p-info">female, 23, hindu, varma </div>
-                        </li>
-                        <li>
-                            <div class="p-info">Cochin, Kerala</div>
-                        </li>
-                        <li>
-                            <div class="viewed">viewed 250 times</div>
-                        </li>
-                        <li>
-                            <div class="last-view">Last viewed at: 27th July, 7:45pm</div>
-                        </li>
-                    </ul>
-                    <a class="view-full" href="#">View Full Profile</a>
-                </div>
-            </div>
+            <?php } ?>
+			
 			<div class="visitorBtnC">
 				<span class="visitCnt">Total Visitors: 1725</span>
 				<span class="visitCnt">Previous Week Visitors: 125</span>
@@ -300,270 +63,34 @@
 			</div>
         </div>
 		<div id="tab2_data" class="tab-data vTD" style="display: none;">
+			 <?php foreach ($visitors as $value) { ?>
 			<div class="profile">
-                <div class="check-contnr"><input type="checkbox" /> Select</div>
-                <div class="image-contnr">
-                    <a href="#"><img src="./images/user/thumbnail.jpg" alt="" /></a>
-                    <div class="img-controls">
-                        <a href="#" class="prev"></a>
-                        <div class="numbers">
-                            <span>1</span> of <span>6</span>
-                        </div>
-                        <a href="#" class="next"></a>
-                    </div>
-                </div>
+			<?php $this->widget('application.widgets.Profilepicture',array('userId'=>$value->userId,'marryId'=>$value->marryId)); ?>
+                
                 <div class="profile-details">
                     <ul class="details-contnr">
                         <li>
-                            <a href="#" class="color">Lilly Joseph (E204235)</a>
+                            <a href="<?php echo 'byid?id='.$value->marryId ?>" class="color" ><?php echo $value->name; echo '( '.$value->marryId.' )' ;?></a>
                         </li>
                         <li>
-                            <div class="p-info">female, 23, hindu, varma </div>
+                            <div class="p-info"> <?php echo Utilities::getAgeFromDateofBirth($value->dob); ?>,<?php echo $value->religion;?> , <?php echo $value->caste;?> </div>
                         </li>
                         <li>
-                            <div class="p-info">Cochin, Kerala</div>
+                            <div class="p-info"><?php echo $value->place ?>, <?php echo $value->state?> </div>
                         </li>
                         <li>
-                            <div class="viewed">viewed 250 times</div>
+                            <div class="viewed">viewed <?php echo $value->counter ?> times</div>
                         </li>
                         <li>
-                            <div class="last-view">Last viewed at: 27th July, 7:45pm</div>
+                            <div class="last-view">Last viewed at: <?php echo date("jS \of F Y , h:i A", strtotime($value->visitTime));?></div>
                         </li>
                     </ul>
-                    <a class="view-full" href="#">View Full Profile</a>
+                    <a class="view-full" href="<?php echo 'byid/id/'.$value->marryId ?>">View Full Profile</a>
                 </div>
             </div>
-			<div class="profile">
-                <div class="check-contnr"><input type="checkbox" /> Select</div>
-                <div class="image-contnr">
-                    <a href="#"><img src="./images/user/thumbnail.jpg" alt="" /></a>
-                    <div class="img-controls">
-                        <a href="#" class="prev"></a>
-                        <div class="numbers">
-                            <span>1</span> of <span>6</span>
-                        </div>
-                        <a href="#" class="next"></a>
-                    </div>
-                </div>
-                <div class="profile-details">
-                    <ul class="details-contnr">
-                        <li>
-                            <a href="#" class="color">Lilly Joseph (E204235)</a>
-                        </li>
-                        <li>
-                            <div class="p-info">female, 23, hindu, varma </div>
-                        </li>
-                        <li>
-                            <div class="p-info">Cochin, Kerala</div>
-                        </li>
-                        <li>
-                            <div class="viewed">viewed 250 times</div>
-                        </li>
-                        <li>
-                            <div class="last-view">Last viewed at: 27th July, 7:45pm</div>
-                        </li>
-                    </ul>
-                    <a class="view-full" href="#">View Full Profile</a>
-                </div>
-            </div>
-			<div class="profile">
-                <div class="check-contnr"><input type="checkbox" /> Select</div>
-                <div class="image-contnr">
-                    <a href="#"><img src="./images/user/thumbnail.jpg" alt="" /></a>
-                    <div class="img-controls">
-                        <a href="#" class="prev"></a>
-                        <div class="numbers">
-                            <span>1</span> of <span>6</span>
-                        </div>
-                        <a href="#" class="next"></a>
-                    </div>
-                </div>
-                <div class="profile-details">
-                    <ul class="details-contnr">
-                        <li>
-                            <a href="#" class="color">Lilly Joseph (E204235)</a>
-                        </li>
-                        <li>
-                            <div class="p-info">female, 23, hindu, varma </div>
-                        </li>
-                        <li>
-                            <div class="p-info">Cochin, Kerala</div>
-                        </li>
-                        <li>
-                            <div class="viewed">viewed 250 times</div>
-                        </li>
-                        <li>
-                            <div class="last-view">Last viewed at: 27th July, 7:45pm</div>
-                        </li>
-                    </ul>
-                    <a class="view-full" href="#">View Full Profile</a>
-                </div>
-            </div>
-			<div class="profile">
-                <div class="check-contnr"><input type="checkbox" /> Select</div>
-                <div class="image-contnr">
-                    <a href="#"><img src="./images/user/thumbnail.jpg" alt="" /></a>
-                    <div class="img-controls">
-                        <a href="#" class="prev"></a>
-                        <div class="numbers">
-                            <span>1</span> of <span>6</span>
-                        </div>
-                        <a href="#" class="next"></a>
-                    </div>
-                </div>
-                <div class="profile-details">
-                    <ul class="details-contnr">
-                        <li>
-                            <a href="#" class="color">Lilly Joseph (E204235)</a>
-                        </li>
-                        <li>
-                            <div class="p-info">female, 23, hindu, varma </div>
-                        </li>
-                        <li>
-                            <div class="p-info">Cochin, Kerala</div>
-                        </li>
-                        <li>
-                            <div class="viewed">viewed 250 times</div>
-                        </li>
-                        <li>
-                            <div class="last-view">Last viewed at: 27th July, 7:45pm</div>
-                        </li>
-                    </ul>
-                    <a class="view-full" href="#">View Full Profile</a>
-                </div>
-            </div>
-			<div class="profile">
-                <div class="check-contnr"><input type="checkbox" /> Select</div>
-                <div class="image-contnr">
-                    <a href="#"><img src="./images/user/thumbnail.jpg" alt="" /></a>
-                    <div class="img-controls">
-                        <a href="#" class="prev"></a>
-                        <div class="numbers">
-                            <span>1</span> of <span>6</span>
-                        </div>
-                        <a href="#" class="next"></a>
-                    </div>
-                </div>
-                <div class="profile-details">
-                    <ul class="details-contnr">
-                        <li>
-                            <a href="#" class="color">Lilly Joseph (E204235)</a>
-                        </li>
-                        <li>
-                            <div class="p-info">female, 23, hindu, varma </div>
-                        </li>
-                        <li>
-                            <div class="p-info">Cochin, Kerala</div>
-                        </li>
-                        <li>
-                            <div class="viewed">viewed 250 times</div>
-                        </li>
-                        <li>
-                            <div class="last-view">Last viewed at: 27th July, 7:45pm</div>
-                        </li>
-                    </ul>
-                    <a class="view-full" href="#">View Full Profile</a>
-                </div>
-            </div>
-			<div class="profile">
-                <div class="check-contnr"><input type="checkbox" /> Select</div>
-                <div class="image-contnr">
-                    <a href="#"><img src="./images/user/thumbnail.jpg" alt="" /></a>
-                    <div class="img-controls">
-                        <a href="#" class="prev"></a>
-                        <div class="numbers">
-                            <span>1</span> of <span>6</span>
-                        </div>
-                        <a href="#" class="next"></a>
-                    </div>
-                </div>
-                <div class="profile-details">
-                    <ul class="details-contnr">
-                        <li>
-                            <a href="#" class="color">Lilly Joseph (E204235)</a>
-                        </li>
-                        <li>
-                            <div class="p-info">female, 23, hindu, varma </div>
-                        </li>
-                        <li>
-                            <div class="p-info">Cochin, Kerala</div>
-                        </li>
-                        <li>
-                            <div class="viewed">viewed 250 times</div>
-                        </li>
-                        <li>
-                            <div class="last-view">Last viewed at: 27th July, 7:45pm</div>
-                        </li>
-                    </ul>
-                    <a class="view-full" href="#">View Full Profile</a>
-                </div>
-            </div>
-			<div class="profile">
-                <div class="check-contnr"><input type="checkbox" /> Select</div>
-                <div class="image-contnr">
-                    <a href="#"><img src="./images/user/thumbnail.jpg" alt="" /></a>
-                    <div class="img-controls">
-                        <a href="#" class="prev"></a>
-                        <div class="numbers">
-                            <span>1</span> of <span>6</span>
-                        </div>
-                        <a href="#" class="next"></a>
-                    </div>
-                </div>
-                <div class="profile-details">
-                    <ul class="details-contnr">
-                        <li>
-                            <a href="#" class="color">Lilly Joseph (E204235)</a>
-                        </li>
-                        <li>
-                            <div class="p-info">female, 23, hindu, varma </div>
-                        </li>
-                        <li>
-                            <div class="p-info">Cochin, Kerala</div>
-                        </li>
-                        <li>
-                            <div class="viewed">viewed 250 times</div>
-                        </li>
-                        <li>
-                            <div class="last-view">Last viewed at: 27th July, 7:45pm</div>
-                        </li>
-                    </ul>
-                    <a class="view-full" href="#">View Full Profile</a>
-                </div>
-            </div>
-			<div class="profile">
-                <div class="check-contnr"><input type="checkbox" /> Select</div>
-                <div class="image-contnr">
-                    <a href="#"><img src="./images/user/thumbnail.jpg" alt="" /></a>
-                    <div class="img-controls">
-                        <a href="#" class="prev"></a>
-                        <div class="numbers">
-                            <span>1</span> of <span>6</span>
-                        </div>
-                        <a href="#" class="next"></a>
-                    </div>
-                </div>
-                <div class="profile-details">
-                    <ul class="details-contnr">
-                        <li>
-                            <a href="#" class="color">Lilly Joseph (E204235)</a>
-                        </li>
-                        <li>
-                            <div class="p-info">female, 23, hindu, varma </div>
-                        </li>
-                        <li>
-                            <div class="p-info">Cochin, Kerala</div>
-                        </li>
-                        <li>
-                            <div class="viewed">viewed 250 times</div>
-                        </li>
-                        <li>
-                            <div class="last-view">Last viewed at: 27th July, 7:45pm</div>
-                        </li>
-                    </ul>
-                    <a class="view-full" href="#">View Full Profile</a>
-                </div>
-            </div>
+            <?php } ?>
+			
 		</div>
 		
     </section>
+
