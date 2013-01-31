@@ -13,6 +13,9 @@
 	<script type="text/javascript" src="<?php echo Yii::app()->params['resourceUrl']; ?>/js/formvalidation.js?version=<?php echo Yii::app()->params['version']?>" charset="utf-8"></script>
 	<script type="text/javascript" src="<?php echo Yii::app()->params['resourceUrl']; ?>/js/jquery.validate.js?version=<?php echo Yii::app()->params['version']?>" charset="utf-8"></script>
 
+	<!-- lightbox js and css -->
+	<link rel="stylesheet" href="<?php echo Yii::app()->params['resourceUrl']; ?>/css/lightbox/css/lightbox.css" type="text/css" media="screen" />
+	<script src="<?php echo Yii::app()->params['resourceUrl']; ?>/css/lightbox/js/lightbox.js"></script>
 <style type="text/css">
 * { font-family: Verdana; font-size: 96%; }
 label { width: 10em; float: left; }
