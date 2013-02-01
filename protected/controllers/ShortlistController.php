@@ -16,8 +16,8 @@ class ShortlistController extends Controller
 	public function actionIndex()
 	{
 		$usersList = Yii::app()->session->get('user');
+		if(isset($usersList->shortlist)){
 		$userShort = $usersList->shortlist;
-		if(isset($userShort)){
 		$condition = "userId in ($userShort->profileID)";
 		$users = Users::model()->findAll(array('condition'=>$condition,'order'=> 'createdOn DESC' ));
 		
@@ -47,13 +47,48 @@ class ShortlistController extends Controller
 			//change this from session
 			$usersList = Yii::app()->session->get('user');
 			
-			$sql = "DELETE FROM shortlist WHERE userID = '{$usersList->userId}' AND profileID IN({$_POST['userId']})";
-			$command=Yii::app()->db->createCommand($sql);
-			$results=$command->query();
+			if(isset($usersList->shortlist))
+			{
+				if(isset($usersList->shortlist->profileID ))
+				{
+					$profileIds = explode(",", $usersList->shortlist->profileID);
+					$arr = array_diff($profileIds, array($_POST['userId']));
+					$usersList->shortlist->profileID = implode(",", $arr);
+					$usersList->shortlist->save();
+					echo json_encode(TRUE);
+					Yii::app()->end();
+				}
+			}
 			
-			//change this to ajax based call
-			$this->forward('index');	
+			
 		}
+	}
+	
+	public function actionRemoveAll()
+	{
+		
+	if(isset($_POST['userId']) && !empty($_POST['userId']))
+		{
+			$usersList = Yii::app()->session->get('user');	
+			if(isset($usersList->shortlist))
+			{
+				if(isset($usersList->shortlist->profileID ))
+				{
+					$profileIds = explode(",", $usersList->shortlist->profileID);
+					$arr = array_diff($profileIds, $_POST['userId']);
+					if(sizeof($arr)){
+					$usersList->shortlist->profileID = implode(",", $arr);
+					$usersList->shortlist->save();
+					}
+					else
+					{
+						$usersList->shortlist->deleteAll();
+					}
+				}
+			}
+			
+		}
+		$this->forward('index');
 	}
 	
 	

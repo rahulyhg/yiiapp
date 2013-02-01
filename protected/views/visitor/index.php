@@ -29,63 +29,63 @@
 			</li>
 		</ul>
 		<div id="tab1_data" class="tab-data vTD" style="display: block;">
-			 <?php foreach ($normal as $value) { ?>
+			 <?php foreach ($users as $value) { ?>
 			<div class="profile">
-			<?php $this->widget('application.widgets.Profilepicture',array('userId'=>$value->userId,'marryId'=>$value->marryId)); ?>
+			<?php $this->widget('application.widgets.Profilepicturelist',array('userId'=>$value['userID'],'marryId'=>$value['marryId'])); ?>
                 
                 <div class="profile-details">
                     <ul class="details-contnr">
                         <li>
-                            <a href="<?php echo 'byid?id='.$value->marryId ?>" class="color" ><?php echo $value->name; echo '( '.$value->marryId.' )' ;?></a>
+                            <a href="<?php echo 'byid?id='.$value['marryId'] ?>" class="color" ><?php echo $value['name']; echo '( '.$value['marryId'].' )' ;?></a>
                         </li>
                         <li>
-                            <div class="p-info"> <?php echo Utilities::getAgeFromDateofBirth($value->dob); ?>,<?php echo $value->religion;?> , <?php echo $value->caste;?> </div>
+                            <div class="p-info"> <?php echo Utilities::getAgeFromDateofBirth($value['dob']); ?>,<?php echo $value['religion'];?> , <?php echo $value['caste'];?> </div>
                         </li>
                         <li>
-                            <div class="p-info"><?php echo $value->place ?>, <?php echo $value->state?> </div>
+                            <div class="p-info"><?php echo $value['place'] ?>, <?php echo $value['state']?> </div>
                         </li>
                         <li>
-                            <div class="viewed">viewed <?php echo $value->counter ?> times</div>
+                            <div class="viewed">viewed <?php echo $value['counter']?> times</div>
                         </li>
                         <li>
-                            <div class="last-view">Last viewed at: <?php echo date("jS \of F Y , h:i A", strtotime($value->visitTime));?></div>
+                            <div class="last-view">Last viewed at: <?php echo date("jS \of F Y , h:i A", strtotime($value['visitTime']));?></div>
                         </li>
                     </ul>
-                    <a class="view-full" href="<?php echo 'byid/id/'.$value->marryId ?>">View Full Profile</a>
+                    <a class="view-full" href="<?php echo '/search/byid/id/'.$value['marryId'] ?>">View Full Profile</a>
                 </div>
             </div>
             <?php } ?>
 			
 			<div class="visitorBtnC">
 				<span class="visitCnt">Total Visitors: 1725</span>
-				<span class="visitCnt">Previous Week Visitors: 125</span>
-				<span class="visitCnt">Todays Visitors: 25</span>
+				<span class="visitCnt">Previous Week Visitors: <?php echo $weekly['num']; ?></span>
+				<span class="visitCnt">Todays Visitors: <?php echo $today['num']; ?></span>
 			</div>
         </div>
 		<div id="tab2_data" class="tab-data vTD" style="display: none;">
 			 <?php foreach ($visitors as $value) { ?>
 			<div class="profile">
-			<?php $this->widget('application.widgets.Profilepicture',array('userId'=>$value->userId,'marryId'=>$value->marryId)); ?>
+			<?php $this->widget('application.widgets.Profilepicturelist',array('userId'=>$value['userID'],'marryId'=>$value['marryId'])); ?>
                 
                 <div class="profile-details">
                     <ul class="details-contnr">
                         <li>
-                            <a href="<?php echo 'byid?id='.$value->marryId ?>" class="color" ><?php echo $value->name; echo '( '.$value->marryId.' )' ;?></a>
+                            <a href="<?php echo 'byid?id='.$value['marryId'] ?>" class="color" ><?php echo $value['name']; echo '( '.$value['marryId'].' )' ;?></a>
                         </li>
                         <li>
-                            <div class="p-info"> <?php echo Utilities::getAgeFromDateofBirth($value->dob); ?>,<?php echo $value->religion;?> , <?php echo $value->caste;?> </div>
+                            <div class="p-info"> <?php echo Utilities::getAgeFromDateofBirth($value['dob']); ?>,<?php echo $value['religion'];?> , <?php echo $value['caste'];?> </div>
                         </li>
                         <li>
-                            <div class="p-info"><?php echo $value->place ?>, <?php echo $value->state?> </div>
+                            <div class="p-info"><?php echo $value['place'] ?>, <?php echo $value['state']?> </div>
                         </li>
                         <li>
-                            <div class="viewed">viewed <?php echo $value->counter ?> times</div>
+                            <div class="viewed">viewed <?php echo $value['counter']?> times</div>
                         </li>
                         <li>
-                            <div class="last-view">Last viewed at: <?php echo date("jS \of F Y , h:i A", strtotime($value->visitTime));?></div>
+                            <div class="last-view">Last viewed at: <?php echo date("jS \of F Y , h:i A", strtotime($value['visitTime']));?></div>
                         </li>
                     </ul>
-                    <a class="view-full" href="<?php echo 'byid/id/'.$value->marryId ?>">View Full Profile</a>
+                    <a class="view-full" href="<?php echo '/search/byid/id/'.$value['marryId'] ?>">View Full Profile</a>
                 </div>
             </div>
             <?php } ?>

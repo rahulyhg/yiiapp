@@ -90,13 +90,16 @@
  $isInterest = $user->interestSender(array('condition'=>"receiverId = {$value->userId}"));
  $isBookMarked = $user->bookmark(array('condition'=>"FIND_IN_SET('{$value->userId}',profileIDs)")); 
  $isMessage = $user->messageSender(array('condition'=>"receiverId = {$value->userId}"));
- ?>
-                    <a href="#" id="<?php echo $value->userId ?>" class="global bookPad">Remove Shortlist</a>
+ ?>					<div id="rBookmark">
+                    <a href="#" id="<?php echo $value->userId ?>" class="global bookPad">Remove Shortlist</a></div>
                     <?php if(!isset($isMessage) || empty($isMessage)) {?>
+                    <div id="message">
                     <a href="#" id="<?php echo $value->userId ?>" class="global bookPad">Send Message</a>
+                    </div>
                     <?php }?>
+                    <div id="interest">
                     <a href="#"  id="<?php echo $value->userId ?>" class="global bookPad">Decline Interest</a>
-                     
+                     </div>
                 </div>
             </div>
     
@@ -105,8 +108,9 @@
 ?>						
           
         </div>
+          <?php if(isset($users)){ ?>
         <div class="pagination-contnr">
-            <div class="select-contnr"><input type="checkbox" /> Select All</div>
+            <div class="select-contnr"><input type="checkbox" class="selection" name="selection" />Select All</div>
             <a href="#">Remove Shortlist</a>
             <?php if(isset($totalPage) && intval($totalPage) > 1) { ?>
             <ul class="pagination">
@@ -123,6 +127,7 @@
                  <?php } ?>       
           
         </div>
+              <?php } ?>
     </section>
     	  
     	  
@@ -258,10 +263,27 @@ $(document).ready(function() {
 			 allVal.push($(this).val());
 		 });
 
-		 alert(allVal); 
+		 removeAllBookMark(allVal); 
 		  
 	 });
-		 //		
+	 
+	 $('#rBookmark').click(function (){
+		 var userId = $(this).find('a').attr('id');
+
+		 $.ajax({
+		        url: "/shortlist/remove",  
+		        type: "POST",
+		        dataType:'json',
+		        data:{'userId':userId},   
+		        cache: false,
+		        success: function (html) {
+			        if(html == true)  
+		        	$('#rBookmark').hide();	         
+		        }       
+		    });
+	 
+	 });
+	 	 //		
 });
 
 
@@ -285,30 +307,19 @@ function setInterest(userId) {
    });
 }
 
-function setBookmark() {
+function removeAllBookMark(userIds) {
     
 	    //generate the parameter for the php script
 	   
 	    $.ajax({
-	        url: "/bookmark/insert",  
-	        type: "POST",        
-	        data: data,     
+	        url: "/shortlist/removeAll",  
+	        type: "POST",
+	        dataType:'json',        
+	        data: {"userId":userIds},        
 	        cache: false,
-	        success: function (html) {  
-	         
-	            //hide the progress bar
-	            $('#loading').hide();   
-	             
-	            //add the content retrieved from ajax and put it in the #content div
-	            $('#content').html(html);
-	             
-	            //display the body with fadeIn transition
-	            $('#content').fadeIn('slow');       
-	        }       
+	        success: function (html) {}  
 	    });
 	}
-
-
 
 </script>    
   

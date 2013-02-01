@@ -29,7 +29,7 @@
             <div class="headBtn">
                 <div class="hText">Highlighted Profiles</div>
                 <?php if(isset($user) && $user->highlighted != 1) {?>
-                <a href="#" class="type4 ">HIGHLIGHT YOUR PROFILE</a>
+                <a href="/highlight" class="type4 ">HIGHLIGHT YOUR PROFILE</a>
                  <?php }?>
             </div>
             <?php 
@@ -79,14 +79,14 @@
  $isMessage = $user->messageSender(array('condition'=>"receiverId = {$value->userId}"));
  if(!isset($isInterest) || empty($isInterest)) {
  ?>
-                    <a href="#" class="global">Express Interest</a>
+                 <div id="interest">   <a href="#" id="<?php echo $value->userId ?>"  class="global">Express Interest</a></div>
                    <?php }?>
 <?php if(!isset($isBookMarked) || empty($isBookMarked)) {?>  
                     
-                    <a href="#" class="global">Bookmark</a>
+                    <div id="bookmark"><a href="#" id="<?php echo $value->userId ?>"  class="global">Bookmark</a></div>
                     <?php }?>
 <?php if(!isset($isMessage) || empty($isMessage)) {?>
-                    <a href="#" class="global">Send Message</a>
+                    <div id="message"><a href="#" id="<?php echo $value->userId ?>"  class="global">Send Message</a></div>
                    <?php }
   } ?>   
                 </div>
@@ -101,11 +101,10 @@
         <?php }?>
         <?php if(sizeof($normal) > 0 ) {?>
         <div class="page-content-head">Matches for you</div>
-        <?php if(isset($totalPage) && intval($totalPage) > 1) { ?>
         <div class="pagination-contnr">
-            <div class="select-contnr"><input type="checkbox" /> Select All</div>
-            <a href="#">Express Interest</a>
-            <a href="#">Bookmark</a>
+            <div class="select-contnr"><input type="checkbox" class="selection" name="selection" /> Select All</div>
+            <a id="exInterest" href="#">Express Interest</a>
+            <a id="exBookmark" href="#">Bookmark</a>
            <?php if(isset($totalPage) && intval($totalPage) > 1) { ?>
             <ul class="pagination">
                 <li><span class="fir"><a href="#">First</a></span></li>
@@ -122,15 +121,14 @@
           
         </div>
         <?php }?>
-        <?php }?>
         
         <div class="content-section">
         <?php 
   	$index1 = 1;
   	foreach ($normal as $value) { ?>
             <div  id="<?php echo 'normal'.$index1?>" class="profile" <?php if(intval($totalPage) > 1 && $index1 > 10 ) {?> style="display:none" <?php }?>>
-                <div class="check-contnr"><input type="checkbox" /> Select</div>
-                <?php $this->widget('application.widgets.Profilepicture',array('userId'=>$value->userId,'marryId'=>$value->marryId)); ?>
+                <div class="check-contnr"><input type="checkbox" name="userId" value="<?php echo $value->userId ?>"/> Select</div>
+                <?php $this->widget('application.widgets.Profilepicturelist',array('userId'=>$value->userId,'marryId'=>$value->marryId)); ?>
                 <div class="profile-details">
                     <ul class="details-contnr">
                         <li>
@@ -172,13 +170,17 @@
  $isMessage = $user->messageSender(array('condition'=>"receiverId = {$value->userId}"));
  if(!isset($isInterest) || empty($isInterest)) {
  ?>
-                    <a href="#" class="global">Express Interest</a>
+                 <div id="interest">   <a href="#" id="<?php echo $value->userId ?>"  class="global">Express Interest</a></div>
    <?php }?>
-<?php if(!isset($isBookMarked) || empty($isBookMarked)) {?> 
-                    <a href="#" class="global">Bookmark</a>
+<?php if(!isset($isBookMarked) || empty($isBookMarked)) {?>
+<div id="bookmark"> 
+                    <a href="#" id="<?php echo $value->userId ?>"  class="global">Bookmark</a>
+                    </div>
    <?php }?>
 <?php if(!isset($isMessage) || empty($isMessage)) {?>
-                    <a href="#" class="global">Send Message</a>
+<div id="message">
+                    <a href="#"  id="<?php echo $value->userId ?>"  class="global">Send Message</a>
+                    </div>
                     <?php }
   	}
   	?>
@@ -188,9 +190,9 @@
            
         </div>
         <div class="pagination-contnr">
-            <div class="select-contnr"><input type="checkbox" /> Select All</div>
-            <a href="#">Express Interest</a>
-            <a href="#">Bookmark</a>
+            <div class="select-contnr"><input type="checkbox" class="selection" name="selection" />Select All</div>
+            <a id="exInterest" href="#">Express Interest</a>
+            <a id="exBookmark" href="#">Bookmark</a>
              <?php if(isset($totalPage) && intval($totalPage) > 1) { ?>
             <ul class="pagination">
                 <li><span class="fir"><a href="#">First</a></span></li>
@@ -341,8 +343,95 @@
 		
 	});
 
+	 //check for selection all button
+	 $('.selection').change(function () {
+
+		 if($(this).attr("checked")){
+			 $('input:checkbox').attr('checked','checked');
+		}else{ 
+			$('input:checkbox').removeAttr('checked');
+		}
+		 
+	 }); 	
+	 
+	//if anyone of the checkbox is clicked then uncheck the select all
+	 $('.case').change(function () {
+		$('.selection').attr("checked",false);
+		 });
+
+	 //if checkall is selected then append all userid
+	 $('#exBookmark').click(function (){
+		 var  allVal= [];
+		 if($("input:checkbox[name=userId]:checked").length == 0)
+		 {
+			alert('Please select any one of profile to remove');
+			return false;
+		 }		 
+		 $("input:checkbox[name=userId]:checked").each(function(){
+			 allVal.push($(this).val());
+		 });
+
+		 alert(allVal); 
+		  
+	 });
+
+	 //express interest
+	 $('#exInterest').click(function (){
+		 var  allVal= [];
+		 if($("input:checkbox[name=userId]:checked").length == 0)
+		 {
+			alert('Please select any one of profile to remove');
+			return false;
+		 }		 
+		 $("input:checkbox[name=userId]:checked").each(function(){
+			 allVal.push($(this).val());
+		 });
+
+		 alert(allVal); 
+		  
+	 });
+	 
+
+	 
+	 
+	 $('#bookmark').click(function (){
+		 var userId = $(this).find('a').attr('id');
+
+		 $.ajax({
+		        url: "/bookmark/add",  
+		        type: "POST",
+		        dataType:'json',
+		        data:{'userId':userId},   
+		        cache: false,
+		        success: function (html) {
+			        if(html == true)  
+		        	$('#bookmark').hide();	         
+		        }       
+		    });
+	 
+	 });
+
+	 $('#interest').click(function (){
+		 var userId = $(this).find('a').attr('id');
+
+		 $.ajax({
+		        url: "/bookmark/add",  
+		        type: "POST",
+		        dataType:'json',
+		        data:{'userId':userId},   
+		        cache: false,
+		        success: function (html) {
+			        if(html == true)  
+		        	$('#bookmark').hide();	         
+		        }       
+		    });
+	 
+	 });
 	 
    });
+
+
+
    
  function setInterest(userId) {
      
@@ -364,26 +453,16 @@
     });
 }
 
- function setBookmark() {
+ function addBookmark(userIds) {
      
 	    //generate the parameter for the php script
-	   
-	    $.ajax({
-	        url: "/bookmark/insert",  
-	        type: "POST",        
-	        data: data,     
+	 $.ajax({
+	        url: "/bookmark/addAll",  
+	        type: "POST",
+	        dataType:'json',        
+	        data: {"userId":userIds},        
 	        cache: false,
-	        success: function (html) {  
-	         
-	            //hide the progress bar
-	            $('#loading').hide();   
-	             
-	            //add the content retrieved from ajax and put it in the #content div
-	            $('#content').html(html);
-	             
-	            //display the body with fadeIn transition
-	            $('#content').fadeIn('slow');       
-	        }       
+	        success: function (html) {}  
 	    });
 	}
 

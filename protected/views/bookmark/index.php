@@ -24,8 +24,8 @@
         
          <?php if(isset($users)){ ?>
         <div class="pagination-contnr">
-            <div class="select-contnr"><input type="checkbox" /> Select All</div>
-            <a href="#">Remove Bookmark</a>
+            <div class="select-contnr"><input type="checkbox" class="selection" name="selection" /> Select All</div>
+            <a id="rmv-large" href="#">Remove Shortlist</a>
             <?php if(isset($totalPage) && intval($totalPage) > 1) { ?>
             <ul class="pagination">
                 <li><span class="fir"><a href="#">First</a></span></li>
@@ -49,7 +49,7 @@
   if(isset($users)){
   foreach ($users as $value) { ?>
             <div  id="<?php echo 'normal'.$index1?>" class="profile" <?php if(intval($totalPage) > 1 && $index1 > 10 ) {?> style="display:none" <?php }?>>
-                <div class="check-contnr"><input type="checkbox" /> Select</div>
+                <div class="check-contnr"><input type="checkbox" name="userId" value="<?php echo $value->userId ?>"/> Select</div>
                 <?php $this->widget('application.widgets.Profilepicturelist',array('userId'=>$value->userId,'marryId'=>$value->marryId)); ?>
                 
                 <div class="profile-details">
@@ -91,12 +91,17 @@
  $isBookMarked = $user->bookmark(array('condition'=>"FIND_IN_SET('{$value->userId}',profileIDs)")); 
  $isMessage = $user->messageSender(array('condition'=>"receiverId = {$value->userId}"));
  ?>
-                    <a href="#" class="global bookPad">Remove Bookmark</a>
+ 					<div id="rBookmark">
+                    <a href="#" id="<?php echo $value->userId ?>"  class="global bookPad">Remove Bookmark</a>
+                    </div>
                     <?php if(!isset($isMessage) || empty($isMessage)) {?>
-                    <a href="#" class="global bookPad">Send Message</a>
+                    <div id="message">
+                    <a href="#" id="<?php echo $value->userId ?>"  class="global bookPad">Send Message</a>
+                    </div>
                     <?php }?>
-                    <a href="#" class="global bookPad">Decline Interest</a>
-                     
+                    <div id="interest">
+                    <a href="#" id="<?php echo $value->userId ?>"  class="global bookPad">Decline Interest</a>
+                     </div>
                 </div>
             </div>
     
@@ -105,6 +110,7 @@
 ?>						
           
         </div>
+         <?php if(isset($users)){ ?>
         <div class="pagination-contnr">
             <div class="select-contnr"><input type="checkbox" /> Select All</div>
             <a href="#">Remove Bookmark</a>
@@ -123,6 +129,7 @@
                  <?php } ?>       
           
         </div>
+         <?php } ?>
     </section>
     	  
     	  
@@ -245,7 +252,7 @@ $(document).ready(function() {
 		$('.selection').attr("checked",false);
 		 });
 	 
-	 $('.rmv-large').click(function (){
+	 $('#rmv-large').click(function (){
 		 var  allVal= [];
 		 if($("input:checkbox[name=userId]:checked").length == 0)
 		 {
@@ -255,19 +262,44 @@ $(document).ready(function() {
 		 $("input:checkbox[name=userId]:checked").each(function(){
 			 allVal.push($(this).val());
 		 });
-
-		 $('<input>').attr({
-			    type: 'hidden',
-			    id: 'userId',
-			    name: 'userId',
-			    value: allVal
-			}).appendTo('#shortlist');
-			  $('#shortlist').submit(); 
-		  
+	alert(allVal);
+		 //removeAllBookMark(allVal); 
 	 });
 		 //		
+
+	 $('#rBookmark').click(function (){
+		 var userId = $(this).find('a').attr('id');
+
+		 $.ajax({
+		        url: "/bookmark/remove",  
+		        type: "POST",
+		        dataType:'json',
+		        data:{'userId':userId},   
+		        cache: false,
+		        success: function (html) {
+			        if(html == true)  
+		        	$('#rBookmark').hide();	         
+		        }       
+		    });
+	 
+	 });
 });
 
+
+
+function removeAllBookMark(userIds) {
+    
+	    //generate the parameter for the php script
+	   
+	    $.ajax({
+	        url: "/bookmark/removeAll",  
+	        type: "POST",
+	        dataType:'json',        
+	        data: {"userId":userIds},        
+	        cache: false,
+	        success: function (html) {}  
+	    });
+	}
 
 </script>    
   

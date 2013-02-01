@@ -15,8 +15,8 @@ class BookmarkController extends Controller
 	public function actionIndex()
 	{
 		$usersList = Yii::app()->session->get('user');
+		if(isset($usersList->bookmark)){
 		$userBook = $usersList->bookmark;
-		if(isset($userBook)){
 		$condition = "userId in ($userBook->profileIDs)";
 		$users = Users::model()->findAll(array('condition'=>$condition,'order'=> 'createdOn DESC' ));
 		
@@ -40,19 +40,55 @@ class BookmarkController extends Controller
 		
 	}
 	
-	public function actionRemove()
+public function actionRemove()
 	{
 		if(isset($_POST['userId']) && !empty($_POST['userId']))
 		{
 			//change this from session
 			$usersList = Yii::app()->session->get('user');
 			
-			$sql = "DELETE FROM bookmark WHERE userID = '{$usersList->userId}' AND profileIDs IN({$_POST['userId']})";
-			$command=Yii::app()->db->createCommand($sql);
-			$results=$command->query();
+			if(isset($usersList->bookmark))
+			{
+				if(isset($usersList->bookmark->profileIDs ))
+				{
+					$profileIds = explode(",", $usersList->bookmark->profileIDs);
+					$arr = array_diff($profileIds, array($_POST['userId']));
+					$usersList->bookmark->profileIDs = implode(",", $arr);
+					$usersList->bookmark->save();
+					echo json_encode(TRUE);
+					Yii::app()->end();
+				}
+			}
 			
-			$this->forward('index');	
+			
 		}
+	}
+	
+	public function actionRemoveAll()
+	{
+		
+	if(isset($_POST['userId']) && !empty($_POST['userId']))
+		{
+			$usersList = Yii::app()->session->get('user');	
+			if(isset($usersList->bookmark))
+			{
+				if(isset($usersList->bookmark->profileIDs))
+				{
+					$profileIds = explode(",", $usersList->bookmark->profileIDs);
+					$arr = array_diff($profileIds, $_POST['userId']);
+					if(sizeof($arr) > 0 ){
+					$usersList->bookmark->profileIDs = implode(",", $arr);
+					$usersList->bookmark->save();
+					}
+					else
+					{
+						$usersList->bookmark->deleteAll();
+					}
+				}
+			}
+			
+		}
+		$this->forward('index');
 	}
 	
 	
@@ -60,22 +96,41 @@ class BookmarkController extends Controller
 	{
 		if(isset($_POST['userId']) && !empty($_POST['userId']))
 		{
-			//change this from session
-			$usersList = Yii::app()->session->get('user');
-			if(isset($usersList->bookmark->profileIDs) && !empty($usersList->bookmark->profileIDs))
+		$usersList = Yii::app()->session->get('user');	
+			if(isset($usersList->bookmark))
 			{
-			if(is_array($_POST['userId']))
-			{
-				$values = implode(",", $_POST['userId']);
-				$usersList->bookmark->profileIDs = $usersList->bookmark->profileIDs.','.$values;
+				if(isset($usersList->bookmark->profileIDs))
+				{
+					$profileIds = explode(",", $usersList->bookmark->profileIDs);
+					$arr = array_merge($profileIds, array($_POST['userId']));
+					$usersList->bookmark->profileIDs = implode(",", $arr);
+					$usersList->bookmark->save();
+					echo json_encode(TRUE);
+					Yii::app()->end();	
+				}
 			}
-			else {
-				$usersList->bookmark->profileIDs = $usersList->bookmark->profileIDs.','.$_POST['userId'];
-			}					
-				$usersList->bookmark->save();
-			}
-			$this->forward('index');	
 		}
 	}
 
+public function actionAddAll()
+	{
+		
+	if(isset($_POST['userId']) && !empty($_POST['userId']))
+		{
+			$usersList = Yii::app()->session->get('user');	
+			if(isset($usersList->bookmark))
+			{
+				if(isset($usersList->bookmark->profileIDs))
+				{
+					$profileIds = explode(",", $usersList->bookmark->profileIDs);
+					$arr = array_merge($profileIds, $_POST['userId']);
+					$usersList->bookmark->profileIDs = implode(",", $arr);
+					$usersList->bookmark->save();
+					echo json_encode(TRUE);
+					Yii::app()->end();	
+				}
+			}
+			
+		}
+	}
 }
