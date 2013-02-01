@@ -42,6 +42,7 @@
 				</div>
 			</li>
 		</ul>
+		<form id="payment"  name="payment" method="post"  action="/payment/update">
 		<ul class="accOverview mT10">
 			<li>
 				<h1>How to subscribe</h1>
@@ -55,9 +56,10 @@
 				<h4>Enter Your Pin Number Here </h4>
 			</li>
 			<li>
-				<input type="text" /> <a href="#" class="type3" >Submit</a>
+				<input type="text" /> <a href="javascript:payment.submit();" class="type3" >Submit</a>
 			</li>
 		</ul>
+			</form>
     </section>
         	<!-- right menu -->
 	<?php $this->widget('application.widgets.menu.Rightmenu'); ?> 

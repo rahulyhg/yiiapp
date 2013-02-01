@@ -25,7 +25,7 @@ class HighlightController extends Controller
 		$this->render('index');
 	}
 	
-	public function actionupdate()
+	public function actionUpdate()
 	{
 		
 		$users = $user = Yii::app()->session->get('user');
@@ -38,15 +38,20 @@ class HighlightController extends Controller
 		{
 			//get user from session
 			
-			$coupon = Coupon::model()->findByAttributes(array('couponCode'=>$_POST['coupon']));
+			$coupon = Coupon::model()->findByAttributes(array('couponCode'=>$_POST['coupon']),'isUsed=0');
 			$coupon->isUsed = 1;
 			$coupon->save();
 			$users->highlighted = 1 ;
 			$users->save();
 			$isHighLighted = true;
+			if(isset($coupon) && !empty($coupon)){
 			$payment = new Payment();
 			$paypment->userID = $users->userId;
+			$payment->couponcode = $_POST['coupon'];
+			$payment->startdate = new CDbExpression('NOW()');
+			$payment->actionItem = 'highlight'; 
 			$payment->save();
+			}
 			
 		}
 		$this->render('index',array('isHighLighted'=> $isHighLighted));

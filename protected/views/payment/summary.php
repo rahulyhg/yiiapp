@@ -21,9 +21,18 @@
 				<h1>Payment Summery</h1>
 			</li>
 		</ul>
+		
+		<?php 
+		if(isset($payment)){
+			$currentDate = new DateTime('now');
+		foreach ($payment as $value) {
+			$date = new DateTime($value->startdate);
+			$endDate = new DateTime($value->startdate);
+			$endDate->modify('+3 months'); 
+		?>
         <ul class="accOverview pmB10">
 			<li>
-				07-07-2012 Subscribed at 9.32 am
+				<?php echo $date->format('Y-m-d');?> Subscribed at <?php echo $date->format('H:i a');?>
 			</li>
 			<li>
 				<div class="leftC">Type of Payment</div>
@@ -34,120 +43,49 @@
 			<li>
 				<div class="leftC">Reference ID</div>
 				<div class="rightC">
-					<strong>:</strong> <span>12345678 </span>
+					<strong>:</strong> <span><?php echo $value->couponcode; ?> </span>
 				</div>
 			</li>
-			<li>
-				<div class="leftC">Expired on</div>
-				<div class="rightC">
-					<strong>:</strong> <span>06-08-2012</span>
-				</div>
-			</li>
-		</ul>
-		<ul class="accOverview pmB10">
-			<li>
-				07-07-2012 Subscribed at 9.32 am
-			</li>
-			<li>
-				<div class="leftC">Type of Payment</div>
-				<div class="rightC">
-					<strong>:</strong> <span>Coupon recharge</span>
-				</div>
-			</li>
-			<li>
-				<div class="leftC">Reference ID</div>
-				<div class="rightC">
-					<strong>:</strong> <span>12345678 </span>
-				</div>
-			</li>
-			<li>
-				<div class="leftC">Expired on</div>
-				<div class="rightC">
-					<strong>:</strong> <span>06-08-2012</span>
-				</div>
-			</li>
-		</ul>
-		<ul class="accOverview pmB10">
-			<li>
-				07-07-2012 Subscribed at 9.32 am
-			</li>
-			<li>
-				<div class="leftC">Type of Payment</div>
-				<div class="rightC">
-					<strong>:</strong> <span>Coupon recharge</span>
-				</div>
-			</li>
-			<li>
-				<div class="leftC">Reference ID</div>
-				<div class="rightC">
-					<strong>:</strong> <span>12345678 </span>
-				</div>
-			</li>
-			<li>
-				<div class="leftC">Expired on</div>
-				<div class="rightC">
-					<strong>:</strong> <span>06-08-2012</span>
-				</div>
-			</li>
-		</ul>
-		<ul class="accOverview pmB10">
-			<li>
-				07-07-2012 Subscribed at 9.32 am
-			</li>
-			<li>
-				<div class="leftC">Type of Payment</div>
-				<div class="rightC">
-					<strong>:</strong> <span>Coupon recharge</span>
-				</div>
-			</li>
-			<li>
-				<div class="leftC">Reference ID</div>
-				<div class="rightC">
-					<strong>:</strong> <span>12345678 </span>
-				</div>
-			</li>
-			<li>
-				<div class="leftC">Expired on</div>
-				<div class="rightC">
-					<strong>:</strong> <span>06-08-2012</span>
-				</div>
-			</li>
-		</ul>
-		<ul class="accOverview pmB10">
-			<li>
-				07-07-2012 Subscribed at 9.32 am
-			</li>
-			<li>
-				<div class="leftC">Type of Payment</div>
-				<div class="rightC">
-					<strong>:</strong> <span>Coupon recharge</span>
-				</div>
-			</li>
-			<li>
-				<div class="leftC">Reference ID</div>
-				<div class="rightC">
-					<strong>:</strong> <span>12345678 </span>
-				</div>
-			</li>
+			<?php if($endDate > $currentDate) {
+			$balance = $currentDate->diff($endDate);
+			$interval = $date->diff($currentDate);
+				
+				?>
 			<li>
 				<div class="leftC">Remaining Days</div>
 				<div class="rightC">
-					<strong>:</strong> <span>3 More Days <a href="#" >Recharge Now</a></span>
+					<strong>:</strong> <span><?php echo $balance->format('%a more days');?><a href="/payment" >Recharge Now</a></span>
 				</div>
 			</li>
 			<li>
 				<div class="leftC">Using for Last</div>
 				<div class="rightC">
-					<strong>:</strong> <span>27 Days </span>
+					<strong>:</strong> <span><?php echo $interval->format('%a days');?></span>
 				</div>
 			</li>
 			<li>
 				<div class="leftC">Expiry Date</div>
 				<div class="rightC">
-					<strong>:</strong> <span>06-08-2012</span>
+					<strong>:</strong> <span><?php echo $endDate->format('Y-m-d');?></span>
 				</div>
 			</li>
+			
+			<?php } else {?>
+			<li>
+				<div class="leftC">Expired on</div>
+				<div class="rightC">
+					<strong>:</strong> <span><?php  echo $endDate->format('Y-m-d');?> </span>
+				</div>
+			</li>
+			<?php }?>
 		</ul>
+		<?php }
+		} else {
+		?>
+		 No payment details found.
+		<?php }?>
+		
+	
     </section>
       <?php $this->widget('application.widgets.menu.Rightmenu'); ?>
   

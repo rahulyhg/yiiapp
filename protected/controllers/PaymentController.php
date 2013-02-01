@@ -23,6 +23,34 @@ class PaymentController extends Controller
 		
 	}
 	
+	
+	public function actionUpdate()
+	{
+		
+		$users = $user = Yii::app()->session->get('user');
+		$isHighLighted = false;
+		if(isset($_POST['coupon']))
+		{
+			//get user from session
+			
+			$coupon = Coupon::model()->findByAttributes(array('couponCode'=>$_POST['coupon']),'isUsed=0');
+			$coupon->isUsed = 1;
+			$coupon->save();
+			$users->highlighted = 1 ;
+			$users->save();
+			if(isset($coupon) && !empty($coupon)){
+			$payment = new Payment();
+			$paypment->userID = $users->userId;
+			$payment->couponcode = $_POST['coupon'];
+			$payment->startdate = new CDbExpression('NOW()');
+			$payment->actionItem = 'membership'; 
+			$payment->save();
+			}
+			
+		}
+		$this->forward('summary');
+	}
+	
 	public function actionRecharge()
 	{
 		$this->render('recharge');
