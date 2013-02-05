@@ -198,7 +198,8 @@
 							</div>
 						</li>
 						<li>
-							<a href="#" class="type4 wid80 mR60">Update</a>
+							<input type="button" name="cancelPhoto" id="cancelPhoto" value="Cancel" class="type2b mL5" onclick="javascript:closeOverlay();" />
+						<input type="submit" name="updatePhoto" id="updatePhoto" value="Update" class="type2b mL5" />
 						</li>
 					</ul>
 				</article>

@@ -85,23 +85,22 @@ $heightArray = Utilities::getHeights();
 		</div>
 		<div class="editOpt">
 			<div class="butCo">
-				<a href="<?php echo Utilities::createAbsoluteUrl('contact','details'); ?>" id="contactDetails">Contact</a>
-				<a href="<?php echo Utilities::createAbsoluteUrl('contact','detailsedit'); ?>" id="contactDetailsEdit">(Edit)</a>
+				<a href="<?php echo Utilities::createAbsoluteUrl('contact','detailsedit'); ?>" id="contactDetailsEdit">Contact (Edit)</a>
 			</div>
 			<div class="butCo">
-				<a href="<?php echo Utilities::createAbsoluteUrl('user','documentupload'); ?>" id="documentUpload">Document(Edit)</a>
+				<a href="<?php echo Utilities::createAbsoluteUrl('mypage','editdocument'); ?>" id="documentUpload">Document (Edit)</a>
 			</div>
 			<div class="butCo">
-				<a href="<?php echo Utilities::createAbsoluteUrl('contact','referenceedit'); ?>" id="referenceEdit">Reference(Edit)</a>
+				<a href="<?php echo Utilities::createAbsoluteUrl('contact','referenceedit'); ?>" id="referenceEdit">Reference (Edit)</a>
 			</div>
 			<div class="butCo">
-				<a href="<?php echo Utilities::createAbsoluteUrl('user','familyphotoupload'); ?>" id="familyphotoUpload">Family album (Edit)</a>
+				<a href="<?php echo Utilities::createAbsoluteUrl('mypage','editfamilyphoto'); ?>" id="familyphotoUpload">Family album (Edit)</a>
 			</div>
 			<div class="butCo">
-				<a href="<?php echo Utilities::createAbsoluteUrl('user','photoupload'); ?>" id="photoUpload">Personal album (Edit)</a>
+				<a href="<?php echo Utilities::createAbsoluteUrl('mypage','editprofilephoto'); ?>" id="photoUpload">Personal album (Edit)</a>
 			</div>
 			<div class="butCo">
-				<a href="<?php echo Utilities::createAbsoluteUrl('contact','astroedit'); ?>" id="astroEdit">Astro Details(Edit)</a>
+				<a href="<?php echo Utilities::createAbsoluteUrl('contact','astroedit'); ?>" id="astroEdit">Astro Details (Edit)</a>
 			</div>
 		</div>
 		<div class="editContr">
@@ -117,19 +116,19 @@ $heightArray = Utilities::getHeights();
 				<li>
 					<div class="leftCtn">Name</div>
 					<div class="rightCtn">
-						<strong>:</strong> <span>Lilly Joseph</span>
+						<strong>:</strong> <span><?php echo $user->name; ?></span>
 					</div>
 				</li>
 				<li>
 					<div class="leftCtn">Age</div>
 					<div class="rightCtn">
-						<strong>:</strong> <span>23 Years</span>
+						<strong>:</strong> <span><?php echo Utilities::getAgeFromDateofBirth($user->dob); ?> Years</span>
 					</div>
 				</li>
 				<li>
 					<div class="leftCtn">Height</div>
 					<div class="rightCtn">
-						<strong>:</strong> <span>5 Ft 5  In / 165 Cms </span>
+						<strong>:</strong> <span><?php if(isset($user->physicaldetails->heightId))echo $heightArray[$user->physicaldetails->heightId]; ?> </span>
 					</div>
 				</li>
 				<li>
@@ -149,13 +148,13 @@ $heightArray = Utilities::getHeights();
 				<li>
 					<div class="leftCtn">Body Type / Complexion</div>
 					<div class="rightCtn">
-						<strong>:</strong> <span>Average / Wheatish brown</span>
+						<strong>:</strong> <span><?php echo $user->physicaldetails->complexion; ?></span>
 					</div>
 				</li>
 				<li>
 					<div class="leftCtn">Physical Status</div>
 					<div class="rightCtn">
-						<strong>:</strong> <span>Normal</span>
+						<strong>:</strong> <span><?php echo $user->physicaldetails->bodyType; ?></span>
 					</div>
 				</li>
 				<li>
@@ -506,10 +505,10 @@ $(document).ready(function(){
     $("#photoUpload").colorbox({iframe:true, width:"860", height:"620",overlayClose: false});
     $("#familyphotoUpload").colorbox({iframe:true, width:"860", height:"640",overlayClose: false});
     $("#documentUpload").colorbox({iframe:true, width:"860", height:"620",overlayClose: false});
-    $("#contactDetails").colorbox({iframe:true, width:"860", height:"900",overlayClose: false});
     $("#contactDetailsEdit").colorbox({iframe:true, width:"860", height:"900",overlayClose: false});
     $("#referenceEdit").colorbox({iframe:true, width:"860", height:"900",overlayClose: false});
     $("#astroEdit").colorbox({iframe:true, width:"860", height:"900",overlayClose: false});
+    $("#editProfilePicture").colorbox({iframe:true, width:"860", height:"620",overlayClose: false});
   });
 
     $('<a href="/mypage">Skip this page|</a> ').insertBefore('.logout');

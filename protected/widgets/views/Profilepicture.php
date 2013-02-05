@@ -42,18 +42,18 @@ function next_<?php echo $userId ?>(){
 window.onload=loadImg_<?php echo $userId; ?>;
 
 </script>
-<div class="image-contnrs">
-<a href="#"><img id="imgSrc_<?php echo $userId ?>" name="imgSrc_<?php echo $userId ?>" alt="" src="./images/user/thumbnail.jpg"></a>
-<div class="img-controls">
-	<a class="prev" href="javascript:void(0);" onClick="prev_<?php echo $userId ?>();"></a>
-	<div class="numbers">
-		<span id="slideCount_<?php echo $userId ?>">1</span> of <span><?php echo count($photosList); ?></span>
-	</div>
-	<a class="next" href="javascript:void(0);" onClick="next_<?php echo $userId ?>();"></a>
-</div>
-</div>
+	<a class="ppC" href="<?php echo Utilities::createAbsoluteUrl('mypage','editprofilephoto'); ?>" id="editProfilePicture">
+		<span class="ppCinn">Change profile picture</span>
+		<img id="imgSrc_<?php echo $userId ?>" width="180" height="230" name="imgSrc_<?php echo $userId ?>" alt="" src="./images/user/thumbnail.jpg">
+	</a>
+	<ul class="noC">
+		<li><a href="javascript:void(0);" class="prevs" onClick="prev_<?php echo $userId ?>();" ></a></li>
+		<li><span id="slideCount_<?php echo $userId ?>">1</span> of <span><?php echo count($photosList); ?></span></li>
+		<li><a href="javascript:void(0);" class="nexts" onClick="next_<?php echo $userId ?>();" ></a></li>
+	</ul>
+				
 <?php }else{?>
 <div class="image-contnrs">
-	<a href="#"><img id="imgSrc" name="imgSrc" alt="" src="<?php echo Utilities::getProfileImage($marryId,'');?>"></a>
+	<a href="#"><img id="imgSrc" width="180" height="230" name="imgSrc" alt="" src="<?php echo Utilities::getProfileImage($marryId,'');?>"></a>
 </div>
 <?php }?>
