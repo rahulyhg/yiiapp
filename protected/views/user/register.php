@@ -164,7 +164,7 @@
 						<?php echo $searchForm->radioButton($searchModel,'bride', array('value'=>'f')); ?><span>Bride</span>
 					</div>
 					<div class="check-contnr">
-						<?php echo $searchForm->radioButton($searchModel,'groom', array('value'=>'m')); ?><span>Groom</span>
+						<?php echo $searchForm->radioButton($searchModel,'bride', array('value'=>'m')); ?><span>Groom</span>
 					</div>
 				</div>
 			</li>
