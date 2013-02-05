@@ -653,3 +653,9 @@ $(function(){
    			});*/
 	})
 		
+function checkEmailValidation(field, rules, i, options) {
+	var pattern = new RegExp(options.allrules.email.regex);
+    if (field.val().length && !pattern.test(field.val())) {
+		return options.allrules.email.alertText;
+	}
+}

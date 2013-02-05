@@ -8,7 +8,7 @@ class AjaxController extends Controller
         {
                 $user = Yii::app()->session->get('user');
                 
-                if($action->id == 'useremail' || $action->id == 'username'  || $action->id == 'usermobile' || $action->id == 'updateCaste' || $action->id == 'updateState' || $action->id == 'updateDistrict' )
+                if( $action->id == 'updateplaces' || $action->id == 'useremail' || $action->id == 'username'  || $action->id == 'usermobile' || $action->id == 'updateCaste' || $action->id == 'updateState' || $action->id == 'updateDistrict' )
         		return true;
                 if(!isset($user)) {
                         $this->redirect(Yii::app()->user->loginUrl);
@@ -125,5 +125,22 @@ class AjaxController extends Controller
             ));
 		
 	}
+	
+	
+	public function actionUpdatePlaces()
+	{
+		//States
+            $records = Places::model()->findAll('districtId=:districtId and active=1', array(':districtId'=>(int) $_POST['districtId']));
+            $list = CHtml::listData($records, 'placeId', 'name');
+            $dropDownDist = "<option value=''>Select Places</option>"; 
+            foreach($list as $value=>$name)
+                $dropDownDist .= CHtml::tag('option', array('value'=>$value),CHtml::encode($name),true);
+ 
+            // return data (JSON formatted)
+            echo CJSON::encode(array(
+              'dropDownDist'=>$dropDownDist,
+            ));
+	}
+	
 	
 }

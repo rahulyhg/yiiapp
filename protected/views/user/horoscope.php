@@ -160,7 +160,7 @@
 					</div>
 					<div class="info">
 						<div class="check">
-							<input type="checkbox" name="astro[]" id="astro_0" value="all"><span>All</span>
+							<input type="checkbox" name="astro[]" checked="checked" id="astro_0" value="all"><span>All</span>
 						</div>
 						<div class="check">
 							<input type="checkbox" name="astro[]" id="astro_0" value="subscribers"> <span>Subscribers</span>
@@ -185,31 +185,28 @@
 					</div>
 					<div class="info">
 						<div class="inner-row">
-							<input type="text" name="relation0" id="relation0" placeholder="Relation" />
+							<input type="text" name="name0" class="validate[minSize[3],custom[onlyLetterSp]]" id="name0" placeholder="Name" />
 						</div>
 						<div class="inner-row">
-							<input type="text" name="name0" id="name0" placeholder="Name" />
+							<input type="text" name="house0" id="house0" class="validate[minSize[3]]" placeholder="House Name / No." />
 						</div>
 						<div class="inner-row">
-							<input type="text" name="house0" id="house0" placeholder="House Name / No." />
-						</div>
-						<div class="inner-row">
-							<input type="text" name="place0" id="place0"  placeholder="Place" />
-							<input type="text" name="post0" id="post0"  placeholder="Post office" />
+							<input type="text" name="place0" id="place0" class="validate[minSize[3],custom[onlyLetterSp]]"  placeholder="Place" />
+							<input type="text" name="post0" id="post0"  placeholder="Post office" class="validate[minSize[3],custom[onlyLetterSp]]"   />
 						</div>
 						<div class="inner-row">
 							<input type="text" name="city0" id="city0" placeholder="City" />
-							<input type="text" name="district0" id="district0"  placeholder="District" />
+							<input type="text" name="district0" id="district0"  placeholder="District" class="validate[minSize[3],custom[onlyLetterSp]]"  />
 						</div>
 						<div class="inner-row">
-							<input type="text" name="state0" id="state0" placeholder="State" />
-							   <input type="text" name="country0" id="country0" placeholder="Country" />
+							<input type="text" name="state0" id="state0" placeholder="State" class="validate[minSize[3],custom[onlyLetterSp]]"   />
+							   <input type="text" name="country0" id="country0" placeholder="Country" class="validate[minSize[3],custom[onlyLetterSp]]"   />
 						</div>
 						<div class="inner-row">
-							<input type="text" name="pin0" id="pin0" placeholder="Pin Code" />
+							<input type="text" name="pin0" id="pin0" placeholder="Pin Code" class="validate[custom[onlyNumberSp],minSize[6],maxSize[6]]"  />
 						</div>
 						<div class="inner-row">
-							<input type="text" name="email0" id="email0"  placeholder="Email" />
+							<input type="text" name="email0" id="email0"  placeholder="Email" class="validate[funcCall[checkEmailValidation]]"/>
 						</div>
 					</div>
 				</li>
@@ -218,7 +215,7 @@
 						Occupation
 					</div>
 					<div class="info">
-						<input type="text" name="occupation0" id="occupation0" placeholder="Occupation" />
+						<input type="text" name="occupation0" id="occupation0" placeholder="Occupation" class="validate[minSize[3],custom[onlyLetterSp]]"  />
 					</div>
 				</li>
 				<li>
@@ -239,32 +236,30 @@
 						Referance 2
 					</div>
 					<div class="info">
+						
 						<div class="inner-row">
-							<input type="text" name="relation1" id="relation1" placeholder="Relation" />
+							<input type="text" name="name1" class="validate[minSize[3],custom[onlyLetterSp]]"  id="name1" placeholder="Name" />
 						</div>
 						<div class="inner-row">
-							<input type="text" name="name1" id="name1" placeholder="Name" />
+							<input type="text" name="house1" id="house1" placeholder="House Name / No." class="validate[minSize[3]]"  />
 						</div>
 						<div class="inner-row">
-							<input type="text" name="house1" id="house1" placeholder="House Name / No." />
+							<input type="text" name="place1" id="place1"  placeholder="Place" class="validate[minSize[3],custom[onlyLetterSp]]" />
+							<input type="text" name="post1" id="post1"  placeholder="Post office" class="validate[minSize[3],custom[onlyLetterSp]]" />
 						</div>
 						<div class="inner-row">
-							<input type="text" name="place1" id="place1"  placeholder="Place" />
-							<input type="text" name="post1" id="post1"  placeholder="Post office" />
+							<input type="text" name="city1" id="city1" placeholder="City" class="validate[minSize[3],custom[onlyLetterSp]]" />
+							<input type="text" name="district1" id="district1"  placeholder="District" class="validate[minSize[3],custom[onlyLetterSp]]" />
 						</div>
 						<div class="inner-row">
-							<input type="text" name="city1" id="city1" placeholder="City" />
-							<input type="text" name="district1" id="district1"  placeholder="District" />
+							<input type="text" name="state1" id="state1" placeholder="State" class="validate[minSize[3],custom[onlyLetterSp]]" />
+							   <input type="text" name="country1" id="country1" placeholder="Country" class="validate[minSize[3],custom[onlyLetterSp]]" />
 						</div>
 						<div class="inner-row">
-							<input type="text" name="state1" id="state1" placeholder="State" />
-							   <input type="text" name="country1" id="country1" placeholder="Country" />
+							<input type="text" name="pin1" id="pin1" placeholder="Pin Code" class="validate[custom[onlyNumberSp],minSize[6],maxSize[6]]"/>
 						</div>
 						<div class="inner-row">
-							<input type="text" name="pin1" id="pin1" placeholder="Pin Code" />
-						</div>
-						<div class="inner-row">
-							<input type="text" name="email1" id="email1"  placeholder="Email" />
+							<input type="text" name="email1" id="email1"  placeholder="Email" class="validate[funcCall[checkEmailValidation]]"/>
 						</div>
 					</div>
 				</li>
@@ -273,7 +268,7 @@
 						Occupation
 					</div>
 					<div class="info">
-						<input type="text" name="occupation1" id="occupation1" placeholder="Occupation" />
+						<input type="text" name="occupation1" id="occupation1" placeholder="Occupation" class="validate[minSize[3],custom[onlyLetterSp]]" />
 					</div>
 				</li>
 				<li>
@@ -294,32 +289,31 @@
 						Referance 3
 					</div>
 					<div class="info">
+						
 						<div class="inner-row">
-							<input type="text" name="relation2" id="relation2" placeholder="Relation" />
+							<input type="text" name="name2" class="validate[minSize[3],custom[onlyLetterSp]]"  id="name2" placeholder="Name" />
 						</div>
 						<div class="inner-row">
-							<input type="text" name="name2" id="name2" placeholder="Name" />
+							<input type="text" name="house2" id="house2" placeholder="House Name / No." class="validate[minSize[3]]" />
 						</div>
 						<div class="inner-row">
-							<input type="text" name="house2" id="house2" placeholder="House Name / No." />
+							<input type="text" name="place2" id="place2"  placeholder="Place"  class="validate[minSize[3],custom[onlyLetterSp]]" />
+							<input type="text" name="post2" id="post2"  placeholder="Post office" class="validate[minSize[3],custom[onlyLetterSp]]" />
 						</div>
 						<div class="inner-row">
-							<input type="text" name="place2" id="place2"  placeholder="Place" />
-							<input type="text" name="post2" id="post2"  placeholder="Post office" />
+							<input type="text" name="city2" id="city2" placeholder="City" class="validate[minSize[3],custom[onlyLetterSp]]" />
+							<input type="text" name="district2" id="district2"  placeholder="District" class="validate[minSize[3],custom[onlyLetterSp]]" />
 						</div>
 						<div class="inner-row">
-							<input type="text" name="city2" id="city2" placeholder="City" />
-							<input type="text" name="district2" id="district2"  placeholder="District" />
+							<input type="text" name="state2" id="state2" placeholder="State" class="validate[minSize[3],custom[onlyLetterSp]]" />
+							   <input type="text" name="country2" id="country2" placeholder="Country" class="validate[minSize[3],custom[onlyLetterSp]]" />
 						</div>
 						<div class="inner-row">
-							<input type="text" name="state2" id="state2" placeholder="State" />
-							   <input type="text" name="country2" id="country2" placeholder="Country" />
+							<input type="text" name="pin2" id="pin2" placeholder="Pin Code" class="validate[custom[onlyNumberSp],minSize[6],maxSize[6]]"/>
 						</div>
 						<div class="inner-row">
-							<input type="text" name="pin2" id="pin2" placeholder="Pin Code" />
-						</div>
-						<div class="inner-row">
-							<input type="text" name="email2" id="email2"  placeholder="Email" />
+							<input type="text" name="email2" id="email2" class="validate[funcCall[checkEmailValidation]]" placeholder="Email" />
+							
 						</div>
 					</div>
 				</li>
@@ -328,7 +322,7 @@
 						Occupation
 					</div>
 					<div class="info">
-						<input type="text" name="occupation2" id="occupation2" placeholder="Occupation" />
+						<input type="text" name="occupation2" id="occupation2" placeholder="Occupation" class="validate[minSize[3],custom[onlyLetterSp]]" />
 					</div>
 				</li>
 				<li>
@@ -348,7 +342,7 @@
 					</div>
 					<div class="info">
 						<div class="check">
-							<input type="checkbox" name="reference[]" value="subscribers"> <span>Subscribers</span>
+							<input type="checkbox" name="reference[]" checked="checked" value="subscribers"> <span>Subscribers</span>
 						</div>
 						<div class="check">
 							<input type="checkbox" name="reference[]" value="request"> <span>By Request</span>
@@ -389,7 +383,11 @@
 
 $(document).ready(function(){
 	$('<a href="/user/horoupload">Skip this page|</a> ').insertBefore('.logout');
-	
+    $("#userHoro").validationEngine('attach');	
 });
+
+
+
+
 
 </script>

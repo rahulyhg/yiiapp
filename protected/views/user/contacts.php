@@ -152,7 +152,15 @@
 
 		$records = States::model()->findAll("active = 1");
 		$list = CHtml::listData($records, 'stateId', 'name');
-		echo CHtml::dropDownList('state',$user->userpersonaldetails->stateId,$list,array('empty' => 'State','class'=>'validate[required] wid150')); ?>
+		echo CHtml::dropDownList('state',$user->userpersonaldetails->stateId,$list,array('empty' => 'State','class'=>'validate[required] wid150','ajax' => array(
+                        'type'=>'POST',
+                        'url'=>CController::createUrl('Ajax/updateDistrict'), 
+                        'dataType'=>'json',
+                        'data'=>array('stateId'=>'js:this.value'),  
+                        'success'=>'function(data) {
+                            $("#district").html(data.dropDownDist);
+                        }',
+            ))); ?>
 		</div>
 	</li>
 	<li>
@@ -161,9 +169,15 @@
 		</div>
 		<div class="info">
 					<?php
-			$records = Districts::model()->findAll("active = 1");
-			$list = CHtml::listData($records, 'districtId', 'name');
-			echo CHtml::dropDownList('district',null,$list,array('empty' => 'District','class'=>'validate[required] wid150')); ?>
+			echo CHtml::dropDownList('district',null,array(),array('prompt' => 'District','class'=>'validate[required] wid150','ajax' => array(
+                        'type'=>'POST',
+                        'url'=>CController::createUrl('Ajax/updatePlaces'), 
+                        'dataType'=>'json',
+                        'data'=>array('districtId'=>'js:this.value'),  
+                        'success'=>'function(data) {
+                            $("#place").html(data.dropDownDist);
+                        }',
+            ))); ?>
 		
 		</div>
 	</li>
@@ -173,10 +187,7 @@
 		</div>
 		<div class="info">
 					<?php
-
-			$records = Places::model()->findAll("active = 1");
-			$list = CHtml::listData($records, 'placeId', 'name');
-			echo CHtml::dropDownList('place',null,$list,array('empty' => 'Places','class'=>'validate[required] wid150')); ?>
+			echo CHtml::dropDownList('place',null,array(),array('prompt' => 'Places','class'=>'validate[required] wid150')); ?>
 		</div>
 	</li>
 </ul>
@@ -234,7 +245,7 @@
 				<input type="text" name="housestate1" id="statep" class="validate[minSize[3],custom[onlyLetterSp]]"
 						placeholder="State" />
 				<input type="text" name="housecountry1" id="countryp" class="validate[minSize[3],custom[onlyLetterSp]]"
-						placeholder="housecountry1" />
+						placeholder="Country" />
 			</div>
 			<div class="inner-row">
 				<input type="text" name="postcode1" id="postcodep" class="validate[custom[onlyNumberSp],minSize[6],maxSize[6]]" 

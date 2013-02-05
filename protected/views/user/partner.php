@@ -119,7 +119,15 @@
 					<?php $records = Religion::model()->findAll("active = 1");
   
 		$list = CHtml::listData($records, 'religionId', 'name');
-		echo CHtml::dropDownList('religion',null,$list,array('empty' => 'Religion','class'=>'validate[required] wid160')); ?>
+		echo CHtml::dropDownList('religion',null,$list,array('empty' => 'Religion','class'=>'validate[required] wid160','ajax' => array(
+                        'type'=>'POST',
+                        'url'=>CController::createUrl('Ajax/updateCaste'), 
+                        'dataType'=>'json',
+                        'data'=>array('religionId'=>'js:this.value'),  
+                        'success'=>'function(data) {
+                            $("#caste").html(data.dropDownCastes);
+                        }',
+            ))); ?>
 					</div>
 				</li>
 				<li>
@@ -129,7 +137,7 @@
 					<div class="info" id="letters">
 					<?php $records = Caste::model()->findAll("active = 1");
 		$list = CHtml::listData($records, 'casteId', 'name');
-		echo CHtml::dropDownList('caste',null,$list,array('class'=>'left ar','multiple'=>'multiple')); ?>
+		echo CHtml::dropDownList('caste',null,array(),array('class'=>'left ar','multiple'=>'multiple')); ?>
 						<div class="ar-btn">
 							<input class="add type2" value="Add" onclick="return add('caste','caste1')" type="button">
 							<input class="remove type2" value="Remove" onclick="return add('caste1','caste')" type="button">
@@ -143,11 +151,11 @@
 						Manglik (chovvaadhosham)
 					</div>
 					<div class="info">
-						<div class="check ">
-							<input name="dhosham" type="checkbox"  /> <span>Yes</span>
+						<div class="radio mR14">
+							<input name="dhosham" type="radio"  /> <span>Yes</span>
 						</div>
-						<div class="check ">
-							<input name="dhosham" type="checkbox"  /> <span>No </span>
+						<div class="radio">
+							<input name="dhosham"  type="radio"  /> <span>No </span>
 						</div>
 					</div>
 				</li>
