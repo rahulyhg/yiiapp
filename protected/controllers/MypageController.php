@@ -132,6 +132,81 @@ class MypageController extends Controller
 	{
 		$this->render('mycontact');
 	}
+	public function actionEditcontact()
+	{
+		$user = Yii::app()->session->get('user');
+		$userPersonal = $user->userpersonaldetails;
+		$contact = $user->usercontactdetails;
+		if(isset($_POST['mobile'])){
+		if(isset($_POST['mobile']))
+		$userPersonal->mobilePhone = $_POST['mobile'];
+		$userPersonal->save();	
+			
+		
+		$caddress = $user->addresses(array('condition'=>'addresType=1'));
+		$address = $caddress[0]; 
+		//communication address
+		if(isset($_POST['house1']))
+		$address->houseName = $_POST['house1'];
+		if(isset($_POST['houseplace1']))
+		$address->place = $_POST['houseplace1'];
+		if(isset($_POST['post1']))
+		$address->postoffice = $_POST['post1'];
+		if(isset($_POST['postcode1']))
+		$address->pincode = $_POST['postcode1'];
+		if(isset($_POST['housecity1']))
+		$address->city = $_POST['housecity1'];
+		if(isset($_POST['housedistrict1']))
+		$address->district = $_POST['housedistrict1'];
+		if(isset($_POST['housestate1']))
+		$address->state = $_POST['housestate1'];
+		if(isset($_POST['housecountry1']))
+		$address->country  = $_POST['housecountry1'];
+		$address->save();
+		
+		$address = $user->addresses(array('condition'=>'addresType=0'));
+		$paddress = $address[0];
+		//permanent address
+		if(isset($_POST['house']))
+		$paddress->houseName = $_POST['house'];
+		if(isset($_POST['houseplace']))
+		$paddress->place = $_POST['houseplace'];
+		if(isset($_POST['post']))
+		$paddress->postoffice = $_POST['post'];
+		if(isset($_POST['postcode']))
+		$paddress->pincode = $_POST['postcode'];
+		if(isset($_POST['housecity']))
+		$paddress->city = $_POST['housecity'];
+		if(isset($_POST['housedistrict']))
+		$paddress->district = $_POST['housedistrict'];
+		if(isset($_POST['housestate']))
+		$paddress->state = $_POST['housestate'];
+		if(isset($_POST['housecountry']))
+		$paddress->country  = $_POST['housecountry'];
+		$paddress->save();
+			
+		//contact details	
+		if(isset($_POST['alterMobile']))
+		$contact->alternativeNo = $_POST['alterMobile'];
+		if(isset($_POST['phoneVerify']))
+		$contact->landLine = $_POST['phoneVerify'];
+		if(isset($_POST['facebook']))
+		$contact->facebookUrl = $_POST['facebook'];
+		if(isset($_POST['skype']))
+		$contact->skypeId = $_POST['skype'];
+		if(isset($_POST['google']))
+		$contact->googleIM = $_POST['google'];
+		if(isset($_POST['yahoo']))
+		$contact->yahooIM = $_POST['yahoo'];
+		$contact->save();
+		
+		$this->forward('contact');
+		}
+		
+		else {
+		$this->render('editcontact');
+		}
+	}
 
 	public function actionReference()
 	{
