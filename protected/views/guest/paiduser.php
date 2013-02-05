@@ -28,7 +28,7 @@
 			<li>
 				<div class="left"><?php echo $form->labelEx($model,'name'); ?></div>
 				<div class="right">
-					<?php echo $form->textField($model,'name',array('class' =>'validate[required,minSize[3],custom[onlyLetterSp]]')); ?>
+					<?php echo $form->textField($model,'name',array('class' =>'validate[required,minSize[3],custom[onlyLetterSp],funcCall[checkUser]]')); ?>
 					<?php echo $form->error($model,'name'); ?>
 				</div>
 			</li>
@@ -61,16 +61,22 @@
 				<div class="right">
 				<?php $records = Religion::model()->findAll("active = 1");
 		$list = CHtml::listData($records, 'religionId', 'name');
-		echo CHtml::dropDownList('religion',null,$list,array('empty' => 'Religion','class'=>'validate[required] width60')); ?>
+		echo CHtml::dropDownList('religion',null,$list,array('empty' => 'Religion','class'=>'validate[required] width60','id'=>'sReligion','ajax' => array(
+                        'type'=>'POST',
+                        'url'=>CController::createUrl('Ajax/updateCaste'), 
+                        'dataType'=>'json',
+                        'data'=>array('religionId'=>'js:this.value'),  
+                        'success'=>'function(data) {
+                            $("#uCaste").html(data.dropDownCastes);
+                        }',
+            ))); ?>
 		<?php echo $form->error($model,'religion'); ?>
 				</div>
 			</li>
 			<li>
 				<div class="left"><?php echo $form->labelEx($model,'caste'); ?></div>
 				<div class="right">
-				<?php $records = Caste::model()->findAll("active = 1");
-		$list = CHtml::listData($records, 'casteId', 'name');
-		echo CHtml::dropDownList('caste',null,$list,array('empty' => 'Caste','class'=>'validate[required] width60')); ?>
+		<?php echo CHtml::dropDownList('caste','',array(),array('prompt' => 'Caste','id'=>'uCaste','class'=>'validate[required] width60')); ?>
 		<?php echo $form->error($model,'caste'); ?>
 				</div>
 			</li>
@@ -79,23 +85,31 @@
 				<div class="right">
 				<?php $records = Country::model()->findAll("active = 1");
 		$list = CHtml::listData($records, 'countryId', 'name');
-		echo CHtml::dropDownList('country',null,$list,array('empty' => 'Country','class'=>'validate[required] width60')); ?>
+		echo CHtml::dropDownList('country',null,$list,array('empty' => 'Country','class'=>'validate[required] width60','ajax' => array(
+                        'type'=>'POST',
+                        'url'=>CController::createUrl('Ajax/updateState'), 
+                        'dataType'=>'json',
+                        'data'=>array('countryId'=>'js:this.value'),  
+                        'success'=>'function(data) {
+                            $("#state").html(data.dropDownStates);
+                        }',
+            )
+		
+		)); ?>
 		<?php echo $form->error($model,'country'); ?>
 				</div>
 			</li>
 			<li>
 				<div class="left"><?php echo $form->labelEx($model,'state'); ?></div>
 				<div class="right">
-				<?php $records = States::model()->findAll("active = 1");
-		$list = CHtml::listData($records, 'stateId', 'name');
-		echo CHtml::dropDownList('state',null,$list,array('empty' => 'State','class'=>'validate[required] width60')); ?>
+				<?php echo CHtml::dropDownList('state','',array(),array('prompt' => 'State','class'=>'validate[required] width60')); ?>
 		<?php echo $form->error($model,'state'); ?>
 				</div>
 			</li>
 			<li>
 				<div class="left"><?php echo $form->labelEx($model,'mobileNo'); ?></div>
 				<div class="right">
-					<?php echo $form->textField($model,'mobileNo',array('class'=>'validate[required,minSize[10],maxSize[10],custom[onlyNumberSp]]')); ?>
+					<?php echo $form->textField($model,'mobileNo',array('class'=>'validate[required,minSize[10],maxSize[10],custom[onlyNumberSp],funcCall[checkMobile]]')); ?>
 					<?php echo $form->error($model,'mobileNo'); ?>
 				</div>
 
@@ -104,7 +118,7 @@
 			<li>
 					<div class="left"><?php echo $form->labelEx($model,'emailId'); ?></div>
 				<div class="right">
-					<?php echo $form->textField($model,'emailId',array('class'=>'validate[required,custom[email]]')); ?>
+					<?php echo $form->textField($model,'emailId',array('class'=>'validate[required,funcCall[checkEmailValidation], funcCall[checkEmail]]')); ?>
 		<?php echo $form->error($model,'emailId'); ?>
 				</div>
 			</li>
@@ -158,7 +172,7 @@
  <script type="text/javascript">
 $(document).ready(function(){
     $("#users-register-form").validationEngine('attach');
-  });
+ 
 
 $("input:reset").click(function() {       // apply to reset button's click event
     this.form.reset();                    // reset the form
@@ -167,6 +181,110 @@ $("input:reset").click(function() {       // apply to reset button's click event
      return false;                         // prevent reset button from resetting again
 });
 
+$('input').on("keyup", function(e) {
+	   var code = e.charCode || e.keyCode; // use charCode for firefox
+	  if (code == 13) {               
+	    e.preventDefault();
+	  }
+	});
+
+});
+function checkEmail(field, rules, i, options){
+
+	
+	var sAvailable = 'This email is available.';
+	var sUnavailable = 'This email is already used. Please try another.';
+	var email = false;		
+	$.ajax({
+	type: 'GET',
+	url: '/ajax/useremail',
+	dataType: 'json',
+	cache: false,
+	success: function(availability) {
+	email = availability;
+	
+},
+data: {email : $('#UserForm_emailId').val()},
+async: false
+});
+
+			// return success status
+		
+	
+		if (email == true) {
+		return sUnavailable;
+		}else{ 
+			return true;
+		}
+
+}
+
+
+function checkMobile(field, rules, i, options){
+
+	 if ($('#UserForm_mobileNo').val() == 0) {
+			return true;
+		}
+	var sAvailable = 'This mobile number is available.';
+	var sUnavailable = 'This mobile number is already used. Please try another.';
+	var mobile = false;		
+	$.ajax({
+	type: 'GET',
+	url: '/ajax/usermobile',
+	dataType: 'json',
+	cache: false,
+	success: function(availability) {
+	mobile = availability;
+	
+},
+data: {mobile : $('#UserForm_mobileNo').val()},
+async: false
+});
+
+		if (mobile == true) {
+			return sUnavailable;
+		}else{
+			return true; 
+		}
+
+}
+
+function checkEmailValidation(field, rules, i, options) {
+	var pattern = new RegExp(options.allrules.email.regex);
+    if (field.val().length && !pattern.test(field.val())) {
+		return options.allrules.email.alertText;
+	}
+}
+
+
+function checkUser(field, rules, i, options){
+
+	
+	var sUnavailable = 'This user name cannot be used, please try another.';
+	var email = false;		
+	$.ajax({
+	type: 'GET',
+	url: '/ajax/username',
+	dataType: 'json',
+	cache: false,
+	success: function(availability) {
+	email = availability;
+	
+},
+data: {name : $('#UserForm_name').val()},
+async: false
+});
+
+			// return success status
+		
+	
+		if (email == true) {
+		return sUnavailable;
+		}else{ 
+			return true;
+		}
+
+}
 
 </script>	
  

@@ -17,7 +17,7 @@
 			<li>
 				<div class="left"><?php echo $form->labelEx($model,'name'); ?></div>
 				<div class="right">
-					<?php echo $form->textField($model,'name',array('class' =>'validate[required,minSize[3],custom[onlyLetterSp]]')); ?>
+					<?php echo $form->textField($model,'name',array('class' =>'validate[required,minSize[3],custom[onlyLetterSp],funcCall[checkUser]]')); ?>
 					<?php echo $form->error($model,'name'); ?>
 				</div>
 			</li>
@@ -65,7 +65,7 @@
 			<li>
 				<div class="left"><?php echo $form->labelEx($model,'caste'); ?></div>
 				<div class="right">
-	<?php 		echo CHtml::dropDownList('caste','',array(),array('prompt' => 'Caste','id'=>'uCaste','class'=>'validate[required] width60')); ?>
+	<?php echo CHtml::dropDownList('caste','',array(),array('prompt' => 'Caste','id'=>'uCaste','class'=>'validate[required] width60')); ?>
 		<?php echo $form->error($model,'caste'); ?>
 				</div>
 			</li>
@@ -91,10 +91,8 @@
 			<li>
 				<div class="left"><?php echo $form->labelEx($model,'state'); ?></div>
 				<div class="right">
-				<?php $records = States::model()->findAll("active = 1");
-		$list = CHtml::listData($records, 'stateId', 'name');
-		echo CHtml::dropDownList('state',null,$list,array('prompt' => 'State','class'=>'validate[required] width60')); ?>
-		<?php echo $form->error($model,'state'); ?>
+				<?php echo CHtml::dropDownList('state','',array(),array('prompt' => 'State','class'=>'validate[required] width60')); ?>
+				<?php echo $form->error($model,'state'); ?>
 				</div>
 			</li>
 			<li>
@@ -142,7 +140,7 @@
 					<div class="benefits">Benefits For Subsciribed Users</div>
 					<div class="divider"> </div>
 					<p>Contact members directly <br /> Send personalised messaages <br /> View Album, Documents, and contact details <br /> View horoscope of members <br /> Express Unlimited interest Plus other exclusive paid membership benefits</p>
-					<a class="type6" href="http://marrydoor.com/guest/paiduser" >Continue to Registration</a>
+					<a class="type6" href="/guest/paiduser" >Continue to Registration</a>
 				</div>
 			</li>
 		</ul>
@@ -377,6 +375,36 @@ function checkEmail(field, rules, i, options){
 	
 },
 data: {email : $('#UserForm_emailId').val()},
+async: false
+});
+
+			// return success status
+		
+	
+		if (email == true) {
+		return sUnavailable;
+		}else{ 
+			return true;
+		}
+
+}
+
+
+function checkUser(field, rules, i, options){
+
+	
+	var sUnavailable = 'This user name cannot be used, please try another.';
+	var email = false;		
+	$.ajax({
+	type: 'GET',
+	url: '/ajax/username',
+	dataType: 'json',
+	cache: false,
+	success: function(availability) {
+	email = availability;
+	
+},
+data: {name : $('#UserForm_name').val()},
 async: false
 });
 

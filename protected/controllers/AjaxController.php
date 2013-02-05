@@ -8,7 +8,7 @@ class AjaxController extends Controller
         {
                 $user = Yii::app()->session->get('user');
                 
-                if($action->id == 'useremail' || $action->id == 'usermobile' || $action->id == 'updateCaste' || $action->id == 'updateState' || $action->id == 'updateDistrict' )
+                if($action->id == 'useremail' || $action->id == 'username'  || $action->id == 'usermobile' || $action->id == 'updateCaste' || $action->id == 'updateState' || $action->id == 'updateDistrict' )
         		return true;
                 if(!isset($user)) {
                         $this->redirect(Yii::app()->user->loginUrl);
@@ -55,6 +55,16 @@ class AjaxController extends Controller
 			}
 			else
 			echo json_encode(FALSE);
+			Yii::app()->end();
+	}
+	
+	public function actionUsername()
+	{
+			$bannedNames = array('sex','fuck','suck','hot','bloody','basterd','marrydoor','doormarry','bloodymary','bloodymarry','fucker','idiot','raskal');
+			if(in_array($_GET['name'], $bannedNames))
+				echo json_encode(TRUE);	
+			else
+				echo json_encode(FALSE);
 			Yii::app()->end();
 	}
 	
