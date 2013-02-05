@@ -703,7 +703,7 @@
 						    else
 						   $records = array();
 							$list = CHtml::listData($records, 'signId', 'name');
-						    echo CHtml::dropDownList('star1[]',null,$list,array('class'=>'right ar','multiple'=>'multiple')); ?>
+						    echo CHtml::dropDownList('star1[]',null,$list,array('class'=>'right ar','id'=>'star1','multiple'=>'multiple')); ?>
 							
 						</div>
 					</li>
@@ -786,9 +786,9 @@
 							$light = false;
 							$non = false;
 							$reg = false;
-						if(isset($searchItem->eating))
+						if(isset($searchItem->drinking))
 						{
-							$maritalStatus = explode(",", $searchItem->eating);
+							$maritalStatus = explode(",", $searchItem->drinking);
 							$non = in_array(0,$maritalStatus);
 							$reg = in_array(1,$maritalStatus);
 							$light = in_array(2,$maritalStatus);
@@ -819,9 +819,9 @@
 							$light = false;
 							$non = false;
 							$reg = false;
-						if(isset($searchItem->eating))
+						if(isset($searchItem->smoking))
 						{
-							$maritalStatus = explode(",", $searchItem->eating);
+							$maritalStatus = explode(",", $searchItem->smoking);
 							$non = in_array(0,$maritalStatus);
 							$reg = in_array(1,$maritalStatus);
 							$light = in_array(2,$maritalStatus);

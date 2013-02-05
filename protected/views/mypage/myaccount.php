@@ -28,55 +28,76 @@
 			<li>
 				<div class="leftC">Profile Created on</div>
 				<div class="rightC">
-					<strong>:</strong> <span>12th Jan 2012</span>
+					<strong>:</strong> <span><?php if(isset($user->createdOn))echo date_format(date_create($user->createdOn), 'd,M,Y');?></span>
 				</div>
 			</li>
 			<li>
 				<div class="leftC">Registerd Contact No.</div>
 				<div class="rightC">
-					<strong>:</strong> <span>9876543210  <a href="#">Edit</a></span>
+					<strong>:</strong> <span><?php if(isset($user->userpersonaldetails)) echo $user->userpersonaldetails->mobilePhone ?>   <a href="#">Edit</a></span>
 				</div>
 			</li>
 			<li>
 				<div class="leftC">Registered Email</div>
 				<div class="rightC">
-					<strong>:</strong> <span>ajameen@gmail.com <a href="#">Edit</a></span>
+					<strong>:</strong> <span><?php if(isset($user->emailId)) echo $user->emailId ?>  <a href="#">Edit</a></span>
 				</div>
 			</li>
 			<li>
 				<div class="leftC">Profile visited by you</div>
 				<div class="rightC">
-					<strong>:</strong> <a href="#">12</a>
+					<strong>:</strong> <a href="#"><?php if(isset($user->profileUser)) 
+				echo count($user->profileUser);
+		?></a>
 				</div>
 			</li>
 			<li>
 				<div class="leftC">Your profile visitors</div>
 				<div class="rightC">
-					<strong>:</strong> <a href="#">12</a>
+					<strong>:</strong> <a href="#"><?php 
+ 				if(isset($profileCount))
+ 				echo $profileCount;
+ 		?> </a>
 				</div>
 			</li>
 			<li>
 				<div class="leftC">Interest resived </div>
 				<div class="rightC">
-					<strong>:</strong> <a href="#">12</a>
+					<strong>:</strong> <a href="#"><?php
+			$receiveInterest = $user->interestReceiver(array('condition'=>'status = 0'));
+				if(isset($receiveInterest))
+				echo count($receiveInterest);
+		?></a>
 				</div>
 			</li>
 			<li>
 				<div class="leftC">Interest sent</div>
 				<div class="rightC">
-					<strong>:</strong> <a href="#">12</a>
+					<strong>:</strong> <a href="#"><?php 
+			$sent = $user->interestSender(array('condition'=>'status != 3'));
+		if(isset($sent)) echo count($sent);?></a>
 				</div>
 			</li>
 			<li>
 				<div class="leftC">Interest Decliened by you</div>
 				<div class="rightC">
-					<strong>:</strong> <a href="#">12</a>
+					<strong>:</strong> <a href="#"><?php 
+			
+			$sendInterest = $user->interestReceiver(array('condition'=>'status= 2'));
+			if(isset($sendInterest))
+			echo count($sendInterest);
+		
+		?></a>
 				</div>
 			</li>
 			<li>
 				<div class="leftC">Interest Decliened your</div>
 				<div class="rightC">
-					<strong>:</strong> <a href="#">12</a>
+					<strong>:</strong> <a href="#"><?php 
+				$decline = $user->interestReceiver(array('condition'=>'status = 1'));
+				if(isset($decline))
+				echo count($decline);
+		?></a>
 				</div>
 			</li>
 			<li>

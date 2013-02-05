@@ -135,9 +135,8 @@
 						Cast
 					</div>
 					<div class="info" id="letters">
-					<?php $records = Caste::model()->findAll("active = 1");
-		$list = CHtml::listData($records, 'casteId', 'name');
-		echo CHtml::dropDownList('caste',null,array(),array('class'=>'left ar','multiple'=>'multiple')); ?>
+					<?php 
+						echo CHtml::dropDownList('caste',null,array(),array('class'=>'left ar','multiple'=>'multiple')); ?>
 						<div class="ar-btn">
 							<input class="add type2" value="Add" onclick="return add('caste','caste1')" type="button">
 							<input class="remove type2" value="Remove" onclick="return add('caste1','caste')" type="button">
@@ -152,10 +151,10 @@
 					</div>
 					<div class="info">
 						<div class="radio mR14">
-							<input name="dhosham" type="radio"  /> <span>Yes</span>
+							<input name="dhosham" type="radio" value="1" /> <span>Yes</span>
 						</div>
 						<div class="radio">
-							<input name="dhosham"  type="radio"  /> <span>No </span>
+							<input name="dhosham"  type="radio" value="0"  /> <span>No </span>
 						</div>
 					</div>
 				</li>
