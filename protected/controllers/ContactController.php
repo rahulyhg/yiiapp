@@ -93,6 +93,35 @@ class ContactController extends Controller
 		}
 	}
 	
+	public function actionReferencedetails()
+	{
+		if(isset($_GET['id']))
+		{
+			$user = Users::model()->findByAttributes(array('marryId'=>$_GET['id']));
+		
+				if(isset($user->name))
+				{
+					$this->layout= '//layouts/popup';
+					$this->render('referencedetails',array('model'=>$user));
+				}
+		}
+	}
+	
+	public function actionAstrodetails()
+	{
+		if(isset($_GET['id']))
+		{
+			$user = Users::model()->findByAttributes(array('marryId'=>$_GET['id']));
+		
+				if(isset($user->name))
+				{
+					$this->layout= '//layouts/popup';
+					$this->render('astrodetails',array('model'=>$user));
+				}
+		}
+	}
+	
+	
 	public function actionDetailsedit()
 	{
 		$user = Yii::app()->session->get('user');

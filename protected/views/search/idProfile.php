@@ -98,7 +98,7 @@
 						<a href="#">Document</a>
 					</div>
 					<div class="butCo">
-						<a href="#">Reference </a>
+						<a href="/contact/referencedetails/id/<?php echo $model->marryId ?>" id="referenceDetails" >Reference </a>
 					</div>
 					<div class="butCo">
 						<a href="#">Family album</a>
@@ -107,7 +107,7 @@
 						<a href="#">Personal album</a>
 					</div>
 					<div class="butCo">
-						<a href="#">Astro Details</a>
+							<a href="/contact/astrodetails/id/<?php echo $model->marryId ?>" id="astroDetails" >Astro Details</a>	
 					</div>
 				</li>
 			</ul>
@@ -568,6 +568,8 @@ $drink= Utilities::getDrink();
 $(document).ready(function() {
 
 	$("#contactDetailsEdit").colorbox({iframe:true, width:"860", height:"900",overlayClose: false});
+	$("#referenceDetails").colorbox({iframe:true, width:"860", height:"900",overlayClose: false});
+	$("#astroDetails").colorbox({iframe:true, width:"860", height:"900",overlayClose: false});
 	$('.rec-sub').click(function (){
 
 		if($(this).text() == 'Accept')

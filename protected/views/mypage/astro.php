@@ -17,7 +17,7 @@
     <?php $this->widget('application.widgets.menu.Leftmenu'); ?>
 	<section class="data-contnr2">
 	<?php 
-			$user = Yii::app()->session->get('user');
+		$user = Yii::app()->session->get('user');
 		$astro = $user->horoscopes;
 		$partner = $user->partnerpreferences;
 		?>
@@ -84,7 +84,7 @@
 			<li>
 				<div class="leftC">Chovvadosham</div>
 				<div class="rightC">
-					<strong>:</strong> <span><?php if(isset($partner->dosham)) echo $chova[$partner->dosham]; ?>No</span>
+					<strong>:</strong> <span><?php if(isset($partner->dosham)) echo $chova[$partner->dosham]; ?></span>
 				</div>
 			</li>
 			

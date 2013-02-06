@@ -63,7 +63,7 @@
 						<span><?php echo $paddress->houseName ?></span>
 						<span><?php echo $paddress->postoffice?></span>
 						<span><?php echo $paddress->city?></span>
-						<span><?php echo $paddress->state.','.$caddress->country?></span>
+						<span><?php echo $paddress->state.','.$paddress->country?></span>
 						<span><?php echo $paddress->pincode?></span>
 					</div>
 					

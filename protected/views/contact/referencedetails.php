@@ -7,31 +7,41 @@
 * Copyright © 2012 MarryDorr. All Rights Reserved.
 * ---------------------------------------------------------------------------------------------------------------------------
 *
-* @author  Dileep Gopalan
-* @title reference.php
+* @author  Ageesh K Gopinath
+* @title referencedetails.php
 * @description <Description of this class>
 *  @filesource <URL>
 *  @version <Revision>
 */
 ?>
-    <?php $this->widget('application.widgets.menu.Leftmenu'); ?>
 
-    <section class="data-contnr2">
-        <ul class="accOverview pmB10">
-			<li class="mT8">
-				<a href="#" class="type4">Add New Referance</a>
-			</li>
-			    <?php 
-		    if(isset($references)) {
+
+		<div class="subContent">
+			<section class="subHead">
+				<h1 ><?php echo $model->name?> <?php echo $model->marryId?></h1>
+				<h5>Viewing persons reference details</h5>
+			</section>
+			<section class="subContnr">
+				<ul class="accOverview pmB10">
+					<li>
+						<a class="type4" href="#">Print Contact</a>
+					</li>
+				</ul>
+				 <?php 
+				 $references = $model->references;
+		    if(isset($references) && !empty($references)) {
 		    	$index = 1;
 		    	foreach($references as $reference){
 		    ?>
-			<li>
-				<div class="refHead">
-					<div class="headT">Referance Person <?php echo $index; ?></div> <a href="#">Edit</a> | <a href="#">Delete</a>
-				</div>
-			</li>
-			<li>
+				
+				<ul class="accOverview pmB10">
+				<li>	
+						<div class="refHead">
+							<div class="headT">Referance Person  <?php echo $index; ?></div> 
+						</div>
+						
+					</li>
+					<li>
 				<div class="leftC">Contact Persons Name</div>
 				<div class="rightC">
 					<strong>:</strong> <span><?php echo $reference->referName; ?></span>
@@ -93,13 +103,21 @@
 					<strong>:</strong> <span><?php echo $reference->referOccupation; ?></span>
 				</div>
 			</li>
-			
-			<?php
-				$index++;
-		    	} 
+				</ul>
+				<?php 
+		    	$index++;
+		    	}
 		    }
-			?>
-		</ul>
-    </section>
-      <?php $this->widget('application.widgets.menu.Rightmenu'); ?>
-  
+		    else { 
+				?>
+				<ul class="accOverview pmB10">
+				<li>	
+						<div class="refHead">
+							<div class="headT">Have not added any Referance yet !</div> 
+						</div>
+						
+					</li>		
+				</ul>
+				<?php }?>
+			</section>
+		
