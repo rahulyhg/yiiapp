@@ -30,12 +30,6 @@
 				</div>
 			</li>
 			<li>
-				<div class="leftC">Mobile No.</div>
-				<div class="rightC">
-					<strong>:</strong> <span>+91 98471 87600 </span>
-				</div>
-			</li>
-			<li>
 				<div class="leftC">Communication address</div>
 				<div class="rightC">
 					<strong>:</strong>
@@ -58,12 +52,6 @@
 				<div class="leftC">Occupation</div>
 				<div class="rightC">
 					<strong>:</strong> <span><?php echo $value->referOccupation?></span>
-				</div>
-			</li>
-			<li>
-				<div class="leftC">Relation</div>
-				<div class="rightC">
-					<strong>:</strong> <span><?php echo $value->relation?></span>
 				</div>
 			</li>
 		</ul>

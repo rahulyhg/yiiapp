@@ -200,6 +200,22 @@ class MypageController extends Controller
 		$contact->yahooIM = $_POST['yahoo'];
 		$contact->save();
 		
+		if(isset($_POST['pcontact']))
+		{
+				$privacy =  $user->privacy(array('condition'=>"items='contact'"));
+				if(isset($privacy) && $privacy->items == 'contact'){
+				$privacy->privacy = implode(',', $_POST['pcontact']);
+				$privacy->save();	
+				}
+				else {
+				$privacy = new Privacy();
+				$privacy->userId = $user->userId;
+				$privacy->items = 'contact';
+				$privacy->privacy = implode(',', $_POST['pcontact']);
+				$privacy->save();	
+				}
+		}
+		
 		$this->forward('contact');
 		}
 		

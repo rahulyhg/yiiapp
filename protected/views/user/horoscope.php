@@ -119,8 +119,8 @@
 					
 					
 					<div id='file_browse_wrapper'>
-<input type='file' id='file_browse'>
-</div>
+					<input type="file" name="horoscopeFile" id="horoscopeFile" />
+					</div>
 				</li>
 				<li>
 					<div class="title">
@@ -192,10 +192,10 @@
 						</div>
 						<div class="inner-row">
 							<input type="text" name="place0" id="place0" class="validate[minSize[3],custom[onlyLetterSp]]"  placeholder="Place" />
-							<input type="text" name="post0" id="post0"  placeholder="Post office" class="validate[minSize[3],custom[onlyLetterSp]]"   />
+							<input type="text" name="post0" id="post0"  placeholder="panchayath/municipality/corparation" class="validate[minSize[3],custom[onlyLetterSp]]"   />
 						</div>
 						<div class="inner-row">
-							<input type="text" name="city0" id="city0" placeholder="City" />
+							<input type="text" name="city0" id="city0" placeholder="City" class="validate[minSize[3],custom[onlyLetterSp]]"/>
 							<input type="text" name="district0" id="district0"  placeholder="District" class="validate[minSize[3],custom[onlyLetterSp]]"  />
 						</div>
 						<div class="inner-row">

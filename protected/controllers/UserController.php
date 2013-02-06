@@ -114,7 +114,7 @@ class UserController extends Controller
 		$user = Users::model()->findByPk(1);
 		Yii::app()->session->add('user',$user);
 		$userPersonal = $user->userpersonaldetails;
-		$this->render('contacts',array('user'=>$user,'userPersonal'=>$userPersonal));
+		$this->render('hobbies');
 	}
 	
 	public function actionContact()
@@ -374,7 +374,9 @@ class UserController extends Controller
 		$horoscope = new Horoscopes();
 		$horoscope->userId = $user->userId;
 		if(isset($_POST['date']))
-		$horoscope->astrodate = $_POST['year'].'-'.$_POST['month'].'-'.$_POST['date'];
+		$horoscope->dob = $_POST['year'].'-'.$_POST['month'].'-'.$_POST['date'];
+		if(isset($_POST['astrodate']))
+		$horoscope->astrodate = $_POST['astrodate'];
 		if(isset($_POST['city']))
 		$horoscope->city = $_POST['city'];
 		if(isset($_POST['state']))
@@ -385,6 +387,8 @@ class UserController extends Controller
 		$horoscope->time = $_POST['hours'].'-'.$_POST['minutes'].'-'.$_POST['seconds'].' ,'.$_POST['am'];
 		if(isset($_POST['chova']))
 		$horoscope->dosham = $_POST['chova'];
+		if(isset($_POST['motherTounge']))
+		$horoscope->motherTounge = $_POST['motherTounge'];
 		if(isset($_POST['sudha']))
 		$horoscope->sudham = $_POST['sudha'];
 		if(isset($_POST['sign']))

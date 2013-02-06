@@ -79,7 +79,7 @@ create table documents(documentId BIGINT UNIQUE NOT NULL AUTO_INCREMENT, userId 
 
 -- ---TABLE FOR horoscopes-----
 
-create table horoscopes(horoscopeId BIGINT UNIQUE NOT NULL AUTO_INCREMENT, userId BIGINT NOT NULL, sign INT NOT NULL,time VARCHAR(250), astrodate INT NOT NULL,country VARCHAR(250) NOT NULL, state VARCHAR(250) NOT NULL,city VARCHAR(250) NOT NULL, horoscopeFile VARCHAR(100), grahanilaFile VARCHAR(100), visibility INT(100) NOT NULL DEFAULT 0, dosham INT(100) NOT NULL DEFAULT 0, sudham INT(100) NOT NULL DEFAULT 0, PRIMARY KEY(horoscopeId), FOREIGN KEY (userId) REFERENCES users(userId))ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;
+create table horoscopes(horoscopeId BIGINT UNIQUE NOT NULL AUTO_INCREMENT, userId BIGINT NOT NULL, motherTounge int(10) NOT NULL, sign INT(11) NOT NULL,time VARCHAR(250), astrodate INT(11),dob VARCHAR(250),country VARCHAR(250), state VARCHAR(250),city VARCHAR(250) , horoscopeFile VARCHAR(100), grahanilaFile VARCHAR(100), visibility INT(100) DEFAULT NULL, dosham INT(100) DEFAULT NULL, sudham INT(100) DEFAULT NULL, PRIMARY KEY(horoscopeId), FOREIGN KEY (userId) REFERENCES users(userId))ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;
 
 
 -- --TABLE FOR reference----

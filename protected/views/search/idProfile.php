@@ -388,7 +388,7 @@ $drink= Utilities::getDrink();
 				<li class="mT10">
 					<div class="leftCtn">Family album</div>
 					<div class="rightCtn">
-						<strong>:</strong> <span><a href="#">Viwe my family album (5 Photos)</a></span>
+						<strong>:</strong> <span><a href="#">View my family album (5 Photos)</a></span>
 					</div>
 				</li>
 			</ul>
@@ -566,24 +566,7 @@ $drink= Utilities::getDrink();
 		<?php }?>
 
     </section>
-	<aside class="rightbar-contnr">
-		<div class="subscribe-box">
-			<div class="sub-now">Subscribe Now!<br /><span>Only for</span></div>
-			<div class="digit"><span class="WebRupee">Rs.</span>200</div>
-			<div class="for">For 3 Months</div>
-			<div class="divider"> </div>
-			<div class="benefit">Benefits of Subscribing </div>
-			<p>
-				Real time update about profile visitors <br />
-				Access key details of other users<br />
-				Contact candidates directly  <br />
-				View horoscope of members <br />
-				Message candidates directly
-			</p>
-			<div class="divider"> </div>
-			<a class="subNow" href="subscribe-now.htm">Subscribe Now</a>
-		</div>
-	</aside>
+	<?php $this->widget('application.widgets.menu.Rightmenu'); ?>
 
             
  <script type="text/javascript">

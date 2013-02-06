@@ -137,8 +137,11 @@
 	</li>
 	<li>
 	<?php $privacy =  $user->privacy(array('condition'=>"items='contact'"));
+	$alValues = array();
+	if(isset($privacy[0])){
 	$alValue = $privacy[0];
 	$alValues = explode(',',$alValue->privacy);
+	}
 	?>
 		<div class="title">Who can view above detals</div>
 		<div class="info">

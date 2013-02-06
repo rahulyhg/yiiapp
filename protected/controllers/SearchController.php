@@ -600,7 +600,7 @@ class SearchController extends Controller
 					}
 				}
 				
-				$scondition = " userId in ({$userList})";
+				$scondition = " userId in ({$userList}) and userId != {$user->userId}";
 				
 				if(!empty($blockedIds))
 				$scondition .= " and userId NOT IN ($blockedIds)";
@@ -614,7 +614,7 @@ class SearchController extends Controller
 			}
 			
 		}else {
-			$scondition = " userId in ({$userList})";
+			$scondition = " userId in ({$userList}) and userId != {$user->userId}";
 		}
 			
 			$users = array();
@@ -1015,7 +1015,7 @@ class SearchController extends Controller
 					}
 				}
 				
-				$scondition = " userId in ({$userList})";
+				$scondition = " userId in ({$userList}) and userId != {$user->userId}";
 				
 				if(!empty($blockedIds))
 				$scondition .= " and userId NOT IN ($blockedIds)";
@@ -1029,7 +1029,7 @@ class SearchController extends Controller
 			}
 			
 		}else {
-			$scondition = " userId in ({$userList})";
+			$scondition = " userId in ({$userList}) and userId != {$user->userId}";
 		}
 		
 		$users = array();

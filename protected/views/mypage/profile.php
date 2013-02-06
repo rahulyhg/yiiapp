@@ -511,7 +511,6 @@ $(document).ready(function(){
     $("#editProfilePicture").colorbox({iframe:true, width:"860", height:"620",overlayClose: false});
   });
 
-    $('<a href="/mypage">Skip this page|</a> ').insertBefore('.logout');
 
 </script>
       <?php $this->widget('application.widgets.menu.Rightmenu'); ?>

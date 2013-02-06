@@ -17,6 +17,8 @@
  * @property integer $visibility
  * @property integer $dosham
  * @property integer $sudham
+ * @property integer $motherTounge
+ * @property string $dob
  *
  * The followings are the available model relations:
  * @property Users $user
@@ -49,12 +51,13 @@ class Horoscopes extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			
+			array('sign, astrodate, visibility, dosham, sudham, motherTounge', 'numerical', 'integerOnly'=>true),
 			array('userId', 'length', 'max'=>20),
-			array('time, country, state, city', 'length', 'max'=>250),
+			array('time, country, state, city, dob', 'length', 'max'=>250),
+			array('horoscopeFile, grahanilaFile', 'length', 'max'=>100),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('horoscopeId, userId, sign, time, astrodate, country, state, city, horoscopeFile, dosham, sudham', 'safe', 'on'=>'search'),
+			array('horoscopeId, userId, sign, time, astrodate, country, state, city, horoscopeFile, grahanilaFile, visibility, dosham, sudham, motherTounge, dob', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -89,6 +92,8 @@ class Horoscopes extends CActiveRecord
 			'visibility' => 'Visibility',
 			'dosham' => 'Dosham',
 			'sudham' => 'Sudham',
+			'motherTounge' => 'Mother Tounge',
+			'dob' => 'Dob',
 		);
 	}
 
@@ -116,11 +121,11 @@ class Horoscopes extends CActiveRecord
 		$criteria->compare('visibility',$this->visibility);
 		$criteria->compare('dosham',$this->dosham);
 		$criteria->compare('sudham',$this->sudham);
+		$criteria->compare('motherTounge',$this->motherTounge);
+		$criteria->compare('dob',$this->dob,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
 		));
 	}
-	
-	
 }
