@@ -29,13 +29,13 @@ class BookmarkController extends Controller
 		}
 		else
 		{
-			$this->render('index');
+			$this->render('nobookmark');
 		}
 		
 		}
 		else 
 		{
-			$this->render('index');
+			$this->render('nobookmark');
 		}
 		
 	}

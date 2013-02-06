@@ -1,9 +1,7 @@
     <?php $this->widget('application.widgets.menu.Leftmenu'); ?>
 <section class="data-contnr2">
 <ul class="accOverview pmB10">
-			<li class="mT8">
-				<a href="#" class="type4">Add New Referance</a>
-			</li>
+			
 		</ul>
 		<?php if(isset($referenceList))
 			{
@@ -14,7 +12,7 @@
         <ul class="accOverview pmB10">
 			<li>
 				<div class="refHead">
-					<div class="headT">Referance Person <?php echo $index;?></div> <a href="#">Edit</a> | <a href="#">Delete</a>
+					<div class="headT">Referance Person <?php echo $index;?></div>
 				</div>
 			</li>
 			<li>

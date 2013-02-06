@@ -30,13 +30,13 @@ class ShortlistController extends Controller
 		}
 		else
 		{
-			$this->render('shortlist');
+			$this->render('index');
 		}
 		
 		}
 		else 
 		{
-			$this->render('shortlist');
+			$this->render('index');
 		}
 	}
 	

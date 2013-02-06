@@ -6,7 +6,7 @@
 					<div class="arrow"></div>
 					<div class="data wid140">
 						<a class="width100" href="<?php echo Utilities::createAbsoluteUrl('contact','index')?>">Contact Details</a>
-						<a class="width100" href="<?php echo Utilities::createAbsoluteUrl('contact','reference')?>">My Reference</a>
+						<a class="width100" href="<?php echo Utilities::createAbsoluteUrl('mypage','reference')?>">My Reference</a>
 						<a class="width100" href="<?php echo Utilities::createAbsoluteUrl('mypage','document')?>">My Documents</a>
 						<a class="width100" href="<?php echo Utilities::createAbsoluteUrl('shortlist','index')?>">Shortlist</a>
 						<a class="width100" href="<?php echo Utilities::createAbsoluteUrl('bookmark','index')?>">Bookmarks</a>

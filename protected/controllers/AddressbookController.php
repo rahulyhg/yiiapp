@@ -2,9 +2,43 @@
 
 class AddressbookController extends Controller
 {
+	
+	 public function beforeAction()
+        {
+                $user = Yii::app()->session->get('user');
+                if(!isset($user)) {
+                        $this->redirect(Yii::app()->user->loginUrl);
+                        return false;
+                }       
+                return true;
+        }  
+        
 	public function actionIndex()
 	{
-		$this->render('index');
+		
+		$usersList = Yii::app()->session->get('user');
+		if(isset($usersList->addressBook)){
+		$userBook = $usersList->addressBook;
+		$condition = "userId in ($userBook->visitedId)";
+		$users = Users::model()->findAll(array('condition'=>$condition,'order'=> 'createdOn DESC' ));
+		
+		if(sizeof($users) > 0)
+		{
+			
+		$totalUser = sizeof($users);
+		$totalPage = ceil($totalUser/10);	
+		$this->render('index',array('users'=>$users,'totalUser'=>$totalUser,'totalPage' => $totalPage));
+		}
+		else
+		{
+			$this->render('noaddress');
+		}
+		
+		}
+		else 
+		{
+			$this->render('noaddress');
+		}
 	}
 
 	// Uncomment the following methods and override them if needed

@@ -228,7 +228,7 @@ class MypageController extends Controller
 	{
 		$user = Yii::app()->session->get('user');
 		$referenceList = $user->references;
-		if(isset($referenceList) )
+		if(isset($user->references) && !empty($user->references) )
 		{
 			$this->render('myreference',array('referenceList'=>$referenceList));
 		}
@@ -305,7 +305,12 @@ class MypageController extends Controller
 	
 	public function actionAstro()
 	{
+		$user = Yii::app()->session->get('user');
+		if(isset($user->horoscopes) && $user->horoscopes->userId ==  $user->userId)
 		$this->render('astro');
+		else
+		$this->render('noastro');
+		
 	}
 	
 	public function actionShortlist()
