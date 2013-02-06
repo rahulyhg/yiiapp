@@ -26,7 +26,7 @@
          <?php if(isset($users)){ ?>
         <div class="pagination-contnr">
             <div class="select-contnr"><input type="checkbox" class="selection" name="selection" /> Select All</div>
-            <a id="rmv-large" href="#">Remove Shortlist</a>
+            <a id="rmv-large" href="#">Remove Addressbook</a>
             <?php if(isset($totalPage) && intval($totalPage) > 1) { ?>
             <ul class="pagination">
                 <li><span class="fir"><a href="#">First</a></span></li>
@@ -37,11 +37,7 @@
                  <?php } ?> 
         </div>
         <?php }?>
-        <?php if(!isset($users)) {
-					
-						echo  "No bookmarked profiles";
-					}?>
-					
+        			
         <div class="content-section">
         <?php 
         $user = Yii::app()->session->get('user');
@@ -93,7 +89,7 @@
  $isMessage = $user->messageSender(array('condition'=>"receiverId = {$value->userId}"));
  ?>
  					<div id="rBookmark">
-                    <a href="#" id="<?php echo $value->userId ?>"  class="global bookPad">Remove Bookmark</a>
+                    <a href="#" id="<?php echo $value->userId ?>"  class="global bookPad">Remove Addressbook</a>
                     </div>
                     <?php if(!isset($isMessage) || empty($isMessage)) {?>
                     <div id="message">
@@ -114,7 +110,7 @@
          <?php if(isset($users)){ ?>
         <div class="pagination-contnr">
             <div class="select-contnr"><input type="checkbox" /> Select All</div>
-            <a href="#">Remove Bookmark</a>
+            <a href="#">Remove Addresbook</a>
             <?php if(isset($totalPage) && intval($totalPage) > 1) { ?>
             <ul class="pagination">
                 <li><span class="fir"><a href="#">First</a></span></li>

@@ -21,18 +21,7 @@
     <section class="data-contnr mT8">
         <div class="mainPro">
 			<div class="photoC">
-				<a class="ppC" href="#">
-					<img src="./images/user/profile1.png" alt="Bharath Gopi" title="Bharath Gopi" />
-				</a>
-				<ul class="noC">
-					<li><a href="#" class="prevs" ></a></li>
-					<li><a href="#" >1</a></li>
-					<li><a href="#" >2</a></li>
-					<li><a href="#" >3</a></li>
-					<li><a href="#" >4</a></li>
-					<li><a href="#" >5</a></li>
-					<li><a href="#" class="nexts" ></a></li>
-				</ul>
+				<?php $this->widget('application.widgets.Profilepicture',array('userId'=>$model->userId,'marryId'=>$model->marryId)); ?>
 			</div>
 			<?php $heightArray = Utilities::getHeights()?>
 			<ul class="myPd">
@@ -95,10 +84,15 @@
 					</div>
 				</li>
 			</ul>
+			<?php 
+			$user = Yii::app()->session->get('user');
+			if(isset($user)) {
+			
+			?>
 			<ul class="myPd">
 				<li>
 					<div class="butCo mL0">
-						<a href="#">Contact</a>
+						<a href="/contact/details/id/<?php echo $model->marryId ?>" id="contactDetailsEdit" >Contact</a>
 					</div>
 					<div class="butCo">
 						<a href="#">Document</a>
@@ -117,8 +111,9 @@
 					</div>
 				</li>
 			</ul>
+			<?php }?>
 		</div>
-		<?php  $user = Yii::app()->session->get('user');
+		<?php  
 		if(isset($user)){
 			$isInterest = $user->interestSender(array('condition'=>"receiverId = {$model->userId}"));
  			$isBookMarked = $user->bookmark(array('condition'=>"FIND_IN_SET('{$model->userId}',profileIDs)")); 
@@ -572,6 +567,7 @@ $drink= Utilities::getDrink();
  <script type="text/javascript">
 $(document).ready(function() {
 
+	$("#contactDetailsEdit").colorbox({iframe:true, width:"860", height:"900",overlayClose: false});
 	$('.rec-sub').click(function (){
 
 		if($(this).text() == 'Accept')

@@ -614,7 +614,7 @@ class SearchController extends Controller
 			}
 			
 		}else {
-			$scondition = " userId in ({$userList}) and userId != {$user->userId}";
+			$scondition = " userId in ({$userList})";
 		}
 			
 			$users = array();
@@ -1029,7 +1029,7 @@ class SearchController extends Controller
 			}
 			
 		}else {
-			$scondition = " userId in ({$userList}) and userId != {$user->userId}";
+			$scondition = " userId in ({$userList})";
 		}
 		
 		$users = array();

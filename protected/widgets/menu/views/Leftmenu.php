@@ -66,7 +66,7 @@
 				</div>
 			</li>
             <li>
-				<a href="<?php echo Utilities::createAbsoluteUrl('mypage','addressbook',array()); ?>" class="headLink">My Addressbook</a>
+				<a href="<?php echo Utilities::createAbsoluteUrl('addressbook','index',array()); ?>" class="headLink">My Addressbook</a>
 				<a class="infoB" href="javascript:void(0)">?</a>
 				<div class="infoBox">
 					<div class="iArrow"></div>
