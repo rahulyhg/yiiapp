@@ -20,6 +20,7 @@
 						<div class="rightC">
 							<h5 class=" mL30">Please mouse hover on the grahanila to delete.</h5>
 							<div class="uGrah">
+							<img id="imgSrc" name="imgSrc" alt="" src="<?php echo Utilities::getHoroscope($user->marryId, $astro->horoscopeFile);?>">
 								<a href="#" class="gDelete">Delete</a>
 							</div>
 						</div>
