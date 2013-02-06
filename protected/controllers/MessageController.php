@@ -18,27 +18,53 @@ class MessageController extends Controller
 		$user = Yii::app()->session->get('user');
 		$sql = "SELECT * FROM view_messages WHERE receiverId = {$user->userId}";
 		$command=Yii::app()->db->createCommand($sql);
-		$messages = $command->queryAll();
-		$this->render('index',array('messages'=>$messages));
+		$inbox = $command->queryAll();
+		
+		$sql = "SELECT * FROM view_messages WHERE senderId = {$user->userId}";
+		$command=Yii::app()->db->createCommand($sql);
+		$outbox = $command->queryAll();
+		
+		$sql = "SELECT * FROM view_messages WHERE receiverId = {$user->userId} and status = 2";
+		$command=Yii::app()->db->createCommand($sql);
+		$ackowledge = $command->queryAll();
+		$this->render('index',array('inbox'=>$inbox,'outbox'=>$outbox,'ackowledge'=>$ackowledge,'page'=>'inbox'));
 	}
 	
 	public function actionSent()
 	{
 		$user = Yii::app()->session->get('user');
+		$sql = "SELECT * FROM view_messages WHERE receiverId = {$user->userId}";
+		$command=Yii::app()->db->createCommand($sql);
+		$inbox = $command->queryAll();
+		
 		$sql = "SELECT * FROM view_messages WHERE senderId = {$user->userId}";
 		$command=Yii::app()->db->createCommand($sql);
-		$messages = $command->queryAll();
-		$this->render('sent',array('messages'=>$messages));
+		$outbox = $command->queryAll();
+		
+		$sql = "SELECT * FROM view_messages WHERE receiverId = {$user->userId} and status = 2";
+		$command=Yii::app()->db->createCommand($sql);
+		$ackowledge = $command->queryAll();
+		
+		$this->render('index',array('inbox'=>$inbox,'outbox'=>$outbox,'ackowledge'=>$ackowledge,'page'=>'outbox'));
 	}
 	
 
 	public function actionAcknowledgement()
 	{
 		$user = Yii::app()->session->get('user');
+		$sql = "SELECT * FROM view_messages WHERE receiverId = {$user->userId}";
+		$command=Yii::app()->db->createCommand($sql);
+		$inbox = $command->queryAll();
+		
+		$sql = "SELECT * FROM view_messages WHERE senderId = {$user->userId}";
+		$command=Yii::app()->db->createCommand($sql);
+		$outbox = $command->queryAll();
+		
 		$sql = "SELECT * FROM view_messages WHERE receiverId = {$user->userId} and status = 2";
 		$command=Yii::app()->db->createCommand($sql);
-		$messages = $command->queryAll();
-		$this->render('acknowledgement');
+		$ackowledge = $command->queryAll();
+		
+		$this->render('index',array('inbox'=>$inbox,'outbox'=>$outbox,'ackowledge'=>$ackowledge,'page'=>'acknowledgement'));
 	}
 	
 	public function actionConversation()
