@@ -16,6 +16,16 @@ class MessageController extends Controller
 	public function actionIndex()
 	{
 		$user = Yii::app()->session->get('user');
+		if(isset($_POST['selectedIds']) and $_POST['selectedIds'] != ''){
+			$selectedIds = $_POST['selectedIds'];
+			$tab =  $_POST['selectedTab'];
+			if($tab == 'inbox' || $tab == 'acknowledgement'){
+			$query = "delete from messages where receiverId ='.$user->userId.' and messageId in($selectedIds)";
+			}elseif($tab == 'outbox'){
+				$query = "delete from messages where senderId ='.$user->userId.' and messageId in($selectedIds)";
+			}
+			Utilities::executeRawQuery($query);
+		}
 		$sql = "SELECT * FROM view_messages WHERE receiverId = {$user->userId}";
 		$command=Yii::app()->db->createCommand($sql);
 		$inbox = $command->queryAll();
