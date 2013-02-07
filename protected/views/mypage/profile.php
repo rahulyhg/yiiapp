@@ -104,13 +104,13 @@ $heightArray = Utilities::getHeights();
 			</div>
 		</div>
 		<div class="editContr">
-			<a href="#" class="edit">Edit</a>
+			<a href="<?php echo Utilities::createAbsoluteUrl('contact','personaledit'); ?>" class="edit" id="personalEdit">Edit</a>
 			<div class="hText">Personal Information</div>
 			<div class="subText">In my own words</div>
 			<p >completed MBA,medium complexion,out going with good family values. in search for a moderately religious,well educated partner. completed MBA,medium complexion,out going with good family values. in search for a moderately religious,well educated partner. completed MBA,medium complexion,out going with good family values. in search for a moderately religious,well educated partner. </p>
 		</div>
 		<div class="editContr">
-			<a href="#" class="edit">Edit</a>
+			<a href="<?php echo Utilities::createAbsoluteUrl('contact','personaledit'); ?>" class="edit" id="personalEdit">Edit</a>
 			<div class="hText">Basic Details</div>
 			<ul class="detSec width50">
 				<li>
@@ -172,7 +172,7 @@ $heightArray = Utilities::getHeights();
 			</ul>
 		</div>
 		<div class="editContr">
-			<a href="#" class="edit">Edit</a>
+			<a href="<?php echo Utilities::createAbsoluteUrl('contact','personaledit'); ?>" class="edit" id="personalEdit">Edit</a>
 			<div class="hText">Religious Information</div>
 			<ul class="detSec width50">
 				<li>
@@ -202,7 +202,7 @@ $heightArray = Utilities::getHeights();
 			</ul>
 		</div>
 		<div class="editContr">
-			<a href="#" class="edit">Edit</a>
+			<a href="<?php echo Utilities::createAbsoluteUrl('contact','personaledit'); ?>" class="edit" id="personalEdit">Edit</a>
 			<div class="hText">Lifestyle</div>
 			<ul class="detSec width50">
 				<li>
@@ -234,7 +234,7 @@ $heightArray = Utilities::getHeights();
 			</ul>
 		</div>
 		<div class="editContr">
-			<a href="#" class="edit">Edit</a>
+			<a href="<?php echo Utilities::createAbsoluteUrl('contact','personaledit'); ?>" class="edit" id="personalEdit">Edit</a>
 			<div class="hText">Location</div>
 			<ul class="detSec width50">
 				<li>
@@ -272,7 +272,7 @@ $heightArray = Utilities::getHeights();
 			</ul>
 		</div>
 		<div class="editContr">
-			<a href="#" class="edit">Edit</a>
+			<a href="<?php echo Utilities::createAbsoluteUrl('contact','personaledit'); ?>" class="edit" id="personalEdit">Edit</a>
 			<div class="hText">Professional Information</div>
 			<ul class="detSec width50">
 				<li>
@@ -314,7 +314,7 @@ $heightArray = Utilities::getHeights();
 			</ul>
 		</div>
 		<div class="editContr">
-			<a href="#" class="edit">Edit</a>
+			<a href="<?php echo Utilities::createAbsoluteUrl('contact','personaledit'); ?>" class="edit" id="personalEdit">Edit</a>
 			<div class="hText">Family Details</div>
 			<ul class="detSec width50">
 				<li>
@@ -376,12 +376,12 @@ $heightArray = Utilities::getHeights();
 			</ul>
 		</div>
 		<div class="editContr">
-			<a href="#" class="edit">Edit</a>
+			<a href="<?php echo Utilities::createAbsoluteUrl('contact','personaledit'); ?>" class="edit" id="personalEdit">Edit</a>
 			<div class="hText">About my family</div>
 			<p >My dad is into business,mom a simple house wife,got 2 sisters and 1 younger brother.both sisters got married.</p>
 		</div>
 		<div class="editContr">
-			<a href="#" class="edit">Edit</a>
+			<a href="<?php echo Utilities::createAbsoluteUrl('contact','personaledit'); ?>" class="edit" id="personalEdit">Edit</a>
 			<div class="hText">My Partner Preference</div>
 			<ul class="detSec width100">
 				<li>
@@ -495,7 +495,7 @@ $heightArray = Utilities::getHeights();
 			</ul>
 		</div>
 		<div class="editContr">
-			<a href="#" class="edit">Edit</a>
+			<a href="<?php echo Utilities::createAbsoluteUrl('contact','personaledit'); ?>" class="edit" id="personalEdit">Edit</a>
 			<div class="hText">About my partner</div>
 			<p>Expecting moderately religious with high family values and well educated.Expecting moderately religious with high family values and well educated.Expecting moderately religious with high family values and well educated.Expecting moderately religious with high family values and well educated.Expecting moderately religious with high family values and well educated.Expecting moderately religious with high family values and well educated.Expecting moderately religious with high family values </p>
 		</div>
@@ -509,6 +509,8 @@ $(document).ready(function(){
     $("#referenceEdit").colorbox({iframe:true, width:"860", height:"900",overlayClose: false});
     $("#astroEdit").colorbox({iframe:true, width:"860", height:"900",overlayClose: false});
     $("#editProfilePicture").colorbox({iframe:true, width:"860", height:"620",overlayClose: false});
+    $('[id^=personal]').colorbox({iframe:true, width:"860", height:"900",overlayClose: false});
+    
   });
 
 

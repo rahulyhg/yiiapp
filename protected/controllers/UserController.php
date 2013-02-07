@@ -140,7 +140,7 @@ class UserController extends Controller
 		$userPersonal->intercasteable = $_POST['interCaste'];
 		if(isset($_POST['stateId']))
 		$userPersonal->stateId = $_POST['state'];
-		if(isset($_POST['distictId']))
+		if(isset($_POST['district']))
 		$userPersonal->distictId = $_POST['district'];
 		if(isset($_POST['place']))
 		$userPersonal->placeId = $_POST['place'];

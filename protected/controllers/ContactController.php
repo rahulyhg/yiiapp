@@ -432,4 +432,165 @@ class ContactController extends Controller
 		$this->render('astroedit');
 	}
 	
+	public function actionPersonaledit()
+	{
+		$user = Yii::app()->session->get('user');
+		$this->layout= '//layouts/popup';
+		$this->render('personaledit');
+	}
+	public function actionPersonalupdate()
+	{
+		$user = Yii::app()->session->get('user');
+		
+		if(isset($user->userpersonaldetails))
+		$userPersonal = $user->userpersonaldetails;
+		else{
+		$userPersonal = new Userpersonaldetails();
+		$userPersonal->userId = $user->userId;
+		}
+		
+		
+		if(isset($_POST['stateId']))
+		$userPersonal->stateId = $_POST['state'];
+		if(isset($_POST['district']))
+		$userPersonal->distictId = $_POST['district'];
+		if(isset($_POST['place']))
+		$userPersonal->placeId = $_POST['place'];
+		if(isset($_POST['country']))
+		$userPersonal->countryId = $_POST['country'];
+		$userPersonal->save();
+		
+		if(isset($user->physicaldetails))
+		$physical = $user->physicaldetails;
+		else {
+		$physical = new Physicaldetails();
+		$physical->userId = $user->userId;
+		}
+		
+		if(isset($_POST['height']))
+		$physical->heightId = $_POST['height'];
+		if(isset($_POST['weight']))
+		$physical->weight = $_POST['weight'];
+		if(isset($_POST['bodyType']))
+		$physical->bodyType = $_POST['bodyType'];
+		if(isset($_POST['complexion']))
+		$physical->complexion = $_POST['complexion'];
+		if(isset($_POST['physical']))
+		$physical->physicalStatus = $_POST['physical'];
+		$physical->save();
+		
+		if(isset($user->educations))
+		$education = $user->educations;
+		else {
+		$education = new Education();
+		$education->userId = $user->userId;
+		}
+		
+		if(isset($_POST['education']) && !empty($_POST['education']))
+		$education->educationId = $_POST['education'];
+		if(isset($_POST['occupation']) && !empty($_POST['occupation']))
+		$education->occupationId = $_POST['occupation'];
+		if(isset($_POST['employed']))
+		$education->employedIn = $_POST['employed'];
+		if(isset($_POST['income']) && !empty($_POST['income']))
+		{
+		$education->yearlyIncome = intval($_POST['income']);
+		}
+		$education->save();
+
+		if(isset($user->habits))
+		$habit = $user->habits;
+		else {
+		$habit = new Habit();
+		$habit->userId = $user->userId;
+		}
+		
+		//habits
+
+		if(isset($_POST['food']))
+		$habit->food = $_POST['food'];
+		if(isset($_POST['smoke']))
+		$habit->smoking = $_POST['smoke'];
+		if(isset($_POST['drink']))
+		$habit->drinking = $_POST['drink'];
+		$habit->save();
+
+		
+		if(isset($user->familyprofiles))
+		$family = $user->familyprofiles;
+		else {
+		$family = new Familyprofile();
+		$family->userId = $user->userId;
+		}
+		
+		if(isset($_POST['status']))
+		$family->familyStatus = $_POST['status'];
+		if(isset($_POST['type']))
+		$family->familyType = $_POST['type'];
+		if(isset($_POST['familyValues']))
+		$family->familyValues = $_POST['familyValues'];
+		if(isset($_POST['brothers']))
+		$family->brothers = $_POST['brothers'];
+		if(isset($_POST['brothersMarry']))
+		$family->brotherMarried = $_POST['brothersMarry'];
+		if(isset($_POST['sisters']))
+		$family->sisters = $_POST['sisters'];
+		if(isset($_POST['sistersMarry']))
+		$family->SisterMarried = $_POST['sistersMarry'];
+		if(isset($_POST['familyDesc']))
+		$family->familyDesc = $_POST['familyDesc'];
+		if(isset($_POST['myDesc']))
+		$family->userDesc = $_POST['myDesc'];
+		
+		
+		if(isset($user->hobies))
+		$userHobby = $user->hobies;
+		else {
+		$userHobby = new Hobiesandinterests();
+		$userHobby->userId = $user->userId;
+		}
+		
+		if(isset($_POST['hobby']))
+		{
+			$userHobby->hobies = implode(",", $_POST['hobby']);
+		}
+		if(isset($_POST['interest']))
+		{
+			$userHobby->interests = implode(",", $_POST['interest']);
+		}
+		if(isset($_POST['sports']))
+		{
+			$userHobby->activities = implode(",", $_POST['sports']);
+		}
+		if(isset($_POST['read']))
+		{
+			$userHobby->reading = implode(",", $_POST['read']);
+		}
+		if(isset($_POST['movies']))
+		{
+			$userHobby->movies = implode(",", $_POST['movies']);
+		}
+		if(isset($_POST['music']))
+		{
+			$userHobby->musics = implode(",", $_POST['music']);
+		}
+		if(isset($_POST['cuisine']))
+		{
+			$userHobby->cuisine = implode(",", $_POST['cuisine']);
+		}
+		if(isset($_POST['language']))
+		{
+			$userHobby->languages = implode(",", $_POST['language']);
+		}
+		if(isset($_POST['othersLanguage'])&& isset($_POST['otherLanguage']))
+		{
+			$userHobby->languageOther= $_POST['otherLanguage'];
+		}
+		$userHobby->save();
+		
+		$this->layout= '//layouts/popup';
+		$this->render('personaledit');
+	}
+	
+	
 }
