@@ -1,11 +1,16 @@
-<div class="editContnr" >
-	<article class="message-contnr">
+<div class="subContent">
+			<section class="subHead">
+				<h1 class="width100">Message to Biju George</h1>
+			</section>
+			<section class="subContnr">
 		<ul>
+		<?php if(isset($_GET['success']) && $_GET['success'] == true) { ?>
+			<li>Message sent successfully</li>
+			<input type="button" name="btnCancel"  value="Close" class="type2b mL5" onclick="javascript:closeOverlay();" />
+		<?php 
+               }else{?>
 		<form name="frmMessage" id="frmMessage" method="post" action="<?php echo Utilities::createAbsoluteUrl('message','compose',array()); ?>">
 			<input type = "hidden" name="receiverId" id="receiverId" value="<?php echo $receiverId; ?>" />
-			<li class="bBottom">
-				<h3>Message to Biju George</h3>
-			</li>
 			<li>
 				<textarea type="text" placeholder="Type your message here.." name="message" id="message" ></textarea>
 			</li>
@@ -19,7 +24,8 @@
 			</li>
 		</form>
 		</ul>
-	</article>
+		<?php }?>
+	</section>
 </div>
 
 <script type="text/javascript">

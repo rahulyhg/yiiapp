@@ -278,6 +278,24 @@
     color: #fff;
     border: 1px solid #876099;
 }
+
+ a.sendMessage{
+    float: left;
+    font:normal 11px/12px verdana,arial,helvetica,sans-serif;
+    color: #876099;
+    padding: 1px 10px 3px 8px;
+    text-decoration: none;
+    background:#E6E7E8;
+    border: 1px solid #E6E7E8;
+    margin:5px 2px 0 0;
+    text-transform: uppercase;
+}
+a.sendMessage:hover{
+    background: #876099;
+    color: #fff;
+    border: 1px solid #876099;
+}
+
 .profile .button-contnr .bookPad{
     padding: 1px 3px 3px !important;
 }
