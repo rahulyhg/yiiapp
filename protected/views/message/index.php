@@ -24,7 +24,7 @@
 					<span>Sellect All</span>
 				</div>
 				<div class="check">
-					<span><a href="#" onclick="deleteMessage();">Delete</a></span>
+					<span><a href="#" onclick="deleteMessages();">Delete</a></span>
 				</div>
 			</div>
 			<form name="frmMessage" id="frmMessage" method="post" action="<?php echo Utilities::createAbsoluteUrl('message','index',array()); ?>">
@@ -49,7 +49,7 @@
 				<li <?php if($inmessage['status'] == 0){ ?>class="unread" <?php }?>>
 					<input type="checkbox" class="msgCheck" value="<?php echo $inmessage['messageId']; ?>" />
 					<a href="#"><img src="<?php echo Utilities::getProfileImage($inmessage['senderMarryId'],$inmessage['senderImageName']); ?>" alt="" /></a>
-					<a href="<?php echo Utilities::createAbsoluteUrl('message','conversation',array()); ?>" class="user_name"><?php echo $inmessage['senderName']; ?></a>
+					<a href="<?php echo Utilities::createAbsoluteUrl('message','conversation',array('senderId'=>$inmessage['senderId'])); ?>" class="user_name"><?php echo $inmessage['senderName']; ?></a>
 					<div class="user_message"><?php echo $inmessage['message']; ?></div>
 					<div class="msge_data">
 						<a href="#" class="close" onclick="deleteMessage(<?php echo $inmessage['messageId']; ?>,'inbox');"></a>
@@ -71,7 +71,7 @@
 				<li <?php if($outmessage['status'] == 0){ ?>class="unread" <?php }?>>
 					<input type="checkbox" class="msgCheck" value="<?php echo $outmessage['messageId']; ?>" />
 					<a href="#"><img src="<?php echo Utilities::getProfileImage($outmessage['receiverMarryId'],$outmessage['receiverImageName']); ?>" alt="" /></a>
-					<a href="<?php echo Utilities::createAbsoluteUrl('message','conversation',array()); ?>" class="user_name"><?php echo $outmessage['receiverName']; ?></a>
+					<a href="<?php echo Utilities::createAbsoluteUrl('message','conversation',array('senderId'=>$outmessage['senderId'])); ?>" class="user_name"><?php echo $outmessage['receiverName']; ?></a>
 					<div class="sent_message"><?php echo $outmessage['message']; ?></div>
 					<div class="msge_data">
 						<a href="#" class="close" onclick="deleteMessage(<?php echo $outmessage['messageId']; ?>,'outbox');"></a>
@@ -93,7 +93,7 @@
 				<li  <?php if($ackmessage['status'] == 0){ ?>class="unread" <?php }?>>
 					<input type="checkbox" class="msgCheck" value="<?php echo $ackmessage['messageId']; ?>" />
 					<a href="#"><img src="<?php echo Utilities::getProfileImage($ackmessage['senderMarryId'],$ackmessage['senderImageName']); ?>" alt="" /></a>
-					<a href="<?php echo Utilities::createAbsoluteUrl('message','conversation',array()); ?>" class="user_name"><?php echo $ackmessage['senderName']; ?></a>
+					<a href="<?php echo Utilities::createAbsoluteUrl('message','conversation',array('senderId'=>$ackmessage['senderId'])); ?>" class="user_name"><?php echo $ackmessage['senderName']; ?></a>
 					<div class="user_message">She saw your message on <?php echo $ackmessage['sendDate']; ?></div>
 					<div class="msge_data">
 						<a href="#" class="close" onclick="deleteMessage(<?php echo $ackmessage['messageId']; ?>,'acknowledgement');"></a>
@@ -115,7 +115,7 @@
 					<span>Sellect All</span>
 				</div>
 				<div class="check">
-					<span><a href="#" onclick="deleteMessage();">Delete</a></span>
+					<span><a href="#" onclick="deleteMessages();">Delete</a></span>
 				</div>
 			</div>
 		</div>
@@ -127,7 +127,7 @@
     	})
     	}
 
-	function deleteMessage(){
+	function deleteMessages(){
     	var allVals = [];
 	     $('.msgCheck').each(function() {
 	    	 if($(this).is(':checked')) {

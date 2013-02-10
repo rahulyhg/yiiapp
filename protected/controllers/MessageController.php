@@ -80,10 +80,35 @@ class MessageController extends Controller
 	public function actionConversation()
 	{
 		$user = Yii::app()->session->get('user');
-		$sql = "SELECT * FROM view_messages WHERE receiverId = {$user->userId} and status = 2";
+		$senderId = isset($_REQUEST['senderId']) ? $_REQUEST['senderId']:0;
+		if(isset($_POST['selectedIds']) and $_POST['selectedIds'] != ''){
+			$selectedIds = $_POST['selectedIds'];
+			$query = "delete from messages where messageId in($selectedIds)";
+			Utilities::executeRawQuery($query);
+			$this->redirect(Utilities::createAbsoluteUrl('message','conversation',array('senderId'=>$senderId)));
+			Yii::app()->end();
+		}
+		
+		if(isset($_POST['message']) && $_POST['message'] != ""){
+			$msg = trim($_POST['message']);
+			$senderId = isset($_REQUEST['senderId']) ? $_REQUEST['senderId']:0;
+			if($msg != ""){
+				$message = new Messages();
+				$message->senderId = $user->userId;
+				$message->receiverId = $senderId;
+				$message->message = $msg;
+				$message->status = 1;
+				$message->sendDate = date('Y-m-d h:i:s');
+				$message->save();
+				$this->redirect(Utilities::createAbsoluteUrl('message','conversation',array('senderId'=>$senderId)));
+				Yii::app()->end();
+			}
+		}
+		
+		$sql = "SELECT * FROM view_messages WHERE (receiverId = {$user->userId} and senderId = {$senderId}) or (receiverId = {$senderId} and senderId = {$user->userId}) and status !=0 order by messageId asc";
 		$command=Yii::app()->db->createCommand($sql);
 		$messages = $command->queryAll();
-		$this->render('conversation');
+		$this->render('conversation',array('messages'=>$messages,'user'=>$user,'senderId'=>$senderId));
 	}
 	
 	public function actionCompose()
@@ -91,24 +116,26 @@ class MessageController extends Controller
 		$user = Yii::app()->session->get('user');
 		if(Yii::app()->session->itemAt('profileUserId')){
 			$receiverId = Yii::app()->session->get('profileUserId');
-		}elseif(isset($_POST['receiverId'])){
-			$receiverId = (int)$_POST['receiverId'];
+		}elseif(isset($_REQEUST['receiverId'])){
+			$receiverId = (int)$_REQEUST['receiverId'];
 		}
-		if(isset($_POST['addMessage']) && $_POST['addMessage'] == "Send"){
-			$msg = trim($_POST['userMessage']);
+		if(isset($_POST['message']) && $_POST['message'] != ""){
+			$msg = trim($_POST['message']);
+			$receiverId = isset($_REQUEST['receiverId']) ? $_REQUEST['receiverId']:0;
 			if($msg != ""){
 				$message = new Messages();
 				$message->senderId = $user->userId;
 				$message->receiverId = $receiverId;
 				$message->message = $msg;
+				$message->status = 1;
 				$message->sendDate = date('Y-m-d h:i:s');
 				$message->save();
-				$success = Yii::t('success','composeSuccess');
-			}else{
-				$success = Yii::t('error','composeError');
+				$this->redirect(Utilities::createAbsoluteUrl('message','compose',array('receiverId'=>$receiverId)));
+				Yii::app()->end();
 			}
 		}
-		$this->render('compose',array('message'=>$success));
+		$this->layout= '//layouts/popup';
+		$this->render('compose',array('message'=>$success,'receiverId'=>$receiverId));
 	}		
 	// Uncomment the following methods and override them if needed
 	/*

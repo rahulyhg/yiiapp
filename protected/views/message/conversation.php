@@ -20,129 +20,91 @@
         <div class="interstTab">
 			<div class="edit-option">
 				<div class="check">
-					<input type="checkbox" />
+					<input type="checkbox" onclick="toggleChecked(this.checked)" />
 					<span>Sellect All</span>
 				</div>
 				<div class="check">
-					<span><a href="#">Delete</a></span>
+					<span><a href="#" onclick="deleteMessages();">Delete</a></span>
 				</div>
 			</div>
+			<form name="frmMessage" id="frmMessage" method="post" action="<?php echo Utilities::createAbsoluteUrl('message','conversation',array()); ?>">
+			<input type = "hidden" name="selectedIds" id="selectedIds" value="" />
+			<input type = "hidden" name="senderId" id="senderId" value="<?php echo $senderId; ?>" />
+			
 			<ul class="msgHead">
 				<li>
 					<a href="<?php echo Utilities::createAbsoluteUrl('message','index',array()); ?>" class="wid120">Back to messages</a>
 				</li>
 			</ul>
 			<ul class="tab-data" >
+			<?php if(!empty($messages)):?>
+				<?php foreach($messages as $message):?> 
 				<li>
-					<input type="checkbox" />
-					<a href="#"><img src="./images/user/biju.jpg" alt="" /></a>
-					<a href="#" class="user_name">Biju George</a>
-					<div class="sent_message">Your messages will show here. This is a test message..</div>
+					<input type="checkbox" class="msgCheck" value="<?php echo $message['messageId']; ?>" />
+					<a href="#"><img src="<?php echo Utilities::getProfileImage($message['senderMarryId'],$message['senderImageName']); ?>" alt="" /></a>
+					<a href="#" class="user_name"><?php echo $message['senderName']; ?></a>
+					<div class="<?php if($user->userId == $message['senderId']) {?>sent_message<?php } else { ?>recvd_message <?php }?>"><?php echo $message['message']; ?></div>
 					<div class="msge_data">
-						<a href="#" class="close"></a>
-						<div class="date">September 7</div>
+						<a href="#" class="close" onclick="deleteMessage(<?php echo $message['messageId']; ?>);"></a>
+						<div class="date"><?php echo $message['sendDate']; ?></div>
 					</div>
 				</li>
+			<?php endforeach;
+			 else:?> 
 				<li>
-					<input type="checkbox" />
-					<a href="#"><img src="./images/user/priya.jpg" alt="" /></a>
-					<a href="#" class="user_name">Biju George</a>
-					<div class="recvd_message">Your friend messages will show here. This is a test message..</div>
-					<div class="msge_data">
-						<a href="#" class="close"></a>
-						<div class="date">September 7</div>
-					</div>
+					No messages found!
 				</li>
-				<li>
-					<input type="checkbox" />
-					<a href="#"><img src="./images/user/biju.jpg" alt="" /></a>
-					<a href="#" class="user_name">Biju George</a>
-					<div class="sent_message">Your messages will show here. This is a test message..</div>
-					<div class="msge_data">
-						<a href="#" class="close"></a>
-						<div class="date">September 7</div>
-					</div>
-				</li>
-				<li>
-					<input type="checkbox" />
-					<a href="#"><img src="./images/user/priya.jpg" alt="" /></a>
-					<a href="#" class="user_name">Biju George</a>
-					<div class="recvd_message">Your friend messages will show here. This is a test message..</div>
-					<div class="msge_data">
-						<a href="#" class="close"></a>
-						<div class="date">September 7</div>
-					</div>
-				</li>
-				<li>
-					<input type="checkbox" />
-					<a href="#"><img src="./images/user/biju.jpg" alt="" /></a>
-					<a href="#" class="user_name">Biju George</a>
-					<div class="sent_message">Your messages will show here. This is a test message..</div>
-					<div class="msge_data">
-						<a href="#" class="close"></a>
-						<div class="date">September 7</div>
-					</div>
-				</li>
-				<li>
-					<input type="checkbox" />
-					<a href="#"><img src="./images/user/priya.jpg" alt="" /></a>
-					<a href="#" class="user_name">Biju George</a>
-					<div class="recvd_message">Your friend messages will show here. This is a test message..</div>
-					<div class="msge_data">
-						<a href="#" class="close"></a>
-						<div class="date">September 7</div>
-					</div>
-				</li>
-				<li>
-					<input type="checkbox" />
-					<a href="#"><img src="./images/user/biju.jpg" alt="" /></a>
-					<a href="#" class="user_name">Biju George</a>
-					<div class="sent_message">Your messages will show here. This is a test message..</div>
-					<div class="msge_data">
-						<a href="#" class="close"></a>
-						<div class="date">September 7</div>
-					</div>
-				</li>
-				<li>
-					<input type="checkbox" />
-					<a href="#"><img src="./images/user/priya.jpg" alt="" /></a>
-					<a href="#" class="user_name">Biju George</a>
-					<div class="recvd_message">Your friend messages will show here. This is a test message..</div>
-					<div class="msge_data">
-						<a href="#" class="close"></a>
-						<div class="date">September 7</div>
-					</div>
-				</li>
-				<li>
-					<input type="checkbox" />
-					<a href="#"><img src="./images/user/biju.jpg" alt="" /></a>
-					<a href="#" class="user_name">Biju George</a>
-					<div class="sent_message">Your messages will show here. This is a test message..</div>
-					<div class="msge_data">
-						<a href="#" class="close"></a>
-						<div class="date">September 7</div>
-					</div>
-				</li>
-				<li>
-					<input type="checkbox" />
-					<a href="#"><img src="./images/user/priya.jpg" alt="" /></a>
-					<a href="#" class="user_name">Biju George</a>
-					<div class="recvd_message">Your friend messages will show here. This is a test message..</div>
-					<div class="msge_data">
-						<a href="#" class="close"></a>
-						<div class="date">September 7</div>
-					</div>
-				</li>
+				<?php endif;?>
 				<li>
 					<div class="message_reply">
-						<textarea type="text" placeholder="Type your message here.." ></textarea>
-						<a href="#" class="type6">Send</a>
+						<textarea type="text" placeholder="Type your message here.." name="message" id="message" ></textarea>
+						<a href="#" class="type6" onclick="send();">Send</a>
 					</div>
 					
 				</li>
 			</ul>
-			
+			</form>
 		</div>
     </section>
+    <script type="text/javascript">
+    function toggleChecked(status) {
+    	$(".msgCheck").each( function() {
+	    	$(this).attr("checked",status);
+    	})
+    	}
+
+	function deleteMessages(){
+    	var allVals = [];
+	     $('.msgCheck').each(function() {
+	    	 if($(this).is(':checked')) {
+	       		allVals.push($(this).val());
+	    	 }
+	     });
+	     if(allVals.length === 0){
+	    	 alert("Select the message to delete");
+	    	 return false;
+	     }else{
+		    
+		     $('#selectedIds').val(allVals);
+	    	 $('#frmMessage').submit();
+	     }
+	}
+
+	function deleteMessage(messageId){
+		$('#selectedIds').val(messageId);
+   	 	$('#frmMessage').submit();
+	}
+
+	function send(){
+		var message = $('#message').val();
+		if(message.length === 0){
+			alert("Enter the message to send");
+	    	return false;
+		}else{
+			$('#frmMessage').submit();
+		}
+		
+	}
+    </script>
       <?php $this->widget('application.widgets.menu.Rightmenu'); ?>
   

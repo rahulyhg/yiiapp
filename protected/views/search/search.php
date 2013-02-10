@@ -184,7 +184,7 @@
    <?php }?>
 <?php if(!isset($isMessage) || empty($isMessage)) {?>
 <div id="message">
-                    <a href="#"  id="<?php echo $value->userId ?>"  class="global">Send Message</a>
+                    <a href="<?php echo Utilities::createAbsoluteUrl('message','compose',array('receiverId'=>$value->userId)); ?>"  class="sendMessage" id="<?php echo $value->userId ?>"  class="global">Send Message</a>
                     </div>
                     <?php }
   	}
@@ -420,6 +420,8 @@
 	 
 	 });
 
+	 // open the send message popup
+	 $(".sendMessage").colorbox({iframe:true, width:"860", height:"620",overlayClose: false});
 	 
    });
 
