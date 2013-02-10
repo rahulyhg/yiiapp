@@ -32,16 +32,27 @@ class GuestController extends Controller
 		}
 	}
 	
-	public function actionGuest()
+	public function actionPrivacy()
 	{
-		
+		$this->layout= '//layouts/popup';
+		$this->render('privacy');
+	}
+	public function actionFaq()
+	{
+		$this->layout= '//layouts/popup';
+		$this->render('faq');
 	}
 	
 	public function actionAbout()
 	{
-		
-		$this->layout= '//layouts/single';
+		$this->layout= '//layouts/popup';
 		$this->render('about');
+	}
+	
+	public function actionFeedback()
+	{
+		$this->layout= '//layouts/popup';
+		$this->render('feedback');
 	}
 	
 	public function actionUser()

@@ -51,7 +51,7 @@
                             <div class="last-view">Last viewed at: <?php echo date("jS \of F Y , h:i A", strtotime($value['visitTime']));?></div>
                         </li>
                     </ul>
-                    <a class="view-full" href="<?php echo '/search/byid/id/'.$value['marryId'] ?>">View Full Profile</a>
+                    <a class="view-full" target="_blank"  href="<?php echo '/search/byid/id/'.$value['marryId'] ?>">View Full Profile</a>
                 </div>
             </div>
             <?php } ?>
@@ -85,7 +85,7 @@
                             <div class="last-view">Last viewed at: <?php echo date("jS \of F Y , h:i A", strtotime($value['visitTime']));?></div>
                         </li>
                     </ul>
-                    <a class="view-full" href="<?php echo '/search/byid/id/'.$value['marryId'] ?>">View Full Profile</a>
+                    <a class="view-full" target="_blank"  href="<?php echo '/search/byid/id/'.$value['marryId'] ?>">View Full Profile</a>
                 </div>
             </div>
             <?php } ?>

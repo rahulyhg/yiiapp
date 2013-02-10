@@ -55,13 +55,39 @@ class UserController extends Controller
 				
 				if(isset($_POST['UserForm']['coupon']))
 				{
-					$payment = new Payment();
-					$payment->couponcode = $_POST['UserForm']['coupon'];
-					$payment->userID = $user->primaryKey;
-					$payment->startdate = new CDbExpression('NOW()');
-					$payment->actionItem = 'membership';
-					$payment->save();
-				}	
+					//check for coupon detail, if its promo and also check if its active
+					$coupon = Coupon::model()->findByAttributes(array('couponCode'=>$_POST['coupon']));
+					$isValid = false;
+						
+					if($coupon->couponType == 'promo')
+					{
+						//the promotion coupon is not active now
+						if($coupon->status == 0)
+						{
+							
+						}
+						else
+						$isValid = true;
+					}
+					else {
+						if($coupon->isUsed == 0)
+						{
+							$isValid = true;
+							$coupon->isUsed = 1;
+							$coupon->save();			
+						}
+					}
+					
+						
+					if($isValid) {
+						$payment = new Payment();
+						$payment->couponcode = $_POST['UserForm']['coupon'];
+						$payment->userID = $user->primaryKey;
+						$payment->startdate = new CDbExpression('NOW()');
+						$payment->actionItem = 'membership';
+						$payment->save();
+					}
+				}
 					
 				//user personal details table
 				$userPersonal->userId = $user->primaryKey;

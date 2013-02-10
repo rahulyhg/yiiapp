@@ -77,7 +77,7 @@
                             <div class="info">: <?php if(isset($value->educations->occupation))echo $value->educations->occupation->name?></div>
                         </li>
                     </ul>
-                    <a class="view-full" href="<?php echo 'byid/id/'.$value->marryId ?>">View Full Profile</a>
+                    <a class="view-full" target="_blank"  href="<?php echo 'byid/id/'.$value->marryId ?>">View Full Profile</a>
                 </div>
                 <div class="button-contnr">
                 <?php 
@@ -166,7 +166,7 @@
                             <div class="info">: <?php if(isset($value->educations->occupation))echo $value->educations->occupation->name ?></div>
                         </li>
                     </ul>
-                    <a class="view-full" href="<?php echo 'byid/id/'.$value->marryId ?>">View Full Profile</a>
+                    <a class="view-full" target="_blank"  href="<?php echo 'byid/id/'.$value->marryId ?>">View Full Profile</a>
                 </div>
                 <div class="button-contnr">
                 <?php 

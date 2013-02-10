@@ -4,19 +4,19 @@
 			<a class="loloos" href="#"></a>
 		</li>
 		<li>
-			<a class="iframe" href="./popups/pop_about-marrydoor.htm">About us</a>
+			<a class="iframe" href="<?php echo Utilities::createAbsoluteUrl('guest','about'); ?>" id="footerPops">About us</a>
 		</li>
 		<li>
-			<a class="iframe" href="./popups/pop_contact-us.htm">Contact Us</a>
+		<a class="iframe" href="<?php echo Utilities::createAbsoluteUrl('guest','contact'); ?>" id="footerPops">Contact Us</a>
 		</li>
 		<li>
-			<a class="iframe" href="./popups/pop_faq.htm">FAQ's</a>
+			<a class="iframe" href="<?php echo Utilities::createAbsoluteUrl('guest','faq'); ?>" id="footerPops">FAQ's</a>
 		</li>
 		<li>
-			<a class="iframe" href="./popups/pop_feedback.htm">Feedback</a>
+			<a class="iframe" href="<?php echo Utilities::createAbsoluteUrl('guest','feedback'); ?>" id="footerPops">Feedback</a>
 		</li>
 		<li>
-			<a class="iframe" href="./popups/pop_privacy-policy.htm">Privacy Policy</a>
+		<a class="iframe" href="<?php echo Utilities::createAbsoluteUrl('guest','privacy'); ?>" id="footerPops">Privacy Policy</a>
 		</li>
 		<li>
 			<a class="iframe" href="./popups/pop_terms-contitions.htm">Terms &amp; Conditions</a>
@@ -26,3 +26,12 @@
 		</li> 
 	</ul>
 </footer>
+
+<script type="text/javascript">
+$(document).ready(function(){
+    $('[id^=footerPops]').colorbox({iframe:true, width:"860", height:"900",overlayClose: false});
+    
+  });
+
+
+</script>

@@ -1,60 +1,35 @@
-<?php
-/*
-*
-* $Id$
---------------------------------------------------------------------------------------------------------------------------
-* Information contained in this file is the intellectual property of MarryDoor Plc
-* Copyright © 2012 MarryDorr. All Rights Reserved.
-* ---------------------------------------------------------------------------------------------------------------------------
-*
-* @author  Ageesh K Gopinath
-* @title about.php
-* @description <Description of this class>
-*  @filesource <URL>
-*  @version <Revision>
-*/
-?>
-
-	<div id="page-content"><!--page-content-->
- <div id="page">
-    	<div id="main-content"><!--content-wrapper-sub-->
-        
-        <div class="di_height">
-        	 <div id="wrapper-head-sub"> <!--wrapper-head-->
-            <br /><a href="home-viewed-by-member.html"> <img src="<?php echo Yii::app()->params['mediaUrl']; ?>/logo.jpg" class="middle-align" border="0" /></a> 
-          	</div><!--wrapper-head-->
-      
-      	<div class="name-bloc-sub-add"><!--name-bloc-sub-add-->
-				<br />
-			 <p class="astro-cc_cntr">About Marrydoor</p>
-                
-				
-			</div><!--name-bloc-sub-add-->
-			      
-       	<div id="about-content"><!--about-content-->
-			<p>Google Chrome can't display the webpage because your computer isn't connected to the Internet.  You can try to diagnose the problem by taking the following steps: Google Chrome can't display the webpage because your computer isn't connected to the Internet.  You can try to diagnose the problem by taking the following steps: Google Chrome can't display the webpage because your computer isn't connected to the Internet.  You can try to diagnose the problem by taking the following steps: Google Chrome can't display the webpage because your computer isn't connected to the Internet.  You can try to diagnose the problem by taking the following steps: Google Chrome can't display the webpage because your computer isn't connected to the Internet.  You can try to diagnose the problem by taking the following steps: Google Chrome can't display the webpage because your computer isn't connected to the Internet.  You can try to diagnose the problem by taking the following steps: Google Chrome can't display the webpage because your computer isn't connected to the Internet.  You can try to diagnose the problem by taking the following steps: Google Chrome can't display the webpage because your computer isn't connected to the Internet.  You can try to diagnose the problem by taking the following steps: Google Chrome can't display the webpage because your computer isn't connected to the Internet.  You can try to diagnose the problem by taking the following steps: Google Chrome can't display the webpage because your computer isn't connected to the Internet.  You can try to diagnose the problem by taking the following steps: Google Chrome can't display the webpage because your computer isn't connected to the Internet.  You can try to diagnose the problem by taking the following steps:</p>
-			
-            
-            <div class="auto_407"> 
-            
-            
-           
-             <a class="menu" href="my-page.html">Back to my Page</a>
-            
-            <a class="menu" href="home-viewed-by-member.html">Back to Home Page</a>      
-
-		  </div><!--about-content-->
-
-          	</div><!--content-wrapper-->
-            
-                </div><!--page-content-->
-	</div><!--astro-content-sub-->  
-    
-    </div>           
-  </div>
-    
-    
-    
-  
-        
-
+		<div class="subContent">
+			<section class="subHead">
+				<h1>About Marrydoor</h1>
+			</section>
+			<section class="subContnr">
+				<ul class="accOverview mTB20">
+					<li>
+						<p>
+							"What greater thing is there for two human souls than to feel that they are
+							joined for life - to strengthen each other in all labour, to rest on each
+							other in all sorrow, to minister to each other in all pain, to be one with
+							each other.."
+						</p>
+						<p>
+							We help you find your perfect partner to begin this wonderful journey together called marriage.
+							Marrydoor has the right blend of tradition and technology to make your soul search a delightful
+							and hassle free experience. Marrydoor, a business division of the renowned Loloos Technolab Private Ltd,
+							is the meeting place for Indian matchmakers across the world.
+							Through our excellent database and other online tools we promise a superior match-making experience.
+						</p>
+						<p>
+							We are strongly committed to protect the privacy and security of our users and has in-built a host of security
+							features for the benefit of our users. We also have exclusive content on wedding planning,
+							wedding fashion, photography, jewellery and beauty tips etc. which will help you in planning and organising a wedding. 
+						</p>
+						<p>
+							Please spend more time on our website to know more about us. If you have any doubts on using the website please go through our FAQ's section.
+						</p>
+						<p>
+							It is said that marriage is a promise and we promise you a happy partner search! LOG ON. 
+						</p>
+					</li>
+				</ul>
+			</section>
+		
