@@ -14,8 +14,29 @@
 *  @version <Revision>
 */
 ?>
-
-
+<?php 
+$bookMarked = array();
+$blocked = array();
+$user = Yii::app()->session->get('user');
+  	if(isset($user)) {
+ if(isset($user->bookmark))
+ {
+ 	if(strlen($user->bookmark->profileIDs) > 2)
+ 	$bookMarked = explode(",",$user->bookmark->profileIDs);
+ 	else
+ 	$bookMarked[] =  $user->bookmark->profileIDs;
+ }
+  	if(isset($user->profileBlock))
+ {
+ 	if(strlen($user->profileBlock->profileIDs) > 2)
+ 	$blocked = explode(",",$user->profileBlock->profileIDs);
+ 	else
+ 	$blocked[] =  $user->profileBlock->profileIDs;
+ }
+ 
+ 
+  	}
+ ?>
 
 
     <section class="data-contnr mT8">
@@ -85,7 +106,6 @@
 				</li>
 			</ul>
 			<?php 
-			$user = Yii::app()->session->get('user');
 			if(isset($user)) {
 			
 			?>
@@ -116,22 +136,20 @@
 		<?php  
 		if(isset($user)){
 			$isInterest = $user->interestSender(array('condition'=>"receiverId = {$model->userId}"));
- 			$isBookMarked = $user->bookmark(array('condition'=>"FIND_IN_SET('{$model->userId}',profileIDs)")); 
  			$isMessage = $user->messageSender(array('condition'=>"receiverId = {$model->userId}"));
  
 		?>	
 		<div class="optBtnC">
 			
-			<?php if(!isset($isInterest) || empty($isInterest)) {?>
 			<a id="<?php echo $model->userId ?>" href="#">Express Interest</a>
-			<?php }
-			if(!isset($isMessage) || empty($isMessage)) {
-			?>
 			<a id="<?php echo $model->userId ?>"  href="#">Send Message</a>
-			<?php } if(!isset($isBookMarked) || empty($isBookMarked)) {?> 
-			<a id="<?php echo $model->userId ?>" href="#">Bookmark</a>
-			<?php }?>
-			<a href="#">Block this user</a>
+			<?php if(!in_array($model->userId, $bookMarked)) {?>
+	                    <span id="bookmark"><a href="#" id="<?php echo $model->userId ?>"  class="global">Bookmark</a></span>
+                    <?php }?>
+            <?php if(!in_array($model->userId, $blocked)) {?>
+	                    <span id="blocked"><a href="#" id="<?php echo $model->userId ?>"  class="global">Block this user</a></span>
+                    <?php }?>        
+			
 		</div>
 		<?php }?>
 		<div class="editContr pT10">
@@ -540,23 +558,20 @@ $drink= Utilities::getDrink();
 		</div>
 	<?php  $user = Yii::app()->session->get('user');
 		if(isset($user)){
-			$isInterest = $user->interestSender(array('condition'=>"receiverId = {$model->userId}"));
- 			$isBookMarked = $user->bookmark(array('condition'=>"FIND_IN_SET('{$model->userId}',profileIDs)")); 
- 			$isMessage = $user->messageSender(array('condition'=>"receiverId = {$model->userId}"));
  
 		?>	
 		<div class="optBtnC">
 			
-			<?php if(!isset($isInterest) || empty($isInterest)) {?>
 			<a id="<?php echo $model->userId ?>" href="#">Express Interest</a>
-			<?php }
-			if(!isset($isMessage) || empty($isMessage)) {
-			?>
 			<a id="<?php echo $model->userId ?>"  href="#">Send Message</a>
-			<?php } if(!isset($isBookMarked) || empty($isBookMarked)) {?> 
-			<a id="<?php echo $model->userId ?>" href="#">Bookmark</a>
-			<?php }?>
-			<a href="#">Block this user</a>
+			<?php if(!in_array($model->userId, $bookMarked)) {?>  
+                    <span id="bookmark1"><a href="#" id="<?php echo $model->userId ?>"  class="global">Bookmark</a></span>
+                    <?php }?>
+			
+			<?php if(!in_array($model->userId, $blocked)) {?>
+	                    <span id="blocked1"><a href="#" id="<?php echo $model->userId ?>"  class="global">Block this user</a></span>
+                    <?php }?>        
+			
 		</div>
 		<?php }?>
 
@@ -570,44 +585,46 @@ $(document).ready(function() {
 	$("#contactDetailsEdit").colorbox({iframe:true, width:"860", height:"900",overlayClose: false});
 	$("#referenceDetails").colorbox({iframe:true, width:"860", height:"900",overlayClose: false});
 	$("#astroDetails").colorbox({iframe:true, width:"860", height:"900",overlayClose: false});
-	$('.rec-sub').click(function (){
-
-		if($(this).text() == 'Accept')
-		 {
-
-			 $('<input>').attr({
-				    type: 'hidden',
-				    id: 'sent',
-				    name: 'key',
-				    value: 'accept'
-				}).appendTo('#receiver');
-				  $('#receiver').submit(); 
-			 
-		 }	 	
-
-		 if($(this).text() == 'Decline')
-		 {
-
-			 $('<input>').attr({
-				    type: 'hidden',
-				    id: 'sent',
-				    name: 'key',
-				    value: 'decline'
-				}).appendTo('#receiver');
-				  $('#receiver').submit(); 
-			 
-		 }	
-		
-		
-	});
-	
-	
 
 		 //		
 });
 
 
+$("span[id^='bookmark']").click(function (){
+	 var userId = $(this).find('a').attr('id');
+
+	 $.ajax({
+	        url: "/bookmark/add",  
+	        type: "POST",
+	        dataType:'json',
+	        data:{'userId':userId},   
+	        cache: false,
+	        success: function (html) {
+		        if(html == true)  
+		        	$("span[id^='bookmark']").hide();	         
+	        }       
+	    });
+
+});
+
+$("span[id^='blocked']").click(function (){
+	 var userId = $(this).find('a').attr('id');
+
+	 $.ajax({
+	        url: "/profile/add",  
+	        type: "POST",
+	        dataType:'json',
+	        data:{'userId':userId},   
+	        cache: false,
+	        success: function (html) {
+		        if(html == true)  
+		        	$("span[id^='blocked']").hide();	         
+	        }       
+	    });
+
+}); 
+  
+
 </script> 
  
-    
    

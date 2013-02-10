@@ -76,19 +76,22 @@ class ShortlistController extends Controller
 				{
 					$profileIds = explode(",", $usersList->shortlist->profileID);
 					$arr = array_diff($profileIds, $_POST['userId']);
-					if(sizeof($arr)){
+					if(sizeof($arr) > 0 ){
 					$usersList->shortlist->profileID = implode(",", $arr);
 					$usersList->shortlist->save();
 					}
 					else
 					{
 						$usersList->shortlist->deleteAll();
+						$usersList->shortlist = null;
 					}
+					echo json_encode(TRUE);
+					Yii::app()->end();
 				}
+				
 			}
 			
 		}
-		$this->forward('index');
 	}
 	
 	

@@ -83,12 +83,14 @@ public function actionRemove()
 					else
 					{
 						$usersList->bookmark->deleteAll();
+						$usersList->bookmark = null;
 					}
+					echo json_encode(TRUE);
+					Yii::app()->end();
 				}
 			}
 			
 		}
-		$this->forward('index');
 	}
 	
 	
@@ -109,6 +111,15 @@ public function actionRemove()
 					Yii::app()->end();	
 				}
 			}
+			else {
+				$bookMark = new Bookmark();
+				$bookMark->userID = $usersList->userId;
+				$bookMark->profileIDs = $_POST['userId'];
+				$usersList->bookmark  = $bookMark;
+				$usersList->bookmark->save();
+			}
+			echo json_encode(TRUE);
+					Yii::app()->end();
 		}
 	}
 
@@ -129,8 +140,16 @@ public function actionAddAll()
 					echo json_encode(TRUE);
 					Yii::app()->end();	
 				}
-			}
 			
+			}
+		else {
+				$bookMark = new Bookmark();
+				$bookMark->userID = $usersList->userId;
+				$bookMark->profileIDs = explode(",",$_POST['userId']);
+				$bookMark->save();
+			}
+		echo json_encode(TRUE);
+					Yii::app()->end();	
 		}
 	}
 }

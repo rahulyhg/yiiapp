@@ -2,8 +2,16 @@
   	<?php 
   	$user = Yii::app()->session->get('user');
   	 $heightArray = Utilities::getHeights();
-  	if(isset($user))
-   $this->widget('application.widgets.menu.Leftmenu'); ?>   
+     $bookMarked = array();
+  	if(isset($user)) {
+ if(isset($user->bookmark))
+ {
+ 	$bookMarked = explode(",",$user->bookmark->profileIDs);
+ }
+   $this->widget('application.widgets.menu.Leftmenu'); 
+  	}
+   ?>   
+  	
   	
   	
 	<?php if(isset($user)) { ?> 
@@ -74,14 +82,12 @@
                 <div class="button-contnr">
                 <?php 
  if(isset($user)){
- $isInterest = $user->interestSender(array('condition'=>"receiverId = {$value->userId}"));
- $isBookMarked = $user->bookmark(array('condition'=>"FIND_IN_SET('{$value->userId}',profileIDs)")); 
- $isMessage = $user->messageSender(array('condition'=>"receiverId = {$value->userId}"));
+ 	 
  if(!isset($isInterest) || empty($isInterest)) {
  ?>
                  <div id="interest">   <a href="#" id="<?php echo $value->userId ?>"  class="global">Express Interest</a></div>
                    <?php }?>
-<?php if(!isset($isBookMarked) || empty($isBookMarked)) {?>  
+					<?php if(!in_array($value->userId, $bookMarked)) {?>  
                     
                     <div id="bookmark"><a href="#" id="<?php echo $value->userId ?>"  class="global">Bookmark</a></div>
                     <?php }?>
@@ -166,13 +172,12 @@
                 <?php 
  if(isset($user)) {
  $isInterest = $user->interestSender(array('condition'=>"receiverId = {$value->userId}"));
- $isBookMarked = $user->bookmark(array('condition'=>"FIND_IN_SET('{$value->userId}',profileIDs)")); 
  $isMessage = $user->messageSender(array('condition'=>"receiverId = {$value->userId}"));
  if(!isset($isInterest) || empty($isInterest)) {
  ?>
                  <div id="interest">   <a href="#" id="<?php echo $value->userId ?>"  class="global">Express Interest</a></div>
    <?php }?>
-<?php if(!isset($isBookMarked) || empty($isBookMarked)) {?>
+	<?php if(!in_array($value->userId, $bookMarked)) {?>  
 <div id="bookmark"> 
                     <a href="#" id="<?php echo $value->userId ?>"  class="global">Bookmark</a>
                     </div>
@@ -368,7 +373,9 @@
 			return false;
 		 }		 
 		 $("input:checkbox[name=userId]:checked").each(function(){
-			 allVal.push($(this).val());
+			 if($(this).parent('div').parent('div').css('display') == 'block'){
+				 allVal.push($(this).val());
+				 }
 		 });
 
 		 alert(allVal); 
@@ -384,7 +391,9 @@
 			return false;
 		 }		 
 		 $("input:checkbox[name=userId]:checked").each(function(){
-			 allVal.push($(this).val());
+			 if($(this).parent('div').parent('div').css('display') == 'block'){
+				 allVal.push($(this).val());
+				 }
 		 });
 
 		 alert(allVal); 
@@ -411,22 +420,6 @@
 	 
 	 });
 
-	 $('#interest').click(function (){
-		 var userId = $(this).find('a').attr('id');
-
-		 $.ajax({
-		        url: "/bookmark/add",  
-		        type: "POST",
-		        dataType:'json',
-		        data:{'userId':userId},   
-		        cache: false,
-		        success: function (html) {
-			        if(html == true)  
-		        	$('#bookmark').hide();	         
-		        }       
-		    });
-	 
-	 });
 	 
    });
 

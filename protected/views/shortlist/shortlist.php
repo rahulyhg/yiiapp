@@ -111,7 +111,7 @@
           <?php if(isset($users)){ ?>
         <div class="pagination-contnr">
             <div class="select-contnr"><input type="checkbox" class="selection" name="selection" />Select All</div>
-            <a href="#">Remove Shortlist</a>
+            <a id="rmv-large" href="#">Remove Shortlist</a>
             <?php if(isset($totalPage) && intval($totalPage) > 1) { ?>
             <ul class="pagination">
                 <li><span class="fir"><a href="#">First</a></span></li>
@@ -260,9 +260,10 @@ $(document).ready(function() {
 			return false;
 		 }		 
 		 $("input:checkbox[name=userId]:checked").each(function(){
-			 allVal.push($(this).val());
+			 if($(this).parent('div').parent('div').css('display') == 'block'){
+				 allVal.push($(this).val());
+				 }
 		 });
-
 		 removeAllBookMark(allVal); 
 		  
 	 });
@@ -317,7 +318,9 @@ function removeAllBookMark(userIds) {
 	        dataType:'json',        
 	        data: {"userId":userIds},        
 	        cache: false,
-	        success: function (html) {}  
+	        success: function (html) {
+	        	location.reload();
+		        }  
 	    });
 	}
 

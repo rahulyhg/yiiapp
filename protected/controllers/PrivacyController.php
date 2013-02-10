@@ -151,14 +151,5 @@ class PrivacyController extends Controller
 	}
 
 	
-
-	public function actionSave()
-	{
-		$privacy = Privacy::model()->findByAttributes(array('userId'=>2,'items'=>'album'));
-		$privacy->save();
-		$this->layout= '//layouts/single';
-		$this->render('forgot');
-	}
-
 	
 }
