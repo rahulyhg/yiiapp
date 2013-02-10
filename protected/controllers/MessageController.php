@@ -114,11 +114,7 @@ class MessageController extends Controller
 	public function actionCompose()
 	{
 		$user = Yii::app()->session->get('user');
-		if(Yii::app()->session->itemAt('profileUserId')){
-			$receiverId = Yii::app()->session->get('profileUserId');
-		}elseif(isset($_REQEUST['receiverId'])){
-			$receiverId = (int)$_REQEUST['receiverId'];
-		}
+		$receiverId = isset($_REQUEST['receiverId']) ? $_REQUEST['receiverId']:0;
 		if(isset($_POST['message']) && $_POST['message'] != ""){
 			$msg = trim($_POST['message']);
 			$receiverId = isset($_REQUEST['receiverId']) ? $_REQUEST['receiverId']:0;
@@ -130,7 +126,7 @@ class MessageController extends Controller
 				$message->status = 1;
 				$message->sendDate = date('Y-m-d h:i:s');
 				$message->save();
-				$this->redirect(Utilities::createAbsoluteUrl('message','compose',array('receiverId'=>$receiverId)));
+				$this->redirect(Utilities::createAbsoluteUrl('message','compose',array('receiverId'=>$receiverId,'success'=>true)));
 				Yii::app()->end();
 			}
 		}
