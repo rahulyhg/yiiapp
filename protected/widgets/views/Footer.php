@@ -19,7 +19,7 @@
 		<a class="iframe" href="<?php echo Utilities::createAbsoluteUrl('guest','privacy'); ?>" id="footerPops">Privacy Policy</a>
 		</li>
 		<li>
-			<a class="iframe" href="./popups/pop_terms-contitions.htm">Terms &amp; Conditions</a>
+		<a class="iframe" href="<?php echo Utilities::createAbsoluteUrl('guest','terms'); ?>" id="footerPops">Terms &amp; Conditions</a>
 		</li>
 		<li>
 			Copyright &#169; 2012 <a class="lol" href="#">Loloos Technolab</a> Pvt. Ltd. All rights reserved.

@@ -363,3 +363,5 @@ LEFT JOIN districts D ON UP.distictId = D.districtId
 LEFT JOIN places PL ON UP.placeId = PL.placeId;
 
 
+create table feedback(feedId BIGINT UNIQUE NOT NULL AUTO_INCREMENT, name VARCHAR(250),email VARCHAR(250),message text, feedType  VARCHAR(250),friendliness tinyint(5),service  tinyint(5),
+privacy  	tinyint(5),payment  	tinyint(5),reseller  	tinyint(5), PRIMARY KEY(feedId))ENGINE=MYISAM DEFAULT CHARSET=utf8;
