@@ -789,7 +789,7 @@ h5{
 	border-radius: 20px;
 	-webkit-border-radius: 20px;
 	-moz-border-radius: 20px;
-	position: absolute;
+	/*position: absolute;*/
 	right: -5px;
 	top: 5px;
 	text-align: center;
