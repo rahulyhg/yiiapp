@@ -16,16 +16,43 @@ class InterestController extends Controller
 	
        public function actionInsert()
        {
-	
        		if(isset($_POST['userId']))
        		{
-       		$user = Yii::app()->session->get('user');
-       		$interest = new Interests();
-       		$interest->senderId =  $user->userId;
-       		$interest->receiverId =  $_POST['userId'];
-       		$interest->sendDate = new CDbExpression('NOW()');
-       		$interest->save();
-       	 	}
+       			$user = Yii::app()->session->get('user');
+       			if(!isset($user->interests))
+				{
+					$interest = new Interests();
+		       		$interest->senderId =  $user->userId;
+		       		$interest->receiverId =  $_POST['userId'];
+		       		$interest->sendDate = new CDbExpression('NOW()');
+		       		$interest->save();
+		       		echo json_encode(TRUE);
+					Yii::app()->end();	
+				}
+			}
+       }
+
+       public function actionInsertall()
+       {
+       		if(isset($_POST['userIds']))
+       		{
+       			$user = Yii::app()->session->get('user');
+       			$userIds = $_POST['userIds'];
+       			if(!isset($user->interests))
+				{
+					if(!empty($userIds)){
+						foreach($userIds as $userId){
+							$interest = new Interests();
+				       		$interest->senderId =  $user->userId;
+				       		$interest->receiverId =  $userId;
+				       		$interest->sendDate = new CDbExpression('NOW()');
+				       		$interest->save();
+						}
+					}
+		       		echo json_encode(TRUE);
+					Yii::app()->end();	
+				}
+			}
        } 
         
 	       
@@ -91,7 +118,7 @@ class InterestController extends Controller
 	{
 		
 		$user  = Yii::app()->session->get('user');
-		$sendInterest = $user->interestSender(array('condition'=>'status != 3'));
+		/*$sendInterest = $user->interestSender(array('condition'=>'status != 3'));
 		if(sizeof($sendInterest) > 0){
 		$userId = array();
 		$userInterest = array();
@@ -107,7 +134,28 @@ class InterestController extends Controller
 		else
 		{
 			$this->render('sent');
-		}
+		}*/
+		//received interests
+		$sql = "SELECT * FROM view_interests WHERE receiverId = {$user->userId} and status = 0";
+		$command=Yii::app()->db->createCommand($sql);
+		$received = $command->queryAll();
+		
+		// express interest
+		$sql = "SELECT * FROM view_interests WHERE senderId = {$user->userId}";
+		$command=Yii::app()->db->createCommand($sql);
+		$sent = $command->queryAll();
+		
+		// accepted interest
+		$sql = "SELECT * FROM view_interests WHERE receiverId = {$user->userId} and status = 1";
+		$command=Yii::app()->db->createCommand($sql);
+		$accepted = $command->queryAll();
+		
+		// declined intrests
+		$sql = "SELECT * FROM view_interests WHERE senderId = {$user->userId} and status = 2";
+		$command=Yii::app()->db->createCommand($sql);
+		$declined = $command->queryAll();
+		
+		$this->render('sent',array('received'=>$received,'sent'=>$sent,'accepted'=>$accepted,'declined'=>$declined));
 
 	}
 

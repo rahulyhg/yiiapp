@@ -43,138 +43,26 @@
 			</ul>
 			<!-- received starts here -->
 			<ul id="tab1_data" class="tab-data" style="display: block;">
+				<?php if(!empty($received)):?>
+				<?php foreach($received as $receive):?>  
 				<li>
-					<input type="checkbox" />
-					<a href="#"><img src="./images/user/anu.jpg" alt="" /></a>
+					<input type="checkbox" class="reqCheck" value="<?php echo $receive['interestId']; ?>" />
+					<a href="#"><img src="<?php echo Utilities::getProfileImage($receive['senderMarryId'],$receive['senderImageName']); ?>" alt="" /></a>
 					<div class="int_head">
-						<a href="#" >Biju George</a>
-						<span>(Expressed interest on 15th Augest 2012)</span>
+						<a href="#" ><?php echo $receive['senderName']; ?></a>
+						<span>(Expressed interest on <?php echo $receive['sendDate']; ?>)</span>
 					</div> 
 					<div class="pDetails">Chrishtian, R.c., 29 Years - 5' 4'', 167 cm</div>
 					<div class="pDetails">Ankamaly, Kerala, India</div>
 					<a href="#" class="type6 accept">Accept</a>
 					<a href="#" class="type6 decline">Decline</a>
 				</li>
+				<?php endforeach;?>  
+				<?php else:?> 
 				<li>
-					<input type="checkbox" />
-					<a href="#"><img src="./images/user/interest_default.png" alt="" /></a>
-					<div class="int_head">
-						<a href="#" >Biju George</a>
-						<span>(Expressed interest on 15th Augest 2012)</span>
-					</div> 
-					<div class="pDetails">Chrishtian, R.c., 29 Years - 5' 4'', 167 cm</div>
-					<div class="pDetails">Ankamaly, Kerala, India</div>
-					<a href="#" class="type6 accept">Accept</a>
-					<a href="#" class="type6 decline">Decline</a>
+					No requests found!
 				</li>
-				<li>
-					<input type="checkbox" />
-					<a href="#"><img src="./images/user/priya.jpg" alt="" /></a>
-					<div class="int_head">
-						<a href="#" >Biju George</a>
-						<span>(Expressed interest on 15th Augest 2012)</span>
-					</div> 
-					<div class="pDetails">Chrishtian, R.c., 29 Years - 5' 4'', 167 cm</div>
-					<div class="pDetails">Ankamaly, Kerala, India</div>
-					<a href="#" class="type6 accept">Accept</a>
-					<a href="#" class="type6 decline">Decline</a>
-				</li>
-				<li>
-					<input type="checkbox" />
-					<a href="#"><img src="./images/user/athira.jpg" alt="" /></a>
-					<div class="int_head">
-						<a href="#" >Biju George</a>
-						<span>(Expressed interest on 15th Augest 2012)</span>
-					</div> 
-					<div class="pDetails">Chrishtian, R.c., 29 Years - 5' 4'', 167 cm</div>
-					<div class="pDetails">Ankamaly, Kerala, India</div>
-					<a href="#" class="type6 accept">Accept</a>
-					<a href="#" class="type6 decline">Decline</a>
-				</li>
-				<li>
-					<input type="checkbox" />
-					<a href="#"><img src="./images/user/priya.jpg" alt="" /></a>
-					<div class="int_head">
-						<a href="#" >Biju George</a>
-						<span>(Expressed interest on 15th Augest 2012)</span>
-					</div> 
-					<div class="pDetails">Chrishtian, R.c., 29 Years - 5' 4'', 167 cm</div>
-					<div class="pDetails">Ankamaly, Kerala, India</div>
-					<a href="#" class="type6 accept">Accept</a>
-					<a href="#" class="type6 decline">Decline</a>
-				</li>
-				<li>
-					<input type="checkbox" />
-					<a href="#"><img src="./images/user/interest_default.png" alt="" /></a>
-					<div class="int_head">
-						<a href="#" >Biju George</a>
-						<span>(Expressed interest on 15th Augest 2012)</span>
-					</div> 
-					<div class="pDetails">Chrishtian, R.c., 29 Years - 5' 4'', 167 cm</div>
-					<div class="pDetails">Ankamaly, Kerala, India</div>
-					<a href="#" class="type6 accept">Accept</a>
-					<a href="#" class="type6 decline">Decline</a>
-				</li>
-				<li>
-					<input type="checkbox" />
-					<a href="#"><img src="./images/user/nayana.jpg" alt="" /></a>
-					<div class="int_head">
-						<a href="#" >Biju George</a>
-						<span>(Expressed interest on 15th Augest 2012)</span>
-					</div> 
-					<div class="pDetails">Chrishtian, R.c., 29 Years - 5' 4'', 167 cm</div>
-					<div class="pDetails">Ankamaly, Kerala, India</div>
-					<a href="#" class="type6 accept">Accept</a>
-					<a href="#" class="type6 decline">Decline</a>
-				</li>
-				<li>
-					<input type="checkbox" />
-					<a href="#"><img src="./images/user/priya.jpg" alt="" /></a>
-					<div class="int_head">
-						<a href="#" >Biju George</a>
-						<span>(Expressed interest on 15th Augest 2012)</span>
-					</div> 
-					<div class="pDetails">Chrishtian, R.c., 29 Years - 5' 4'', 167 cm</div>
-					<div class="pDetails">Ankamaly, Kerala, India</div>
-					<a href="#" class="type6 accept">Accept</a>
-					<a href="#" class="type6 decline">Decline</a>
-				</li>
-				<li>
-					<input type="checkbox" />
-					<a href="#"><img src="./images/user/interest_default.png" alt="" /></a>
-					<div class="int_head">
-						<a href="#" >Biju George</a>
-						<span>(Expressed interest on 15th Augest 2012)</span>
-					</div> 
-					<div class="pDetails">Chrishtian, R.c., 29 Years - 5' 4'', 167 cm</div>
-					<div class="pDetails">Ankamaly, Kerala, India</div>
-					<a href="#" class="type6 accept">Accept</a>
-					<a href="#" class="type6 decline">Decline</a>
-				</li>
-				<li>
-					<input type="checkbox" />
-					<a href="#"><img src="./images/user/interest_default.png" alt="" /></a>
-					<div class="int_head">
-						<a href="#" >Biju George</a>
-						<span>(Expressed interest on 15th Augest 2012)</span>
-					</div> 
-					<div class="pDetails">Chrishtian, R.c., 29 Years - 5' 4'', 167 cm</div>
-					<div class="pDetails">Ankamaly, Kerala, India</div>
-					<a href="#" class="type6 accept">Accept</a>
-					<a href="#" class="type6 decline">Decline</a>
-				</li>
-				<li>
-					<input type="checkbox" />
-					<a href="#"><img src="./images/user/athira.jpg" alt="" /></a>
-					<div class="int_head">
-						<a href="#" >Biju George</a>
-						<span>(Expressed interest on 15th Augest 2012)</span>
-					</div> 
-					<div class="pDetails">Chrishtian, R.c., 29 Years - 5' 4'', 167 cm</div>
-					<div class="pDetails">Ankamaly, Kerala, India</div>
-					<a href="#" class="type6 accept">Accept</a>
-					<a href="#" class="type6 decline">Decline</a>
-				</li>
+				<?php endif;?>			
 			</ul>
 			<!-- received ends here -->
 			<!-- sent starts here -->
