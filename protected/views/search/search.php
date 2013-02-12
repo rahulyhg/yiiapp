@@ -1,5 +1,4 @@
-  
-  	<?php 
+   	<?php 
   	$user = Yii::app()->session->get('user');
   	 $heightArray = Utilities::getHeights();
      $bookMarked = array();
@@ -85,14 +84,14 @@
  	 
  if(!isset($isInterest) || empty($isInterest)) {
  ?>
-                 <div id="interest">   <a href="#" id="<?php echo $value->userId ?>"  class="global">Express Interest</a></div>
+                 <div id="interest"><a href="#" id="<?php echo $value->userId ?>"  class="global">Express Interest</a></div>
                    <?php }?>
 					<?php if(!in_array($value->userId, $bookMarked)) {?>  
                     
                     <div id="bookmark"><a href="#" id="<?php echo $value->userId ?>"  class="global">Bookmark</a></div>
                     <?php }?>
 <?php if(!isset($isMessage) || empty($isMessage)) {?>
-                    <div id="message"><a href="#" id="<?php echo $value->userId ?>"  class="global">Send Message</a></div>
+                    <div id="message"><a href="<?php echo Utilities::createAbsoluteUrl('message','compose',array('receiverId'=>$value->userId)); ?>"  class="sendMessage" id="<?php echo $value->userId ?>">Send Message</a></div>
                    <?php }
   } ?>   
                 </div>
@@ -109,7 +108,7 @@
         <div class="page-content-head">Matches for you</div>
         <div class="pagination-contnr">
             <div class="select-contnr"><input type="checkbox" class="selection" name="selection" /> Select All</div>
-            <a id="exInterest" href="#">Express Interest</a>
+            <a id="exInterest" class="expressInterests" href="#">Express Interest</a>
             <a id="exBookmark" href="#">Bookmark</a>
            <?php if(isset($totalPage) && intval($totalPage) > 1) { ?>
             <ul class="pagination">
@@ -175,7 +174,7 @@
  $isMessage = $user->messageSender(array('condition'=>"receiverId = {$value->userId}"));
  if(!isset($isInterest) || empty($isInterest)) {
  ?>
-                 <div id="interest">   <a href="#" id="<?php echo $value->userId ?>"  class="global">Express Interest</a></div>
+                 <div id="interest" class="expressInterest">   <a href="#" id="<?php echo $value->userId ?>"  class="global">Express Interest</a></div>
    <?php }?>
 	<?php if(!in_array($value->userId, $bookMarked)) {?>  
 <div id="bookmark"> 
@@ -184,7 +183,7 @@
    <?php }?>
 <?php if(!isset($isMessage) || empty($isMessage)) {?>
 <div id="message">
-                    <a href="<?php echo Utilities::createAbsoluteUrl('message','compose',array('receiverId'=>$value->userId)); ?>"  class="sendMessage" id="<?php echo $value->userId ?>"  class="global">Send Message</a>
+                    <a href="<?php echo Utilities::createAbsoluteUrl('message','compose',array('receiverId'=>$value->userId)); ?>"  class="sendMessage" id="<?php echo $value->userId ?>" >Send Message</a>
                     </div>
                     <?php }
   	}
@@ -196,7 +195,7 @@
         </div>
         <div class="pagination-contnr">
             <div class="select-contnr"><input type="checkbox" class="selection" name="selection" />Select All</div>
-            <a id="exInterest" href="#">Express Interest</a>
+            <a id="exInterest" class="expressInterests" href="#">Express Interest</a>
             <a id="exBookmark" href="#">Bookmark</a>
              <?php if(isset($totalPage) && intval($totalPage) > 1) { ?>
             <ul class="pagination">
@@ -382,26 +381,6 @@
 		  
 	 });
 
-	 //express interest
-	 $('#exInterest').click(function (){
-		 var  allVal= [];
-		 if($("input:checkbox[name=userId]:checked").length == 0)
-		 {
-			alert('Please select any one of profile to remove');
-			return false;
-		 }		 
-		 $("input:checkbox[name=userId]:checked").each(function(){
-			 if($(this).parent('div').parent('div').css('display') == 'block'){
-				 allVal.push($(this).val());
-				 }
-		 });
-
-		 alert(allVal); 
-		  
-	 });
-	 
-
-	 
 	 
 	 $('#bookmark').click(function (){
 		 var userId = $(this).find('a').attr('id');
@@ -419,6 +398,58 @@
 		    });
 	 
 	 });
+
+	 // express interest individually
+	 
+	  $('.expressInterest').click(function (e){
+		  e.preventDefault();
+		 var userId = $(this).find('a').attr('id');
+		 $.ajax({
+		        url: "/interest/insert",  
+		        type: "POST",
+		        dataType:'json',
+		        data:{'userId':userId},   
+		        cache: false,
+		        success: function (html) {
+			        if(html == true)  
+			        	$('#'+userId).hide();	         
+		        }       
+		    });
+	 
+	 });
+
+	//express interest in bulk
+		 $('.expressInterests').click(function (e){
+			 e.preventDefault();
+			 var  allVal= [];
+			 if($("input:checkbox[name=userId]:checked").length == 0)
+			 {
+				alert('Please select any one of profile to express your interest');
+				return false;
+			 }		 
+			 $("input:checkbox[name=userId]:checked").each(function(){
+				 if($(this).parent('div').parent('div').css('display') == 'block'){
+					 allVal.push($(this).val());
+					 }
+			 });
+
+			 //alert(allVal);
+			 $.ajax({
+			        url: "/interest/insertall",  
+			        type: "POST",
+			        dataType:'json',
+			        data:{'userIds':allVal},   
+			        cache: false,
+			        success: function (html) {
+				        if(html == true)  
+				        $.each( allVal, function( key, value ) {
+				        	$('#'+value).hide();
+				        	//$('.expressInterests').hide();
+				        });	         
+			        }       
+			    }); 
+			  
+		 });
 
 	 // open the send message popup
 	 $(".sendMessage").colorbox({iframe:true, width:"860", height:"620",overlayClose: false});
