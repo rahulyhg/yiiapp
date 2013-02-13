@@ -111,7 +111,7 @@ class SiteController extends Controller
 				$userloggeddetails->userId = $user->userId;
 				$userloggeddetails->loggedIn = new CDbExpression('NOW()');
 				$userloggeddetails->save();
-				$this->redirect(array('/mypage'));
+				$this->redirect(array('/mypage/complete'));
 			}
 			else
 			{	

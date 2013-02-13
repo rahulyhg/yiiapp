@@ -748,7 +748,13 @@ class Utilities
   	public static function getUserStatus()
     {
     	return array('0'=> 'Normal', '1' => 'Subscribed');
-    }  
+    }
+
+    public static function getProfileCompleteStatus()
+    {
+    	return array('personal'=>10,'contact'=>10,'physical'=>5,'education'=>10,'habit'=>5,'family'=>5,'partner'=>10,'hobby'=>5,'astro'=>5,'reference'=>5,'documents'=>5,'profile'=>20,'album'=>5);
+    }
+    
     
   
 }

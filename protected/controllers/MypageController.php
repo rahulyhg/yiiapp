@@ -123,6 +123,109 @@ class MypageController extends Controller
 		}
 	}
 
+	public function actionComplete()
+	{
+		$percentage = 100;
+		$user = Yii::app()->session->get('user');
+		$statusArray = Utilities::getProfileCompleteStatus();
+		
+		$profile = false;
+		$family = false;
+		$document = false;
+		$astro = false;
+		$reference = false;
+		
+		if(isset($user->userpersonaldetails))
+		{
+			if(empty($user->userpersonaldetails))
+			$percentage = $percentage - $statusArray['personal'];
+				
+		}
+	if(isset($user->usercontactdetails))
+		{
+			if(empty($user->usercontactdetails))
+			$percentage = $percentage - $statusArray['contact'];
+		}
+	if(isset($user->physicaldetails))
+		{
+			if(empty($user->physicaldetails))
+			$percentage = $percentage - $statusArray['physical'];	
+		}
+	if(isset($user->educations))
+		{
+			if(empty($user->educations))
+			$percentage = $percentage - $statusArray['education'];		
+		}
+	if(isset($user->habits))
+		{
+			if(empty($user->habits))
+			$percentage = $percentage - $statusArray['habit'];	
+		}
+	if(isset($user->familyprofiles))
+		{
+		if(empty($user->familyprofiles))
+			$percentage = $percentage - $statusArray['family'];		
+		}
+	if(isset($user->partnerpreferences))
+		{
+			if(empty($user->partnerpreferences))
+			$percentage = $percentage - $statusArray['partner'];
+		}
+	if(isset($user->hobies))
+		{
+			if(empty($user->hobies))
+			$percentage = $percentage - $statusArray['hobby'];
+		}
+	if(isset($user->horoscopes))
+		{
+			if(empty($user->horoscopes))
+			{
+				$percentage = $percentage - $statusArray['astro'];
+				$astro = true;
+			}
+		}
+	if(isset($user->references))
+		{
+			if(empty($user->references))
+			{
+				$percentage = $percentage - $statusArray['reference'];
+				$reference = true;
+			}
+		}
+		if(isset($user->documents))
+		{
+			if(empty($user->documents))
+			{
+				$percentage = $percentage - $statusArray['documents'];
+				$document = true;
+			}
+		}
+	
+		if(isset($user->album))
+		{
+			$album = $user->album(array('condition'=>'type=1'));
+			if(isset($album) && empty($album)){
+			$percentage = $percentage - $statusArray['album'];
+			$album = true;				
+			}
+		}
+	
+		if(isset($user->photos))
+		{
+			$profileImage = $user->photos(array('condition'=>'profileImage=1'));
+			if(isset($profileImage) && empty($profileImage))
+			{
+			$percentage = $percentage - $statusArray['profile'];
+			$profile = true;
+			}
+		}
+	
+		if($percentage != 100)
+		$this->render('complete',array('percent'=>$percentage,'astro'=>$astro,'profile'=>$profile,'album'=>$album,'document'=>$document,'reference'=>$reference));
+		else
+		$this->forward('index');
+	}
+	
 	public function actionMyprofile()
 	{
 		$this->render('myprofile');
