@@ -37,16 +37,16 @@
 				<div class="sub" style="display:none">
 					<div class="arrow"></div>
 					<div class="data wid140">
-						<a class="width100" href="<?php echo Utilities::createAbsoluteUrl('message','index')?>">Recived Message</a>
+						<a class="width100" href="<?php echo Utilities::createAbsoluteUrl('message','index')?>">Received Message</a>
 						<a class="width100" href="<?php echo Utilities::createAbsoluteUrl('message','sent')?>">Sent Message</a>
 						<div class="dividr"></div>
-						<a class="width100" href="<?php echo Utilities::createAbsoluteUrl('interest','sent')?>">Recived Interest</a>
-						<a class="width100" href="<?php echo Utilities::createAbsoluteUrl('interest','sent')?>">Sent Interest</a>
-						<a class="width100" href="<?php echo Utilities::createAbsoluteUrl('interest','sent')?>">Declained Interest</a>
+						<a class="width100" href="<?php echo Utilities::createAbsoluteUrl('interest','sent',array('selectedTab'=>'received'))?>">Received Interest</a>
+						<a class="width100" href="<?php echo Utilities::createAbsoluteUrl('interest','sent',array('selectedTab'=>'sent'))?>">Sent Interest</a>
+						<a class="width100" href="<?php echo Utilities::createAbsoluteUrl('interest','sent',array('selectedTab'=>'declined'))?>">Declined Interest</a>
 						<div class="dividr"></div>
-						<a class="width100" href="<?php echo Utilities::createAbsoluteUrl('request','sent')?>">Recived Request</a>
+						<a class="width100" href="<?php echo Utilities::createAbsoluteUrl('request','sent')?>">Received Request</a>
 						<a class="width100" href="<?php echo Utilities::createAbsoluteUrl('request','sent')?>">Sent Request</a>
-						<a class="width100" href="<?php echo Utilities::createAbsoluteUrl('request','sent')?>">Declained Request</a>
+						<a class="width100" href="<?php echo Utilities::createAbsoluteUrl('request','sent')?>">Declined Request</a>
 					</div>
 				</div>
             </li>

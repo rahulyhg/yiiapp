@@ -118,23 +118,37 @@ class InterestController extends Controller
 	{
 		
 		$user  = Yii::app()->session->get('user');
-		/*$sendInterest = $user->interestSender(array('condition'=>'status != 3'));
-		if(sizeof($sendInterest) > 0){
-		$userId = array();
-		$userInterest = array();
-		foreach ($sendInterest as $value) {
-			$userId[] = $value->receiverId;
-			$userInterest[$value->receiverId] = $value->sendDate;
+		$action = (isset($_REQUEST['action'])) ? $_REQUEST['action'] : "";
+		$selectedIds = (isset($_REQUEST['selectedIds'])) ? $_REQUEST['selectedIds'] : "";
+		$selectedTab = (isset($_REQUEST['selectedTab'])) ? $_REQUEST['selectedTab'] : "received";
+		//var_dump($_REQUEST);die;
+		if($action != "" and $selectedIds != ""){
+			/*
+				interest status
+				0 - new interest received
+				1 - accepted the interest
+				2 - declined the interest
+				
+			*/
+			switch($action){
+				case  'accept':
+					   $query = "update interests set status = 1 where interestId = {$selectedIds}";
+					   break;
+				case  'decline':
+					   $query = "update interests set status = 2 where interestId = {$selectedIds}";
+					   break;
+				case  'delete':
+					   $query = "delete from interests  where interestId = {$selectedIds}";
+					   break;
+				case  'cancel':
+					   $query = "delete from interests  where senderId = {$user->userId} and interestId = {$selectedIds}";
+					   break;
+				default:
+					  $query = "update interests set status = 2 where interestId = {$selectedIds}";
+					   break;
+			}
+			Utilities::executeRawQuery($query);
 		}
-		$userIds = implode(",", $userId);
-		$condition = "userId in ($userIds)";
-		$users = ViewUsers::model()->findAll(array('condition'=>$condition,'order'=> 'createdOn DESC' ));
-		$this->render('sent',array('user'=>$users,'interest'=>$userInterest));
-		}
-		else
-		{
-			$this->render('sent');
-		}*/
 		//received interests
 		$sql = "SELECT * FROM view_interests WHERE receiverId = {$user->userId} and status = 0";
 		$command=Yii::app()->db->createCommand($sql);
@@ -146,19 +160,20 @@ class InterestController extends Controller
 		$sent = $command->queryAll();
 		
 		// accepted interest
-		$sql = "SELECT * FROM view_interests WHERE receiverId = {$user->userId} and status = 1";
+		$sql = "SELECT * FROM view_interests WHERE (receiverId = {$user->userId} or senderId = {$user->userId}) and status = 1";
 		$command=Yii::app()->db->createCommand($sql);
 		$accepted = $command->queryAll();
 		
 		// declined intrests
-		$sql = "SELECT * FROM view_interests WHERE senderId = {$user->userId} and status = 2";
+		$sql = "SELECT * FROM view_interests WHERE (receiverId = {$user->userId} or senderId = {$user->userId}) and status = 2";
 		$command=Yii::app()->db->createCommand($sql);
 		$declined = $command->queryAll();
 		
-		$this->render('sent',array('received'=>$received,'sent'=>$sent,'accepted'=>$accepted,'declined'=>$declined));
+		$this->render('sent',array('received'=>$received,'sent'=>$sent,'accepted'=>$accepted,'declined'=>$declined,'tab'=>$selectedTab));
 
 	}
 
+	
 	/**
 	 * Interest accepted by you
 	 * Enter description here ...

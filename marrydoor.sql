@@ -373,14 +373,17 @@ DROP VIEW IF EXISTS view_interests;
 CREATE VIEW view_interests AS SELECT I.*, SU.userId as senderUserId, SU.marryId as senderMarryId,SU.emailId as senderEmailId, SU.name as senderName, FLOOR( DATEDIFF( CURRENT_DATE, SU.dob) /365 ) as senderAge,
 SU.gender senderGender, SU.motherTounge as senderMotherTounge, SU.userType as senderUserType,
 UP.casteId as senderCasteId,C.name as senderCaste,UP.religionId as senderReligionId, R.name as senderReligion,UP.countryId,CO.name as senderCountry,UP.stateId,S.name as senderState,UP.distictId,D.name as senderDistrict,UP.placeId as senderPlaceId, PL.name as senderPlace,
+P.heightId as senderHeightId,P.weight as senderWeight,P.bodyType as senderBodyType,P.complexion as senderComplexion,P.physicalstatus as senderPhysicalStatus,
+
 RU.userId as receiverUserId, RU.marryId as receiverMarryId,RU.emailId as receiverEmailId, RU.name as receiverName, FLOOR( DATEDIFF( CURRENT_DATE, RU.dob) /365 ) as receiverAge,
 RU.gender receiverGender, RU.motherTounge as receiverMotherTounge, RU.userType as receiverUserType,
 UP1.casteId as receiverCasteId,C1.name as receiverCaste,UP1.religionId as receiverReligionId, R1.name as receiverReligion,UP1.countryId as receiverCountryId,CO1.name as receiverCountry,UP1.stateId as receiverStateId,S1.name as receiverState,UP1.distictId as receiverDistictId,D1.name as receiverDistrict,UP1.placeId as receiverPlaceId, PL1.name as receiverPlace,
-
+P1.heightId as receiverHeightId,P1.weight as receiverWeight,P1.bodyType as receiverBodyType,P1.complexion as receiverComplexion,P1.physicalstatus as receiverPhysicalStatus,
 SP.photoId as senderPhotoId, SP.imageName as senderImageName, RP.photoId as receiverPhotoId, RP.imageName as receiverImageName
 FROM interests I
 JOIN users SU ON I.senderId = SU.userId
 LEFT JOIN userpersonaldetails UP ON I.senderId = UP.userId
+LEFT JOIN physicaldetails P ON I.senderId = P.userId
 LEFT JOIN caste C ON UP.casteId = C.casteId
 LEFT JOIN religion R ON UP.religionId = R.religionId
 LEFT JOIN country CO ON UP.countryId = CO.countryId
@@ -391,6 +394,7 @@ LEFT JOIN places PL ON UP.placeId = PL.placeId
 JOIN users RU ON I.receiverId = RU.userId
 
 LEFT JOIN userpersonaldetails UP1 ON I.receiverId = UP1.userId
+LEFT JOIN physicaldetails P1 ON I.receiverId = P1.userId
 LEFT JOIN caste C1 ON UP1.casteId = C1.casteId
 LEFT JOIN religion R1 ON UP1.religionId = R1.religionId
 LEFT JOIN country CO1 ON UP1.countryId = CO1.countryId
