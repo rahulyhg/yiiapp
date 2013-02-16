@@ -1,7 +1,7 @@
 <footer class="footer">
 	<ul class="footer-links">
 		<li>
-			<a class="loloos" href="#"></a>
+			<a class="loloos" href="https://www.facebook.com/pages/Loloos-techno-lab-pvt-ltd/306667262700445" target="_blank"></a>
 		</li>
 		<li>
 			<a class="iframe" href="<?php echo Utilities::createAbsoluteUrl('guest','about'); ?>" id="footerPops">About us</a>
@@ -22,7 +22,7 @@
 		<a class="iframe" href="<?php echo Utilities::createAbsoluteUrl('guest','terms'); ?>" id="footerPops">Terms &amp; Conditions</a>
 		</li>
 		<li>
-			Copyright &#169; 2012 <a class="lol" href="#">Loloos Technolab</a> Pvt. Ltd. All rights reserved.
+			Copyright &#169; 2012 <a class="lol" href="https://www.facebook.com/pages/Loloos-techno-lab-pvt-ltd/306667262700445" target="_blank">Loloos Technolab</a> Pvt. Ltd. All rights reserved.
 		</li> 
 	</ul>
 </footer>
