@@ -81,9 +81,14 @@
             <li>
 				<a href="<?php echo Utilities::createAbsoluteUrl('message','',array()); ?>" class="headLink ">Message </a>
 				<div class="dataCont">
-					<div class="row"><a href="<?php echo Utilities::createAbsoluteUrl('message','',array()); ?>" class="innLink">Inbox <?php echo count($user->messageReceiver); ?></a></div>
-					<div class="row"><a href="<?php echo Utilities::createAbsoluteUrl('message','sent',array()); ?>" class="innLink">Outbox <?php echo count($user->messageSender); ?></a></div>
-					<div class="row"><a href="<?php echo Utilities::createAbsoluteUrl('message','acknowledgement',array()); ?>" class="innLink">Delivery aknowledgement 10</a></div>
+				<?php 
+					$inbox = $user->messageReceiver(array('condition'=>'status = 0 or status = 1'));
+					$outbox = $user->messageSender(array('condition'=>'senderId = '.$user->userId));
+					$acknowledge = $user->messageReceiver(array('condition'=>'status = 2'));
+				?>
+					<div class="row"><a href="<?php echo Utilities::createAbsoluteUrl('message','',array()); ?>" class="innLink">Inbox <?php echo count($inbox); ?></a></div>
+					<div class="row"><a href="<?php echo Utilities::createAbsoluteUrl('message','sent',array()); ?>" class="innLink">Outbox <?php echo count($outbox); ?></a></div>
+					<div class="row"><a href="<?php echo Utilities::createAbsoluteUrl('message','acknowledgement',array()); ?>" class="innLink">Delivery aknowledgement <?php echo count($acknowledge); ?></a></div>
 				</div>
 			</li>
         </ul>
@@ -101,9 +106,13 @@
             <li>
 				<a href="<?php echo Utilities::createAbsoluteUrl('interest','sent',array()); ?>" class="headLink ">Interest </a>
 				<div class="dataCont">
-					<div class="row"><a href="<?php echo Utilities::createAbsoluteUrl('interest','sent',array()); ?>" class="innLink">Sent <?php echo count($user->interestSender); ?></a></div>
-					<div class="row"><a href="<?php echo Utilities::createAbsoluteUrl('interest','receive',array()); ?>" class="innLink">Recieved <?php echo count($user->interestReceiver); ?></a></div>
-					<div class="row"><a href="<?php echo Utilities::createAbsoluteUrl('interest','decline',array()); ?>" class="innLink">Declined 25</a></div>
+				<?php 
+					$receiveInterest = $user->interestReceiver(array('condition'=>'status = 0'));
+					$declinedInterest = $user->interestReceiver(array('condition'=>'status = 2'));
+				?>
+					<div class="row"><a href="<?php echo Utilities::createAbsoluteUrl('interest','sent',array('selectedTab'=>'sent'))?>" class="innLink">Sent <?php echo count($user->interestSender); ?></a></div>
+					<div class="row"><a href="<?php echo Utilities::createAbsoluteUrl('interest','sent',array('selectedTab'=>'received'))?>" class="innLink">Recieved <?php echo count($receiveInterest); ?></a></div>
+					<div class="row"><a href="<?php echo Utilities::createAbsoluteUrl('interest','sent',array('selectedTab'=>'declined'))?>" class="innLink">Declined <?php echo count($declinedInterest); ?></a></div>
 				</div>
 			</li>
         </ul>

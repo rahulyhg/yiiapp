@@ -1,76 +1,100 @@
+<?php $user  = Yii::app()->session->get('user');
+$heightArray = Utilities::getHeights();
+ ?>
 <div class="noti_contnr">
 			<div class="notifications">
+				<?php if(count($dInterests) > 0){?>
 				<a href="#" id="tab1" class="like">
-					<div class="count">68</div>
+					<div class="count"><?php echo count($dInterests);?></div>
 				</a>
+				<?php }?>
 				<a href="#" id="tab2" class="noti">
 					<div class="count">68</div>
 				</a>
+				<?php if(count($dVisitors) > 0){ ?>
 				<a href="#" id="tab3" class="people_select">
-					<div class="count">68</div>
+					<div class="count"><?php echo count($dVisitors);?></div>
 				</a>
+				<?php }?>
+				<?php if(count($dMessages) > 0){ ?>
 				<a href="#" id="tab4" class="message">
-					<div class="count">68</div>
+					<div class="count"><?php echo count($dMessages);?></div>
 				</a>
+				<?php }else{?>
+				<a href="#" id="tab4" class="message">
+					<div class="count">0</div>
+				</a>
+				<?php }?>
 				<a href="#" id="tab5" class="lock">
 					<div class="count">68</div>
 				</a>
 			</div>
 			<ul class="notiTabData" id="tab1_notif">
+			<?php if(!empty($dInterests)):
+				$count = 0;
+			?>
+				<?php foreach($dInterests as $interest):
+				 if($count <= 5) {
+				?> 
+				<?php if($interest['senderId'] == $user->userId) { ?>
 				<li>
-					<a href="#"><img alt="" src="./images/user/anu.jpg"></a>
+					<a href="#"><img alt="" src="<?php echo Utilities::getProfileImage($interest['receiverMarryId'],$interest['receiverImageName']); ?>"></a>
 					<div class="int_head">
-						<a href="#">Biju George</a>
-						<span>(Expressed interest on 15th Augest 2012)</span>
+						<a href="#"><?php echo $interest['receiverName']; ?></a>
+						<span>(
+						<?php if($interest['status'] == 0){
+							$status = "Expressed";
+							}elseif($interest['status'] == 1){
+								$status = "Accepted";
+							}elseif($interest['status'] == 2){
+								$status = "Declined";
+							}
+					  echo $status; ?>&npsp;interest on <?php echo $interest['sendDate']; ?>)</span>
 					</div> 
-					<div class="pDetails">Chrishtian, R.c., 29 Years - 5' 4'', 167 cm</div>
-					<div class="pDetails">Ankamaly, Kerala, India</div>
-					<a class="type7 accept" href="#">Accept</a>
-					<a class="type7 decline" href="#">Decline</a>
+					<div class="pDetails"><?php if(isset($interest['receiverReligion']))echo $interest['receiverReligion'] ;?>, <?php if(isset($interest['receiverCaste']))echo $interest['receiverCaste'] ;?>, <?php echo Utilities::getAgeFromDateofBirth($interest['receiverAge']); ?> Years - <?php if(isset($interest['receiverHeightId']))echo $heightArray[$interest['receiverHeightId']]; ?></div>
+					<div class="pDetails"><?php if(isset($interest['receiverPlace']))echo $interest['receiverPlace'] ;?>, <?php if(isset($interest['receiverState']))echo $interest['receiverState'] ;?>, <?php if(isset($interest['receiverCountry']))echo $interest['receiverCountry'] ;?></div>
+					<?php if($interest['status'] == 0){ ?>
+						<a class="type7 accept" href="#">Accept</a>
+						<a class="type7 decline" href="#">Decline</a>				
+					<?php }else{ ?>
+						<a class="type7 decline" href="#">Add to shortlist</a>
+					<?php } ?>
 				</li>
-				<li>
-					<a href="#"><img alt="" src="./images/user/priya.jpg"></a>
+				<?php }else{ ?>
+					<li>
+					<a href="#"><img alt="" src="<?php echo Utilities::getProfileImage($interest['senderMarryId'],$interest['senderImageName']); ?>"></a>
 					<div class="int_head">
-						<a href="#">Biju George</a>
-						<span>(Accepted interest on 15th Augest 2012)</span>
+						<a href="#"><?php echo $interest['senderName']; ?></a>
+						<span>(<?php if($interest['status'] == 0){
+							$status = "Expressed";
+							}elseif($interest['status'] == 1){
+								$status = "Accepted";
+							}elseif($interest['status'] == 2){
+								$status = "Declined";
+							}
+					  echo $status; ?>&nbsp;interest on <?php echo $interest['sendDate']; ?>)</span>
 					</div> 
-					<div class="pDetails">Chrishtian, R.c., 29 Years - 5' 4'', 167 cm</div>
-					<div class="pDetails">Ankamaly, Kerala, India</div>
+					<div class="pDetails"><?php if(isset($interest['senderReligion']))echo $interest['senderReligion'] ;?>, <?php if(isset($interest['senderCaste']))echo $interest['senderCaste'] ;?>, <?php echo Utilities::getAgeFromDateofBirth($interest['senderAge']); ?> Years - <?php if(isset($interest['senderHeightId']))echo $heightArray[$interest['senderHeightId']]; ?></div>
+					<div class="pDetails"><?php if(isset($interest['senderPlace']))echo $interest['senderPlace'] ;?>, <?php if(isset($interest['senderState']))echo $interest['senderState'] ;?>, <?php if(isset($interest['senderCountry']))echo $interest['senderCountry'] ;?></div>
+					<?php if($interest['status'] == 1){ ?>
 					<a class="type7 decline" href="#">Add to shortlist</a>
+					<?php } ?>
 				</li>
+				<?php } ?>
+				<?php 
+				}
+				$count ++;
+				endforeach;?>  
+				<?php else:?> 
 				<li>
-					<a href="#"><img alt="" src="./images/user/athira.jpg"></a>
-					<div class="int_head">
-						<a href="#">Biju George</a>
-						<span>(Declined interest on 15th Augest 2012)</span>
-					</div> 
-					<div class="pDetails">Chrishtian, R.c., 29 Years - 5' 4'', 167 cm</div>
-					<div class="pDetails">Ankamaly, Kerala, India</div>
+					No interests found!
 				</li>
+				<?php endif;?>		
+				<?php if(count($dInterests) > 5){ ?>
 				<li>
-					<a href="#"><img alt="" src="./images/user/anu.jpg"></a>
-					<div class="int_head">
-						<a href="#">Biju George</a>
-						<span>(Expressed interest on 15th Augest 2012)</span>
-					</div> 
-					<div class="pDetails">Chrishtian, R.c., 29 Years - 5' 4'', 167 cm</div>
-					<div class="pDetails">Ankamaly, Kerala, India</div>
-					<a class="type7 accept" href="#">Accept</a>
-					<a class="type7 decline" href="#">Decline</a>
+					<p class="notiFoot">You have recieved <?php echo count($dInterests) - 5; ?> more interests. <a href="<?php echo Utilities::createAbsoluteUrl('interest','sent',array('selectedTab'=>'received'))?>">Click to see more</a></p>
 				</li>
-				<li>
-					<a href="#"><img alt="" src="./images/user/priya.jpg"></a>
-					<div class="int_head">
-						<a href="#">Biju George</a>
-						<span>(Accepted interest on 15th Augest 2012)</span>
-					</div> 
-					<div class="pDetails">Chrishtian, R.c., 29 Years - 5' 4'', 167 cm</div>
-					<div class="pDetails">Ankamaly, Kerala, India</div>
-					<a class="type7 decline" href="#">Add to shortlist</a>
-				</li>
-				<li>
-					<p class="notiFoot">You have recieved 237 more interests. <a href="#">Click to see more</a></p>
-				</li>
+				<?php } ?>
 			</ul>
 			<ul class="notiTabData" id="tab2_notif">
 				<li>
@@ -103,117 +127,46 @@
 				</li>
 			</ul>
 			<ul class="notiTabData" id="tab3_notif">
+				<?php if(count($dVisitors) > 0){ ?>
 				<li>
-					<p class="notiFoot">You have 77 new visitors</p>
+					<p class="notiFoot">You have <?php echo count($dVisitors); ?> new visitors</p>
 				</li>
+				<?php }?>
+				<?php if(!empty($dVisitors)): ?>
 				<li class="cDefalt">
+				<?php foreach($dVisitors as $visitor): ?>
 					<div class="vistrNot">
-						<img alt="" src="./images/user/shef.jpg">
+						<img alt="" src="<?php echo Utilities::getProfileImage($visitor['marryId'],$visitor['imageName']); ?>">
 					</div>
-					<div class="vistrNot">
-						<img alt="" src="./images/user/arun.jpg">
-					</div>
-					<div class="vistrNot">
-						<img alt="" src="./images/user/rans.jpg">
-					</div>
-					<div class="vistrNot">
-						<img alt="" src="./images/user/biju.jpg">
-					</div>
-					<div class="vistrNot">
-						<img alt="" src="./images/user/ajith.jpg">
-					</div>
-					<div class="vistrNot">
-						<img alt="" src="./images/user/amar.jpg">
-					</div>
-					<div class="vistrNot">
-						<img alt="" src="./images/user/nayana.jpg">
-					</div>
-					<div class="vistrNot">
-						<img alt="" src="./images/user/athira.jpg">
-					</div>
-					<div class="vistrNot">
-						<img alt="" src="./images/user/anu.jpg">
-					</div>
-					<div class="vistrNot">
-						<img alt="" src="./images/user/priya.jpg">
-					</div>
-					<div class="vistrNot">
-						<img alt="" src="./images/user/biju.jpg">
-					</div>
-					<div class="vistrNot">
-						<img alt="" src="./images/user/ajith.jpg">
-					</div>
-					<div class="vistrNot">
-						<img alt="" src="./images/user/amar.jpg">
-					</div>
-					<div class="vistrNot">
-						<img alt="" src="./images/user/nayana.jpg">
-					</div>
-					<div class="vistrNot">
-						<img alt="" src="./images/user/biju.jpg">
-					</div>
-					<div class="vistrNot">
-						<img alt="" src="./images/user/athira.jpg">
-					</div>
-					<div class="vistrNot">
-						<img alt="" src="./images/user/anu.jpg">
-					</div>
-					<div class="vistrNot">
-						<img alt="" src="./images/user/priya.jpg">
-					</div>
+				<?php endforeach; ?>
 				</li>
+				<?php else: ?>
+				<li class="cDefalt">
+						No visitors found
+				</li>
+				<?php endif; ?>
 				<li>
 					<p class="notiFoot"><a href="#">Click here</a> to view all visitors</p>
 				</li>
 			</ul>
 			<ul class="notiTabData" id="tab4_notif">
+			<?php if(!empty($dMessages)): ?>
+			<?php foreach($dMessages as $message): ?>
 				<li class="unread">
-					<a href="#"><img alt="" src="./images/user/biju.jpg"></a>
-					<a class="user_name" href="my-messages-conversation.htm">Biju George</a>
-					<div class="user_message">Your friends messages will show here. This is a test message..</div>
+					<a href="#"><img alt="" src="<?php echo Utilities::getProfileImage($message['senderMarryId'],$message['senderImageName']); ?>"></a>
+					<a class="user_name" href="<?php echo Utilities::createAbsoluteUrl('message','conversation',array('senderId'=>$message['senderId'])); ?>"><?php echo $message['senderName']; ?></a>
+					<div class="user_message"><?php echo $message['message']; ?></div>
 					<div class="msge_data">
-						<a class="close" href="#"></a>
-						<div class="date">September 7</div>
+						<a class="close" href="onclick="deleteMessage(<?php echo $message['messageId']; ?>,'inbox');""></a>
+						<div class="date"><?php echo $message['sendDate']; ?></div>
 					</div>
 				</li>
-				<li class="unread">
-					<a href="#"><img alt="" src="./images/user/amar.jpg"></a>
-					<a class="user_name" href="my-messages-conversation.htm">Biju George</a>
-					<div class="user_message">Your friends messages will show here. This is a test message..</div>
-					<div class="msge_data">
-						<a class="close" href="#"></a>
-						<div class="date">September 7</div>
-					</div>
-				</li>
-				<li class="unread">
-					<a href="#"><img alt="" src="./images/user/nayana.jpg"></a>
-					<a class="user_name" href="my-messages-conversation.htm">Biju George</a>
-					<div class="user_message">Your friends messages will show here. This is a test message..</div>
-					<div class="msge_data">
-						<a class="close" href="#"></a>
-						<div class="date">September 7</div>
-					</div>
-				</li>
+			<?php endforeach; ?>
+			<?php else: ?>
+			<li>No messages found</li>
+			<?php endif; ?>
 				<li>
-					<a href="#"><img alt="" src="./images/user/anu.jpg"></a>
-					<a class="user_name" href="my-messages-conversation.htm">Biju George</a>
-					<div class="user_message">Your friends messages will show here. This is a test message..</div>
-					<div class="msge_data">
-						<a class="close" href="#"></a>
-						<div class="date">September 7</div>
-					</div>
-				</li>
-				<li>
-					<a href="#"><img alt="" src="./images/user/ajith.jpg"></a>
-					<a class="user_name" href="my-messages-conversation.htm">Biju George</a>
-					<div class="user_message">Your friends messages will show here. This is a test message..</div>
-					<div class="msge_data">
-						<a class="close" href="#"></a>
-						<div class="date">September 7</div>
-					</div>
-				</li>
-				<li>
-					<p class="notiFoot"><a href="#">Click here</a> to read all messages.</p>
+					<p class="notiFoot"><a href="<?php echo Utilities::createAbsoluteUrl('message','index')?>">Click here</a> to read all messages.</p>
 				</li>
 			</ul>
 			<ul class="notiTabData" id="tab5_notif">

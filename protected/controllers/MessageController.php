@@ -26,7 +26,7 @@ class MessageController extends Controller
 			}
 			Utilities::executeRawQuery($query);
 		}
-		$sql = "SELECT * FROM view_messages WHERE receiverId = {$user->userId}";
+		$sql = "SELECT * FROM view_messages WHERE receiverId = {$user->userId} and (status = 0 or status =1)";
 		$command=Yii::app()->db->createCommand($sql);
 		$inbox = $command->queryAll();
 		
@@ -43,7 +43,7 @@ class MessageController extends Controller
 	public function actionSent()
 	{
 		$user = Yii::app()->session->get('user');
-		$sql = "SELECT * FROM view_messages WHERE receiverId = {$user->userId}";
+		$sql = "SELECT * FROM view_messages WHERE receiverId = {$user->userId} and (status = 0 or status =1)";
 		$command=Yii::app()->db->createCommand($sql);
 		$inbox = $command->queryAll();
 		
@@ -62,7 +62,7 @@ class MessageController extends Controller
 	public function actionAcknowledgement()
 	{
 		$user = Yii::app()->session->get('user');
-		$sql = "SELECT * FROM view_messages WHERE receiverId = {$user->userId}";
+		$sql = "SELECT * FROM view_messages WHERE receiverId = {$user->userId} and (status = 0 or status =1)";
 		$command=Yii::app()->db->createCommand($sql);
 		$inbox = $command->queryAll();
 		
