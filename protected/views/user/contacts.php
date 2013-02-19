@@ -183,7 +183,7 @@
 	</li>
 	<li>
 		<div class="title">
-			Residing Municipality <br />Corperation/ Panchayath<span class="sup">*</span>
+			Residing Municipality <br />Corperation/ Panchayath<span class="sup"></span>
 		</div>
 		<div class="info">
 					<?php

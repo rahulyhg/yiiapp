@@ -29,13 +29,17 @@
 					<p class="width100">By filling in your astro details, you can be sure that you get a match that is in line with your Grahanila. You can also avoid getting contacted people who doesn't match your Grahanila.</p>
 				</li>
 				<li>
+				<?php 
+				$user = Yii::app()->session->get('user');
+				$date = new DateTime($user->dob);?>
+				
 					<div class="title">
 						Date of Birth
 					</div>
 					<div class="info">
-					<?php echo CHtml::dropDownList('date',Utilities::currentDay(),Utilities::getRegDays(),array('class'=>'wid50 mR5')); ?>
-		<?php echo CHtml::dropDownList('month',Utilities::currentMonth(),Utilities::getRegMonths(),array('class'=>'validate[condRequired[date]] wid100 mR5')); ?>		    
-    	<?php echo CHtml::dropDownList('year',Utilities::currentYear(),  Utilities::getRegYears(),array('class'=>'validate[condRequired[date]] wid60')); ?>
+					<?php echo CHtml::dropDownList('date',$date->format('d'),Utilities::getRegDays(),array('class'=>'wid50 mR5')); ?>
+					<?php echo CHtml::dropDownList('month',$date->format('m'),Utilities::getRegMonths(),array('class'=>'validate[condRequired[date]] wid100 mR5')); ?>		    
+    				<?php echo CHtml::dropDownList('year',$date->format('Y'),  Utilities::getRegYears(),array('class'=>'validate[condRequired[date]] wid60')); ?>
 						
 					</div>
 				</li>
@@ -88,7 +92,7 @@
 					<?php echo CHtml::dropDownList('hours',null,Utilities::getTime(),array('empty'=>'Hour','class'=>'wid70 mR5')); ?>
 					<?php echo CHtml::dropDownList('minutes',null,Utilities::getMinutes(),array('empty'=>'Minutes','class'=>'wid70 mR5')); ?>
 					<?php echo CHtml::dropDownList('seconds',null,Utilities::getMinutes(),array('empty'=>'Seconds','class'=>'wid70 mR5')); ?>
-					<?php echo CHtml::dropDownList('am',null,Utilities::getMeridiem(),array('empty'=>'AM/PM','class'=>'wid50 mR5')); ?>	
+					<?php echo CHtml::dropDownList('am',null,Utilities::getMeridiem(),array('empty'=>'AM/PM','class'=>'wid70 mR5')); ?>	
      										
 					</div>
 				</li>
@@ -226,7 +230,7 @@
 					<?php echo CHtml::dropDownList('timeFrom0',null,Utilities::getTime(),array('class'=>'wid70 mR5')); ?>
 					<?php echo CHtml::dropDownList('fromA0',null,Utilities::getMeridiem(),array('class'=>'wid50 mR5')); ?>	
      				<?php echo CHtml::dropDownList('timeTo0',null,Utilities::getTime(),array('class'=>'wid70 mR5')); ?>
-     				<?php echo CHtml::dropDownList('toA0',null,Utilities::getMeridiem(),array('class'=>'wid50')); ?>
+     				<?php echo CHtml::dropDownList('toA0',null,Utilities::getMeridiem(),array('empty'=>'AM/PM','class'=>'wid70 mR5')); ?>
 					</div>
 				</li>
 			</ul>
@@ -276,10 +280,10 @@
 						Time to call
 					</div>
 					<div class="info">
-						<?php echo CHtml::dropDownList('timeFrom0',null,Utilities::getTime(),array('class'=>'wid70 mR5')); ?>
-	<?php echo CHtml::dropDownList('fromA0',null,Utilities::getMeridiem(),array('class'=>'wid50 mR5')); ?>	
-     <?php echo CHtml::dropDownList('timeTo0',null,Utilities::getTime(),array('class'=>'wid70 mR5')); ?>
-     <?php echo CHtml::dropDownList('toA0',null,Utilities::getMeridiem(),array('class'=>'wid50')); ?>
+						<?php echo CHtml::dropDownList('timeFrom1',null,Utilities::getTime(),array('class'=>'wid70 mR5')); ?>
+						<?php echo CHtml::dropDownList('fromA1',null,Utilities::getMeridiem(),array('class'=>'wid50 mR5')); ?>	
+     					<?php echo CHtml::dropDownList('timeTo1',null,Utilities::getTime(),array('class'=>'wid70 mR5')); ?>
+     					<?php echo CHtml::dropDownList('toA1',null,Utilities::getMeridiem(),array('empty'=>'AM/PM','class'=>'wid70 mR5')); ?>
 					</div>
 				</li>
 			</ul>
@@ -330,11 +334,11 @@
 						Time to call
 					</div>
 					<div class="info">
-						<?php echo CHtml::dropDownList('timeFrom0',null,Utilities::getTime(),array('class'=>'wid70 mR5')); ?>
-	<?php echo CHtml::dropDownList('fromA0',null,Utilities::getMeridiem(),array('class'=>'wid50 mR5')); ?>	
-     <?php echo CHtml::dropDownList('timeTo0',null,Utilities::getTime(),array('class'=>'wid70 mR5')); ?>
-     <?php echo CHtml::dropDownList('toA0',null,Utilities::getMeridiem(),array('class'=>'wid50')); ?>
-					</div>
+						<?php echo CHtml::dropDownList('timeFrom2',null,Utilities::getTime(),array('class'=>'wid70 mR5')); ?>
+					<?php echo CHtml::dropDownList('fromA2',null,Utilities::getMeridiem(),array('class'=>'wid50 mR5')); ?>	
+				     <?php echo CHtml::dropDownList('timeTo2',null,Utilities::getTime(),array('class'=>'wid70 mR5')); ?>
+				     <?php echo CHtml::dropDownList('toA2',null,Utilities::getMeridiem(),array('empty'=>'AM/PM','class'=>'wid70 mR5')); ?>
+									</div>
 				</li>
 				<li>
 					<div class="title">

@@ -18,7 +18,22 @@ DEFAULT CHARSET=utf8;
 
 -- ------Table for userPersonalDetails------------
 
-create table userpersonaldetails(personalDetailsId BIGINT UNIQUE NOT NULL AUTO_INCREMENT, userId BIGINT NOT NULL, casteId INT(10) NOT NULL DEFAULT 0, religionId INT(10) NOT NULL DEFAULT 0, countryId INT(10) NOT NULL DEFAULT 0, stateId INT(10) NOT NULL DEFAULT 0, distictId INT(10) NOT NULL DEFAULT 0, placeId INT(10) NOT NULL DEFAULT 0, mobilePhone BIGINT(15) NOT NULL, landPhone BIGINT(15) NOT NULL, intercasteable TINYINT NOT NULL DEFAULT 0, createdBy TINYINT NOT NULL DEFAULT 0, maritalStatus TINYINT NOT NULL DEFAULT 0, PRIMARY KEY(personalDetailsId), FOREIGN KEY (userId) REFERENCES users(userId))ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;
+
+create table userpersonaldetails(personalDetailsId BIGINT UNIQUE NOT NULL AUTO_INCREMENT, userId BIGINT NOT NULL, 
+casteId BIGINT NOT NULL DEFAULT 0, religionId BIGINT NOT NULL DEFAULT 0, 
+countryId BIGINT NOT NULL DEFAULT 0, stateId BIGINT NOT NULL DEFAULT 0,
+ districtId BIGINT NOT NULL DEFAULT 0, placeId BIGINT NOT NULL DEFAULT 0, 
+ mobilePhone BIGINT(15) NOT NULL, landPhone BIGINT(15) NOT NULL, 
+ intercasteable TINYINT NOT NULL DEFAULT 0, createdBy TINYINT NOT NULL DEFAULT 0, 
+ maritalStatus TINYINT NOT NULL DEFAULT 0, PRIMARY KEY(personalDetailsId), 
+ FOREIGN KEY(userId) REFERENCES users(userId),
+ FOREIGN KEY(casteId) REFERENCES caste(casteId),
+ FOREIGN KEY(religionId) REFERENCES religion(religionId),
+ FOREIGN KEY(countryId) REFERENCES country(countryId),
+ FOREIGN KEY(stateId) REFERENCES states(stateId),
+ FOREIGN KEY(districtId) REFERENCES districts(districtId),
+ FOREIGN KEY(placeId) REFERENCES places(placeId)
+ )ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;
 
 -- --------Table for userContactDetails--------------
 

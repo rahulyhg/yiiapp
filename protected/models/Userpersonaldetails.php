@@ -6,20 +6,26 @@
  * The followings are the available columns in table 'userpersonaldetails':
  * @property string $personalDetailsId
  * @property string $userId
- * @property integer $casteId
- * @property integer $religionId
- * @property integer $countryId
- * @property integer $stateId
- * @property integer $distictId
- * @property integer $placeId
- * @property integer $mobilePhone
- * @property integer $landPhone
+ * @property string $casteId
+ * @property string $religionId
+ * @property string $countryId
+ * @property string $stateId
+ * @property string $districtId
+ * @property string $placeId
+ * @property string $mobilePhone
+ * @property string $landPhone
  * @property integer $intercasteable
  * @property integer $createdBy
  * @property integer $maritalStatus
  *
  * The followings are the available model relations:
  * @property Users $user
+ * @property Caste $caste
+ * @property Religion $religion
+ * @property Country $country
+ * @property States $state
+ * @property Districts $district
+ * @property Places $place
  */
 class Userpersonaldetails extends CActiveRecord
 {
@@ -49,11 +55,12 @@ class Userpersonaldetails extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('casteId, religionId, countryId, stateId, distictId, placeId, mobilePhone, landPhone, intercasteable, createdBy, maritalStatus', 'numerical', 'integerOnly'=>true),
-			array('userId', 'length', 'max'=>20),
+			array('intercasteable, createdBy, maritalStatus', 'numerical', 'integerOnly'=>true),
+			array('userId, casteId, religionId, countryId, stateId, districtId, placeId', 'length', 'max'=>20),
+			array('mobilePhone, landPhone', 'length', 'max'=>15),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('personalDetailsId, userId, casteId, religionId, countryId, stateId, distictId, placeId, mobilePhone, landPhone, intercasteable, createdBy, maritalStatus', 'safe', 'on'=>'search'),
+			array('personalDetailsId, userId, casteId, religionId, countryId, stateId, districtId, placeId, mobilePhone, landPhone, intercasteable, createdBy, maritalStatus', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -66,13 +73,12 @@ class Userpersonaldetails extends CActiveRecord
 		// class name for the relations automatically generated below.
 		return array(
 			'user' => array(self::BELONGS_TO, 'Users', 'userId'),
-			'religion' => array(self::HAS_ONE, 'Religion', 'religionId'),
-			'country' => array(self::HAS_ONE, 'Country', 'countryId'),
-			'place' => array(self::HAS_ONE, 'Places', 'placeId'),
-			'district' => array(self::HAS_ONE, 'Districts', 'districtId'),
-			'caste' => array(self::HAS_ONE, 'Caste', 'casteId'),
-			'state' => array(self::HAS_ONE, 'States', 'stateId'),
-		
+			'caste' => array(self::BELONGS_TO, 'Caste', 'casteId'),
+			'religion' => array(self::BELONGS_TO, 'Religion', 'religionId'),
+			'country' => array(self::BELONGS_TO, 'Country', 'countryId'),
+			'state' => array(self::BELONGS_TO, 'States', 'stateId'),
+			'district' => array(self::BELONGS_TO, 'Districts', 'districtId'),
+			'place' => array(self::BELONGS_TO, 'Places', 'placeId'),
 		);
 	}
 
@@ -88,7 +94,7 @@ class Userpersonaldetails extends CActiveRecord
 			'religionId' => 'Religion',
 			'countryId' => 'Country',
 			'stateId' => 'State',
-			'distictId' => 'Distict',
+			'districtId' => 'District',
 			'placeId' => 'Place',
 			'mobilePhone' => 'Mobile Phone',
 			'landPhone' => 'Land Phone',
@@ -111,14 +117,14 @@ class Userpersonaldetails extends CActiveRecord
 
 		$criteria->compare('personalDetailsId',$this->personalDetailsId,true);
 		$criteria->compare('userId',$this->userId,true);
-		$criteria->compare('casteId',$this->casteId);
-		$criteria->compare('religionId',$this->religionId);
-		$criteria->compare('countryId',$this->countryId);
-		$criteria->compare('stateId',$this->stateId);
-		$criteria->compare('distictId',$this->distictId);
-		$criteria->compare('placeId',$this->placeId);
-		$criteria->compare('mobilePhone',$this->mobilePhone);
-		$criteria->compare('landPhone',$this->landPhone);
+		$criteria->compare('casteId',$this->casteId,true);
+		$criteria->compare('religionId',$this->religionId,true);
+		$criteria->compare('countryId',$this->countryId,true);
+		$criteria->compare('stateId',$this->stateId,true);
+		$criteria->compare('districtId',$this->districtId,true);
+		$criteria->compare('placeId',$this->placeId,true);
+		$criteria->compare('mobilePhone',$this->mobilePhone,true);
+		$criteria->compare('landPhone',$this->landPhone,true);
 		$criteria->compare('intercasteable',$this->intercasteable);
 		$criteria->compare('createdBy',$this->createdBy);
 		$criteria->compare('maritalStatus',$this->maritalStatus);
@@ -127,5 +133,4 @@ class Userpersonaldetails extends CActiveRecord
 			'criteria'=>$criteria,
 		));
 	}
-	
 }

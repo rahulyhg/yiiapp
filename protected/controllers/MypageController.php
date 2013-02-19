@@ -139,6 +139,7 @@ class MypageController extends Controller
 		$education = false;
 		$partner  = false;
 		$hobbies = false;
+		$album = false;
 		
 		if(!isset($user->userpersonaldetails))
 		{
@@ -204,8 +205,8 @@ class MypageController extends Controller
 	
 		if(isset($user->album))
 		{
-			$album = $user->album(array('condition'=>'type=1'));
-			if(sizeof($album) == 0){
+			$falbum = $user->album(array('condition'=>'type=1'));
+			if(sizeof($falbum) == 0){
 			$percentage = $percentage - $statusArray['album'];
 			//$album = true;				
 			}
