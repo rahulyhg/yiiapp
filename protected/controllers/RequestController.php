@@ -199,4 +199,29 @@ class RequestController extends Controller
 		
 	}
 	
+	public function actionPopup()
+	{
+		$profileId = isset($_REQUEST['profileId']) ? $_REQUEST['profileId'] : 0;
+		$action = isset($_REQUEST['action']) ? $_REQUEST['action'] : '';
+		$module = isset($_REQUEST['module']) ? $_REQUEST['module'] : '';
+		$user  = Yii::app()->session->get('user');
+		$type = Utilities::getRequestType($module);
+		$message = '';
+		if(isset($_REQUEST['sendRequest']) and $_REQUEST['sendRequest'] !=""){
+			if(sizeof($user->requestSender(array('condition'=>'senderId='.$user->userId.' and receiverId='.$profileId.' and requestType='.$type)))> 0){
+				$message = 'error';
+			}else{ 
+				$request = new Requests();
+				$request->senderId = $user->userId;
+				$request->receiverId = $profileId;
+				$request->requestType = $type;
+				$request->sendDate = date('Y-m-d h:i:s');
+				$request->save();
+				$message = 'success';
+			}
+		}
+		$this->layout= '//layouts/popup';
+		$this->render('popup',array('profileId'=>$profileId,'action'=>$action,'module'=>$module,'message'=>$message));
+	}
+	
 }

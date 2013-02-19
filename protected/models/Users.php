@@ -118,7 +118,8 @@ class Users extends CActiveRecord
 			'profileUpdates' => array(self::HAS_ONE, 'Profileupdates', 'userId'),
 			'profileBlock' => array(self::HAS_ONE, 'Profileblock', 'userId'),
 			'saveSearch' => array(self::HAS_ONE, 'Savesearch', 'userId'),
-		
+			'requestSender' => array(self::HAS_MANY, 'Requests', 'senderId'),
+			'requestReceiver' => array(self::HAS_MANY, 'Requests', 'receiverId'),
 		);
 	}
 

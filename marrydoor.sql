@@ -406,3 +406,7 @@ LEFT JOIN places PL1 ON UP1.placeId = PL1.placeId
 
 LEFT JOIN photos SP ON (I.senderId = SP.userId AND SP.profileImage = 1)
 LEFT JOIN photos RP ON (I.receiverId = RP.userId AND RP.profileImage = 1);
+
+-- Table for Requests
+
+create table requests(requestId BIGINT UNIQUE NOT NULL AUTO_INCREMENT, senderId BIGINT NOT NULL, receiverId BIGINT NOT NULL, requestType tinyint(5) COMMENT '1-documents, 2- album, 3- family album, 4-astro, 5- contact, 6 - reference', status TINYINT NOT NULL DEFAULT 0, sendDate DATE NOT NULL, PRIMARY KEY(requestId), FOREIGN KEY (senderId) REFERENCES users(userId), FOREIGN KEY (receiverId) REFERENCES users(userID))ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;

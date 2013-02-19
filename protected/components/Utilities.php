@@ -637,6 +637,13 @@ class Utilities
 		$command->execute();
 	}
 	
+	public static function executeSelectQuery($query)
+	{
+		$connection=Yii::app()->db;
+		$command=$connection->createCommand($query);
+		return $command->queryAll();
+	}
+	
 	public static function executeSQLQuery($query)
 	{
 		$connection=Yii::app()->db;
@@ -755,6 +762,67 @@ class Utilities
     	return array('personal'=>10,'contact'=>10,'physical'=>5,'education'=>10,'habit'=>5,'family'=>5,'partner'=>10,'hobby'=>5,'astro'=>5,'reference'=>5,'documents'=>5,'profile'=>20,'album'=>5);
     }
     
+	public static function getUserPrivacySettings($userId)
+	{
+		$result = Utilities::executeSelectQuery("select * from privacy where userId = {$userId}");
+		return $result;
+	}
+	
+	public static function getUserPrivacyStatus($settings,$type)
+	{
+		if(!empty($settings)){
+			$status = '';
+			foreach($settings as $item){
+				if($item['items'] == $type)
+					$status = $item['privacy'];
+				else
+					continue;
+			}
+			if($status != '')
+			return $status;
+			else
+			return 'all';
+		}else{
+			return 'all';
+		}
+	}
+	
+	public static function getUserPrivacyRequestStatus($type='album',$senderId=0,$receiverId=0)
+	{
+		switch($type){
+			case 'documents':
+			$type = 1;
+			break;
+			case 'album':
+			$type = 2;
+			break;
+			case 'family':
+			$type = 3;
+			break;
+			case 'astro':
+			$type = 4;
+			break;
+			case 'contact':
+			$type = 5;
+			break;
+			case 'reference':
+			$type = 6;
+			break;
+		}
+		
+		$result = self::executeSelectQuery("select * from requests where senderId = {$senderId} and receiverId = {$receiverId} and requestType={$type} and status = 1");
+		if(!empty($result)){
+			return true;
+		}else{
+			return false;
+		}
+	}
+	
+	public static function getRequestType($type = 'album')
+	{
+		$reqTypes = array('documents' =>1,'album'=>2,'family'=>3,'astro'=>4,'contact'=>5,'reference'=>6);
+		return $reqTypes[$type];
+	}
     
   
 }
