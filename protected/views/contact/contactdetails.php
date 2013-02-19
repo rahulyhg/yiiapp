@@ -83,25 +83,25 @@
 					<li>
 						<div class="leftC">Facebook Url</div>
 						<div class="rightC">
-							<strong>:</strong> <span><?php echo $model->usercontactdetails->facebookUrl?></span>
+							<strong>:</strong> <span><?php if(isset($model->usercontactdetails)) echo $model->usercontactdetails->facebookUrl?></span>
 						</div>
 					</li>
 					<li>
 						<div class="leftC">Skype</div>
 						<div class="rightC">
-							<strong>:</strong> <span><?php echo $model->usercontactdetails->skypeId ?></span>
+							<strong>:</strong> <span><?php if(isset($model->usercontactdetails)) echo $model->usercontactdetails->skypeId ?></span>
 						</div>
 					</li>
 					<li>
 						<div class="leftC">Google IM</div>
 						<div class="rightC">
-							<strong>:</strong> <span><?php echo $model->usercontactdetails->googleIM?></span>
+							<strong>:</strong> <span><?php if(isset($model->usercontactdetails)) echo $model->usercontactdetails->googleIM?></span>
 						</div>
 					</li>
 					<li>
 						<div class="leftC">Yahoo IM</div>
 						<div class="rightC">
-							<strong>:</strong> <span><?php echo $model->usercontactdetails->yahooIM ?></span>
+							<strong>:</strong> <span><?php if(isset($model->usercontactdetails)) echo $model->usercontactdetails->yahooIM ?></span>
 						</div>
 					</li>
 				</ul>

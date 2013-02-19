@@ -711,6 +711,8 @@ class SearchController extends Controller
 			$userIds[] = $value->userId; 
 		}
 		
+		if(sizeof($userIds) > 0 )
+		{
 		$userList = implode(",", $userIds);
 		$scondition = " userId in ({$userList}) and userId != {$user->userId} ";
 		if(isset($blockIdList) && sizeof($blockId) > 0 )
@@ -725,6 +727,7 @@ class SearchController extends Controller
 			$highLightUser[] = $value;
 			else 
 			$normalUser[] = $value;
+		}
 		}
 		//$user = Users::model()->find();
 		if(sizeof($users) > 0)

@@ -646,6 +646,20 @@
 <script type="text/javascript">
 $(document).ready(function(){
     $("#userContact").validationEngine('attach');
+
+        $.ajax({
+            type: "POST",
+            url: "/Ajax/updateDistrict",
+            'data':{'stateId':<?php echo $user->userpersonaldetails->stateId?>},
+            'dataType':'json',
+            dataType: "json",
+            success: function(data) {
+            	 $("#district").html(data.dropDownDist);
+            }
+        });
+        return false;
+    
+    
   });
 
 $("#mobileList a").click(function() {
