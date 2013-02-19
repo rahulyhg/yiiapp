@@ -287,6 +287,12 @@ $drink= Utilities::getDrink();
 			</ul>
 			<ul class="detSec width50">
 				<li>
+					<div class="leftCtn">District</div>
+					<div class="rightCtn">
+						<strong>:</strong> <span><?php if(isset($model->userpersonaldetails->district))echo $model->userpersonaldetails->district->name ?></span>
+					</div>
+				</li>
+				<li>
 					<div class="leftCtn">City</div>
 					<div class="rightCtn">
 						<strong>:</strong> <span><?php if(isset($model->userpersonaldetails->place))echo $model->userpersonaldetails->place->name ?></span>
@@ -321,7 +327,7 @@ $drink= Utilities::getDrink();
 				<li>
 					<div class="leftCtn">Annual Income</div>
 					<div class="rightCtn">
-						<strong>:</strong> <span><?php if(isset($model->educations->yearlyIncome))echo $model->educations->yearlyIncome?></span>
+						<strong>:</strong> <span><?php if(isset($model->educations->yearlyIncome))echo $model->educations->yearlyIncome.'000'?></span>
 					</div>
 				</li>
 			</ul>
@@ -464,7 +470,7 @@ $drink= Utilities::getDrink();
 				<li>
 					<div class="leftCtn">Annual Income</div>
 					<div class="rightCtn">
-						<strong>:</strong> <span><?php if(isset($partner->annualIncome))echo $partner->annualIncome; ?></span>
+						<strong>:</strong> <span><?php if(isset($partner->annualIncome))echo $partner->annualIncome.'000'; ?></span>
 					</div>
 				</li>
 				<li>

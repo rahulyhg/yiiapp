@@ -69,6 +69,7 @@ class Userpersonaldetails extends CActiveRecord
 			'religion' => array(self::HAS_ONE, 'Religion', 'religionId'),
 			'country' => array(self::HAS_ONE, 'Country', 'countryId'),
 			'place' => array(self::HAS_ONE, 'Places', 'placeId'),
+			'district' => array(self::HAS_ONE, 'Districts', 'districtId'),
 			'caste' => array(self::HAS_ONE, 'Caste', 'casteId'),
 			'state' => array(self::HAS_ONE, 'States', 'stateId'),
 		

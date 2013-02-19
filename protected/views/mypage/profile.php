@@ -134,13 +134,13 @@ $heightArray = Utilities::getHeights();
 				<li>
 					<div class="leftCtn">Language</div>
 					<div class="rightCtn">
-						<strong>:</strong> <span><?php if(isset($model->motherTounge)) echo Utilities::getLanguageForId($model->motherTounge)?></span>
+						<strong>:</strong> <span><?php if(isset($user->motherTounge)) echo Utilities::getLanguageForId($user->motherTounge)?></span>
 					</div>
 				</li>
 				<li>
 					<div class="leftCtn">Marital Status</div>
 					<div class="rightCtn">
-						<strong>:</strong> <span><?php $marry = Utilities::getMaritalStatus(); if(isset($model->userpersonaldetails->maritalStatus))echo $marry[$model->userpersonaldetails->maritalStatus]?></span>
+						<strong>:</strong> <span><?php $marry = Utilities::getMaritalStatus(); if(isset($user->userpersonaldetails->maritalStatus))echo $marry[$user->userpersonaldetails->maritalStatus]?></span>
 					</div>
 				</li>
 			</ul>
@@ -238,6 +238,12 @@ $drink= Utilities::getDrink();
 			</ul>
 			<ul class="detSec width50">
 				<li>
+					<div class="leftCtn">District</div>
+					<div class="rightCtn">
+						<strong>:</strong> <span><?php if(isset($user->userpersonaldetails->district))echo $user->userpersonaldetails->district->name ?></span>
+					</div>
+				</li>
+				<li>
 					<div class="leftCtn">City</div>
 					<div class="rightCtn">
 						<strong>:</strong> <span><?php if(isset($user->userpersonaldetails->place))echo $user->userpersonaldetails->place->name ?></span>
@@ -273,7 +279,7 @@ $drink= Utilities::getDrink();
 				<li>
 					<div class="leftCtn">Annual Income</div>
 					<div class="rightCtn">
-						<strong>:</strong> <span><?php if(isset($user->educations->yearlyIncome))echo $user->educations->yearlyIncome?></span>
+						<strong>:</strong> <span><?php if(isset($user->educations->yearlyIncome))echo $user->educations->yearlyIncome.'000'?></span>
 					</div>
 				</li>
 			</ul>
@@ -416,7 +422,7 @@ $drink= Utilities::getDrink();
 				<li>
 					<div class="leftCtn">Annual Income</div>
 					<div class="rightCtn">
-						<strong>:</strong> <span><?php if(isset($partner->annualIncome))echo $partner->annualIncome; ?></span>
+						<strong>:</strong> <span><?php if(isset($partner->annualIncome))echo $partner->annualIncome.'000'; ?></span>
 					</div>
 				</li>
 				<li>

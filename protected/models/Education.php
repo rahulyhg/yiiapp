@@ -9,7 +9,7 @@
  * @property string $educationId
  * @property string $occupationId
  * @property integer $employedIn
- * @property double $yearlyIncome
+ * @property integer $yearlyIncome
  *
  * The followings are the available model relations:
  * @property Users $user
@@ -42,8 +42,7 @@ class Education extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('employedIn', 'numerical', 'integerOnly'=>true),
-			array('yearlyIncome', 'numerical'),
+			array('employedIn, yearlyIncome', 'numerical', 'integerOnly'=>true),
 			array('userId, educationId, occupationId', 'length', 'max'=>20),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
@@ -60,9 +59,6 @@ class Education extends CActiveRecord
 		// class name for the relations automatically generated below.
 		return array(
 			'user' => array(self::BELONGS_TO, 'Users', 'userId'),
-			'education' => array(self::HAS_ONE, 'EducationMaster', 'educationId'),
-		'occupation' => array(self::HAS_ONE, 'OccupationMaster', 'occupationId'),
-		
 		);
 	}
 
@@ -103,20 +99,4 @@ class Education extends CActiveRecord
 			'criteria'=>$criteria,
 		));
 	}
-	
-	
-		public function beforeSave()
-        {
-                if(parent::beforeSave())
-                {
-                      if( !empty($this->educationId) || !empty($this->occupationId) || !empty($this->employedIn) || !empty($this->yearlyIncome))
-                      return true;
-                      else
-                      return false;
-                      
-                      
-                }
-                else
-        		return true;
-        }
 }
