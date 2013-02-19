@@ -216,12 +216,6 @@ $user = Yii::app()->session->get('user');
 						<strong>:</strong> <span><?php if(isset($model->physicaldetails->weight))echo $model->physicaldetails->weight?></span>
 					</div>
 				</li>
-				<li>
-					<div class="leftCtn">Blood Group</div>
-					<div class="rightCtn">
-						<strong>:</strong> <span>Not Specified</span>
-					</div>
-				</li>
 			</ul>
 		</div>
 		<div class="editContr pT10">
@@ -235,21 +229,9 @@ $user = Yii::app()->session->get('user');
 					</div>
 				</li>
 				<li>
-					<div class="leftCtn">Physical Status</div>
-					<div class="rightCtn">
-						<strong>:</strong> <span>Muslim - Others / Not Specified</span>
-					</div>
-				</li>
-				<li>
 					<div class="leftCtn">Caste / Sub Caste</div>
 					<div class="rightCtn">
 						<strong>:</strong> <span><?php if(isset($model->userpersonaldetails->caste))echo $model->userpersonaldetails->caste->name ?></span>
-					</div>
-				</li>
-				<li>
-					<div class="leftCtn">Horoscope Match</div>
-					<div class="rightCtn">
-						<strong>:</strong> <span>Not Specified</span>
 					</div>
 				</li>
 			</ul>
@@ -274,12 +256,7 @@ $drink= Utilities::getDrink();
 						<strong>:</strong> <span><?php if(isset($model->habits->smoking))echo $smoke[$model->habits->smoking]?></span>
 					</div>
 				</li>
-				<li>
-					<div class="leftCtn">Caste / Sub Caste</div>
-					<div class="rightCtn">
-						<strong>:</strong> <span>Doesn't matter</span>
-					</div>
-				</li>
+				
 			</ul>
 			<ul class="detSec width50">
 				<li>
@@ -306,12 +283,7 @@ $drink= Utilities::getDrink();
 						<strong>:</strong> <span><?php if(isset($model->userpersonaldetails->state))echo $model->userpersonaldetails->state->name ?></span>
 					</div>
 				</li>
-				<li>
-					<div class="leftCtn">Citizenship</div>
-					<div class="rightCtn">
-						<strong>:</strong> <span>India</span>
-					</div>
-				</li>
+				
 			</ul>
 			<ul class="detSec width50">
 				<li>
@@ -320,12 +292,7 @@ $drink= Utilities::getDrink();
 						<strong>:</strong> <span><?php if(isset($model->userpersonaldetails->place))echo $model->userpersonaldetails->place->name ?></span>
 					</div>
 				</li>
-				<li>
-					<div class="leftCtn">Resident Status</div>
-					<div class="rightCtn">
-						<strong>:</strong> <span>Citizen </span>
-					</div>
-				</li>
+				
 			</ul>
 		</div>
 		<div class="editContr pT10">
@@ -344,18 +311,7 @@ $drink= Utilities::getDrink();
 						<strong>:</strong> <span><?php if(isset($model->educations->occupation))echo $model->educations->occupation->name ?></span>
 					</div>
 				</li>
-				<li>
-					<div class="leftCtn">Education in Detail</div>
-					<div class="rightCtn">
-						<strong>:</strong> <span>completed MBA </span>
-					</div>
-				</li>
-				<li>
-					<div class="leftCtn">Occupation in Detail</div>
-					<div class="rightCtn">
-						<strong>:</strong> <span>MBA / PGDM </span>
-					</div>
-				</li>
+				
 				<li>
 					<div class="leftCtn">Employed in</div>
 					<div class="rightCtn">
@@ -392,12 +348,7 @@ $drink= Utilities::getDrink();
 						<strong>:</strong> <span><?php if(isset($model->familyprofiles->familyValues))echo $familyStatus[$model->familyprofiles->familyValues]?></span>
 					</div>
 				</li>
-				<li>
-					<div class="leftCtn">Ancestral Origin</div>
-					<div class="rightCtn">
-						<strong>:</strong> <span>Valluvanad</span>
-					</div>
-				</li>
+				
 				<li class="mT10">
 					<div class="leftCtn">Family album</div>
 					<div class="rightCtn">
@@ -406,18 +357,7 @@ $drink= Utilities::getDrink();
 				</li>
 			</ul>
 			<ul class="detSec width50">
-				<li>
-					<div class="leftCtn">Father's Occupation</div>
-					<div class="rightCtn">
-						<strong>:</strong> <span>Business</span>
-					</div>
-				</li>
-				<li>
-					<div class="leftCtn">Mother's Occupation</div>
-					<div class="rightCtn">
-						<strong>:</strong> <span>Nil</span>
-					</div>
-				</li>
+				
 				<li>
 					<div class="leftCtn">No of Brother(s)</div>
 					<div class="rightCtn">
@@ -474,13 +414,13 @@ $drink= Utilities::getDrink();
 				<li>
 					<div class="leftCtn">Religion</div>
 					<div class="rightCtn">
-						<strong>:</strong> <span> <?php if(isset($partner->religionData->name))echo $partner->religionData->name?></span>
+						<strong>:</strong> <span> <?php if(isset($partner->religion->name))echo $partner->religion->name?></span>
 					</div>
 				</li>
 				<li>
 					<div class="leftCtn">Caste</div>
 					<div class="rightCtn">
-						<strong>:</strong> <span> <?php if(isset($partner->casteData->name))echo $partner->casteData->name?></span>
+						<strong>:</strong> <span> <?php if(isset($partner->caste->name))echo $partner->caste->name?></span>
 					</div>
 				</li>
 				<li>
@@ -507,12 +447,14 @@ $drink= Utilities::getDrink();
 						<strong>:</strong> <span><?php if(isset($partner->drinkingHabits))echo Utilities::getArrayValues(Utilities::getDrink(), $partner->drinkingHabits)?></span>
 					</div>
 				</li>
+				<!--  
 				<li>
 					<div class="leftCtn">Education</div>
 					<div class="rightCtn">
 						<strong>:</strong> <span>Bachelors - Engineering / Computers, Medicine - General / Dental / Surgeon /...</span>
 					</div>
 				</li>
+				-->
 				<li>
 					<div class="leftCtn">Occupation</div>
 					<div class="rightCtn">
