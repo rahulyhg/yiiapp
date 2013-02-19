@@ -13,6 +13,8 @@
  *
  * The followings are the available model relations:
  * @property Users $user
+ * @property EducationMaster $education
+ * @property OccupationMaster $occupation
  */
 class Education extends CActiveRecord
 {
@@ -59,6 +61,8 @@ class Education extends CActiveRecord
 		// class name for the relations automatically generated below.
 		return array(
 			'user' => array(self::BELONGS_TO, 'Users', 'userId'),
+			'education' => array(self::BELONGS_TO, 'EducationMaster', 'educationId'),
+			'occupation' => array(self::BELONGS_TO, 'OccupationMaster', 'occupationId'),
 		);
 	}
 

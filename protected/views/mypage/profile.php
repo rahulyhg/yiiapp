@@ -50,9 +50,9 @@ $heightArray = Utilities::getHeights();
 					</div>
 				</li>
 				<li>
-					<div class="leftCt">Place</div>
+					<div class="leftCt">District</div>
 					<div class="rightCt">
-						<strong>:</strong> <span><?php if(isset($user->userpersonaldetails->place))echo $user->userpersonaldetails->place->name ?></span>
+						<strong>:</strong> <span><?php if(isset($user->userpersonaldetails->district))echo $user->userpersonaldetails->district->name ?></span>
 					</div>
 				</li>
 				<li>
@@ -244,7 +244,7 @@ $drink= Utilities::getDrink();
 					</div>
 				</li>
 				<li>
-					<div class="leftCtn">City</div>
+					<div class="leftCtn">Place</div>
 					<div class="rightCtn">
 						<strong>:</strong> <span><?php if(isset($user->userpersonaldetails->place))echo $user->userpersonaldetails->place->name ?></span>
 					</div>

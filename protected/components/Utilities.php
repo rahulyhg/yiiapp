@@ -112,7 +112,7 @@ class Utilities
  }
  public static function getMaritalStatus()
  {
- 	return array('0'=>'Unmarried','1'=>'widower','2'=>'Divorced','3'=>'Awating divorce');
+ 	return array('0'=>'Unmarried','1'=>'widower','2'=>'Divorced','3'=>'Awating divorce','4'=>'Any');
  }
  
  public static function getProfileCreated()
@@ -610,18 +610,21 @@ class Utilities
  
 	public static function getTimeDuration($time)
 	{
+			$str = "2013-02-20 04:52:46";
+			$currentDate = new DateTime('now');
+			$date = new DateTime($time);
+			$balance = $date->diff($currentDate);
+		
+		
 			$strTimeSpent = "";
-			$days = floor($time / (60 * 60 * 24));
-			$remainder = $time % (60 * 60 * 24);
-			$hours = floor($remainder / (60 * 60));
-			$remainder = $remainder % (60 * 60);
-			$minutes = floor($remainder / 60);
-			$seconds = $remainder % 60;
+			$days = $balance->format('%a');
+			$hours = $balance->format('%H');
+			$minutes = $balance->format('%I');
 			
 			if($days > 0)
 			$strTimeSpent = date('F d Y', $time);
-			elseif($days == 0 && $hours == 0 && $minutes == 0)
-			$strTimeSpent = "few seconds ago";		
+			elseif($days == 0 && $hours > 0 )
+			$strTimeSpent = "{$hours} hours ago";		
 			elseif($days == 0 && $hours == 0)
 			$strTimeSpent = $minutes.' minutes ago';
 			else
