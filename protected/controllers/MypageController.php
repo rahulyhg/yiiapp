@@ -134,94 +134,107 @@ class MypageController extends Controller
 		$document = false;
 		$astro = false;
 		$reference = false;
+		$contact = false;
+		$physical = false;
+		$education = false;
+		$partner  = false;
+		$hobbies = false;
 		
-		if(isset($user->userpersonaldetails))
+		if(!isset($user->userpersonaldetails))
 		{
-			if(empty($user->userpersonaldetails))
 			$percentage = $percentage - $statusArray['personal'];
 				
 		}
-	if(isset($user->usercontactdetails))
+		if(!isset($user->usercontactdetails))
 		{
-			if(empty($user->usercontactdetails))
 			$percentage = $percentage - $statusArray['contact'];
+			//$contact = true;
 		}
-	if(isset($user->physicaldetails))
+		if(!isset($user->physicaldetails))
 		{
-			if(empty($user->physicaldetails))
-			$percentage = $percentage - $statusArray['physical'];	
+			$percentage = $percentage - $statusArray['physical'];
+			//$physical = true;
+			
 		}
-	if(isset($user->educations))
+		if(!isset($user->educations))
 		{
-			if(empty($user->educations))
-			$percentage = $percentage - $statusArray['education'];		
+			$percentage = $percentage - $statusArray['education'];
+			//$education = true;
+				
 		}
-	if(isset($user->habits))
+		if(!isset($user->habits))
 		{
-			if(empty($user->habits))
-			$percentage = $percentage - $statusArray['habit'];	
+			$percentage = $percentage - $statusArray['habit'];
+			//$habits = true;
+			
 		}
-	if(isset($user->familyprofiles))
+		if(!isset($user->familyprofiles))
 		{
-		if(empty($user->familyprofiles))
-			$percentage = $percentage - $statusArray['family'];		
+			$percentage = $percentage - $statusArray['family'];
+			//$family = true;
+					
 		}
-	if(isset($user->partnerpreferences))
+		if(!isset($user->partnerpreferences))
 		{
-			if(empty($user->partnerpreferences))
 			$percentage = $percentage - $statusArray['partner'];
+			//$partner  = true;
+		
 		}
-	if(isset($user->hobies))
+		if(!isset($user->hobies))
 		{
-			if(empty($user->hobies))
 			$percentage = $percentage - $statusArray['hobby'];
+			//$hobbies = false;
+		
 		}
-	if(isset($user->horoscopes))
+		if(!isset($user->horoscopes))
 		{
-			if(empty($user->horoscopes))
-			{
 				$percentage = $percentage - $statusArray['astro'];
-				$astro = true;
-			}
+				//$astro = true;
 		}
-	if(isset($user->references))
-		{
-			if(empty($user->references))
+			if(sizeof($user->references) == 0 )
 			{
 				$percentage = $percentage - $statusArray['reference'];
-				$reference = true;
+				//$reference = true;
 			}
-		}
-		if(isset($user->documents))
-		{
-			if(empty($user->documents))
+			if(sizeof($user->documents) == 0)
 			{
 				$percentage = $percentage - $statusArray['documents'];
-				$document = true;
+				//$document = true;
 			}
-		}
 	
 		if(isset($user->album))
 		{
 			$album = $user->album(array('condition'=>'type=1'));
-			if(isset($album) && empty($album)){
+			if(sizeof($album) == 0){
 			$percentage = $percentage - $statusArray['album'];
-			$album = true;				
+			//$album = true;				
 			}
 		}
 	
 		if(isset($user->photos))
 		{
 			$profileImage = $user->photos(array('condition'=>'profileImage=1'));
-			if(isset($profileImage) && empty($profileImage))
+			if(sizeof($profileImage) == 0)
 			{
 			$percentage = $percentage - $statusArray['profile'];
-			$profile = true;
+			//$profile = true;
 			}
 		}
 	
 		if($percentage != 100)
-		$this->render('complete',array('percent'=>$percentage,'astro'=>$astro,'profile'=>$profile,'album'=>$album,'document'=>$document,'reference'=>$reference));
+		$this->render('complete',
+		array('percent'=>$percentage,'astro'=>$astro,'profile'=>$profile,'album'=>$album,'document'=>$document,'reference'=>$reference,
+		'profile'=>$profile,
+		'family'=> $family,
+		'document'=>$document,
+		'astro'=> $astro,
+		'reference'=> $reference,
+		'contact'=> $contact,
+		'physical' => $physical,
+		'education' => $education,
+		'partner' => $partner,
+		'hobbies' => $hobbies,
+		));
 		else
 		$this->forward('index');
 	}

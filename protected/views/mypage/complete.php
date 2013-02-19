@@ -30,6 +30,72 @@
 				</div>
 			</li>
 		</ul>
+		
+		<?php 
+		if($contact) 
+		{?>
+		
+		<ul class="accOverview pTB15">
+			<li>
+				<h2>Contact details not yet added : <a href="/mypage/profile">Update Now</a></h2>
+			</li>
+			<li>
+				<p class="tCenter">Please add your contact details to get responses from better matches.</p> 
+			</li>
+		</ul>
+		<?php }?>
+		
+		<?php if($family) {?>
+		<ul class="accOverview pTB15">
+			<li>
+				<h2>Family details not yet added : <a href="/mypage/profile">Update Now</a></h2>
+			</li>
+			<li>
+				<p class="tCenter">Please add your family details to get responses from better matches.</p>
+			</li>
+		</ul>
+		<?php }?>
+		<?php if($physical) {?>
+		<ul class="accOverview pTB15">
+			<li>
+				<h2>Physical details not yet added : <a href="/mypage/profile">Update Now</a></h2>
+			</li>
+			<li>
+				<p class="tCenter">Please add your physical details to get responses from better matches.</p>
+			</li>
+		</ul>
+		<?php } ?>
+		<?php if($education) {?>
+		<ul class="accOverview pTB15">
+			<li>
+				<h2>Education details not yet added : <a href="/mypage/profile">Update Now</a></h2>
+			</li>
+			<li>
+				<p class="tCenter">Please add your education details to get responses from better matches.</p>
+			</li>
+		</ul>
+		<?php }?>
+		<?php if($partner) { ?>
+		<ul class="accOverview pTB15">
+			<li>
+				<h2>Partner preference details not yet added : <a href="/mypage/profile">Update Now</a></h2>
+			</li>
+			<li>
+				<p class="tCenter">Please add your partner preference details to get responses from better matches.</p>
+			</li>
+		</ul>
+		<?php } ?>
+		<?php if($hobbies) { ?>
+		<ul class="accOverview pTB15">
+			<li>
+				<h2>Hobbies details not yet added : <a href="/mypage/profile">Update Now</a></h2>
+			</li>
+			<li>
+				<p class="tCenter">Please add your hobbies details to get responses from better matches.</p>
+			</li>
+		</ul>
+		<?php  } ?>
+		
 		<?php if($profile) 
 		{?>
 		<ul class="accOverview pTB15">
@@ -95,7 +161,7 @@
 		<?php }?>
 		<ul class="accOverview pTB15">
 			<li class="visitorBtnC mT20">
-				<a href="/mypage">Skip Now</a>
+				<a href="/mypage/profile">View Profile</a>
 			</li>
 		</ul>
     </section>

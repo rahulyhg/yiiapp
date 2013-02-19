@@ -94,7 +94,7 @@
 		$caste = Caste::model()->findbyPk($user->userpersonaldetails->casteId);
 		?>
 			<div id="caste" class="special width90">
-			<?php if(isset($user->userpersonaldetails->religion))echo $user->userpersonaldetails->religion->name; else echo $religion->name ;?>
+			<?php echo $religion->name ;?>
 				-
 				<?php if(isset($model->userpersonaldetails->caste))echo $model->userpersonaldetails->caste->name;else echo $caste->name ?>
 				<a> edit</a>
@@ -187,7 +187,7 @@
 		</div>
 		<div class="info">
 					<?php
-			echo CHtml::dropDownList('place',null,array(),array('prompt' => 'Places','class'=>'validate[required] wid150')); ?>
+			echo CHtml::dropDownList('place',null,array(),array('prompt' => 'Places','class'=>'wid150')); ?>
 		</div>
 	</li>
 </ul>
