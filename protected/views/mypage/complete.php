@@ -30,7 +30,14 @@
 				</div>
 			</li>
 		</ul>
-		
+		<ul class="accOverview pTB15">
+			<li>
+				<p class="tCenter"> By filling up your complete details, you increase your chance of getting more relevant responses. Go to view profile below to complete your profile.</p>
+			</li>
+			<li class="visitorBtnC mT20">
+				<a href="/mypage/profile">View Profile</a>
+			</li>
+		</ul>
 		<?php 
 		if($contact) 
 		{?>
@@ -159,9 +166,5 @@
 			</li>
 		</ul>
 		<?php }?>
-		<ul class="accOverview pTB15">
-			<li class="visitorBtnC mT20">
-				<a href="/mypage/profile">View Profile</a>
-			</li>
-		</ul>
+		
     </section>

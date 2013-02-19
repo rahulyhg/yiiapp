@@ -32,4 +32,3 @@
 			<p>Contact members directly <br /> Send personalised messaages <br /> View Album, Documents, and contact details <br /> View horoscope of members <br /> &nbsp;</p>
 		</div>
 	</section>
-

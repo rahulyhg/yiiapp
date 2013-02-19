@@ -163,8 +163,8 @@
 						Star
 					</div>
 					<div class="info" id="letters">
-					<?php $records = SignsMaster::model()->findAll("active = 1");
-							$list = CHtml::listData($records, 'signId', 'name');
+					<?php $records = AstrodateMaster::model()->findAll("active = 1");
+							$list = CHtml::listData($records, 'astrodateId', 'name');
 						    echo CHtml::dropDownList('star',null,$list,array('class'=>'left ar','multiple'=>'multiple')); ?>
 						
 						<div class="ar-btn">
@@ -318,6 +318,7 @@
 						</select>
 					</div>
 				</li>
+				<!-- 
 				<li>
 					<div class="title">
 						Panchayath/Municipality/ <br />Corperation
@@ -325,7 +326,7 @@
 					<div class="info" id="letters">
 					<?php $records = Places::model()->findAll("active = 1");
 							$list = CHtml::listData($records, 'placeId', 'name');
-						    echo CHtml::dropDownList('place',null,$list,array('class'=>'left ar','multiple'=>'multiple')); ?>
+						    echo CHtml::dropDownList('place',null,array(),array('class'=>'left ar','multiple'=>'multiple')); ?>
 						
 						<div class="ar-btn">
 							<input class="add type2" value="Add" onclick="return add('place','place1')" type="button">
@@ -335,6 +336,7 @@
 						</select>
 					</div>
 				</li>
+				 -->
 				<li>
 					<div class="title">
 						Occupation
@@ -409,8 +411,7 @@ $(document).ready(function(){
 		$("#userPartner").validationEngine('hideAll');
          return false;                         // prevent reset button from resetting again
     });
-        
-    
+
   });
 
 </script>

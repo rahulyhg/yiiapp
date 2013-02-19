@@ -184,11 +184,11 @@
 					<div class="info">
 						<?php 
 							if(isset($parnter->star))
-							$records = SignsMaster::model()->findAll(array('condition'=> "signId NOT IN({$parnter->star})"));
+							$records = AstrodateMaster::model()->findAll(array('condition'=> "astrodateId NOT IN({$parnter->star})"));
 						    else
-						   $records = SignsMaster::model()->findAll("active = 1");
+						   $records = AstrodateMaster::model()->findAll("active = 1");
 						
-							$list = CHtml::listData($records, 'signId', 'name');
+							$list = CHtml::listData($records, 'astrodateId', 'name');
 						    echo CHtml::dropDownList('star',null,$list,array('class'=>'left ar','multiple'=>'multiple')); ?>
 									
 							<div class="ar-btn">
@@ -197,10 +197,10 @@
 							</div>
 							<?php 
 							if(isset($parnter->star))
-							$records = SignsMaster::model()->findAll(array('condition'=> "signId NOT IN({$parnter->star})"));
+							$records = AstrodateMaster::model()->findAll(array('condition'=> "astrodateId NOT IN({$parnter->star})"));
 						    else
 						   $records = array();
-							$list = CHtml::listData($records, 'signId', 'name');
+							$list = CHtml::listData($records, 'astrodateId', 'name');
 						    echo CHtml::dropDownList('star1[]',null,$list,array('class'=>'right ar','id'=>'star1','multiple'=>'multiple')); ?>
 							
 						</div>
@@ -452,6 +452,7 @@
 					
 					</div>
 				</li>
+				<!-- 
 				<li>
 					<div class="title">
 						Panchayath/Municipality/ <br />Corperation
@@ -483,6 +484,7 @@
 						    echo CHtml::dropDownList('place1[]',null,$list,array('class'=>'right ar','id'=>'place1','multiple'=>'multiple')); ?>
 					</div>
 				</li>
+				 -->
 				<li>
 					<div class="title">
 						Occupation

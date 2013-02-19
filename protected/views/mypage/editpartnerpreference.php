@@ -153,8 +153,8 @@
 						Star
 					</div>
 					<div class="info" id="letters">
-					<?php $records = SignsMaster::model()->findAll("active = 1");
-							$list = CHtml::listData($records, 'signId', 'name');
+					<?php $records = AstrodateMaster::model()->findAll("active = 1");
+							$list = CHtml::listData($records, 'astrodateId', 'name');
 						    echo CHtml::dropDownList('star',null,$list,array('class'=>'left ar','multiple'=>'multiple')); ?>
 						
 						<div class="ar-btn">
@@ -308,6 +308,7 @@
 						</select>
 					</div>
 				</li>
+				<!--  
 				<li>
 					<div class="title">
 						Panchayath/Municipality/ <br />Corperation
@@ -325,6 +326,7 @@
 						</select>
 					</div>
 				</li>
+				-->
 				<li>
 					<div class="title">
 						Occupation

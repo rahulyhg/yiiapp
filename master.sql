@@ -77,7 +77,7 @@ insert into signs_master(name) values ("Aries"), ("Taurus"),("Gemini"), ("Cancer
 
 -- astrodate_master table
 
-insert into astrodate_master(name) values ("Aswathi"), ("Bharani"),("Karthika"), ("Rohini"), ("Makayiram"), ("Management- BBA/MBA") , ("Thiruvathira") , 
+insert into astrodate_master(name) values ("Aswathi"), ("Bharani"),("Karthika"), ("Rohini"), ("Makayiram"),("Thiruvathira") , 
 
 ("Punartham") , ("Pooyam") , ("Ayilyam"), ("Magam"), ("Pooram"), ("Uthram"),("Atham"), ("Chithira"), ("Chothi"), ("Vishakham"), ("Anizham"), ("Ketta"), 
 

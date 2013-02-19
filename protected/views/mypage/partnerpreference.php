@@ -179,6 +179,7 @@
 					?></strong> 
 				</div>
 			</li>
+			<!--  
 			<li>
 				<div class="leftC">Panchayath/Municipality/ <br />Corperation</div>
 				<div class="rightC">
@@ -188,6 +189,7 @@
 					?></strong> 
 				</div>
 			</li>
+			 -->
 			<li>
 				<div class="leftC">Occupation</div>
 				<div class="rightC">
