@@ -99,7 +99,7 @@ $user = Yii::app()->session->get('user');
 					</div>
 				</li>
 				<li>
-					<div class="leftCt">Activity status	</div>
+					<div class="leftCt">Last Visited</div>
 					<div class="rightCt">
 						<strong>:</strong> <span><?php echo Utilities::getUserActivityStatus($model);?></span>
 					</div>

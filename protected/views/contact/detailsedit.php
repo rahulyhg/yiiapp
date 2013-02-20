@@ -12,7 +12,8 @@
 								Communication Address 
 							</div>
 								<?php $address = Address::model()->findAll(array('condition'=> "userId = {$user->userId} and addresType = 1"));
-					$caddress = $address[0];
+								if(isset($address) && isset($address[0]))
+								$caddress = $address[0];
 					?>
 							
 							<div class="info">
@@ -67,7 +68,8 @@
 								Permanent Address
 							</div>
 							<?php $address = Address::model()->findAll(array('condition'=> "userId = {$user->userId} and addresType = 0"));
-					$paddress = $address[0];
+							if(isset($address) && isset($address[0]))
+							$paddress = $address[0];
 					?>
 							<div class="info">
 								<div class="inner-row">

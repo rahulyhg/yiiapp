@@ -15,12 +15,39 @@
 				<a href="<?php echo Utilities::createAbsoluteUrl('mypage','',array()); ?>" class="pName"><?php echo $user->name?></a>
 			</li>
         </ul>
+        <?php if($user->userType == 1) { 
+        $payments = $user->payment(array('condition'=>"actionItem = 'membership'",'order'=> 'startdate DESC limit 0,1'));
+        if(isset($payments) && isset($payments[0]))
+        {
+        	$payment = $payments[0]
+		?>
 		<ul class="left-bar-data">
 			<li>
-				<div class="moreDay"><span>03</span> More Days</div>
-				<div class="remain">Remaining. <a href="recharge-now.htm" >Re-Charge Now</a></div>
+			<?php 
+        	$currentDate = new DateTime('now');
+        	$date = new DateTime($payment->startdate);
+        	$endDate = new DateTime($payment->startdate);
+			$endDate->modify('+3 months');
+			if($endDate > $currentDate) {
+			$balance = $currentDate->diff($endDate);
+			?>
+			<div class="moreDay"><span><?php echo $balance->format('%a');?></span> More Days</div>
+				<div class="remain">Remaining. <a href="/payment/recharge" >Re-Charge Now</a></div>
+			<?php 
+			
+			}
+			else 
+			{ ?>
+			<div class="moreDay">Membership</div>
+			<div class="remain">Expired<a href="/payment/recharge" >Re-Charge Now</a></div>	
+			<?php 
+			}
+			?>
 			</li>
         </ul>
+       <?php 	
+        }	
+        }?>
         <ul class="left-bar-data">
             <li><a href="<?php echo Utilities::createAbsoluteUrl('mypage','index',array()); ?>" class="select headLink">My Page</a></li>
             <li><a href="<?php echo Utilities::createAbsoluteUrl('mypage','profile',array()); ?>" class="headLink">My Profile</a></li>

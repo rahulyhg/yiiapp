@@ -13,6 +13,6 @@
 				Message candidates directly
 			</p>
 			<div class="divider"> </div>
-			<a class="subNow" href="subscribe-now.htm">Subscribe Now</a>
+			<a class="subNow" href="/payment/recharge">Subscribe Now</a>
 		</div>
 	</aside>
