@@ -150,7 +150,7 @@ class Utilities
    	foreach ($result as $value) {
    		$valuString = $valuString.','. $value->name;
    	}
- 	return $valuString;
+ 	return trim($valuString, ",");
    	}
    	else
    	return 'Not specified';
@@ -167,7 +167,7 @@ class Utilities
  	foreach ($arrayIds as $value) {
 		$stringValue = $stringValue.','.$arrayToFetch[$value];
  	}
-	return $stringValue; 	
+	return trim($valuString, ","); 	
  	}
  	else 
  	return "Not specified";

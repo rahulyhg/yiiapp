@@ -369,24 +369,23 @@ $drink= Utilities::getDrink();
 						<strong>:</strong> <span><?php if(isset($partner->languages))echo Utilities::getValueForIds(new Languages(), $partner->languages, 'languageId')?></span>
 					</div>
 				</li>
+				<?php 
+				if(isset($partner->religion))
+				$religion = Religion::model()->findbyPk($partner->religion);
+				?>
 				<li>
 					<div class="leftCtn">Religion</div>
 					<div class="rightCtn">
-						<strong>:</strong> <span> <?php if(isset($partner->religion->name))echo $partner->religion->name?></span>
+						<strong>:</strong> <span> <?php if(isset($religion)) echo $religion->name?></span>
 					</div>
 				</li>
 				<li>
 					<div class="leftCtn">Caste</div>
 					<div class="rightCtn">
-						<strong>:</strong> <span> <?php if(isset($partner->caste->name))echo $partner->caste->name?></span>
+						<strong>:</strong> <span><?php if(isset($partner->caste))echo Utilities::getValueForIds(new Caste(), $partner->caste, 'casteId')?></span>
 					</div>
 				</li>
-				<li>
-					<div class="leftCtn">Sub Caste</div>
-					<div class="rightCtn">
-						<strong>:</strong> <span><?php if(isset($partner->subcaste))echo Utilities::getValueForIds(new Subcaste(), $partner->subcaste, 'subcasteId')?></span>
-					</div>
-				</li>
+				
 				<li>
 					<div class="leftCtn">Eating Habit</div>
 					<div class="rightCtn">
@@ -443,12 +442,7 @@ $drink= Utilities::getDrink();
 						<strong>:</strong> <span> <?php if(isset($partner->citizenship))echo Utilities::getValueForIds(new Country(), $partner->citizenship, 'countryId')?></span>
 					</div>
 				</li>
-				<li>
-					<div class="leftCtn">Residing City</div>
-					<div class="rightCtn">
-						<strong>:</strong> <span><?php if(isset($partner->places))echo Utilities::getValueForIds(new Places(), $partner->places, 'placeId')?></span>
-					</div>
-				</li>
+				
 			</ul>
 		</div>
 		<div class="editContr">

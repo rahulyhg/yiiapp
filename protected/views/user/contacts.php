@@ -102,10 +102,18 @@
 			<div id="casteList" style="display:none" >
 			<?php $records = Religion::model()->findAll("active = 1");
 		$list = CHtml::listData($records, 'religionId', 'name');
-		echo CHtml::dropDownList('religion',$user->userpersonaldetails->religionId,$list,array('empty' => 'Religion','class'=>'validate[required] wid150')); ?>
+		echo CHtml::dropDownList('religion',$user->userpersonaldetails->religionId,$list,array('empty' => 'Religion','class'=>'validate[required] wid150','ajax' => array(
+                        'type'=>'POST',
+                        'url'=>CController::createUrl('Ajax/updateCaste'), 
+                        'dataType'=>'json',
+                        'data'=>array('religionId'=>'js:this.value'),  
+                        'success'=>'function(data) {
+                        $("#caste1").html(data.dropDownCastes);
+                        }',
+            ))); ?>
 		<?php $records = Caste::model()->findAll("active = 1");
 		$list = CHtml::listData($records, 'casteId', 'name');
-		echo CHtml::dropDownList('caste',$user->userpersonaldetails->casteId,$list,array('empty' => 'Caste','class'=>'validate[required] wid150')); ?>
+		echo CHtml::dropDownList('caste1',$user->userpersonaldetails->casteId,$list,array('empty' => 'Caste','id'=>'caste1','class'=>'validate[required] wid150')); ?>
 			</div>
 			</div>
 	</li>
