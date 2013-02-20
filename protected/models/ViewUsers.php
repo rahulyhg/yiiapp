@@ -17,6 +17,7 @@
  * @property integer $handicapped
  * @property integer $highlighted
  * @property integer $userType
+ * @property integer $age
  * @property integer $mobileNo
  * @property integer $landLine
  * @property string $alternativeNo
@@ -25,20 +26,20 @@
  * @property string $googleIM
  * @property string $yahooIM
  * @property integer $visibility
- * @property integer $casteId
+ * @property string $casteId
  * @property string $caste
- * @property integer $religionId
+ * @property string $religionId
  * @property string $religion
- * @property integer $countryId
+ * @property string $countryId
  * @property string $country
- * @property integer $stateId
+ * @property string $stateId
  * @property string $state
- * @property integer $distictId
+ * @property string $districtId
  * @property string $district
- * @property integer $placeId
+ * @property string $placeId
  * @property string $place
- * @property integer $mobilePhone
- * @property integer $landPhone
+ * @property string $mobilePhone
+ * @property string $landPhone
  * @property integer $intercasteable
  * @property integer $createdBy
  * @property integer $maritalStatus
@@ -46,30 +47,22 @@
  * @property integer $weight
  * @property integer $bodyType
  * @property integer $complexion
- * @property integer $physicalStatus
- * @property integer $ageFrom
- * @property integer $ageTo
- * @property integer $partnerStatus
- * @property integer $haveChildren
- * @property integer $heightFrom
- * @property integer $heightTo
- * @property integer $partnerPhysicalStatus
- * @property integer $partnerReligion
- * @property integer $partnerCaste
- * @property integer $manglik
- * @property string $star
- * @property string $eatingHabits
- * @property string $drinkingHabits
- * @property string $smokingHabits
+ * @property integer $physicalstatus
+ * @property string $profileBlocked
+ * @property string $userDesc
+ * @property integer $dosham
+ * @property integer $sudham
+ * @property string $horoscope
+ * @property integer $food
+ * @property integer $smoking
+ * @property integer $drinking
  * @property string $languages
- * @property string $countries
- * @property string $states
- * @property string $districts
- * @property string $places
- * @property string $citizenship
- * @property string $occupation
+ * @property string $photo
+ * @property string $educationId
+ * @property string $educationName
+ * @property string $occupationId
+ * @property string $occupationName
  * @property integer $annualIncome
- * @property string $partnerDescription
  */
 class ViewUsers extends CActiveRecord
 {
@@ -99,16 +92,17 @@ class ViewUsers extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('motherTounge, active, handicapped, highlighted, userType, mobileNo, landLine, visibility, casteId, religionId, countryId, stateId, distictId, placeId, mobilePhone, landPhone, intercasteable, createdBy, maritalStatus, weight, bodyType, complexion, physicalStatus, ageFrom, ageTo, partnerStatus, haveChildren, heightFrom, heightTo, partnerPhysicalStatus, partnerReligion, partnerCaste, manglik, annualIncome', 'numerical', 'integerOnly'=>true),
-			array('userId, alternativeNo, heightId', 'length', 'max'=>20),
-			array('marryId, emailId, password', 'length', 'max'=>100),
-			array('name, caste, religion, country, state, district, place', 'length', 'max'=>250),
+			array('motherTounge, active, handicapped, highlighted, userType, age, mobileNo, landLine, visibility, intercasteable, createdBy, maritalStatus, weight, bodyType, complexion, physicalstatus, dosham, sudham, food, smoking, drinking, annualIncome', 'numerical', 'integerOnly'=>true),
+			array('userId, alternativeNo, casteId, religionId, countryId, stateId, districtId, placeId, heightId, educationId, occupationId', 'length', 'max'=>20),
+			array('marryId, emailId, password, horoscope, photo', 'length', 'max'=>100),
+			array('name, caste, religion, country, state, district, place, educationName, occupationName', 'length', 'max'=>250),
 			array('gender', 'length', 'max'=>1),
 			array('facebookUrl, skypeId, googleIM, yahooIM', 'length', 'max'=>255),
-			array('dob, createdOn, star, eatingHabits, drinkingHabits, smokingHabits, languages, countries, states, districts, places, citizenship, occupation, partnerDescription', 'safe'),
+			array('mobilePhone, landPhone', 'length', 'max'=>15),
+			array('dob, createdOn, profileBlocked, userDesc, languages', 'safe'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('userId, marryId, emailId, password, name, dob, gender, motherTounge, createdOn, active, handicapped, highlighted, userType, mobileNo, landLine, alternativeNo, facebookUrl, skypeId, googleIM, yahooIM, visibility, casteId, caste, religionId, religion, countryId, country, stateId, state, distictId, district, placeId, place, mobilePhone, landPhone, intercasteable, createdBy, maritalStatus, heightId, weight, bodyType, complexion, physicalStatus, ageFrom, ageTo, partnerStatus, haveChildren, heightFrom, heightTo, partnerPhysicalStatus, partnerReligion, partnerCaste, manglik, star, eatingHabits, drinkingHabits, smokingHabits, languages, countries, states, districts, places, citizenship, occupation, annualIncome, partnerDescription', 'safe', 'on'=>'search'),
+			array('userId, marryId, emailId, password, name, dob, gender, motherTounge, createdOn, active, handicapped, highlighted, userType, age, mobileNo, landLine, alternativeNo, facebookUrl, skypeId, googleIM, yahooIM, visibility, casteId, caste, religionId, religion, countryId, country, stateId, state, districtId, district, placeId, place, mobilePhone, landPhone, intercasteable, createdBy, maritalStatus, heightId, weight, bodyType, complexion, physicalstatus, profileBlocked, userDesc, dosham, sudham, horoscope, food, smoking, drinking, languages, photo, educationId, educationName, occupationId, occupationName, annualIncome', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -142,6 +136,7 @@ class ViewUsers extends CActiveRecord
 			'handicapped' => 'Handicapped',
 			'highlighted' => 'Highlighted',
 			'userType' => 'User Type',
+			'age' => 'Age',
 			'mobileNo' => 'Mobile No',
 			'landLine' => 'Land Line',
 			'alternativeNo' => 'Alternative No',
@@ -158,7 +153,7 @@ class ViewUsers extends CActiveRecord
 			'country' => 'Country',
 			'stateId' => 'State',
 			'state' => 'State',
-			'distictId' => 'Distict',
+			'districtId' => 'District',
 			'district' => 'District',
 			'placeId' => 'Place',
 			'place' => 'Place',
@@ -171,30 +166,22 @@ class ViewUsers extends CActiveRecord
 			'weight' => 'Weight',
 			'bodyType' => 'Body Type',
 			'complexion' => 'Complexion',
-			'physicalStatus' => 'Physical Status',
-			'ageFrom' => 'Age From',
-			'ageTo' => 'Age To',
-			'partnerStatus' => 'Partner Status',
-			'haveChildren' => 'Have Children',
-			'heightFrom' => 'Height From',
-			'heightTo' => 'Height To',
-			'partnerPhysicalStatus' => 'Partner Physical Status',
-			'partnerReligion' => 'Partner Religion',
-			'partnerCaste' => 'Partner Caste',
-			'manglik' => 'Manglik',
-			'star' => 'Star',
-			'eatingHabits' => 'Eating Habits',
-			'drinkingHabits' => 'Drinking Habits',
-			'smokingHabits' => 'Smoking Habits',
+			'physicalstatus' => 'Physicalstatus',
+			'profileBlocked' => 'Profile Blocked',
+			'userDesc' => 'User Desc',
+			'dosham' => 'Dosham',
+			'sudham' => 'Sudham',
+			'horoscope' => 'Horoscope',
+			'food' => 'Food',
+			'smoking' => 'Smoking',
+			'drinking' => 'Drinking',
 			'languages' => 'Languages',
-			'countries' => 'Countries',
-			'states' => 'States',
-			'districts' => 'Districts',
-			'places' => 'Places',
-			'citizenship' => 'Citizenship',
-			'occupation' => 'Occupation',
+			'photo' => 'Photo',
+			'educationId' => 'Education',
+			'educationName' => 'Education Name',
+			'occupationId' => 'Occupation',
+			'occupationName' => 'Occupation Name',
 			'annualIncome' => 'Annual Income',
-			'partnerDescription' => 'Partner Description',
 		);
 	}
 
@@ -222,6 +209,7 @@ class ViewUsers extends CActiveRecord
 		$criteria->compare('handicapped',$this->handicapped);
 		$criteria->compare('highlighted',$this->highlighted);
 		$criteria->compare('userType',$this->userType);
+		$criteria->compare('age',$this->age);
 		$criteria->compare('mobileNo',$this->mobileNo);
 		$criteria->compare('landLine',$this->landLine);
 		$criteria->compare('alternativeNo',$this->alternativeNo,true);
@@ -230,20 +218,20 @@ class ViewUsers extends CActiveRecord
 		$criteria->compare('googleIM',$this->googleIM,true);
 		$criteria->compare('yahooIM',$this->yahooIM,true);
 		$criteria->compare('visibility',$this->visibility);
-		$criteria->compare('casteId',$this->casteId);
+		$criteria->compare('casteId',$this->casteId,true);
 		$criteria->compare('caste',$this->caste,true);
-		$criteria->compare('religionId',$this->religionId);
+		$criteria->compare('religionId',$this->religionId,true);
 		$criteria->compare('religion',$this->religion,true);
-		$criteria->compare('countryId',$this->countryId);
+		$criteria->compare('countryId',$this->countryId,true);
 		$criteria->compare('country',$this->country,true);
-		$criteria->compare('stateId',$this->stateId);
+		$criteria->compare('stateId',$this->stateId,true);
 		$criteria->compare('state',$this->state,true);
-		$criteria->compare('distictId',$this->distictId);
+		$criteria->compare('districtId',$this->districtId,true);
 		$criteria->compare('district',$this->district,true);
-		$criteria->compare('placeId',$this->placeId);
+		$criteria->compare('placeId',$this->placeId,true);
 		$criteria->compare('place',$this->place,true);
-		$criteria->compare('mobilePhone',$this->mobilePhone);
-		$criteria->compare('landPhone',$this->landPhone);
+		$criteria->compare('mobilePhone',$this->mobilePhone,true);
+		$criteria->compare('landPhone',$this->landPhone,true);
 		$criteria->compare('intercasteable',$this->intercasteable);
 		$criteria->compare('createdBy',$this->createdBy);
 		$criteria->compare('maritalStatus',$this->maritalStatus);
@@ -251,30 +239,22 @@ class ViewUsers extends CActiveRecord
 		$criteria->compare('weight',$this->weight);
 		$criteria->compare('bodyType',$this->bodyType);
 		$criteria->compare('complexion',$this->complexion);
-		$criteria->compare('physicalStatus',$this->physicalStatus);
-		$criteria->compare('ageFrom',$this->ageFrom);
-		$criteria->compare('ageTo',$this->ageTo);
-		$criteria->compare('partnerStatus',$this->partnerStatus);
-		$criteria->compare('haveChildren',$this->haveChildren);
-		$criteria->compare('heightFrom',$this->heightFrom);
-		$criteria->compare('heightTo',$this->heightTo);
-		$criteria->compare('partnerPhysicalStatus',$this->partnerPhysicalStatus);
-		$criteria->compare('partnerReligion',$this->partnerReligion);
-		$criteria->compare('partnerCaste',$this->partnerCaste);
-		$criteria->compare('manglik',$this->manglik);
-		$criteria->compare('star',$this->star,true);
-		$criteria->compare('eatingHabits',$this->eatingHabits,true);
-		$criteria->compare('drinkingHabits',$this->drinkingHabits,true);
-		$criteria->compare('smokingHabits',$this->smokingHabits,true);
+		$criteria->compare('physicalstatus',$this->physicalstatus);
+		$criteria->compare('profileBlocked',$this->profileBlocked,true);
+		$criteria->compare('userDesc',$this->userDesc,true);
+		$criteria->compare('dosham',$this->dosham);
+		$criteria->compare('sudham',$this->sudham);
+		$criteria->compare('horoscope',$this->horoscope,true);
+		$criteria->compare('food',$this->food);
+		$criteria->compare('smoking',$this->smoking);
+		$criteria->compare('drinking',$this->drinking);
 		$criteria->compare('languages',$this->languages,true);
-		$criteria->compare('countries',$this->countries,true);
-		$criteria->compare('states',$this->states,true);
-		$criteria->compare('districts',$this->districts,true);
-		$criteria->compare('places',$this->places,true);
-		$criteria->compare('citizenship',$this->citizenship,true);
-		$criteria->compare('occupation',$this->occupation,true);
+		$criteria->compare('photo',$this->photo,true);
+		$criteria->compare('educationId',$this->educationId,true);
+		$criteria->compare('educationName',$this->educationName,true);
+		$criteria->compare('occupationId',$this->occupationId,true);
+		$criteria->compare('occupationName',$this->occupationName,true);
 		$criteria->compare('annualIncome',$this->annualIncome);
-		$criteria->compare('partnerDescription',$this->partnerDescription,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
