@@ -22,7 +22,7 @@
 			<li>
 				<div class="leftC">Account status </div>
 				<div class="rightC">
-					<strong>:</strong> <span>Subscibed  (10 Days Remaining)</span>
+					<strong>:</strong> <span><?php echo Utilities::getCurrentUserStatus($user)?> </span>
 				</div>
 			</li>
 			<li>
@@ -34,13 +34,13 @@
 			<li>
 				<div class="leftC">Registerd Contact No.</div>
 				<div class="rightC">
-					<strong>:</strong> <span><?php if(isset($user->userpersonaldetails)) echo $user->userpersonaldetails->mobilePhone ?>   <a href="#">Edit</a></span>
+					<strong>:</strong> <span><?php if(isset($user->userpersonaldetails)) echo $user->userpersonaldetails->mobilePhone ?>   </span>
 				</div>
 			</li>
 			<li>
 				<div class="leftC">Registered Email</div>
 				<div class="rightC">
-					<strong>:</strong> <span><?php if(isset($user->emailId)) echo $user->emailId ?>  <a href="#">Edit</a></span>
+					<strong>:</strong> <span><?php if(isset($user->emailId)) echo $user->emailId ?>  </span>
 				</div>
 			</li>
 			<li>
@@ -136,28 +136,52 @@
 					<strong>:</strong> <a href="#">12</a>
 				</div>
 			</li>
+			<?php $shorlist = $user->shortlist();
+			$shorts = 0;
+			$shortListed = Shortlist::model()->findAll(array('condition'=>"FIND_IN_SET('{$user->userId}',profileID)"));
+			if(isset($shortListed))
+			$shorts = sizeof($shortListed);
+			$visitIds = array();
+			if(isset($shorlist))
+			$visitIds = explode(",",$shorlist->profileID);
+			
+			
+			?>
 			<li>
 				<div class="leftC">Shortlisted you</div>
 				<div class="rightC">
-					<strong>:</strong> <a href="#">12</a>
+					<strong>:</strong> <a><?php echo $shorts?></a>
 				</div>
 			</li>
 			<li>
 				<div class="leftC">Shortlisted by you</div>
 				<div class="rightC">
-					<strong>:</strong> <a href="#">12</a>
+					<strong>:</strong> <a><?php echo sizeof($visitIds);?></a>
 				</div>
 			</li>
+			<?php $bookmarked = $user->bookmark;
+			$idcount = array();
+			
+			if(isset($bookmarked))
+			$idcount = explode(",",$bookmarked->profileIDs)			
+			?>
 			<li>
 				<div class="leftC">Your Book Mark</div>
 				<div class="rightC">
-					<strong>:</strong> <a href="#">12</a>
+					<strong>:</strong> <a><?php echo sizeof($idcount)?></a>
 				</div>
 			</li>
+			<?php 
+			$blockCount = 0;
+			$blocked = Profileblock::model()->findAll(array('condition'=>"FIND_IN_SET('{$user->userId}',profileIDs)"));
+			if(isset($blocked))
+			$blockCount = sizeof($blocked);
+			
+			?>
 			<li>
 				<div class="leftC">Persons who blocked by me </div>
 				<div class="rightC">
-					<strong>:</strong> <a href="#">12</a>
+					<strong>:</strong> <a><?php echo $blockCount?></a>
 				</div>
 			</li>
 			<li>

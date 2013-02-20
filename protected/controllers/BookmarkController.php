@@ -53,8 +53,16 @@ public function actionRemove()
 				{
 					$profileIds = explode(",", $usersList->bookmark->profileIDs);
 					$arr = array_diff($profileIds, array($_POST['userId']));
+					
+					if(sizeof($arr) > 0 ){
 					$usersList->bookmark->profileIDs = implode(",", $arr);
 					$usersList->bookmark->save();
+					}
+					else
+					{
+						$usersList->bookmark->deleteAll();
+						$usersList->bookmark = null;
+					}
 					echo json_encode(TRUE);
 					Yii::app()->end();
 				}

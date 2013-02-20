@@ -53,6 +53,11 @@ class GuestController extends Controller
 		$this->layout= '//layouts/popup';
 		$this->render('terms');
 	}
+	public function actionContact()
+	{
+		$this->layout= '//layouts/popup';
+		$this->render('contact');
+	}
 	
 	public function actionFeedback()
 	{

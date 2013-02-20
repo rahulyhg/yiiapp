@@ -1091,7 +1091,7 @@ class SearchController extends Controller
 			if(isset($user->name))
 			{
 						
-				if(isset($loggedUser)){
+				if(isset($loggedUser) && $loggedUser->marryId != $user->marryId ){
 					
 					$profileView = Profileviews::model()->findByAttributes(array('visitedId'=>$user->userId,'userID'=>$loggedUser->userId ));
 					if(isset($profileView))
