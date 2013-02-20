@@ -53,7 +53,13 @@ create table physicaldetails(physicalId BIGINT UNIQUE NOT NULL AUTO_INCREMENT, u
 
 -- ---- Tale for education----------
 
-create table education(edId BIGINT UNIQUE NOT NULL AUTO_INCREMENT, userId BIGINT NOT NULL, educationId BIGINT NOT NULL, occupationId BIGINT NOT NULL, employedIn TINYINT NOT NULL DEFAULT 0, yearlyIncome INT(11) NOT NULL, PRIMARY KEY(edId), FOREIGN KEY (userId) REFERENCES users(userId))ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;
+create table education(edId BIGINT UNIQUE NOT NULL AUTO_INCREMENT, userId BIGINT NOT NULL, 
+educationId BIGINT NOT NULL, occupationId BIGINT NOT NULL, employedIn TINYINT NOT NULL DEFAULT 0,
+yearlyIncome INT(11) NOT NULL, PRIMARY KEY(edId),
+FOREIGN KEY (userId) REFERENCES users(userId),
+FOREIGN KEY(educationId) REFERENCES education_master(educationId),
+FOREIGN KEY(occupationId) REFERENCES occupation_master(occupationId)
+)ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;
 
 
 -- ---- Table for habit------
