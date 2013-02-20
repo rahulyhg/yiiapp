@@ -4,7 +4,7 @@ class UserController extends Controller
 {
 	  public function beforeAction(CAction $action)
         {
-        	return true;
+        	
         		if($action->id == 'register')
         		return true;
                 $user = Yii::app()->session->get('user');
@@ -46,7 +46,7 @@ class UserController extends Controller
 				$user->gender = $_POST['gender'];
 				$user->motherTounge = $_POST['motherTounge'];
 				$user->createdOn = new CDbExpression('NOW()');
-				$user->active = '1';
+				$user->active = '0';
 				$user->save();
 					
 				//marrydoor ID updated
