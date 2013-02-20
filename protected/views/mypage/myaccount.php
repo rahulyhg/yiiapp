@@ -46,94 +46,94 @@
 			<li>
 				<div class="leftC">Profile visited by you</div>
 				<div class="rightC">
-					<strong>:</strong> <a href="#"><?php if(isset($user->profileUser)) 
+					<strong>:</strong> <?php if(isset($user->profileUser)) 
 				echo count($user->profileUser);
-		?></a>
+		?>
 				</div>
 			</li>
 			<li>
 				<div class="leftC">Your profile visitors</div>
 				<div class="rightC">
-					<strong>:</strong> <a href="#"><?php 
+					<strong>:</strong> <?php 
  				if(isset($profileCount))
  				echo $profileCount;
- 		?> </a>
+ 		?> 
 				</div>
 			</li>
 			<li>
 				<div class="leftC">Interest resived </div>
 				<div class="rightC">
-					<strong>:</strong> <a href="#"><?php
+					<strong>:</strong> <?php
 			$receiveInterest = $user->interestReceiver(array('condition'=>'status = 0'));
 				if(isset($receiveInterest))
 				echo count($receiveInterest);
-		?></a>
+		?>
 				</div>
 			</li>
 			<li>
 				<div class="leftC">Interest sent</div>
 				<div class="rightC">
-					<strong>:</strong> <a href="#"><?php 
+					<strong>:</strong> <?php 
 			$sent = $user->interestSender(array('condition'=>'status != 3'));
-		if(isset($sent)) echo count($sent);?></a>
+		if(isset($sent)) echo count($sent);?>
 				</div>
 			</li>
 			<li>
 				<div class="leftC">Interest Decliened by you</div>
 				<div class="rightC">
-					<strong>:</strong> <a href="#"><?php 
+					<strong>:</strong> <?php 
 			
 			$sendInterest = $user->interestReceiver(array('condition'=>'status= 2'));
 			if(isset($sendInterest))
 			echo count($sendInterest);
 		
-		?></a>
+		?>
 				</div>
 			</li>
 			<li>
 				<div class="leftC">Interest Decliened your</div>
 				<div class="rightC">
-					<strong>:</strong> <a href="#"><?php 
+					<strong>:</strong> <?php 
 				$decline = $user->interestReceiver(array('condition'=>'status = 1'));
 				if(isset($decline))
 				echo count($decline);
-		?></a>
+		?>
 				</div>
 			</li>
 			<li>
 				<div class="leftC">Message sent	</div>
 				<div class="rightC">
-					<strong>:</strong> <a href="#">12</a>
+					<strong>:</strong> 12
 				</div>
 			</li>
 			<li>
 				<div class="leftC">Message recived </div>
 				<div class="rightC">
-					<strong>:</strong> <a href="#">12</a>
+					<strong>:</strong> 12
 				</div>
 			</li>
 			<li>
 				<div class="leftC">Request received </div>
 				<div class="rightC">
-					<strong>:</strong> <a href="#">12</a>
+					<strong>:</strong> 
 				</div>
 			</li>
 			<li>
 				<div class="leftC">Request sent</div>
 				<div class="rightC">
-					<strong>:</strong> <a href="#">12</a>
+					<strong>:</strong> 
 				</div>
 			</li>
 			<li>
 				<div class="leftC">Request Decliened by you</div>
 				<div class="rightC">
-					<strong>:</strong> <a href="#">12</a>
+					<strong>:</strong> 
 				</div>
 			</li>
 			<li>
 				<div class="leftC">Request Decliened your </div>
 				<div class="rightC">
-					<strong>:</strong> <a href="#">12</a>
+					<strong>:</strong> 
 				</div>
 			</li>
 			<?php $shorlist = $user->shortlist();
@@ -150,13 +150,13 @@
 			<li>
 				<div class="leftC">Shortlisted you</div>
 				<div class="rightC">
-					<strong>:</strong> <a><?php echo $shorts?></a>
+					<strong>:</strong> <?php echo $shorts?>
 				</div>
 			</li>
 			<li>
 				<div class="leftC">Shortlisted by you</div>
 				<div class="rightC">
-					<strong>:</strong> <a><?php echo sizeof($visitIds);?></a>
+					<strong>:</strong> <?php echo sizeof($visitIds);?>
 				</div>
 			</li>
 			<?php $bookmarked = $user->bookmark;
@@ -168,7 +168,7 @@
 			<li>
 				<div class="leftC">Your Book Mark</div>
 				<div class="rightC">
-					<strong>:</strong> <a><?php echo sizeof($idcount)?></a>
+					<strong>:</strong> <?php echo sizeof($idcount)?>
 				</div>
 			</li>
 			<?php 
@@ -181,17 +181,27 @@
 			<li>
 				<div class="leftC">Persons who blocked by me </div>
 				<div class="rightC">
-					<strong>:</strong> <a><?php echo $blockCount?></a>
+					<strong>:</strong> <?php echo $blockCount?>
 				</div>
 			</li>
 			<li>
-				<div class="leftC"><a href="#">Click here</a> to De activate account </div>
+				<a href="<?php echo Utilities::createAbsoluteUrl('mypage','deactivate'); ?>" class="edit" id="footerPops">Click here</a> to Deactivate account
+				
 			</li>
 			<li>
-				<div class="leftC"><a href="#">Click here</a> to Delete account</div>
+				<a href="<?php echo Utilities::createAbsoluteUrl('mypage','delete'); ?>" class="edit" id="footerPops">Click here</a> to Delete account
 			</li>
 		</ul>
     </section>
         	<!-- right menu -->
 	<?php $this->widget('application.widgets.menu.Rightmenu'); ?> 
 	<!-- right menu ends -->
+	
+	<script type="text/javascript">
+$(document).ready(function(){
+    $('[id^=footerPops]').colorbox({iframe:true, width:"860", height:"900",overlayClose: false});
+    
+  });
+
+
+</script>

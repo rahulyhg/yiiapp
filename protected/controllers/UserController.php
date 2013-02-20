@@ -4,6 +4,7 @@ class UserController extends Controller
 {
 	  public function beforeAction(CAction $action)
         {
+        	return true;
         		if($action->id == 'register')
         		return true;
                 $user = Yii::app()->session->get('user');
@@ -45,7 +46,7 @@ class UserController extends Controller
 				$user->gender = $_POST['gender'];
 				$user->motherTounge = $_POST['motherTounge'];
 				$user->createdOn = new CDbExpression('NOW()');
-				$user->active = '0';
+				$user->active = '1';
 				$user->save();
 					
 				//marrydoor ID updated
@@ -139,10 +140,9 @@ class UserController extends Controller
 	
 	public function actionTest()
 	{
-		$user = Users::model()->findByPk(1);
-		Yii::app()->session->add('user',$user);
+		$user = Yii::app()->session->get('user');
 		$userPersonal = $user->userpersonaldetails;
-		$this->render('hobbies');
+		$this->render('contacts',array('user'=>$user,'userPersonal'=>$userPersonal));
 	}
 	
 	public function actionContact()
@@ -729,36 +729,7 @@ class UserController extends Controller
 	{
 		
 	}
-	public function actionDelete()
-	{
-		$user = Yii::app()->session->get('user');
-		if(isset($_POST['delete']))
-		{
-			$this->redirect(array("//site"));
-		}	
-		else 
-		{
-			$this->layout= '//layouts/single';
-			$this->render('delete');
-		}
-	}
-	public function actionDeactivate()
-	{
-		
-		$user = Yii::app()->session->get('user');
-		if(isset($_POST['deactivate']))
-		{
-			//deactivate the user and return to the home page
-			$this->redirect(array("//site"));
-			
-		}
-		else 
-		{
-			$this->layout= '//layouts/single';
-			$this->render('deactivate');
-		}
-			
-	}
+	
 	
 	public function actionIndex()
 	{

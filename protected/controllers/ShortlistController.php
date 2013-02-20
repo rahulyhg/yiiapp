@@ -19,7 +19,7 @@ class ShortlistController extends Controller
 		if(isset($usersList->shortlist)){
 		$userShort = $usersList->shortlist;
 		$condition = "userId in ($userShort->profileID)";
-		$users = Users::model()->findAll(array('condition'=>$condition,'order'=> 'createdOn DESC' ));
+		$users = Users::model()->findAll(array('condition'=>$condition,'order'=> 'createdOn DESC' ),'active=1');
 		
 		if(sizeof($users) > 0)
 		{

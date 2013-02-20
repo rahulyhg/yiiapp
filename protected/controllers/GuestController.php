@@ -13,7 +13,7 @@ class GuestController extends Controller
 		$this->layout= '//layouts/popup';
 		if(isset($_POST['email']))
 		{
-			$user = Users::model()->findByAttributes(array('emailId'=>$_POST['email']));
+			$user = Users::model()->findByAttributes(array('emailId'=>$_POST['email']),'active=1');
 			if(isset($user))
 			{
 				$emailSent = true;

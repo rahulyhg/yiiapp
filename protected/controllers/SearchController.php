@@ -423,7 +423,7 @@ class SearchController extends Controller
 				}
 				if(isset($blockIdList) && sizeof($blockId) > 0 )
 				$scondition .= " AND userId NOT IN({$blockIdList})";
-				$users = Users::model()->findAll(array('condition'=>$scondition,'order'=> 'createdOn DESC' ));
+				$users = Users::model()->findAll(array('condition'=>$scondition,'order'=> 'createdOn DESC'),'active=1');
 
 				$highLightUser = array();
 				$normalUser = array();
@@ -555,7 +555,7 @@ class SearchController extends Controller
 			}
 		
 		
-			$usersV = ViewUsers::model()->findAll(array('condition'=>$condition,'order'=> 'createdOn DESC' ));
+			$usersV = ViewUsers::model()->findAll(array('condition'=>$condition,'order'=> 'createdOn DESC' ),'active=1');
 		
 			
 		$userIds = array();
@@ -703,7 +703,7 @@ class SearchController extends Controller
 		}
 		
 		
-		$usersV = ViewUsers::model()->findAll(array('condition'=>$condition,'order'=> 'createdOn DESC' ));
+		$usersV = ViewUsers::model()->findAll(array('condition'=>$condition,'order'=> 'createdOn DESC' ),'active=1');
 		
 		
 		$userIds = array();
@@ -974,7 +974,7 @@ class SearchController extends Controller
 			}
 		}
 		
-		$usersV = ViewUsers::model()->findAll(array('condition'=>$condition,'order'=> 'createdOn DESC' ));
+		$usersV = ViewUsers::model()->findAll(array('condition'=>$condition,'order'=> 'createdOn DESC' ),'active=1');
 		
 		$userIds = array();
 		$userList = null;
@@ -1038,7 +1038,7 @@ class SearchController extends Controller
 		$users = array();
 		
 		if(!empty($userList))
-		$users = Users::model()->findAll(array('condition'=>$scondition,'order'=> 'createdOn DESC' ));
+		$users = Users::model()->findAll(array('condition'=>$scondition,'order'=> 'createdOn DESC' ),'active=1');
 		
 		
 		if(sizeof($users) > 0 )
@@ -1086,7 +1086,7 @@ class SearchController extends Controller
 	public function actionByid(){
 		if(isset($_GET['id']))
 		{
-			$user = Users::model()->findByAttributes(array('marryId'=>$_GET['id']));
+			$user = Users::model()->findByAttributes(array('marryId'=>$_GET['id']),'active=1');
 			$loggedUser = Yii::app()->session->get('user');
 			if(isset($user->name))
 			{
@@ -1193,7 +1193,7 @@ class SearchController extends Controller
 				
 			}
 			
-		$users = Users::model()->findAll(array('condition'=>$condition,'order'=> 'createdOn DESC' ));
+		$users = Users::model()->findAll(array('condition'=>$condition,'order'=> 'createdOn DESC' ),'active=1');
 		
 		$highLightUser = array();
 		$normalUser = array();

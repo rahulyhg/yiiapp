@@ -225,7 +225,7 @@ class InterestController extends Controller
 		}
 		$userIds = implode(",", $userId);
 		$condition = "userId in ($userIds)";
-		$users = ViewUsers::model()->findAll(array('condition'=>$condition,'order'=> 'createdOn DESC' ));
+		$users = ViewUsers::model()->findAll(array('condition'=>$condition,'order'=> 'createdOn DESC' ),'active=1');
 		$this->render('decline',array('user'=>$users,'interest'=>$userInterest));
 		}
 		else
@@ -251,7 +251,7 @@ class InterestController extends Controller
 		}
 		$userIds = implode(",", $userId);
 		$condition = "userId in ($userIds)";
-		$users = ViewUsers::model()->findAll(array('condition'=>$condition,'order'=> 'createdOn DESC' ));
+		$users = ViewUsers::model()->findAll(array('condition'=>$condition,'order'=> 'createdOn DESC' ),'active=1');
 		$this->render('receive',array('user'=>$users,'interest'=>$userInterest));
 		}
 		else

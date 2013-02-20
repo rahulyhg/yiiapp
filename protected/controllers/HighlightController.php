@@ -61,7 +61,7 @@ class HighlightController extends Controller
 	{
 		$user = $user = Yii::app()->session->get('user');
 		$condition = "highlighted = 1";
-		$users = Users::model()->findAll(array('condition'=>$condition,'order'=> 'createdOn DESC' ));
+		$users = Users::model()->findAll(array('condition'=>$condition,'order'=> 'createdOn DESC' ),'active=1');
 		
 		if(sizeof($users) > 0)
 		{

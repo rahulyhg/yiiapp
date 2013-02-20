@@ -24,7 +24,7 @@ class UserIdentity extends CUserIdentity
 			$this->errorCode=self::ERROR_USERNAME_INVALID;
 		else if(isset($this->username) && isset($this->password))
 		{
-			$condition = " (marryId = '{$this->username}' OR emailId = '{$this->username}' ) AND password = md5('{$this->password}') ";
+			$condition = " (marryId = '{$this->username}' OR emailId = '{$this->username}' ) AND password = md5('{$this->password}')  AND active = 1 ";
 			$record = Users::model()->find(array('condition' => $condition));
 			
 			if(isset($record) && $record['emailId'] != null)

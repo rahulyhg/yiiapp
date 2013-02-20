@@ -18,7 +18,7 @@ class BookmarkController extends Controller
 		if(isset($usersList->bookmark)){
 		$userBook = $usersList->bookmark;
 		$condition = "userId in ($userBook->profileIDs)";
-		$users = Users::model()->findAll(array('condition'=>$condition,'order'=> 'createdOn DESC' ));
+		$users = Users::model()->findAll(array('condition'=>$condition,'order'=> 'createdOn DESC' ),'active =1');
 		
 		if(sizeof($users) > 0)
 		{

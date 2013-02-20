@@ -94,7 +94,7 @@ class MypageController extends Controller
 				
 				$users = Users::model()->findAll(array(
 				'condition'=>$scondition,
-				'order'=> 'createdOn DESC' ));
+				'order'=> 'createdOn DESC' ),'active=1');
 
 				
 
@@ -805,5 +805,35 @@ public function actionEditdocument()
   		$settings = $privacy->find("userId=".$user->userId. " and items='album'");
 		$this->layout= '//layouts/popup';
 		$this->render('editprofilephoto',array('photos'=>$photosList,'user'=>$user,'settings'=>$settings));
+	}
+	
+	public function actionDelete()
+	{
+		if(isset($_POST['delete']))
+		{
+			//delete the user
+			$this->redirect(array("//site"));
+		}	
+		else 
+		{
+			$this->layout= '//layouts/popup';
+			$this->render('delete');
+		}
+	}
+	public function actionDeactivate()
+	{
+		
+		if(isset($_POST['deactivate']))
+		{
+			//deactivate the user and return to the home page
+			$this->redirect(array("//site"));
+			
+		}
+		else 
+		{
+			$this->layout= '//layouts/popup';;
+			$this->render('deactivate');
+		}
+			
 	}
 }

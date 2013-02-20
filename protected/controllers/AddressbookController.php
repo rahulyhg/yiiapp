@@ -20,7 +20,7 @@ class AddressbookController extends Controller
 		if(isset($usersList->addressBook)){
 		$userBook = $usersList->addressBook;
 		$condition = "userId in ($userBook->visitedId)";
-		$users = Users::model()->findAll(array('condition'=>$condition,'order'=> 'createdOn DESC' ));
+		$users = Users::model()->findAll(array('condition'=>$condition,'order'=> 'createdOn DESC' ),'active=1');
 		
 		if(sizeof($users) > 0)
 		{
