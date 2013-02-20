@@ -362,7 +362,7 @@ class SearchController extends Controller
 
 			if(isset($_POST['district']) && !empty($_POST['district']))
 			{
-				$condition .= " AND distictId = {$_POST['district']}";
+				$condition .= " AND districtId = {$_POST['district']}";
 				$district = Districts::model()->findByPk($_POST['district']);
 				$searchText.= "District is $district->name , ";
 			}
@@ -829,7 +829,7 @@ class SearchController extends Controller
 		$district = $_POST['district'];
 		$districtModel = Districts::model()->findByPK($district);
 		$districtName = $districtModel->name;
-		$condition .= " AND distictId = {$district}";
+		$condition .= " AND districtId = {$district}";
 		$searchText.= "District is {$districtName} , ";
 		}
 		

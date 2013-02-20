@@ -307,7 +307,7 @@ userId BIGINT NOT NULL, profileIDs text NOT NULL, PRIMARY KEY(profileBlockId)
 DROP VIEW IF EXISTS view_users;
 
 CREATE VIEW view_users AS SELECT U.*, FLOOR( DATEDIFF( CURRENT_DATE, U.dob) /365 ) as age,UC.mobileNo,UC.landLine,UC.alternativeNo,UC.facebookUrl,UC.skypeId,UC.googleIM,UC.yahooIM,UC.visibility,
-UP.casteId as casteId,C.name as caste,UP.religionId as religionId, R.name as religion,UP.countryId,CO.name as country,UP.stateId,S.name as state,UP.distictId,D.name as district,UP.placeId as placeId, PL.name as place,UP.mobilePhone,UP.landPhone,UP.intercasteable,UP.createdBy,UP.maritalStatus,
+UP.casteId as casteId,C.name as caste,UP.religionId as religionId, R.name as religion,UP.countryId,CO.name as country,UP.stateId,S.name as state,UP.districtId,D.name as district,UP.placeId as placeId, PL.name as place,UP.mobilePhone,UP.landPhone,UP.intercasteable,UP.createdBy,UP.maritalStatus,
 P.heightId,P.weight,P.bodyType,P.complexion,P.physicalstatus,PB.profileIDs as profileBlocked,FP.userDesc as userDesc,
 H.dosham as dosham,H.sudham as sudham,H.horoscopeFile as horoscope,HA.food,HA.smoking,HA.drinking,HI.languages,PH.imageName as photo,
 EL.educationId as educationId,EM.name as educationName,EL.occupationId as occupationId,OM.name as occupationName,EL.yearlyIncome as annualIncome
@@ -320,7 +320,7 @@ LEFT JOIN caste C ON UP.casteId = C.casteId
 LEFT JOIN religion R ON UP.religionId = R.religionId
 LEFT JOIN country CO ON UP.countryId = CO.countryId
 LEFT JOIN states S ON UP.stateId = S.stateId
-LEFT JOIN districts D ON UP.distictId = D.districtId
+LEFT JOIN districts D ON UP.districtId = D.districtId
 LEFT JOIN places PL ON UP.placeId = PL.placeId
 LEFT JOIN education EL ON U.userId = EL.userId
 LEFT JOIN profileblock PB ON U.userId = PB.userId

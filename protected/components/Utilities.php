@@ -534,7 +534,7 @@ class Utilities
 	}
  	if(isset($parenterPrefObj->caste))
 	{
-		$condition .= " AND casteId = {$parenterPrefObj->caste}";
+		$condition .= " AND FIND_IN_SET('{$parenterPrefObj->caste}',caste)";
 	}
  	/*if(isset($parenterPrefObj->subcaste))
 	{
@@ -583,7 +583,7 @@ class Utilities
 	}
  if(isset($parenterPrefObj->districts))
 	{
-		$condition .= " AND FIND_IN_SET('{$parenterPrefObj->districts}',distictId)";
+		$condition .= " AND FIND_IN_SET('{$parenterPrefObj->districts}',districtId)";
 	}	
 	if(isset($parenterPrefObj->places))
 	{

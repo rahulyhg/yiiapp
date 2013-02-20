@@ -52,7 +52,7 @@ $heightArray = Utilities::getHeights()
 			<?php
 			$records = Districts::model()->findAll("active = 1");
 			$list = CHtml::listData($records, 'districtId', 'name');
-			echo CHtml::dropDownList('district',$user->userpersonaldetails->distictId,$list,array('prompt' => 'District','class'=>'validate[required] wid200')); ?>
+			echo CHtml::dropDownList('district',$user->userpersonaldetails->districtId,$list,array('prompt' => 'District','class'=>'validate[required] wid200')); ?>
 			</div>
 		</li>
 		<li>
