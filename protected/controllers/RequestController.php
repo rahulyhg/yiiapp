@@ -90,7 +90,7 @@ class RequestController extends Controller
 	public function actionSent()
 	{
 		
-		$user  = Yii::app()->session->get('user');
+		/*$user  = Yii::app()->session->get('user');
 		$sendInterest = $user->interestSender(array('condition'=>'status != 3'));
 		if(sizeof($sendInterest) > 0){
 		$userId = array();
@@ -107,7 +107,62 @@ class RequestController extends Controller
 		else
 		{
 			$this->render('sent');
+		}*/
+		
+		$user  = Yii::app()->session->get('user');
+		$action = (isset($_REQUEST['action'])) ? $_REQUEST['action'] : "";
+		$selectedIds = (isset($_REQUEST['selectedIds'])) ? $_REQUEST['selectedIds'] : "";
+		$selectedTab = (isset($_REQUEST['selectedTab'])) ? $_REQUEST['selectedTab'] : "received";
+		//var_dump($_REQUEST);die;
+		if($action != "" and $selectedIds != ""){
+			/*
+				request status
+				0 - new request received
+				1 - accepted the request
+				2 - declined the request
+				
+			*/
+			switch($action){
+				case  'accept':
+					   $query = "update requests set status = 1 where requestId = {$selectedIds}";
+					   break;
+				case  'decline':
+					   $query = "update requests set status = 2 where requestId = {$selectedIds}";
+					   break;
+				case  'delete':
+					   $query = "delete from requests  where requestId = {$selectedIds}";
+					   break;
+				case  'cancel':
+					   $query = "delete from requests  where senderId = {$user->userId} and requestId = {$selectedIds}";
+					   break;
+				default:
+					  $query = "update requests set status = 2 where requestId = {$selectedIds}";
+					   break;
+			}
+			Utilities::executeRawQuery($query);
 		}
+		//received interests
+		$sql = "SELECT * FROM view_requests WHERE receiverId = {$user->userId} and status = 0";
+		$command=Yii::app()->db->createCommand($sql);
+		$received = $command->queryAll();
+		
+		// express interest
+		$sql = "SELECT * FROM view_requests WHERE senderId = {$user->userId}";
+		$command=Yii::app()->db->createCommand($sql);
+		$sent = $command->queryAll();
+		
+		// accepted interest
+		$sql = "SELECT * FROM view_requests WHERE (receiverId = {$user->userId} or senderId = {$user->userId}) and status = 1";
+		$command=Yii::app()->db->createCommand($sql);
+		$accepted = $command->queryAll();
+		
+		// declined intrests
+		$sql = "SELECT * FROM view_requests WHERE (receiverId = {$user->userId} or senderId = {$user->userId}) and status = 2";
+		$command=Yii::app()->db->createCommand($sql);
+		$declined = $command->queryAll();
+		
+		$this->render('sent',array('received'=>$received,'sent'=>$sent,'accepted'=>$accepted,'declined'=>$declined,'tab'=>$selectedTab));
+		
 
 	}
 

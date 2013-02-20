@@ -96,9 +96,14 @@
             <li>
 				<a href="<?php echo Utilities::createAbsoluteUrl('request','sent',array()); ?>" class="headLink ">Request </a>
 				<div class="dataCont">
-					<div class="row"><a href="<?php echo Utilities::createAbsoluteUrl('request','sent',array()); ?>" class="innLink">Sent 75</a></div>
-					<div class="row"><a href="<?php echo Utilities::createAbsoluteUrl('request','receive',array()); ?>" class="innLink">Recieved 35</a></div>
-					<div class="row"><a href="<?php echo Utilities::createAbsoluteUrl('request','decline',array()); ?>" class="innLink">Declined 25</a></div>
+					<?php 
+					$receive = $user->requestReceiver(array('condition'=>'status = 0 or status = 1'));
+					$sent = $user->requestSender(array('condition'=>'senderId = '.$user->userId));
+					$decline = $user->requestReceiver(array('condition'=>'senderId = '.$user->userId.' or receiverId='.$user->userId.' and status = 1'));
+					?>
+					<div class="row"><a href="<?php echo Utilities::createAbsoluteUrl('request','sent',array('selectedTab'=>'sent')); ?>" class="innLink">Sent <?php echo count($sent)?></a></div>
+					<div class="row"><a href="<?php echo Utilities::createAbsoluteUrl('request','sent',array('selectedTab'=>'received')); ?>" class="innLink">Recieved <?php echo count($receive)?></a></div>
+					<div class="row"><a href="<?php echo Utilities::createAbsoluteUrl('request','sent',array('selectedTab'=>'declined')); ?>" class="innLink">Declined <?php echo count($decline);?></a></div>
 				</div>
 			</li>
         </ul>

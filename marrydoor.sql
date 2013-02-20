@@ -425,3 +425,42 @@ LEFT JOIN photos RP ON (I.receiverId = RP.userId AND RP.profileImage = 1);
 -- Table for Requests
 
 create table requests(requestId BIGINT UNIQUE NOT NULL AUTO_INCREMENT, senderId BIGINT NOT NULL, receiverId BIGINT NOT NULL, requestType tinyint(5) COMMENT '1-documents, 2- album, 3- family album, 4-astro, 5- contact, 6 - reference', status TINYINT NOT NULL DEFAULT 0, sendDate DATE NOT NULL, PRIMARY KEY(requestId), FOREIGN KEY (senderId) REFERENCES users(userId), FOREIGN KEY (receiverId) REFERENCES users(userID))ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;
+
+-- view to get the messages
+
+DROP VIEW IF EXISTS view_requests;
+
+CREATE VIEW view_requests AS SELECT RE.*, SU.userId as senderUserId, SU.marryId as senderMarryId,SU.emailId as senderEmailId, SU.name as senderName, FLOOR( DATEDIFF( CURRENT_DATE, SU.dob) /365 ) as senderAge,
+SU.gender senderGender, SU.motherTounge as senderMotherTounge, SU.userType as senderUserType,
+UP.casteId as senderCasteId,C.name as senderCaste,UP.religionId as senderReligionId, R.name as senderReligion,UP.countryId,CO.name as senderCountry,UP.stateId,S.name as senderState,UP.districtId,D.name as senderDistrict,UP.placeId as senderPlaceId, PL.name as senderPlace,
+P.heightId as senderHeightId,P.weight as senderWeight,P.bodyType as senderBodyType,P.complexion as senderComplexion,P.physicalstatus as senderPhysicalStatus,
+
+RU.userId as receiverUserId, RU.marryId as receiverMarryId,RU.emailId as receiverEmailId, RU.name as receiverName, FLOOR( DATEDIFF( CURRENT_DATE, RU.dob) /365 ) as receiverAge,
+RU.gender receiverGender, RU.motherTounge as receiverMotherTounge, RU.userType as receiverUserType,
+UP1.casteId as receiverCasteId,C1.name as receiverCaste,UP1.religionId as receiverReligionId, R1.name as receiverReligion,UP1.countryId as receiverCountryId,CO1.name as receiverCountry,UP1.stateId as receiverStateId,S1.name as receiverState,UP1.districtId as receiverDistictId,D1.name as receiverDistrict,UP1.placeId as receiverPlaceId, PL1.name as receiverPlace,
+P1.heightId as receiverHeightId,P1.weight as receiverWeight,P1.bodyType as receiverBodyType,P1.complexion as receiverComplexion,P1.physicalstatus as receiverPhysicalStatus,
+SP.photoId as senderPhotoId, SP.imageName as senderImageName, RP.photoId as receiverPhotoId, RP.imageName as receiverImageName
+FROM requests RE
+JOIN users SU ON RE.senderId = SU.userId
+LEFT JOIN userpersonaldetails UP ON RE.senderId = UP.userId
+LEFT JOIN physicaldetails P ON RE.senderId = P.userId
+LEFT JOIN caste C ON UP.casteId = C.casteId
+LEFT JOIN religion R ON UP.religionId = R.religionId
+LEFT JOIN country CO ON UP.countryId = CO.countryId
+LEFT JOIN states S ON UP.stateId = S.stateId
+LEFT JOIN districts D ON UP.districtId = D.districtId
+LEFT JOIN places PL ON UP.placeId = PL.placeId
+
+JOIN users RU ON RE.receiverId = RU.userId
+
+LEFT JOIN userpersonaldetails UP1 ON RE.receiverId = UP1.userId
+LEFT JOIN physicaldetails P1 ON RE.receiverId = P1.userId
+LEFT JOIN caste C1 ON UP1.casteId = C1.casteId
+LEFT JOIN religion R1 ON UP1.religionId = R1.religionId
+LEFT JOIN country CO1 ON UP1.countryId = CO1.countryId
+LEFT JOIN states S1 ON UP1.stateId = S1.stateId
+LEFT JOIN districts D1 ON UP1.districtId = D1.districtId
+LEFT JOIN places PL1 ON UP1.placeId = PL1.placeId
+
+LEFT JOIN photos SP ON (RE.senderId = SP.userId AND SP.profileImage = 1)
+LEFT JOIN photos RP ON (RE.receiverId = RP.userId AND RP.profileImage = 1);

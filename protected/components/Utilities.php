@@ -827,5 +827,10 @@ class Utilities
 		return $reqTypes[$type];
 	}
     
+	public static function getRequestTypeText($typeId = 1)
+	{
+		$reqTypes = array('1' =>'Documents','2'=>'Album','3'=>'Family Album','4'=>'Astro','5'=>'Contact','6'=>'Reference');
+		return $reqTypes[$type];
+	}
   
 }

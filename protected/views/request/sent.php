@@ -15,34 +15,42 @@
 */
 ?>
       <?php $this->widget('application.widgets.menu.Leftmenu'); ?>
+      <?php 
+		$user  = Yii::app()->session->get('user');
+		$heightArray = Utilities::getHeights(); ?>
        <section class="data-contnr2">
         <h1 class="mB10">Requests</h1>
         <div class="interstTab">
 			<div class="edit-option">
 				<div class="check">
-					<input type="checkbox" />
+					<input type="checkbox" onclick="toggleChecked(this.checked)" />
 					<span>Sellect All</span>
 				</div>
 				<div class="check">
-					<span><a href="#">Delete</a></span>
+					<span><a href="#" onclick="deleteRequests();">Delete</a></span>
 				</div>
 			</div>
+			<form name="frmInterest" id="frmInterest" method="post" action="<?php echo Utilities::createAbsoluteUrl('request','sent',array()); ?>">
+			<input type = "hidden" name="selectedIds" id="selectedIds" value="" />
+			<input type = "hidden" name="selectedTab" id="selectedTab" value="" />
+			<input type = "hidden" name="action" id="action" value="" />
+			</form>
 			<ul class="tab-head">
 				<li id="tab1">
-					<a id="tab1" href="#" class="select">Recieved</a>
+					<a id="tab1" href="#" <?php if($tab == 'received'){ ?>class="select" <?php }?>>Received</a>
 				</li>
 				<li id="tab2"> 
-					<a id="tab2" href="#" >Sent</a>
+					<a id="tab2" href="#" <?php if($tab == 'sent'){ ?>class="select" <?php }?> >Sent</a>
 				</li>
 				<li id="tab3">
-					<a id="tab3" href="#" >Accepted</a>
+					<a id="tab3" href="#" <?php if($tab == 'accepted'){ ?>class="select" <?php }?> >Accepted</a>
 				</li>
 				<li id="tab4">
-					<a id="tab4" href="#" >Declined</a>
+					<a id="tab4" href="#" <?php if($tab == 'declined'){ ?>class="select" <?php }?> >Declined</a>
 				</li>
 			</ul>
 			<!-- received starts here -->
-			<ul id="tab1_data" class="tab-data" style="display: block;">
+			<ul id="tab1_data" class="tab-data" <?php if($tab == 'received'){ ?> style="display: block;"<?php }else{ ?> style="display: none;" <?php }?>>
 				<li>
 					<div class="optns">
 						<div class="option_cont">
@@ -56,153 +64,31 @@
 						</div>
 					</div>
 				</li>
+				<?php if(!empty($received)):?>
+				<?php foreach($received as $receive):?>  
 				<li>
-					<input type="checkbox" />
-					<a href="#"><img src="./images/user/nayana.jpg" alt="" /></a>
+					<input type="checkbox" class="reqCheck" value="<?php echo $receive['requestId']; ?>" />
+					<a href="#"><img src="<?php echo Utilities::getProfileImage($receive['senderMarryId'],$receive['senderImageName']); ?>" alt="" /></a>
 					<div class="int_head">
-						<a href="#" >Biju George</a>
-						<span>(You recieved request on 15th Augest 2012)</span>
+						<a href="#" ><?php echo $receive['senderName']; ?></a>
+						<span>(You received request on <?php echo $receive['sendDate']; ?>)</span>
 					</div> 
-					<div class="pDetails">Chrishtian, R.c., 29 Years - 5' 4'', 167 cm</div>
-					<div class="pDetails">Ankamaly, Kerala, India</div>
-					<div class="pAction">A request for viewing your Album</div>
-					<a href="#" class="type6 accept">Accept</a>
-					<a href="#" class="type6 decline">Decline</a>
+					<div class="pDetails"><?php if(isset($receive['senderReligion']))echo $receive['senderReligion'] ;?>, <?php if(isset($receive['senderCaste']))echo $receive['senderCaste'] ;?>, <?php echo Utilities::getAgeFromDateofBirth($receive['senderAge']); ?> Years - <?php if(isset($receive['senderHeightId']))echo $heightArray[$receive['senderHeightId']]; ?></div>
+					<div class="pDetails"><?php if(isset($receive['senderPlace']))echo $receive['senderPlace'] ;?>, <?php if(isset($receive['senderState']))echo $receive['senderState'] ;?>, <?php if(isset($receive['senderCountry']))echo $receive['senderCountry'] ;?></div>
+					<div class="pAction">A request for viewing your <?php echo Utilities::getRequestTypeText($receive['requestType'])?></div>
+					<a href="#" class="type6 accept" onclick="doRequestAction(<?php echo $receive['interestId']; ?>,'accept','received');">Accept</a>
+					<a href="#" class="type6 decline" onclick="doRequestAction(<?php echo $receive['interestId']; ?>,'decline','received');">Decline</a>
 				</li>
+				<?php endforeach;?>  
+				<?php else:?> 
 				<li>
-					<input type="checkbox" />
-					<a href="#"><img src="./images/user/anu.jpg" alt="" /></a>
-					<div class="int_head">
-						<a href="#" >Biju George</a>
-						<span>(You recieved request on 15th Augest 2012)</span>
-					</div> 
-					<div class="pDetails">Chrishtian, R.c., 29 Years - 5' 4'', 167 cm</div>
-					<div class="pDetails">Ankamaly, Kerala, India</div>
-					<div class="pAction">A request for viewing your Documents</div>
-					<a href="#" class="type6 accept">Accept</a>
-					<a href="#" class="type6 decline">Decline</a>
+					No requests found!
 				</li>
-				<li>
-					<input type="checkbox" />
-					<a href="#"><img src="./images/user/priya.jpg" alt="" /></a>
-					<div class="int_head">
-						<a href="#" >Biju George</a>
-						<span>(You recieved request on 15th Augest 2012)</span>
-					</div> 
-					<div class="pDetails">Chrishtian, R.c., 29 Years - 5' 4'', 167 cm</div>
-					<div class="pDetails">Ankamaly, Kerala, India</div>
-					<div class="pAction">A request for viewing your Contact</div>
-					<a href="#" class="type6 accept">Accept</a>
-					<a href="#" class="type6 decline">Decline</a>
-				</li>
-				<li>
-					<input type="checkbox" />
-					<a href="#"><img src="./images/user/athira.jpg" alt="" /></a>
-					<div class="int_head">
-						<a href="#" >Biju George</a>
-						<span>(You recieved request on 15th Augest 2012)</span>
-					</div> 
-					<div class="pDetails">Chrishtian, R.c., 29 Years - 5' 4'', 167 cm</div>
-					<div class="pDetails">Ankamaly, Kerala, India</div>
-					<div class="pAction">A request for viewing your Album</div>
-					<a href="#" class="type6 accept">Accept</a>
-					<a href="#" class="type6 decline">Decline</a>
-				</li>
-				<li>
-					<input type="checkbox" />
-					<a href="#"><img src="./images/user/priya.jpg" alt="" /></a>
-					<div class="int_head">
-						<a href="#" >Biju George</a>
-						<span>(You recieved request on 15th Augest 2012)</span>
-					</div> 
-					<div class="pDetails">Chrishtian, R.c., 29 Years - 5' 4'', 167 cm</div>
-					<div class="pDetails">Ankamaly, Kerala, India</div>
-					<div class="pAction">A request for viewing your Album</div>
-					<a href="#" class="type6 accept">Accept</a>
-					<a href="#" class="type6 decline">Decline</a>
-				</li>
-				<li>
-					<input type="checkbox" />
-					<img src="./images/user/interest_default.png" alt="" />
-					<div class="int_head">
-						<a href="#" >Biju George</a>
-						<span>(You recieved request on 15th Augest 2012)</span>
-					</div> 
-					<div class="pDetails">Chrishtian, R.c., 29 Years - 5' 4'', 167 cm</div>
-					<div class="pDetails">Ankamaly, Kerala, India</div>
-					<div class="pAction">A request for viewing your Album</div>
-					<a href="#" class="type6 accept">Accept</a>
-					<a href="#" class="type6 decline">Decline</a>
-				</li>
-				<li>
-					<input type="checkbox" />
-					<a href="#"><img src="./images/user/nayana.jpg" alt="" /></a>
-					<div class="int_head">
-						<a href="#" >Biju George</a>
-						<span>(You recieved request on 15th Augest 2012)</span>
-					</div> 
-					<div class="pDetails">Chrishtian, R.c., 29 Years - 5' 4'', 167 cm</div>
-					<div class="pDetails">Ankamaly, Kerala, India</div>
-					<div class="pAction">A request for viewing your Documents</div>
-					<a href="#" class="type6 accept">Accept</a>
-					<a href="#" class="type6 decline">Decline</a>
-				</li>
-				<li>
-					<input type="checkbox" />
-					<a href="#"><img src="./images/user/priya.jpg" alt="" /></a>
-					<div class="int_head">
-						<a href="#" >Biju George</a>
-						<span>(You recieved request on 15th Augest 2012)</span>
-					</div> 
-					<div class="pDetails">Chrishtian, R.c., 29 Years - 5' 4'', 167 cm</div>
-					<div class="pDetails">Ankamaly, Kerala, India</div>
-					<div class="pAction">A request for viewing your Album</div>
-					<a href="#" class="type6 accept">Accept</a>
-					<a href="#" class="type6 decline">Decline</a>
-				</li>
-				<li>
-					<input type="checkbox" />
-					<img src="./images/user/interest_default.png" alt="" />
-					<div class="int_head">
-						<a href="#" >Biju George</a>
-						<span>(You recieved request on 15th Augest 2012)</span>
-					</div> 
-					<div class="pDetails">Chrishtian, R.c., 29 Years - 5' 4'', 167 cm</div>
-					<div class="pDetails">Ankamaly, Kerala, India</div>
-					<div class="pAction">A request for viewing your Contact</div>
-					<a href="#" class="type6 accept">Accept</a>
-					<a href="#" class="type6 decline">Decline</a>
-				</li>
-				<li>
-					<input type="checkbox" />
-					<img src="./images/user/interest_default.png" alt="" />
-					<div class="int_head">
-						<a href="#" >Biju George</a>
-						<span>(You recieved request on 15th Augest 2012)</span>
-					</div> 
-					<div class="pDetails">Chrishtian, R.c., 29 Years - 5' 4'', 167 cm</div>
-					<div class="pDetails">Ankamaly, Kerala, India</div>
-					<div class="pAction">A request for viewing your Album</div>
-					<a href="#" class="type6 accept">Accept</a>
-					<a href="#" class="type6 decline">Decline</a>
-				</li>
-				<li>
-					<input type="checkbox" />
-					<a href="#"><img src="./images/user/athira.jpg" alt="" /></a>
-					<div class="int_head">
-						<a href="#" >Biju George</a>
-						<span>(You recieved request on 15th Augest 2012)</span>
-					</div> 
-					<div class="pDetails">Chrishtian, R.c., 29 Years - 5' 4'', 167 cm</div>
-					<div class="pDetails">Ankamaly, Kerala, India</div>
-					<div class="pAction">A request for viewing your Album</div>
-					<a href="#" class="type6 accept">Accept</a>
-					<a href="#" class="type6 decline">Decline</a>
-				</li>
+				<?php endif;?>	
 			</ul>
 			<!-- received end here -->
 			<!-- sent starts here -->
-			<ul id="tab2_data" class="tab-data" style="display: none;">
+			<ul id="tab2_data" class="tab-data" <?php if($tab == 'sent'){ ?> style="display: block;"<?php }else{ ?> style="display: none;" <?php }?>>
 				<li>
 					<div class="optns">
 						<div class="option_cont">
@@ -222,130 +108,30 @@
 						</div>
 					</div>
 				</li>
+				<?php if(!empty($sent)):?>
+				<?php foreach($sent as $send):?>  
 				<li>
-					<input type="checkbox" />
-					<a href="#"><img src="./images/user/anu.jpg" alt="" /></a>
+					<input type="checkbox" class="reqCheck" value="<?php echo $send['requestId']; ?>" />
+					<a href="#"><img src="<?php echo Utilities::getProfileImage($send['receiverMarryId'],$send['receiverImageName']); ?>" alt="" /></a>
 					<div class="int_head">
-						<a href="#" >Biju George</a>
-						<span>(You sent request on 12th Jan. 2012)</span>
+						<a href="#" ><?php echo $send['receiverName']; ?></a>
+						<span>(You sent request on <?php echo $send['sendDate']; ?>)</span>
 					</div> 
-					<div class="pDetails">Chrishtian, R.c., 29 Years - 5' 4'', 167 cm</div>
-					<div class="pDetails">Ankamaly, Kerala, India</div>
-					<div class="pAction">Sent a request for viewing her album</div>
-					<a href="#" class="type6 decline">Cancel</a>
+					<div class="pDetails"><?php if(isset($send['receiverReligion']))echo $send['receiverReligion'] ;?>, <?php if(isset($send['receiverCaste']))echo $send['receiverCaste'] ;?>, <?php echo Utilities::getAgeFromDateofBirth($send['receiverAge']); ?> Years - <?php if(isset($send['receiverHeightId']))echo $heightArray[$send['receiverHeightId']]; ?></div>
+					<div class="pDetails"><?php if(isset($send['receiverPlace']))echo $send['receiverPlace'] ;?>, <?php if(isset($send['receiverState']))echo $send['receiverState'] ;?>, <?php if(isset($send['receiverCountry']))echo $send['receiverCountry'] ;?></div>
+						<div class="pAction">Sent a request for viewing <?php if($send['receiverGender'] == 'F'){ ?>her<?php }else{ ?>his <?php }?> <?php echo Utilities::getRequestTypeText($send['requestType'])?></div>
+					<a href="#" class="type6 decline" onclick="doRequestAction(<?php echo $send['requestId']; ?>,'cancel','sent');">Cancel</a>
 				</li>
+				<?php endforeach;?>  
+				<?php else:?> 
 				<li>
-					<input type="checkbox" />
-					<a href="#"><img src="./images/user/priya.jpg" alt="" /></a>
-					<div class="int_head">
-						<a href="#" >Biju George</a>
-						<span>(You sent request on 12th Jan. 2012)</span>
-					</div> 
-					<div class="pDetails">Chrishtian, R.c., 29 Years - 5' 4'', 167 cm</div>
-					<div class="pDetails">Ankamaly, Kerala, India</div>
-					<div class="pAction">Sent a request for viewing her contacts</div>
-					<a href="#" class="type6 decline">Cancel</a>
+					No requests found!
 				</li>
-				<li>
-					<input type="checkbox" />
-					<a href="#"><img src="./images/user/nayana.jpg" alt="" /></a>
-					<div class="int_head">
-						<a href="#" >Biju George</a>
-						<span>(You sent request on 12th Jan. 2012)</span>
-					</div> 
-					<div class="pDetails">Chrishtian, R.c., 29 Years - 5' 4'', 167 cm</div>
-					<div class="pDetails">Ankamaly, Kerala, India</div>
-					<div class="pAction">Sent a request for viewing her family album</div>
-					<a href="#" class="type6 decline">Cancel</a>
-				</li>
-				<li>
-					<input type="checkbox" />
-					<a href="#"><img src="./images/user/athira.jpg" alt="" /></a>
-					<div class="int_head">
-						<a href="#" >Biju George</a>
-						<span>(You sent request on 12th Jan. 2012)</span>
-					</div> 
-					<div class="pDetails">Chrishtian, R.c., 29 Years - 5' 4'', 167 cm</div>
-					<div class="pDetails">Ankamaly, Kerala, India</div>
-					<div class="pAction">Sent a request for viewing her reference</div>
-					<a href="#" class="type6 decline">Cancel</a>
-				</li>
-				<li>
-					<input type="checkbox" />
-					<a href="#"><img src="./images/user/anu.jpg" alt="" /></a>
-					<div class="int_head">
-						<a href="#" >Biju George</a>
-						<span>(You sent request on 12th Jan. 2012)</span>
-					</div> 
-					<div class="pDetails">Chrishtian, R.c., 29 Years - 5' 4'', 167 cm</div>
-					<div class="pDetails">Ankamaly, Kerala, India</div>
-					<div class="pAction">Sent a request for viewing her astro details</div>
-					<a href="#" class="type6 decline">Cancel</a>
-				</li>
-				<li>
-					<input type="checkbox" />
-					<a href="#"><img src="./images/user/priya.jpg" alt="" /></a>
-					<div class="int_head">
-						<a href="#" >Biju George</a>
-						<span>(You sent request on 12th Jan. 2012)</span>
-					</div> 
-					<div class="pDetails">Chrishtian, R.c., 29 Years - 5' 4'', 167 cm</div>
-					<div class="pDetails">Ankamaly, Kerala, India</div>
-					<div class="pAction">Sent a request for viewing her contacts</div>
-					<a href="#" class="type6 decline">Cancel</a>
-				</li>
-				<li>
-					<input type="checkbox" />
-					<a href="#"><img src="./images/user/nayana.jpg" alt="" /></a>
-					<div class="int_head">
-						<a href="#" >Biju George</a>
-						<span>(You sent request on 12th Jan. 2012)</span>
-					</div> 
-					<div class="pDetails">Chrishtian, R.c., 29 Years - 5' 4'', 167 cm</div>
-					<div class="pDetails">Ankamaly, Kerala, India</div>
-					<div class="pAction">Sent a request for viewing her family album</div>
-					<a href="#" class="type6 decline">Cancel</a>
-				</li>
-				<li>
-					<input type="checkbox" />
-					<a href="#"><img src="./images/user/athira.jpg" alt="" /></a>
-					<div class="int_head">
-						<a href="#" >Biju George</a>
-						<span>(You sent request on 12th Jan. 2012)</span>
-					</div> 
-					<div class="pDetails">Chrishtian, R.c., 29 Years - 5' 4'', 167 cm</div>
-					<div class="pDetails">Ankamaly, Kerala, India</div>
-					<div class="pAction">Sent a request for viewing her reference</div>
-					<a href="#" class="type6 decline">Cancel</a>
-				</li>
-				<li>
-					<input type="checkbox" />
-					<a href="#"><img src="./images/user/anu.jpg" alt="" /></a>
-					<div class="int_head">
-						<a href="#" >Biju George</a>
-						<span>(You sent request on 12th Jan. 2012)</span>
-					</div> 
-					<div class="pDetails">Chrishtian, R.c., 29 Years - 5' 4'', 167 cm</div>
-					<div class="pDetails">Ankamaly, Kerala, India</div>
-					<div class="pAction">Sent a request for viewing her astro details</div>
-					<a href="#" class="type6 decline">Cancel</a>
-				</li>
-				<li>
-					<input type="checkbox" />
-					<a href="#"><img src="./images/user/priya.jpg" alt="" /></a>
-					<div class="int_head">
-						<a href="#" >Biju George</a>
-						<span>(You sent request on 12th Jan. 2012)</span>
-					</div> 
-					<div class="pDetails">Chrishtian, R.c., 29 Years - 5' 4'', 167 cm</div>
-					<div class="pDetails">Ankamaly, Kerala, India</div>
-					<div class="pAction">Sent a request for viewing her contacts</div>
-					<a href="#" class="type6 decline">Cancel</a>
-				</li>
+				<?php endif;?>
 			</ul>
 			<!-- sent end here -->
 			<!-- accepted starts here -->
-			<ul id="tab3_data" class="tab-data" style="display: none;">
+			<ul id="tab3_data" class="tab-data" <?php if($tab == 'accepted'){ ?> style="display: block;"<?php }else{ ?> style="display: none;" <?php }?>>
 				<li>
 					<div class="optns">
 						<div class="option_cont">
@@ -365,127 +151,42 @@
 						</div>
 					</div>
 				</li>
+				<?php if(!empty($accepted)):?>
+				<?php foreach($accepted as $accept):?>  
 				<li>
-					<input type="checkbox" />
-					<a href="#"><img src="./images/user/priya.jpg" alt="" /></a>
+					<input type="checkbox" class="reqCheck" value="<?php echo $accept['requestId']; ?>" />
+					<a href="#"><img src="<?php echo Utilities::getProfileImage($accept['receiverMarryId'],$accept['receiverImageName']); ?>" alt="" /></a>
 					<div class="int_head">
-						<a href="#" >Biju George</a>
-						<span>(She sent an album request on 07th July 2012)</span>
+						<a href="#" ><?php echo $accept['receiverName']; ?></a>
+						<span>(<?php if($accept['senderGender'] == 'M')
+							echo 'He';
+							else echo 'She';
+						?> sent an <?php echo Utilities::getRequestTypeText($accept['requestType'])?> request on <?php echo $accept['sendDate']; ?>)</span>
 					</div> 
-					<div class="pDetails">Chrishtian, R.c., 29 Years - 5' 4'', 167 cm</div>
-					<div class="pDetails">Ankamaly, Kerala, India</div>
-					<div class="pAction">You accepted her album request on 09/07/12</div>
-					<a href="#" class="type6 decline">Decline</a>
+					<div class="pDetails"><?php if(isset($accept['receiverReligion']))echo $accept['receiverReligion'] ;?>, <?php if(isset($accept['receiverCaste']))echo $accept['receiverCaste'] ;?>, <?php echo Utilities::getAgeFromDateofBirth($accept['receiverAge']); ?> Years - <?php if(isset($accept['receiverHeightId']))echo $heightArray[$accept['receiverHeightId']]; ?></div>
+					<div class="pDetails"><?php if(isset($accept['receiverPlace']))echo $accept['receiverPlace'] ;?>, <?php if(isset($accept['receiverState']))echo $accept['receiverState'] ;?>, <?php if(isset($accept['receiverCountry']))echo $accept['receiverCountry'] ;?></div>
+					<div class="pAction">You accepted <?php if($accept['senderGender'] == 'M')
+							echo 'his';
+							else echo 'her';
+						?> <?php echo Utilities::getRequestTypeText($accept['requestType'])?> request on <?php echo $accept['sendDate']; ?></div>
+					<div class="pDetails"><?php if(isset($accept['receiverReligion']))echo $accept['receiverReligion'] ;?>, <?php if(isset($accept['receiverCaste']))echo $accept['receiverCaste'] ;?>, <?php echo Utilities::getAgeFromDateofBirth($accept['receiverAge']); ?> Years - <?php if(isset($accept['receiverHeightId']))echo $heightArray[$accept['receiverHeightId']]; ?></div>
+					<div class="pDetails"><?php if(isset($accept['receiverPlace']))echo $accept['receiverPlace'] ;?>, <?php if(isset($accept['receiverState']))echo $accept['receiverState'] ;?>, <?php if(isset($accept['receiverCountry']))echo $accept['receiverCountry'] ;?></div>
+					<?php if($accept['receiverId'] == $user->userId){?>
+					<a href="#" class="type6 decline" onclick="doRequestAction(<?php echo $accept['requestId']; ?>,'decline','accepted');">Decline</a>
+					<?php }else{?>
+					<a href="#" class="type6 decline" onclick="doRequestAction(<?php echo $accept['requestId']; ?>,'cancel','accepted');">Cancel my request</a>
+					<?php }?>
 				</li>
+				<?php endforeach;?>  
+				<?php else:?> 
 				<li>
-					<input type="checkbox" />
-					<a href="#"><img src="./images/user/athira.jpg" alt="" /></a>
-					<div class="int_head">
-						<a href="#" >Biju George</a>
-						<span>(She sent an family album request on 07th July 2012)</span>
-					</div> 
-					<div class="pDetails">Chrishtian, R.c., 29 Years - 5' 4'', 167 cm</div>
-					<div class="pDetails">Ankamaly, Kerala, India</div>
-					<div class="pAction">You accepted her family album request on 09/07/12</div>
-					<a href="#" class="type6 decline">Decline</a>
+					No requests found!
 				</li>
-				<li>
-					<input type="checkbox" />
-					<a href="#"><img src="./images/user/priya.jpg" alt="" /></a>
-					<div class="int_head">
-						<a href="#" >Biju George</a>
-						<span>(She sent an document request on 07th July 2012)</span>
-					</div> 
-					<div class="pDetails">Chrishtian, R.c., 29 Years - 5' 4'', 167 cm</div>
-					<div class="pDetails">Ankamaly, Kerala, India</div>
-					<div class="pAction">You accepted her document request on 09/07/12</div>
-					<a href="#" class="type6 decline">Decline</a>
-				</li>
-				<li>
-					<input type="checkbox" />
-					<a href="#"><img src="./images/user/anu.jpg" alt="" /></a>
-					<div class="int_head">
-						<a href="#" >Biju George</a>
-						<span>(You sent an album request on 07th July 2012)</span>
-					</div> 
-					<div class="pDetails">Chrishtian, R.c., 29 Years - 5' 4'', 167 cm</div>
-					<div class="pDetails">Ankamaly, Kerala, India</div>
-					<div class="pAction">She accepted your album request on 09/07/12</div>
-				</li>
-				<li>
-					<input type="checkbox" />
-					<a href="#"><img src="./images/user/nayana.jpg" alt="" /></a>
-					<div class="int_head">
-						<a href="#" >Biju George</a>
-						<span>(She sent an reference request on 07th July 2012)</span>
-					</div> 
-					<div class="pDetails">Chrishtian, R.c., 29 Years - 5' 4'', 167 cm</div>
-					<div class="pDetails">Ankamaly, Kerala, India</div>
-					<div class="pAction">You accepted her reference request on 09/07/12</div>
-					<a href="#" class="type6 decline">Decline</a>
-				</li>
-				<li>
-					<input type="checkbox" />
-					<a href="#"><img src="./images/user/athira.jpg" alt="" /></a>
-					<div class="int_head">
-						<a href="#" >Biju George</a>
-						<span>(She sent an family album request on 07th July 2012)</span>
-					</div> 
-					<div class="pDetails">Chrishtian, R.c., 29 Years - 5' 4'', 167 cm</div>
-					<div class="pDetails">Ankamaly, Kerala, India</div>
-					<div class="pAction">You accepted her family album request on 09/07/12</div>
-					<a href="#" class="type6 decline">Decline</a>
-				</li>
-				<li>
-					<input type="checkbox" />
-					<a href="#"><img src="./images/user/priya.jpg" alt="" /></a>
-					<div class="int_head">
-						<a href="#" >Biju George</a>
-						<span>(She sent an document request on 07th July 2012)</span>
-					</div> 
-					<div class="pDetails">Chrishtian, R.c., 29 Years - 5' 4'', 167 cm</div>
-					<div class="pDetails">Ankamaly, Kerala, India</div>
-					<div class="pAction">You accepted her document request on 09/07/12</div>
-					<a href="#" class="type6 decline">Decline</a>
-				</li>
-				<li>
-					<input type="checkbox" />
-					<a href="#"><img src="./images/user/anu.jpg" alt="" /></a>
-					<div class="int_head">
-						<a href="#" >Biju George</a>
-						<span>(You sent an album request on 07th July 2012)</span>
-					</div> 
-					<div class="pDetails">Chrishtian, R.c., 29 Years - 5' 4'', 167 cm</div>
-					<div class="pDetails">Ankamaly, Kerala, India</div>
-					<div class="pAction">She accepted your album request on 09/07/12</div>
-				</li>
-				<li>
-					<input type="checkbox" />
-					<a href="#"><img src="./images/user/nayana.jpg" alt="" /></a>
-					<div class="int_head">
-						<a href="#" >Biju George</a>
-						<span>(She sent an reference request on 07th July 2012)</span>
-					</div> 
-					<div class="pDetails">Chrishtian, R.c., 29 Years - 5' 4'', 167 cm</div>
-					<div class="pDetails">Ankamaly, Kerala, India</div>
-					<div class="pAction">You accepted her reference request on 09/07/12</div>
-					<a href="#" class="type6 decline">Decline</a>
-				</li>
-				<li>
-					<input type="checkbox" />
-					<a href="#"><img src="./images/user/athira.jpg" alt="" /></a>
-					<div class="int_head">
-						<a href="#" >Biju George</a>
-						<span>(You sent a family album request on 07th July 2012)</span>
-					</div> 
-					<div class="pDetails">Chrishtian, R.c., 29 Years - 5' 4'', 167 cm</div>
-					<div class="pDetails">Ankamaly, Kerala, India</div>
-					<div class="pAction">She accepted your family album request on 09/07/12</div>
-				</li>
+				<?php endif;?>
 			</ul>
 			<!-- accepted end here -->
 			<!-- declined starts here -->
-			<ul id="tab4_data" class="tab-data" style="display: none;">
+			<ul id="tab4_data" class="tab-data" <?php if($tab == 'declined'){ ?> style="display: block;"<?php }else{ ?> style="display: none;" <?php }?>>
 				<li>
 					<div class="optns">
 						<div class="option_cont">
@@ -505,136 +206,80 @@
 						</div>
 					</div>
 				</li>
+				<?php if(!empty($declined)):?>
+				<?php foreach($declined as $decline):?>  
 				<li>
-					<input type="checkbox" />
-					<a href="#"><img src="./images/user/anu.jpg" alt="" /></a>
+					<input type="checkbox" class="reqCheck" value="<?php echo $decline['requestId']; ?>" />
+					<a href="#"><img src="<?php echo Utilities::getProfileImage($decline['receiverMarryId'],$decline['receiverImageName']); ?>" alt="" /></a>
+
 					<div class="int_head">
-						<a href="#" >Biju George</a>
-						<span>(She sent an album request on 07th July 2012)</span>
+						<a href="#" ><?php echo $decline['receiverName']; ?></a>
+						<span>(<?php 
+						 if($decline['receiverGender'] == 'M')
+							echo 'He';
+							else echo 'She';
+						?> sent an <?php echo Utilities::getRequestTypeText($decline['requestType'])?> request on <?php echo $decline['sendDate']; ?>)</span>
 					</div> 
-					<div class="pDetails">Chrishtian, R.c., 29 Years - 5' 4'', 167 cm</div>
-					<div class="pDetails">Ankamaly, Kerala, India</div>
-					<div class="pAction">You declined her album request on 09/07/12</div>
-					<a href="#" class="type6 decline">Accept</a>
+					<div class="pDetails"><?php if(isset($decline['receiverReligion']))echo $decline['receiverReligion'] ;?>, <?php if(isset($decline['receiverCaste']))echo $decline['receiverCaste'] ;?>, <?php echo Utilities::getAgeFromDateofBirth($decline['receiverAge']); ?> Years - <?php if(isset($decline['receiverHeightId']))echo $heightArray[$decline['receiverHeightId']]; ?></div>
+					<div class="pDetails"><?php if(isset($decline['receiverPlace']))echo $decline['receiverPlace'] ;?>, <?php if(isset($decline['receiverState']))echo $decline['receiverState'] ;?>, <?php if(isset($decline['receiverCountry']))echo $decline['receiverCountry'] ;?></div>
+					<div class="pAction">You declined <?php if($decline['senderGender'] == 'M')
+							echo 'his';
+							else echo 'her';
+						?> <?php echo Utilities::getRequestTypeText($decline['requestType'])?> request on <?php echo $decline['sendDate']; ?></div>
+					<a href="#" class="type6 decline" onclick="doRequestAction(<?php echo $decline['requestId']; ?>,'accept','declined');">Accept interest</a>
 				</li>
+				<?php endforeach;?>  
+				<?php else:?> 
 				<li>
-					<input type="checkbox" />
-					<a href="#"><img src="./images/user/athira.jpg" alt="" /></a>
-					<div class="int_head">
-						<a href="#" >Biju George</a>
-						<span>(You sent a family album request on 07th July 2012)</span>
-					</div> 
-					<div class="pDetails">Chrishtian, R.c., 29 Years - 5' 4'', 167 cm</div>
-					<div class="pDetails">Ankamaly, Kerala, India</div>
-					<div class="pAction">She declined your family album request on 09/07/12</div>
+					No requests found!
 				</li>
-				<li>
-					<input type="checkbox" />
-					<a href="#"><img src="./images/user/priya.jpg" alt="" /></a>
-					<div class="int_head">
-						<a href="#" >Biju George</a>
-						<span>(She sent an document request on 07th July 2012)</span>
-					</div> 
-					<div class="pDetails">Chrishtian, R.c., 29 Years - 5' 4'', 167 cm</div>
-					<div class="pDetails">Ankamaly, Kerala, India</div>
-					<div class="pAction">You declined her document request on 09/07/12</div>
-					<a href="#" class="type6 decline">Accept</a>
-				</li>
-				<li>
-					<input type="checkbox" />
-					<a href="#"><img src="./images/user/anu.jpg" alt="" /></a>
-					<div class="int_head">
-						<a href="#" >Biju George</a>
-						<span>(You sent an album request on 07th July 2012)</span>
-					</div> 
-					<div class="pDetails">Chrishtian, R.c., 29 Years - 5' 4'', 167 cm</div>
-					<div class="pDetails">Ankamaly, Kerala, India</div>
-					<div class="pAction">She declined your album request on 09/07/12</div>
-				</li>
-				<li>
-					<input type="checkbox" />
-					<a href="#"><img src="./images/user/nayana.jpg" alt="" /></a>
-					<div class="int_head">
-						<a href="#" >Biju George</a>
-						<span>(She sent an reference request on 07th July 2012)</span>
-					</div> 
-					<div class="pDetails">Chrishtian, R.c., 29 Years - 5' 4'', 167 cm</div>
-					<div class="pDetails">Ankamaly, Kerala, India</div>
-					<div class="pAction">You declined her reference request on 09/07/12</div>
-					<a href="#" class="type6 decline">Accept</a>
-				</li>
-				<li>
-					<input type="checkbox" />
-					<a href="#"><img src="./images/user/athira.jpg" alt="" /></a>
-					<div class="int_head">
-						<a href="#" >Biju George</a>
-						<span>(She sent an family album request on 07th July 2012)</span>
-					</div> 
-					<div class="pDetails">Chrishtian, R.c., 29 Years - 5' 4'', 167 cm</div>
-					<div class="pDetails">Ankamaly, Kerala, India</div>
-					<div class="pAction">You declined her family album request on 09/07/12</div>
-					<a href="#" class="type6 decline">Accept</a>
-				</li>
-				<li>
-					<input type="checkbox" />
-					<a href="#"><img src="./images/user/priya.jpg" alt="" /></a>
-					<div class="int_head">
-						<a href="#" >Biju George</a>
-						<span>(She sent an document request on 07th July 2012)</span>
-					</div> 
-					<div class="pDetails">Chrishtian, R.c., 29 Years - 5' 4'', 167 cm</div>
-					<div class="pDetails">Ankamaly, Kerala, India</div>
-					<div class="pAction">You declined her document request on 09/07/12</div>
-					<a href="#" class="type6 decline">Accept</a>
-				</li>
-				<li>
-					<input type="checkbox" />
-					<a href="#"><img src="./images/user/anu.jpg" alt="" /></a>
-					<div class="int_head">
-						<a href="#" >Biju George</a>
-						<span>(You sent an album request on 07th July 2012)</span>
-					</div> 
-					<div class="pDetails">Chrishtian, R.c., 29 Years - 5' 4'', 167 cm</div>
-					<div class="pDetails">Ankamaly, Kerala, India</div>
-					<div class="pAction">She declined your album request on 09/07/12</div>
-				</li>
-				<li>
-					<input type="checkbox" />
-					<a href="#"><img src="./images/user/nayana.jpg" alt="" /></a>
-					<div class="int_head">
-						<a href="#" >Biju George</a>
-						<span>(She sent an reference request on 07th July 2012)</span>
-					</div> 
-					<div class="pDetails">Chrishtian, R.c., 29 Years - 5' 4'', 167 cm</div>
-					<div class="pDetails">Ankamaly, Kerala, India</div>
-					<div class="pAction">You declined her reference request on 09/07/12</div>
-					<a href="#" class="type6 decline">Accept</a>
-				</li>
-				<li>
-					<input type="checkbox" />
-					<a href="#"><img src="./images/user/athira.jpg" alt="" /></a>
-					<div class="int_head">
-						<a href="#" >Biju George</a>
-						<span>(You sent a family album request on 07th July 2012)</span>
-					</div> 
-					<div class="pDetails">Chrishtian, R.c., 29 Years - 5' 4'', 167 cm</div>
-					<div class="pDetails">Ankamaly, Kerala, India</div>
-					<div class="pAction">She declined your family album request on 09/07/12</div>
-				</li>
+				<?php endif;?>	
 			</ul>
 			<!-- declined end here -->
 		</div>
 		<div class="interstTab">
 			<div class="edit-option">
 				<div class="check">
-					<input type="checkbox" />
+					<input type="checkbox" onclick="toggleChecked(this.checked)" />
 					<span>Sellect All</span>
 				</div>
 				<div class="check">
-					<span><a href="#">Delete</a></span>
+					<span><a href="#" onclick="deleteRequests();">Delete</a></span>
 				</div>
 			</div>
 		</div>
     </section>
+    <script type="text/javascript">
+    function toggleChecked(status) {
+    	$(".reqCheck").each( function() {
+	    	$(this).attr("checked",status);
+    	})
+    	}
+
+	function deleteRequests(){
+    	var allVals = [];
+	     $('.reqCheck').each(function() {
+	    	 if($(this).is(':checked')) {
+	       		allVals.push($(this).val());
+	    	 }
+	     });
+	     if(allVals.length === 0){
+	    	 alert("Select the request to delete");
+	    	 return false;
+	     }else{
+		    
+		     $('#selectedIds').val(allVals);
+		     $('#action').val('delete');
+	    	 $('#frmInterest').submit();
+	     }
+	}
+
+	function doRequestAction(interestId,action,tab){
+		$('#selectedIds').val(interestId);
+		$('#action').val(action);
+		$('#selectedTab').val(tab);
+   	 	$('#frmInterest').submit();
+	}
+    </script>
       <?php $this->widget('application.widgets.menu.Rightmenu'); ?>
   
