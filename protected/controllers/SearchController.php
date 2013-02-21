@@ -414,13 +414,7 @@ class SearchController extends Controller
 				}
 
 				$userList = implode(",", $userIds);
-				if(isset($user)){
-					$scondition = " userId in ({$userList}) and userId != {$user->userId} ";
-				}
-				else
-				{
-					$scondition = " userId in ({$userList}) ";
-				}
+				$scondition = " userId in ({$userList}) ";
 				if(isset($blockIdList) && sizeof($blockId) > 0 )
 				$scondition .= " AND userId NOT IN({$blockIdList})";
 				$users = Users::model()->findAll(array('condition'=>$scondition,'order'=> 'createdOn DESC'),'active=1');
@@ -600,7 +594,7 @@ class SearchController extends Controller
 					}
 				}
 				
-				$scondition = " userId in ({$userList}) and userId != {$user->userId}";
+				$scondition = " userId in ({$userList}) ";
 				
 				if(!empty($blockedIds))
 				$scondition .= " and userId NOT IN ($blockedIds)";
@@ -714,7 +708,7 @@ class SearchController extends Controller
 		if(sizeof($userIds) > 0 )
 		{
 		$userList = implode(",", $userIds);
-		$scondition = " userId in ({$userList}) and userId != {$user->userId} ";
+		$scondition = " userId in ({$userList}) ";
 		if(isset($blockIdList) && sizeof($blockId) > 0 )
 		$scondition .= " AND userId NOT IN({$blockIdList})";
 		$users = Users::model()->findAll(array('condition'=>$scondition,'order'=> 'createdOn DESC' ));
@@ -1018,7 +1012,7 @@ class SearchController extends Controller
 					}
 				}
 				
-				$scondition = " userId in ({$userList}) and userId != {$user->userId}";
+				$scondition = " userId in ({$userList}) ";
 				
 				if(!empty($blockedIds))
 				$scondition .= " and userId NOT IN ($blockedIds)";

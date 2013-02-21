@@ -107,6 +107,12 @@ class SiteController extends Controller
 			{
 				Yii::app()->params['loginError'] = NULL;
 				$user = Yii::app()->session->get('user');
+				if($user->active == 2)
+				{
+					$user->active = 1;
+					$user->save();
+				}
+				
 				$userloggeddetails = new Userloggeddetails();
 				$userloggeddetails->userId = $user->userId;
 				$userloggeddetails->loggedIn = new CDbExpression('NOW()');

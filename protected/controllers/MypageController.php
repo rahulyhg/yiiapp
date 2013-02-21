@@ -809,29 +809,78 @@ public function actionEditdocument()
 	
 	public function actionDelete()
 	{
-		if(isset($_POST['delete']))
+		$this->layout= '//layouts/popup';
+		if(isset($_POST) && !empty($_POST))
 		{
+			$user = Yii::app()->session->get('user');
+			$delete = new DeleteFeedback();
+			
+			$delete->userId = $user->userId;
+			
+			if(isset($_POST['married']))
+			$delete->married = 1;
+
+			if(isset($_POST['service']))
+			$delete->service = 1;
+			
+			if(isset($_POST['engaged']))
+			$delete->engaged = 1;
+			
+			if(isset($_POST['other']))
+			$delete->other = 1;
+			
+			if(isset($_POST['useful']))
+			$delete->useful = 1;
+			
+			if(isset($_POST['compromised']))
+			$delete->compromised = 1;
+			
+			$user->active = 3;
+			$user->save();
+			
+			$delete->save();
+			
+			$userLogged = $user->userloggeddetails(array('order'=>'loggedIn DESC','limit'=>1));
+			if(isset($userLogged) && sizeof($userLogged) > 0)
+			{		
+				$userLogged[0]->loggedOut = new CDbExpression('NOW()');
+				$userLogged[0]->save();
+			}
+			Yii::app()->user->logout();
+			Yii::app()->session->clear();
+			Yii::app()->session->destroy();
+			
+			
 			//delete the user
-			$this->redirect(array("//site"));
+			$this->render('delete',array('success'=>true));
 		}	
 		else 
 		{
-			$this->layout= '//layouts/popup';
+			
 			$this->render('delete');
 		}
 	}
 	public function actionDeactivate()
 	{
-		
-		if(isset($_POST['deactivate']))
+		$this->layout= '//layouts/popup';;
+		if(isset($_POST) && !empty($_POST))
 		{
-			//deactivate the user and return to the home page
-			$this->redirect(array("//site"));
+			$user = Yii::app()->session->get('user');
+			$user->active = 2;
+			$user->save();
 			
+		$userLogged = $user->userloggeddetails(array('order'=>'loggedIn DESC','limit'=>1));
+		if(isset($userLogged) && sizeof($userLogged) > 0)
+		{		
+			$userLogged[0]->loggedOut = new CDbExpression('NOW()');
+			$userLogged[0]->save();
 		}
-		else 
-		{
-			$this->layout= '//layouts/popup';;
+		Yii::app()->user->logout();
+		Yii::app()->session->clear();
+		Yii::app()->session->destroy();
+		$this->render('deactivate',array('success'=>true));
+		}
+		else{	
 			$this->render('deactivate');
 		}
 			

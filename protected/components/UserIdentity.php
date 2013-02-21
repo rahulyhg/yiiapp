@@ -25,7 +25,7 @@ class UserIdentity extends CUserIdentity
 		else if(isset($this->username) && isset($this->password))
 		{
 			//active = 2 means user is deactive or deleted, active =0 means user created and not yet approved
-			$condition = " (marryId = '{$this->username}' OR emailId = '{$this->username}' ) AND password = md5('{$this->password}')  AND active != 2";
+			$condition = " (marryId = '{$this->username}' OR emailId = '{$this->username}' ) AND password = md5('{$this->password}')  AND active != 3";
 			$record = Users::model()->find(array('condition' => $condition));
 			
 			if(isset($record) && $record['emailId'] != null)
