@@ -227,9 +227,9 @@
 						Time to call
 					</div>
 					<div class="info">
-					<?php echo CHtml::dropDownList('timeFrom0',null,Utilities::getTime(),array('class'=>'wid70 mR5')); ?>
-					<?php echo CHtml::dropDownList('fromA0',null,Utilities::getMeridiem(),array('class'=>'wid50 mR5')); ?>	
-     				<?php echo CHtml::dropDownList('timeTo0',null,Utilities::getTime(),array('class'=>'wid70 mR5')); ?>
+					<?php echo CHtml::dropDownList('timeFrom0',null,Utilities::getTime(),array('empty'=>'Time','class'=>'wid70 mR5')); ?>
+					<?php echo CHtml::dropDownList('fromA0',null,Utilities::getMeridiem(),array('empty'=>'AM/PM','class'=>'wid50 mR5')); ?>	
+     				<?php echo CHtml::dropDownList('timeTo0',null,Utilities::getTime(),array('empty'=>'Time','class'=>'wid70 mR5')); ?>
      				<?php echo CHtml::dropDownList('toA0',null,Utilities::getMeridiem(),array('empty'=>'AM/PM','class'=>'wid70 mR5')); ?>
 					</div>
 				</li>
@@ -280,9 +280,9 @@
 						Time to call
 					</div>
 					<div class="info">
-						<?php echo CHtml::dropDownList('timeFrom1',null,Utilities::getTime(),array('class'=>'wid70 mR5')); ?>
-						<?php echo CHtml::dropDownList('fromA1',null,Utilities::getMeridiem(),array('class'=>'wid50 mR5')); ?>	
-     					<?php echo CHtml::dropDownList('timeTo1',null,Utilities::getTime(),array('class'=>'wid70 mR5')); ?>
+						<?php echo CHtml::dropDownList('timeFrom1',null,Utilities::getTime(),array('empty'=>'Time','class'=>'wid70 mR5')); ?>
+						<?php echo CHtml::dropDownList('fromA1',null,Utilities::getMeridiem(),array('empty'=>'AM/PM','class'=>'wid50 mR5')); ?>	
+     					<?php echo CHtml::dropDownList('timeTo1',null,Utilities::getTime(),array('empty'=>'Time','class'=>'wid70 mR5')); ?>
      					<?php echo CHtml::dropDownList('toA1',null,Utilities::getMeridiem(),array('empty'=>'AM/PM','class'=>'wid70 mR5')); ?>
 					</div>
 				</li>
@@ -334,9 +334,9 @@
 						Time to call
 					</div>
 					<div class="info">
-						<?php echo CHtml::dropDownList('timeFrom2',null,Utilities::getTime(),array('class'=>'wid70 mR5')); ?>
-					<?php echo CHtml::dropDownList('fromA2',null,Utilities::getMeridiem(),array('class'=>'wid50 mR5')); ?>	
-				     <?php echo CHtml::dropDownList('timeTo2',null,Utilities::getTime(),array('class'=>'wid70 mR5')); ?>
+						<?php echo CHtml::dropDownList('timeFrom2',null,Utilities::getTime(),array('empty'=>'Time','class'=>'wid70 mR5')); ?>
+					<?php echo CHtml::dropDownList('fromA2',null,Utilities::getMeridiem(),array('empty'=>'AM/PM','class'=>'wid50 mR5')); ?>	
+				     <?php echo CHtml::dropDownList('timeTo2',null,Utilities::getTime(),array('empty'=>'Time','class'=>'wid70 mR5')); ?>
 				     <?php echo CHtml::dropDownList('toA2',null,Utilities::getMeridiem(),array('empty'=>'AM/PM','class'=>'wid70 mR5')); ?>
 									</div>
 				</li>

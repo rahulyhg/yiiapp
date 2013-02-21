@@ -345,10 +345,21 @@ class MypageController extends Controller
 	{
 		$user = Yii::app()->session->get('user');
 		$referenceList = $user->references;
+		$showReference = false;
 		if(isset($user->references) && !empty($user->references) )
 		{
-			$this->render('myreference',array('referenceList'=>$referenceList));
+				$showReference = false;
+				$index = 1;
+				foreach ($referenceList as $value) {
+				if(!empty($value->referName) || !empty($value->referCallFrom) ||		!empty($value->referHouseName)||
+						!empty($value->referPostOffice)|| !empty($value->referCity)||	!empty($value->referState)||
+						!empty($value->referEmail)||	!empty($value->referOccupation))
+						$showReference = true;
+				}
+			
 		}
+		if($showReference)
+		$this->render('myreference',array('referenceList'=>$referenceList));
 		else
 		$this->render('noreference');
 	}

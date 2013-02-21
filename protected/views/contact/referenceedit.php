@@ -73,6 +73,10 @@
 								<div class="inner-row">
 								<?php 
 								
+								$tme1 = 0;
+								$am1 = 0;
+								$tme2 = 0;
+								$am2 = 0;
 								if(isset($referenceList[0]->referCallFrom) && !empty($referenceList[0]->referCallFrom)){		
 											$times = explode("-", $referenceList[0]->referCallFrom);
 											if(isset($times[0]))
@@ -98,10 +102,10 @@
 									<div class="inputCl">
 										<div class="inputH">Time to Call</div>
 										<div class="info width100">
-										<?php echo CHtml::dropDownList('timeFrom0',null,Utilities::getTime(),array('class'=>'wid60 mR5','options' => array($tme1 =>array('selected'=>true)))); ?>
-											<?php echo CHtml::dropDownList('fromA0',null,Utilities::getMeridiem(),array('class'=>'wid50 mR5','options' => array($am1 =>array('selected'=>true)))); ?>	
-										     <?php echo CHtml::dropDownList('timeTo0',null,Utilities::getTime(),array('class'=>'wid60 mR5','options' => array($tme2 =>array('selected'=>true)))); ?>
-										     <?php echo CHtml::dropDownList('toA0',null,Utilities::getMeridiem(),array('class'=>'wid50','options' => array($am2 =>array('selected'=>true)))); ?>
+										<?php echo CHtml::dropDownList('timeFrom0',null,Utilities::getTime(),array('empty'=>'Time','class'=>'wid60 mR5','options' => array($tme1 =>array('selected'=>true)))); ?>
+											<?php echo CHtml::dropDownList('fromA0',null,Utilities::getMeridiem(),array('empty'=>'AM/PM','class'=>'wid50 mR5','options' => array($am1 =>array('selected'=>true)))); ?>	
+										     <?php echo CHtml::dropDownList('timeTo0',null,Utilities::getTime(),array('empty'=>'Time','class'=>'wid60 mR5','options' => array($tme2 =>array('selected'=>true)))); ?>
+										     <?php echo CHtml::dropDownList('toA0',null,Utilities::getMeridiem(),array('empty'=>'AM/PM','class'=>'wid50','options' => array($am2 =>array('selected'=>true)))); ?>
 										</div>
 									</div>
 								</div>
@@ -174,7 +178,10 @@
 									<div class="inputCl">
 										<div class="inputH">Time to Call</div>
 										<?php 
-										
+										$tme1 = 0;
+								$am1 = 0;
+								$tme2 = 0;
+								$am2 = 0;
 										if(isset($referenceList[1]->referCallFrom) && !empty($referenceList[1]->referCallFrom)){
 											$times = explode("-", $referenceList[1]->referCallFrom);
 											if(isset($times[0]))
@@ -199,10 +206,10 @@
 										?>
 										
 										<div class="info width100">
-											<?php echo CHtml::dropDownList('timeFrom1',null,Utilities::getTime(),array('class'=>'wid60 mR5','options' => array($tme1 =>array('selected'=>true)))); ?>
-											<?php echo CHtml::dropDownList('fromA1',null,Utilities::getMeridiem(),array('class'=>'wid50 mR5','options' => array($am1 =>array('selected'=>true)))); ?>	
-										     <?php echo CHtml::dropDownList('timeTo1',null,Utilities::getTime(),array('class'=>'wid60 mR5','options' => array($tme2 =>array('selected'=>true)))); ?>
-										     <?php echo CHtml::dropDownList('toA1',null,Utilities::getMeridiem(),array('class'=>'wid50','options' => array($am2 =>array('selected'=>true)))); ?>
+											<?php echo CHtml::dropDownList('timeFrom1',null,Utilities::getTime(),array('empty'=>'Time','class'=>'wid60 mR5','options' => array($tme1 =>array('selected'=>true)))); ?>
+											<?php echo CHtml::dropDownList('fromA1',null,Utilities::getMeridiem(),array('empty'=>'AM/PM','class'=>'wid50 mR5','options' => array($am1 =>array('selected'=>true)))); ?>	
+										     <?php echo CHtml::dropDownList('timeTo1',null,Utilities::getTime(),array('empty'=>'Time','class'=>'wid60 mR5','options' => array($tme2 =>array('selected'=>true)))); ?>
+										     <?php echo CHtml::dropDownList('toA1',null,Utilities::getMeridiem(),array('empty'=>'AM/PM','class'=>'wid50','options' => array($am2 =>array('selected'=>true)))); ?>
 										</div>
 									</div>
 								</div>
@@ -275,7 +282,10 @@
 									<div class="inputCl">
 										<div class="inputH">Time to Call</div>
 										<?php 
-										
+										$tme1 = 0;
+								$am1 = 0;
+								$tme2 = 0;
+								$am2 = 0;
 										if(isset($referenceList[2]->referCallFrom) && !empty($referenceList[2]->referCallFrom)){
 											$times = explode("-", $referenceList[2]->referCallFrom);
 											if(isset($times[0]))
@@ -300,10 +310,10 @@
 										?>
 										
 										<div class="info width100">
-											<?php echo CHtml::dropDownList('timeFrom2',null,Utilities::getTime(),array('class'=>'wid60 mR5','options' => array($tme1 =>array('selected'=>true)))); ?>
-											<?php echo CHtml::dropDownList('fromA2',null,Utilities::getMeridiem(),array('class'=>'wid50 mR5','options' => array($am1 =>array('selected'=>true)))); ?>	
-										     <?php echo CHtml::dropDownList('timeTo2',null,Utilities::getTime(),array('class'=>'wid60 mR5','options' => array($tme2 =>array('selected'=>true)))); ?>
-										     <?php echo CHtml::dropDownList('toA2',null,Utilities::getMeridiem(),array('class'=>'wid50','options' => array($am2 =>array('selected'=>true)))); ?>
+											<?php echo CHtml::dropDownList('timeFrom2',null,Utilities::getTime(),array('empty'=>'Time','class'=>'wid60 mR5','options' => array($tme1 =>array('selected'=>true)))); ?>
+											<?php echo CHtml::dropDownList('fromA2',null,Utilities::getMeridiem(),array('AM/PM'=>'Time','class'=>'wid50 mR5','options' => array($am1 =>array('selected'=>true)))); ?>	
+										     <?php echo CHtml::dropDownList('timeTo2',null,Utilities::getTime(),array('empty'=>'Time','class'=>'wid60 mR5','options' => array($tme2 =>array('selected'=>true)))); ?>
+										     <?php echo CHtml::dropDownList('toA2',null,Utilities::getMeridiem(),array('AM/PM'=>'Time','class'=>'wid50','options' => array($am2 =>array('selected'=>true)))); ?>
 										</div>
 									</div>
 								</div>

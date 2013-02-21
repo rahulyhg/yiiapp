@@ -35,8 +35,8 @@
 						<span><?php if(isset($value->referHouseName))echo $value->referHouseName;?></span>
 						<span><?php if(isset($value->referPostOffice)) echo $value->referPostOffice; 	?></span>
 						<span><?php if(isset($value->referCity))echo $value->referCity?></span>
-						<span><?php if(isset($value->referState)) echo $value->referState.' , '.$value->referCountry?></span>
-						<span><?php if(isset($value->referPostcode))echo $value->referPostcode?></span>
+						<span><?php if(isset($value->referState) || isset($value->referCountry)) { $str = $value->referState.','.$value->referCountry; echo trim($str,","); }?></span>
+						<span><?php if($value->referPostcode !=0 )echo $value->referPostcode?></span>
 					</div>
 				</div>
 			</li>
@@ -58,5 +58,15 @@
 				}
 			}
 			?>
+			<a class="type5 wid150 mT10" href="<?php echo Utilities::createAbsoluteUrl('contact','referenceedit'); ?>" id="referenceEdit">Edit Reference</a>
     </section>
 	<?php $this->widget('application.widgets.menu.Rightmenu'); ?>
+	
+	
+	<script type="text/javascript">
+$(document).ready(function(){
+    $("#referenceEdit").colorbox({iframe:true, width:"860", height:"900",overlayClose: false});
+  });
+
+
+</script>	
