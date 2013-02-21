@@ -159,6 +159,10 @@
 			
 <script type="text/javascript">
 $(document).ready(function(){
+	<?php if($success) { ?>
+	window.parent.location.reload();
+<?php }?>
+	
     $("#userContact").validationEngine('attach');
 
     $("input:reset").click(function() {       // apply to reset button's click event

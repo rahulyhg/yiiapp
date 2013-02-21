@@ -1,8 +1,9 @@
     <?php $this->widget('application.widgets.menu.Leftmenu'); ?>
 <section class="data-contnr2">
 <ul class="accOverview pmB10">
-			
-		</ul>
+		<li class="mT8">
+			<a class="type4" href="<?php echo Utilities::createAbsoluteUrl('contact','referenceedit'); ?>" id="referenceEdit">Edit Reference</a>				
+		</li>
 		<?php if(isset($referenceList))
 			{
 				$index = 1;
@@ -58,7 +59,6 @@
 				}
 			}
 			?>
-			<a class="type5 wid150 mT10" href="<?php echo Utilities::createAbsoluteUrl('contact','referenceedit'); ?>" id="referenceEdit">Edit Reference</a>
     </section>
 	<?php $this->widget('application.widgets.menu.Rightmenu'); ?>
 	

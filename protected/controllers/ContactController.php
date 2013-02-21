@@ -353,10 +353,14 @@ class ContactController extends Controller
 				$privacy->save();	
 				}
 		}
-		
-		
 		$this->layout= '//layouts/popup';
-		$this->render('referenceedit');
+		
+		$success= false;
+		
+		if(isset($_POST) && !empty($_POST))
+		$success = true;
+		
+		$this->render('referenceedit',array('success'=>$success));
 	}
 	
 	public function actionAstroedit()
