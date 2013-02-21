@@ -166,7 +166,7 @@ class UserController extends Controller
 		$userPersonal->maritalStatus = $_POST['marital'];
 		if(isset($_POST['intercasteable']))
 		$userPersonal->intercasteable = $_POST['interCaste'];
-		if(isset($_POST['stateId']))
+		if(isset($_POST['state']))
 		$userPersonal->stateId = $_POST['state'];
 		if(isset($_POST['district']))
 		$userPersonal->districtId = $_POST['district'];

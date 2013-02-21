@@ -167,7 +167,7 @@ class Utilities
  	foreach ($arrayIds as $value) {
 		$stringValue = $stringValue.','.$arrayToFetch[$value];
  	}
-	return trim($valuString, ","); 	
+	return trim($stringValue, ","); 	
  	}
  	else 
  	return "Not specified";
@@ -186,17 +186,17 @@ class Utilities
  
  public static function getFood()
  {
- 	return array('0'=>'Vegetarian','1'=>'Non-Vegetarian','2'=>'Eggetarian');
+ 	return array('0'=>'Vegetarian','1'=>'Non-Vegetarian','2'=>'Eggetarian','3'=>"Doesn't matter");
  }
  
  public static function getDrink()
  {
- 	return array('0'=>'Non-Drinker','1'=> 'Occasinoaly','2'=>'Drinker');
+ 	return array('0'=>'Non-Drinker','1'=> 'Occasinoaly','2'=>'Drinker','3'=>"Doesn't matter");
  }
  
 	public static function getSmoke()
 	{
-		return array('0'=>'Non-smoker','1'=> 'Occasinoaly','2'=>'Smoker');
+		return array('0'=>'Non-smoker','1'=> 'Occasinoaly','2'=>'Smoker','3'=>"Doesn't matter");
 	} 
 
  public static function getYears()
@@ -735,7 +735,7 @@ class Utilities
 					}
     			}
     			else
-    			return "No activity";
+    			return Utilities::getTimeDuration($user->createdOn);
     		}
     	}
     	else

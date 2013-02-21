@@ -389,6 +389,10 @@ LEFT JOIN photos P ON (U.userId = P.userId AND P.profileImage = 1);
 create table feedback(feedId BIGINT UNIQUE NOT NULL AUTO_INCREMENT, name VARCHAR(250),email VARCHAR(250),message text, feedType  VARCHAR(250),friendliness tinyint(5),service  tinyint(5),
 privacy  	tinyint(5),payment  	tinyint(5),reseller  	tinyint(5), PRIMARY KEY(feedId))ENGINE=MYISAM DEFAULT CHARSET=utf8;
 
+create table delete_feedback(id BIGINT UNIQUE NOT NULL AUTO_INCREMENT, userId BIGINT NOT NULL, married tinyint(5),service tinyint(5),engaged  tinyint(5),other tinyint(5),useful tinyint(5),compromised  	tinyint(5), PRIMARY KEY(id),FOREIGN KEY(userId) REFERENCES users(userId))ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;
+
+
+
 -- view to get the messages
 
 DROP VIEW IF EXISTS view_interests;

@@ -113,7 +113,7 @@
             ))); ?>
 		<?php $records = Caste::model()->findAll("active = 1");
 		$list = CHtml::listData($records, 'casteId', 'name');
-		echo CHtml::dropDownList('caste1',$user->userpersonaldetails->casteId,$list,array('empty' => 'Caste','id'=>'caste1','class'=>'validate[required] wid150')); ?>
+		echo CHtml::dropDownList('caste',$user->userpersonaldetails->casteId,$list,array('empty' => 'Caste','id'=>'caste1','class'=>'validate[required] wid150')); ?>
 			</div>
 			</div>
 	</li>
