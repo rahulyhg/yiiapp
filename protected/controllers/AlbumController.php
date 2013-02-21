@@ -33,6 +33,7 @@ class AlbumController extends Controller
 	public function actionIndex()
 	{
 		$marryId = isset($_GET['mId']) ? $_GET['mId']:'';
+		$windowType = isset($_GET['wType']) ? $_GET['wType']:'normal';
 		if($marryId != ''){
 			$userObj = new Users();
 			$user = $userObj->find("marryId='".$marryId."'");
@@ -109,5 +110,87 @@ class AlbumController extends Controller
 	public function actionFamily()
 	{
 		$this->render('family');
+	}
+	
+	public function actionView(){
+		$marryId = isset($_REQUEST['mId']) ? $_REQUEST['mId']:'';
+		$windowType = isset($_REQUEST['wType']) ? $_REQUEST['wType']:'normal';
+		//load layout depends on the window
+		if($windowType == 'popup'){
+			$this->layout= '//layouts/popup';
+		}
+		if($marryId != ''){
+			$userObj = new Users();
+			$user = $userObj->find("marryId='".$marryId."'");
+			$loggedUser = Yii::app()->session->get('user');
+			$settings = Utilities::getUserPrivacySettings($user->userId);
+			$albumSetting = Utilities::getUserPrivacyStatus($settings,'album');
+			$flag = false;
+			if($albumSetting == 'request'){
+				if(Utilities::getUserPrivacyRequestStatus('album',$loggedUser->userId,$user->userId)){
+					$flag = true;
+				}else{
+					$flag = false;
+					$url = Utilities::createAbsoluteUrl('request','popup',array('action'=>'request','module'=>'album','profileId'=>$user->userId)); 
+				}
+			}elseif($albumSetting == 'members'){
+				if(isset($loggedUser)){
+					$flag = true;
+				}else{
+					$flag = false;
+					$url = Utilities::createAbsoluteUrl('site','index');
+				}
+			}elseif($albumSetting == 'subscribers'){ 
+				if($loggedUser->userType == 1){
+					$flag = true;
+				}else{
+					$flag = false;
+					$url = Utilities::createAbsoluteUrl('request','popup',array('action'=>'subscribe','module'=>'album','profileId'=>$user->userId));
+				}
+			}elseif($albumSetting == 'all'){
+				$flag = true;
+			}
+			if($flag){
+				// set user id in session to avoid set in form hidden
+				Yii::app()->session->add('profileUserId',$user->userId);
+				$photo = new Photos();
+				
+				// user action goes here
+				$action = isset($_REQUEST['action']) ? $_REQUEST['action'] : "";
+				
+				if($action == "expressInterest"){
+					
+					if(sizeof($loggedUser->interestSender(array('condition'=>'senderId='.$loggedUser->userId.' and receiverId='.$user->userId)))> 0){
+						$error = 'Already expressed interest';
+					}else{
+						$interest = new Interests();
+						$interest->senderId = $loggedUser->userId;
+						$interest->receiverId = Yii::app()->session->get('profileUserId');
+						$interest->sendDate = date('Y-m-d h:i:s');
+						$interest->save();
+					}
+				}elseif($action == "bookmark"){
+					$bookmark = new Bookmark();
+					$profileIds = $bookmark->find('userId='.$loggedUser->userId);
+					$id = $profileIds->profileIDs;
+					if(count($profileIds) > 0){
+						$ids = $id.",".Yii::app()->session->get('profileUserId');
+						$bookmark->updateByPk($profileIds->bookMarkId,array('profileIDs'=>$ids));
+					}else{
+						$bookmark->userID = $loggedUser->userId;
+						$bookmark->profileIDs = Yii::app()->session->get('profileUserId');
+						$bookmark->save();
+					}
+				}
+				$photosList = $photo->findAll('userId='.$user->userId);
+				$this->render('view',array('photosList' => $photosList,'user' => $user,'windowType'=>$windowType));
+			}else{
+				Yii::app()->redirect($url);
+				Yii::app()->end;
+			}
+		}else{
+			$message = Yii::t('error','invalidRequest');
+			$this->render('view',array('message' => $message));
+		}
 	}
 }
