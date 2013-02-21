@@ -41,6 +41,7 @@
 					<strong>:</strong>
 					<div class="addrs">
 					<?php $address = Address::model()->findAll(array('condition'=> "userId = {$user->userId} and addresType = 1"));
+					if(isset($address) && isset($address[0])) {
 					$caddress = $address[0];
 					?>
 						<span><?php echo $caddress->houseName ?></span>
@@ -48,6 +49,7 @@
 						<span><?php echo $caddress->city?></span>
 						<span><?php echo $caddress->state.','.$caddress->country?></span>
 						<span><?php echo $caddress->pincode?></span>
+					<?php }?>	
 					</div>
 					
 				</div>
@@ -56,15 +58,18 @@
 				<div class="leftC">Permenent address</div>
 				<div class="rightC">
 					<strong>:</strong>
+					<div class="addrs">
 					<?php $address = Address::model()->findAll(array('condition'=> "userId = {$user->userId} and addresType = 0"));
+					if(isset($address) && isset($address[0])) {
 					$paddress = $address[0];
 					?>
-					<div class="addrs">
+					
 						<span><?php echo $paddress->houseName ?></span>
 						<span><?php echo $paddress->postoffice?></span>
 						<span><?php echo $paddress->city?></span>
 						<span><?php echo $paddress->state.','.$paddress->country?></span>
 						<span><?php echo $paddress->pincode?></span>
+					<?php }?>	
 					</div>
 					
 				</div>
