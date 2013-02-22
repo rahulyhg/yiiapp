@@ -12,8 +12,9 @@
 			?>	
         <ul class="accOverview pmB10">
 			<li>
-				<div class="refHead">
-					<div class="headT">Referance Person <?php echo $index;?></div>
+				<div class="refHead" id="refHead">
+					<div class="headT">Referance Person <?php echo $index;?> </div>
+					<a id="<?php echo $value->referenceId?>" href="#">Delete</a>
 				</div>
 			</li>
 			<li>
@@ -67,6 +68,22 @@
 $(document).ready(function(){
     $("#referenceEdit").colorbox({iframe:true, width:"860", height:"900",overlayClose: false});
   });
+
+$('#refHead').click(function (){
+	 var referId = $(this).find('a').attr('id');
+$.ajax({
+    type: "POST",
+    url: "/Ajax/DeleteReference",
+    'data':{'referId':referId},
+    'dataType':'json',
+    dataType: "json",
+    success: function(data) {
+        if(data)
+    	location.reload();
+    }
+});
+return false;
+});
 
 
 </script>	

@@ -105,7 +105,7 @@ create table horoscopes(horoscopeId BIGINT UNIQUE NOT NULL AUTO_INCREMENT, userI
 
 -- --TABLE FOR reference----
 
-create table reference(referenceId BIGINT UNIQUE NOT NULL AUTO_INCREMENT, userId BIGINT NOT NULL, relation VARCHAR(250) NOT NULL, referName VARCHAR(250) NOT NULL, referHouseName VARCHAR(250) NOT NULL, referPlace VARCHAR(250) NOT NULL, referCity VARCHAR(250) NOT NULL, referState VARCHAR(250) NOT NULL, referPostcode INT(10) NOT NULL, referPostOffice VARCHAR(250) NOT NULL, referDistrict VARCHAR(250) NOT NULL, referCountry VARCHAR(250) NOT NULL, referEmail VARCHAR(250) NOT NULL, referOccupation vARCHAR(250) NOT NULL, referCallFrom VARCHAR(50) NOT NULL, referCallTo INT(10) NOT NULL, referCallTime CHAR(2) NOT NULL, visibility TINYINT NOT NULL DEFAULT 0, PRIMARY KEY(referenceId), FOREIGN KEY (userId) REFERENCES users(userId))ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;
+create table reference(referenceId BIGINT UNIQUE NOT NULL AUTO_INCREMENT, userId BIGINT NOT NULL, relation VARCHAR(250) NOT NULL, referName VARCHAR(250) NOT NULL, referHouseName VARCHAR(250) NOT NULL, referPlace VARCHAR(250) NOT NULL, referCity VARCHAR(250) NOT NULL, referState VARCHAR(250) NOT NULL, referPostcode INT(15) NOT NULL, referPostOffice VARCHAR(250) NOT NULL, referDistrict VARCHAR(250) NOT NULL, referCountry VARCHAR(250) NOT NULL, referEmail VARCHAR(250) NOT NULL, referOccupation vARCHAR(250) NOT NULL, referCallFrom VARCHAR(50) NOT NULL, referCallTo INT(10) NOT NULL, referCallTime CHAR(2) NOT NULL, visibility TINYINT NOT NULL DEFAULT 0, PRIMARY KEY(referenceId), FOREIGN KEY (userId) REFERENCES users(userId))ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;
 
 -- --TABLE FOR messages
 

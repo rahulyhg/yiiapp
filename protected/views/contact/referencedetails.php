@@ -56,7 +56,9 @@
 			<li>
 				<div class="leftC">Mobile No.</div>
 				<div class="rightC">
-					<strong>:</strong> <span>+91 98471 87600 </span>
+					<strong>:</strong> <?php if(isset($reference->referPostcode)){ ?>
+						<span><?php echo $reference->referPostcode; ?></span>
+					<?php }?>
 				</div>
 			</li>
 			<li>
@@ -79,9 +81,7 @@
 					<?php if(isset($reference->referState)){ ?>
 						<span><?php echo $reference->referState; ?></span>
 					<?php }?>
-					<?php if(isset($reference->referPostcode)){ ?>
-						<span><?php echo $reference->referPostcode; ?></span>
-					<?php }?>
+					
 					<?php if(isset($reference->referPostOffice)){ ?>
 						<span><?php echo $reference->referPostOffice; ?></span>
 					<?php }?>

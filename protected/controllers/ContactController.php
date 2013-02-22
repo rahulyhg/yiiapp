@@ -212,6 +212,13 @@ class ContactController extends Controller
 		$this->render('detailsedit');
 	}
 	
+	public function actionReferenceadd()
+	{
+		$this->layout= '//layouts/popup';
+		
+		$this->render('addReference');
+	}
+	
 	public function actionReferenceedit()
 	{
 		$user = Yii::app()->session->get('user');
@@ -254,6 +261,9 @@ class ContactController extends Controller
 		$reference->referCallFrom  = $time;
 		}
 		
+		if(!empty($reference->referName) || !empty($reference->referCallFrom) ||		!empty($reference->referHouseName)||
+						!empty($reference->referPostOffice)|| !empty($reference->referCity)||	!empty($reference->referState)||
+						!empty($reference->referEmail)||	!empty($reference->referOccupation))
 		$reference->save();
 
 		if(isset($referenceList) && isset($referenceList[1]))
@@ -293,7 +303,11 @@ class ContactController extends Controller
 		$time = $_POST['timeFrom1'].':'.$_POST['fromA1'].'-'.$_POST['timeTo1'].':'.$_POST['toA1'];
 		$reference1->referCallFrom  = $time;
 		}
+			if(!empty($reference1->referName) || !empty($reference1->referCallFrom) ||		!empty($reference1->referHouseName)||
+						!empty($reference1->referPostOffice)|| !empty($reference1->referCity)||	!empty($reference1->referState)||
+						!empty($reference1->referEmail)||	!empty($reference1->referOccupation))
 		$reference1->save();
+		
 		
 		if(isset($referenceList) && isset($referenceList[2]))
 		{
@@ -332,7 +346,12 @@ class ContactController extends Controller
 		$time = $_POST['timeFrom2'].':'.$_POST['fromA2'].'-'.$_POST['timeTo2'].':'.$_POST['toA2'];
 		$reference2->referCallFrom  = $time;
 		}
+		
+		if(!empty($reference2->referName) || !empty($reference2->referCallFrom) ||		!empty($reference2->referHouseName)||
+						!empty($reference2->referPostOffice)|| !empty($reference2->referCity)||	!empty($reference2->referState)||
+						!empty($reference2->referEmail)||	!empty($reference2->referOccupation))
 		$reference2->save();
+		
 		
 		
 		
