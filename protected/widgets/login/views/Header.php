@@ -40,7 +40,7 @@
 			<?php echo CHtml::submitButton('Login',array('class'=>'type2b','tabindex'=>'3')); ?>
 		<?php echo CHtml::endForm(); ?>
 		<?php   if ( isset(Yii::app()->params['loginError']) && !empty(Yii::app()->params['loginError']) ){ ?>
-		<div class="logError" style="display:block">
+		<div class="logError" id="logError" style="display:block">
         <div class="tarrow"></div>
 				<div class="cont">
 					Invalid user credentials
@@ -68,5 +68,9 @@ $(document).ready(function(){
     $("#forgotPassword").colorbox({iframe:true, width:"850", height:"355"});
   });
 
+$("html").click(function(){ 
+    
+	$("#logError").hide();
+});
 
 </script>

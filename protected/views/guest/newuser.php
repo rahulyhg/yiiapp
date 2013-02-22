@@ -43,7 +43,7 @@
 				<div class="right">
 				<?php $records = Religion::model()->findAll("active = 1");
 		$list = CHtml::listData($records, 'religionId', 'name');
-		echo CHtml::dropDownList('religion',null,$list,array('empty' => 'Religion','class'=>'validate[required] width90','id'=>'sReligion','ajax' => array(
+		echo CHtml::dropDownList('religion',null,$list,array('empty' => 'Religion','class'=>'validate[required] width60','id'=>'sReligion','ajax' => array(
                         'type'=>'POST',
                         'url'=>CController::createUrl('Ajax/updateCaste'), 
                         'dataType'=>'json',
@@ -168,13 +168,13 @@
 				<div class="right">
 				<?php $records = Religion::model()->findAll("active = 1");
 		$list = CHtml::listData($records, 'religionId', 'name');
-		echo CHtml::dropDownList('religion',null,$list,array('empty' => 'Religion','class'=>'validate[required] width90','id'=>'sReligion','ajax' => array(
+		echo CHtml::dropDownList('religion',null,$list,array('empty' => 'Religion','class'=>'validate[required] width60','id'=>'religion','ajax' => array(
                         'type'=>'POST',
                         'url'=>CController::createUrl('Ajax/updateCaste'), 
                         'dataType'=>'json',
                         'data'=>array('religionId'=>'js:this.value'),  
                         'success'=>'function(data) {
-                            $("#uCaste").html(data.dropDownCastes);
+                            $("#caste").html(data.dropDownCastes);
                         }',
             ))); ?>
 		<?php echo $form->error($model,'religion'); ?>
@@ -183,7 +183,7 @@
 			<li>
 				<div class="left"><?php echo $form->labelEx($model,'caste'); ?></div>
 				<div class="right">
-				<?php echo CHtml::dropDownList('caste','',array(),array('prompt' => 'Caste','id'=>'uCaste','class'=>'validate[required] width60')); ?>
+				<?php echo CHtml::dropDownList('caste','',array(),array('prompt' => 'Caste','class'=>'validate[required] width60')); ?>
 		<?php echo $form->error($model,'caste'); ?>
 				</div>
 			</li>
@@ -192,7 +192,7 @@
 				<div class="right">
 				<?php $records = Country::model()->findAll("active = 1");
 		$list = CHtml::listData($records, 'countryId', 'name');
-		echo CHtml::dropDownList('country',null,$list,array('empty' => 'Country','class'=>'validate[required] width60','ajax' => array(
+		echo CHtml::dropDownList('country',null,$list,array('empty' => 'Country','id'=>'pCountry','class'=>'validate[required] width60','ajax' => array(
                         'type'=>'POST',
                         'url'=>CController::createUrl('Ajax/updateState'), 
                         'dataType'=>'json',

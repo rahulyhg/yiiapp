@@ -90,7 +90,7 @@ class SiteController extends Controller
 	public function actionLogin()
 	{
 		$model=new LoginForm;
-
+		Yii::app()->params['loginError'] = NULL;
 		// if it is ajax validation request
 		if(isset($_POST['ajax']) && $_POST['ajax']==='login-form')
 		{
