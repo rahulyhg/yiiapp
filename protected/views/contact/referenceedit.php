@@ -109,10 +109,10 @@
 									<div class="inputCl">
 										<div class="inputH">Time to Call</div>
 										<div class="info width100">
-										<?php echo CHtml::dropDownList('timeFrom0',null,Utilities::getTime(),array('empty'=>'Time','class'=>'wid60 mR5','options' => array($tme1 =>array('selected'=>true)))); ?>
-											<?php echo CHtml::dropDownList('fromA0',null,Utilities::getMeridiem(),array('empty'=>'AM/PM','class'=>'wid50 mR5','options' => array($am1 =>array('selected'=>true)))); ?>	
-										     <?php echo CHtml::dropDownList('timeTo0',null,Utilities::getTime(),array('empty'=>'Time','class'=>'wid60 mR5','options' => array($tme2 =>array('selected'=>true)))); ?>
-										     <?php echo CHtml::dropDownList('toA0',null,Utilities::getMeridiem(),array('empty'=>'AM/PM','class'=>'wid50','options' => array($am2 =>array('selected'=>true)))); ?>
+										<?php echo CHtml::dropDownList('timeFrom'.$index,null,Utilities::getTime(),array('empty'=>'Time','class'=>'wid60 mR5','options' => array($tme1 =>array('selected'=>true)))); ?>
+											<?php echo CHtml::dropDownList('fromA'.$index,null,Utilities::getMeridiem(),array('empty'=>'AM/PM','class'=>'wid50 mR5','options' => array($am1 =>array('selected'=>true)))); ?>	
+										     <?php echo CHtml::dropDownList('timeTo'.$index,null,Utilities::getTime(),array('empty'=>'Time','class'=>'wid60 mR5','options' => array($tme2 =>array('selected'=>true)))); ?>
+										     <?php echo CHtml::dropDownList('toA'.$index,null,Utilities::getMeridiem(),array('empty'=>'AM/PM','class'=>'wid50','options' => array($am2 =>array('selected'=>true)))); ?>
 										</div>
 									</div>
 								</div>

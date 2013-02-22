@@ -7,7 +7,7 @@
 		<h3 class="mB10 ">Why should I add my reference?</h3>
         <p>References are the best way to ensure that the potential candidate is a person of good conduct and is a respected person in the society. </p>		
 		
-		<a class="type5 wid150 mT10" href="<?php echo Utilities::createAbsoluteUrl('contact','referenceedit'); ?>" id="referenceEdit">Add Referance</a>
+		<a class="type5 wid150 mT10" href="<?php echo Utilities::createAbsoluteUrl('contact','referenceadd'); ?>" id="referenceEdit">Add Referance</a>
     </section>
 	<?php $this->widget('application.widgets.menu.Rightmenu'); ?>
 	
