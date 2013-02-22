@@ -158,7 +158,7 @@ class AjaxController extends Controller
 				$reference->delete();
 			}
 
-				$user->references = Reference::model()->findAll();
+				$user->references = Reference::model()->findAll(array('condition'=>"userId = {$_POST['referId']}"));
 				echo json_encode(TRUE);
 			
 		}
