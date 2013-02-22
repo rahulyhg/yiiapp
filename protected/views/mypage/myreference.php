@@ -15,7 +15,7 @@
 				?>
 	<ul class="accOverview pmB10">
 		<li>
-			<div class="refHead" id="refHead">
+			<div class="refHead" id="<?php echo 'refHead'.$value->referenceId?>">
 				<div class="headT">
 					Referance Person
 					<?php echo $index;?>
@@ -135,7 +135,8 @@ $(document).ready(function(){
     $("#referenceEdit").colorbox({iframe:true, width:"860", height:"900",overlayClose: false});
   });
 
-$('#refHead').click(function (){
+
+$('[id^=refHead]').click(function (){
 	 var referId = $(this).find('a').attr('id');
 $.ajax({
     type: "POST",
