@@ -349,13 +349,17 @@ class MypageController extends Controller
 		if(isset($user->references) && !empty($user->references) )
 		{
 				$showReference = false;
-				$index = 1;
+				if( is_array($referenceList)) {
 				foreach ($referenceList as $value) {
 				if(!empty($value->referName) || !empty($value->referCallFrom) ||		!empty($value->referHouseName)||
 						!empty($value->referPostOffice)|| !empty($value->referCity)||	!empty($value->referState)||
 						!empty($value->referEmail)||	!empty($value->referOccupation))
+						
 						$showReference = true;
 				}
+				}
+				else if(isset($referenceList->referenceId))
+				$showReference = true;
 			
 		}
 		if($showReference)

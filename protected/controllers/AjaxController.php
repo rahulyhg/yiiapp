@@ -144,20 +144,26 @@ class AjaxController extends Controller
 	
 	public function actionDeleteReference()
 	{
-			$user = Yii::app()->session->get('user');
-			if(isset($_POST['referId']))
-			{
-				$reference = Reference::model()->findbyPk($_POST['referId']);
-				if(isset($reference)) {
-				$reference->deleteAll();
-				$user->references->save();
-				echo json_encode(TRUE);
+		$user = Yii::app()->session->get('user');
+		if(isset($_POST['referId']))
+		{
+			$reference = $user->references(array('condition'=>"referenceId = {$_POST['referId']}"));
+
+			if( is_array($reference )) {
+				foreach( $reference  as $relRecord ) {
+					$relRecord->delete();
 				}
-				else
-				echo json_encode(FALSE);
-			}		
-			else
-				echo json_encode(FALSE);
+			}
+			else {
+				$reference->delete();
+			}
+
+				$user->references = Reference::model()->findAll();
+				echo json_encode(TRUE);
+			
+		}
+		else
+		echo json_encode(FALSE);
 	}
 	
 	

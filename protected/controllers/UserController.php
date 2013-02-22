@@ -477,7 +477,7 @@ class UserController extends Controller
 		$reference->referEmail = $_POST['email0'];
 		if(isset($_POST['occupation0']))
 		$reference->referOccupation = $_POST['occupation0'];
-		if(isset($_POST['timeFrom0']) && isset($_POST['fromA0']) && isset($_POST['timeTo0']) && isset($_POST['toA0'])){
+		if(!empty($_POST['timeFrom0']) && !empty($_POST['fromA0']) && !empty($_POST['timeTo0']) && !empty($_POST['toA0'])){
 		$time = $_POST['timeFrom0'].':'.$_POST['fromA0'].'-'.$_POST['timeTo0'].':'.$_POST['toA0'];
 		$reference->referCallFrom  = $time;
 		}
@@ -512,7 +512,7 @@ class UserController extends Controller
 		$reference1->referEmail = $_POST['email1'];
 		if(isset($_POST['occupation1']))
 		$reference1->referOccupation = $_POST['occupation1'];
-		if(isset($_POST['timeFrom1']) && isset($_POST['fromA1']) && isset($_POST['timeTo1']) && isset($_POST['toA1'])){
+		if(!empty($_POST['timeFrom1']) && !empty($_POST['fromA1']) && !empty($_POST['timeTo1']) && !empty($_POST['toA1'])){
 		$time = $_POST['timeFrom1'].':'.$_POST['fromA1'].'-'.$_POST['timeTo1'].':'.$_POST['toA1'];
 		$reference1->referCallFrom  = $time;
 		}
@@ -549,7 +549,7 @@ class UserController extends Controller
 		$reference2->referEmail = $_POST['email2'];
 		if(isset($_POST['occupation2']))
 		$reference2->referOccupation = $_POST['occupation2'];
-		if(isset($_POST['timeFrom2']) && isset($_POST['fromA2']) && isset($_POST['timeTo2']) && isset($_POST['toA2'])){
+		if(!empty($_POST['timeFrom2']) && !empty($_POST['fromA2']) && !empty($_POST['timeTo2']) && !empty($_POST['toA2'])){
 		$time = $_POST['timeFrom2'].':'.$_POST['fromA2'].'-'.$_POST['timeTo2'].':'.$_POST['toA2'];
 		$reference2->referCallFrom  = $time;
 		}
