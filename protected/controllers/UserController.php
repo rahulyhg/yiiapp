@@ -57,17 +57,11 @@ class UserController extends Controller
 				if(isset($_POST['UserForm']['coupon']))
 				{
 					//check for coupon detail, if its promo and also check if its active
-					$coupon = Coupon::model()->findByAttributes(array('couponCode'=>$_POST['coupon']));
+					$coupon = Coupon::model()->findByAttributes(array('couponCode'=>$_POST['UserForm']['coupon']));
 					$isValid = false;
 						
 					if($coupon->couponType == 'promo')
 					{
-						//the promotion coupon is not active now
-						if($coupon->status == 0)
-						{
-							
-						}
-						else
 						$isValid = true;
 					}
 					else {
@@ -87,6 +81,7 @@ class UserController extends Controller
 						$payment->startdate = new CDbExpression('NOW()');
 						$payment->actionItem = 'membership';
 						$payment->save();
+						$user->userType = 1; 
 					}
 				}
 					
@@ -101,7 +96,7 @@ class UserController extends Controller
 				$userPersonal->mobilePhone = $_POST['UserForm']['mobileNo'];
 				$userPersonal->landPhone = $_POST['UserForm']['mobileNo'];
 				$userPersonal->save();
-					
+				$user->save();	
 				$transaction->commit();
 				
 			}

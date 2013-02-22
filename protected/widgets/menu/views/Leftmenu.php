@@ -27,7 +27,7 @@
         	$currentDate = new DateTime('now');
         	$date = new DateTime($payment->startdate);
         	$endDate = new DateTime($payment->startdate);
-			$endDate->modify('+3 months');
+			$endDate->modify('+90 days');
 			if($endDate > $currentDate) {
 			$balance = $currentDate->diff($endDate);
 			?>
@@ -36,18 +36,22 @@
 			<?php 
 			
 			}
-			else 
-			{ ?>
-			<div class="moreDay">Membership</div>
-			<div class="remain">Expired<a href="/payment/recharge" >Re-Charge Now</a></div>	
-			<?php 
-			}
-			?>
+			 ?>
+			
 			</li>
         </ul>
        <?php 	
         }	
-        }?>
+        } else {?>
+        <ul class="left-bar-data">
+			<li>
+				<div class="uNot">You Have Not Subscribed Yet!!</div>
+				<a href="/payment/recharge" class="subNow">Subscribe NOW!</a>
+				<div class="subOnly">Only for <span class="WebRupee">Rs.</span><span class="forAmt">200!</span></div>
+			</li>
+        </ul>
+        <?php }?>
+        
         <ul class="left-bar-data">
             <li><a href="<?php echo Utilities::createAbsoluteUrl('mypage','index',array()); ?>" class="select headLink">My Page</a></li>
             <li><a href="<?php echo Utilities::createAbsoluteUrl('mypage','profile',array()); ?>" class="headLink">My Profile</a></li>

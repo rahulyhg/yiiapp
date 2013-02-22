@@ -43,7 +43,7 @@
 				<div class="right">
 				<?php $records = Religion::model()->findAll("active = 1");
 		$list = CHtml::listData($records, 'religionId', 'name');
-		echo CHtml::dropDownList('religion',null,$list,array('empty' => 'Religion','class'=>'validate[required] width90','id'=>'sReligion','ajax' => array(
+		echo CHtml::dropDownList('religion',null,$list,array('empty' => 'Religion','class'=>'validate[required] width60','id'=>'sReligion','ajax' => array(
                         'type'=>'POST',
                         'url'=>CController::createUrl('Ajax/updateCaste'), 
                         'dataType'=>'json',
@@ -126,7 +126,6 @@
 		<?php $form=$this->beginWidget('CActiveForm', array(
 	'id'=>'users-paid-form',
 	'action' => Yii::app()->createUrl('user/register'),
- 	'focus'=>array($model,'name'),
 	'enableAjaxValidation'=>false,
 )); ?>
 		
@@ -168,13 +167,13 @@
 				<div class="right">
 				<?php $records = Religion::model()->findAll("active = 1");
 		$list = CHtml::listData($records, 'religionId', 'name');
-		echo CHtml::dropDownList('religion',null,$list,array('empty' => 'Religion','class'=>'validate[required] width90','id'=>'sReligion','ajax' => array(
+		echo CHtml::dropDownList('religion',null,$list,array('empty' => 'Religion','class'=>'validate[required] width60','id'=>'religion','ajax' => array(
                         'type'=>'POST',
                         'url'=>CController::createUrl('Ajax/updateCaste'), 
                         'dataType'=>'json',
                         'data'=>array('religionId'=>'js:this.value'),  
                         'success'=>'function(data) {
-                            $("#uCaste").html(data.dropDownCastes);
+                            $("#caste").html(data.dropDownCastes);
                         }',
             ))); ?>
 		<?php echo $form->error($model,'religion'); ?>
@@ -183,7 +182,7 @@
 			<li>
 				<div class="left"><?php echo $form->labelEx($model,'caste'); ?></div>
 				<div class="right">
-				<?php echo CHtml::dropDownList('caste','',array(),array('prompt' => 'Caste','id'=>'uCaste','class'=>'validate[required] width60')); ?>
+				<?php echo CHtml::dropDownList('caste','',array(),array('prompt' => 'Caste','class'=>'validate[required] width60')); ?>
 		<?php echo $form->error($model,'caste'); ?>
 				</div>
 			</li>
@@ -192,7 +191,7 @@
 				<div class="right">
 				<?php $records = Country::model()->findAll("active = 1");
 		$list = CHtml::listData($records, 'countryId', 'name');
-		echo CHtml::dropDownList('country',null,$list,array('empty' => 'Country','class'=>'validate[required] width60','ajax' => array(
+		echo CHtml::dropDownList('country',null,$list,array('empty' => 'Country','id'=>'pCountry','class'=>'validate[required] width60','ajax' => array(
                         'type'=>'POST',
                         'url'=>CController::createUrl('Ajax/updateState'), 
                         'dataType'=>'json',
@@ -240,8 +239,8 @@
 				<div class="left"> </div>
 				<div class="right">
 					<h4>Enter Your Pin Number Here</h4>
-					<?php echo $form->textField($model,'coupon',array('class'=>'validate[required,minSize[15],maxSize[15]]')); ?>
-					<h4>or Call us +91 8891 680376</h4>
+					<?php echo $form->textField($model,'coupon',array('class'=>'validate[required,minSize[15],maxSize[15],funcCall[checkCoupon]]')); ?>
+					<h4>or Call us +91 9400 005 005</h4>
 				</div>
 			</li>
 			<li>
@@ -297,7 +296,7 @@ function checkEmail(field, rules, i, options){
 	email = availability;
 	
 },
-data: {email : $('#UserForm_emailId').val()},
+data: {email : field.val()},
 async: false
 });
 
@@ -315,7 +314,7 @@ async: false
 
 function checkMobile(field, rules, i, options){
 
-	 if ($('#UserForm_mobileNo').val() == 0) {
+	 if (field.val() == 0) {
 			return true;
 		}
 	var sAvailable = 'This mobile number is available.';
@@ -330,7 +329,7 @@ function checkMobile(field, rules, i, options){
 	mobile = availability;
 	
 },
-data: {mobile : $('#UserForm_mobileNo').val()},
+data: {mobile : field.val()},
 async: false
 });
 
@@ -363,7 +362,7 @@ function checkUser(field, rules, i, options){
 	email = availability;
 	
 },
-data: {name : $('#UserForm_name').val()},
+data: {name : field.val()},
 async: false
 });
 
@@ -377,5 +376,36 @@ async: false
 		}
 
 }
+
+
+function checkCoupon(field, rules, i, options){
+
+	
+	var sUnavailable = 'Coupon is not valid,please call us +91 9400 005 005.';
+	var email = false;		
+	$.ajax({
+	type: 'POST',
+	url: '/ajax/coupon',
+	dataType: 'json',
+	cache: false,
+	success: function(availability) {
+	email = availability;
+	
+},
+data: {coupon : field.val()},
+async: false
+});
+
+			// return success status
+		
+	
+		if (email == false) {
+		return sUnavailable;
+		}else{ 
+			return true;
+		}
+
+}
+
 
 </script>

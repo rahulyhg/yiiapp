@@ -8,7 +8,7 @@ class AjaxController extends Controller
         {
                 $user = Yii::app()->session->get('user');
                 
-                if( $action->id == 'updateplaces' || $action->id == 'useremail' || $action->id == 'username'  || $action->id == 'usermobile' || $action->id == 'updateCaste' || $action->id == 'updateState' || $action->id == 'updateDistrict' )
+                if( $action->id == 'updateplaces' || $action->id == 'coupon'  || $action->id == 'useremail' || $action->id == 'username'  || $action->id == 'usermobile' || $action->id == 'updateCaste' || $action->id == 'updateState' || $action->id == 'updateDistrict' )
         		return true;
                 if(!isset($user)) {
                         $this->redirect(Yii::app()->user->loginUrl);
@@ -164,6 +164,22 @@ class AjaxController extends Controller
 		}
 		else
 		echo json_encode(FALSE);
+	}
+	
+	public function actionCoupon()
+	{
+		if(isset($_POST['coupon'])) {
+		$coupon = Coupon::model()->findByAttributes(array('couponCode'=>$_POST['coupon']));
+		if(isset($coupon) && $coupon->status == 1)
+		{
+			echo json_encode(TRUE);
+		}
+		else
+		echo json_encode(FALSE);
+		}
+		else
+		echo json_encode(FALSE);
+		
 	}
 	
 	

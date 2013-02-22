@@ -133,8 +133,8 @@
 				<div class="left"> </div>
 				<div class="right">
 					<h4>Enter Your Pin Number Here</h4>
-					<?php echo $form->textField($model,'coupon',array('class'=>'validate[required,minSize[15],maxSize[15]]')); ?>
-					<h4>or Call us +91 8891 680376</h4>
+					<?php echo $form->textField($model,'coupon',array('class'=>'validate[required,minSize[15],maxSize[15],funcCall[checkCoupon]]')); ?>
+					<h4>or Call us +91 9400 005 005</h4>
 				</div>
 			</li>
 			<li>
@@ -285,6 +285,36 @@ async: false
 		}
 
 }
+
+function checkCoupon(field, rules, i, options){
+
+	
+	var sUnavailable = 'Coupon is not valid,please call us +91 9400 005 005.';
+	var email = false;		
+	$.ajax({
+	type: 'GET',
+	url: '/ajax/coupon',
+	dataType: 'json',
+	cache: false,
+	success: function(availability) {
+	email = availability;
+	
+},
+data: {coupon : field.val()},
+async: false
+});
+
+			// return success status
+		
+	
+		if (email == false) {
+		return sUnavailable;
+		}else{ 
+			return true;
+		}
+
+}
+
 
 </script>	
  
