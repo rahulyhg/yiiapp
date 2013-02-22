@@ -139,16 +139,16 @@ $user = Yii::app()->session->get('user');
 						<a href="<?php echo Utilities::createAbsoluteUrl('album','view',array('userId'=>$model->userId)); ?>">Personal album</a>
 					<?php }elseif($albumSetting == 'members'){
 							if(isset($user)){ ?>
-								<a href="<?php echo Utilities::createAbsoluteUrl('album','view',array('userId'=>$model->userId)); ?>">Personal album</a>
+								<a class="albumWindow" href="<?php echo Utilities::createAbsoluteUrl('album','index',array('mId'=>$model->marryId,'wType'=>'popup')); ?>">Personal album</a>
 							<?php }else{?>
-								<a class="requestWindow" href="<?php echo Utilities::createAbsoluteUrl('request','popup',array('action'=>'login','module'=>'album','profileId'=>$model->userId)); ?>">Personal album</a>
+								<a class="albumWindow" href="<?php echo Utilities::createAbsoluteUrl('request','popup',array('action'=>'login','module'=>'album','profileId'=>$model->userId)); ?>">Personal album</a>
 							<?php } ?>
 	
 					<?php }elseif($albumSetting == 'request'){
 							if(Utilities::getUserPrivacyRequestStatus('album',$user->userId,$model->userId)){ ?>
-								<a href="<?php echo Utilities::createAbsoluteUrl('album','view',array('userId'=>$model->userId)); ?>">Personal album</a>
+								<a class="albumWindow" href="<?php echo Utilities::createAbsoluteUrl('album','view',array('mId'=>$model->marryId,'wType'=>'popup')); ?>">Personal album</a>
 							<?php }else{ ?>
-									<a class="requestWindow" href="<?php echo Utilities::createAbsoluteUrl('request','popup',array('action'=>'request','module'=>'album','profileId'=>$model->userId)); ?>">Personal album</a>
+									<a class="albumWindow" href="<?php echo Utilities::createAbsoluteUrl('request','popup',array('action'=>'request','module'=>'album','profileId'=>$model->userId)); ?>">Personal album</a>
 							<?php }
 						}elseif($albumSetting == 'subscribers'){ 
 							if($user->userType == 1){ ?>

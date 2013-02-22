@@ -36,7 +36,10 @@ $user  = Yii::app()->session->get('user');
 						<?php if($action == 'request'){?>
 							<input type="submit" name="sendRequest" id="sendRequest" value="Send Request" class="type2b" />
 							<?php }elseif($action == 'login'){ ?>
-							<input type="submit" name="sendRequest" id="sendRequest" value="Login" class="type2b" />
+							<input type="button" name="sendRequest" id="sendRequest" value="Login" class="type2b" onclick="javascript:redirectUser();" />
+							<input type="button" name="newmember" id="newmember" value="I am not a member yet" class="type2b" onclick="javascript:redirectUser();" />
+						<?php }elseif($action == 'subscribers'){ ?>
+						<input type="submit" name="sendRequest" id="sendRequest" value="Subscribe Now" class="type2b" />
 						<?php }?>
 						</div>
 						<?php }?>
@@ -45,3 +48,10 @@ $user  = Yii::app()->session->get('user');
 			</section>
 			</form>
 		</div>
+		
+<script type="text/javascript">
+	function redirectUser(){
+		parent.$.fn.colorbox.close();
+		parent.window.location.href = "<?php echo Utilities::createAbsoluteUrl('site','index') ?>";
+	}
+</script>
