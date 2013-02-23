@@ -27,13 +27,34 @@ class PaymentController extends Controller
 	public function actionUpdate()
 	{
 		
-		$users = $user = Yii::app()->session->get('user');
+		$user = Yii::app()->session->get('user');
 		$isHighLighted = false;
+		
+		
+		
 		if(isset($_POST['coupon']))
 		{
 			//get user from session
-			
+			Yii::app()->getDb()->createCommand("SET time_zone='+05:30'")->execute();
 			$coupon = Coupon::model()->findByAttributes(array('couponCode'=>$_POST['coupon']),'status=1');
+			$newStart = false;
+			$endDate = null;
+			$user->payment = Payment::model()->findAll(array('condition'=>"userId = {$user->userId}"));
+			if(isset($user->payment))
+			{
+				
+				$payments = $user->payment(array('order'=> 'startdate DESC limit 0,1'));
+				$payment = $payments[0];
+				$currentDate = new DateTime('now');
+				$endDate = new DateTime($payment->startdate);
+				$endDate->modify('90 days');
+				if($endDate > $currentDate) 
+				{
+					$newStart = true;
+				}
+				
+			}
+			
 			$isValid = false;
 			if(isset($coupon) && !empty($coupon)){
 				if($coupon->couponType == 'promo')
@@ -48,10 +69,13 @@ class PaymentController extends Controller
 				$coupon->isUsed = 1;
 				$coupon->save();
 				$user->userType = 1; 
-				$users->save();
+				$user->save();
 				$payment = new Payment();
-				$paypment->userID = $users->userId;
+				$payment->userID = $user->userId;
 				$payment->couponcode = $_POST['coupon'];
+				if($newStart)
+				$payment->startdate = $endDate->format('Y-m-d H:i:s');
+				else
 				$payment->startdate = new CDbExpression('NOW()');
 				$payment->actionItem = 'membership'; 
 				$payment->save();

@@ -1086,7 +1086,7 @@ class SearchController extends Controller
 			{
 						
 				if(isset($loggedUser) && $loggedUser->marryId != $user->marryId ){
-					
+					Yii::app()->getDb()->createCommand("SET time_zone='+05:30'")->execute();			
 					$profileView = Profileviews::model()->findByAttributes(array('visitedId'=>$user->userId,'userID'=>$loggedUser->userId ));
 					if(isset($profileView))
 					{

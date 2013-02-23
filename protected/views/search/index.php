@@ -658,7 +658,6 @@
 			</div>
 		</div>
     </section>
-	<?php $this->widget('application.widgets.menu.Rightmenu'); ?> 
 
 <script type="text/javascript">
 $(document).ready(function() {

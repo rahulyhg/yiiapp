@@ -25,10 +25,12 @@
 		<?php 
 		if(isset($payment)){
 			$currentDate = new DateTime('now');
+			$index = 1;
 		foreach ($payment as $value) {
+			
 			$date = new DateTime($value->startdate);
 			$endDate = new DateTime($value->startdate);
-			$endDate->modify('+3 months'); 
+			$endDate->modify('90 days'); 
 		?>
         <ul class="accOverview pmB10">
 			<li>
@@ -54,7 +56,14 @@
 			<li>
 				<div class="leftC">Remaining Days</div>
 				<div class="rightC">
-					<strong>:</strong> <span><?php echo $balance->format('%a more days');?><a href="/payment" >Recharge Now</a></span>
+					<strong>:</strong> <span><?php echo $balance->format('%a more days');?> 
+					<?php 
+					
+					if(sizeof($payment) == $index) {?>
+					<a href="/payment/recharge" >Recharge Now</a>
+					<?php }	?>
+					
+					</span>
 				</div>
 			</li>
 			<li>
@@ -79,7 +88,9 @@
 			</li>
 			<?php }?>
 		</ul>
-		<?php }
+		<?php
+		++$index;
+		}
 		} else {
 		?>
 		 No payment details found.

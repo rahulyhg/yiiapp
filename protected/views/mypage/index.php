@@ -252,9 +252,12 @@
 				<div class="for">For 3 Months</div>
 			</div>
 		</aside>
+		
+		
+		<?php $percent = Yii::app()->session->get('percentage');?>
 			
 		<div class="highlightBox pComplete">
-			<p>Your profile is only 50% complete. By filling your complete details, increase your chance of getting more relevant responses. Go to view profile to complete your profile.</p>
+			<p><?php if(isset($percent)) { ?>Your profile is only <?php echo $percent;?>% complete.<?php }?> By filling your complete details, increase your chance of getting more relevant responses. Go to view profile to complete your profile.</p>
 			<a href="/mypage/profile" class="upload">Update My Profile</a>
 		</div>
         <h1 class="width100 mTB12">Quick Search</h1>

@@ -57,7 +57,7 @@
 			</li>
 			<li>
 				<input type="text" name="coupon" class="validate[required,minSize[15],maxSize[15],funcCall[checkCoupon]]"/> 
-					<?php echo CHtml::submitButton('Submit',array('class'=>'type3')); ?>
+				<?php echo CHtml::submitButton('Submit',array('class'=>'type3')); ?>
 			</li>
 		</ul>
 			</form>

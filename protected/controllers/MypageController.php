@@ -18,7 +18,6 @@ class MypageController extends Controller
 
 	public function beforeAction(CAction $action)
 	{
-		
 		$user = Yii::app()->session->get('user');
 		if(!isset($user)) {
 			$this->redirect(Yii::app()->user->loginUrl);
@@ -223,6 +222,8 @@ class MypageController extends Controller
 		}
 	
 		if($percentage != 100)
+		{
+		Yii::app()->session->add('percentage',$percentage);	
 		$this->render('complete',
 		array('percent'=>$percentage,'astro'=>$astro,'profile'=>$profile,'album'=>$album,'document'=>$document,'reference'=>$reference,
 		'profile'=>$profile,
@@ -236,6 +237,7 @@ class MypageController extends Controller
 		'partner' => $partner,
 		'hobbies' => $hobbies,
 		));
+		}
 		else
 		$this->forward('index');
 	}
@@ -875,6 +877,7 @@ public function actionEditdocument()
 			$userLogged = $user->userloggeddetails(array('order'=>'loggedIn DESC','limit'=>1));
 			if(isset($userLogged) && sizeof($userLogged) > 0)
 			{		
+				Yii::app()->getDb()->createCommand("SET time_zone='+05:30'")->execute();
 				$userLogged[0]->loggedOut = new CDbExpression('NOW()');
 				$userLogged[0]->save();
 			}
@@ -903,7 +906,8 @@ public function actionEditdocument()
 			
 		$userLogged = $user->userloggeddetails(array('order'=>'loggedIn DESC','limit'=>1));
 		if(isset($userLogged) && sizeof($userLogged) > 0)
-		{		
+		{	
+			Yii::app()->getDb()->createCommand("SET time_zone='+05:30'")->execute();	
 			$userLogged[0]->loggedOut = new CDbExpression('NOW()');
 			$userLogged[0]->save();
 		}
@@ -938,6 +942,7 @@ public function actionChange()
 					$userLogged = $user->userloggeddetails(array('order'=>'loggedIn DESC','limit'=>1));
 					if(isset($userLogged) && sizeof($userLogged) > 0)
 					{
+						Yii::app()->getDb()->createCommand("SET time_zone='+05:30'")->execute();
 						$userLogged[0]->loggedOut = new CDbExpression('NOW()');
 						$userLogged[0]->save();
 					}

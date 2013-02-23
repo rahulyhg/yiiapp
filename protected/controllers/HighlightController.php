@@ -37,7 +37,7 @@ class HighlightController extends Controller
 		else if(isset($_POST['coupon']))
 		{
 			//get user from session
-			
+			Yii::app()->getDb()->createCommand("SET time_zone='+05:30'")->execute();
 			$coupon = Coupon::model()->findByAttributes(array('couponCode'=>$_POST['coupon']),'isUsed=0');
 			$coupon->isUsed = 1;
 			$coupon->save();

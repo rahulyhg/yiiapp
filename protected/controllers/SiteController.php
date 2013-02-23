@@ -141,6 +141,7 @@ class SiteController extends Controller
 	public function actionLogout()
 	{
 		$user = Yii::app()->session->get('user');
+		Yii::app()->getDb()->createCommand("SET time_zone='+05:30'")->execute();
 		$userLogged = $user->userloggeddetails(array('order'=>'loggedIn DESC','limit'=>1));
 		if(isset($userLogged) && sizeof($userLogged) > 0)
 		{		

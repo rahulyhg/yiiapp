@@ -4,7 +4,6 @@ class UserController extends Controller
 {
 	  public function beforeAction(CAction $action)
         {
-        	
         		if($action->id == 'register')
         		return true;
                 $user = Yii::app()->session->get('user');
@@ -29,6 +28,7 @@ class UserController extends Controller
 		$user = new Users();
 		$userPersonal = new Userpersonaldetails();
 		$view = 'success';
+		Yii::app()->getDb()->createCommand("SET time_zone='+05:30'")->execute();
 		if(isset($_POST['UserForm']))
 		{
 			$transaction = Yii::app()->db->beginTransaction();
