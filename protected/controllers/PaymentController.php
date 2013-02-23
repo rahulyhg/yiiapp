@@ -33,18 +33,29 @@ class PaymentController extends Controller
 		{
 			//get user from session
 			
-			$coupon = Coupon::model()->findByAttributes(array('couponCode'=>$_POST['coupon']),'isUsed=0');
-			$coupon->isUsed = 1;
-			$coupon->save();
-			$users->highlighted = 1 ;
-			$users->save();
+			$coupon = Coupon::model()->findByAttributes(array('couponCode'=>$_POST['coupon']),'status=1');
+			$isValid = false;
 			if(isset($coupon) && !empty($coupon)){
-			$payment = new Payment();
-			$paypment->userID = $users->userId;
-			$payment->couponcode = $_POST['coupon'];
-			$payment->startdate = new CDbExpression('NOW()');
-			$payment->actionItem = 'membership'; 
-			$payment->save();
+				if($coupon->couponType == 'promo')
+					{
+						$isValid = true;
+					}
+				else if($coupon->isUsed == 0){
+					$isValid = true;
+				}	
+				
+				if($isValid) {
+				$coupon->isUsed = 1;
+				$coupon->save();
+				$user->userType = 1; 
+				$users->save();
+				$payment = new Payment();
+				$paypment->userID = $users->userId;
+				$payment->couponcode = $_POST['coupon'];
+				$payment->startdate = new CDbExpression('NOW()');
+				$payment->actionItem = 'membership'; 
+				$payment->save();
+				}
 			}
 			
 		}
@@ -54,6 +65,11 @@ class PaymentController extends Controller
 	public function actionRecharge()
 	{
 		$this->render('recharge');
+	}
+	
+public function actionSubscribe()
+	{
+		$this->render('subscribe');
 	}
 	
 	public function actionSummary()

@@ -259,9 +259,21 @@ class MypageController extends Controller
 		$userPersonal->mobilePhone = $_POST['mobile'];
 		$userPersonal->save();	
 			
-		
-		$caddress = $user->addresses(array('condition'=>'addresType=1'));
-		$address = $caddress[0]; 
+		$userAddrs = $user->addresses;
+		if(isset($userAddrs)) {
+		if( is_array($userAddrs)) {
+				foreach( $userAddrs  as $relRecord ) {
+					$relRecord->delete();
+				}
+			}
+			else {
+				$userAddrs->delete();
+			}
+		}	
+			
+		$address = new Address();
+		$address->addresType = 0;
+		$address->userId = $user->userId; 
 		//communication address
 		if(isset($_POST['house1']))
 		$address->houseName = $_POST['house1'];
@@ -281,9 +293,11 @@ class MypageController extends Controller
 		$address->country  = $_POST['housecountry1'];
 		$address->save();
 		
-		$address = $user->addresses(array('condition'=>'addresType=0'));
-		$paddress = $address[0];
+		
 		//permanent address
+		$paddress = new Address();
+		$paddress->addresType = 1;
+		$paddress->userId = $user->userId;
 		if(isset($_POST['house']))
 		$paddress->houseName = $_POST['house'];
 		if(isset($_POST['houseplace']))
@@ -302,6 +316,7 @@ class MypageController extends Controller
 		$paddress->country  = $_POST['housecountry'];
 		$paddress->save();
 			
+		$user->addresses = Address::model()->findAll(array('condition'=>"userId = {$user->userId}"));
 		//contact details	
 		if(isset($_POST['alterMobile']))
 		$contact->alternativeNo = $_POST['alterMobile'];
@@ -320,9 +335,10 @@ class MypageController extends Controller
 		if(isset($_POST['pcontact']))
 		{
 				$privacy =  $user->privacy(array('condition'=>"items='contact'"));
-				if(isset($privacy) && $privacy->items == 'contact'){
-				$privacy->privacy = implode(',', $_POST['pcontact']);
-				$privacy->save();	
+				if(isset($privacy) && sizeof($privacy) > 0 ){
+				$privacy1 = $privacy[0];
+				$privacy1->privacy = implode(',', $_POST['pcontact']);
+				$privacy1->save();	
 				}
 				else {
 				$privacy = new Privacy();

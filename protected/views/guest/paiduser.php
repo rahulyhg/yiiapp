@@ -292,7 +292,7 @@ function checkCoupon(field, rules, i, options){
 	var sUnavailable = 'Coupon is not valid,please call us +91 9400 005 005.';
 	var email = false;		
 	$.ajax({
-	type: 'GET',
+	type: 'POST',
 	url: '/ajax/coupon',
 	dataType: 'json',
 	cache: false,

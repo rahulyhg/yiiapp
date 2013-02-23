@@ -16,7 +16,7 @@
 ?>
 <?php $this->widget('application.widgets.menu.Leftmenu'); ?>
     <section class="data-contnr2">
-        <h1 class="mB10">Personal Contact Details</h1>
+        <h1 class="mB10">My Contact Details</h1>
         <?php $user = Yii::app()->session->get('user');?>
         <ul class="accOverview">
         <li class="mT8">
@@ -40,7 +40,7 @@
 				<div class="rightC">
 					<strong>:</strong>
 					<div class="addrs">
-					<?php $address = Address::model()->findAll(array('condition'=> "userId = {$user->userId} and addresType = 1"));
+					<?php $address = Address::model()->findAll(array('condition'=> "userId = {$user->userId} and addresType = 0"));
 					if(isset($address) && isset($address[0])) {
 					$caddress = $address[0];
 					?>
@@ -59,7 +59,7 @@
 				<div class="rightC">
 					<strong>:</strong>
 					<div class="addrs">
-					<?php $address = Address::model()->findAll(array('condition'=> "userId = {$user->userId} and addresType = 0"));
+					<?php $address = Address::model()->findAll(array('condition'=> "userId = {$user->userId} and addresType = 1"));
 					if(isset($address) && isset($address[0])) {
 					$paddress = $address[0];
 					?>
@@ -98,9 +98,7 @@
 					<strong>:</strong> <span><a href="#" class="color mR10"><?php echo $user->usercontactdetails->yahooIM ?></a>   </span>
 				</div>
 			</li>
-			<li class="mT8">
-				<a href="/mypage/editcontact" class="type2">Edit</a>
-			</li>
+			
 		</ul>
     </section>
 <?php $this->widget('application.widgets.menu.Rightmenu'); ?>

@@ -177,7 +177,7 @@ class UserController extends Controller
 		$userPersonal->mobilePhone = $_POST['mobile'];
 		$userPersonal->save();
 			
-		//communication address
+		//Permanent address
 		$address->userId = $user->userId;
 		if(isset($_POST['house1']))
 		$address->houseName = $_POST['house1'];
@@ -198,7 +198,7 @@ class UserController extends Controller
 		$address->addresType = 1;
 		$address->save();
 		
-		//permanent address
+		//communication address
 		$paddress->userId = $user->userId;
 		if(isset($_POST['house']))
 		$paddress->houseName = $_POST['house'];

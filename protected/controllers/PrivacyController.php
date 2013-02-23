@@ -147,6 +147,7 @@ class PrivacyController extends Controller
 			$privacy->save();
 		}
 
+		$user->privacy = Privacy::model()->findAll(array('condition'=>"userId = {$user->userId}"));
 		$this->actionIndex();
 	}
 

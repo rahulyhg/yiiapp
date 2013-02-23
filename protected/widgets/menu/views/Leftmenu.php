@@ -46,7 +46,7 @@
         <ul class="left-bar-data">
 			<li>
 				<div class="uNot">You Have Not Subscribed Yet!!</div>
-				<a href="/payment/recharge" class="subNow">Subscribe NOW!</a>
+				<a href="/payment" class="subNow">Subscribe NOW!</a>
 				<div class="subOnly">Only for <span class="WebRupee">Rs.</span><span class="forAmt">200!</span></div>
 			</li>
         </ul>

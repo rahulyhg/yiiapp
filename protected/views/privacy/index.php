@@ -85,12 +85,20 @@
 		<ul class="accOverview mT12">
 			<li>
 				<div class="btnC">
-					<a href="/user/password" class="actAct">Change Password</a>
-					<a href="/user/deactivate" class="actAct">Deactivate account</a>
-					<a href="/user/delete" class="actAct">Delete my account</a>
+					<a href="<?php echo Utilities::createAbsoluteUrl('mypage','delete'); ?>" id="footerPops" class="actAct">Change Password</a>
+					<a href="<?php echo Utilities::createAbsoluteUrl('mypage','deactivate'); ?>" id="footerPops" class="actAct">Deactivate account</a>
+					<a href="<?php echo Utilities::createAbsoluteUrl('mypage','delete'); ?>" class="actAct">Delete my account</a>
 				</div>
 			</li>
 		</ul>
     </section>
       <?php $this->widget('application.widgets.menu.Rightmenu'); ?>
   
+  <script type="text/javascript">
+$(document).ready(function(){
+    $('[id^=footerPops]').colorbox({iframe:true, width:"860", height:"900",overlayClose: false});
+    
+  });
+
+
+</script>

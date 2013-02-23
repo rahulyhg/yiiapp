@@ -56,7 +56,8 @@
 				<h4>Enter Your Pin Number Here </h4>
 			</li>
 			<li>
-				<input type="text" /> <a href="javascript:payment.submit();" class="type3" >Submit</a>
+				<input type="text" name="coupon" class="validate[required,minSize[15],maxSize[15],funcCall[checkCoupon]]"/> 
+					<?php echo CHtml::submitButton('Submit',array('class'=>'type3')); ?>
 			</li>
 		</ul>
 			</form>
@@ -64,3 +65,46 @@
         	<!-- right menu -->
 	<?php $this->widget('application.widgets.menu.Rightmenu'); ?> 
 	<!-- right menu ends -->
+	
+	
+	<script type="text/javascript">
+$(document).ready(function(){
+    $("#payment").validationEngine('attach');
+});
+$("html").click(function(){ 
+	$("#payment").validationEngine('hide');    
+	
+});
+
+
+function checkCoupon(field, rules, i, options){
+
+	
+	var sUnavailable = 'Coupon is not valid,please call us +91 9400 005 005.';
+	var email = false;		
+	$.ajax({
+	type: 'POST',
+	url: '/ajax/coupon',
+	dataType: 'json',
+	cache: false,
+	success: function(availability) {
+	email = availability;
+	
+},
+data: {coupon : field.val()},
+async: false
+});
+
+			// return success status
+		
+	
+		if (email == false) {
+		return sUnavailable;
+		}else{ 
+			return true;
+		}
+
+}
+
+
+</script>

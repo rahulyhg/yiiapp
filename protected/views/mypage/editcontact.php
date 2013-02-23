@@ -26,8 +26,10 @@
 			</ul>
 		<ul>		
 	<li>
-	<?php $address = Address::model()->findAll(array('condition'=> "userId = {$user->userId} and addresType = 1"));
-					$caddress = $address[0];
+	<?php $address = Address::model()->findAll(array('condition'=> "userId = {$user->userId} and addresType = 0"));
+	$caddress = null;	
+	if(isset($address) && isset($address[0]))				
+	$caddress = $address[0];
 					?>
 						
 		<div class="title">
@@ -35,59 +37,61 @@
 		</div>
 		<div class="info">
 			<div class="inner-row">
-			<input type="text" value="<?php echo $caddress->houseName ?>" name="house" id="house" class="validate[required,minSize[3],custom[onlyLetterSp]]"
+			<input type="text" value="<?php if(isset($caddress->houseName))echo $caddress->houseName ?>" name="house" id="house" class="validate[required,minSize[3],custom[onlyLetterSp]]"
 						placeholder="House Name / No." />
 			</div>
 			<div class="inner-row">
-			<input type="text" value="<?php echo $caddress->place?>" name="houseplace" id="houseplace" class="validate[required,minSize[3],custom[onlyLetterSp]]"
+			<input type="text" value="<?php if(isset($caddress->place))echo $caddress->place?>" name="houseplace" id="houseplace" class="validate[required,minSize[3],custom[onlyLetterSp]]"
 						placeholder="Place" />
 			</div>
 			<div class="inner-row">
-			<input type="text" name="housecity" id="city" class="validate[required]" value="<?php echo $caddress->city?>"
+			<input type="text" name="housecity" id="city" class="validate[required]" value="<?php if(isset($caddress->city))echo $caddress->city?>"
 						placeholder="City" />
-				<input type="text" name="housedistrict" value="<?php echo $caddress->district?>" id="housedistrict" class="validate[required,minSize[3],custom[onlyLetterSp]]"
+				<input type="text" name="housedistrict" value="<?php if(isset($caddress->district)) echo $caddress->district?>" id="housedistrict" class="validate[required,minSize[3],custom[onlyLetterSp]]"
 						placeholder="District" />
 			</div>
 			<div class="inner-row">
-				<input type="text" name="housestate" value="<?php echo $caddress->state?>" id="statec" class="validate[required,minSize[3],custom[onlyLetterSp]]"
+				<input type="text" name="housestate" value="<?php if(isset($caddress->state)) echo $caddress->state?>" id="statec" class="validate[required,minSize[3],custom[onlyLetterSp]]"
 						placeholder="State" />
-				<input type="text" name="housecountry" id="housecountry" value="<?php echo $caddress->country?>" class="validate[required,minSize[3],custom[onlyLetterSp]]"
+				<input type="text" name="housecountry" id="housecountry" value="<?php if(isset($caddress->country)) echo $caddress->country?>" class="validate[required,minSize[3],custom[onlyLetterSp]]"
 						placeholder="Country" />
 			</div>
 			<div class="inner-row">
-				<input type="text" name="postcode" id="postcode" value="<?php echo $caddress->pincode?>" class="validate[required,custom[onlyNumberSp],minSize[6],maxSize[6]]"
+				<input type="text" name="postcode" id="postcode" value="<?php if(isset($caddress->pincode)) echo $caddress->pincode?>" class="validate[required,custom[onlyNumberSp],minSize[6],maxSize[6]]"
 						placeholder="Post Code" />
 			</div>
 		</div>
 	</li>
-	<?php $address = Address::model()->findAll(array('condition'=> "userId = {$user->userId} and addresType = 0"));
-					$paddress = $address[0];
+	<?php $address = Address::model()->findAll(array('condition'=> "userId = {$user->userId} and addresType = 1"));
+	$paddress = null;
+	if(isset($address) && isset($address[0]))				
+	$paddress = $address[0];
 					?>
 	<li>
 		<div class="title">Permanent Address</div>
 		<div class="info">
 			<div class="inner-row">
-			<input type="text" name="house1" id="housep" value="<?php echo $paddress->houseName ?>" class="validate[minSize[3],custom[onlyLetterSp]]"
+			<input type="text" name="house1" id="housep" value="<?php if(isset($paddress->houseName))echo $paddress->houseName ?>" class="validate[minSize[3],custom[onlyLetterSp]]"
 						placeholder="House Name / No." />
 			</div>
 			<div class="inner-row">
-			<input type="text" name="houseplace1" id="placep" class="validate[minSize[3],custom[onlyLetterSp]]" value="<?php echo $paddress->place ?>"
+			<input type="text" name="houseplace1" id="placep" class="validate[minSize[3],custom[onlyLetterSp]]" value="<?php if(isset($paddress->place)) echo $paddress->place ?>"
 						placeholder="Place" />
 			</div>
 			<div class="inner-row">
-			<input type="text" name="housecity1" id="cityp" class="validate[minSize[3],custom[onlyLetterSp]]" value="<?php echo $paddress->city ?>"
+			<input type="text" name="housecity1" id="cityp" class="validate[minSize[3],custom[onlyLetterSp]]" value="<?php if(isset($paddress->city)) echo $paddress->city ?>"
 						placeholder="City" />
-				<input type="text" name="housedistrict1" id="districtp" class="validate[minSize[3],custom[onlyLetterSp]]" value="<?php echo $paddress->district?>"
+				<input type="text" name="housedistrict1" id="districtp" class="validate[minSize[3],custom[onlyLetterSp]]" value="<?php if(isset($paddress->district))echo $paddress->district?>"
 						placeholder="District" />
 			</div>
 			<div class="inner-row">
-				<input type="text" name="housestate1" id="statep" class="validate[minSize[3],custom[onlyLetterSp]]" value="<?php echo $paddress->state ?>"
+				<input type="text" name="housestate1" id="statep" class="validate[minSize[3],custom[onlyLetterSp]]" value="<?php if(isset($paddress->state))echo $paddress->state ?>"
 						placeholder="State" />
-				<input type="text" name="housecountry1" id="countryp" class="validate[minSize[3],custom[onlyLetterSp]]" value="<?php echo $paddress->country?>"
+				<input type="text" name="housecountry1" id="countryp" class="validate[minSize[3],custom[onlyLetterSp]]" value="<?php if(isset($paddress->country)) echo $paddress->country?>"
 						placeholder="Country" />
 			</div>
 			<div class="inner-row">
-				<input type="text" name="postcode1" id="postcodep" class="validate[custom[onlyNumberSp],minSize[6],maxSize[6]]" value="<?php echo $paddress->pincode?>" 
+				<input type="text" name="postcode1" id="postcodep" class="validate[custom[onlyNumberSp],minSize[6],maxSize[6]]" value="<?php if(isset($paddress->pincode)) echo $paddress->pincode?>" 
 						placeholder="Post Code" />
 			</div>
 		</div>
