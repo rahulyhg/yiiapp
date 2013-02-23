@@ -121,9 +121,9 @@ $user = Yii::app()->session->get('user');
 						$referenceSetting = Utilities::getUserPrivacyStatus($settings,'reference');
 					?>
 					<div class="butCo mL0">
-						<?php if($contactSetting == 'all'){ ?>
+						<?php //if($contactSetting == 'all'){ ?>
 						<a href="/contact/details/id/<?php echo $model->marryId ?>" id="contactDetailsEdit" >Contact</a>
-						<?php  } ?>
+						<?php  //} ?>
 					</div>
 					<div class="butCo">
 						<a href="#">Document</a>

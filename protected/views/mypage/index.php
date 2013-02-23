@@ -15,6 +15,9 @@
 */
 ?>
 <?php $this->widget('application.widgets.menu.Leftmenu'); ?> 
+
+	<?php if(isset($highlight) || isset($normal) ||isset($profileUpdates)) { ?> 
+	
 	<section class="data-contnr2">
 		<h1>My Page</h1>
 		<?php if(isset($highlight)) {?> 
@@ -130,57 +133,7 @@
 				</div>
 			</div>
 			<?php } ?>
-			<!--  <div class="recentUpdates">
-				<div class="recH"><a href="#">Seema Varma</a> (You expressed interest on 12th Jan. 2012)</div>
-				<a href="#"><img src="./images/user/anu.jpg" alt="anu" title="Anu Varghese" /></a>
-				<div class="recDet">
-					<div class="recList">Chrishtian, R.c.</div>
-					<div class="recList">29 Years - 5' 4'', 167 cm</div>
-					<div class="recList">Ankamaly, Kerala, India</div>
-					<div class="upDet">Updated 5 photos in her album</div>
-				</div>
-				<div class="footN">
-					<div class="updated">About an Hour ago</div>
-					<p>
-						The most eligible bachelor & young politician from Kerala, Hibi Eden tied the wedding knot with Anna LinAda who was formerly a television anchor,The most eligible bachelor & young politician from Kerala, Hibi Eden tied the wedding knot with Anna LinAda who was formerly a television anchor...
-					</p>
-				</div>
-			</div>
-			<div class="recentUpdates">
-				<div class="recH"><a href="#">Seema Varma</a> (You expressed interest on 12th Jan. 2012)</div>
-				<a href="#"><img src="./images/user/anu.jpg" alt="anu" title="Anu Varghese" /></a>
-				<div class="recDet">
-					<div class="recList">Chrishtian, R.c.</div>
-					<div class="recList">29 Years - 5' 4'', 167 cm</div>
-					<div class="recList">Ankamaly, Kerala, India</div>
-					<div class="upDet">Updated 5 photos in her album</div>
-				</div>
-				<div class="upPhoto">
-					<a href="#"><img src="./images/user/athira.jpg" alt="" /></a>
-					<a href="#"><img src="./images/user/priya.jpg" alt="" /></a>
-					<a href="#"><img src="./images/user/nayana.jpg" alt="" /></a>
-					<a href="#"><img src="./images/user/rans.jpg" alt="" /></a>
-				</div>
-				<div class="footN">
-					<div class="updated">2 Minuts ago</div>
-				</div>
-			</div>
-			<div class="recentUpdates">
-				<div class="recH"><a href="#">Seema Varma</a> (You expressed interest on 12th Jan. 2012)</div>
-				<a href="#"><img src="./images/user/anu.jpg" alt="anu" title="Anu Varghese" /></a>
-				<div class="recDet">
-					<div class="recList">Chrishtian, R.c.</div>
-					<div class="recList">29 Years - 5' 4'', 167 cm</div>
-					<div class="recList">Ankamaly, Kerala, India</div>
-					<div class="upDet">Updated 5 photos in her album</div>
-				</div>
-				<div class="footN">
-					<div class="updated">About an Hour ago</div>
-					<p>
-						The most eligible bachelor & young politician from Kerala, Hibi Eden tied the wedding knot with Anna LinAda who was formerly a television anchor,The most eligible bachelor & young politician from Kerala, Hibi Eden tied the wedding knot with Anna LinAda who was formerly a television anchor...
-					</p>
-				</div>
-			</div>-->
+		
             <a class="viewM mT5" href="#">View More Feeds..</a>
 		</article>
 		<?php } ?>
@@ -266,159 +219,7 @@
             <?php 
   	$index1++;
   } ?>
-            <!-- <div class="profile">
-                <div class="check-contnr"><input type="checkbox" /> Select</div>
-                <div class="image-contnr">
-                    <a href="#"><img src="./images/user/thumbnail.jpg" alt="" /></a>
-                    <div class="img-controls">
-                        <a href="#" class="prev"></a>
-                        <div class="numbers">
-                            <span>1</span> of <span>6</span>
-                        </div>
-                        <a href="#" class="next"></a>
-                    </div>
-                </div>
-                <div class="profile-details">
-                    <ul class="details-contnr">
-                        <li>
-                            <div class="title">Name</div>
-                            <div class="info">: <a href="#" class="color" >Lilly Joseph (E204235)</a></div>
-                        </li>
-                        <li>
-                            <div class="title">Religion / Cast </div>
-                            <div class="info">: Chrishtian, R.c.</div>
-                        </li>
-                        <li>
-                            <div class="title">Age</div>
-                            <div class="info">: 29 Years </div>
-                        </li>
-                        <li>
-                            <div class="title">Height</div>
-                            <div class="info">: 5' 4'', 167 cm</div>
-                        </li>
-                        <li>
-                            <div class="title">Place</div>
-                            <div class="info">: Ankamaly, Kerala, India</div>
-                        </li>
-                        <li>
-                            <div class="title">Education</div>
-                            <div class="info">: Bsc Chemistry</div>
-                        </li>
-                        <li>
-                            <div class="title">Occupation</div>
-                            <div class="info">: Actor</div>
-                        </li>
-                    </ul>
-                    <a class="view-full" href="#">View Full Profile</a>
-                </div>
-                <div class="button-contnr">
-                    <a href="#" class="global">Express Interest</a>
-                    <a href="#" class="global">Bookmark</a>
-                    <a href="#" class="global">Send Message</a>
-                </div>
-            </div>
-            <div class="profile">
-                <div class="check-contnr"><input type="checkbox" /> Select</div>
-                <div class="image-contnr">
-                    <a href="#"><img src="./images/user/thumbnail.jpg" alt="" /></a>
-                    <div class="img-controls">
-                        <a href="#" class="prev"></a>
-                        <div class="numbers">
-                            <span>1</span> of <span>6</span>
-                        </div>
-                        <a href="#" class="next"></a>
-                    </div>
-                </div>
-                <div class="profile-details">
-                    <ul class="details-contnr">
-                        <li>
-                            <div class="title">Name</div>
-                            <div class="info">: <a href="#" class="color" >Lilly Joseph (E204235)</a></div>
-                        </li>
-                        <li>
-                            <div class="title">Religion / Cast </div>
-                            <div class="info">: Chrishtian, R.c.</div>
-                        </li>
-                        <li>
-                            <div class="title">Age</div>
-                            <div class="info">: 29 Years </div>
-                        </li>
-                        <li>
-                            <div class="title">Height</div>
-                            <div class="info">: 5' 4'', 167 cm</div>
-                        </li>
-                        <li>
-                            <div class="title">Place</div>
-                            <div class="info">: Ankamaly, Kerala, India</div>
-                        </li>
-                        <li>
-                            <div class="title">Education</div>
-                            <div class="info">: Bsc Chemistry</div>
-                        </li>
-                        <li>
-                            <div class="title">Occupation</div>
-                            <div class="info">: Actor</div>
-                        </li>
-                    </ul>
-                    <a class="view-full" href="#">View Full Profile</a>
-                </div>
-                <div class="button-contnr">
-                    <a href="#" class="global">Express Interest</a>
-                    <a href="#" class="global">Bookmark</a>
-                    <a href="#" class="global">Send Message</a>
-                </div>
-            </div>
-            <div class="profile">
-                <div class="check-contnr"><input type="checkbox" /> Select</div>
-                <div class="image-contnr">
-                    <a href="#"><img src="./images/user/thumbnail.jpg" alt="" /></a>
-                    <div class="img-controls">
-                        <a href="#" class="prev"></a>
-                        <div class="numbers">
-                            <span>1</span> of <span>6</span>
-                        </div>
-                        <a href="#" class="next"></a>
-                    </div>
-                </div>
-                <div class="profile-details">
-                    <ul class="details-contnr">
-                        <li>
-                            <div class="title">Name</div>
-                            <div class="info">: <a href="#" class="color" >Lilly Joseph (E204235)</a></div>
-                        </li>
-                        <li>
-                            <div class="title">Religion / Cast </div>
-                            <div class="info">: Chrishtian, R.c.</div>
-                        </li>
-                        <li>
-                            <div class="title">Age</div>
-                            <div class="info">: 29 Years </div>
-                        </li>
-                        <li>
-                            <div class="title">Height</div>
-                            <div class="info">: 5' 4'', 167 cm</div>
-                        </li>
-                        <li>
-                            <div class="title">Place</div>
-                            <div class="info">: Ankamaly, Kerala, India</div>
-                        </li>
-                        <li>
-                            <div class="title">Education</div>
-                            <div class="info">: Bsc Chemistry</div>
-                        </li>
-                        <li>
-                            <div class="title">Occupation</div>
-                            <div class="info">: Actor</div>
-                        </li>
-                    </ul>
-                    <a class="view-full" href="#">View Full Profile</a>
-                </div>
-                <div class="button-contnr">
-                    <a href="#" class="global">Express Interest</a>
-                    <a href="#" class="global">Bookmark</a>
-                    <a href="#" class="global">Send Message</a>
-                </div>
-            </div>-->
+           
         </div>
         <div class="pagination-contnr">
             <div class="select-contnr"><input type="checkbox" /> Select All</div>
@@ -432,4 +233,75 @@
             </ul>
         </div>
     </section> 
-    <?php }?>   
+    <?php }
+    } else { 
+    ?>   
+    
+     <section class="data-contnr3 ">
+		<div class="" style="float: left;width:480px;">
+			<h1 class="width100">My Page</h1>
+			<div class="highlightBox">
+				<p>Highlight your profile and display it here. This way you can get more visibility. This service is availabe for just Rs: 200. Click to Highlight My Profile to highlight your profile.</p>
+				<a href="/highlight" class="upload">Highlight My Profile</a>
+			</div>
+		</div>
+		<aside class="rightbar-contnr mT0">
+			<div class="subscribe-box mH200">
+				<div class="sub-now">Subscribe Now!<br /><span>Only for</span></div>
+				<div class="digit"><span class="WebRupee">Rs.</span>200</div>
+				<div class="for">For 3 Months</div>
+			</div>
+		</aside>
+			
+		<div class="highlightBox pComplete">
+			<p>Your profile is only 50% complete. By filling your complete details, increase your chance of getting more relevant responses. Go to view profile to complete your profile.</p>
+			<a href="/mypage/profile" class="upload">Update My Profile</a>
+		</div>
+        <h1 class="width100 mTB12">Quick Search</h1>
+        <form id="quickSearch"  name="quickSearch" method="post"  action="/search/quick">
+        <ul class="accOverview mT12">
+			<li class="mB10">
+				<div class="radC">
+				<input type="radio" value="M" name="gender" />
+					<span>Male</span>
+				</div>
+				<div class="radC">
+					<input type="radio" value="F" name="gender" />
+					<span>Female</span>
+				</div>
+				<div class="selC">
+					<span>Age</span>
+					<?php echo CHtml::dropDownList('ageFrom',null,Utilities::getAge(),array('class'=>'wid50')); ?>
+				</div>
+				<div class="selC">
+					<span>to</span>
+					<?php echo CHtml::dropDownList('ageTo',null,Utilities::getAge(),array('class'=>'wid50')); ?>
+				</div>
+				<div class="selC">
+					<span>Religion</span>
+					<?php $records = Religion::model()->findAll("active = 1");
+		$list = CHtml::listData($records, 'religionId', 'name');
+		echo CHtml::dropDownList('religion',null,$list,array('empty' => 'Religion','class'=>'wid130')); ?>
+				</div>
+				<div class="selC">
+					<span>Cast</span>
+					<?php $records = Caste::model()->findAll("active = 1");
+		$list = CHtml::listData($records, 'casteId', 'name');
+		echo CHtml::dropDownList('caste',null,$list,array('empty' => 'Caste','class'=>'wid130')); ?>
+				</div>
+				<a href="javascript:quickSearch.submit();" class="type2 no-marg">Search</a>
+			</li>
+		</ul>
+		</form>
+		<h1 class="mTB12">Search your life partner </h1>
+        <p>An easy way to find out your life partner. By choosing the right options you can easily find out the profiles that matches you. </p>
+		<div class="page-head mB25">
+	    <a class="type8 mR5" href="/search" >Basic Search</a>
+	    <a class="type8 mR5" href="/search/advance" >Advanced Search</a>
+	    <a class="type8 mR5" href="/search/keyword" >Keyword Search</a>
+	    <a class="type8 mR5" href="/search/byid" >Search by ID</a>
+		</div>
+		
+    </section>
+    <?php }?>
+    

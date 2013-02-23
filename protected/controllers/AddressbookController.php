@@ -17,8 +17,8 @@ class AddressbookController extends Controller
 	{
 		
 		$usersList = Yii::app()->session->get('user');
-		if(isset($usersList->addressBook)){
-		$userBook = $usersList->addressBook;
+		$userBook = Addressbook::model()->findByAttributes(array('userID' => $usersList->userId));
+		if(isset($userBook) && isset($userBook->visitedId)){
 		$condition = "userId in ($userBook->visitedId)";
 		$users = Users::model()->findAll(array('condition'=>$condition,'order'=> 'createdOn DESC' ),'active=1');
 		
@@ -40,6 +40,69 @@ class AddressbookController extends Controller
 			$this->render('noaddress');
 		}
 	}
+	
+	
+	public function actionRemove()
+	{
+		if(isset($_POST['userId']) && !empty($_POST['userId']))
+		{
+			//change this from session
+			$usersList = Yii::app()->session->get('user');
+			
+			if(isset($usersList->addressBook))
+			{
+				if(isset($usersList->addressBook->visitedId ))
+				{
+					$profileIds = explode(",", $usersList->addressBook->visitedId);
+					$arr = array_diff($profileIds, array($_POST['userId']));
+					
+					if(sizeof($arr) > 0 ){
+					$usersList->addressBook->visitedId = implode(",", $arr);
+					$usersList->addressBook->save();
+					}
+					else
+					{
+						$usersList->addressBook->deleteAll();
+						$usersList->addressBook = null;
+					}
+					echo json_encode(TRUE);
+					Yii::app()->end();
+				}
+			}
+			
+			
+		}
+	}
+	
+	public function actionRemoveAll()
+	{
+		
+	if(isset($_POST['userId']) && !empty($_POST['userId']))
+		{
+			$usersList = Yii::app()->session->get('user');	
+			if(isset($usersList->addressBook))
+			{
+				if(isset($usersList->addressBook->visitedId))
+				{
+					$profileIds = explode(",", $usersList->addressBook->visitedId);
+					$arr = array_diff($profileIds, $_POST['userId']);
+					if(sizeof($arr) > 0 ){
+					$usersList->addressBook->visitedId = implode(",", $arr);
+					$usersList->addressBook->save();
+					}
+					else
+					{
+						$usersList->addressBook->deleteAll();
+						$usersList->addressBook = null;
+					}
+					echo json_encode(TRUE);
+					Yii::app()->end();
+				}
+			}
+			
+		}
+	}
+	
 
 	// Uncomment the following methods and override them if needed
 	/*

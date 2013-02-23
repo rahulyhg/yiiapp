@@ -51,33 +51,40 @@
                 
                 <div class="profile-details">
                     <ul class="details-contnr">
+                    <?php $address = Address::model()->findAll(array('condition'=> "userId = {$value->userId} and addresType = 0"));
+								$caddress = null;
+								if(isset($address) && isset($address[0]))
+								{
+									$caddress = $address[0];
+								}
+						?>	
                         <li>
                             <div class="title">Name</div>
-                            <div class="info">: <a href="<?php echo 'byid?id='.$value->marryId ?>" class="color" ><?php echo $value->name; echo '( '.$value->marryId.' )' ;?></a></div>
+                            <div class="info">: <a target="_blank"  href="<?php echo '/search/byid/id/'.$value->marryId ?>" class="color" ><?php echo $value->name; echo '( '.$value->marryId.' )' ;?></a></div>
                         </li>
                         <li>
-                            <div class="title">Religion / Cast </div>
-                            <div class="info">: <?php if(isset($value->userpersonaldetails->religion))echo $value->userpersonaldetails->religion->name ;?> , <?php if(isset($value->userpersonaldetails->caste))echo $value->userpersonaldetails->caste->name ;?> </div>
+                           <div class="title">House Name</div>
+                            <div class="info">: <?php if(isset($caddress)) echo $caddress->houseName;?> </div>
                         </li>
                         <li>
-                            <div class="title">Age</div>
-                            <div class="info">: <?php echo Utilities::getAgeFromDateofBirth($value->dob); ?> Years </div>
+                            <div class="title">Post</div>
+                            <div class="info">: <?php if(isset($caddress)) echo $caddress->pincode ?></div>
                         </li>
                         <li>
-                            <div class="title">Height</div>
-                            <div class="info">: <?php if(isset($value->physicaldetails->heightId))echo $heightArray[$value->physicaldetails->heightId];  ?></div>
+                            <div class="title">District</div>
+                            <div class="info">: <?php if(isset($caddress)) echo $caddress->city;  ?></div>
                         </li>
                         <li>
-                            <div class="title">Place</div>
-                            <div class="info">: <?php if(isset($value->userpersonaldetails->place))echo $value->userpersonaldetails->place->name ?>, <?php if(isset($value->userpersonaldetails->state))echo $value->userpersonaldetails->state->name ?>, <?php if(isset($value->userpersonaldetails->country))echo $value->userpersonaldetails->country->name ?> </div>
+                            <div class="title">Mobile No.</div>
+                            <div class="info">: <?php if(isset($value->userpersonaldetails->mobilePhone))echo $value->userpersonaldetails->mobilePhone ?></div>
                         </li>
                         <li>
-                            <div class="title">Education</div>
-                            <div class="info">: <?php if(isset($value->educations->education))echo $value->educations->education->name ?> </div>
+                            <div class="title">Land Phone No.</div>
+                            <div class="info">: <?php if(isset($value->usercontactdetails->alternativeNo))echo $value->usercontactdetails->alternativeNo ?> </div>
                         </li>
                         <li>
-                            <div class="title">Occupation</div>
-                            <div class="info">: <?php if(isset($value->educations->occupation))echo $value->educations->occupation->name ?></div>
+                            <div class="title">E mail</div>
+                            <div class="info">: <?php if(isset($value->emailId))echo $value->emailId?></div>
                         </li>
                     </ul>
                     <a class="view-full" target="_blank"  href="<?php echo '/search/byid/id/'.$value->marryId ?>">View Full Profile</a>
@@ -85,11 +92,10 @@
                 <div class="button-contnr">
                 <?php 
  $isInterest = $user->interestSender(array('condition'=>"receiverId = {$value->userId}"));
- $isBookMarked = $user->bookmark(array('condition'=>"FIND_IN_SET('{$value->userId}',profileIDs)")); 
  $isMessage = $user->messageSender(array('condition'=>"receiverId = {$value->userId}"));
  ?>
- 					<div id="rBookmark">
-                    <a href="#" id="<?php echo $value->userId ?>"  class="global bookPad">Remove Addressbook</a>
+ 					<div id="<?php echo 'rBookmark'.$value->userId ?>">
+                    <a href="#" id="<?php echo $value->userId ?>"  class="global bookPad">Remove</a>
                     </div>
                     <?php if(!isset($isMessage) || empty($isMessage)) {?>
                     <div id="message">
@@ -264,18 +270,18 @@ $(document).ready(function() {
 	 });
 		 //		
 
-	 $('#rBookmark').click(function (){
+	 $('[id^=rBookmark]').click(function (){
 		 var userId = $(this).find('a').attr('id');
-
+		 var bookId = $(this).attr('id');	
 		 $.ajax({
-		        url: "/bookmark/remove",  
+		        url: "/addressbook/remove",  
 		        type: "POST",
 		        dataType:'json',
 		        data:{'userId':userId},   
 		        cache: false,
 		        success: function (html) {
 			        if(html == true)  
-		        	$('#rBookmark').hide();	         
+			        $('#'+bookId).hide();        
 		        }       
 		    });
 	 
@@ -289,12 +295,14 @@ function removeAllBookMark(userIds) {
 	    //generate the parameter for the php script
 	   
 	    $.ajax({
-	        url: "/bookmark/removeAll",  
+	        url: "/addressbook/removeAll",  
 	        type: "POST",
 	        dataType:'json',        
 	        data: {"userId":userIds},        
 	        cache: false,
-	        success: function (html) {}  
+	        success: function (html) {
+	        	location.reload();
+		        }  
 	    });
 	}
 

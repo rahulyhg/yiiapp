@@ -56,7 +56,7 @@
                     <ul class="details-contnr">
                         <li>
                             <div class="title">Name</div>
-                            <div class="info">: <a href="<?php echo 'byid?id='.$value->marryId ?>" class="color" ><?php echo $value->name; echo '( '.$value->marryId.' )' ;?></a></div>
+                            <div class="info">: <a target="_blank" href="<?php echo '/search/byid/id/'.$value->marryId ?>" class="color" ><?php echo $value->name; echo '( '.$value->marryId.' )' ;?></a></div>
                         </li>
                         <li>
                             <div class="title">Religion / Cast </div>
@@ -72,16 +72,9 @@
                         </li>
                         <li>
                             <div class="title">Place</div>
-                            <div class="info">: <?php if(isset($value->userpersonaldetails->place))echo $value->userpersonaldetails->place->name ?>, <?php if(isset($value->userpersonaldetails->state))echo $value->userpersonaldetails->state->name ?>, <?php if(isset($value->userpersonaldetails->country))echo $value->userpersonaldetails->country->name ?> </div>
+                            <div class="info">: <?php if(isset($value->userpersonaldetails->district))echo $value->userpersonaldetails->district->name ?>, <?php if(isset($value->userpersonaldetails->state))echo $value->userpersonaldetails->state->name ?> </div>
                         </li>
-                        <li>
-                            <div class="title">Education</div>
-                            <div class="info">: <?php if(isset($value->educations->education))echo $value->educations->education->name ?> </div>
-                        </li>
-                        <li>
-                            <div class="title">Occupation</div>
-                            <div class="info">: <?php if(isset($value->educations->occupation))echo $value->educations->occupation->name ?></div>
-                        </li>
+                        
                     </ul>
                     <a class="view-full" target="_blank"  href="<?php echo '/search/byid/id/'.$value->marryId ?>">View Full Profile</a>
                 </div>
@@ -90,7 +83,7 @@
  $isInterest = $user->interestSender(array('condition'=>"receiverId = {$value->userId}"));
  $isMessage = $user->messageSender(array('condition'=>"receiverId = {$value->userId}"));
  ?>
- 					<div id="rBookmark">
+ 					<div id="<?php echo 'rBookmark'.$value->userId ?>">
                     <a href="#" id="<?php echo $value->userId ?>"  class="global bookPad">Remove Bookmark</a>
                     </div>
                     <?php if(!isset($isMessage) || empty($isMessage)) {?>
@@ -267,9 +260,9 @@ $(document).ready(function() {
 	 });
 		 //		
 
-	 $('#rBookmark').click(function (){
+	$('[id^=rBookmark]').click(function (){	 	
 		 var userId = $(this).find('a').attr('id');
-
+		 var bookId = $(this).attr('id');
 		 $.ajax({
 		        url: "/bookmark/remove",  
 		        type: "POST",
@@ -278,7 +271,7 @@ $(document).ready(function() {
 		        cache: false,
 		        success: function (html) {
 			        if(html == true)  
-		        	$('#rBookmark').hide();	         
+			        $('#'+bookId).hide();
 		        }       
 		    });
 	 

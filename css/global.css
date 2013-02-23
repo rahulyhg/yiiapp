@@ -2188,3 +2188,66 @@ h5{
     background: #fff;
 }
 /*login error message class ends*/
+
+
+.editContnr{
+	border:1px solid #E3E3E4;
+	float: left;
+	padding: 10px;
+	box-shadow: 0 1px 3px #eee;
+}
+
+.message-contnr{
+	width: 600px;
+	float: left;
+}
+.message-contnr ul{
+	width: 100%;
+	float: left;
+}
+.message-contnr ul li{
+	width: 100%;
+	float: left;
+}
+.message-contnr ul li:first-child{
+	border-bottom: 1px solid #E3E3E4;
+	padding-bottom: 10px;
+	border-bottom: 10px;
+}
+.message-contnr ul li textarea{
+	width: 588px;
+	float: left;
+}
+.message-contnr ul li .buttonContnr{
+	width: 100%;
+	float: left;
+	margin: 0 0 10px;
+}
+.message-contnr ul li .buttonContnr a{
+	margin: 10px 0 0 10px !important;
+}
+
+.highlightBox{
+	float: left;
+	width: 95%;
+	min-height:147px;
+	background: #fcfcfd;
+	border: 1px solid #E9EAEA;
+	padding: 10px;
+	margin: 10px 0;
+}
+.highlightBox p{
+	font:normal 18px/24px arial,helvetica,sans-serif;
+}
+.mL40{
+	margin-left: 40px !important;
+}
+.mH200{
+	min-height: 200px !important;
+}
+.pComplete{
+	width: 722px !important;
+	margin-top: 0 !important;
+	min-height: 100px !important;
+}
+

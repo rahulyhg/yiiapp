@@ -23,7 +23,8 @@ class ContactController extends Controller
 					$loggedUser = Yii::app()->session->get('user');
 					if(isset($loggedUser)){
 					if(isset($loggedUser->addressBook)){
-						$arrayList = explode(",",$loggedUser->addressBook->visitedId);
+						$userBook = Addressbook::model()->findByAttributes(array('userID' => $usersList->userId));
+						$arrayList = explode(",",$userBook->visitedId);
 						
 						if(!in_array($user->userId,$arrayList)){
 						$arrayList[] = $user->userId;
