@@ -112,6 +112,7 @@
 					<strong>:</strong> 12
 				</div>
 			</li>
+			<!-- 
 			<li>
 				<div class="leftC">Request received </div>
 				<div class="rightC">
@@ -136,6 +137,7 @@
 					<strong>:</strong> 
 				</div>
 			</li>
+			 -->
 			<?php $shorlist = $user->shortlist();
 			$shorts = 0;
 			$shortListed = Shortlist::model()->findAll(array('condition'=>"FIND_IN_SET('{$user->userId}',profileID)"));
@@ -184,6 +186,19 @@
 					<strong>:</strong> <?php echo $blockCount?>
 				</div>
 			</li>
+			
+			<h1 class="mTB12 ">My Account Settings</h1>
+        <p>You can change your account setting, delete or deactivate the account any time you want.</p>
+		<ul class="accOverview mT12">
+			<li>
+				<div class="btnC">
+					<a href="<?php echo Utilities::createAbsoluteUrl('mypage','change'); ?>" id="footerPops" class="actAct">Change Password</a>
+					<a href="<?php echo Utilities::createAbsoluteUrl('mypage','deactivate'); ?>" id="footerPops" class="actAct">Deactivate account</a>
+					<a href="<?php echo Utilities::createAbsoluteUrl('mypage','delete'); ?>" id="footerPops" class="actAct">Delete my account</a>
+				</div>
+			</li>
+		</ul>
+		<!-- 
 			<li>
 				<a href="<?php echo Utilities::createAbsoluteUrl('mypage','deactivate'); ?>" class="edit" id="footerPops">Click here</a> to Deactivate account
 				
@@ -191,6 +206,7 @@
 			<li>
 				<a href="<?php echo Utilities::createAbsoluteUrl('mypage','delete'); ?>" class="edit" id="footerPops">Click here</a> to Delete account
 			</li>
+		 -->	
 		</ul>
     </section>
         	<!-- right menu -->

@@ -916,4 +916,48 @@ public function actionEditdocument()
 		}
 			
 	}
+	
+public function actionChange()
+	{
+		$this->layout= '//layouts/popup';;
+		if(isset($_POST) && !empty($_POST))
+		{
+			$user = Yii::app()->session->get('user');
+				
+			$condition = "marryId = '{$user->marryId}' AND password = md5('{$_POST['oldPassword']}')  AND active != 3";
+			$record = Users::model()->find(array('condition' => $condition));
+				
+			if(isset($record))
+			{
+					
+				if($record->marryId == $user->marryId)
+				{
+					$user->password =  new CDbExpression("MD5('{$_POST['newpassword']}')");
+					$user->save();
+					$userLogged = $user->userloggeddetails(array('order'=>'loggedIn DESC','limit'=>1));
+					if(isset($userLogged) && sizeof($userLogged) > 0)
+					{
+						$userLogged[0]->loggedOut = new CDbExpression('NOW()');
+						$userLogged[0]->save();
+					}
+					Yii::app()->user->logout();
+					Yii::app()->session->clear();
+					Yii::app()->session->destroy();
+					$this->render('password',array('success'=>true));
+				}
+			else{
+				$this->render('password',array('success'=>false));
+			}
+				
+			}
+			else{
+				$this->render('password',array('success'=>false));
+			}
+		}
+		else{	
+			$this->render('password');
+		}
+			
+	}
+	
 }
