@@ -360,6 +360,7 @@ class MypageController extends Controller
 	public function actionReference()
 	{
 		$user = Yii::app()->session->get('user');
+		$user->references = Reference::model()->findAll(array('condition'=>"userId = {$user->userId}"));
 		$referenceList = $user->references;
 		$showReference = false;
 		if(isset($user->references) && !empty($user->references) )

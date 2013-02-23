@@ -6,6 +6,7 @@
 		href="<?php echo Utilities::createAbsoluteUrl('contact','referenceedit'); ?>"
 		id="referenceEdit">Edit Reference</a>
 	</li>
+</ul>	
 	<?php if(isset($referenceList))
 	{
 		$index = 1;
@@ -44,7 +45,7 @@
 					</span> <span><?php if(isset($value->referPostOffice)) echo $value->referPostOffice; 	?>
 					</span> <span><?php if(isset($value->referCity))echo $value->referCity?>
 					</span> <span><?php if(isset($value->referState) || isset($value->referCountry)) { $str = $value->referState.','.$value->referCountry; echo trim($str,","); }?>
-					</span> <span><?php if($value->referPostcode !=0 )echo $value->referPostcode?>
+					</span> <span><?php if(isset($value->referPostcode))echo $value->referPostcode?>
 					</span>
 				</div>
 			</div>
@@ -120,12 +121,20 @@
 				<strong>:</strong> <span><?php echo $value->referOccupation?> </span>
 			</div>
 		</li>
+		
+		
 	</ul>
 	<?php
 		}
 	}
 		?>
-
+<ul class="accOverview pmB10">
+	<li class="mT8"><a class="type4"
+		href="<?php echo Utilities::createAbsoluteUrl('contact','referenceadd'); ?>"
+		id="referenceEdit1">Add Reference</a>
+	</li>
+	</ul>
+	
 </section>
 		<?php $this->widget('application.widgets.menu.Rightmenu'); ?>
 
@@ -133,6 +142,7 @@
 <script type="text/javascript">
 $(document).ready(function(){
     $("#referenceEdit").colorbox({iframe:true, width:"860", height:"900",overlayClose: false});
+    $("#referenceEdit1").colorbox({iframe:true, width:"860", height:"900",overlayClose: false});
   });
 
 

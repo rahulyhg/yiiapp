@@ -249,6 +249,7 @@
 							$alValues = $alValue->privacy;
 						}
 	?>
+						<!-- 
 						<li>
 							<div class="title">
 								Who can view above detals 
@@ -262,6 +263,7 @@
 								</div>
 							</div>
 						</li>
+						 -->
 						<li>
 						<input type="button" name="cancelPhoto" id="cancelPhoto" value="Cancel" class="type2b mL5" onclick="javascript:closeOverlay();" />
 						<input type="submit" name="updatePhoto" id="updatePhoto" value="Update" class="type2b mL5" />
