@@ -107,7 +107,6 @@ $user = Yii::app()->session->get('user');
 			</ul>
 			<?php 
 			if(isset($user)) {
-			
 			?>
 			<ul class="myPd">
 				<li>
@@ -132,31 +131,47 @@ $user = Yii::app()->session->get('user');
 						<a href="/contact/referencedetails/id/<?php echo $model->marryId ?>" id="referenceDetails" >Reference </a>
 					</div>
 					<div class="butCo">
-						<a href="#">Family album</a>
-					</div>
-					<div class="butCo">
-					<?php if($albumSetting == 'all'){ ?>
-						<a href="<?php echo Utilities::createAbsoluteUrl('album','view',array('userId'=>$model->userId)); ?>">Personal album</a>
-					<?php }elseif($albumSetting == 'members'){
-							if(isset($user)){ ?>
-								<a class="albumWindow" href="<?php echo Utilities::createAbsoluteUrl('album','index',array('mId'=>$model->marryId,'wType'=>'popup')); ?>">Personal album</a>
-							<?php }else{?>
-								<a class="albumWindow" href="<?php echo Utilities::createAbsoluteUrl('request','popup',array('action'=>'login','module'=>'album','profileId'=>$model->userId)); ?>">Personal album</a>
-							<?php } ?>
-	
-					<?php }elseif($albumSetting == 'request'){
-							if(Utilities::getUserPrivacyRequestStatus('album',$user->userId,$model->userId)){ ?>
-								<a class="albumWindow" href="<?php echo Utilities::createAbsoluteUrl('album','view',array('mId'=>$model->marryId,'wType'=>'popup')); ?>">Personal album</a>
+						<?php if($albumSetting == 'subscribers'){  
+							if($user->userType == 1){  ?>
+								<a id="requestWindow" href="<?php echo Utilities::createAbsoluteUrl('album','family',array('mId'=>$model->marryId,'wType'=>'popup')); ?>">Family album</a>
 							<?php }else{ ?>
-									<a class="albumWindow" href="<?php echo Utilities::createAbsoluteUrl('request','popup',array('action'=>'request','module'=>'album','profileId'=>$model->userId)); ?>">Personal album</a>
-							<?php }
-						}elseif($albumSetting == 'subscribers'){ 
-							if($user->userType == 1){ ?>
-								<a href="<?php echo Utilities::createAbsoluteUrl('album','view',array('userId'=>$model->userId)); ?>">Personal album</a>
-							<?php }else{ ?>
-									<a class="requestWindow" href="<?php echo Utilities::createAbsoluteUrl('request','popup',array('action'=>'subscribe','module'=>'album','profileId'=>$model->userId)); ?>">Personal album</a>
+									<a id="requestWindow" href="<?php echo Utilities::createAbsoluteUrl('user','popup',array('action'=>'subscribe','module'=>'album','profileId'=>$model->userId)); ?>">Family album</a>
 							<?php }
 					 } ?>
+					</div>
+					<div class="butCo">
+					<?php if($albumSetting == 'subscribers'){  
+							if($user->userType == 1){  ?>
+								<a id="requestWindow" href="<?php echo Utilities::createAbsoluteUrl('album','view',array('mId'=>$model->marryId,'wType'=>'popup')); ?>">Personal album</a>
+							<?php }else{ ?>
+									<a id="requestWindow" href="<?php echo Utilities::createAbsoluteUrl('user','popup',array('action'=>'subscribe','module'=>'album','profileId'=>$model->userId)); ?>">Personal album</a>
+							<?php }
+					 } ?>
+					</div>
+					<div class="butCo">
+							<a href="/contact/astrodetails/id/<?php echo $model->marryId ?>" id="astroDetails" >Astro Details</a>	
+					</div>
+				</li>
+			</ul>
+			<?php }else{?>
+				<ul class="myPd">
+				<li>
+					<div class="butCo mL0">
+						<?php //if($contactSetting == 'all'){ ?>
+						<a href="/contact/details/id/<?php echo $model->marryId ?>" id="contactDetailsEdit" >Contact</a>
+						<?php  //} ?>
+					</div>
+					<div class="butCo">
+						<a href="#">Document</a>
+					</div>
+					<div class="butCo">
+						<a href="/contact/referencedetails/id/<?php echo $model->marryId ?>" id="referenceDetails" >Reference </a>
+					</div>
+					<div class="butCo">
+						<a id="requestWindow" href="<?php echo Utilities::createAbsoluteUrl('user','popup',array('action'=>'login','module'=>'album','profileId'=>$model->userId)); ?>">Family album</a>
+					</div>
+					<div class="butCo">
+						<a id="requestWindow" href="<?php echo Utilities::createAbsoluteUrl('user','popup',array('action'=>'login','module'=>'album','profileId'=>$model->userId)); ?>">Personal album</a>
 					</div>
 					<div class="butCo">
 							<a href="/contact/astrodetails/id/<?php echo $model->marryId ?>" id="astroDetails" >Astro Details</a>	
@@ -560,8 +575,8 @@ $(document).ready(function() {
 	$("#referenceDetails").colorbox({iframe:true, width:"860", height:"900",overlayClose: false});
 	$("#astroDetails").colorbox({iframe:true, width:"860", height:"900",overlayClose: false});
 	
-	$(".requestWindow").colorbox({iframe:true, width:"860", height:"900",overlayClose: false});
-		 //		
+	//$(".albumWindow").colorbox({iframe:true, width:"860", height:"900",overlayClose: false});
+	$('[id^=requestWindow]').colorbox({iframe:true, width:"860", height:"900",overlayClose: false});	
 });
 
 

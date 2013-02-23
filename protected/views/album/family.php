@@ -1,55 +1,75 @@
-<?php
-/*
-*
-* $Id$
---------------------------------------------------------------------------------------------------------------------------
-* Information contained in this file is the intellectual property of Ladbrokes Plc
-* Copyright © 2012 MarryDorr. All Rights Reserved.
-* ---------------------------------------------------------------------------------------------------------------------------
-*
-* @author  Dileep Gopalan
-* @title album.php
-* @description <Description of this class>
-*  @filesource <URL>
-*  @version <Revision>
-*/
-?>
-    <?php $this->widget('application.widgets.menu.Leftmenu'); ?>
-    <section class="data-contnr2">
-        <h1>My Family Album</h1>
-		<h5 class="width100 mT30">Please mouse hover on a photo to delete.</h5>
-        <div class="profPicC">
-            <div class="picContnr">
-				<div class="ppOpt">
-					<span title="Passport">Father</span><br />
-					<a href="#" title="click to delete this picture">Delete</a>
+
+<?php if(!empty($photosList)){ ?>
+<script language="javascript">
+var myImg_<?php echo $user->userId ?> = new Array()
+<?php 
+$j=0;
+foreach($photosList as $photo){
+	if($j ==0 ){ 
+		$profileImage = $photo->imageName;
+	}
+	?>
+  myImg_<?php echo $user->userId; ?>[<?php echo $j; ?>]= "<?php echo Utilities::getAlbumImage($user->marryId,$photo->imageName);?>";
+<?php $j++;
+ } ?>
+
+var i = 0;
+var count = <?php echo count($photosList); ?>
+// Create function to load image
+function loadImg_<?php echo $user->userId; ?>(){
+  document.imgSrc_<?php echo $user->userId; ?>.src =  myImg_<?php echo $user->userId; ?>[i];
+}
+
+// Create link function to switch image backward
+function prev_<?php echo $user->userId ?>(){
+  if(i<1){
+     i = 0;
+  } else {
+     i = i-1;
+  }
+  document.imgSrc_<?php echo $user->userId ?>.src =  myImg_<?php echo $user->userId ?>[i];
+}
+
+// Create link function to switch image forward
+function next_<?php echo $user->userId ?>(){
+	if(i>count-2){
+	     i = count-1;
+	  } else {
+	     i = i+1;
+	  }
+  document.imgSrc_<?php echo $user->userId ?>.src =  myImg_<?php echo $user->userId ?>[i];
+}
+
+function set_<?php echo $user->userId ?>(url){
+	document.imgSrc_<?php echo $user->userId ?>.src = url;
+}
+
+// Load function after page loads
+window.onload=loadImg_<?php echo $user->userId; ?>;
+
+</script>
+		<div class="subContent">
+			<section class="subHead">
+				<h1 ><?php echo $user->name;?> <?php echo $user->marryId?></h1>
+				<h5>Viewing Family album</h5>
+			</section>
+			<section class="subContnr">
+				<div class="photoRoll">
+				<?php
+					reset($photosList); 
+					$j=0;
+					foreach($photosList as $photo){ 
+				?>
+					<a href="#"><img src="<?php echo Utilities::getAlbumImage($user->marryId,$photo->imageName);?>" alt="" onclick="set_<?php echo $user->userId ?>(this.src);" /></a>
+				<?php }?>
 				</div>
-				<img src="./images/user/lilly.png" alt="" />
-			</div>
-			<div class="picContnr">
-				<div class="ppOpt">
-					<span title="Passport">Mother</span><br />
-					<a href="#" title="click to delete this picture">Delete</a>
+				<div class="photoCont">
+					<div class="photoWrap">
+						<a class="prevs" href="javascript:void(0);" onclick="prev_<?php echo $user->userId ?>();"></a>
+						<a class="nex" href="javascript:void(0);" onclick="next_<?php echo $user->userId ?>();"></a>
+						<img width="450" height="480" id="imgSrc_<?php echo $user->userId ?>" name="imgSrc_<?php echo $user->userId ?> src="<?php echo Utilities::getAlbumImage($user->marryId,$profileImage);?>" alt="<?php echo $user->name;?>" />
+					</div>
 				</div>
-				<img src="./images/user/lilly.png" alt="" />
-			</div>
-			<div class="picContnr">
-				<div class="ppOpt">
-					<span title="Passport">Father</span><br />
-					<a href="#" title="click to delete this picture">Delete</a>
-				</div>
-				<img src="./images/user/lilly.png" alt="" />
-			</div>
-			<div class="picContnr">
-				<div class="ppOpt">
-					<span title="Passport">Brother</span><br />
-					<a href="#" title="click to delete this picture">Delete</a>
-				</div>
-				<img src="./images/user/lilly.png" alt="" />
-			</div>
-        </div>
-        <a href="#" class="type5">Add More Photos</a>
-    </section>
-    	<!-- right menu -->
-	<?php $this->widget('application.widgets.menu.Rightmenu'); ?> 
-	<!-- right menu ends -->
+			</section>
+		</div>
+<?php }?>

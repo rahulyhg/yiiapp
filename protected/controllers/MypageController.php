@@ -966,4 +966,8 @@ public function actionChange()
 			
 	}
 	
+	public function actionFamilyalbum()
+	{
+		$this->render('myfamilyalbum');
+	}
 }

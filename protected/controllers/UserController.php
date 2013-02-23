@@ -1102,4 +1102,37 @@ class UserController extends Controller
 		$this->layout= '//layouts/popup';
 		$this->render('familyphotoupload',array('photos'=>$photosList,'user'=>$user,'settings'=>$settings));
 	}
+	
+	// function to show popup when click on album, contact etc
+	public function actionPopup()
+	{
+		$profileId = isset($_REQUEST['profileId']) ? $_REQUEST['profileId'] : 0;
+		$action = isset($_REQUEST['action']) ? $_REQUEST['action'] : '';
+		$module = isset($_REQUEST['module']) ? $_REQUEST['module'] : '';
+	
+		$this->layout= '//layouts/popup';
+		$this->render('popup',array('profileId'=>$profileId,'action'=>$action,'module'=>$module,'message'=>$message));
+	}
+	
+	public function actionPopuplogin()
+	{
+		if(isset($_POST) && !empty($_POST))
+		{
+			$form = new LoginForm();
+			$form->attributes=$_POST['LoginForm'];
+			$success = null;
+			if($form->login())
+			{
+				Yii::app()->params['loginError'] = NULL;
+				$success = true;
+			}else{
+				Yii::app()->params['loginError'] = true;
+				$success = false;
+			}
+		}else{
+			$success = null;
+		}
+		$this->layout= '//layouts/popup';
+		$this->render('login',array('success'=>$success));
+	}
 }

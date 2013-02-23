@@ -14,7 +14,7 @@ foreach($photosList as $photo){
  } ?>
 
 var i = 0;
-
+var count = <?php echo count($photosList); ?>
 // Create function to load image
 function loadImg_<?php echo $user->userId; ?>(){
   document.imgSrc_<?php echo $user->userId; ?>.src =  myImg_<?php echo $user->userId; ?>[i];
@@ -22,22 +22,22 @@ function loadImg_<?php echo $user->userId; ?>(){
 
 // Create link function to switch image backward
 function prev_<?php echo $user->userId ?>(){
-  if(i<1){
-    var l = i
-  } else {
-    var l = i-=1;
-  }
-  document.imgSrc_<?php echo $user->userId ?>.src =  myImg_<?php echo $user->userId ?>[l];
+	if(i<1){
+	     i = 0;
+	  } else {
+	     i = i-1;
+	  }
+  document.imgSrc_<?php echo $user->userId ?>.src =  myImg_<?php echo $user->userId ?>[i];
 }
 
 // Create link function to switch image forward
 function next_<?php echo $user->userId ?>(){
-  if(i>2){
-    var l = i
-  } else {
-    var l = i+=1;
-  }
-  document.imgSrc_<?php echo $user->userId ?>.src =  myImg_<?php echo $user->userId ?>[l];
+	if(i>count-2){
+	     i = count-1;
+	  } else {
+	     i = i+1;
+	  }
+  document.imgSrc_<?php echo $user->userId ?>.src =  myImg_<?php echo $user->userId ?>[i];
 }
 
 function set_<?php echo $user->userId ?>(url){

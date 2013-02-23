@@ -107,10 +107,6 @@ class AlbumController extends Controller
 		$this->render('add',array('message'=>$message));
 	}
 	
-	public function actionFamily()
-	{
-		$this->render('family');
-	}
 	
 	public function actionView(){
 		$marryId = isset($_REQUEST['mId']) ? $_REQUEST['mId']:'';
@@ -126,7 +122,7 @@ class AlbumController extends Controller
 			$settings = Utilities::getUserPrivacySettings($user->userId);
 			$albumSetting = Utilities::getUserPrivacyStatus($settings,'album');
 			$flag = false;
-			if($albumSetting == 'request'){
+			/*if($albumSetting == 'request'){
 				if(Utilities::getUserPrivacyRequestStatus('album',$loggedUser->userId,$user->userId)){
 					$flag = true;
 				}else{
@@ -140,7 +136,8 @@ class AlbumController extends Controller
 					$flag = false;
 					$url = Utilities::createAbsoluteUrl('site','index');
 				}
-			}elseif($albumSetting == 'subscribers'){ 
+			}else*/
+			if($albumSetting == 'subscribers'){ 
 				if($loggedUser->userType == 1){
 					$flag = true;
 				}else{
@@ -192,5 +189,22 @@ class AlbumController extends Controller
 			$message = Yii::t('error','invalidRequest');
 			$this->render('view',array('message' => $message));
 		}
+	}
+	
+	public function actionFamily(){
+			$marryId = isset($_REQUEST['mId']) ? $_REQUEST['mId']:'';
+			$windowType = isset($_REQUEST['wType']) ? $_REQUEST['wType']:'normal';
+			//load layout depends on the window
+			if($windowType == 'popup'){
+				$this->layout= '//layouts/popup';
+			}
+			if($marryId != ''){
+				$userObj = new Users();
+				$user = $userObj->find("marryId='".$marryId."'");
+				$loggedUser = Yii::app()->session->get('user');
+				$photo = new Album();
+				$photosList = $photo->findAll('userId='.$user->userId.' and type = 1');
+			}
+			$this->render('family',array('photosList' => $photosList,'user' => $user,'windowType'=>$windowType));
 	}
 }

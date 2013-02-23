@@ -254,7 +254,8 @@ class RequestController extends Controller
 		
 	}
 	
-	public function actionPopup()
+	// this function will be used in next phase to use request funcationality
+	public function actionRequested()
 	{
 		$profileId = isset($_REQUEST['profileId']) ? $_REQUEST['profileId'] : 0;
 		$action = isset($_REQUEST['action']) ? $_REQUEST['action'] : '';
@@ -275,8 +276,11 @@ class RequestController extends Controller
 				$message = 'success';
 			}
 		}
+		
 		$this->layout= '//layouts/popup';
 		$this->render('popup',array('profileId'=>$profileId,'action'=>$action,'module'=>$module,'message'=>$message));
 	}
+	
+
 	
 }
