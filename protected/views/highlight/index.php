@@ -30,7 +30,7 @@
 				<h4>Enter Your 15 digit PIN number to highlight profile </h4>
 			</li>
 			<li>
-				<input type="text" name="coupon"/> <a  href="javascript:highlight.submit();" class="type3" >Submit</a>
+				<input type="text" name="coupon" class="validate[required,minSize[15],maxSize[15],funcCall[checkCoupon]]" /> <a  href="javascript:highlight.submit();" class="type3" >Submit</a>
 			</li>
 			<li>
 				<h4>Activation Coupon </h4>
@@ -45,5 +45,48 @@
 			</form>
     </section>
         <?php }?>
+        
+        	
+	<script type="text/javascript">
+$(document).ready(function(){
+    $("#payment").validationEngine('attach');
+});
+$("html").click(function(){ 
+	$("#payment").validationEngine('hide');    
+	
+});
+
+
+function checkCoupon(field, rules, i, options){
+
+	
+	var sUnavailable = 'Coupon is not valid,please call us +91 9400 005 005.';
+	var email = false;		
+	$.ajax({
+	type: 'POST',
+	url: '/ajax/recoupon',
+	dataType: 'json',
+	cache: false,
+	success: function(availability) {
+	email = availability;
+	
+},
+data: {coupon : field.val()},
+async: false
+});
+
+			// return success status
+		
+	
+		if (email == false) {
+		return sUnavailable;
+		}else{ 
+			return true;
+		}
+
+}
+
+
+</script>
 
 	
