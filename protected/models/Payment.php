@@ -9,6 +9,7 @@
  * @property string $couponcode
  * @property string $startdate
  * @property string $actionItem
+ * @property string $createdate
  *
  * The followings are the available model relations:
  * @property Users $user
@@ -41,13 +42,13 @@ class Payment extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('paymentId, userID', 'length', 'max'=>20),
+			array('userID', 'length', 'max'=>20),
 			array('couponcode', 'length', 'max'=>15),
 			array('actionItem', 'length', 'max'=>10),
-			array('startdate', 'safe'),
+			array('startdate, createdate', 'safe'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('paymentId, userID, couponcode, startdate, actionItem', 'safe', 'on'=>'search'),
+			array('paymentId, userID, couponcode, startdate, actionItem, createdate', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -74,6 +75,7 @@ class Payment extends CActiveRecord
 			'couponcode' => 'Couponcode',
 			'startdate' => 'Startdate',
 			'actionItem' => 'Action Item',
+			'createdate' => 'Createdate',
 		);
 	}
 
@@ -93,6 +95,7 @@ class Payment extends CActiveRecord
 		$criteria->compare('couponcode',$this->couponcode,true);
 		$criteria->compare('startdate',$this->startdate,true);
 		$criteria->compare('actionItem',$this->actionItem,true);
+		$criteria->compare('createdate',$this->createdate,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

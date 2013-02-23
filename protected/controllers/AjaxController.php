@@ -169,9 +169,18 @@ class AjaxController extends Controller
 	public function actionCoupon()
 	{
 		if(isset($_POST['coupon'])) {
+			
+		$user = Yii::app()->session->get('user');	
 		$coupon = Coupon::model()->findByAttributes(array('couponCode'=>$_POST['coupon']));
 		if(isset($coupon) && $coupon->status == 1)
 		{
+		if(isset($user))
+		{
+			$payment = Payment::model()->findByAttributes(array('couponcode'=>$_POST['coupon'],'userID'=>$user->userId));
+			if(isset($payment) && $payment->userID)
+			echo json_encode(FALSE);
+		}
+		else
 			echo json_encode(TRUE);
 		}
 		else

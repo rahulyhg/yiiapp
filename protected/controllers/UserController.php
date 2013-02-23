@@ -80,6 +80,7 @@ class UserController extends Controller
 						$payment->userID = $user->primaryKey;
 						$payment->startdate = new CDbExpression('NOW()');
 						$payment->actionItem = 'membership';
+						$payment->createdate = new CDbExpression('NOW()');
 						$payment->save();
 						$user->userType = 1; 
 					}

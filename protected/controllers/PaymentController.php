@@ -40,7 +40,7 @@ class PaymentController extends Controller
 			$newStart = false;
 			$endDate = null;
 			$user->payment = Payment::model()->findAll(array('condition'=>"userId = {$user->userId}"));
-			if(isset($user->payment))
+			if(isset($user->payment) && sizeof($user->payment)>0  )
 			{
 				
 				$payments = $user->payment(array('order'=> 'startdate DESC limit 0,1'));
@@ -78,6 +78,7 @@ class PaymentController extends Controller
 				else
 				$payment->startdate = new CDbExpression('NOW()');
 				$payment->actionItem = 'membership'; 
+				$payment->createdate = new CDbExpression('NOW()');
 				$payment->save();
 				}
 			}
@@ -106,7 +107,7 @@ public function actionSubscribe()
 		}
 		else
 		{
-			$this->render('summary');
+			$this->render('nopayment');
 		}
 	}
 	

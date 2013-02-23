@@ -28,7 +28,7 @@
 			$index = 1;
 		foreach ($payment as $value) {
 			
-			$date = new DateTime($value->startdate);
+			$date = new DateTime($value->createdate);
 			$endDate = new DateTime($value->startdate);
 			$endDate->modify('90 days'); 
 		?>

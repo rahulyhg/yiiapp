@@ -49,7 +49,8 @@ class HighlightController extends Controller
 			$paypment->userID = $users->userId;
 			$payment->couponcode = $_POST['coupon'];
 			$payment->startdate = new CDbExpression('NOW()');
-			$payment->actionItem = 'highlight'; 
+			$payment->actionItem = 'highlight';
+			$payment->createdate =  new CDbExpression('NOW()');
 			$payment->save();
 			}
 			
