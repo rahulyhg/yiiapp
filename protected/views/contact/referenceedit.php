@@ -63,8 +63,8 @@
 								</div>
 								<div class="inner-row">
 									<div class="inputCl">
-										<div class="inputH">Pincode</div>
-										<input type="text" value="<?php if(isset($value->referPostcode))echo $value->referPostcode?>" name="<?php echo 'pin'.$index?>" id="<?php echo 'pin'.$index?>" placeholder="Pin Code" class="validate[custom[onlyNumberSp],minSize[6],maxSize[6]]"  />
+										<div class="inputH">Contact Number</div>
+										<input type="text" value="<?php if(isset($value->referPostcode))echo $value->referPostcode?>" name="<?php echo 'pin'.$index?>" id="<?php echo 'pin'.$index?>" placeholder="Pin Code" class="validate[custom[onlyNumberSp],minSize[10],maxSize[12]]"  />
 									</div>
 								</div>
 								<div class="inner-row">
@@ -182,7 +182,7 @@
 								<div class="inner-row">
 									<div class="inputCl">
 										<div class="inputH">Pincode</div>
-										<input type="text" value="<?php if(isset($value->referPostcode))echo $value->referPostcode?>" name="<?php echo 'pin'.$index?>" id="<?php echo 'pin'.$index?>" placeholder="Pin Code" class="validate[custom[onlyNumberSp],minSize[6],maxSize[6]]"  />
+										<input type="text" value="<?php if(isset($value->referPostcode))echo $value->referPostcode?>" name="<?php echo 'pin'.$index?>" id="<?php echo 'pin'.$index?>" placeholder="Pin Code" class="validate[custom[onlyNumberSp],minSize[10],maxSize[12]]"  />
 									</div>
 								</div>
 								<div class="inner-row">
@@ -246,7 +246,7 @@
 						if(isset($privacy[0]))
 						{
 							$alValue = $privacy[0];
-							$alValues = explode(',',$alValue->privacy);
+							$alValues = $alValue->privacy;
 						}
 	?>
 						<li>
@@ -255,10 +255,10 @@
 							</div>
 							<div class="info">
 								<div class="check">
-								<input type="checkbox" name="reference[]" <?php if(in_array('subscribers', $alValues)) { ?> checked="checked"<?php }?> value="subscribers"><span>Subscribers</span>
+								<input type="radio" name="reference" <?php if($alValues== 'subscribers') { ?> checked="checked"<?php }?> value="subscribers"><span>Subscribers</span>
 								</div>
 								<div class="check">
-									<input type="checkbox" name="reference[]" <?php if(in_array('request', $alValues)) { ?> checked="checked"<?php }?> value="request"><span>By Request</span>
+									<input type="radio" name="reference" <?php if($alValues == 'request') { ?> checked="checked"<?php }?> value="request"><span>By Request</span>
 								</div>
 							</div>
 						</li>

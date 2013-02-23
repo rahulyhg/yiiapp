@@ -337,14 +337,14 @@ class MypageController extends Controller
 				$privacy =  $user->privacy(array('condition'=>"items='contact'"));
 				if(isset($privacy) && sizeof($privacy) > 0 ){
 				$privacy1 = $privacy[0];
-				$privacy1->privacy = implode(',', $_POST['pcontact']);
+				$privacy1->privacy = $_POST['pcontact'];
 				$privacy1->save();	
 				}
 				else {
 				$privacy = new Privacy();
 				$privacy->userId = $user->userId;
 				$privacy->items = 'contact';
-				$privacy->privacy = implode(',', $_POST['pcontact']);
+				$privacy->privacy = $_POST['pcontact'];
 				$privacy->save();	
 				}
 		}

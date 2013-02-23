@@ -32,17 +32,28 @@
 							<div class="title">
 								Date of Birth
 							</div>
-							<?php if(isset($astro->dob) && !empty($astro->dob))
+							<?php 
+							$arr = array();
+							if(isset($astro->dob) && !empty($astro->dob))
 							{
 								$arr = explode("-", $astro->dob);
-							}
-							
-							?>
+							?>	
 							<div class="info">
 								<?php echo CHtml::dropDownList('date',Utilities::currentDay(),Utilities::getRegDays(),array('class'=>'wid50 mR5','options' => array($arr[2] =>array('selected'=>true)))); ?>
 								<?php echo CHtml::dropDownList('month',Utilities::currentMonth(),Utilities::getRegMonths(),array('class'=>'validate[condRequired[date]] wid100 mR5','options' => array($arr[1] =>array('selected'=>true)))); ?>		    
     							<?php echo CHtml::dropDownList('year',Utilities::currentYear(),  Utilities::getRegYears(),array('class'=>'validate[condRequired[date]] wid60','options' => array($arr[0] =>array('selected'=>true)))); ?>
 							</div>
+							<?php 	
+							}
+							else {
+							
+							?>
+							<div class="info">
+								<?php echo CHtml::dropDownList('date',Utilities::currentDay(),Utilities::getRegDays(),array('class'=>'wid50 mR5')); ?>
+								<?php echo CHtml::dropDownList('month',Utilities::currentMonth(),Utilities::getRegMonths(),array('class'=>'validate[condRequired[date]] wid100 mR5')); ?>		    
+    							<?php echo CHtml::dropDownList('year',Utilities::currentYear(),  Utilities::getRegYears(),array('class'=>'validate[condRequired[date]] wid60')); ?>
+							</div>
+							<?php }?>
 						</li>
 						<li>
 							<div class="title">
@@ -94,15 +105,25 @@
 							{
 								$am = explode(",", $astro->time);
 								$time = explode("-", trim($am[0]));
-							}						
-							?>
-							
+							?>	
 							<div class="info">
 								<?php echo CHtml::dropDownList('hours',null,Utilities::getTime(),array('empty'=>'Hour','class'=>'wid70 mR5','options' => array($time[0] =>array('selected'=>true)))); ?>
 								<?php echo CHtml::dropDownList('minutes',null,Utilities::getMinutes(),array('empty'=>'Minutes','class'=>'wid70 mR5','options' => array($time[1] =>array('selected'=>true)))); ?>
 								<?php echo CHtml::dropDownList('seconds',null,Utilities::getMinutes(),array('empty'=>'Seconds','class'=>'wid70 mR5','options' => array($time[1] =>array('selected'=>true)))); ?>
 								<?php echo CHtml::dropDownList('am',null,Utilities::getMeridiem(),array('empty'=>'AM/PM','class'=>'wid50 mR5','options' => array($am[1] =>array('selected'=>true)))); ?>	
 							</div>
+							<?php 	
+							}		
+							else {				
+							?>
+							
+							<div class="info">
+								<?php echo CHtml::dropDownList('hours',null,Utilities::getTime(),array('empty'=>'Hour','class'=>'wid70 mR5')); ?>
+								<?php echo CHtml::dropDownList('minutes',null,Utilities::getMinutes(),array('empty'=>'Minutes','class'=>'wid70 mR5')); ?>
+								<?php echo CHtml::dropDownList('seconds',null,Utilities::getMinutes(),array('empty'=>'Seconds','class'=>'wid70 mR5')); ?>
+								<?php echo CHtml::dropDownList('am',null,Utilities::getMeridiem(),array('empty'=>'AM/PM','class'=>'wid50 mR5')); ?>	
+							</div>
+							<?php } ?>
 						</li>
 						<li>
 							<div class="title">
@@ -160,14 +181,16 @@
 						</div>
 							</div>
 						</li>
+						<!-- 
 						<li>
-						<?php $privacy =  $user->privacy(array('condition'=>"items='astro'"));
+						<?php  $privacy =  $user->privacy(array('condition'=>"items='astro'"));
 						$alValues = array();
 						if(isset($privacy[0]))
 						{
 							$alValue = $privacy[0];
 							$alValues = explode(',',$alValue->privacy);
 						}
+						
 						?>
 							<div class="title">
 								Who can view my astro details
@@ -187,6 +210,7 @@
 						</div>
 							</div>
 						</li>
+						 -->
 						<li>
 							<input type="button" name="cancelPhoto" id="cancelPhoto" value="Cancel" class="type2b mL5" onclick="javascript:closeOverlay();" />
 							<input type="submit" name="updatePhoto" id="updatePhoto" value="Update" class="type2b mL5" />

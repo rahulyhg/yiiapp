@@ -171,6 +171,7 @@
 							type="text" name="yahoo" id="yahoo" />
 							</div>
 						</li>
+						<!-- 
 						<li>
 						<?php $privacy =  $user->privacy(array('condition'=>"items='contact'"));
 						$alValues = array();
@@ -191,6 +192,7 @@
 								</div>
 							</div>
 						</li>
+						 -->
 						<li>
 							<input type="button" name="cancelPhoto" id="cancelPhoto" value="Cancel" class="type2b mL5" onclick="javascript:closeOverlay();" />
 							<input type="submit" name="updatePhoto" id="updatePhoto" value="Update" class="type2b mL5" />	

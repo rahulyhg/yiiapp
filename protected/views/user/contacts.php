@@ -312,18 +312,20 @@
 							type="text" name="yahoo" id="yahoo" />
 		</div>
 	</li>
+	<!-- 
 	<li>
 		<div class="title">Who can view above detals</div>
 		<div class="info">
 		<div class="check">
-							<input type="checkbox" name="pcontact[]" value="subscribers" checked="checked"><span>Subscribers</span>
+							<input type="radio" name="pcontact" value="subscribers" checked="checked"><span>Subscribers</span>
 						</div>
 		
 			<div class="check">
-				<input type="checkbox" name="pcontact[]" value="request"> <span>By Request</span>
+				<input type="radio" name="pcontact" value="request"> <span>By Request</span>
 			</div>
 		</div>
 	</li>
+	 -->
 </ul>
 <ul>
 	<li><h3>Physical Attributes</h3></li>

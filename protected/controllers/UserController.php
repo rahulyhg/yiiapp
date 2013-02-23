@@ -320,7 +320,7 @@ class UserController extends Controller
 				$privacy = new Privacy();
 				$privacy->userId = $user->userId;
 				$privacy->items = 'contact';
-				$privacy->privacy = implode(',', $_POST['pcontact']);
+				$privacy->privacy = $_POST['pcontact'];
 				$privacy->save();	
 		}
 		if(isset($_POST['family']))
@@ -561,7 +561,7 @@ class UserController extends Controller
 				$privacy = new Privacy();
 				$privacy->userId = $user->userId;
 				$privacy->items = 'reference';
-				$privacy->privacy = implode(",", $_POST['reference']);
+				$privacy->privacy = $_POST['reference'];
 				$privacy->save();
 		}
 		

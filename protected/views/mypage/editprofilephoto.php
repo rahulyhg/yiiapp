@@ -43,6 +43,7 @@
 						</div>
 					</li>
 					<?php endif; ?>
+					<!-- 
 					<li class="mT25">
 						<div class="whoCan">Who can view Album</div>
 						<div class="check ">
@@ -58,6 +59,7 @@
 							<input type="checkbox" name="profilepictureview" id="profilepictureview" value="request" <?php  if($settings->privacy == 'request'){ ?> checked="checked" <?php } ?>> <span>By request</span>
 						</div>
 					</li>
+					 -->
 					<li>
 						<input type="button" name="cancelPhoto" id="cancelPhoto" value="Cancel" class="type2b mL5" onclick="javascript:closeOverlay('<?php echo Utilities::createAbsoluteUrl('ajax','photoclear')?>');" />
 						<input type="submit" name="updatePhoto" id="updatePhoto" value="Update" class="type2b mL5" />

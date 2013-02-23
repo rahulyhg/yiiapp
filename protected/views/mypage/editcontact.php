@@ -139,25 +139,27 @@
 							type="text" name="yahoo" id="yahoo" />
 		</div>
 	</li>
+	<!-- 
 	<li>
 	<?php $privacy =  $user->privacy(array('condition'=>"items='contact'"));
 	$alValues = array();
 	if(isset($privacy[0])){
 	$alValue = $privacy[0];
-	$alValues = explode(',',$alValue->privacy);
+	$alValues = $alValue->privacy;
 	}
 	?>
 		<div class="title">Who can view above detals</div>
 		<div class="info">
 		<div class="check">
-							<input type="checkbox" name="pcontact[]" <?php if(in_array('subscribers', $alValues)) { ?> checked="checked"<?php }?>value="subscribers"><span>Subscribers</span>
+							<input type="radio" name="pcontact" <?php if($alValues== 'subscribers') { ?> checked="checked"<?php }?>value="subscribers"><span>Subscribers</span>
 						</div>
 		
 			<div class="check">
-				<input type="checkbox" name="pcontact[]" <?php if(in_array('request', $alValues)) { ?> checked="checked"<?php }?> value="request"> <span>By Request</span>
+				<input type="radio" name="pcontact" <?php if($alValues == 'request') { ?> checked="checked"<?php }?> value="request"> <span>By Request</span>
 			</div>
 		</div>
 	</li>
+	 -->
 	<li>
 					<div class="buttonContnr3">
 						<input type="reset" value="Reset" name="yt1" class="type1b mR5"> 

@@ -57,6 +57,7 @@
 					<a href="<?php echo Utilities::createAbsoluteUrl('user','photoupload'); ?>" class="upload" id="photoUpload">UPLOAD YOUR PHOTOS</a>
 				</li>
 				<?php }?>
+				<!-- 
 				<li>
 					<div class="title">
 						Who can view above details
@@ -76,6 +77,7 @@
 						</div>
 					</div>
 				</li>
+				 -->
 			</ul>
 			<?php endif;?>
 			<?php if(count($familyPhotos) == 5):?>
@@ -131,6 +133,7 @@
 					<a href="<?php echo Utilities::createAbsoluteUrl('user','familyphotoupload'); ?>" class="upload" id="familyphotoUpload">UPLOAD YOUR PHOTOS</a>
 				</li>
 				<?php } ?>
+				<!-- 
 				<li>
 					<div class="title">
 						Who can view above details
@@ -150,6 +153,7 @@
 						</div>
 					</div>
 				</li>
+				 -->
 			</ul>
 			<?php endif;?>
 			<?php if(count($documents) == 5):?>
@@ -205,6 +209,7 @@
 					<a href="<?php echo Utilities::createAbsoluteUrl('user','documentupload'); ?>" class="upload" id="documentUpload">UPLOAD YOUR Documents</a>
 				</li>
 				<?php }?>
+				<!-- 
 				<li>
 					<div class="title">
 						Who can view above detals
@@ -218,7 +223,7 @@
 						</div>
 					</div>
 				</li>
-
+				 -->
 			</ul>
 			<?php endif;?>
 			<ul class="no-padd">

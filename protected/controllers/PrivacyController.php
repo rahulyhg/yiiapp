@@ -18,6 +18,8 @@ class PrivacyController extends Controller
 	{
 		$user = Yii::app()->session->get('user');
 		
+		$user->privacy = Privacy::model()->findAll(array('condition'=>"userId = {$user->userId}"));
+		
 		if(!empty($user->privacy))
 		$privacy = $user->privacy;
 		else 
@@ -25,10 +27,10 @@ class PrivacyController extends Controller
 
 		$alValue = array();
 		$fValue = array();
-		$dValue = array();
+		$dValue = "";
 		$aValue = array();
-		$rValue = array();
-		$cValue = array();
+		$rValue = "";
+		$cValue = "";
 
 		foreach($privacy as $privacyData)
 		{
@@ -39,13 +41,13 @@ class PrivacyController extends Controller
 			$fValue = explode(',',$privacyData->privacy );
 				
 			if($privacyData->items == 'contact')
-			$cValue = explode(',',$privacyData->privacy );
+			$cValue = $privacyData->privacy;
 				
 			if($privacyData->items == 'reference')
-			$rValue = explode(',',$privacyData->privacy );
+			$rValue = $privacyData->privacy;
 				
 			if($privacyData->items == 'documents')
-			$dValue = explode(',',$privacyData->privacy );
+			$dValue = $privacyData->privacy;
 				
 			if($privacyData->items == 'astro')
 			$aValue = explode(',',$privacyData->privacy );
@@ -108,13 +110,13 @@ class PrivacyController extends Controller
 		{
 			$privacy = Privacy::model()->findByAttributes(array('userId'=>$user->userId,'items'=>'documents'));
 			if(isset($privacy) && isset($privacy->privacy))
-			$privacy->privacy = implode(',', $_POST['documents']);
+			$privacy->privacy = $_POST['documents'];
 			else
 			{
 				$privacy = new Privacy();
 				$privacy->userId = $user->userId;
 				$privacy->items = 'documents';
-				$privacy->privacy = implode(',', $_POST['documents']);
+				$privacy->privacy = $_POST['documents'];
 			}
 			$privacy->save();
 		}
@@ -122,13 +124,13 @@ class PrivacyController extends Controller
 		{
 			$privacy = Privacy::model()->findByAttributes(array('userId'=>$user->userId,'items'=>'reference'));
 			if(isset($privacy) && isset($privacy->privacy))
-			$privacy->privacy = implode(',', $_POST['reference']);
+			$privacy->privacy = $_POST['reference'];
 			else
 			{
 				$privacy = new Privacy();
 				$privacy->userId = $user->userId;
 				$privacy->items = 'reference';
-				$privacy->privacy = implode(',', $_POST['reference']);
+				$privacy->privacy = $_POST['reference'];
 			}
 			$privacy->save();
 		}
@@ -136,13 +138,13 @@ class PrivacyController extends Controller
 		{
 			$privacy = Privacy::model()->findByAttributes(array('userId'=>$user->userId,'items'=>'contact'));
 			if(isset($privacy) && isset($privacy->privacy))
-			$privacy->privacy = implode(',', $_POST['contact']);
+			$privacy->privacy = $_POST['contact'];
 			else
 			{
 				$privacy = new Privacy();
 				$privacy->userId = $user->userId;
 				$privacy->items = 'contact';
-				$privacy->privacy = implode(',', $_POST['contact']);
+				$privacy->privacy = $_POST['contact'];
 			}
 			$privacy->save();
 		}

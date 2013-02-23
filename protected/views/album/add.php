@@ -121,9 +121,10 @@ function addMoreFiles()
 <div class="line"></div>
 <p class="space-15px">&nbsp;</p>
 
- <div class="list_div_1"><!--list_div_1-->
+<!--  
+ <div class="list_div_1">
 <p class="txt_bldn">Who can view above detals</p>
-</div><!--/list_div_1-->
+</div>
 
 
 
@@ -144,8 +145,8 @@ function addMoreFiles()
             <input type="checkbox" name="register" value="relative" />
   &nbsp;By Request</p>
 </div>
-<!--/list_div_2-->
 
+ -->
 <div class="clear"></div>
 
 

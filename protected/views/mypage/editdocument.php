@@ -53,6 +53,7 @@
 						</div>
 					</li>
 					<?php endif; ?>
+					<!-- 
 					<li class="mT25">
 						<div class="whoCan">Who can view Documents</div>
 						<div class="check ">
@@ -62,6 +63,7 @@
 							<input type="checkbox" name="documentview" id="documentview" value="request" <?php  if($documentsettings->privacy == 'request'){ ?> checked="checked" <?php } ?>> <span>By request</span>
 						</div>
 					</li>
+					 -->
 					<li>
 						<input type="button" name="cancelDocument" id="cancelDocument" value="Cancel" class="type2b mL5" onclick="javascript:closeOverlay('<?php echo Utilities::createAbsoluteUrl('ajax','documentclear')?>');" />
 						<input type="button" name="submitDoc" id="submitDoc" value="Update" class="type2b mL5" onclick="submitDocuments();" />

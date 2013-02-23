@@ -372,7 +372,7 @@ PRIMARY KEY(id), FOREIGN KEY (userId) REFERENCES users(userId))ENGINE=InnoDB AUT
 
 DROP VIEW IF EXISTS view_profile;
 
-CREATE VIEW view_profile AS SELECT PV.*,U.name,U.marryId,U.dob,FLOOR( DATEDIFF( CURRENT_DATE, U.dob) /365 ) as age,U.gender,UP.casteId as casteId,C.name as caste,UP.religionId as religionId, R.name as religion,UP.countryId,CO.name as country,UP.stateId,S.name as state,UP.distictId,D.name as district,UP.placeId as placeId, PL.name as place,P.imageName as imageName
+CREATE VIEW view_profile AS SELECT PV.*,U.name,U.marryId,U.dob,FLOOR( DATEDIFF( CURRENT_DATE, U.dob) /365 ) as age,U.gender,UP.casteId as casteId,C.name as caste,UP.religionId as religionId, R.name as religion,UP.countryId,CO.name as country,UP.stateId,S.name as state,UP.districtId,D.name as district,UP.placeId as placeId, PL.name as place,P.imageName as imageName
 FROM profileviews PV
 JOIN users U ON PV.userID = U.userId
 LEFT JOIN userpersonaldetails UP ON PV.userID = UP.userId
@@ -380,7 +380,7 @@ LEFT JOIN caste C ON UP.casteId = C.casteId
 LEFT JOIN religion R ON UP.religionId = R.religionId
 LEFT JOIN country CO ON UP.countryId = CO.countryId
 LEFT JOIN states S ON UP.stateId = S.stateId
-LEFT JOIN districts D ON UP.distictId = D.districtId
+LEFT JOIN districts D ON UP.districtId = D.districtId
 LEFT JOIN places PL ON UP.placeId = PL.placeId
 LEFT JOIN photos P ON (U.userId = P.userId AND P.profileImage = 1);
 

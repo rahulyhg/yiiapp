@@ -158,6 +158,7 @@
 						</div>
 					</div>
 				</li>
+				<!-- 
 				<li>
 					<div class="title">
 						Who can view my astro details
@@ -177,6 +178,7 @@
 						</div>
 					</div>
 				</li>
+				 -->
 			</ul>
 			<ul>
 				<li><h3>Reference Contact Details</h3></li>
@@ -340,19 +342,21 @@
 				     <?php echo CHtml::dropDownList('toA2',null,Utilities::getMeridiem(),array('empty'=>'AM/PM','class'=>'wid70 mR5')); ?>
 									</div>
 				</li>
+				<!--  
 				<li>
 					<div class="title">
 						Who can view contact details
 					</div>
 					<div class="info">
 						<div class="check">
-							<input type="checkbox" name="reference[]" checked="checked" value="subscribers"> <span>Subscribers</span>
+							<input type="radio" name="reference" checked="checked" value="subscribers"> <span>Subscribers</span>
 						</div>
 						<div class="check">
-							<input type="checkbox" name="reference[]" value="request"> <span>By Request</span>
+							<input type="radio" name="reference" value="request"> <span>By Request</span>
 						</div>
 					</div>
 				</li>
+				-->
 				<li>
 					<div class="buttonContnr no-marg">
 						<input type="reset" value="Reset" name="yt1" class="type1b mR5"> 

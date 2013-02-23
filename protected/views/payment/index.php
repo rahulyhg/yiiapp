@@ -49,7 +49,7 @@
 			</li>
 			<li>
 				<p>
-					Enter your 15 digit PIN number below to subscribe. If you have not got your 15 digit PIN number contact the <a href="#" >nearest reseller</a> <br />or <strong>call us at 5436876898.</strong>
+					Enter your 15 digit PIN number below to subscribe. If you have not got your 15 digit PIN number contact the <a href="#" >nearest reseller</a> <br />or <strong> Call us +91 9400 005 005.</strong>
 				</p>
 			</li>
 			<li>

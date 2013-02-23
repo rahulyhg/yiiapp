@@ -51,7 +51,7 @@
 				<?php echo CHtml::submitButton('Submit',array('class'=>'type3')); ?>
 			</li>
 			<li>
-				<h4>or Call us +91 8891 680376</h4>
+				<h4>or Call us +91 9400 005 005</h4>
 			</li>
 		</ul>
 		</form>

@@ -25,7 +25,6 @@
 				<div class="psRight">
 				<?php echo CHtml::checkBoxList('album',$album,array('all'=>'All','subscribers'=>'Subscribers','member'=> 'Logged Members','request' => 'By Request'),array('class'=>'checkb')); ?>
 					<a href="javascript:updateAlbum.submit();" >Update</a>
-					<div class="total">23 Album Request Decliened</div>
 				</div>
 				</form>
 			</li>
@@ -35,7 +34,7 @@
 				<div class="psRight">
 				<?php echo CHtml::checkBoxList('family',$family,array('all'=>'All','subscribers'=>'Subscribers','member'=> 'Logged Members','request' => 'By Request'),array('class'=>'checkb')); ?>
 					<a href="javascript:updateFamily.submit();" >Update</a>
-					<div class="total">23 Album Request Decliened </div>
+					
 				</div>
 				</form>
 			</li>
@@ -43,9 +42,8 @@
 				<div class="psLeft">My Documents</div>
 				<form id="updateDoc"  name="updateDoc" method="post"  action="/privacy/update">
 				<div class="psRight">
-				<?php echo CHtml::checkBoxList('documents',$documents,array('subscribers'=>'Subscribers','request' => 'By Request'),array('class'=>'checkb')); ?>
+				<?php echo CHtml::radioButtonList('documents',$documents,array('subscribers'=>'Subscribers','request' => 'By Request'),array('class'=>'checkb')); ?>
 					<a href="javascript:updateDoc.submit();" class="srch-sub-bottom">Update</a>
-					<div class="total">23 Album Request Decliened </div>
 				</div>
 				</form>
 			</li>
@@ -55,7 +53,6 @@
 				<div class="psRight">
 				<?php echo CHtml::checkBoxList('astro',$astro,array('all'=>'All','subscribers'=>'Subscribers','member'=> 'Logged Members','request' => 'By Request'),array('class'=>'checkb')); ?>
 					<a href="javascript:updateAstro.submit();" >Update</a>
-					<div class="total">23 Album Request Decliened </div>
 				</div>
 				</form>
 			</li>
@@ -63,9 +60,9 @@
 				<div class="psLeft">My Reference </div>
 				<form id="updateReference"  name="updateReference" method="post"  action="/privacy/update">
 				<div class="psRight">
-				<?php echo CHtml::checkBoxList('reference',$reference,array('subscribers'=>'Subscribers','request' => 'By Request'),array('class'=>'checkb')); ?>
+				<?php echo CHtml::radioButtonList('reference',$reference,array('subscribers'=>'Subscribers','request' => 'By Request'),array('class'=>'checkb')); ?>
 					<a href="javascript:updateReference.submit();" >Update</a>
-					<div class="total">23 Album Request Decliened </div>
+					
 				</div>
 				</form>
 			</li>
@@ -73,9 +70,9 @@
 				<div class="psLeft">My Contact</div>
 				<form id="updateContact"  name="updateContact" method="post"  action="/privacy/update">
 				<div class="psRight">
-				<?php echo CHtml::checkBoxList('contact',$contact,array('subscribers'=>'Subscribers','request' => 'By Request'),array('class'=>'checkb')); ?>
+				<?php echo CHtml::radioButtonList('contact',$contact,array('subscribers'=>'Subscribers','request' => 'By Request'),array('class'=>'checkb')); ?>
 					<a href="javascript:updateContact.submit();" class="srch-sub-bottom">Update</a>
-					<div class="total">23 Album Request Decliened </div>
+					
 				</div>
 				</form>
 			</li>

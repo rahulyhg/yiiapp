@@ -14,7 +14,7 @@
 						<a class="width100" href="<?php echo Utilities::createAbsoluteUrl('mypage','partnerpreference')?>">Partner preference</a>
 						<a class="width100" href="<?php echo Utilities::createAbsoluteUrl('mypage','payment')?>">My Payment summury</a>
 						<a class="width100" href="<?php echo Utilities::createAbsoluteUrl('mypage','account')?>">My Account</a>
-						<a class="width100" href="<?php echo Utilities::createAbsoluteUrl('mypage','settings')?>">Privacy settings</a>
+						<!-- <a class="width100" href="<?php echo Utilities::createAbsoluteUrl('mypage','settings')?>">Privacy settings</a> -->
 						<a class="width100" href="my-settings.htm">Deactivate account</a>
 						<a class="width100" href="my-settings.htm">Delete account</a>
 					</div>
@@ -44,9 +44,11 @@
 						<a class="width100" href="<?php echo Utilities::createAbsoluteUrl('interest','sent',array('selectedTab'=>'sent'))?>">Sent Interest</a>
 						<a class="width100" href="<?php echo Utilities::createAbsoluteUrl('interest','sent',array('selectedTab'=>'declined'))?>">Declined Interest</a>
 						<div class="dividr"></div>
+						<!-- 
 						<a class="width100" href="<?php echo Utilities::createAbsoluteUrl('request','sent')?>">Received Request</a>
 						<a class="width100" href="<?php echo Utilities::createAbsoluteUrl('request','sent')?>">Sent Request</a>
 						<a class="width100" href="<?php echo Utilities::createAbsoluteUrl('request','sent')?>">Declined Request</a>
+						 -->
 					</div>
 				</div>
             </li>

@@ -106,7 +106,7 @@
 				</div>
 			</li>
 			<li><a href="<?php echo Utilities::createAbsoluteUrl('payment','summary',array()); ?>" class="headLink">My Payment summery</a></li>
-			<li><a href="<?php echo Utilities::createAbsoluteUrl('mypage','settings',array()); ?>" class="headLink">My Settings</a></li>
+			<!--  <li><a href="<?php echo Utilities::createAbsoluteUrl('mypage','settings',array()); ?>" class="headLink">My Settings</a></li> -->
         </ul>
         <ul class="left-bar-data">
             <li>
@@ -123,6 +123,7 @@
 				</div>
 			</li>
         </ul>
+        <!-- 
 		<ul class="left-bar-data">
             <li>
 				<a href="<?php echo Utilities::createAbsoluteUrl('request','sent',array()); ?>" class="headLink ">Request </a>
@@ -138,6 +139,7 @@
 				</div>
 			</li>
         </ul>
+         -->
 		<ul class="left-bar-data">
             <li>
 				<a href="<?php echo Utilities::createAbsoluteUrl('interest','sent',array()); ?>" class="headLink ">Interest </a>

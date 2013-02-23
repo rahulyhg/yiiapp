@@ -373,14 +373,14 @@ class ContactController extends Controller
 				$privacy =  $user->privacy(array('condition'=>"items='reference'"));
 				if(isset($privacy)  && sizeof($privacy) > 0 ){
 				$privacy1 = $privacy[0];	
-				$privacy1->privacy = implode(',', $_POST['reference']);
+				$privacy1->privacy = $_POST['reference'];
 				$privacy1->save();	
 				}
 				else {
 				$privacy = new Privacy();
 				$privacy->userId = $user->userId;
 				$privacy->items = 'reference';
-				$privacy->privacy = implode(',', $_POST['reference']);
+				$privacy->privacy = $_POST['reference'];
 				$privacy->save();	
 				}
 		}
