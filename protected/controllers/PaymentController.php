@@ -100,7 +100,7 @@ public function actionSubscribe()
 	public function actionSummary()
 	{
 		$loggedUser = Yii::app()->session->get('user');
-		$payments = $loggedUser->payment(array('order'=> 'startdate ASC'));
+		$payments = $loggedUser->payment(array('order'=> 'actionItem,createdate ASC'));
 		if(isset($payments ) && sizeof($payments) > 0)
 		{
 			$this->render('summary',array('payment' =>$payments));

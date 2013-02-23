@@ -34,12 +34,25 @@
 		?>
         <ul class="accOverview pmB10">
 			<li>
-				<?php echo $date->format('Y-m-d');?> Subscribed at <?php echo $date->format('H:i a');?>
+				<?php echo $date->format('Y-m-d');
+				if($value->actionItem == 'highlight')
+				{
+				echo  ' Highlighted at ';
+				}
+				else
+				{
+					if($index == 1)
+					echo ' Subscribed at ';
+					else
+					echo ' Recharged at ';
+					++$index; 
+				}	
+				echo $date->format('H:i a');?>
 			</li>
 			<li>
 				<div class="leftC">Type of Payment</div>
 				<div class="rightC">
-					<strong>:</strong> <span>Coupon recharge</span>
+					<strong>:</strong> <span>Marrydoor Pin</span>
 				</div>
 			</li>
 			<li>
@@ -89,12 +102,10 @@
 			<?php }?>
 		</ul>
 		<?php
-		++$index;
+		
 		}
-		} else {
+		} 
 		?>
-		 No payment details found.
-		<?php }?>
 		
 	
     </section>
