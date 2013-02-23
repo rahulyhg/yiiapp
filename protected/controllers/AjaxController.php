@@ -196,7 +196,7 @@ public function actionRecoupon()
 		if(isset($_POST['coupon'])) {
 			
 		$user = Yii::app()->session->get('user');	
-		$coupon = Coupon::model()->findByAttributes(array('couponCode'=>$_POST['coupon']));
+		$coupon = Coupon::model()->findByAttributes(array('couponCode'=>$_POST['coupon']),'isUsed=0');
 		if(isset($coupon) && $coupon->status == 1 && $coupon->couponType == 'normal' )
 		{
 		if(isset($user))

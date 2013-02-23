@@ -46,13 +46,13 @@
     </section>
         <?php }?>
         
-        	
+        	<?php $this->widget('application.widgets.menu.Rightmenu'); ?> 
 	<script type="text/javascript">
 $(document).ready(function(){
-    $("#payment").validationEngine('attach');
+    $("#highlight").validationEngine('attach');
 });
 $("html").click(function(){ 
-	$("#payment").validationEngine('hide');    
+	$("#highlight").validationEngine('hide');    
 	
 });
 

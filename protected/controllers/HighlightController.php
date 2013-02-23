@@ -39,14 +39,17 @@ class HighlightController extends Controller
 			//get user from session
 			Yii::app()->getDb()->createCommand("SET time_zone='+05:30'")->execute();
 			$coupon = Coupon::model()->findByAttributes(array('couponCode'=>$_POST['coupon']),'isUsed=0');
+			if(isset($coupon) && !empty($coupon)){
+				
 			$coupon->isUsed = 1;
 			$coupon->save();
+			
 			$users->highlighted = 1 ;
 			$users->save();
 			$isHighLighted = true;
-			if(isset($coupon) && !empty($coupon)){
+				
 			$payment = new Payment();
-			$paypment->userID = $users->userId;
+			$payment->userID = $users->userId;
 			$payment->couponcode = $_POST['coupon'];
 			$payment->startdate = new CDbExpression('NOW()');
 			$payment->actionItem = 'highlight';
