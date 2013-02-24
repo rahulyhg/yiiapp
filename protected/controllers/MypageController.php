@@ -469,37 +469,46 @@ class MypageController extends Controller
 	public function actionPartnerpreference()
 	{
 		$user = Yii::app()->session->get('user');
-		if(isset($user->partnerpreferences))
-		{
-			
-			$this->render('partnerpreference',array('user'=> $user));
-		}
+		$user->partnerpreferences = Partnerpreferences::model()->findByAttributes(array('userId'=>$user->userId));
+		$this->render('partnerpreference');
 	}
 	
 	public function actionEditpartner()
 	{
 		$user = Yii::app()->session->get('user');
+		$user->partnerpreferences = Partnerpreferences::model()->findByAttributes(array('userId'=>$user->userId));
 		
-		if(isset($_POST['ageFrom']) && isset($user->partnerpreferences)) {
-		$partner = $user->partnerpreferences;
-		if(isset($_POST['ageFrom']))
+		if(isset($_POST)&& !empty($_POST) ) {
+		
+		if(isset($user->partnerpreferences))
+		{
+			$partner = $user->partnerpreferences; 
+		}
+		else
+		{
+			$partner  = new Partnerpreferences();
+			$partner->userId = $user->userId;
+		}
+			
+		
+		if(!empty($_POST['ageFrom']))
 		$partner->ageFrom = $_POST['ageFrom'];
-		if(isset($_POST['ageTo']))
+		if(!empty($_POST['ageTo']))
 		$partner->ageTo = $_POST['ageTo'];
 		if(isset($_POST['maritial']))
 		$partner->maritalStatus = implode(",", $_POST['maritial']);
 		
 		if(isset($_POST['child']))
 		$partner->haveChildren = $_POST['child'];
-		if(isset($_POST['heightFrom']))
+		if(!empty($_POST['heightFrom']))
 		$partner->heightFrom = $_POST['heightFrom'];
-		if(isset($_POST['heightTo']))
+		if(!empty($_POST['heightTo']))
 		$partner->heightTo = $_POST['heightTo'];
 		if(isset($_POST['status']))
 		$partner->physicalStatus = $_POST['status'];
-		if(isset($_POST['religion']))
+		if(!empty($_POST['religion']))
 		$partner->religion = $_POST['religion'];
-		if(isset($_POST['caste1']))
+		if(!empty($_POST['caste1']))
 		$partner->caste = implode(",", $_POST['caste1']);
 		if(isset($_POST['star1']))
 		$partner->star = implode(",", $_POST['star1']);
@@ -513,33 +522,30 @@ class MypageController extends Controller
 		$partner->drinkingHabits = implode(",", $_POST['drink']);
 		if(isset($_POST['smoke']))
 		$partner->smokingHabits = implode(",", $_POST['smoke']);
-		if(isset( $_POST['country1']))
+		if(!empty( $_POST['country1']))
 		$partner->countries = implode(",", $_POST['country1']);
-		if(isset($_POST['state1']))
+		if(!empty($_POST['state1']))
 		$partner->states = implode(",", $_POST['state1']);
-		if(isset($_POST['district1']))
+		if(!empty($_POST['district1']))
 		$partner->districts = implode(",", $_POST['district1']);
-		if(isset($_POST['place1']))
-		$partner->places = implode(",", $_POST['place1']);
-		if(isset($_POST['language1']))
+		if(!empty($_POST['language1']))
 		$partner->languages = implode(",", $_POST['language1']);
-		if(isset($_POST['citizen1']))
+		if(!empty($_POST['citizen1']))
 		$partner->citizenship = implode(",", $_POST['citizen1']);
-		if(isset($_POST['occupation1']))
+		if(!empty($_POST['occupation1']))
 		$partner->occupation = implode(",", $_POST['occupation1']);
-		if(isset($_POST['income']))
+		if(!empty($_POST['income']))
 		$partner->annualIncome = $_POST['income'];
-		if(isset($_POST['partnerDesc']))
+		if(!empty($_POST['partnerDesc']))
 		$partner->partnerDescription = $_POST['partnerDesc'];
 		
+
 		$partner->save();
 		$this->forward('partnerpreference');
 		}
-		
-		else if(isset($user->partnerpreferences))
-		{
-			
-			$this->render('editpartner',array('partner'=> $user->partnerpreferences));
+		else
+		{			
+			$this->render('editpartner');
 		}
 	}
 	

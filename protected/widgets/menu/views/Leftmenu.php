@@ -68,6 +68,7 @@
 			<li><a href="<?php echo Utilities::createAbsoluteUrl('mypage','album',array()); ?>" class="headLink">My Album</a></li>
             <li><a href="<?php echo Utilities::createAbsoluteUrl('mypage','familyalbum',array()); ?>" class="headLink">My Family album</a></li>
             <li><a href="<?php echo Utilities::createAbsoluteUrl('mypage','astro',array()); ?>" class="headLink">My Astro details</a></li>
+            <li><a href="<?php echo Utilities::createAbsoluteUrl('mypage','partnerpreference')?>" class="headLink">My Partner preference</a></li>
 			<li>
 				<a href="<?php echo Utilities::createAbsoluteUrl('mypage','reference',array()); ?>" class="headLink">My Reference</a>
 				<a class="infoB" href="javascript:void(0)">?</a>

@@ -15,7 +15,11 @@
 */
 ?>
 
-  <?php $this->widget('application.widgets.menu.Leftmenu'); ?>
+  <?php $this->widget('application.widgets.menu.Leftmenu'); 
+  $user = Yii::app()->session->get('user');
+  
+  $partner = $user->partnerpreferences
+  ?>
 	<section class="data-contnr3">
 	<form id="userPartner"  name="userPartner" method="post"  action="/mypage/editpartner">
 		<article class="section">
@@ -30,11 +34,21 @@
 						Prefered Age <span class="sup">*</span>
 					</div>
 					<div class="info">
-					<?php echo CHtml::dropDownList('ageFrom',null,Utilities::getAge(),array('empty' => 'Age','class'=>'validate[required] wid120','options' => array($partner->ageFrom =>array('selected'=>true)))); ?>
+					<?php if(isset($partner->ageFrom))
+					$ageFrom = $partner->ageFrom; 
+					else
+					$ageFrom = null
+					?>
+					<?php echo CHtml::dropDownList('ageFrom',null,Utilities::getAge(),array('empty' => 'Age','class'=>'validate[required] wid120','options' => array($ageFrom =>array('selected'=>true)))); ?>
 						
 						<div class="married">
 							<span class="text">to</span>
-							<?php echo CHtml::dropDownList('ageTo',null,Utilities::getAge(),array('empty' => 'Age','class'=>'validate[required] wid120','options' => array($partner->ageFrom =>array('selected'=>true)))); ?>
+							<?php if(isset($partner->ageTo))
+					$ageTo = $partner->ageTo; 
+					else
+					$ageTo = null
+					?>
+							<?php echo CHtml::dropDownList('ageTo',null,Utilities::getAge(),array('empty' => 'Age','class'=>'validate[required] wid120','options' => array($ageTo =>array('selected'=>true)))); ?>
 							<span class="text">years</span>
 						</div>
 					</div>
@@ -63,7 +77,7 @@
 						?>
 					<div class="info">
 						<div class="check ">
-							<INPUT type="checkbox" class="validate[required] checkbox" <?php if($any != false ) {?> checked="checked" <?php } ?>   name value="4" name="maritial[]"> <span>Any</span>
+							<INPUT type="checkbox" class="validate[required] checkbox" <?php if($any != false ) {?> checked="checked" <?php } ?>    value="4" name="maritial[]"> <span>Any</span>
 						</div>
 						<div class="check ">
 							<INPUT type="checkbox" class="validate[required] checkbox"  <?php if($unMarry != false ) {?> checked="checked" <?php } ?> value="0" name="maritial[]"> <span>Unmarried </span>
@@ -75,7 +89,7 @@
 							<INPUT type="checkbox" class="validate[required] checkbox" value="2" <?php if($divorce != false ) {?> checked="checked" <?php } ?>   name="maritial[]"> <span>Divorced </span>
 						</div>
 						<div class="check ">
-							<INPUT type="checkbox" class="validate[required] checkbox" value="3" <?php if($adivorce != false ) {?> checked="checked" <?php } ?>   name name="maritial[]"> <span>Awaiting divorce</span>
+							<INPUT type="checkbox" class="validate[required] checkbox" value="3" <?php if($adivorce != false ) {?> checked="checked" <?php } ?>   name="maritial[]"> <span>Awaiting divorce</span>
 						</div>
 					</div>
 				</li>
@@ -103,11 +117,23 @@
 						Height <span class="sup">*</span>
 					</div>
 					<div class="info">
-					 <?php echo CHtml::dropDownList('heightFrom',null,Utilities::getHeights(),array('empty' => 'Height','class'=>'validate[required] wid120','options' => array($partner->heightFrom =>array('selected'=>true)))); ?>
+					<?php
+					if(isset($partner->heightFrom ))
+					$hF = $partner->heightFrom;
+					else  
+					$hF = null
+					?>
+					 <?php echo CHtml::dropDownList('heightFrom',null,Utilities::getHeights(),array('empty' => 'Height','class'=>'validate[required] wid120','options' => array($hF=>array('selected'=>true)))); ?>
 						
 						<div class="married">
 							<span class="text">to</span>
-						<?php echo CHtml::dropDownList('heightTo',null,Utilities::getHeights(),array('empty' => 'Height','class'=>'validate[required] wid120','options' => array($partner->heightTo =>array('selected'=>true)))); ?>
+							<?php
+					if(isset($partner->heightTo))
+					$hT = $partner->heightTo;
+					else  
+					$hT = null
+					?>
+						<?php echo CHtml::dropDownList('heightTo',null,Utilities::getHeights(),array('empty' => 'Height','class'=>'validate[required] wid120','options' => array($hT =>array('selected'=>true)))); ?>
 						</div>
 					</div>
 				</li>
@@ -115,15 +141,21 @@
 					<div class="title">
 						Physical Status <span class="sup">*</span>
 					</div>
+					<?php 
+					if(isset($partner->physicalStatus))
+					$phy = $partner->physicalStatus;
+					else
+					$phy = null;
+					?>
 					<div class="info">
 						<div class="radio mR14">
-							<input type="radio" class="validate[required] checkbox" name="status" <?php if($partner->physicalStatus == '0'){?> checked="checked" <?php }?>  value="0"> <span>Normal</span>
+							<input type="radio" class="validate[required] checkbox" name="status" <?php if($phy == '0'){?> checked="checked" <?php }?>  value="0"> <span>Normal</span>
 						</div>
 						<div class="radio mR14">
-							<input type="radio" name="status" class="validate[required] checkbox" <?php if($partner->physicalStatus == '1'){?> checked="checked" <?php }?>  value="1"><span>Disabled </span>
+							<input type="radio" name="status" class="validate[required] checkbox" <?php if($phy == '1'){?> checked="checked" <?php }?>  value="1"><span>Disabled </span>
 						</div>
 						<div class="radio mR14">
-							<input type="radio" name="status" <?php if($partner->physicalStatus == '2'){?> checked="checked" <?php }?> class="validate[required] checkbox" value="2"><span>Doesn't matter </span>
+							<input type="radio" name="status" <?php if($phy == '2'){?> checked="checked" <?php }?> class="validate[required] checkbox" value="2"><span>Doesn't matter </span>
 						</div>
 					</div>
 				</li>
@@ -132,10 +164,14 @@
 						Religion 
 					</div>
 					<div class="info">
+					<?php if(isset($partner->religion))
+					$rel = $partner->religion;
+					else
+					$rel = null;
+					?>
 					<?php $records = Religion::model()->findAll("active = 1");
-  
-		$list = CHtml::listData($records, 'religionId', 'name');
-		echo CHtml::dropDownList('religion',null,$list,array('empty' => 'Religion','class'=>'validate[required] wid160','options' => array($partner->religion=>array('selected'=>true)))); ?>
+							$list = CHtml::listData($records, 'religionId', 'name');
+							echo CHtml::dropDownList('religion',null,$list,array('empty' => 'Religion','class'=>'validate[required] wid160','options' => array($rel=>array('selected'=>true)))); ?>
 					</div>
 				</li>
 				<li>
@@ -167,12 +203,19 @@
 					<div class="title">
 						Manglik
 					</div>
+					<?php 
+					if(isset($partner->dosham))
+					$dos = $partner->dosham;
+					else 
+					$dos = null;
+					
+					?>
 					<div class="info">
 						<div class="radio mR14">
-							<input name="dhosham"  <?php if($partner->dosham == 1) {?> checked="checked" <?php } ?> type="radio" value="1" /> <span>Yes</span>
+							<input name="dhosham"  <?php if($dos == 1) {?> checked="checked" <?php } ?> type="radio" value="1" /> <span>Yes</span>
 						</div>
 						<div class="radio">
-							<input name="dhosham" <?php if($partner->dosham == 0) {?> checked="checked" <?php } ?>  type="radio" value="0"  /> <span>No </span>
+							<input name="dhosham" <?php if($dos == 0) {?> checked="checked" <?php } ?>  type="radio" value="0"  /> <span>No </span>
 						</div>
 					</div>
 				</li>
@@ -330,7 +373,7 @@
 							else
 							$records = array();
 							$list = CHtml::listData($records, 'languageId', 'name');
-						    echo CHtml::dropDownList('language1[]',null,$list,array('class'=>'validate[required] right ar','id'=>'language1','multiple'=>'multiple')); ?>
+						    echo CHtml::dropDownList('language1[]',null,$list,array('class'=>'right ar','id'=>'language1','multiple'=>'multiple')); ?>
 					</div>
 				</li>
 				<li>
@@ -517,8 +560,14 @@
 					<div class="title">
 						Annual Income
 					</div>
+					<?php 
+					if(isset($partner->annualIncome))
+					$ann = $partner->annualIncome;
+					else
+					$ann = null;
+					?>
 					<div class="info">
-						<?php echo CHtml::dropDownList('income',null,Utilities::getAnnualIncome(),array('empty' => 'Income','class'=>'wid150','options' => array($partner->annualIncome =>array('selected'=>true)))); ?>
+						<?php echo CHtml::dropDownList('income',null,Utilities::getAnnualIncome(),array('empty' => 'Income','class'=>'wid150','options' => array($ann =>array('selected'=>true)))); ?>
 					</div>
 				</li>
 				<li>
@@ -526,7 +575,7 @@
 						Partner Description
 					</div>
 					<div class="info">
-						<textarea name="partnerDesc" value="<?php echo $partner->partnerDescription;?>" placeholder="Describe your expectations and what you're looking for in a partner.">
+						<textarea class="validate[maxSize[250]]" name="partnerDesc" value="<?php if(isset($partner->partnerDescription)) echo $partner->partnerDescription;?>" placeholder="Describe your expectations and what you're looking for in a partner.">
 	</textarea>   
 					</div>
 				</li>
@@ -551,6 +600,6 @@ $(document).ready(function(){
 		$("#userPartner").validationEngine('hideAll');
          return false;                         // prevent reset button from resetting again
     });
-        
     
   });
+  </script>

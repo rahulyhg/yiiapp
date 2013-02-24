@@ -43,6 +43,17 @@
 				</div>
 			</li>
 			<li>
+				<div class="leftC">Date </div>
+				<div class="rightC">
+					<strong>:</strong> <span><?php 
+					if(isset($astro->dob))
+					{
+						echo $astro->dob; 
+					}
+					?></span>
+				</div>
+			</li>
+			<li>
 				<div class="leftC">Birth sign</div>
 				<div class="rightC">
 					<strong>:</strong> <span><?php 
@@ -55,44 +66,84 @@
 				</div>
 			</li>
 			<li>
-				<div class="leftC">Chovvadosham</div>
-				<div class="rightC">
-				<?php $chova = Utilities::getChova() ?>
-					<strong>:</strong> <span><?php  if(isset($astro->dosham)) echo $chova[$astro->dosham]; ?></span>
-				</div>
-			</li>
-		</ul>
-		<ul class="accOverview pmB10">
-			<li>
-				<div class="refHead">
-					<div class="headT">My Astro Preference</div> 
-				</div>
-			</li>
-			
-			<li>
-				<div class="leftC">Birth sign</div>
+				<div class="leftC">Country of birth</div>
 				<div class="rightC">
 					<strong>:</strong> <span><?php 
-					if(isset($partner->star) && !empty($partner->star))
+					if(isset($astro->country))
 					{
-						echo Utilities::getValueForIds(new SignsMaster(),$partner->star,'signId');
+						$country = Country::model()->findbyPk($astro->country);
+						echo $country->name; 
 					}
-					
+					?></span>
+				</div>
+			</li>
+			<li>
+				<div class="leftC">State of birth</div>
+				<div class="rightC">
+					<strong>:</strong> <span><?php 
+					if(isset($astro->state))
+					{
+						$state = States::model()->findbyPk($astro->state);
+						echo $state->name; 
+					}
+					?></span>
+				</div>
+			</li>
+			<li>
+				<div class="leftC">City of birth</div>
+				<div class="rightC">
+					<strong>:</strong> <span><?php 
+					if(isset($astro->city))
+					{
+						echo $astro->city; 
+					}
+					?></span>
+				</div>
+			</li>
+			<li>
+				<div class="leftC">Time</div>
+				<div class="rightC">
+					<strong>:</strong> <span><?php 
+					if(isset($astro->time))
+					{
+						echo $astro->time; 
+					}
+					?></span>
+				</div>
+			</li>
+			<li>
+				<div class="leftC">Language</div>
+				<div class="rightC">
+					<strong>:</strong> <span><?php 
+					if(isset($astro->motherTounge))
+					{
+						$lang = Languages::model()->findbyPk($astro->motherTounge);
+						if(isset($lang))
+						echo $lang->name; 
+					}
 					?></span>
 				</div>
 			</li>
 			<li>
 				<div class="leftC">Chovvadosham</div>
 				<div class="rightC">
-					<strong>:</strong> <span><?php if(isset($partner->dosham)) echo $chova[$partner->dosham]; ?></span>
+				<?php $chova = Utilities::getChova() ?>
+					<strong>:</strong> <span><?php  if(isset($astro->dosham)) echo $chova[$astro->dosham]; ?></span>
 				</div>
 			</li>
-			
+			<li>
+				<div class="leftC">Sudha</div>
+				<div class="rightC">
+				<?php $sudha = Utilities::getSudham() ?>
+					<strong>:</strong> <span><?php  if(isset($astro->sudham)) echo $sudha[$astro->sudham]; ?></span>
+				</div>
+			</li>
+				
 			<li class="mT8"><a class="type4"
 		href="<?php echo Utilities::createAbsoluteUrl('contact','astroedit'); ?>"
 		id="referenceEdit1">Edit Astro</a>
 	</li>
-			
+		
 		</ul>
     </section>
 	<?php $this->widget('application.widgets.menu.Rightmenu'); ?>

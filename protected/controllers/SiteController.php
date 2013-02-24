@@ -151,7 +151,8 @@ class SiteController extends Controller
 		Yii::app()->user->logout();
 		Yii::app()->session->clear();
 		Yii::app()->session->destroy();
-		$this->redirect(Yii::app()->user->loginUrl);
+		$this->forward('index');
+		
 	}
 	
 // function to show popup when click on album, contact etc

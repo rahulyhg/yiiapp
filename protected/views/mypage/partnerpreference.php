@@ -14,8 +14,10 @@
 *  @version <Revision>
 */
 ?>
-    <?php $this->widget('application.widgets.menu.Leftmenu'); ?>
-
+    <?php $this->widget('application.widgets.menu.Leftmenu'); 
+    $user = Yii::app()->session->get('user');
+    ?>
+		
         <section class="data-contnr2">
         <ul class="accOverview pmB10">
 			<li class="mT8">
@@ -203,7 +205,7 @@
 			<li>
 				<div class="leftC">Annual Income</div>
 				<div class="rightC">
-					<strong>: <?php if(isset($user->partnerpreferences->annualIncome)) echo  $user->partnerpreferences->annualIncome;?></strong> 
+					<strong>: <?php if(isset($user->partnerpreferences->annualIncome)) echo  $user->partnerpreferences->annualIncome.'000';?></strong> 
 				</div>
 			</li>
 			<li>

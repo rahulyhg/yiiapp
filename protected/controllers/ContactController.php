@@ -470,9 +470,14 @@ class ContactController extends Controller
 				}
 					
 		}
+			$this->layout= '//layouts/popup';
+			$this->render('astroedit',array('edit'=>true));
 		}
+		else 
+		{
 		$this->layout= '//layouts/popup';
-		$this->render('astroedit');
+		$this->render('astroedit',array('edit'=>false));
+		}
 	}
 	
 	public function actionPersonaledit()

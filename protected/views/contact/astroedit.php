@@ -34,7 +34,11 @@
 							</div>
 							<?php 
 							$user = Yii::app()->session->get('user');
-							$date = new DateTime($user->dob);?>
+							if(isset($astro->dob))
+							$date = new DateTime($astro->dob);
+							else
+							$date = new DateTime($user->dob);
+							?>
 				
 							<div class="info">
 								<?php echo CHtml::dropDownList('date',$date->format('d'),Utilities::getRegDays(),array('class'=>'wid50 mR5')); ?>
@@ -206,3 +210,13 @@
 				</article>
 				</form>
 			</section>
+			
+			<script type="text/javascript">
+$(document).ready(function(){
+	<?php if($edit) { ?>
+	window.parent.location.reload();
+	
+<?php }?>
+});  
+
+</script>		

@@ -12,11 +12,10 @@
 						<a class="width100" href="<?php echo Utilities::createAbsoluteUrl('bookmark','index')?>">Bookmarks</a>
 						<a class="width100" href="<?php echo Utilities::createAbsoluteUrl('addressbook','index')?>">My Address Book</a>
 						<a class="width100" href="<?php echo Utilities::createAbsoluteUrl('mypage','partnerpreference')?>">Partner preference</a>
-						<a class="width100" href="<?php echo Utilities::createAbsoluteUrl('payment','index')?>">My Payment summury</a>
+						<a class="width100" href="<?php echo Utilities::createAbsoluteUrl('payment','summary')?>">My Payment summury</a>
 						<a class="width100" href="<?php echo Utilities::createAbsoluteUrl('mypage','account')?>">My Account</a>
 						<!-- <a class="width100" href="<?php echo Utilities::createAbsoluteUrl('mypage','settings')?>">Privacy settings</a> -->
-						<a class="width100" href="my-settings.htm">Deactivate account</a>
-						<a class="width100" href="my-settings.htm">Delete account</a>
+						
 					</div>
 				</div>
             </li>
