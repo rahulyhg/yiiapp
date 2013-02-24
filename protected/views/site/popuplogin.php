@@ -5,7 +5,7 @@
 			<section class="subContnr">
 			<div class="welcome-message">Welcome Guest!</div>
         <div class="user-login">
-		<?php echo CHtml::beginForm(Utilities::createAbsoluteUrl('user','popuplogin'),'post',array('name'=>'LoginForm','id'=>'LoginForm'));?>
+		<?php echo CHtml::beginForm(Utilities::createAbsoluteUrl('site','popuplogin'),'post',array('name'=>'LoginForm','id'=>'LoginForm'));?>
 			<div class="login-contnr">
 				<p>E-Mail / User ID</p>
 					<input type="text" class="validate[required]"  tabindex="1"  id="user" name="LoginForm[username]"/>

@@ -153,4 +153,37 @@ class SiteController extends Controller
 		Yii::app()->session->destroy();
 		$this->redirect(Yii::app()->user->loginUrl);
 	}
+	
+// function to show popup when click on album, contact etc
+	public function actionPopup()
+	{
+		$profileId = isset($_REQUEST['profileId']) ? $_REQUEST['profileId'] : 0;
+		$action = isset($_REQUEST['action']) ? $_REQUEST['action'] : '';
+		$module = isset($_REQUEST['module']) ? $_REQUEST['module'] : '';
+	
+		$this->layout= '//layouts/popup';
+		$this->render('popup',array('profileId'=>$profileId,'action'=>$action,'module'=>$module));
+	}
+	
+	public function actionPopuplogin()
+	{
+		if(isset($_POST) && !empty($_POST))
+		{
+			$form = new LoginForm();
+			$form->attributes=$_POST['LoginForm'];
+			$success = null;
+			if($form->login())
+			{
+				Yii::app()->params['loginError'] = NULL;
+				$success = true;
+			}else{
+				Yii::app()->params['loginError'] = true;
+				$success = false;
+			}
+		}else{
+			$success = null;
+		}
+		$this->layout= '//layouts/popup';
+		$this->render('popuplogin',array('success'=>$success));
+	}
 }

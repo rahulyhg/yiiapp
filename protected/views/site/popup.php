@@ -22,7 +22,7 @@
 						<?php if($action == 'request'){?>
 							<input type="submit" name="sendRequest" id="sendRequest" value="Send Request" class="type2b" />
 							<?php }elseif($action == 'login'){ ?>
-							<a href="<?php echo Utilities::createAbsoluteUrl('user','popuplogin',array()); ?>"><input type="button" name="sendRequest" id="sendRequest" value="Login" class="type2b" /></a>
+							<a href="<?php echo Utilities::createAbsoluteUrl('site','popuplogin',array()); ?>"><input type="button" name="sendRequest" id="sendRequest" value="Login" class="type2b" /></a>
 							<input type="button" name="newmember" id="newmember" value="I am not a member yet" class="type2b" onclick="javascript:redirectUser('<?php echo Utilities::createAbsoluteUrl('site','index') ?>');" />
 						<?php }elseif($action == 'subscribe'){ ?>
 						<input type="button" name="sendRequest" id="sendRequest" value="Subscribe Now" class="type2b" onclick="javascript:redirectUser('<?php echo Utilities::createAbsoluteUrl('payment','index') ?>');" />

@@ -168,10 +168,10 @@ $user = Yii::app()->session->get('user');
 						<a href="/contact/referencedetails/id/<?php echo $model->marryId ?>" id="referenceDetails" >Reference </a>
 					</div>
 					<div class="butCo">
-						<a id="requestWindow" href="<?php echo Utilities::createAbsoluteUrl('user','popup',array('action'=>'login','module'=>'album','profileId'=>$model->userId)); ?>">Family album</a>
+						<a id="requestWindow" href="<?php echo Utilities::createAbsoluteUrl('site','popup',array('action'=>'login','module'=>'album','profileId'=>$model->userId)); ?>">Family album</a>
 					</div>
 					<div class="butCo">
-						<a id="requestWindow" href="<?php echo Utilities::createAbsoluteUrl('user','popup',array('action'=>'login','module'=>'album','profileId'=>$model->userId)); ?>">Personal album</a>
+						<a id="requestWindow" href="<?php echo Utilities::createAbsoluteUrl('site','popup',array('action'=>'login','module'=>'album','profileId'=>$model->userId)); ?>">Personal album</a>
 					</div>
 					<div class="butCo">
 							<a href="/contact/astrodetails/id/<?php echo $model->marryId ?>" id="astroDetails" >Astro Details</a>	
