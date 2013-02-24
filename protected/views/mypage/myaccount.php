@@ -28,7 +28,9 @@
 			<li>
 				<div class="leftC">Profile Created on</div>
 				<div class="rightC">
-					<strong>:</strong> <span><?php if(isset($user->createdOn))echo date_format(date_create($user->createdOn), 'd,M,Y');?></span>
+					<strong>:</strong> <span><?php if(isset($user->createdOn))
+						echo $user->createdOn;
+					?></span>
 				</div>
 			</li>
 			<li>

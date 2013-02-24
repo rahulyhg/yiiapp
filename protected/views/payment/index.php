@@ -71,10 +71,6 @@
 $(document).ready(function(){
     $("#payment").validationEngine('attach');
 });
-$("html").click(function(){ 
-	$("#payment").validationEngine('hide');    
-	
-});
 
 
 function checkCoupon(field, rules, i, options){

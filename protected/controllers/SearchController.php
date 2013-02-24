@@ -303,9 +303,20 @@ class SearchController extends Controller
 		$searchText = "";
 		$user = Yii::app()->session->get('user');
 			
-		if(isset($_POST['heightStart']) && isset($_POST['heightLimit']))
+		if(isset($_POST) && !empty($_POST))
 		{
-
+			$condition = " ";
+			if(isset($_POST['SearchForm']['bride']))
+			{
+				$gender = $_POST['SearchForm']['bride'];
+				$condition .= "gender = '{$gender}' ";
+				if($gender == 'M')
+				$searchText.= "Male, ";
+				else
+				$searchText.= "Female, ";
+			}
+			
+			
 			if(isset($user)){
 				$scondition = "FIND_IN_SET('{$user->userId}',profileIDs)";
 				$profileBlock = ProfileBlock::model()->findAll(array('condition'=>$scondition));
@@ -316,32 +327,23 @@ class SearchController extends Controller
 				}
 				$blockIdList = implode(",", $blockId);
 			}
-			if(isset($_POST['heightStart']))
-			$heightFrom = $_POST['heightStart'];
-			if(isset($_POST['heightLimit']))
-			$heightTo = $_POST['heightLimit'];
-
-			$condition = "heightId BETWEEN {$heightFrom} AND {$heightTo} ";
-			$searchText.= "Height between {$heightFrom} and {$heightTo}, ";
-
-
-			if(isset($_POST['startAge']))
-			$ageFrom = $_POST['startAge'];
-			if(isset($_POST['endAge']))
-			$ageTo = $_POST['endAge'];
-			$condition .= "AND age BETWEEN {$ageFrom} AND {$ageTo} and active =1";
 			
-			$searchText.= "age between {$ageFrom} and {$ageTo}, "; 
-
-			if(isset($_POST['bride']))
+			if(!empty($_POST['heightStart'])&& !empty($_POST['heightLimit']))
 			{
-				$gender = $_POST['gender'];
-				$condition .= " AND gender = '{$gender}'";
-				if($gender == 'M')
-				$searchText.= "Male, ";
-				else
-				$searchText.= "Female, ";
+				$heightFrom = $_POST['heightStart'];
+				$heightTo = $_POST['heightLimit'];
+				$condition = "heightId BETWEEN {$heightFrom} AND {$heightTo} ";
+				$searchText.= "Height between {$heightFrom} and {$heightTo}, ";
 			}
+
+
+			if(!empty($_POST['startAge']) && !empty($_POST['endAge']))
+			{
+				$ageFrom = $_POST['startAge'];
+				$ageTo = $_POST['endAge'];
+				$condition .= "AND age BETWEEN {$ageFrom} AND {$ageTo} and active =1";
+				$searchText.= "age between {$ageFrom} and {$ageTo}, ";
+			} 
 
 
 			if(isset($_POST['religion']) && !empty($_POST['religion']))
@@ -398,7 +400,7 @@ class SearchController extends Controller
 				$searchText.= "Mother tounge as". Utilities::getValueForIds(new Languages(), $_POST['motherTounge'], 'languageId')." , ";
 			}
 
-			if(isset($_POST['photo']))
+			if($_POST['SearchForm']['photo'] == 1)
 			{
 				$condition .= " AND photo = 1 ";
 				$searchText.= "with photo";
@@ -443,11 +445,11 @@ class SearchController extends Controller
 			{
 				if(!isset($user))
 				{
-					$this->render('index',array('error'=> '*******NO RESULTS FOUND******,Please try again'));
+					$this->render('index',array('tab'=>'tab1','error'=> '*******NO RESULTS FOUND******,Please try again'));
 				}
 				else {
 						
-					$this->render('regular',array('error'=> '*******NO RESULTS FOUND******,Please try again'));
+					$this->render('regular',array('tab'=>'tab1','error'=> '*******NO RESULTS FOUND******,Please try again'));
 				}
 			}
 		}
@@ -661,10 +663,9 @@ class SearchController extends Controller
 	public function actionQuick(){
 		
 		$user = Yii::app()->session->get('user');
-		if(isset($_POST['ageFrom']) && isset($_POST['ageTo']))
-		{
-			
-		$scondition = "FIND_IN_SET('{$user->userId}',profileIDs)";
+		
+		if(isset($user)){
+			$scondition = "FIND_IN_SET('{$user->userId}',profileIDs)";
 		$profileBlock = ProfileBlock::model()->findAll(array('condition'=>$scondition));
 		$blockId = array();
 		foreach ($profileBlock as $key => $value) {
@@ -672,6 +673,11 @@ class SearchController extends Controller
 		}
 		$blockIdList = implode(",", $blockId);
 		
+		}
+		
+		if(isset($_POST['ageFrom']) && isset($_POST['ageTo']))
+		{
+			
 		if(isset($_POST['ageFrom']))
 		$ageFrom = $_POST['ageFrom'];
 		if(isset($_POST['ageTo']))
@@ -722,7 +728,7 @@ class SearchController extends Controller
 			else 
 			$normalUser[] = $value;
 		}
-		}
+		
 		//$user = Users::model()->find();
 		if(sizeof($users) > 0)
 		{
@@ -730,20 +736,21 @@ class SearchController extends Controller
 		$totalPage = ceil($totalUser/10);	
 		$this->render('search',array('highLight' => $highLightUser,'normal'=> $normalUser,'search'=>'regular','totalUser'=>$totalUser,'totalPage' => $totalPage));	
 		}
+		}
 		else
 		{
 		if(!isset($user))
 				{
-					$this->render('index',array('error'=> '*******NO RESULTS FOUND******,Please try again'));
+					$this->render('index',array('tab'=>'tab1','error'=> '*******NO RESULTS FOUND******,Please try again'));
 				}
 				else {
 						
-					$this->render('regular',array('error'=> '*******NO RESULTS FOUND******,Please try again'));
+					$this->render('regular',array('tab'=>'tab1','error'=> '*******NO RESULTS FOUND******,Please try again'));
 				}
 		} 
 		}
 		else {
-			$this->render('regular');
+			$this->render('regular',array('tab'=>'tab1'));
 		}
 	}
 	

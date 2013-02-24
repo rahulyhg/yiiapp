@@ -161,19 +161,19 @@
 				<div class="left">Looking for</div>
 				<div class="right">
 					<div class="check-contnr">
-						<?php echo $searchForm->radioButton($searchModel,'bride', array('value'=>'f')); ?><span>Bride</span>
+						<?php echo $searchForm->radioButton($searchModel,'bride', array('class'=>'validate[required]','value'=>'f')); ?><span>Bride</span>
 					</div>
 					<div class="check-contnr">
-						<?php echo $searchForm->radioButton($searchModel,'bride', array('value'=>'m')); ?><span>Groom</span>
+						<?php echo $searchForm->radioButton($searchModel,'bride', array('class'=>'validate[required]','value'=>'m')); ?><span>Groom</span>
 					</div>
 				</div>
 			</li>
 			<li>
 				<div class="left"><?php echo $searchForm->labelEx($searchModel,'startAge'); ?></div>
 				<div class="right">
-				<?php echo CHtml::dropDownList('startAge',null,Utilities::getAge(),array('class'=>'width25')); ?>
+				<?php echo CHtml::dropDownList('startAge',null,Utilities::getAge(),array('prompt' => 'Age','class'=>'validate[groupRequired[search1],funcCall[hidePromp]] width28')); ?>
 					<span>To</span>
-    	<?php echo CHtml::dropDownList('endAge',null,  Utilities::getAge(),array('class'=>'width25')); ?>
+    	<?php echo CHtml::dropDownList('endAge',null,  Utilities::getAge(),array('prompt' => 'Age','class'=>'validate[groupRequired[search1],funcCall[checkAgeLimit]] width28')); ?>
 					</div>
 			</li>
 			<li>
@@ -181,7 +181,7 @@
 				<div class="right">
 				<?php $records = Languages::model()->findAll("active = 1");
 		$list = CHtml::listData($records, 'languageId', 'name');
-		echo CHtml::dropDownList('motherTounge',null,$list,array('empty' => 'Language','class'=>'width90')); ?>
+		echo CHtml::dropDownList('motherTounge',null,$list,array('empty' => 'Language','class'=>'validate[groupRequired[search1]] width90')); ?>
 		<?php echo $searchForm->error($searchModel,'motherTounge'); ?>
 				</div>
 			</li>
@@ -190,7 +190,7 @@
 				<div class="right">
 				<?php $records = Religion::model()->findAll("active = 1");
 		$list = CHtml::listData($records, 'religionId', 'name');
-		echo CHtml::dropDownList('religion',null,$list,array('empty' => 'Religion','class'=>'width90','ajax' => array(
+		echo CHtml::dropDownList('religion',null,$list,array('empty' => 'Religion','class'=>'validate[groupRequired[search1]] width90','ajax' => array(
                         'type'=>'POST',
                         'url'=>CController::createUrl('Ajax/updateCaste'), 
                         'dataType'=>'json',
@@ -207,7 +207,7 @@
 				<div class="right">
 				
 		<?php 
-		echo CHtml::dropDownList('caste','',array(),array('prompt' => 'Caste','id'=>'sCaste','class'=>'width90')); ?>
+		echo CHtml::dropDownList('caste','',array(),array('prompt' => 'Caste','id'=>'sCaste','class'=>'validate[groupRequired[search1]] width90')); ?>
 		<?php echo $searchForm->error($searchModel,'caste'); ?>
 				</div>
 			</li>
@@ -216,7 +216,7 @@
 				<div class="right">
 				<?php $records = States::model()->findAll("active = 1");
 		$list = CHtml::listData($records, 'stateId', 'name');
-		echo CHtml::dropDownList('state',null,$list,array('empty' => 'State','class'=>'width90','ajax' => array(
+		echo CHtml::dropDownList('state',null,$list,array('empty' => 'State','class'=>'validate[groupRequired[search1]] width90','ajax' => array(
                         'type'=>'POST',
                         'url'=>CController::createUrl('Ajax/updateDistrict'), 
                         'dataType'=>'json',
@@ -233,14 +233,14 @@
 				<div class="right">
 				<?php 
 					
-					echo CHtml::dropDownList('district',null,array(),array('prompt' => 'District','class'=>'width90')); ?>
+					echo CHtml::dropDownList('district',null,array(),array('prompt' => 'District','class'=>'validate[groupRequired[search1]] width90')); ?>
 					<?php echo $searchForm->error($searchModel,'district'); ?>
 				</div>
 			</li>
 			<li>
 				<div class="left"><?php echo $searchForm->labelEx($searchModel,'heightStart'); ?></div>
 				<div class="right">
-				<?php echo CHtml::dropDownList('heightStart',null,Utilities::getHeights(),array('class'=>'width90')); ?>
+				<?php echo CHtml::dropDownList('heightStart',null,Utilities::getHeights(),array('prompt' => 'Height','class'=>'validate[groupRequired[search1],funcCall[hidePromp]] width90')); ?>
 				</div>
 			</li>
 			<li>
@@ -250,19 +250,19 @@
 			<li>
 				<div class="left"></div>
 				<div class="right">
-				<?php echo CHtml::dropDownList('heightLimit',null,Utilities::getHeights(),array('class'=>'width90')); ?>	
+				<?php echo CHtml::dropDownList('heightLimit',null,Utilities::getHeights(),array('prompt' => 'Height','class'=>'validate[groupRequired[search1],condRequired[heightStart],funcCall[checkHeightLimit]] width90')); ?>	
 				</div>
 			</li>
 			<li>
 				<div class="left"><?php echo $searchForm->labelEx($searchModel,'bodyType'); ?></div>
 				<div class="right">
-				<?php echo CHtml::dropDownList('bodyType',null,Utilities::getBodyType(),array('empty' => 'Body Type','class'=>'width90')); ?>
+				<?php echo CHtml::dropDownList('bodyType',null,Utilities::getBodyType(),array('empty' => 'Body Type','class'=>'validate[groupRequired[search1]] width90')); ?>
 				</div>
 			</li>
 			<li>
 				<div class="left"><?php echo $searchForm->labelEx($searchModel,'bodyColor'); ?></div>
 				<div class="right">
-				<?php echo CHtml::dropDownList('bodyColor',null,Utilities::getBodyColor(),array('empty' => 'Body Color','class'=>'width90')); ?>
+				<?php echo CHtml::dropDownList('bodyColor',null,Utilities::getBodyColor(),array('empty' => 'Body Color','class'=>'validate[groupRequired[search1]] width90')); ?>
 				</div>
 			</li>
 			<li>
@@ -314,6 +314,8 @@
 $(document).ready(function(){
 	$("#users-register-form").validationEngine('attach');
 	$("#keywordSearch").validationEngine('attach');
+	$("#users-search-searchForm").validationEngine('attach');
+	
     
     $("input:reset").click(function() {       // apply to reset button's click event
         this.form.reset();                    // reset the form
@@ -358,6 +360,37 @@ $(document).ready(function(){
     
   });
 
+
+function checkAgeLimit(field, rules, i, options){
+	if (field.val()) {
+
+		if(!$('#startAge').val())
+			return "Select proper age limit";
+
+		var start = parseInt($('#startAge').val());
+		
+		if( parseInt(field.val()) <= start)
+		return "Select proper age limit";
+	}
+}
+
+function hidePromp(field, rules, i, options){
+	if (field.val()) {
+		$("#users-search-searchForm").validationEngine('hide');
+	}
+}
+function checkHeightLimit(field, rules, i, options){
+	if (field.val()) {
+
+		if(!$('#heightStart').val())
+			return "Select proper height limit";
+
+		var start = parseInt($('#heightStart').val());
+		
+		if( parseInt(field.val()) <= start)
+		return "Select proper height limit";
+	}
+}
 
 function checkEmail(field, rules, i, options){
 
