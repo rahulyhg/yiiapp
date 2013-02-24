@@ -7,133 +7,56 @@
 * Copyright © 2012 MarryDorr. All Rights Reserved.
 * ---------------------------------------------------------------------------------------------------------------------------
 *
-* @author  Ageesh K Gopinath
-* @title myalbum.php
+* @author  Dileep Gopalan
+* @title album.php
 * @description <Description of this class>
 *  @filesource <URL>
 *  @version <Revision>
 */
-$user = Yii::app()->session->get('user');
 ?>
+    <?php $this->widget('application.widgets.menu.Leftmenu'); ?>
+    <?php $user = Yii::app()->session->get('user'); ?>
+    <section class="data-contnr2">
+        <?php if(empty($photosList)){?>
+        <h1 class="mB10">My Album </h1>
+        <p class="red">You have not added any photos to 'my album' yet! </p>
+        <h3 class="mB10 ">What is my Album ?</h3>
+        <p>This  is where you upload your own pictures of different nature. You can upload upto five photos in this section.</p>
+		<h3 class="mB10 ">Why upload my album?</h3>
+        <p>By adding multiple pictures of yours you can let others have a better picture of you. Better responses is what you get when you have my album in place. </p>
+		<h3 class="mB10 ">How to ensure the security of my album?</h3>
+        <p>By using  make my photos visible only upon request , you can protect your pictures. This option helps you ensure that other users will not be able to access your details without your permission.</p>
+		<a id="albumWindow" href="<?php echo Utilities::createAbsoluteUrl('mypage','photoupload',array()) ?>" class="type5 wid150 mT10">Add Album</a>
+		<?php }else{?>
+        <h1>My Album</h1>
+		<h5 class="width100 mT30">Please mouse hover on a photo to use as your profile picture or to delete.</h5>
+        <div class="profPicC">
+        	<?php foreach($photosList as $photo):?>
+            <div class="picContnr">
+				<div class="ppOpt">
+					<?php if($photo->profileImage == 1){ ?>
+						<p>This is your Profile Picture</p>
+					<?php }else{?>
+						<a href="<?php echo Utilities::createAbsoluteUrl('mypage','album',array('action'=>'setprofilephoto','pId'=>$photo->photoId,'uId'=>$user->userId)); ?>" title="click to make this ur profile picture">Use as Profile Picture</a>
+					<?php }?>
+					<a href="<?php echo Utilities::createAbsoluteUrl('mypage','album',array('action'=>'delete','pId'=>$photo->photoId,'uId'=>$user->userId)); ?>" title="click to delete this picture">Delete</a>
+				</div>
+				<img src="<?php echo Utilities::getProfileImage($user->marryId,$photo->imageName); ?>" alt="" width="88" height="90" />
+			</div>
+			<?php endforeach; ?>
+        </div>
+        <?php if(count($photosList) < 5){?>
+        	<a id="albumWindow" href="<?php echo Utilities::createAbsoluteUrl('mypage','photoupload',array()) ?>" class="type5">Add More Photos</a>
+        <?php }?>
+        <?php }?>
+    </section>
+     <script type="text/javascript">
+$(document).ready(function() {
 
-            <div id="main-content">
-            	<!--left-content-->
-  
-    
-         <!-- left menu -->
-        <?php $this->widget('application.widgets.menu.Leftmenu'); ?>
-        <!-- /left menu -->
-  <!--center profile details closing--> 
-  			<div id="content-right-02"> 
-              <div class="div_mdla">
-              <div class="line_sm"></div>
-			  
-			  
-              
-             
-            <div class="left_tabs">   <p class="text_pink-hd">My Album</p></div>
-             
-            
-              <div class="right_tabs">
-              
-              <input type="button" value="Add more photos" name="yt5" tabindex="3" class="btnStyle" onclick="javascript:addMorePhotos();" />
-              <input type="button" value="Privacy Settings" name="yt5" tabindex="3" class="btnStyle" onclick="javascript:privacySettings();" />
-             				
-			  </div>
-              
-              
-              <div class="clear"></div>
-                              <div class="line"></div>
+	$("#albumWindow").colorbox({iframe:true, width:"860", height:"900",overlayClose: false});
+});
 
-
-<div class="clear"></div>                              
-                <div class="space-15px">&nbsp;</div>
-                              <div class="clear"></div>
-                 <?php if(!empty($photosList)):?>
-                 <?php foreach($photosList as $photo):?>
-                <!--div_msg_fullbox-->   <div class="profile_box">
-                  <div style="float:left;">
-             	<a href="#">    <img src="<?php echo Utilities::getProfileImage($user->marryId,$photo->imageName); ?>"  border="0" width="187" height="242" /></a>
-                 </div>
-                 
-				  <input type="button" value="Use as profile picture" name="yt5" tabindex="3" class="btnStyle" onclick="javascript:setProfilePhoto(<?php echo $photo->albumId; ?>);">
-             	 <input type="button" value="Delete" name="yt5" tabindex="3" class="btnStyle" onclick="javascript:deletePhoto(<?php echo $photo->albumId; ?>);">              
-                  </div>
-                <div class="clear"></div>
-              <?php endforeach;?>
-              <?php else : ?>  
-              <div class="profile_box">
-              	<?php echo Yii::t('error','noAlbums'); ?>
-              </div>
-             <?php endif; ?>
-                <div class="space-15px">&nbsp;</div>
-                           
-           
-             
-             <div class="space-10px"><p>&nbsp;<br />&nbsp;<br /></p></div>
-             
-             
-              <div class="right_tabs">
-              <!-- hidden form to submit values -->
-              <form name="frmMyAlbum" id="frmMyAlbum" method="post" action="<?php echo Utilities::createAbsoluteUrl('mypage','album'); ?>" >
-              <input type="hidden" id="action" name="action" value="" />
-              <input type="hidden" id="albumId" name="albumId" value="" />
-              </form>
-              <!-- form ends -->
-                <input type="button" value="Add more photos" name="yt5" tabindex="3" class="btnStyle" onclick="javascript:addMorePhotos();">
-              <input type="button" value="Privacy Settings" name="yt5" tabindex="3" class="btnStyle" onclick="javascript:privacySettings();">
-               
-                
-                </div>
-              
-              
-              
-              
-             
-                <div class="space-35px">&nbsp;</div>
-              </div> 
-  <!--closing central profile details closing-->      
-              
-                <!--left-content closing-->
-                <!--left-content-->
-                
-                <div id="content-right-small-1">
-               	  <div class="div_r_1"><!--div_r-->
-
-<p class="text_20_gery"><a href="payment_benefits.html">Subscribe Now!</a><br />
-Only for</p>
-
-<img src="<?php echo Yii::app()->params['mediaUrl']; ?>/img_200.jpg" class="left"  border="0"/>
-<p class="text_20_gery">For 3 Months</p>
-
-<div class="clear"></div>
-               	  </div>
-              
-              </div></div>
-
-   </div>
-  <script type="text/javascript">
-  function addMorePhotos()
-  {
-	  window.location.href='<?php echo Utilities::createAbsoluteUrl('album','add'); ?>';
-  }
-
-  function privacySettings()
-  {
-	  window.location.href='<?php echo Utilities::createAbsoluteUrl('album','privacy'); ?>';
-  }
-
-  function setProfilePhoto(albumId)
-  {
-	  document.getElementById('action').value = 'setprofilephoto';
-	  document.getElementById('albumId').value = albumId;
-	  document.frmMyAlbum.submit();
-  }
-
-  function deletePhoto(albumId)
-  {
-	  document.getElementById('action').value = 'delete';
-	  document.getElementById('albumId').value = albumId;
-	  document.frmMyAlbum.submit();
-  }
-  </script>
+</script>
+    	<!-- right menu -->
+	<?php $this->widget('application.widgets.menu.Rightmenu'); ?> 
+	<!-- right menu ends -->

@@ -402,43 +402,38 @@ class MypageController extends Controller
 	{
 		$user = Yii::app()->session->get('user');
 		$album = new Album();
+		$photos = new Photos();
 		$action = isset($_REQUEST['action']) ? $_REQUEST['action'] : "";
-		$albumId = isset($_REQUEST['albumId']) ? $_REQUEST['albumId'] : 0;
 		if($action == "delete"){
-			$photo = $album->find('userId='.$user->userId.' and albumId='.$albumId);
-			if(count($photo) > 0){
+		$photoId = (int)trim($_GET['pId']);
+			$userId = (int)trim($_GET['uId']);
+			if($user->userId == $userId){
+				$photo = $photos->find('photoId='.$photoId);
+				$profileStatus = $photo->profileImage;
 				$path = Utilities::getDirectory('images',array('profile',$user->marryId));
 				$targetFile = Utilities::getFullFilePath($path, $photo->imageName);
 				if(file_exists($targetFile)){
 					if(unlink($targetFile)){
-						$album->deleteByPk($albumId);
+						$photos->deleteByPk($photoId);
+						if($profileStatus == 1){
+							$query = 'update photos set profileImage = 1 where userId ='.$user->userId.' limit 1';
+							Utilities::executeRawQuery($query);
+						}
 					}
 				}
 			}
 		}elseif($action == "setprofilephoto"){
-			$photo = $album->find('userId='.$user->userId.' and albumId='.$albumId);
-			if(count($photo) > 0){
-				// set profile picture
-				$photos = new Photos();
-				$photos->updateAll(array('profileImage'=>0),'userId='.$user->userId);  // unset the existing
-				$photos->userId = $user->userId;
-				$photos->imageName = $photo->imageName;
-				$photos->profileImage = 1;
-				$photos->save();
-				
-				//delete from album
-				$album->deleteByPk($albumId);
+				$photoId = (int)trim($_GET['pId']);
+				$userId = (int)trim($_GET['uId']);
+				if($user->userId == $userId){
+					$photos->updateAll(array('profileImage'=>0),'userId='.$userId);  // unset the existing
+					$photos->updateAll(array('profileImage'=>1),'photoId='.$photoId);  // set the new image
+				}
 			}
-		}
-		$photosList = $album->findAll('userId='.$user->userId);
+		$photosList = $photos->findAll('userId='.$user->userId);
 		$this->render('myalbum',array('photosList' => $photosList));
 	}
-	
-	
-	public function actionDocument()
-	{
-		$this->render('document');
-	}
+
 	
 	public function actionAstro()
 	{
@@ -566,6 +561,69 @@ class MypageController extends Controller
 		$this->render('profile');
 	}
 	
+	public function actionEditpartnerpreference()
+	{
+		$user = Yii::app()->session->get('user');
+		
+		//$partner = new Partnerpreferences();
+		
+		if(isset($_REQUEST['editPartner'])){
+			$user->partnerpreferences->userId = $user->userId;
+			if(isset($_POST['ageFrom']))
+			$user->partnerpreferences->ageFrom = $_POST['ageFrom'];
+			if(isset($_POST['ageTo']))
+			$user->partnerpreferences->ageTo = $_POST['ageTo'];
+			if(isset($_POST['maritial']))
+			$user->partnerpreferences->maritalStatus = implode(",", $_POST['maritial']);
+			
+			if(isset($_POST['child']))
+			$user->partnerpreferences->haveChildren = $_POST['child'];
+			if(isset($_POST['heightFrom']))
+			$user->partnerpreferences->heightFrom = $_POST['heightFrom'];
+			if(isset($_POST['heightTo']))
+			$user->partnerpreferences->heightTo = $_POST['heightTo'];
+			if(isset($_POST['status']))
+			$user->partnerpreferences->physicalStatus = $_POST['status'];
+			if(isset($_POST['religion']))
+			$user->partnerpreferences->religion = $_POST['religion'];
+			if(isset($_POST['caste1']))
+			$user->partnerpreferences->caste = implode(",", $_POST['caste1']);
+			if(isset($_POST['star1']))
+			$user->partnerpreferences->star = implode(",", $_POST['star1']);
+			if(isset($_POST['jathakam']))
+			$user->partnerpreferences->sudham = $_POST['jathakam'];
+			if(isset($_POST['dhosham']))
+			$user->partnerpreferences->dosham = $_POST['dhosham'];
+			if(isset($_POST['eat']))
+			$user->partnerpreferences->eatingHabits = implode(",", $_POST['eat']);
+			if(isset($_POST['drink']))
+			$user->partnerpreferences->drinkingHabits = implode(",", $_POST['drink']);
+			if(isset($_POST['smoke']))
+			$user->partnerpreferences->smokingHabits = implode(",", $_POST['smoke']);
+			if(isset( $_POST['country1']))
+			$user->partnerpreferences->countries = implode(",", $_POST['country1']);
+			if(isset($_POST['state1']))
+			$user->partnerpreferences->states = implode(",", $_POST['state1']);
+			if(isset($_POST['district1']))
+			$user->partnerpreferences->districts = implode(",", $_POST['district1']);
+			if(isset($_POST['place1']))
+			$user->partnerpreferences->places = implode(",", $_POST['place1']);
+			if(isset($_POST['language1']))
+			$user->partnerpreferences->languages = implode(",", $_POST['language1']);
+			if(isset($_POST['citizen1']))
+			$user->partnerpreferences->citizenship = implode(",", $_POST['citizen1']);
+			if(isset($_POST['occupation1']))
+			$user->partnerpreferences->occupation = implode(",", $_POST['occupation1']);
+			if(isset($_POST['income']))
+			$user->partnerpreferences->annualIncome = $_POST['income'];
+			if(isset($_POST['partnerDesc']))
+			$user->partnerpreferences->partnerDescription = $_POST['partnerDesc'];
+			
+			$user->partnerpreferences->save();
+		}
+		//$query = "UPDATE partnerpreferences SET ";
+		$this->render('editpartnerpreference');
+	}
 	
 	/*
 	 * Function to edit the documents
@@ -968,6 +1026,311 @@ public function actionChange()
 	
 	public function actionFamilyalbum()
 	{
-		$this->render('myfamilyalbum');
+		$user = Yii::app()->session->get('user');
+		$photos = new Album();
+		$action = isset($_REQUEST['action']) ? $_REQUEST['action'] : "";
+		if($action == "delete"){
+		$photoId = (int)trim($_GET['pId']);
+			$userId = (int)trim($_GET['uId']);
+			$user = Yii::app()->session->get('user');
+			if($user->userId == $userId){
+				$photo = $photos->find('albumId='.$photoId);
+				$path = Utilities::getDirectory('images',array('album',$user->marryId));
+				$targetFile = Utilities::getFullFilePath($path, $photo->imageName);
+				if(file_exists($targetFile)){
+					if(unlink($targetFile)){
+						$photos->deleteByPk($photoId);
+					}
+				}
+			}
+		}
+		$photosList = $photos->findAll('userId='.$user->userId.' and type=1');
+		$this->render('myfamilyalbum',array('photosList'=>$photosList));
+	}
+	
+	public function actionPhotoupload()
+	{
+	
+		$user = Yii::app()->session->get('user');
+  		$photos = new Photos();
+  		$privacy = new Privacy();
+  		
+		//Upload the profile photo
+  		$photoCount = isset($_POST['photoCount']) ? $_POST['photoCount']:1; 
+  		for($i = 1; $i < $photoCount; $i++){		  
+		if (!empty($_FILES['profilePhoto_'.$i]['tmp_name'])){  
+				$file = $_FILES['profilePhoto_'.$i];
+				$fileName=basename( $_FILES['profilePhoto_'.$i]['name']);   
+				$extension = strtolower(Utilities::getExtension($fileName));  
+				if(Utilities::isValidImageExtension($extension)){         
+				 	$path = Utilities::getDirectory('images',array('profile',$user->marryId)); 
+				 	$fileName = $user->marryId.date("his").".".$extension; 
+					$targetPath = Utilities::getFullFilePath($path, $fileName);
+					if(Utilities::uploadFile($_FILES['profilePhoto_'.$i]['tmp_name'], $targetPath)) {
+						//code to insert to db
+						$photos = new Photos();
+						//$photos->updateAll(array('profileImage'=>0),'userId='.$user->userId);  // unset the existing 
+						$photos->userId = $user->userId;
+						$photos->imageName = $fileName;
+						$photos->active = 2;   // temperory record
+						$profilePics = $photos->findAll('userId='.$user->userId.' and profileImage=1');
+						if(count($profilePics) > 0){
+							$photos->profileImage = 0;
+						}else{
+							$photos->profileImage = 1;
+						}
+						$photos->save();
+						
+					}else{
+						echo "There was an error uploading the file, please try again!";
+					}				
+				}	
+					
+			}
+			sleep(1); // set a time delay to upload
+  		}
+  		// photo delete action
+		if(isset($_GET['r']) && $_GET['r'] == 'setimage'){   // set the profile image
+				$photoId = (int)trim($_GET['pId']);
+				$userId = (int)trim($_GET['uId']);
+				$user = Yii::app()->session->get('user');
+				if($user->userId == $userId){
+					$photos->updateAll(array('profileImage'=>0),'userId='.$userId);  // unset the existing
+					$photos->updateAll(array('profileImage'=>1),'photoId='.$photoId);  // set the new image
+					$this->redirect(Yii::app()->params['homeUrl']."/mypage/album");
+					Yii::app()->end();
+				}
+			}elseif(isset($_GET['r']) && $_GET['r'] == 'deleteimage'){   // delete the image
+				$photoId = (int)trim($_GET['pId']);
+				$userId = (int)trim($_GET['uId']);
+				$user = Yii::app()->session->get('user');
+				if($user->userId == $userId){
+					$photo = $photos->find('photoId='.$photoId);
+					$profileStatus = $photo->profileImage;
+					$path = Utilities::getDirectory('images',array('profile',$user->marryId));
+					$targetFile = Utilities::getFullFilePath($path, $photo->imageName);
+					if(file_exists($targetFile)){
+						if(unlink($targetFile)){
+							$photos->deleteByPk($photoId);
+							if($profileStatus == 1){
+								$query = 'update photos set profileImage = 1 where userId ='.$user->userId.' limit 1';
+								Utilities::executeRawQuery($query);
+							}
+						}
+					}
+					$this->redirect(Yii::app()->params['homeUrl']."/mypage/photoupload");
+					Yii::app()->end();	
+				}
+			}elseif(isset($_POST['updatePhoto'])){
+				// update the temp images to active one
+				$query = 'update photos set active = 1 where userId ='.$user->userId.' and active = 2';
+				Utilities::executeRawQuery($query);
+				// update the photo privacy settings
+				$visibility = isset($_POST['profilepictureview']) ? trim($_POST['profilepictureview']): 'all';
+				$settings = $privacy->find("userId=".$user->userId." and items = 'album'");
+				if(count($settings) > 0 ){  // update new settings
+					$query = "update privacy set privacy = '".$visibility."' where userId =".$user->userId." and items = 'album'";
+					Utilities::executeRawQuery($query);
+				}else{
+					$privacy->userId = $user->userId;
+					$privacy->items = 'album';
+					$privacy->privacy = $visibility;
+					$privacy->save();
+				}
+				?>
+				<script type="text/javascript">
+				parent.window.location.href = '<?php echo Utilities::createAbsoluteUrl('mypage','album'); ?>';
+				</script>
+				<?php 
+			}
+  		$photosList = $photos->findAll('userId='.$user->userId);
+  		$settings = $privacy->find("userId=".$user->userId. " and items='album'");
+		$this->layout= '//layouts/popup';
+		$this->render('photoupload',array('photos'=>$photosList,'user'=>$user,'settings'=>$settings));
+	}
+	
+public function actionFamilyphotoupload()
+	{
+	
+		$user = Yii::app()->session->get('user');
+  		$photos = new Album();
+  		$privacy = new Privacy();
+  		
+		//Upload the profile photo
+  		$photoCount = isset($_POST['photoCount']) ? $_POST['photoCount']:1; 
+  		for($i = 1; $i < $photoCount; $i++){		  
+		if (!empty($_FILES['profilePhoto_'.$i]['tmp_name']) && $_POST['photoRelation_'.$i] != 0){  
+				$file = $_FILES['profilePhoto_'.$i];
+				$fileName=basename( $_FILES['profilePhoto_'.$i]['name']);   
+				$extension = strtolower(Utilities::getExtension($fileName));  
+				if(Utilities::isValidImageExtension($extension)){         
+				 	$path = Utilities::getDirectory('images',array('album',$user->marryId)); 
+				 	$fileName = $user->marryId.date("his").".".$extension; 
+					$targetPath = Utilities::getFullFilePath($path, $fileName);
+					if(Utilities::uploadFile($_FILES['profilePhoto_'.$i]['tmp_name'], $targetPath)) {
+						//code to insert to db
+						$photos = new Album();
+						$photos->userId = $user->userId;
+						$photos->imageName = $fileName;
+						$photos->type = 1;
+						$photos->photorelation = trim($_POST['photoRelation_'.$i]);
+						$photos->active = 2;  //temp record
+						$photos->save();
+						
+					}else{
+						echo "There was an error uploading the file, please try again!";
+					}				
+				}	
+					
+			}
+			sleep(1); // set a time delay to upload
+  		}
+  		
+  		// delete the image
+		if(isset($_GET['r']) && $_GET['r'] == 'deleteimage'){   // delete the image
+			$photoId = (int)trim($_GET['pId']);
+			$userId = (int)trim($_GET['uId']);
+			$user = Yii::app()->session->get('user');
+			if($user->userId == $userId){
+				$photo = $photos->find('albumId='.$photoId);
+				$path = Utilities::getDirectory('images',array('album',$user->marryId));
+				$targetFile = Utilities::getFullFilePath($path, $photo->imageName);
+				if(file_exists($targetFile)){
+					if(unlink($targetFile)){
+						$photos->deleteByPk($photoId);
+					}
+				}
+			 	$this->redirect(Yii::app()->params['homeUrl']."/mypage/familyphotoupload");
+				Yii::app()->end();
+			}
+		}elseif(isset($_POST['updatePhoto']) && $_POST['updatePhoto'] !=""){
+				// update the temp images to active one
+				$query = 'update album set active = 1 where userId ='.$user->userId.' and active = 2 and type=1';
+				Utilities::executeRawQuery($query);
+				// update the photo privacy settings
+				$visibility = isset($_POST['familypictureview']) ? trim($_POST['familypictureview']): 'all';
+				$settings = $privacy->find("userId=".$user->userId." and items = 'family'");
+				if(count($settings) > 0 ){  // update new settings
+					$query = "update privacy set privacy = '".$visibility."' where userId =".$user->userId." and items = 'family'";
+					Utilities::executeRawQuery($query);
+				}else{
+					$privacy->userId = $user->userId;
+					$privacy->items = 'family';
+					$privacy->privacy = $visibility;
+					$privacy->save();
+				}
+				?>
+				<script type="text/javascript">
+				parent.window.location.href = '<?php echo Utilities::createAbsoluteUrl('mypage','familyalbum'); ?>';
+				</script>
+				<?php 
+			}
+		
+  		$photosList = $photos->findAll('userId='.$user->userId);
+  		$settings = $privacy->find("userId=".$user->userId. " and items='family'");
+		$this->layout= '//layouts/popup';
+		$this->render('familyphotoupload',array('photos'=>$photosList,'user'=>$user,'settings'=>$settings));
+	}
+	
+	public function actionDocument()
+	{
+		$user = Yii::app()->session->get('user');
+  		$documents = new Documents();
+  		$action = isset($_REQUEST['action']) ? $_REQUEST['action'] : "";
+		if($action == "delete"){
+		$documentId = (int)trim($_GET['dId']);
+			$userId = (int)trim($_GET['uId']);
+			$user = Yii::app()->session->get('user');
+			if($user->userId == $userId){
+				$document = $documents->find('documentId='.$documentId);
+				$path = Utilities::getDirectory('images',array('documents',$user->marryId));
+				$targetFile = Utilities::getFullFilePath($path, $document->documentName);
+				if(file_exists($targetFile)){
+					if(unlink($targetFile)){
+						$documents->deleteByPk($documentId);
+					}
+				}
+			}
+		}
+  		$documentList = $documents->findAll('userId='.$user->userId);
+		$this->render('document',array('documents'=>$documentList));
+	}
+	
+	public function actionDocumentupload()
+	{
+		$user = Yii::app()->session->get('user');
+  		$documents = new Documents();
+  		$privacy = new Privacy();
+		//upload profile document
+  		$documentCount = isset($_POST['documentCount']) ? $_POST['documentCount']:1;
+  		for($i = 1; $i < $documentCount; $i++){
+			if (!empty($_FILES['profileDocument_'.$i]['tmp_name']) && $_POST['documentType_'.$i] != 0){   // upload the documents
+				$file = $_FILES['profileDocument_'.$i];
+				$documentType = trim($_POST['documentType_'.$i]);
+				$fileName=basename( $_FILES['profileDocument_'.$i]['name']);   
+				$extension = strtolower(Utilities::getExtension($fileName));  
+				if(Utilities::isValidDocumentExtension($extension)){         
+				 	$path = Utilities::getDirectory('images',array('documents',$user->marryId)); 
+				 	$fileName = $user->marryId.date("his").".".$extension; 
+					$targetPath = Utilities::getFullFilePath($path, $fileName);
+					if(Utilities::uploadFile($_FILES['profileDocument_'.$i]['tmp_name'], $targetPath)) {
+						//code to insert to db
+						$documents = new Documents();
+						$documents->userId = $user->userId;
+						$documents->documentName = $fileName;
+						$documents->documentType = $documentType;
+						$documents->active = 2;   // temperory record
+						$documents->save();
+					}else{
+						echo "There was an error uploading the file, please try again!";
+					}				
+				}	
+					
+			}
+			sleep(1); // set a time delay to upload
+  		}
+		if(isset($_GET['r']) && $_GET['r'] == 'deletedocument'){   // delete the document
+			$documentId = (int)trim($_GET['dId']);
+			$userId = (int)trim($_GET['uId']);
+			$user = Yii::app()->session->get('user');
+			if($user->userId == $userId){
+				$document = $documents->find('documentId='.$documentId);
+				$path = Utilities::getDirectory('images',array('documents',$user->marryId));
+				$targetFile = Utilities::getFullFilePath($path, $document->documentName);
+				if(file_exists($targetFile)){
+					if(unlink($targetFile)){
+						$documents->deleteByPk($documentId);
+					}
+				}
+				$this->redirect(Yii::app()->params['homeUrl']."/mypage/documentupload");
+				Yii::app()->end();	
+			}
+		}elseif(isset($_POST['updateDocument']) && $_POST['updateDocument'] != ""){
+				// update the temp images to active one
+				$query = 'update documents set active = 1 where userId ='.$user->userId.' and active = 2';
+				Utilities::executeRawQuery($query);
+				// update the photo privacy settings
+				$visibility = isset($_POST['documentview']) ? trim($_POST['documentview']): 'subscribers';
+				$settings = $privacy->find("userId=".$user->userId." and items = 'documents'");
+				if(count($settings) > 0 ){  // update new settings
+					$query = "update privacy set privacy = '".$visibility."' where userId =".$user->userId." and items = 'documents'";
+					Utilities::executeRawQuery($query);
+				}else{
+					$privacy->userId = $user->userId;
+					$privacy->items = 'documents';
+					$privacy->privacy = $visibility;
+					$privacy->save();
+				}
+				?>
+				<script type="text/javascript">
+				parent.window.location.href = '<?php echo Utilities::createAbsoluteUrl('mypage','document'); ?>';
+				</script>
+				<?php 
+			}
+		
+  		$documentList = $documents->findAll('userId='.$user->userId);
+  		$settings = $privacy->find("userId=".$user->userId. " and items='documents'");
+		$this->layout= '//layouts/popup';
+		$this->render('documentupload',array('documents'=>$documentList,'user'=>$user,'documentsettings'=>$settings));
 	}
 }

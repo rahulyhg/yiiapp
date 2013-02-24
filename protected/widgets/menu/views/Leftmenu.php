@@ -65,8 +65,8 @@
 					<p>Documents such as passport, ration card, voters ID, pan card, bank passbook, school certificate, university certificate are considered as my documents.</p>
 				</div>
 			</li>
-			<li><a href="<?php echo Utilities::createAbsoluteUrl('album','',array('mId'=>$user->marryId)); ?>" class="headLink">My Album</a></li>
-            <li><a href="<?php echo Utilities::createAbsoluteUrl('album','family',array()); ?>" class="headLink">My Family album</a></li>
+			<li><a href="<?php echo Utilities::createAbsoluteUrl('mypage','album',array()); ?>" class="headLink">My Album</a></li>
+            <li><a href="<?php echo Utilities::createAbsoluteUrl('mypage','familyalbum',array()); ?>" class="headLink">My Family album</a></li>
             <li><a href="<?php echo Utilities::createAbsoluteUrl('mypage','astro',array()); ?>" class="headLink">My Astro details</a></li>
 			<li>
 				<a href="<?php echo Utilities::createAbsoluteUrl('mypage','reference',array()); ?>" class="headLink">My Reference</a>
@@ -97,7 +97,7 @@
 				</div>
 			</li>
             <li>
-				<a href="<?php echo Utilities::createAbsoluteUrl('addressbook','index',array()); ?>" class="headLink">My Addressbook</a>
+				<a href="<?php echo Utilities::createAbsoluteUrl('addressbook','index',array()); ?>" class="headLink">My Address book</a>
 				<a class="infoB" href="javascript:void(0)">?</a>
 				<div class="infoBox">
 					<div class="iArrow"></div>

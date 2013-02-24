@@ -718,6 +718,23 @@ class Utilities
     	}
     }
     
+	public static function getFamilyRelationType($value){
+    	switch($value){
+    		case 1:
+    		return 'Father';
+    		break;
+    		case 2:
+    		return 'Mother';
+    		break;
+    		case 3:
+    		return 'Brother';
+    		break;
+    		case 4:
+    		return 'Sister';
+    		break;
+    	}
+    }
+    
     public static function getUserActivityStatus($user)
     {
     	if(isset($user)){
