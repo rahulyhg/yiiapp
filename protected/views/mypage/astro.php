@@ -29,7 +29,7 @@
 			</li>
 			<li class="">
 				<div class="grahanila">
-					<a href="#" class="gDelete">Delete</a>
+					<img src="<?php echo Utilities::getHoroscope($user->marryId,$astro->horoscopeFile); ?>" alt="" width="500" height="500" />
 				</div>
 			</li>
 			<li class="mT15">
@@ -88,6 +88,18 @@
 				</div>
 			</li>
 			
+			<li class="mT8"><a class="type4"
+		href="<?php echo Utilities::createAbsoluteUrl('contact','astroedit'); ?>"
+		id="referenceEdit1">Edit Astro</a>
+	</li>
+			
 		</ul>
     </section>
 	<?php $this->widget('application.widgets.menu.Rightmenu'); ?>
+	
+	<script type="text/javascript">
+$(document).ready(function(){
+    $("#referenceEdit1").colorbox({iframe:true, width:"860", height:"900",overlayClose: false});
+  });
+
+</script>

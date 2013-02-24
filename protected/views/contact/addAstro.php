@@ -1,6 +1,6 @@
 <div class="subContent">
 			<section class="subHead">
-				<h1 class="width100">Edit my astro details</h1>
+				<h1 class="width100">Add my astro details</h1>
 			</section>
 			<?php 
 			$user = Yii::app()->session->get('user');
@@ -38,8 +38,8 @@
 				
 							<div class="info">
 								<?php echo CHtml::dropDownList('date',$date->format('d'),Utilities::getRegDays(),array('class'=>'wid50 mR5')); ?>
-					<?php echo CHtml::dropDownList('month',$date->format('m'),Utilities::getRegMonths(),array('class'=>'validate[condRequired[date]] wid100 mR5')); ?>		    
-    				<?php echo CHtml::dropDownList('year',$date->format('Y'),  Utilities::getRegYears(),array('class'=>'validate[condRequired[date]] wid60')); ?>
+								<?php echo CHtml::dropDownList('month',$date->format('m'),Utilities::getRegMonths(),array('class'=>'validate[condRequired[date]] wid100 mR5')); ?>		    
+    							<?php echo CHtml::dropDownList('year',$date->format('Y'),  Utilities::getRegYears(),array('class'=>'validate[condRequired[date]] wid60')); ?>
 							</div>
 						</li>
 						<li>
@@ -49,7 +49,7 @@
 							<div class="info">
 								<?php $records = Country::model()->findAll("active = 1");
 								$list = CHtml::listData($records, 'countryId', 'name');
-								echo CHtml::dropDownList('country',null,$list,array('empty' => 'Country','class'=>'wid220','options' => array($astro->country =>array('selected'=>true)))); ?>
+								echo CHtml::dropDownList('country',null,$list,array('empty' => 'Country','class'=>'wid220')); ?>
 					
 								
 							</div>
@@ -60,8 +60,8 @@
 							</div>
 							<div class="info">
 								<?php $records = States::model()->findAll("active = 1");
-		$list = CHtml::listData($records, 'stateId', 'name');
-		echo CHtml::dropDownList('state',null,$list,array('empty' => 'State','class'=>'wid220','options' => array($astro->state =>array('selected'=>true)))); ?>	
+								$list = CHtml::listData($records, 'stateId', 'name');
+								echo CHtml::dropDownList('state',null,$list,array('empty' => 'State','class'=>'wid220')); ?>	
 							</div>
 						</li>
 						<li>
@@ -69,7 +69,7 @@
 								City of Birth
 							</div>
 							<div class="info">
-								<input type="text" name="city" value="<?php echo $astro->city?>"id="city" placeholder="Place of Birth" />
+								<input type="text" name="city" id="city" placeholder="Place of Birth" />
 								
 							</div>
 						</li>
@@ -79,38 +79,20 @@
 							</div>
 							<div class="info">
 								<?php $records = Languages::model()->findAll("active = 1");
-		$list = CHtml::listData($records, 'languageId', 'name');
-		echo CHtml::dropDownList('motherTounge',null,$list,array('empty' => 'Language','class'=>'wid220','options' => array($astro->motherTounge =>array('selected'=>true)))); ?>
+								$list = CHtml::listData($records, 'languageId', 'name');
+								echo CHtml::dropDownList('motherTounge',null,$list,array('empty' => 'Language','class'=>'wid220')); ?>
 							</div>
 						</li>
 						<li>
 							<div class="title">
 								Time Correction  
 							</div>
-							<?php 
-							if(isset($astro->time) && !empty($astro->time))
-							{
-								$am = explode(",", $astro->time);
-								$time = explode("-", trim($am[0]));
-							?>	
-							<div class="info">
-								<?php echo CHtml::dropDownList('hours',null,Utilities::getTime(),array('empty'=>'Hour','class'=>'wid70 mR5','options' => array($time[0] =>array('selected'=>true)))); ?>
-								<?php echo CHtml::dropDownList('minutes',null,Utilities::getMinutes(),array('empty'=>'Minutes','class'=>'wid70 mR5','options' => array($time[1] =>array('selected'=>true)))); ?>
-								<?php echo CHtml::dropDownList('seconds',null,Utilities::getMinutes(),array('empty'=>'Seconds','class'=>'wid70 mR5','options' => array($time[2] =>array('selected'=>true)))); ?>
-								<?php echo CHtml::dropDownList('am',null,Utilities::getMeridiem(),array('empty'=>'AM/PM','class'=>'wid50 mR5','options' => array($am[1] =>array('selected'=>true)))); ?>	
-							</div>
-							<?php 	
-							}		
-							else {				
-							?>
-							
 							<div class="info">
 								<?php echo CHtml::dropDownList('hours',null,Utilities::getTime(),array('empty'=>'Hour','class'=>'wid70 mR5')); ?>
 								<?php echo CHtml::dropDownList('minutes',null,Utilities::getMinutes(),array('empty'=>'Minutes','class'=>'wid70 mR5')); ?>
 								<?php echo CHtml::dropDownList('seconds',null,Utilities::getMinutes(),array('empty'=>'Seconds','class'=>'wid70 mR5')); ?>
 								<?php echo CHtml::dropDownList('am',null,Utilities::getMeridiem(),array('empty'=>'AM/PM','class'=>'wid50 mR5')); ?>	
 							</div>
-							<?php } ?>
 						</li>
 						<li>
 							<div class="title">
@@ -118,10 +100,8 @@
 							</div>
 							<div class="info">
 								 <?php $records = SignsMaster::model()->findAll("active = 1");
-					$list = CHtml::listData($records, 'signId', 'name');
-					echo CHtml::dropDownList('sign',null,$list,array('empty' => 'Sign','class'=>'wid220','options' => array($astro->sign =>array('selected'=>true)))); ?>
-					
-								
+										$list = CHtml::listData($records, 'signId', 'name');
+									echo CHtml::dropDownList('sign',null,$list,array('empty' => 'Sign','class'=>'wid220')); ?>
 							</div>
 						</li>
 						<li>
@@ -131,7 +111,7 @@
 							<div class="info">
 								<?php $records = AstrodateMaster::model()->findAll("active = 1");
 					$list = CHtml::listData($records, 'astrodateId', 'name');
-					echo CHtml::dropDownList('astrodate',null,$list,array('empty' => 'Astrodate','class'=>'wid220','options' => array($astro->astrodate =>array('selected'=>true)))); ?>		
+					echo CHtml::dropDownList('astrodate',null,$list,array('empty' => 'Astrodate','class'=>'wid220')); ?>		
 						
 								
 							</div>
@@ -142,13 +122,13 @@
 							</div>
 							<div class="info">
 								<div class="radio wid90">
-							<input name="chova" type="radio" <?php if($astro->dosham == '1') {?> checked="checked" <?php } ?> value="1"> <span>Yes</span>
+							<input name="chova" type="radio"  value="1"> <span>Yes</span>
 						</div>
 						<div class="radio wid90">
-							<input name="chova" type="radio" <?php if($astro->dosham == '0') {?> checked="checked" <?php } ?>  value="0"> <span>No</span>
+							<input name="chova" type="radio" value="0"> <span>No</span>
 						</div>
 						<div class="radio wid90">
-							<input name="chova" type="radio" <?php if($astro->dosham == '2') {?> checked="checked" <?php } ?>   value="2"><span>Don't Know</span>
+							<input name="chova" type="radio" value="2"><span>Don't Know</span>
 						</div>
 							</div>
 						</li>
@@ -158,13 +138,13 @@
 							</div>
 							<div class="info">
 								<div class="radio wid90"> 
-							 <input name="sudha" type="radio" <?php if($astro->sudham == '1') {?> checked="checked" <?php } ?> value="1"> <span>Yes</span>
+							 <input name="sudha" type="radio" value="1"> <span>Yes</span>
 						</div>
 						<div class="radio wid90">
-							 <input name="sudha" type="radio" <?php if($astro->sudham == '0') {?> checked="checked" <?php } ?>  value="0"> <span>No</span>
+							 <input name="sudha" type="radio" value="0"> <span>No</span>
 						</div>
 						<div class="radio wid90">
-							 <input name="sudha" type="radio" <?php if($astro->sudham == '2') {?> checked="checked" <?php } ?>  value="2"> <span>Don't Know</span>
+							 <input name="sudha" type="radio" value="2"> <span>Don't Know</span>
 						</div>
 							</div>
 						</li>

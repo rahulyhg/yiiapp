@@ -138,7 +138,7 @@ class UserController extends Controller
 	{
 		$user = Yii::app()->session->get('user');
 		$userPersonal = $user->userpersonaldetails;
-		$this->render('contacts',array('user'=>$user,'userPersonal'=>$userPersonal));
+		$this->render('horoscope');
 	}
 	
 	public function actionContact()
@@ -382,19 +382,15 @@ class UserController extends Controller
 		$userHobby->save();
 		
 		
-		$this->render('horoscope',array('model' => new Horoscopes()));
+		$this->render('horoscope');
 	}
 	
 	public function actionHoro()
 	{
 		$user = Yii::app()->session->get('user');
-		$horoscope = Horoscopes::model()->findByAttributes(array('userId'=>$user->userId));
-		$family = new Familyprofile();
-		$this->render("horoscope",array('user'=>$user,'model'=>$horoscope));
-	}
-	public function actionHoroupload()
-	{
-		$user = Yii::app()->session->get('user');
+		
+		if(isset($_POST) && !empty($_POST))
+		{
 		$horoscope = new Horoscopes();
 		$horoscope->userId = $user->userId;
 		if(isset($_POST['date']))
@@ -434,8 +430,8 @@ class UserController extends Controller
 			}
 			}
 		$horoscope->save();
+		$user->horoscopes = $horoscope;
 	 		    // redirect to success page
-		
 		
 	if(isset($_POST['astro']))
 		{
@@ -565,6 +561,12 @@ class UserController extends Controller
 				$privacy->privacy = $_POST['reference'];
 				$privacy->save();
 		}
+		}
+		$this->forward('horoupload');
+	}
+	public function actionHoroupload()
+	{
+		$user = Yii::app()->session->get('user');
 		
 		// get the user photos
 		$photos = new Photos();

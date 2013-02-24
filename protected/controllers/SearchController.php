@@ -454,7 +454,16 @@ class SearchController extends Controller
 			}
 		}
 		else
-		$this->render('regular');
+		{
+			if(!isset($user))
+				{
+					$this->render('index',array('tab'=>'tab1','error'=> '*******NO RESULTS FOUND******,Please try again'));
+				}
+				else {
+						
+					$this->render('regular',array('tab'=>'tab1','error'=> '*******NO RESULTS FOUND******,Please try again'));
+				}
+		}
 
 	}
 	
@@ -674,6 +683,8 @@ class SearchController extends Controller
 		$blockIdList = implode(",", $blockId);
 		
 		}
+		if(isset($_POST) && !empty($_POST))
+		{
 		
 		if(isset($_POST['ageFrom']) && isset($_POST['ageTo']))
 		{
@@ -739,7 +750,7 @@ class SearchController extends Controller
 		}
 		else
 		{
-		if(!isset($user))
+				if(!isset($user))
 				{
 					$this->render('index',array('tab'=>'tab1','error'=> '*******NO RESULTS FOUND******,Please try again'));
 				}
@@ -749,8 +760,16 @@ class SearchController extends Controller
 				}
 		} 
 		}
+		}
 		else {
-			$this->render('regular',array('tab'=>'tab1'));
+		if(!isset($user))
+				{
+					$this->render('index',array('tab'=>'tab1','error'=> '*******NO RESULTS FOUND******,Please try again'));
+				}
+				else {
+						
+					$this->render('regular',array('tab'=>'tab1','error'=> '*******NO RESULTS FOUND******,Please try again'));
+				}
 		}
 	}
 	

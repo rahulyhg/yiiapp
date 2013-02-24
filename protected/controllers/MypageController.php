@@ -438,6 +438,7 @@ class MypageController extends Controller
 	public function actionAstro()
 	{
 		$user = Yii::app()->session->get('user');
+		$user->horoscopes = Horoscopes::model()->findByAttributes(array('userId' => $user->userId));
 		if(isset($user->horoscopes) && $user->horoscopes->userId ==  $user->userId)
 		$this->render('astro');
 		else

@@ -395,23 +395,30 @@ class ContactController extends Controller
 		$this->render('referenceedit',array('success'=>$success));
 	}
 	
+	public function actionAstroadd()
+	{
+
+		$this->layout= '//layouts/popup';
+		$this->render('addAstro');
+	}
+		
+	
 	public function actionAstroedit()
 	{
 		$user = Yii::app()->session->get('user');
-		
-		if(isset($_POST['date'])){
-		
-		if(isset($user->horoscopes) && $horoscope->userId == $user->userId)
-		{
-			$horoscope = new Horoscopes();
-			$horoscope->userId = $user->userId;
-		}
+		if(isset($user->horoscopes)) 
+		$horoscope = $user->horoscopes;
 		else {
-			$horoscope = $user->horoscopes;
-			
+		$horoscope = new Horoscopes();
+		$horoscope->userId = $user->userId;
 		}
+		
+		if(isset($_POST) && !empty($_POST)){
+		
 		if(isset($_POST['date']))
-		$horoscope->astrodate = $_POST['year'].'-'.$_POST['month'].'-'.$_POST['date'];
+		$horoscope->dob = $_POST['year'].'-'.$_POST['month'].'-'.$_POST['date'];
+		if(isset($_POST['astrodate']))
+		$horoscope->astrodate = $_POST['astrodate'];
 		if(isset($_POST['city']))
 		$horoscope->city = $_POST['city'];
 		if(isset($_POST['state']))
@@ -442,9 +449,9 @@ class ContactController extends Controller
 			}
 			}
 			}
-		$horoscope->save();
-	 		    // redirect to success page
 		
+		$user->horoscopes = $horoscope;
+		$user->horoscopes->save();
 		
 		if(isset($_POST['astro']))
 		{

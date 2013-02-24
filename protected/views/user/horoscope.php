@@ -16,7 +16,7 @@
 ?>
 
 <section class="data-contnr">
-<form id="userHoro" enctype="multipart/form-data" name="userHoro" method="post"  action="/user/horoupload">
+<form id="userHoro" enctype="multipart/form-data" name="userHoro" method="post"  action="/user/horo">
 		<article class="section">
 			<ul>
 				<li>

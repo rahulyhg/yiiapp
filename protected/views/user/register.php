@@ -161,10 +161,10 @@
 				<div class="left">Looking for</div>
 				<div class="right">
 					<div class="check-contnr">
-						<?php echo $searchForm->radioButton($searchModel,'bride', array('class'=>'validate[required]','value'=>'f')); ?><span>Bride</span>
+						<?php echo $searchForm->radioButton($searchModel,'bride', array('class'=>'validate[required]','value'=>'F')); ?><span>Bride</span>
 					</div>
 					<div class="check-contnr">
-						<?php echo $searchForm->radioButton($searchModel,'bride', array('class'=>'validate[required]','value'=>'m')); ?><span>Groom</span>
+						<?php echo $searchForm->radioButton($searchModel,'bride', array('class'=>'validate[required]','value'=>'M')); ?><span>Groom</span>
 					</div>
 				</div>
 			</li>

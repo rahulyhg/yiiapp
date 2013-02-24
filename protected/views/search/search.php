@@ -107,10 +107,12 @@
         <?php if(sizeof($normal) > 0 ) {?>
         <div class="page-content-head">Matches for you</div>
         <div class="pagination-contnr">
+        <?php if(isset($user)) {?>
             <div class="select-contnr"><input type="checkbox" class="selection" name="selection" /> Select All</div>
             <a id="exInterest" class="expressInterests" href="#">Express Interest</a>
             <a id="exBookmark" href="#">Bookmark</a>
-           <?php if(isset($totalPage) && intval($totalPage) > 1) { ?>
+            
+           <?php } if(isset($totalPage) && intval($totalPage) > 1) { ?>
             <ul class="pagination">
                 <li><span class="fir"><a href="#">First</a></span></li>
                 <li><span class="nex"><a href="#">Next</a></span></li>
@@ -132,7 +134,7 @@
   	$index1 = 1;
   	foreach ($normal as $value) { ?>
             <div  id="<?php echo 'normal'.$index1?>" class="profile" <?php if(intval($totalPage) > 1 && $index1 > 10 ) {?> style="display:none" <?php }?>>
-                <div class="check-contnr"><input type="checkbox" name="userId" value="<?php echo $value->userId ?>"/> Select</div>
+                <?php if(isset($user)) {?><div class="check-contnr"><input type="checkbox" name="userId" value="<?php echo $value->userId ?>"/> Select</div> <?php }?>
                 <?php $this->widget('application.widgets.Profilepicturelist',array('userId'=>$value->userId,'marryId'=>$value->marryId)); ?>
                 <div class="profile-details">
                     <ul class="details-contnr">
@@ -194,10 +196,11 @@
            
         </div>
         <div class="pagination-contnr">
+        <?php if(isset($user)) {?>
             <div class="select-contnr"><input type="checkbox" class="selection" name="selection" />Select All</div>
             <a id="exInterest" class="expressInterests" href="#">Express Interest</a>
             <a id="exBookmark" href="#">Bookmark</a>
-             <?php if(isset($totalPage) && intval($totalPage) > 1) { ?>
+             <?php } if(isset($totalPage) && intval($totalPage) > 1) { ?>
             <ul class="pagination">
                 <li><span class="fir"><a href="#">First</a></span></li>
                 <li><span class="nex"><a href="#">Next</a></span></li>
