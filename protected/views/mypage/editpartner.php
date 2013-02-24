@@ -171,7 +171,7 @@
 					?>
 					<?php $records = Religion::model()->findAll("active = 1");
 							$list = CHtml::listData($records, 'religionId', 'name');
-							echo CHtml::dropDownList('religion',null,$list,array('empty' => 'Religion','class'=>'validate[required] wid160','options' => array($rel=>array('selected'=>true)))); ?>
+							echo CHtml::dropDownList('religion',null,$list,array('empty' => 'Religion','class'=>'wid160','options' => array($rel=>array('selected'=>true)))); ?>
 					</div>
 				</li>
 				<li>
@@ -401,7 +401,7 @@
 							$records = array();
 							$list = CHtml::listData($records, 'countryId', 'name');
 							
-						    echo CHtml::dropDownList('country1[]',null,$list,array('class'=>'validate[required] right ar','id'=>'country1','multiple'=>'multiple')); 
+						    echo CHtml::dropDownList('country1[]',null,$list,array('class'=>'right ar','id'=>'country1','multiple'=>'multiple')); 
 						    
 						    ?>
 					</div>
@@ -431,7 +431,7 @@
 							$records = array();
 							
 							$list = CHtml::listData($records, 'countryId', 'name');
-						    echo CHtml::dropDownList('citizen1[]',null,$list,array('class'=>'validate[required] right ar','id'=>'citizen1','multiple'=>'multiple')); ?>
+						    echo CHtml::dropDownList('citizen1[]',null,$list,array('class'=>'right ar','id'=>'citizen1','multiple'=>'multiple')); ?>
 						
 					</div>
 				</li>
@@ -462,7 +462,7 @@
 							$records = array();
 					
 							$list = CHtml::listData($records, 'stateId', 'name');
-						    echo CHtml::dropDownList('state1[]',null,$list,array('class'=>'validate[required] right ar','id'=>'state1','multiple'=>'multiple')); ?>
+						    echo CHtml::dropDownList('state1[]',null,$list,array('class'=>'right ar','id'=>'state1','multiple'=>'multiple')); ?>
 						
 					</div>
 				</li>

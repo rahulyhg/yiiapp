@@ -148,7 +148,7 @@ class Utilities
    	if(sizeof($result) > 0)
    	{
    	foreach ($result as $value) {
-   		$valuString = $valuString.','. $value->name;
+   		$valuString = $valuString.', '. $value->name;
    	}
  	return trim($valuString, ",");
    	}
