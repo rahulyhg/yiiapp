@@ -310,7 +310,7 @@ $drink= Utilities::getDrink();
 				<li class="mT10">
 					<div class="leftCtn">Family album</div>
 					<div class="rightCtn">
-						<strong>:</strong> <span><a href="#">View my family album (5 Photos)</a></span>
+						<strong>:</strong> <span><a href="<?php echo Utilities::createAbsoluteUrl('mypage','familyalbum',array()); ?>">View my family album (<?php echo count($photosList); ?> Photos)</a></span>
 					</div>
 				</li>
 			</ul>

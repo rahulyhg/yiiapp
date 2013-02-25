@@ -552,6 +552,8 @@ class MypageController extends Controller
 	public function actionProfile()
 	{
 		$user = Yii::app()->session->get('user');
+		$photos = new Album();
+		$photosList = $photos->findAll('userId='.$user->userId.' and type=1');
 		
 		// remove the unwanted records from photos table
 		$query = 'delete from photos where userId ='.$user->userId.' and active = 2';
@@ -565,7 +567,7 @@ class MypageController extends Controller
 		$query = 'delete from documents where userId ='.$user->userId.' and active = 2';
 		Utilities::executeRawQuery($query);
 		
-		$this->render('profile');
+		$this->render('profile',array('photosList'=>$photosList));
 	}
 	
 	public function actionEditpartnerpreference()

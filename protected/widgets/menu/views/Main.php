@@ -26,8 +26,8 @@
 					<div class="data wid140">
 						<a class="width100" href="<?php echo Utilities::createAbsoluteUrl('mypage','profile')?>">View Profile</a>
 						<a class="width100" href="<?php echo Utilities::createAbsoluteUrl('mypage','profile')?>">Edit Profile</a>
-						<a class="width100" href="<?php echo Utilities::createAbsoluteUrl('album','index')?>">Change Profile picture</a>
-						<a class="width100" href="<?php echo Utilities::createAbsoluteUrl('album','index')?>">Add New Picture</a>
+						<a class="width100" href="<?php echo Utilities::createAbsoluteUrl('mypage','album')?>">Change Profile picture</a>
+						<a class="width100" href="<?php echo Utilities::createAbsoluteUrl('mypage','album')?>">Add New Picture</a>
 					</div>
 				</div>
             </li>

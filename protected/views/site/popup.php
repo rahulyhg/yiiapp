@@ -11,10 +11,16 @@
 					<li>
 
 						<p class="tCenter">
-						<?php if($module == 'documents'){?>
+						<?php if($module == 'document'){?>
 							The document you are trying to view is protected. In order to see the documents, please send a request to the user.
 							<?php }elseif($module == 'album'){?>
 							The album you are trying to view is protected. In order to see the albums, please send a request to the user.
+							<?php }elseif($module == 'contact'){?>
+							The contact you are trying to view is protected. In order to see the contacts, please send a request to the user.
+							<?php }elseif($module == 'reference'){?>
+							The reference you are trying to view is protected. In order to see the references, please send a request to the user.
+							<?php }elseif($module == 'astro'){?>
+							The astro you are trying to view is protected. In order to see the astro, please send a request to the user.
 							<?php }?>
 						</p>
 						<div class="unlock"></div>

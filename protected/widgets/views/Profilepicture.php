@@ -1,4 +1,6 @@
-<?php if(!empty($photosList)){ ?>
+<?php 
+$user = Yii::app()->session->get('user');
+if(!empty($photosList)){ ?>
 <script language="javascript">
 // List image names without extension
 var myImg_<?php echo $userId ?> = new Array()
@@ -42,10 +44,14 @@ function next_<?php echo $userId ?>(){
 window.onload=loadImg_<?php echo $userId; ?>;
 
 </script>
+<?php if($user->userId == $userId){ ?>
 	<a class="ppC" href="<?php echo Utilities::createAbsoluteUrl('mypage','editprofilephoto'); ?>" id="editProfilePicture">
 		<span class="ppCinn">Change profile picture</span>
-		<img id="imgSrc_<?php echo $userId ?>" width="180" height="230" name="imgSrc_<?php echo $userId ?>" alt="" src="./images/user/thumbnail.jpg">
+		<img id="imgSrc_<?php echo $userId ?>" width="180" height="230" name="imgSrc_<?php echo $userId ?>" alt="" src="">
 	</a>
+<?php }else{?>
+	<img id="imgSrc_<?php echo $userId ?>" width="180" height="230" name="imgSrc_<?php echo $userId ?>" alt="" src="">
+<?php }?>	
 	<ul class="noC">
 		<li><a href="javascript:void(0);" class="prevs" onClick="prev_<?php echo $userId ?>();" ></a></li>
 		<li><span id="slideCount_<?php echo $userId ?>">1</span> of <span><?php echo count($photosList); ?></span></li>

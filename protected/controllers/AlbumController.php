@@ -207,4 +207,22 @@ class AlbumController extends Controller
 			}
 			$this->render('family',array('photosList' => $photosList,'user' => $user,'windowType'=>$windowType));
 	}
+	
+	public function actionDocument(){
+			$marryId = isset($_REQUEST['mId']) ? $_REQUEST['mId']:'';
+			$windowType = isset($_REQUEST['wType']) ? $_REQUEST['wType']:'normal';
+			//load layout depends on the window
+			if($windowType == 'popup'){
+				$this->layout= '//layouts/popup';
+			}
+			if($marryId != ''){
+				$userObj = new Users();
+				$user = $userObj->find("marryId='".$marryId."'");
+				$loggedUser = Yii::app()->session->get('user');
+				$document = new Documents();
+				$documentsList = $document->findAll('userId='.$user->userId);
+			}
+			$this->render('document',array('documentsList' => $documentsList,'user' => $user,'windowType'=>$windowType));
+	}
+	
 }
