@@ -309,7 +309,7 @@ class SearchController extends Controller
 			if(isset($_POST['SearchForm']['bride']))
 			{
 				$gender = $_POST['SearchForm']['bride'];
-				$condition .= "gender = '{$gender}' ";
+				$condition .= "gender = '{$gender}' and active = 1";
 				if($gender == 'M')
 				$searchText.= "Male, ";
 				else
@@ -472,38 +472,40 @@ class SearchController extends Controller
 	{
 		$searchText = "";
 		$user = Yii::app()->session->get('user');
-		if(isset($_POST['ageFrom']) && isset($_POST['ageTo']))
+		if(isset($_POST) && !empty($_POST))
 		{
-			
-			
-			if(isset($_POST['ageFrom']))
-			$ageFrom = $_POST['ageFrom'];
-			if(isset($_POST['ageTo']))
-			$ageTo = $_POST['ageTo'];
-			$condition = "age BETWEEN {$ageFrom} AND {$ageTo} and active =1";
-			
-			$searchText .= "age between {$ageFrom} and {$ageTo} ,";
-		
+
 			if(isset($_POST['gender']))
 			{
 			$gender = $_POST['gender'];
-			$condition .= " AND gender = '{$gender}'";
+			$condition = "gender = '{$gender}' and active = 1";
+			
 			$searchText .= "gender as ";
 			
 			if($gender == 'M')
 			$searchText.= "Male, ";
 			else 
 			$searchText.= "Female, ";
+			
 			}
 			
+			
+			if(isset($_POST['ageFrom']) && $_POST['ageTo']) {
+			$ageFrom = $_POST['ageFrom'];
+			$ageTo = $_POST['ageTo'];
+			$condition = " age BETWEEN {$ageFrom} AND {$ageTo} and active =1";
+			
+			$searchText .= "age between {$ageFrom} and {$ageTo} ,";
+			}
+		
 			$height = Utilities::getHeights();
-			if(isset($_POST['heightFrom']))
+			if(isset($_POST['heightFrom']) && $_POST['heightTo']) {
 			$heightFrom = $_POST['heightFrom'];
-			if(isset($_POST['heightTo']))
 			$heightTo = $_POST['heightTo'];
 			
 			$condition .= " AND heightId BETWEEN {$heightFrom} AND {$heightTo}";
 			$searchText.= "height between {$height[$heightFrom]} to {$height[$heightTo]} , ";
+			}
 		
 			if(isset($_POST['religion']) && !empty($_POST['religion']))
 			{
@@ -784,36 +786,36 @@ class SearchController extends Controller
 		$user = Yii::app()->session->get('user');
 		$searchFor = null;
 		$searchText = "";
-		if(isset($_POST['ageFrom']) && isset($_POST['ageTo']))
+		if(isset($_POST) && !empty($_POST))
 		{
 
-		
-		if(isset($_POST['ageFrom']))
-		$ageFrom = $_POST['ageFrom'];
-		if(isset($_POST['ageTo']))
-		$ageTo = $_POST['ageTo'];
-		
-		$condition = "age BETWEEN {$ageFrom} AND {$ageTo} and active =1";
-		$searchText.= "age between {$ageFrom} and {$ageTo}, "; 
-		
 		if(isset($_POST['gender']))
 		{
 		$gender = $_POST['gender'];
-		$condition .= " AND gender = '{$gender}'";
+		$condition = "gender = '{$gender}'  and active = 1";
 		if($gender == 'M')
 				$searchText.= "Male, ";
 				else
 				$searchText.= "Female, ";
+		}	
+			
+		
+		if(!empty($_POST['ageFrom']) && !empty($_POST['ageTo'])) {
+		$ageFrom = $_POST['ageFrom'];
+		$ageTo = $_POST['ageTo'];
+		
+		$condition = " AND age BETWEEN {$ageFrom} AND {$ageTo}";
+		$searchText.= "age between {$ageFrom} and {$ageTo}, "; 
 		}
 		
-		if(isset($_POST['heightFrom']))
+		if(!empty($_POST['heightFrom']) && !empty($_POST['heightTo']))
+		{
 		$heightFrom = $_POST['heightFrom'];
-		if(isset($_POST['heightTo']))
 		$heightTo = $_POST['heightTo'];
 		
 		$condition .= " AND heightId BETWEEN {$heightFrom} AND {$heightTo}";
 		$searchText.= "Height between {$heightFrom} and {$heightTo}, ";
-		
+		}
 		if(isset($_POST['status']))
 		{
 			$mArray = Utilities::getMaritalStatus();
@@ -994,7 +996,7 @@ class SearchController extends Controller
 			}
 		}
 		
-		$usersV = ViewUsers::model()->findAll(array('condition'=>$condition,'order'=> 'createdOn DESC' ),'active=1');
+		$usersV = ViewUsers::model()->findAll(array('condition'=>$condition,'order'=> 'createdOn DESC' ));
 		
 		$userIds = array();
 		$userList = null;
@@ -1058,7 +1060,7 @@ class SearchController extends Controller
 		$users = array();
 		
 		if(!empty($userList))
-		$users = Users::model()->findAll(array('condition'=>$scondition,'order'=> 'createdOn DESC' ),'active=1');
+		$users = Users::model()->findAll(array('condition'=>$scondition,'order'=> 'createdOn DESC' ));
 		
 		
 		if(sizeof($users) > 0 )

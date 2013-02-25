@@ -97,18 +97,23 @@
 					<div class="title">
 						Have Children <span class="sup">*</span>
 					</div>
+					<?php if(isset($partner->haveChildren))
+						$child = $partner->haveChildren;
+						else 
+						$child = null;
+					?>
 					<div class="info">
 						<div class="radio mR14">
-							<input type="radio" name="child" class="validate[required] radio" value="0"> <span>Doesn't matter</span>
+							<input type="radio" name="child" class="validate[required] radio" <?php if($child == 0) {?> checked="checked" <?php } ?> value="0"> <span>Doesn't matter</span>
 						</div>
 						<div class="radio mR14">
-							<input type="radio" name="child" class="validate[required] radio" value="1"> <span>Yes. living together </span>
+							<input type="radio" name="child" class="validate[required] radio" <?php if($child == 1) {?> checked="checked" <?php } ?>  value="1"> <span>Yes. living together </span>
 						</div>
 						<div class="radio mR14">
-							<input type="radio" name="child" class="validate[required] radio" value="2"> <span>Yes. not living together</span>
+							<input type="radio" name="child" class="validate[required] radio" <?php if($child == 2) {?> checked="checked" <?php } ?>  value="2"> <span>Yes. not living together</span>
 						</div>
 						<div class="radio mR14">
-							<input type="radio" name="child" class="validate[required] radio" value="3"> <span>No </span>
+							<input type="radio" name="child" class="validate[required] <?php if($child == 3) {?> checked="checked" <?php } ?>  radio" value="3"> <span>No </span>
 						</div>
 					</div>
 				</li>
@@ -326,7 +331,7 @@
 							$reg = false;
 						if(isset($searchItem->smokingHabits))
 						{
-							$maritalStatus = explode(",", $searchItem->smokingHabits);
+							$maritalStatus = explode(",", $partner->smokingHabits);
 							$non = in_array(0,$maritalStatus);
 							$reg = in_array(1,$maritalStatus);
 							$light = in_array(2,$maritalStatus);
@@ -553,7 +558,7 @@
 					$records = array();
 					
 							$list = CHtml::listData($records, 'occupationId', 'name');
-						    echo CHtml::dropDownList('occupation',null,$list,array('class'=>'right ar','id'=>'occupation1','multiple'=>'multiple')); ?>
+						    echo CHtml::dropDownList('occupation1[]',null,$list,array('class'=>'right ar','id'=>'occupation1','multiple'=>'multiple')); ?>
 					</div>
 				</li>
 				<li>
@@ -575,8 +580,9 @@
 						Partner Description
 					</div>
 					<div class="info">
-						<textarea class="validate[maxSize[250]]" name="partnerDesc" value="<?php if(isset($partner->partnerDescription)) echo $partner->partnerDescription;?>" placeholder="Describe your expectations and what you're looking for in a partner.">
-	</textarea>   
+						<textarea class="validate[maxSize[250]]" name="partnerDesc"  placeholder="Describe your expectations and what you're looking for in a partner.">
+						<?php if(isset($partner->partnerDescription)) echo trim($partner->partnerDescription);?>
+						</textarea>																				   
 					</div>
 				</li>
 				<li>

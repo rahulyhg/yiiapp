@@ -85,10 +85,10 @@
 						</div>
 						<div class="info">
 							<div class="radio mR14 wid80">
-								<input type="radio" value="M" name="gender"> <span>Male</span>
+								<input type="radio" value="M" class="validate[required]" name="gender"> <span>Male</span>
 							</div>
 							<div class="radio">
-								<input type="radio" value="F" name="gender"><span>Female</span>
+								<input type="radio" value="F" class="validate[required]" name="gender"><span>Female</span>
 							</div>
 						</div>
 					</li>
@@ -97,10 +97,10 @@
 							Age 
 						</div>
 						<div class="info">
-						<?php echo CHtml::dropDownList('ageFrom',null,Utilities::getAge(),array('class'=>'wid50')); ?>
+						<?php echo CHtml::dropDownList('ageFrom',null,Utilities::getAge(),array('prompt'=>'Age','class'=>'validate[gfuncCall[hidePromp]] wid60')); ?>
 							<div class="married">
 								<span class="text">to</span>
-							<?php echo CHtml::dropDownList('ageTo',null,Utilities::getAge(),array('class'=>'wid50')); ?>
+							<?php echo CHtml::dropDownList('ageTo',null,Utilities::getAge(),array('prompt'=>'Age','class'=>'validate[gfuncCall[checkAgeLimit]] wid60')); ?>
 								<span class="text">years</span>
 							</div>
 						</div>
@@ -110,11 +110,11 @@
 							Height 
 						</div>
 						<div class="info">
-						<?php echo CHtml::dropDownList('heightFrom',null,Utilities::getHeights(),array('class'=>'wid120')); ?>
+						<?php echo CHtml::dropDownList('heightFrom',null,Utilities::getHeights(),array('prompt'=>'Height','class'=>'validate[gfuncCall[hidePromp]] wid120')); ?>
 							
 							<div class="married">
 								<span class="text">to</span>
-								<?php echo CHtml::dropDownList('heightTo',null,Utilities::getHeights(),array('class'=>'wid120')); ?>
+								<?php echo CHtml::dropDownList('heightTo',null,Utilities::getHeights(),array('prompt'=>'Height','class'=>'validate[gcondRequired[heightStart],funcCall[checkHeightLimit]] wid120')); ?>
 							</div>
 						</div>
 					</li>
@@ -125,17 +125,17 @@
 						<div class="info">
 							<div class="check wid110">
 								
-								<input type="checkbox" value="0" name="status[]"><span>Unmarried </span>
+								<input type="checkbox" id="status"  value="0" name="status[]" ><span>Unmarried </span>
 							</div>
 							<div class="check wid110">
-							<input type="checkbox" value="1" name="status[]">	
+							<input type="checkbox" id="status1"  value="1" name="status[]" >	
 								<span>Widower </span>
 							</div>
 							<div class="check wid110">
-								<input type="checkbox" value="2" name="status[]"><span>Divorced </span>
+								<input type="checkbox" id="status2"  value="2" name="status[]" ><span>Divorced </span>
 							</div>
 							<div class="check ">
-								<input type="checkbox" value="3" name="status[]"><span>Awaiting divorce </span>
+								<input type="checkbox" value="3" id="status3"  name="status[]"  ><span>Awaiting divorce </span>
 							</div>
 						</div>
 					</li>
@@ -222,17 +222,17 @@
 						</div>
 						<div class="info">
 							<div class="check wid220">
-								<input type="checkbox" value="P" name="profile[]"><span>Only With Photo</span>
+								<input type="checkbox" id="profile1" value="P" name="profile[]"><span>Only With Photo</span>
 							</div>
 							<div class="check ">
-								<input type="checkbox" value="h" name="profile[]"><span>Only With horoscope</span>
+								<input type="checkbox" id="profile" value="h" name="profile[]"><span>Only With horoscope</span>
 							</div>
 						</div>
 					</li>
 					
 					<li>
 						<div class="buttonContnr2 mT20">
-							<a class="type4" href="javascript:regularSearch.submit();" >Search</a>
+							<input type="submit" value="Search" class="type4" />
 						</div>
 					</li>
 				</ul>
@@ -249,22 +249,23 @@
 						</div>
 						<div class="info">
 							<div class="radio mR14 wid80">
-								<input type="radio" name="gender" value="M"><span>Male</span>
+								<input type="radio" name="gender" class="validate[required]" value="M"><span>Male</span>
 							</div>
 							<div class="radio">
-								<input type="radio" name="gender" value="F"><span>Female</span>
+								<input type="radio" name="gender" class="validate[required]" value="F"><span>Female</span>
 							</div>
 						</div>
 					</li>
+					
 					<li>
 						<div class="title">
 							Age 
 						</div>
 						<div class="info">
-						<?php echo CHtml::dropDownList('ageFrom',null,Utilities::getAge(),array('class'=>'wid50')); ?>
+						<?php echo CHtml::dropDownList('ageFrom',null,Utilities::getAge(),array('prompt'=>'Age','class'=>'validate[gfuncCall[hidePromp]] wid60')); ?>
 							<div class="married">
 								<span class="text">to</span>
-							<?php echo CHtml::dropDownList('ageTo',null,Utilities::getAge(),array('class'=>'wid50')); ?>
+							<?php echo CHtml::dropDownList('ageTo',null,Utilities::getAge(),array('prompt'=>'Age','class'=>'validate[gfuncCall[checkAgeLimit]] wid60')); ?>
 								<span class="text">years</span>
 							</div>
 						</div>
@@ -274,11 +275,11 @@
 							Height 
 						</div>
 						<div class="info">
-						<?php echo CHtml::dropDownList('heightFrom',null,Utilities::getHeights(),array('class'=>'wid120')); ?>
+						<?php echo CHtml::dropDownList('heightFrom',null,Utilities::getHeights(),array('prompt'=>'Height','class'=>'validate[gfuncCall[hidePromp]] wid120')); ?>
 							
 							<div class="married">
 								<span class="text">to</span>
-							<?php echo CHtml::dropDownList('heightTo',null,Utilities::getHeights(),array('class'=>'wid120')); ?>
+							<?php echo CHtml::dropDownList('heightTo',null,Utilities::getHeights(),array('prompt'=>'Height','class'=>'validate[gcondRequired[heightStart],funcCall[checkHeightLimit]] wid120')); ?>
 							</div>
 						</div>
 					</li>
@@ -519,13 +520,13 @@
 						</div>
 						<div class="info">
 							<div class="radio mR14">
-								<input type="radio" name="chova" value=""> <span>Yes</span>
+								<input type="radio" name="chova" value="1"> <span>Yes</span>
 							</div>
 							<div class="radio mR14">
-								<input type="radio" name="chova" value=""> <span>No</span>
+								<input type="radio" name="chova" value="0"> <span>No</span>
 							</div>
 							<div class="radio mR14">
-								<input type="radio" name="chova" value=""> <span>Don't Know</span>
+								<input type="radio" name="chova" value="2"> <span>Don't Know</span>
 							</div>
 						</div>
 					</li>
@@ -540,7 +541,7 @@
 						</div>
 						<div class="info">
 							<div class="check ">
-								<input type="checkbox" name="eat[]" value="A" /><span>Any</span>
+								<input type="checkbox" name="eat[]" value="3" /><span>Any</span>
 							</div>
 							<div class="check ">
 								<input type="checkbox" name="eat[]" value="0" /> <span>Vegitarian </span>
@@ -559,7 +560,7 @@
 						</div>
 						<div class="info">
 							<div class="check ">
-								<input type="checkbox" name="drink[]" value="A" /><span>Any</span>
+								<input type="checkbox" name="drink[]" value="3" /><span>Any</span>
 							</div>
 							<div class="check ">
 								<input type="checkbox" name="drink[]" value="0" /><span>Non-drinker </span>
@@ -578,7 +579,7 @@
 						</div>
 						<div class="info">
 							<div class="check ">
-								<input type="checkbox" name="smoke[]" value="A" /><span>All</span>
+								<input type="checkbox" name="smoke[]" value="3" /><span>Any</span>
 							</div>
 							<div class="check ">
 								<input type="checkbox" name="smoke[]" value="0" /><span>Non-smoker</span>
@@ -613,17 +614,17 @@
 						</div>
 						<div class="info">
 							<div class="check wid220">
-								<input type="checkbox" name="profile[]" value="photo" /> <span>Only With Photo</span>
+								<input type="checkbox" name="profile[]" value="p" /> <span>Only With Photo</span>
 							</div>
 							<div class="check ">
-								<input type="checkbox" name="profile[]" value="horoscope" /><span>Only With horoscope</span>
+								<input type="checkbox" name="profile[]" value="h" /><span>Only With horoscope</span>
 							</div>
 						</div>
 					</li>
 				
 					<li>
 						<div class="buttonContnr2 mT20">
-							<a class="type4" href="javascript:advanceSearch.submit();"  href="#">Search</a>
+							<input type="submit" value="Search" class="type4" />
 						</div>
 					</li>
 				</ul>
@@ -661,6 +662,10 @@
 
 <script type="text/javascript">
 $(document).ready(function() {
+
+
+	$("#advanceSearch").validationEngine('attach');
+	$("#regularSearch").validationEngine('attach');
 	
 		var tabid = '<?php echo $tab?>';
 		 $('.tab-head > li > a').each(function(){
@@ -672,4 +677,40 @@ $(document).ready(function() {
         });
 	 	$('#'+tabid+'_data').show();
 });
-</script>  
+
+
+function checkAgeLimit(field, rules, i, options){
+	if (field.val()) {
+
+		if(!$('#ageFrom').val())
+			return "Select proper age limit";
+
+		var start = parseInt($('#ageFrom').val());
+		
+		if( parseInt(field.val()) <= start)
+		return "Select proper age limit";
+	}
+}
+
+function hidePromp(field, rules, i, options){
+	if (field.val()) {
+		$("#advanceSearch").validationEngine('hide');
+		$("#regularSearch").validationEngine('hide');
+	}
+}
+function checkHeightLimit(field, rules, i, options){
+	if (field.val()) {
+
+		if(!$('#heightFrom').val())
+			return "Select proper height limit";
+
+		var start = parseInt($('#heightFrom').val());
+		
+		if( parseInt(field.val()) <= start)
+		return "Select proper height limit";
+	}
+}
+
+</script>      
+      
+      

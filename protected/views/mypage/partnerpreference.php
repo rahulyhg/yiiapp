@@ -87,10 +87,10 @@
 				</div>
 			</li>
 			<li>
-				<div class="leftC">Manglik</div>
+				<div class="leftC">Chova dosham</div>
 				<div class="rightC">
-					: <?php if(isset($user->partnerpreferences->manglik)){
-							if($user->partnerpreferences->manglik == 1)
+					: <?php if(isset($user->partnerpreferences->dosham)){
+							if($user->partnerpreferences->dosham == 1)
 								echo "Yes";
 							else
 							 echo "No";						
@@ -196,8 +196,7 @@
 				<div class="leftC">Occupation</div>
 				<div class="rightC">
 					:<?php if(isset($user->partnerpreferences->occupation)) {
-					$occu = OccupationMaster::model()->findByPk($user->partnerpreferences->occupation);
-					echo $occu->name;
+					echo Utilities::getValueForIds(new OccupationMaster(),$user->partnerpreferences->occupation,'occupationId');
 					}
 						?>  
 				</div>
