@@ -186,20 +186,10 @@ class AjaxController extends Controller
 	{
 		if(isset($_POST['coupon'])) {
 				
-			$user = Yii::app()->session->get('user');
+			
 			$coupon = Coupon::model()->findByAttributes(array('couponCode'=>$_POST['coupon']));
 			if(isset($coupon) && $coupon->status == 1)
 			{
-					
-				if(isset($user))
-				{
-					$payment = Payment::model()->findByAttributes(array('couponcode'=>$_POST['coupon'],'userID'=>$user->userId));
-					if(isset($payment) && $payment->userID)
-					echo json_encode(FALSE);
-					else
-					echo json_encode(TRUE);
-				}
-					
 				if($coupon->couponType == 'normal' && $coupon->isUsed == 1)
 				echo json_encode(FALSE);
 				else
@@ -219,9 +209,9 @@ class AjaxController extends Controller
 				
 			$user = Yii::app()->session->get('user');
 			$coupon = Coupon::model()->findByAttributes(array('couponCode'=>$_POST['coupon']),'isUsed=0');
-			if(isset($coupon) && $coupon->status == 1 && $coupon->couponType == 'normal' )
+			if(isset($coupon) && $coupon->status == 1 && $coupon->couponType == 'normal' && $coupon->isUsed == 0)
 			{
-				$payment = Payment::model()->findByAttributes(array('couponcode'=>$_POST['coupon'],'userID'=>$user->userId));
+					$payment = Payment::model()->findByAttributes(array('couponcode'=>$_POST['coupon'],'userID'=>$user->userId));
 					if(isset($payment) && $payment->userID)
 					echo json_encode(FALSE);
 					else
