@@ -80,6 +80,7 @@ pre, code, kbd, samp {font-family: monospace, sans-serif;}
 .clickable,
 input[type=button], 
 input[type=submit], 
+input[type=reset],
 button {
 	cursor: pointer;
 	-webkit-transition: all .4s;

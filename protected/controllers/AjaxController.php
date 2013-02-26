@@ -8,7 +8,7 @@ class AjaxController extends Controller
         {
                 $user = Yii::app()->session->get('user');
                 
-                if( $action->id == 'updateplaces' || $action->id == 'coupon'  || $action->id == 'useremail' || $action->id == 'username'  || $action->id == 'usermobile' || $action->id == 'updateCaste' || $action->id == 'updateState' || $action->id == 'updateDistrict' )
+                if( $action->id == 'updateplaces' || $action->id == 'coupon'  || $action->id == 'useremail' || $action->id == 'username'  || $action->id == 'usermobile' || $action->id == 'updateCaste' || $action->id == 'updateCastes'  || $action->id == 'updateState' || $action->id == 'updateDistrict' )
         		return true;
                 if(!isset($user)) {
                         $this->redirect(Yii::app()->user->loginUrl);

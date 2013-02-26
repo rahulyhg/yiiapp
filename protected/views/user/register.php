@@ -268,7 +268,7 @@
 			<li>
 				<div class="left"><?php echo $searchForm->labelEx($searchModel,'photo'); ?></div>
 				<div class="right">
-							<?php echo $searchForm->checkBox($searchModel,'photo', array('value'=>1, 'uncheckValue'=>0)); ?>
+						<input type="checkbox" id="SearchForm_photo" name="SearchForm[photo]" value="1">
 				</div>
 			</li>
 			<li>

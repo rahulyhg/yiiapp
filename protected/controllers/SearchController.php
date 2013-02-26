@@ -341,7 +341,7 @@ class SearchController extends Controller
 			{
 				$ageFrom = $_POST['startAge'];
 				$ageTo = $_POST['endAge'];
-				$condition .= "AND age BETWEEN {$ageFrom} AND {$ageTo} and active =1";
+				$condition .= "AND age BETWEEN {$ageFrom} AND {$ageTo}";
 				$searchText.= "age between {$ageFrom} and {$ageTo}, ";
 			} 
 
@@ -373,7 +373,7 @@ class SearchController extends Controller
 			if(isset($_POST['caste']) && !empty($_POST['caste']))
 			{
 				$condition .= " AND casteId = {$_POST['caste']}";
-				$caste = Districts::model()->findByPk($_POST['caste']);
+				$caste = Caste::model()->findByPk($_POST['caste']);
 				$searchText.= "Caste is $caste->name , ";
 			}
 
@@ -396,13 +396,13 @@ class SearchController extends Controller
 
 			if(isset($_POST['motherTounge']) && !empty($_POST['motherTounge']))
 			{
-				$condition .= " AND FIND_IN_SET('{$_POST['motherTounge']}',languages)";
+				$condition .= " AND FIND_IN_SET('{$_POST['motherTounge']}',motherTounge)";
 				$searchText.= "Mother tounge as". Utilities::getValueForIds(new Languages(), $_POST['motherTounge'], 'languageId')." , ";
 			}
 
 			if($_POST['SearchForm']['photo'] == 1)
 			{
-				$condition .= " AND photo = 1 ";
+				$condition .= " AND photo IS NOT NULL ";
 				$searchText.= "with photo";
 			}
 
@@ -490,16 +490,16 @@ class SearchController extends Controller
 			}
 			
 			
-			if(isset($_POST['ageFrom']) && $_POST['ageTo']) {
+			if(!empty($_POST['ageFrom']) && !empty($_POST['ageTo'])) {
 			$ageFrom = $_POST['ageFrom'];
 			$ageTo = $_POST['ageTo'];
-			$condition .= " AND age BETWEEN {$ageFrom} AND {$ageTo} and active =1";
+			$condition .= " AND age BETWEEN {$ageFrom} AND {$ageTo}";
 			
 			$searchText .= "age between {$ageFrom} and {$ageTo} ,";
 			}
 		
 			$height = Utilities::getHeights();
-			if(isset($_POST['heightFrom']) && $_POST['heightTo']) {
+			if(!empty($_POST['heightFrom']) && !empty($_POST['heightTo'])) {
 			$heightFrom = $_POST['heightFrom'];
 			$heightTo = $_POST['heightTo'];
 			
@@ -514,7 +514,7 @@ class SearchController extends Controller
 			$searchText.= "Religion as $religion->name , ";
 			}
 		
-			if(isset($_POST['caste1']))
+			if(!empty($_POST['caste1']))
 			{
 			$caste  = implode(",",$_POST['caste1']);
 			$condition .= " AND FIND_IN_SET('{$caste}',casteId)";
@@ -531,18 +531,18 @@ class SearchController extends Controller
 			if(isset($_POST['language1']) && !empty($_POST['language1']))
 			{
 			$language = implode(",",$_POST['language1']);
-			$condition .= " AND FIND_IN_SET('{$language}',languages)";
+			$condition .= " AND FIND_IN_SET('{$language}',motherTounge)";
 			$searchText.= "Mother tounge as". Utilities::getValueForIds(new Languages(), $language, 'languageId')." , ";
 			}
 			
-			if(isset($_POST['education1']))
+			if(!empty($_POST['education1']))
 			{
 				$education = implode(",", $_POST['education1']);
 				$condition .= " AND FIND_IN_SET('{$education}',educationId)";
 				$searchText.= "Education as". Utilities::getValueForIds(new EducationMaster(), $education, 'educationId')." , ";
 			}
 			
-			if(isset($_POST['country1']))
+			if(!empty($_POST['country1']))
 			{
 				$country = implode(",", $_POST['country1']);
 				$condition .= " AND FIND_IN_SET('{$country}',countryId)";
@@ -674,105 +674,106 @@ class SearchController extends Controller
 	public function actionQuick(){
 		
 		$user = Yii::app()->session->get('user');
-		
+
 		if(isset($user)){
 			$scondition = "FIND_IN_SET('{$user->userId}',profileIDs)";
-		$profileBlock = ProfileBlock::model()->findAll(array('condition'=>$scondition));
-		$blockId = array();
-		foreach ($profileBlock as $key => $value) {
-			$blockId[] = $value->userId;
-		}
-		$blockIdList = implode(",", $blockId);
-		
+			$profileBlock = ProfileBlock::model()->findAll(array('condition'=>$scondition));
+			$blockId = array();
+			foreach ($profileBlock as $key => $value) {
+				$blockId[] = $value->userId;
+			}
+			$blockIdList = implode(",", $blockId);
+
 		}
 		if(isset($_POST) && !empty($_POST))
 		{
-		
-		if(isset($_POST['ageFrom']) && isset($_POST['ageTo']))
-		{
-			
-		if(isset($_POST['ageFrom']))
-		$ageFrom = $_POST['ageFrom'];
-		if(isset($_POST['ageTo']))
-		$ageTo = $_POST['ageTo'];
-		
-		$condition = "age BETWEEN {$ageFrom} AND {$ageTo} and active =1";
-		
-		if(isset($_POST['gender']))
-		{
-		$gender = $_POST['gender'];
-		$condition .= " AND gender = '{$gender}'";
-		}
-		
-		if(isset($_POST['religion']) && !empty($_POST['religion']))
-		{
-		$religion = $_POST['religion'];
-		$condition .= " AND religionId = {$religion}";
-		}
-		if(isset($_POST['caste']) && !empty($_POST['caste']))
-		{
-		$caste = $_POST['caste'];
-		$condition .= " AND casteId = {$caste}";
-		}
-		
-		
-		$usersV = ViewUsers::model()->findAll(array('condition'=>$condition,'order'=> 'createdOn DESC' ),'active=1');
-		
-		
-		$userIds = array();
-		foreach ($usersV as $key => $value) {
-			$userIds[] = $value->userId; 
-		}
-		
-		if(sizeof($userIds) > 0 )
-		{
-		$userList = implode(",", $userIds);
-		$scondition = " userId in ({$userList}) ";
-		if(isset($blockIdList) && sizeof($blockId) > 0 )
-		$scondition .= " AND userId NOT IN({$blockIdList})";
-		$users = Users::model()->findAll(array('condition'=>$scondition,'order'=> 'createdOn DESC' ));
-		
-		
-		$highLightUser = array();
-		$normalUser = array();
-		foreach ($users as $key => $value) {
-			if($value->highlighted == 1 )
-			$highLightUser[] = $value;
-			else 
-			$normalUser[] = $value;
-		}
-		
-		//$user = Users::model()->find();
-		if(sizeof($users) > 0)
-		{
-		$totalUser = sizeof($normalUser);
-		$totalPage = ceil($totalUser/10);	
-		$this->render('search',array('highLight' => $highLightUser,'normal'=> $normalUser,'search'=>'regular','totalUser'=>$totalUser,'totalPage' => $totalPage));	
-		}
-		}
-		else
-		{
+
+			if(isset($_POST['gender']))
+			{
+				$gender = $_POST['gender'];
+				$condition = " gender = '{$gender}' and active = 1";
+			}
+				
+			if(isset($_POST['ageFrom']) && isset($_POST['ageTo']))
+			{
+					
+				if(isset($_POST['ageFrom']))
+				$ageFrom = $_POST['ageFrom'];
+				if(isset($_POST['ageTo']))
+				$ageTo = $_POST['ageTo'];
+
+				$condition .= " AND age BETWEEN {$ageFrom} AND {$ageTo}";
+			}
+
+			if(isset($_POST['religion']) && !empty($_POST['religion']))
+			{
+				$religion = $_POST['religion'];
+				$condition .= " AND religionId = {$religion}";
+			}
+
+			if(isset($_POST['caste']) && !empty($_POST['caste']))
+			{
+				$caste = $_POST['caste'];
+				$condition .= " AND casteId = {$caste}";
+			}
+
+
+			$usersV = ViewUsers::model()->findAll(array('condition'=>$condition,'order'=> 'createdOn DESC' ));
+
+
+			$userIds = array();
+			foreach ($usersV as $key => $value) {
+				$userIds[] = $value->userId;
+			}
+
+			if(sizeof($userIds) > 0 )
+			{
+				$userList = implode(",", $userIds);
+				$scondition = " userId in ({$userList}) ";
+				if(isset($blockIdList) && sizeof($blockId) > 0 )
+				$scondition .= " AND userId NOT IN({$blockIdList})";
+				$users = Users::model()->findAll(array('condition'=>$scondition,'order'=> 'createdOn DESC' ));
+
+
+				$highLightUser = array();
+				$normalUser = array();
+				foreach ($users as $key => $value) {
+					if($value->highlighted == 1 )
+					$highLightUser[] = $value;
+					else
+					$normalUser[] = $value;
+				}
+
+				//$user = Users::model()->find();
+				if(sizeof($users) > 0)
+				{
+					$totalUser = sizeof($normalUser);
+					$totalPage = ceil($totalUser/10);
+					$this->render('search',array('highLight' => $highLightUser,'normal'=> $normalUser,'search'=>'regular','totalUser'=>$totalUser,'totalPage' => $totalPage));
+				}
+			}
+			else
+			{
 				if(!isset($user))
 				{
 					$this->render('index',array('tab'=>'tab1','error'=> 'Right now, we cannot find a suitable match for you. Keep on searching with other criteria'));
 				}
 				else {
-						
+
 					$this->render('regular',array('tab'=>'tab1','error'=> 'Right now, we cannot find a suitable match for you. Keep on searching with other criteria'));
 				}
-		} 
+			}
 		}
+	else {
+		if(!isset($user))
+		{
+			$this->render('index',array('tab'=>'tab1','error'=> 'Right now, we cannot find a suitable match for you. Keep on searching with other criteria'));
 		}
 		else {
-		if(!isset($user))
-				{
-					$this->render('index',array('tab'=>'tab1','error'=> 'Right now, we cannot find a suitable match for you. Keep on searching with other criteria'));
-				}
-				else {
-						
-					$this->render('regular',array('tab'=>'tab1','error'=> 'Right now, we cannot find a suitable match for you. Keep on searching with other criteria'));
-				}
+
+			$this->render('regular',array('tab'=>'tab1','error'=> 'Right now, we cannot find a suitable match for you. Keep on searching with other criteria'));
 		}
+	}
 	}
 	
 	public function actionAdvance(){
