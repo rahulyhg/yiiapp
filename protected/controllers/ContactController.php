@@ -497,11 +497,11 @@ class ContactController extends Controller
 		}
 		
 		
-		if(isset($_POST['stateId']))
+		if(isset($_POST['state']))
 		$userPersonal->stateId = $_POST['state'];
-		if(isset($_POST['district']))
+		if(!empty($_POST['district']))
 		$userPersonal->districtId = $_POST['district'];
-		if(isset($_POST['place']))
+		if(!empty($_POST['place']))
 		$userPersonal->placeId = $_POST['place'];
 		if(isset($_POST['country']))
 		$userPersonal->countryId = $_POST['country'];

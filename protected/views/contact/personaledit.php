@@ -69,7 +69,7 @@ $heightArray = Utilities::getHeights()
 			<div class="title">Residing District</div>
 			<div class="info">
 			<?php
-			echo CHtml::dropDownList('district',$user->userpersonaldetails->districtId,array(),array('prompt' => 'District','class'=>'validate[required] wid150','ajax' => array(
+			echo CHtml::dropDownList('district',$user->userpersonaldetails->districtId,array(),array('empty' => 'District','class'=>'validate[required] wid150','ajax' => array(
                         'type'=>'POST',
                         'url'=>CController::createUrl('Ajax/updatePlaces'), 
                         'dataType'=>'json',
@@ -85,7 +85,7 @@ $heightArray = Utilities::getHeights()
 			<div class="title">Residing Corporation / Panchayath</div>
 			<div class="info">
 			<?php
-			echo CHtml::dropDownList('place',null,array(),array('prompt' => 'Places','class'=>'wid150')); ?>
+			echo CHtml::dropDownList('place',$user->userpersonaldetails->placeId,array(),array('prompt' => 'Places','class'=>'wid150')); ?>
 			</div>
 		</li>
 		<li>
@@ -1042,7 +1042,19 @@ $heightArray = Utilities::getHeights()
 	
 	<script type="text/javascript">
 $(document).ready(function(){
-    $("#userContact").validationEngine('attach');
+
+	$.ajax({
+        type: "POST",
+        url: "/Ajax/updateDistrict",
+        'data':{'stateId':<?php echo $user->userpersonaldetails->stateId?>},
+        'dataType':'json',
+        dataType: "json",
+        success: function(data) {
+        	 $("#district").html(data.dropDownDist);
+        }
+    });
+    return false;
+	$("#userContact").validationEngine('attach');
     <?php if(isset($update) && $update == true) { ?>
     window.parent.location.reload();
     <?php }?>

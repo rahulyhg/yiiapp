@@ -16,7 +16,7 @@
 ?>
 <?php 
 $user = Yii::app()->session->get('user');
-
+$user = Users::model()->with('horoscopes','userpersonaldetails','familyprofiles','physicaldetails','educations','hobies')->findbyPk($user->userId);
 $heightArray = Utilities::getHeights();
 ?>
     <section class="data-contnr mT8">
