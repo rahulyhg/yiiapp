@@ -17,6 +17,14 @@
 
 
     <section class="data-contnr">
+    
+			<?php 
+	if(isset($error)) {?>
+	<div class="noResult">
+	<?php echo $error; ?>
+	</div>
+	<?php } ?>        
+	
         <h1 class="mB10">Quick Search</h1>
         <form id="quickSearch"  name="quickSearch" method="post"  action="/search/quick">
         <ul class="accOverview mT12">
@@ -69,11 +77,7 @@
 				<a id="tab4" href="#" class="type3">Search by ID</a>
 			</li>
 		</ul>
-			<?php 
-	if(isset($error))
-	echo $error;
-	?>        
-		
+				
 		<div id="tab1_data" class="tab-data" style="display: block;">
 		
 			<article class="section width100 no-padd">

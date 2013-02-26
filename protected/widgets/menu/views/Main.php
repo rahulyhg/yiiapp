@@ -90,7 +90,8 @@
             </li>
             <li class="menu">
                 <a class="link" href="javascript:void(0)">payment options</a>
-				<div class="sub" style="display:none">
+                <?php if(Yii::app()->session->itemAt('user')) {?>
+                <div class="sub" style="display:none">
 					<div class="arrow"></div>
 					<div class="data wid140">
 						<a class="width100" href="<?php echo Utilities::createAbsoluteUrl('payment','index')?>">Subscribe Now</a>
@@ -98,6 +99,16 @@
 						<a class="width100" href="<?php echo Utilities::createAbsoluteUrl('payment','summary')?>">My Payment Summury</a>
 					</div>
 				</div>
+                <?php } else {?>
+                
+				<div class="sub" style="display:none">
+					<div class="arrow"></div>
+					<div class="data wid140">
+						<span>For payment details</span>
+						<p>Please contact our help desk at <br/> +91 9400 005 005</p>
+					</div>
+				</div>
+				<?php } ?>
             </li>
             <li class="menu">
                 <a class="link" href="javascript:void(0)">contact us</a>
@@ -107,7 +118,7 @@
 						<span>Postal Address</span>
 						<p>Marrydoor <br />Loloos Technolab Pvt.  Ltd. <br />Near Kochin International <br />Airport <br />Vappalassery P.O., <br />Pin 680 572</p>
 						<span>Helpline Number</span>
-						<p>0481 2341203 - 15</p>
+						<p>9400 00 5005</p>
 						<span>Fax</span>
 						<p>0481 2341203</p>
 						<span>E-Mail</span>

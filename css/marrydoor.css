@@ -2,7 +2,7 @@
 .data-contnr3 .page-head{
     width: 99%;
     float: left;
-    font-family: HelveticaCondensed,Verdana,Arial,Helvetica,sans-serif;
+    font-family: 'Roboto Condensed',Verdana,Arial,Helvetica,sans-serif;
     font-size: 25px;
     font-weight: 200;
     color: #876099;
@@ -19,7 +19,7 @@
     width: 99%;
     float: left;
     font: normal 12px/16px helvetica,arial,sans-serif;
-    color: #939598;
+    color: #666;
     margin: 5px 0 6px;
 }
 .data-contnr3 .search-result span{
@@ -41,7 +41,7 @@
 .data-contnr3 .pagination-contnr .select-contnr{
     float: left;
     font: normal 12px/14px arial,tahoma,sans-serif;
-    color: #939598;
+    color: #666;
     margin: 4px 15px 0 0;
 }
 .data-contnr3 .pagination-contnr .select-contnr input[type="checkbox"]{
@@ -74,12 +74,12 @@
     float: left;
     margin: 0 2px 0 1px;
     font: normal 10px/12px arial,tahoma,sans-serif;
-    color: #939598;
+    color: #666;
 }
 .data-contnr3 .pagination-contnr .pagination li a{
     float: left;
     font: normal 10px/12px arial,tahoma,sans-serif;
-    color: #939598;
+    color: #666;
     text-decoration: none;
     text-transform: capitalize;
     border: 1px solid #eaebec;
@@ -139,7 +139,7 @@
     width: 100%;
     float: left;
     font: normal 12px/14px arial,tahoma,sans-serif;
-    color: #939598;
+    color: #666;
     margin: 6px 0 0 0;
 }
 .profile .check-contnr input[type="checkbox"]{
@@ -199,11 +199,11 @@
 .profile .image-contnr .img-controls .numbers{
     float: left;
     font: normal 13px/14px arial,tahoma,sans-serif;
-    color: #939598;
+    color: #666;
 }
 .profile .image-contnr .img-controls .numbers span{
     font: normal 13px/14px arial,tahoma,sans-serif;
-    color: #939598;
+    color: #666;
 }
 .profile .profile-details{
     width: 72%;
@@ -221,7 +221,7 @@
     width: 100%;
     float: left;
     font: normal 12px/14px arial,tahoma,sans-serif;
-    color: #939598;
+    color: #666;
 }
 .profile .profile-details .details-contnr li:first-child a{
     font: bold 12px/14px arial,tahoma,sans-serif;
@@ -308,7 +308,7 @@ a.sendMessage:hover{
     width: 100%;
     float: left;
     font: normal 12px/14px arial,tahoma,sans-serif;
-    color: #939598;
+    color: #666;
     margin: 6px 0 0 0;
 }
 .profileR .check-contnrs input[type="checkbox"]{
@@ -368,11 +368,11 @@ a.sendMessage:hover{
 .profileR .image-contnrs .img-controls .numbers{
     float: left;
     font: normal 13px/14px arial,tahoma,sans-serif;
-    color: #939598;
+    color: #666;
 }
 .profileR .image-contnrs .img-controls .numbers span{
     font: normal 13px/14px arial,tahoma,sans-serif;
-    color: #939598;
+    color: #666;
 }
 .profileR .profile-detail{
     width:140px;
@@ -390,7 +390,7 @@ a.sendMessage:hover{
     width: 100%;
     float: left;
     font: normal 12px/14px arial,tahoma,sans-serif;
-    color: #939598;
+    color: #666;
 }
 .profileR .profile-detail .details-contnrs li:first-child{
     font: bold 12px/14px arial,tahoma,sans-serif;
@@ -497,7 +497,7 @@ a.sendMessage:hover{
     width:100%;
     float: left;
     font:normal 10px/10px arial,helvetica,sans-serif;
-    color: #939598;
+    color: #666;
     margin: 5px 0;
 }
 
@@ -506,16 +506,16 @@ a.sendMessage:hover{
     min-height: 5px;
     float: left;
     font:normal 13px/20px arial,helvetica,sans-serif;
-    color: #939598;
+    color: #666;
 }
 .membership-contnr ul.tab-data li .left label{
     font:normal 13px/20px arial,helvetica,sans-serif;
-    color: #939598;
+    color: #666;
 }
 
 .basic-search ul.search-data li .left label{
     font:normal 13px/20px arial,helvetica,sans-serif;
-    color: #939598;
+    color: #666;
 }
 
 .membership-contnr ul.tab-data li .right{
@@ -529,7 +529,7 @@ a.sendMessage:hover{
     background: #fff;
     border: 1px solid #e7cefa;
     font:normal 13px/15px arial,helvetica,sans-serif;
-    color: #939598;
+    color: #666;
     padding-left: 6px;
 }
 
@@ -540,7 +540,7 @@ a.sendMessage:hover{
     background: #fff;
     border: 1px solid #e7cefa;
     font:normal 13px/15px arial,helvetica,sans-serif;
-    color: #939598;
+    color: #666;
     padding-left: 6px;
 }
 
@@ -548,7 +548,7 @@ a.sendMessage:hover{
 .membership-contnr ul.tab-data li .right select{
     background-color: #fff;
     border: 1px solid #E7CEFA;
-    color: #939598;
+    color: #666;
     font:normal 13px/15px arial,helvetica,sans-serif;
     margin: 0 .5% 0 0;
     padding: 2px;
@@ -584,7 +584,7 @@ a.sendMessage:hover{
     bottom: 6px;
 }
 .membership-contnr ul.tab-data .subscribe-box .sub-now{
-    font: normal 40px/36px HelveticaCondensed,arial,helvetica,sans-serif;
+    font: normal 40px/36px 'Roboto Condensed',arial,helvetica,sans-serif;
 }
 .membership-contnr ul.tab-data .subscribe-box .divider{
     margin: 2px 0 0 7% !important;
@@ -615,7 +615,7 @@ a.sendMessage:hover{
     width:100%;
     float: left;
     font:normal 10px/10px arial,helvetica,sans-serif;
-    color: #939598;
+    color: #666;
     margin: 5px 0;
 }
 
@@ -624,13 +624,13 @@ a.sendMessage:hover{
     min-height: 10px;
     float: left;
     font:normal 13px/20px arial,helvetica,sans-serif;
-    color: #939598;
+    color: #666;
 }
 .basic-search ul.search-data li .right{
     width:60%;
     min-height: 10px;
     float: left;
-    color: #939598;
+    color: #666;
     font:normal 13px/15px arial,helvetica,sans-serif;
 }
 .basic-search ul.search-data li .right input[type="text"]{
@@ -640,13 +640,13 @@ a.sendMessage:hover{
     background: #fff;
     border: 1px solid #c7c9cb;
     font:normal 13px/15px arial,helvetica,sans-serif;
-    color: #939598;
+    color: #666;
     padding-left: 6px;
 }
 .basic-search ul.search-data li .right select{
     background-color: #fff;
     border: 1px solid #c7c9cb;
-    color: #939598;
+    color: #666;
     font:normal 13px/15px arial,helvetica,sans-serif;
     margin: 0 .5% 0 0;
     padding: 2px;
@@ -691,12 +691,12 @@ a.sendMessage:hover{
 .data-contnr .congrats{
     color: #7C51A1;
     float: left;
-    font:normal 22px/24px HelveticaCondensed,Verdana,Arial,Helvetica,sans-serif;
+    font:normal 22px/24px 'Roboto Condensed',Verdana,Arial,Helvetica,sans-serif;
     width:90%;
     margin: 0 0 20px;
 }
 .data-contnr p{
-    color: #939598;
+    color: #666;
     float: left;
     font:normal 13px/18px arial,helvetica,sans-serif;
     width:90%;
@@ -741,14 +741,14 @@ article.section ul li .title{
     width: 29%;
     min-height: 10px;
     float: left;
-    color: #939598;
+    color: #666;
     font: normal 14px/18px arial,helvetica,sans-serif;
 }
 article.section ul li .info{
     width: 71%;
     min-height: 10px;
     float: left;
-    color: #939598;
+    color: #666;
     font: normal 13px/15px arial,helvetica,sans-serif;
 }
 article.section ul li .inputData{
@@ -768,7 +768,7 @@ article.section ul li .info .to{
 article.section ul li .info select{
     background-color: #fff;
     border: 1px solid #c7c9cb;
-    color: #939598;
+    color: #666;
     font: 13px/15px arial,helvetica,sans-serif;
     margin: 0 0 0 0;
     padding: 2px;
@@ -882,7 +882,7 @@ article.section ul li .info .ar-btn{
 article.section ul li .info .special{
     min-height: 10px;
     float: left;
-    color: #939598;
+    color: #666;
     font: normal 13px/15px arial,helvetica,sans-serif;
     margin: 0 10px 5px 0;
 }
@@ -890,7 +890,7 @@ article.section ul li .inner-row{
     width: 100%;
     min-height: 10px;
     float: left;
-    color: #939598;
+    color: #666;
     font: normal 13px/15px arial,helvetica,sans-serif;
     margin: 0 0 11px 0;
 }
@@ -900,7 +900,7 @@ article.section ul li .info input[type="text"]{
     padding-left: 4px;
     border: 1px solid #E7E8E9;
     float: left;
-    color: #939598;
+    color: #666;
     font: normal 13px/15px arial,helvetica,sans-serif;
     margin: 0 12px 0 0;
 }
@@ -938,7 +938,7 @@ article.section ul li .info .checked{
     display: block;
 }
 .photoOpt .aLink a{
-    color: #939598;
+    color: #666;
     font: normal 9px/9px arial,helvetica,sans-serif;
     display: inline-block;
 }
@@ -960,7 +960,7 @@ article.section ul li .info .checked{
     display: block;
 }
 .docOpt .aLink a{
-    color: #939598;
+    color: #666;
     font: normal 9px/9px arial,helvetica,sans-serif;
     display: inline-block;
 }
@@ -1007,7 +1007,7 @@ article.section ul li .info .checked{
     margin:0 0 20px 15px;
 }
 .data-contnr2 p{
-    color: #939598;
+    color: #666;
     float: left;
     font:normal 13px/18px arial,helvetica,sans-serif;
     width:100%;
@@ -1030,20 +1030,20 @@ article.section ul li .info .checked{
     width: 100%;
     float: left;
     margin:4px 0;
-    color: #939598;
+    color: #666;
     font: 12px/15px arial,helvetica,sans-serif;
 }
 .accOverview li .leftC{
     width: 50%;
     float: left;
     font:normal 13px/18px arial,helvetica,sans-serif;
-    color: #939598;
+    color: #666;
 }
 .accOverview li .rightC{
     width: 50%;
     float: left;
     font:normal 13px/18px arial,helvetica,sans-serif;
-    color: #939598;
+    color: #666;
 }
 .accOverview li .rightC strong{
     float: left;
@@ -1064,14 +1064,14 @@ article.section ul li .info .checked{
     line-height: 14px;
 }
 .accOverview li .psLeft {
-    color: #939598;
+    color: #666;
     float: left;
     font:bold 12px/16px arial,helvetica,sans-serif;
     min-height: 10px;
     width: 116px;
 }
 .accOverview li .psRight {
-    color: #939598;
+    color: #666;
     float: left;
     font: 12px/15px arial,helvetica,sans-serif;
     min-height: 10px;
@@ -1085,7 +1085,7 @@ article.section ul li .info .checked{
 }
 .accOverview li .psRight .total{
     width: 100%;
-    color: #939598;
+    color: #666;
     float: left;
     font: 12px/15px arial,helvetica,sans-serif;
     min-height: 10px;
@@ -1138,7 +1138,7 @@ article.section ul li .info .checked{
 .accOverview li .refHead .headT{
     float: left;
     color: #7C51A1;
-    font:normal 18px/18px HelveticaCondensed,verdana,helvetica,arial,sans-serif;
+    font:normal 18px/18px 'Roboto Condensed',verdana,helvetica,arial,sans-serif;
     margin: 0 6px 0 0;
 }
 .accOverview li .deact-cont{
@@ -1249,9 +1249,9 @@ article.section ul li .info .checked{
     text-align: center;
 }
 .accOverview li .highYn {
-    color: #939598;
+    color: #666;
     float: left;
-    font:normal 28px/29px HelveticaCondensed,arial,helvetica,sans-serif;
+    font:normal 28px/29px 'Roboto Condensed',arial,helvetica,sans-serif;
     min-height: 10px;
     width: 100%;
 }
@@ -1261,20 +1261,20 @@ article.section ul li .info .checked{
     margin: 0 0 14px 26px;
 }
 .accOverview li .onlyF {
-    color: #939598;
+    color: #666;
     float: left;
-    font:normal 38px/40px HelveticaCondensed,arial,helvetica,sans-serif;
+    font:normal 38px/40px 'Roboto Condensed',arial,helvetica,sans-serif;
     margin: 10px 0 0;
 }
 .accOverview li .offerC .digH{
     color: #22B9F1;
     float: left;
-    font: 106px/106px HelveticaCondensed,arial,helvetica,sans-serif;
+    font: 106px/106px 'Roboto Condensed',arial,helvetica,sans-serif;
 }
 .accOverview li .offerC .forMh{
-    color: #939598;
+    color: #666;
     float: left;
-    font:normal 29px/31px HelveticaCondensed,arial,helvetica,sans-serif;
+    font:normal 29px/31px 'Roboto Condensed',arial,helvetica,sans-serif;
     width: 80%;
     margin: -10px 0 0 23px;
 }
@@ -1282,7 +1282,7 @@ article.section ul li .info .checked{
 	font-family: 'WebRupee';
 	font-size:50px;
 	position: relative;
-	color: #B6B6B6;
+	color: #666;
     float: left;
     top: 27px;
 }
@@ -1294,7 +1294,7 @@ article.section ul li .info .checked{
     margin:0 0 20px 15px;
 }
 .data-contnr3 p{
-    color: #939598;
+    color: #666;
     float: left;
     font:normal 13px/18px arial,helvetica,sans-serif;
     width:100%;
@@ -1311,7 +1311,7 @@ article.section ul li .info .checked{
     width: 100%;
 }
 .data-contnr3 .radC{
-    color: #939598;
+    color: #666;
     font:normal 13px/18px arial,helvetica,sans-serif;
     margin: 3px 12px 0 0;
     float: left;
@@ -1325,15 +1325,15 @@ article.section ul li .info .checked{
     margin: 0 0 0 6px;
 }
 .data-contnr3 .selC{
-    color: #939598;
+    color: #666;
     font:normal 13px/18px arial,helvetica,sans-serif;
-    margin: 0 14px 0 0;
+    margin: 0 10px 0 0;
     float: left;
 }
 .data-contnr3 .selC select {
     background-color: #FFFFFF;
     border: 1px solid #C7C9CB;
-    color: #939598;
+    color: #666;
     float: left;
     font: 13px/15px arial,helvetica,sans-serif;
     margin: 0;
@@ -1396,7 +1396,7 @@ article.section ul li .info .checked{
 }
 .data-contnr3 .tab-data .sId .sec .text{
     width: 180px;
-    color: #939598;
+    color: #666;
     float: left;
     font: 13px/22px arial,helvetica,sans-serif;
 }
@@ -1409,7 +1409,7 @@ article.section ul li .info .checked{
 
 /*search guest*/
 .data-contnr p{
-    color: #939598;
+    color: #666;
     float: left;
     font:normal 13px/18px arial,helvetica,sans-serif;
     width:100%;
@@ -1426,7 +1426,7 @@ article.section ul li .info .checked{
     width: 100%;
 }
 .data-contnr .radC{
-    color: #939598;
+    color: #666;
     font:normal 13px/18px arial,helvetica,sans-serif;
     margin: 3px 12px 0 0;
     float: left;
@@ -1440,7 +1440,7 @@ article.section ul li .info .checked{
     margin: 0 0 0 3px;
 }
 .data-contnr .selC{
-    color: #939598;
+    color: #666;
     font:normal 13px/18px arial,helvetica,sans-serif;
     margin: 0 13px 0 0;
     float: left;
@@ -1448,7 +1448,7 @@ article.section ul li .info .checked{
 .data-contnr .selC select {
     background-color: #FFFFFF;
     border: 1px solid #C7C9CB;
-    color: #939598;
+    color: #666;
     float: left;
     font: 13px/15px arial,helvetica,sans-serif;
     margin: 0;
@@ -1511,7 +1511,7 @@ article.section ul li .info .checked{
 }
 .data-contnr .tab-data .sId .sec .text{
     width: 180px;
-    color: #939598;
+    color: #666;
     float: left;
     font: 13px/22px arial,helvetica,sans-serif;
 }
@@ -1573,7 +1573,7 @@ article.section ul li .info .checked{
 }
 .mainPro .noC li a{
     float: left;
-    color: #939598;
+    color: #666;
     font: 13px/14px arial,helvetica,sans-serif;
 }
 .mainPro .noC li a:hover{
@@ -1612,14 +1612,14 @@ article.section ul li .info .checked{
     font:bold 13px/18px arial,helvetica,sans-serif;
 }
 .mainPro .myPd li .leftCt {
-    color: #939598;
+    color: #666;
     float: left;
     font:normal 13px/18px arial,helvetica,sans-serif;
     width: 40%;
 }
 
 .mainPro .myPd li .rightCt {
-    color: #939598;
+    color: #666;
     float: left;
     font: 13px/18px arial,helvetica,sans-serif;
     width: 60%;
@@ -1643,7 +1643,7 @@ article.section ul li .info .checked{
 .butCo{
     min-height: 10px;
     float: left;
-    margin:10px 0 0 16px;
+    margin:16px 0 0 5px;
     font-size: 12px;
 }
 .editContr{
@@ -1657,7 +1657,7 @@ article.section ul li .info .checked{
     width: 100%;
     float: left;
     color: #876099;
-    font:normal 22px/24px HelveticaCondensed,Verdana,Arial,Helvetica,sans-serif;
+    font:normal 22px/24px 'Roboto Condensed',Verdana,Arial,Helvetica,sans-serif;
 }
 .editContr .subText{
     width: 100%;
@@ -1695,21 +1695,21 @@ article.section ul li .info .checked{
 }
 .editContr .detSec li {
     float: left;
-    margin:1px 0 0;
+    margin:1px 0;
     width: 100%;
 }
 .editContr .detSec li .leftCtn {
-    color: #939598;
+    color: #666;
     float: left;
-    font:normal 13px/18px arial,helvetica,sans-serif;
-    width: 40%;
+    font:normal 12px/18px arial,helvetica,sans-serif;
+    width: 37%;
 }
 
 .editContr .detSec li .rightCtn {
-    color: #939598;
+    color: #666;
     float: left;
-    font: 13px/18px arial,helvetica,sans-serif;
-    width: 60%;
+    font: 12px/18px arial,helvetica,sans-serif;
+    width: 63%;
 }
 
 .editContr .detSec li .rightCtn strong {
@@ -1729,12 +1729,12 @@ article.section ul li .info .checked{
 }
 .edit-option{
     float: left;
-    color: #939598;
+    color: #666;
     font:normal 12px/12px arial,helvetica,sans-serif;
     margin: 8px 0 0 4px;
 }
 .edit-option a{
-    color: #939598;
+    color: #666;
     font:normal 12px/12px arial,helvetica,sans-serif;
 }
 .edit-option a:hover{
@@ -1813,7 +1813,7 @@ article.section ul li .info .checked{
     width: 82%;
     float: left;
     margin: 2px 0 0 4px;
-    color: #939598;
+    color: #666;
     font:normal 13px/14px arial,helvetica,sans-serif;
     cursor: pointer;
 }
@@ -1822,7 +1822,7 @@ article.section ul li .info .checked{
     float: left;
     margin: 2px 0 0 4px;
     padding-left: 12px;
-    color: #939598;
+    color: #666;
     font:normal 13px/14px arial,helvetica,sans-serif;
     background: url("http://marrydoor.com/images/marrydoor.png") no-repeat -1023px -264px;
 }
@@ -1831,7 +1831,7 @@ article.section ul li .info .checked{
     float: left;
     margin: 2px 0 0 4px;
     padding-left: 12px;
-    color: #939598;
+    color: #666;
     font:normal 13px/14px arial,helvetica,sans-serif;
     background: url("http://marrydoor.com/images/marrydoor.png") no-repeat -1023px -288px;
 }
@@ -1880,7 +1880,7 @@ article.section ul li .info .checked{
     width: 406px;
     float: left;
     border: 1px solid #E7E8E9;
-    color: #939598;
+    color: #666;
     font:normal 12px/14px arial,helvetica,sans-serif;
     padding: 5px;
 }
@@ -1902,7 +1902,7 @@ article.section ul li .info .checked{
     float: right;
     margin:0;
     font:normal 11px/12px arial,helvetica,sans-serif;
-    color: #939598;
+    color: #666;
 }
 .interstTab .option_cont a{
     font:normal 11px/12px arial,helvetica,sans-serif;
@@ -1911,7 +1911,7 @@ article.section ul li .info .checked{
     width: 82%;
     float: left;
     margin:4px 0 0 4px;
-    color: #939598;
+    color: #666;
     font:normal 12px/12px arial,helvetica,sans-serif;
 }
 .interstTab ul.tab-data li .int_head span{
@@ -1921,7 +1921,7 @@ article.section ul li .info .checked{
     width: 82%;
     float: left;
     margin:2px 0 0 4px;
-    color: #939598;
+    color: #666;
     font:normal 11px/11px arial,helvetica,sans-serif;
 }
 .interstTab ul.tab-data li .pDetails a{
@@ -2152,27 +2152,27 @@ article.section ul li .info .checked{
 .recentUpdates .footN .updated{
     width: 100%;
     float: left;
-    color: #939598;
+    color: #666;
     font:normal 10px/11px verdana,arial,helvetica,sans-serif;
 }
 .recentUpdates .footN p{
     width: 100%;
     float: left;
-    color: #939598;
+    color: #666;
     font:bold 10px/11px verdana,arial,helvetica,sans-serif;
     margin: 6px 0 0;
 }
 .uCan{
     width: 100%;
     float: left;
-    color: #939598;
+    color: #666;
     font:bold 14px/15px verdana,arial,helvetica,sans-serif;
     margin: 30px 0 10px;
 }
 .urOnly{
     width: 100%;
     float: left;
-    color: #939598;
+    color: #666;
     font:bold 14px/15px verdana,arial,helvetica,sans-serif;
     margin: 30px 0 10px;
 }
@@ -2231,7 +2231,7 @@ article.section ul li .info .checked{
 }
 .upUrF .upCn .name{
     width: 100%;
-    color: #939598;
+    color: #666;
     font:normal 12px/14px verdana,arial,helvetica,sans-serif;
     text-align: center;
 }
@@ -2289,7 +2289,7 @@ article.section ul li .info .checked{
 .inputH{
     width: 100%;
     float: left;
-    color: #939598;
+    color: #666;
     font:normal 12px/14px verdana,arial,helvetica,sans-serif;
     text-indent: 0px;
     margin-bottom: 2px;
@@ -2297,7 +2297,7 @@ article.section ul li .info .checked{
 .inputTx{
     width:100%;
     float: left;
-    color: #939598;
+    color: #666;
     font:normal 12px/14px verdana,arial,helvetica,sans-serif;
     text-indent: 0px;
     margin-bottom: 2px;
@@ -2305,7 +2305,7 @@ article.section ul li .info .checked{
 .inputCl{
     width: 238px;
     float: left;
-    color: #939598;
+    color: #666;
     font:normal 12px/14px verdana,arial,helvetica,sans-serif;
     text-indent: 0px;
     margin-bottom: 2px;
@@ -2425,7 +2425,7 @@ article.section ul li .info .checked{
 
 
 .membership-contnr ul.tab-data li .left label {
-    color: #939598;
+    color: #666;
     font: 13px/20px arial,helvetica,sans-serif;
 }
 
@@ -2446,4 +2446,15 @@ article.section ul li .info .checked{
 .searchRslt{
     width: 960px !important;
     margin-left: 0 !important;
+}
+.noResult {
+    border: 3px solid #CCCCCC;
+    color: red;
+    float: left;
+    font:normal 18px/20px 'Roboto Condensed',Verdana,Arial,Helvetica,sans-serif;
+    margin: 0 0 20px;
+    padding: 10px;
+    text-align: center;
+    width: 935px;
+    background: #f8f8f8;
 }

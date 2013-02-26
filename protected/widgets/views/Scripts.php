@@ -1,4 +1,6 @@
-	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->params['resourceUrl']; ?>/css/marrydoor.css?version=<?php echo Yii::app()->params['version']?>" />
+    <link href='http://fonts.googleapis.com/css?family=Roboto+Condensed:400,300,700' rel='stylesheet' type='text/css'>
+        
+    <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->params['resourceUrl']; ?>/css/marrydoor.css?version=<?php echo Yii::app()->params['version']?>" />
     <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->params['resourceUrl']; ?>/css/global.css?version=<?php echo Yii::app()->params['version']?>" />
     <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->params['resourceUrl']; ?>/css/validationEngine.jquery.css?version=<?php echo Yii::app()->params['version']?>"/>
     <script src="<?php echo Yii::app()->params['resourceUrl']; ?>/js/jquery1.7.2.min.js?version=<?php echo Yii::app()->params['version']?>"></script>

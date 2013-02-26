@@ -49,7 +49,7 @@
                     <ul class="details-contnr">
                         <li>
                             <div class="title">Name</div>
-                            <div class="info">: <a href="<?php echo 'byid?id='.$value->marryId ?>" class="color" ><?php echo $value->name; echo '( '.$value->marryId.' )' ;?></a></div>
+                            <div class="info">: <a target="_blank"  href="<?php echo 'byid?id='.$value->marryId ?>" class="color" ><?php echo $value->name; echo '( '.$value->marryId.' )' ;?></a></div>
                         </li>
                         <li>
                             <div class="title">Religion / Cast </div>
@@ -65,15 +65,15 @@
                         </li>
                         <li>
                             <div class="title">Place</div>
-                            <div class="info">: <?php if(isset($value->userpersonaldetails->place))echo $value->userpersonaldetails->place->name ?>, <?php if(isset($value->userpersonaldetails->state))echo $value->userpersonaldetails->state->name ?>, <?php if(isset($value->userpersonaldetails->country))echo $value->userpersonaldetails->country->name?> </div>
+                            <div class="info">: <?php if(isset($value->userpersonaldetails->place))echo $value->userpersonaldetails->place->name ?> </div>
                         </li>
                         <li>
-                            <div class="title">Education</div>
-                            <div class="info">: <?php if(isset($value->educations->education))echo $value->educations->education->name?></div>
+                            <div class="title">State</div>
+                            <div class="info">: <?php if(isset($value->userpersonaldetails->state))echo $value->userpersonaldetails->state->name ?></div>
                         </li>
                         <li>
-                            <div class="title">Occupation</div>
-                            <div class="info">: <?php if(isset($value->educations->occupation))echo $value->educations->occupation->name?></div>
+                            <div class="title">Country</div>
+                            <div class="info">: <?php if(isset($value->userpersonaldetails->country))echo $value->userpersonaldetails->country->name?></div>
                         </li>
                     </ul>
                     <a class="view-full" target="_blank"  href="<?php echo 'byid/id/'.$value->marryId ?>">View Full Profile</a>
@@ -140,7 +140,7 @@
                     <ul class="details-contnr">
                         <li>
                             <div class="title">Name</div>
-                            <div class="info">: <a href="<?php echo 'byid?id='.$value->marryId ?>" class="color" ><?php echo $value->name; echo '( '.$value->marryId.' )' ;?></a></div>
+                            <div class="info">: <a target="_blank" href="<?php echo 'byid?id='.$value->marryId ?>" class="color" ><?php echo $value->name; echo '( '.$value->marryId.' )' ;?></a></div>
                         </li>
                         <li>
                             <div class="title">Religion / Cast </div>
@@ -156,15 +156,15 @@
                         </li>
                         <li>
                             <div class="title">Place</div>
-                            <div class="info">: <?php if(isset($value->userpersonaldetails->place))echo $value->userpersonaldetails->place->name ?>, <?php if(isset($value->userpersonaldetails->state))echo $value->userpersonaldetails->state->name ?>, <?php if(isset($value->userpersonaldetails->country))echo $value->userpersonaldetails->country->name ?> </div>
+                            <div class="info">: <?php if(isset($value->userpersonaldetails->place))echo $value->userpersonaldetails->place->name ?> </div>
                         </li>
                         <li>
-                            <div class="title">Education</div>
-                            <div class="info">: <?php if(isset($value->educations->education))echo $value->educations->education->name ?> </div>
+                            <div class="title">State</div>
+                            <div class="info">: <?php if(isset($value->userpersonaldetails->state))echo $value->userpersonaldetails->state->name ?> </div>
                         </li>
                         <li>
-                            <div class="title">Occupation</div>
-                            <div class="info">: <?php if(isset($value->educations->occupation))echo $value->educations->occupation->name ?></div>
+                            <div class="title">Country</div>
+                            <div class="info">: <?php if(isset($value->userpersonaldetails->country))echo $value->userpersonaldetails->country->name ?> </div>
                         </li>
                     </ul>
                     <a class="view-full" target="_blank"  href="<?php echo 'byid/id/'.$value->marryId ?>">View Full Profile</a>

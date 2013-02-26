@@ -12,6 +12,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 	<link rel="shortcut icon" href="http://media.marrydoor.com/images/favicon.ico">
     <link rel=icon type="image/ico" href="http://media.marrydoor.com/images/favicon.ico">
+    <link href='http://fonts.googleapis.com/css?family=Roboto+Condensed:400,300,700' rel='stylesheet' type='text/css'>
 	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->params['resourceUrl']; ?>/css/marrydoor.css" />
     <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->params['resourceUrl']; ?>/css/global.css" />
     <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->params['resourceUrl']; ?>/css/validationEngine.jquery.css?version=<?php echo Yii::app()->params['version']?>"/>

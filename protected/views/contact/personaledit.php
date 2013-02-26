@@ -17,6 +17,7 @@
 <?php
 
 $user = Yii::app()->session->get('user');
+$user = Users::model()->with('horoscopes','userpersonaldetails','familyprofiles','physicaldetails','educations','hobies')->findbyPk($user->userId);
 $heightArray = Utilities::getHeights()
 ?>
 
@@ -910,5 +911,9 @@ $heightArray = Utilities::getHeights()
 	<script type="text/javascript">
 $(document).ready(function(){
     $("#userContact").validationEngine('attach');
-  });
+    <?php if(isset($update) && $update == true) { ?>
+    window.parent.location.reload();
+    <?php }?>
+    });  
+
   </script>

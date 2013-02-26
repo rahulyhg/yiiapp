@@ -282,7 +282,7 @@ $user = Yii::app()->session->get('user');
 				<li>
 					<div class="leftCtn">Body Type / Complexion</div>
 					<div class="rightCtn">
-						<strong>:</strong> <span><?php if(isset($model->physicaldetails->bodyType))echo $bodyType[$model->physicaldetails->bodyType]?>/<?php if(isset($model->physicaldetails->complexion))echo $bodyType[$model->physicaldetails->complexion]?></span>
+						<strong>:</strong> <span><?php if(isset($model->physicaldetails->bodyType))echo $bodyType[$model->physicaldetails->bodyType].'/'?><?php if(isset($model->physicaldetails->complexion))echo $bodyType[$model->physicaldetails->complexion]?></span>
 					</div>
 				</li>
 				<li>
@@ -448,13 +448,13 @@ $drink= Utilities::getDrink();
 				<li>
 					<div class="leftCtn">No of Brother(s)</div>
 					<div class="rightCtn">
-						<strong>:</strong> <span><?php if(isset($model->familyprofiles->brothers))echo $model->familyprofiles->brothers?> / <?php if(isset($model->familyprofiles->brotherMarried))echo $model->familyprofiles->brotherMarried.' Married' ?>  </span>
+						<strong>:</strong> <span><?php if(isset($model->familyprofiles->brothers))echo $model->familyprofiles->brothers.'/'?> <?php if(isset($model->familyprofiles->brotherMarried))echo $model->familyprofiles->brotherMarried.' Married' ?>  </span>
 					</div>
 				</li>
 				<li>
 					<div class="leftCtn">No of Sister(s)</div>
 					<div class="rightCtn">
-						<strong>:</strong> <span><?php if(isset($model->familyprofiles->sisters))echo $model->familyprofiles->sisters?> /<?php if(isset($model->familyprofiles->SisterMarried))echo $model->familyprofiles->SisterMarried.' Married'?> </span>
+						<strong>:</strong> <span><?php if(isset($model->familyprofiles->sisters))echo $model->familyprofiles->sisters.'/'?> <?php if(isset($model->familyprofiles->SisterMarried))echo $model->familyprofiles->SisterMarried.' Married'?> </span>
 					</div>
 				</li>
 			</ul>
@@ -471,13 +471,13 @@ $drink= Utilities::getDrink();
 				<li>
 					<div class="leftCtn">Groom's Age</div>
 					<div class="rightCtn">
-						<strong>:</strong> <span><?php if(isset($partner->ageFrom))echo $partner->ageFrom; echo ' - ';if(isset($partner->ageTo))echo $partner->ageTo.' Years'; ?></span>
+						<strong>:</strong> <span><?php if(isset($partner->ageFrom))echo $partner->ageFrom.'-'; if(isset($partner->ageTo))echo $partner->ageTo.' Years'; ?></span>
 					</div>
 				</li>
 				<li>
 					<div class="leftCtn">Height</div>
 					<div class="rightCtn">
-						<strong>:</strong> <span><?php if(isset($partner->heightTo))echo $heightArray[$partner->heightTo]; ?> / <?php if(isset($partner->heightFrom))echo $heightArray[$partner->heightFrom]; ?></span>
+						<strong>:</strong> <span><?php if(isset($partner->heightTo))echo $heightArray[$partner->heightTo].'/'; ?>  <?php if(isset($partner->heightFrom))echo $heightArray[$partner->heightFrom]; ?></span>
 					</div>
 				</li>
 				<li>

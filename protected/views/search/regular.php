@@ -21,6 +21,13 @@
 
 
   <section class="data-contnr3">
+  <?php 
+	if(isset($error)) {?>
+	<div class="noResult">
+	<?php echo $error; ?>
+	</div>
+	<?php } ?>
+		
         <h1 class="mB10">Quick Search</h1>
         <form id="quickSearch"  name="quickSearch" method="post"  action="/search/quick">
         <ul class="accOverview mT12">
@@ -73,10 +80,6 @@
 				<a id="tab4" href="#" class="type3">Search by ID</a>
 			</li>
 		</ul>
-			<?php 
-	if(isset($error))
-	echo $error;
-	?>        
 		
 		<div id="tab1_data" class="tab-data" style="display: block;">
 		
@@ -101,10 +104,10 @@
 							Age 
 						</div>
 						<div class="info">
-						<?php echo CHtml::dropDownList('ageFrom',null,Utilities::getAge(),array('class'=>'validate[groupRequired[regular],funcCall[hidePromp]] wid50')); ?>
+						<?php echo CHtml::dropDownList('ageFrom',null,Utilities::getAge(),array('prompt'=>'Age','class'=>'validate[gfuncCall[hidePromp]] wid60')); ?>
 							<div class="married">
 								<span class="text">to</span>
-							<?php echo CHtml::dropDownList('ageTo',null,Utilities::getAge(),array('class'=>'validate[groupRequired[regular],funcCall[checkAgeLimit]] wid50')); ?>
+							<?php echo CHtml::dropDownList('ageTo',null,Utilities::getAge(),array('prompt'=>'Age','class'=>'validate[gfuncCall[checkAgeLimit]] wid60')); ?>
 								<span class="text">years</span>
 							</div>
 						</div>
@@ -114,11 +117,11 @@
 							Height 
 						</div>
 						<div class="info">
-						<?php echo CHtml::dropDownList('heightFrom',null,Utilities::getHeights(),array('class'=>'validate[groupRequired[regular],funcCall[hidePromp]] wid120')); ?>
+						<?php echo CHtml::dropDownList('heightFrom',null,Utilities::getHeights(),array('prompt'=>'Height','class'=>'validate[gfuncCall[hidePromp]] wid120')); ?>
 							
 							<div class="married">
 								<span class="text">to</span>
-								<?php echo CHtml::dropDownList('heightTo',null,Utilities::getHeights(),array('class'=>'validate[groupRequired[regular],condRequired[heightStart],funcCall[checkHeightLimit]] wid120')); ?>
+								<?php echo CHtml::dropDownList('heightTo',null,Utilities::getHeights(),array('prompt'=>'Height','class'=>'validate[gcondRequired[heightStart],funcCall[checkHeightLimit]] wid120')); ?>
 							</div>
 						</div>
 					</li>
@@ -129,17 +132,17 @@
 						<div class="info">
 							<div class="check wid110">
 								
-								<input type="checkbox" value="0" name="status[]"><span>Unmarried </span>
+								<input type="checkbox" id="status"  value="0" name="status[]" ><span>Unmarried </span>
 							</div>
 							<div class="check wid110">
-							<input type="checkbox" value="1" name="status[]" class="validate[groupRequired[regular]]">	
+							<input type="checkbox" id="status1"  value="1" name="status[]" >	
 								<span>Widower </span>
 							</div>
 							<div class="check wid110">
-								<input type="checkbox" value="2" name="status[]" class="validate[groupRequired[regular]]"><span>Divorced </span>
+								<input type="checkbox" id="status2"  value="2" name="status[]" ><span>Divorced </span>
 							</div>
 							<div class="check ">
-								<input type="checkbox" value="3" name="status[]" ><span>Awaiting divorce </span>
+								<input type="checkbox" value="3" id="status3"  name="status[]"  ><span>Awaiting divorce </span>
 							</div>
 						</div>
 					</li>
@@ -150,7 +153,7 @@
 						<div class="info">
 						<?php $records = Religion::model()->findAll("active = 1");
 		$list = CHtml::listData($records, 'religionId', 'name');
-		echo CHtml::dropDownList('religion',null,$list,array('empty' => 'Religion','class'=>'validate[groupRequired[regular]] wid150')); ?>
+		echo CHtml::dropDownList('religion',null,$list,array('empty' => 'Religion','class'=>'wid150')); ?>
 							
 						</div>
 					</li>
@@ -166,7 +169,7 @@
 							<input class="add type2" value="Add" onclick="return add('rcaste','rcaste1')" type="button">
 							<input class="remove type2" value="Remove" onclick="return add('rcaste1','rcaste')" type="button">
 							</div>
-								<select class="validate[groupRequired[regular]] right ar" id="rcaste1" name="caste1[]" multiple="multiple"></select>
+								<select class="right ar" id="rcaste1" name="caste1[]" multiple="multiple"></select>
 						</div>
 					</li>
 					<li>
@@ -182,7 +185,7 @@
 							<input class="add type2" value="Add" onclick="return add('rlanguage','rlanguage1')" type="button">
 							<input class="remove type2" value="Remove" onclick="return add('rlanguage1','rlanguage')" type="button">
 						</div>
-						<select class="validate[groupRequired[regular]] right ar" id="rlanguage1" name="language1[]" multiple="multiple">
+						<select class="right ar" id="rlanguage1" name="language1[]" multiple="multiple">
 						</select>
 							
 						</div>
@@ -200,7 +203,7 @@
 							<input class="add type2" value="Add" onclick="return add('rcountry','rcountry1')" type="button">
 							<input class="remove type2" value="Remove" onclick="return add('rcountry1','rcountry')" type="button">
 						</div>
-						<select class="validate[groupRequired[regular]] right ar" id="rcountry1" name="country1[]" multiple="multiple">
+						<select class="right ar" id="rcountry1" name="country1[]" multiple="multiple">
 						</select>
 						</div>
 					</li>
@@ -216,7 +219,7 @@
 							<input class="add type2" value="Add" onclick="return add('reducation','reducation1')" type="button">
 							<input class="remove type2" value="Remove" onclick="return add('reducation1','reducation')"type="button">
 						</div>
-						<select class="validate[groupRequired[regular]] right ar" id="reducation1" name="education1[]" multiple="multiple">
+						<select class="right ar" id="reducation1" name="education1[]" multiple="multiple">
 						</select>
 						</div>
 					</li>

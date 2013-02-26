@@ -182,6 +182,11 @@ class AjaxController extends Controller
 		echo json_encode(FALSE);
 	}
 	
+	/*
+	 * 
+	 * cal this only for promo, this can be used only once by a user who hasnt subscribed to the site
+	 * 
+	 */
 	public function actionCoupon()
 	{
 		if(isset($_POST['coupon'])) {
@@ -190,10 +195,23 @@ class AjaxController extends Controller
 			$coupon = Coupon::model()->findByAttributes(array('couponCode'=>$_POST['coupon']));
 			if(isset($coupon) && $coupon->status == 1)
 			{
+				$user = Yii::app()->session->get('user');
 				if($coupon->couponType == 'normal' && $coupon->isUsed == 1)
 				echo json_encode(FALSE);
-				else
-				echo json_encode(TRUE);
+				else if($coupon->couponType == 'promo')
+				{
+					if(isset($user))
+					{
+						$payment = Payment::model()->findByAttributes(array('couponcode'=>$_POST['coupon'],'userID'=>$user->userId));
+						if(isset($payment) && $payment->userID)
+						echo json_encode(FALSE);
+					}
+					else 	
+					echo json_encode(TRUE);
+				}
+				
+				
+				
 			}
 			else
 			echo json_encode(FALSE);

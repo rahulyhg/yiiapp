@@ -404,6 +404,7 @@ class ContactController extends Controller
 	public function actionAstroedit()
 	{
 		$user = Yii::app()->session->get('user');
+		
 		if(isset($user->horoscopes)) 
 		$horoscope = $user->horoscopes;
 		else {
@@ -487,7 +488,7 @@ class ContactController extends Controller
 	public function actionPersonalupdate()
 	{
 		$user = Yii::app()->session->get('user');
-		
+		$user = Users::model()->with('horoscopes','userpersonaldetails','familyprofiles','physicaldetails','educations','hobies')->findbyPk($user->userId);	
 		if(isset($user->userpersonaldetails))
 		$userPersonal = $user->userpersonaldetails;
 		else{
@@ -588,6 +589,7 @@ class ContactController extends Controller
 		if(isset($_POST['myDesc']))
 		$family->userDesc = $_POST['myDesc'];
 		
+		$family->save();
 		
 		if(isset($user->hobies))
 		$userHobby = $user->hobies;
@@ -635,7 +637,7 @@ class ContactController extends Controller
 		$userHobby->save();
 		
 		$this->layout= '//layouts/popup';
-		$this->render('personaledit');
+		$this->render('personaledit',array('update'=>true));
 	}
 	
 	

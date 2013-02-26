@@ -56,7 +56,11 @@ table {font-size: inherit; font: 100%;}
 /* Accessible focus treatment
 	people.opera.com/patrickl/experiments/keyboard/test */
 a:hover, a:active {outline: none;}
-
+a{
+	-webkit-transition: all .4s;
+    -moz-transition: all .4s;
+    transition: all .4s;
+}
 small {font-size: 85%;}
 
 strong, th {font-weight: bold;}
@@ -76,7 +80,12 @@ pre, code, kbd, samp {font-family: monospace, sans-serif;}
 .clickable,
 input[type=button], 
 input[type=submit], 
-button {cursor: pointer;}
+button {
+	cursor: pointer;
+	-webkit-transition: all .4s;
+    -moz-transition: all .4s;
+    transition: all .4s;
+	}
 
 /* Webkit browsers add a 2px margin outside the chrome of form elements */
 button, input, select, textarea {margin: 0;}
@@ -140,23 +149,19 @@ mark {background-color: #826DC9; color: #fff; font-style: italic; font-weight: b
 }
 
 /*global class*/
-@font-face {
-    font-family: "HelveticaCondensed";
-    font-style: normal;
-    src: url("http://marrydoor.com/font/HelveticaCondensedMedium.ttf") format("opentype");
-}
+
 @font-face {
     font-family: "GraublauWeb";
-    src: url("http://marrydoor.com/font/GraublauWeb.otf") format("opentype");
+    src: url("../font/GraublauWeb.otf") format("opentype");
 }
 @font-face {
     font-family: "Tallys";
-    src: url("http://marrydoor.com/font/Tallys_15.otf") format("opentype");
+    src: url("../font/Tallys_15.otf") format("opentype");
 }
 @font-face {
     font-family: "GraublauWeb";
     font-weight: 900;
-    src: url("http://marrydoor.com/font/GraublauWebBold.otf") format("opentype");
+    src: url("../font/GraublauWebBold.otf") format("opentype");
 }
 .graublau {
     color: #999999;
@@ -165,10 +170,10 @@ mark {background-color: #826DC9; color: #fff; font-style: italic; font-weight: b
 }
 
 @font-face{
-    font-family: 'WebRupee';src: url('http://marrydoor.com/font/WebRupee.V2.0.eot');src: local('WebRupee'),
-    url('http://marrydoor.com/font/WebRupee.V2.0.ttf') format('truetype'),
-    url('http://marrydoor.com/font/WebRupee.V2.0.woff') format('woff'),
-    url('http://marrydoor.com/font/WebRupee.V2.0.svg') format('svg');
+    font-family: 'WebRupee';src: url('../font/WebRupee.V2.0.eot');src: local('WebRupee'),
+    url('../font/WebRupee.V2.0.ttf') format('truetype'),
+    url('../font/WebRupee.V2.0.woff') format('woff'),
+    url('../font/WebRupee.V2.0.svg') format('svg');
     font-weight: normal;
     font-style: normal;
 }
@@ -177,7 +182,7 @@ mark {background-color: #826DC9; color: #fff; font-style: italic; font-weight: b
 	font-size:50px;
 	position: relative;
 	top: -38px;
-	color: #B6B6B6;
+	color: #666;
 }
 body, ul, li, div, span, a, p, img, select{
     margin: 0;
@@ -190,7 +195,7 @@ input{
     padding: 0;
 }
 p{
-	color: #939598;
+	color: #666;
     font: 13px/18px arial,helvetica,sans-serif;
 }
 body{
@@ -682,7 +687,7 @@ input[type="text"] {
 	height: 20px;
     background: none repeat scroll 0 0 #FFFFFF;
     border: 1px solid #E7E8E9;
-    color: #939598;
+    color: #666;
     font: 13px/15px arial,helvetica,sans-serif;
 	padding-left: 4px;
 }
@@ -690,7 +695,7 @@ input[type="text"] {
 select {
     background-color: #FFFFFF;
     border: 1px solid #E7E8E9;
-    color: #939598;
+    color: #666;
     font: 13px/15px arial,helvetica,sans-serif;
     margin: 0;
     padding: 2px;
@@ -698,30 +703,30 @@ select {
 textarea {
     background-color: #FFFFFF;
     border: 1px solid #E7E8E9;
-    color: #939598;
+    color: #666;
     font: 13px/15px arial,helvetica,sans-serif;
     padding: 5px;
 }
 h1{
 	color: #7C51A1;
-    font-family: HelveticaCondensed,Verdana,Arial,Helvetica,sans-serif;
+    font-family: 'Roboto Condensed',Verdana,Arial,Helvetica,sans-serif;
     font-size: 25px;
-	font-weight: 200;
+	font-weight: 400;
 	float: left;
 }
 h2{
-	font-family: HelveticaCondensed,Verdana,Arial,Helvetica,sans-serif;
+	font-family: 'Roboto Condensed',Verdana,Arial,Helvetica,sans-serif;
     font-size: 16px;
 	line-height: 18px;
-	font-weight: 200;
+	font-weight: 400;
 	color: #666;
 	text-align: left;
 }
 h3{
-	font-family: HelveticaCondensed,Verdana,Arial,Helvetica,sans-serif;
+	font-family: 'Roboto Condensed',Verdana,Arial,Helvetica,sans-serif;
     font-size: 18px;
 	line-height: 20px;
-	font-weight: 200;
+	font-weight: 400;
 	color: #7C51A1;
 	float: left;
 }
@@ -732,7 +737,7 @@ h4{
 }
 h5{
 	font: normal 11px/12px arial,helvetica,sans-serif;
-	color: #939598;
+	color: #666;
 	float: left;
 }
 .upPhotoM{
@@ -950,7 +955,7 @@ h5{
     min-height: 20px;
     float: left;
     line-height: 16px;
-	color: #939598;
+	color: #666;
     font: 13px/15px arial,helvetica,sans-serif;
 }
 .radio .useRs{
@@ -1017,7 +1022,7 @@ h5{
 .left-bar-container .left-bar-data a.headLink{
     float: left;
     font: bold 13px/14px arial,helvetica,sans-serif;
-    color: #939598;
+    color: #666;
     margin:0 0 4px 0;
 }
 .left-bar-container .left-bar-data a.select{
@@ -1044,7 +1049,7 @@ h5{
 .left-bar-container .left-bar-data a.innLink{
     float: left;
     font: normal 12px/13px arial,helvetica,sans-serif;
-    color: #939598;
+    color: #666;
     margin:0 0 4px 0;
     background: none;
 }
@@ -1058,28 +1063,28 @@ h5{
 .left-bar-container .left-bar-data li .mdAddT1{
     width: 100%;
     float: left;
-    font: normal 20px/22px HelveticaCondensed,arial,helvetica,sans-serif;
-    color: #939598;
+    font: normal 20px/22px 'Roboto Condensed',arial,helvetica,sans-serif;
+    color: #666;
     margin:0;
 }
 .left-bar-container .left-bar-data li .mdAddT2{
     width: 100%;
     float: left;
-    font: normal 39px/42px HelveticaCondensed,arial,helvetica,sans-serif;
+    font: normal 39px/42px 'Roboto Condensed',arial,helvetica,sans-serif;
     color: #7C51A1;
     margin:0 0 8px;
 }
 .left-bar-container .left-bar-data li .sugest{
     float: left;
     font: bold 12px/12px arial,helvetica,sans-serif;
-    color: #939598;
+    color: #666;
     margin:14px 0 6px 0;
     width: 100%;
 }
 .left-bar-container .left-bar-data li input[type="text"] {
     background: none repeat scroll 0 0 #FFFFFF;
     border: 1px solid #E7E8E9;
-    color: #939598;
+    color: #666;
     font: 13px/15px arial,helvetica,sans-serif;
     height: 21px;
     margin: 2px 0 7px 0 ;
@@ -1092,21 +1097,21 @@ h5{
 }
 .left-bar-container .left-bar-data li .moreDay{
     float: left;
-    font: normal 32px/32px HelveticaCondensed,arial,helvetica,sans-serif;
+    font: normal 32px/32px 'Roboto Condensed',arial,helvetica,sans-serif;
     color:#c7c8ca;
     margin:15px 0 0 0;
 }
 .left-bar-container .left-bar-data li .moreDay span{
-    font: normal 54px/40px HelveticaCondensed,sans-serif;
+    font: 300 54px/40px 'Roboto Condensed',sans-serif;
     color:#ff0751;
 }
 .left-bar-container .left-bar-data li .remain{
 	width: 100%;
 	text-align: center;
     float: left;
-    font: normal 15px/15px HelveticaCondensed,arial,helvetica,sans-serif;
+    font: normal 14px/15px 'Roboto Condensed',arial,helvetica,sans-serif;
     text-transform: uppercase;
-    color:#939598;
+    color:#666;
     margin:3px 0 11px;
 }
 .left-bar-container .left-bar-data li .remain a{
@@ -1121,21 +1126,21 @@ h5{
 }
 .left-bar-container .left-bar-data li .uNot{
     float: left;
-    font: normal 16px/20px HelveticaCondensed,arial,helvetica,sans-serif;
+    font: normal 16px/20px 'Roboto Condensed',arial,helvetica,sans-serif;
     color:#ff0751;
     margin:10px 0 3px 0;
 }
 .left-bar-container .left-bar-data li a.subNow{
     float: left;
-    font: normal 30px/30px HelveticaCondensed,arial,helvetica,sans-serif;
+    font: normal 30px/30px 'Roboto Condensed',arial,helvetica,sans-serif;
     color:#7C51A1;
     margin:0px 0 0 0 !important;
 	padding: 0 !important;
 }
 .left-bar-container .left-bar-data li .subOnly{
     float: left;
-    font: normal 28px/28px HelveticaCondensed,arial,helvetica,sans-serif;
-    color:#939598;
+    font: normal 28px/28px 'Roboto Condensed',arial,helvetica,sans-serif;
+    color:#666;
     margin:3px 0 8px 0;
 }
 .left-bar-container .left-bar-data li .subOnly span.WebRupee{
@@ -1143,7 +1148,7 @@ h5{
 	font-size: 20px !important;
 }
 .left-bar-container .left-bar-data li .subOnly .forAmt{
-    font: normal 51px/40px HelveticaCondensed,arial,helvetica,sans-serif;
+    font: normal 51px/40px 'Roboto Condensed',arial,helvetica,sans-serif;
     color:#22B9F1;
 }
 /*right bar starts here*/
@@ -1163,7 +1168,7 @@ h5{
 .rightbar-contnr .searchID input[type="text"]{
     background: none repeat scroll 0 0 #FFFFFF;
     border: 1px solid #E7E8E9;
-    color: #939598;
+    color: #666;
     font: 13px/15px arial,helvetica,sans-serif;
     height: 21px;
     padding-left: 4px;
@@ -1207,7 +1212,32 @@ h5{
 .social .gp{
     background: url("http://marrydoor.com/images/marrydoor.png") no-repeat -163px 0;
 }
-
+.coffee{
+    position: fixed;
+    top:65%;
+    right:-2px;
+    border-top-left-radius: 3px;
+    border-bottom-left-radius: 3px;
+    display: block;
+}
+.coffee a{
+    width:27px;
+    height: 28px;
+    float: left;
+    padding: 8px 5px;
+    text-decoration: none;
+	background:#e7e7e7 url("../images/marrydoor.png") no-repeat -523px 8px;
+	border-top-left-radius: 3px;
+    border-bottom-left-radius: 3px;
+	
+	-webkit-transition: none !important;
+    -moz-transition: none !important;
+    transition: none !important;
+	
+}
+.coffee a:hover{
+    background:#f2e9e5 url("../images/marrydoor.png") no-repeat -601px 8px;
+}
 /*subscribe now box*/
 .subscribe-box{
     width: 99%;
@@ -1219,22 +1249,22 @@ h5{
 .subscribe-box .sub-now{
     width: 100%;
     float: left;
-    font: normal 24px/26px HelveticaCondensed,arial,helvetica,sans-serif;
-    color: #b6b6b6;
+    font: normal 24px/26px 'Roboto Condensed',arial,helvetica,sans-serif;
+    color: #666;
     margin: 15px 0;
 }
 .subscribe-box .sub-now span{
-    font: normal 28px/30px HelveticaCondensed,arial,helvetica,sans-serif;
+    font: normal 28px/30px 'Roboto Condensed',arial,helvetica,sans-serif;
 }
 .subscribe-box .digitCont{
     float: left;
-    font: normal 106px/106px HelveticaCondensed,arial,helvetica,sans-serif;
+    font: normal 106px/106px 'Roboto Condensed',arial,helvetica,sans-serif;
     color: #22b9f1;
     margin-left: 8px;
 }
 .subscribe-box .digitCont .digits{
     float: left;
-    font: normal 96px/88px HelveticaCondensed,arial,helvetica,sans-serif;
+    font: normal 96px/88px 'Roboto Condensed',arial,helvetica,sans-serif;
     color: #22b9f1;
 }
 .subscribe-box .digitCont .digits .WebRupee{
@@ -1242,12 +1272,12 @@ h5{
 }
 .subscribe-box .digitCont .digits span.rupee{
     font: normal 50px/52px rupee;
-    color: #b6b6b6;
+    color: #666;
     position: relative;
     top:-36px;
 }
 .subscribe-box .digitCont .forTM{
-    font: normal 24px/24px HelveticaCondensed,arial,helvetica,sans-serif !important;
+    font: normal 24px/24px 'Roboto Condensed',arial,helvetica,sans-serif !important;
     color: #8c8c8c;
     float: left;
     margin-top: 58px;
@@ -1255,19 +1285,19 @@ h5{
 .subscribe-box .digit{
     width: 100%;
     float: left;
-    font: normal 106px/80px HelveticaCondensed,arial,helvetica,sans-serif;
+    font: normal 106px/80px 'Roboto Condensed',arial,helvetica,sans-serif;
     color: #22b9f1;
 }
 .subscribe-box .digit span.rupee{
     font: normal 50px/52px rupee;
-    color: #b6b6b6;
+    color: #666;
     position: relative;
     top:-36px;
 }
 .subscribe-box .for{
     width: 100%;
     float: left;
-    font: normal 19px/10px HelveticaCondensed,arial,helvetica,sans-serif;
+    font: normal 19px/10px 'Roboto Condensed',arial,helvetica,sans-serif;
     color: #8c8c8c;
 	margin: 0 0 10px;
 }
@@ -1282,22 +1312,22 @@ h5{
 .subscribe-box .benefit{
     width: 100%;
     float: left;
-    font: normal 18px/20px HelveticaCondensed,helvetica,arial,sans-serif;
+    font: normal 18px/20px 'Roboto Condensed',helvetica,arial,sans-serif;
     color: #757678;
 	margin: 8px 0 0;
 }
 .subscribe-box .benefits{
     width: 100%;
     float: left;
-    font: normal 18px/22px HelveticaCondensed,helvetica,arial,sans-serif;
+    font: normal 18px/22px 'Roboto Condensed',helvetica,arial,sans-serif;
     text-transform: uppercase;
     color: #7C51A1;
 }
 .subscribe-box p{
     width: 90%;
     float: left;
-    font: normal 14px/26px HelveticaCondensed,helvetica,arial,sans-serif;
-    color: #939598;
+    font: normal 14px/26px 'Roboto Condensed',helvetica,arial,sans-serif;
+    color: #666;
     margin: 10px 0 0 5%;
 }
 .subscribe-box input{
@@ -1321,7 +1351,7 @@ h5{
 .subscribe-box .subNow{
     width: 100%;
     float: left;
-    font: normal 24px/26px HelveticaCondensed,helvetica,arial,sans-serif;
+    font: normal 24px/26px 'Roboto Condensed',helvetica,arial,sans-serif;
     margin: 10px 0 20px 0;
     text-transform: uppercase;
     text-decoration: none;
@@ -1362,7 +1392,7 @@ h5{
 .rightbar-contnr .photo-spec-contnr .leftC .can{
     float: left;
     font: normal 11px/16px helvetica,arial,sans-serif;
-    color:#939598;
+    color:#666;
     padding-left: 22px;
     background: url("http://marrydoor.com/images/marrydoor.png") no-repeat 0px -64px;
     margin: 0 0 0 4px;
@@ -1371,7 +1401,7 @@ h5{
     width: 75px;
     float: left;
     font: normal 11px/16px helvetica,arial,sans-serif;
-    color:#939598;
+    color:#666;
     margin: 6px 0 0 15px;
 }
 .rightbar-contnr .photo-spec-contnr .pCont img{
@@ -1394,7 +1424,7 @@ h5{
 .rightbar-contnr .photo-spec-contnr .rightC .cant{
     float: left;
     font: normal 11px/16px helvetica,arial,sans-serif;
-    color:#939598;
+    color:#666;
     padding-left: 22px;
     margin: 0 0 0 12px;
     background: url("http://marrydoor.com/images/marrydoor.png") no-repeat 0px -116px;
@@ -1419,7 +1449,7 @@ h5{
 .header .welcome-message{
     width: 50%;
     font: normal 13px/15px arial,helvetica,sans-serif;
-    color: #939598;
+    color: #666;
     text-align:right;
     float: right;
     margin: 10px 0 0 0;
@@ -1432,7 +1462,7 @@ h5{
     width: 417px;
     height: 40px;
     font: normal 13px/15px arial,helvetica,sans-serif;
-    color: #939598;
+    color: #666;
     float: right;
     margin: 24px 0 0 0;
     text-align: right;
@@ -1441,19 +1471,19 @@ h5{
     width: 165px;
     height: 21px;
     font: normal 13px/15px arial,helvetica,sans-serif;
-    color: #939598;
+    color: #666;
     margin: 0 5px 0 0;
     padding-left: 4px;
     background: #fff;
     border: 1px solid #E7E8E9;
 }
-.header .search-container a{
+.header .search-container .type2b{
     margin: 0 !important;
 }
 .header .user-login{
     width:439px;
     font: normal 13px/15px arial,helvetica,sans-serif;
-    color: #939598;
+    color: #666;
     float: right;
     margin:6px 0 0 0;
     text-align: left;
@@ -1462,7 +1492,7 @@ h5{
 .header .user-login .login-contnr{
     width:181px;
     font: normal 13px/15px arial,helvetica,sans-serif;
-    color: #939598;
+    color: #666;
     float: left;
     margin:0 0 0 4px;
 }
@@ -1478,7 +1508,7 @@ h5{
     float: left;
     text-align: left;
     font: normal 13px/15px arial,helvetica,sans-serif;
-    color: #939598;
+    color: #666;
     margin-bottom:3px;
 }
 .header .user-login .login-contnr a{
@@ -1518,11 +1548,14 @@ h5{
     background:transparent url("http://marrydoor.com/images/marrydoor.png") no-repeat right 5px;
     font: bold 12px/17px arial,helvetica,sans-serif;
     text-transform: uppercase;
-    color: #939598;
+    color: #666;
     padding-right:10px;
     margin:1px 4px 0 4px;
     text-decoration: none;
     float: left;
+	-webkit-transition: none !important;
+    -moz-transition: none !important;
+    transition: none !important;
 }
 .header ul.nav-bar li.menu a:hover, .header ul.nav-bar li.menu .select{
     color:#876099 !important;
@@ -1567,7 +1600,7 @@ h5{
 }
 .header ul.nav-bar li.menu .sub p{
     width: 100%;
-    color: #939598;
+    color: #666;
     font: normal 12px/16px arial;
     float: left;
     margin:0 0 5px 0;
@@ -1585,7 +1618,7 @@ h5{
 }
 .header ul.nav-bar li.menu .sub .mailto{
     width: 100%;
-    color: #939598 !important;
+    color: #666 !important;
     margin: 0 !important;
 }
 .header ul.nav-bar li.menu .sub .saved{
@@ -1596,7 +1629,7 @@ h5{
 }
 .header ul.nav-bar li.menu .sub .searchby{
     width: 85%;
-    color: #939598;
+    color: #666;
     font: normal 11px/12px arial;
     float: left;
     margin:5px 15% 5px 0;
@@ -1627,7 +1660,7 @@ h5{
 .header .breadcrumb a{
     height: 20px;
     font: normal 13px/15px arial,helvetica,sans-serif;
-    color: #939598;
+    color: #666;
     float: left;
     text-decoration: none;
 }
@@ -1638,7 +1671,7 @@ h5{
 .header .breadcrumb span{
     height: 20px;
     font: bold 13px/15px arial,helvetica,sans-serif;
-    color: #939598;
+    color: #666;
     float: left;
     text-decoration: none;
     margin-left: 5px;
@@ -1826,7 +1859,7 @@ h5{
     width: 82%;
     float: left;
     margin: 2px 0 0 4px;
-    color: #939598;
+    color: #666;
     font:normal 12px/14px arial,helvetica,sans-serif;
 	cursor: default;
 }
@@ -1835,7 +1868,7 @@ h5{
     float: left;
     margin: 2px 0 0 4px;
     padding-left: 12px;
-    color: #939598;
+    color: #666;
     font:normal 13px/14px arial,helvetica,sans-serif;
     background: url("http://marrydoor.com/images/marrydoor.png") no-repeat -1023px -264px;
 }
@@ -1844,7 +1877,7 @@ h5{
     float: left;
     margin: 2px 0 0 4px;
     padding-left: 12px;
-    color: #939598;
+    color: #666;
     font:normal 13px/14px arial,helvetica,sans-serif;
     background: url("http://marrydoor.com/images/marrydoor.png") no-repeat -1023px -288px;
 }
@@ -1893,7 +1926,7 @@ h5{
     width: 406px;
     float: left;
     border: 1px solid #E7E8E9;
-    color: #939598;
+    color: #666;
     font:normal 12px/14px arial,helvetica,sans-serif;
     padding: 5px;
 }
@@ -1921,7 +1954,7 @@ h5{
     float: left;
     width:100%;
 	margin:8px 0 4px 0 ;
-	color: #939598;
+	color: #666;
 	font: normal 14px/18px arial,helvetica,sans-serif;
 	text-align: justify;
 }
@@ -1951,7 +1984,7 @@ h5{
     float: right;
     margin:0;
     font:normal 11px/12px arial,helvetica,sans-serif;
-    color: #939598;
+    color: #666;
 }
 .interstTab .option_cont a{
     font:normal 11px/12px arial,helvetica,sans-serif;
@@ -1960,7 +1993,7 @@ h5{
     width: 82%;
     float: left;
     margin:4px 0 0 4px;
-    color: #939598;
+    color: #666;
     font:normal 12px/12px arial,helvetica,sans-serif;
 }
 .notiTabData li .int_head span{
@@ -1973,7 +2006,7 @@ h5{
     width: 82%;
     float: left;
     margin:2px 0 0 4px;
-    color: #939598;
+    color: #666;
     font:normal 11px/11px arial,helvetica,sans-serif;
 }
 .notiTabData li .pDetails a{
@@ -2005,6 +2038,7 @@ h5{
 	padding: 0 0 4px !important;
 }
 .subContent {
+	width: 782px;
     border: 1px solid #F8F8F8;
     float: left;
     background: #fff;
@@ -2139,7 +2173,7 @@ h5{
 .saveSbox .cont .head span{
     float: left;
     font: normal 12px/13px arial,helvetica,sans-serif;
-    color: #939598;
+    color: #666;
     margin-bottom: 3px;
 }
 .saveSbox .cont .head a{
@@ -2184,6 +2218,7 @@ h5{
     background:transparent url("../images/marrydoor.png") no-repeat -735px 0px;
 }
 .logError .cont{
+	width: 100%;
     float: left;
     background: #fff;
 }

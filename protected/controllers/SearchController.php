@@ -309,7 +309,7 @@ class SearchController extends Controller
 			if(isset($_POST['SearchForm']['bride']))
 			{
 				$gender = $_POST['SearchForm']['bride'];
-				$condition .= "gender = '{$gender}' and active = 1";
+				$condition .= "gender = '{$gender}' and active = 1 ";
 				if($gender == 'M')
 				$searchText.= "Male, ";
 				else
@@ -445,11 +445,11 @@ class SearchController extends Controller
 			{
 				if(!isset($user))
 				{
-					$this->render('index',array('tab'=>'tab1','error'=> '*******NO RESULTS FOUND******,Please try again'));
+					$this->render('index',array('tab'=>'tab1','error'=> 'Right now, we cannot find a suitable match for you. Keep on searching with other criteria'));
 				}
 				else {
 						
-					$this->render('regular',array('tab'=>'tab1','error'=> '*******NO RESULTS FOUND******,Please try again'));
+					$this->render('regular',array('tab'=>'tab1','error'=> 'Right now, we cannot find a suitable match for you. Keep on searching with other criteria'));
 				}
 			}
 		}
@@ -457,11 +457,11 @@ class SearchController extends Controller
 		{
 			if(!isset($user))
 				{
-					$this->render('index',array('tab'=>'tab1','error'=> '*******NO RESULTS FOUND******,Please try again'));
+					$this->render('index',array('tab'=>'tab1','error'=> 'Right now, we cannot find a suitable match for you. Keep on searching with other criteria'));
 				}
 				else {
 						
-					$this->render('regular',array('tab'=>'tab1','error'=> '*******NO RESULTS FOUND******,Please try again'));
+					$this->render('regular',array('tab'=>'tab1','error'=> 'Right now, we cannot find a suitable match for you. Keep on searching with other criteria'));
 				}
 		}
 
@@ -493,7 +493,7 @@ class SearchController extends Controller
 			if(isset($_POST['ageFrom']) && $_POST['ageTo']) {
 			$ageFrom = $_POST['ageFrom'];
 			$ageTo = $_POST['ageTo'];
-			$condition = " age BETWEEN {$ageFrom} AND {$ageTo} and active =1";
+			$condition .= " AND age BETWEEN {$ageFrom} AND {$ageTo} and active =1";
 			
 			$searchText .= "age between {$ageFrom} and {$ageTo} ,";
 			}
@@ -650,11 +650,11 @@ class SearchController extends Controller
 			{
 			if(!isset($user))
 					{
-						$this->render('index',array('tab'=>'tab1','error'=> '*******NO RESULTS FOUND******,Please try again'));
+						$this->render('index',array('tab'=>'tab1','error'=> 'Right now, we cannot find a suitable match for you. Keep on searching with other criteria'));
 					}
 					else {
 							
-						$this->render('regular',array('tab'=>'tab1','error'=> '*******NO RESULTS FOUND******,Please try again'));
+						$this->render('regular',array('tab'=>'tab1','error'=> 'Right now, we cannot find a suitable match for you. Keep on searching with other criteria'));
 					}
 			}
 		}
@@ -754,11 +754,11 @@ class SearchController extends Controller
 		{
 				if(!isset($user))
 				{
-					$this->render('index',array('tab'=>'tab1','error'=> '*******NO RESULTS FOUND******,Please try again'));
+					$this->render('index',array('tab'=>'tab1','error'=> 'Right now, we cannot find a suitable match for you. Keep on searching with other criteria'));
 				}
 				else {
 						
-					$this->render('regular',array('tab'=>'tab1','error'=> '*******NO RESULTS FOUND******,Please try again'));
+					$this->render('regular',array('tab'=>'tab1','error'=> 'Right now, we cannot find a suitable match for you. Keep on searching with other criteria'));
 				}
 		} 
 		}
@@ -766,11 +766,11 @@ class SearchController extends Controller
 		else {
 		if(!isset($user))
 				{
-					$this->render('index',array('tab'=>'tab1','error'=> '*******NO RESULTS FOUND******,Please try again'));
+					$this->render('index',array('tab'=>'tab1','error'=> 'Right now, we cannot find a suitable match for you. Keep on searching with other criteria'));
 				}
 				else {
 						
-					$this->render('regular',array('tab'=>'tab1','error'=> '*******NO RESULTS FOUND******,Please try again'));
+					$this->render('regular',array('tab'=>'tab1','error'=> 'Right now, we cannot find a suitable match for you. Keep on searching with other criteria'));
 				}
 		}
 	}
@@ -1083,11 +1083,11 @@ class SearchController extends Controller
 		{
 					if(!isset($user))
 				{
-					$this->render('index',array('tab'=>'tab2','error'=> '*******NO RESULTS FOUND******,Please try again'));
+					$this->render('index',array('tab'=>'tab2','error'=> 'Right now, we cannot find a suitable match for you. Keep on searching with other criteria'));
 				}
 				else {
 						
-					$this->render('regular',array('tab'=>'tab2','error'=> '*******NO RESULTS FOUND******,Please try again'));
+					$this->render('regular',array('tab'=>'tab2','error'=> 'Right now, we cannot find a suitable match for you. Keep on searching with other criteria'));
 				}
 			
 		} 
@@ -1238,11 +1238,11 @@ class SearchController extends Controller
 		{
 				if(!isset($user))
 				{
-					$this->render('index',array('tab'=>'tab3','error'=> '*******NO RESULTS FOUND******,Please try again'));
+					$this->render('index',array('tab'=>'tab3','error'=> 'Right now, we cannot find a suitable match for you. Keep on searching with other criteria'));
 				}
 				else {
 						
-					$this->render('regular',array('tab'=>'tab3','error'=> '*******NO RESULTS FOUND******,Please try again'));
+					$this->render('regular',array('tab'=>'tab3','error'=> 'Right now, we cannot find a suitable match for you. Keep on searching with other criteria'));
 				} 
 		}
 		}
