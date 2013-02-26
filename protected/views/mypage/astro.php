@@ -28,9 +28,11 @@
 				<h3 class="">Grahanila</h3>
 			</li>
 			<li class="">
-				<div class="grahanila">
+					<?php if(isset($astro->horoscopeFile)) {?>
+					<div class="grahanila">
 					<img src="<?php echo Utilities::getHoroscope($user->marryId,$astro->horoscopeFile); ?>" alt="" width="500" height="500" />
-				</div>
+					</div>
+					<?php }?>
 			</li>
 			<li class="mT15">
 				<div class="leftC">Zodiac sign</div>

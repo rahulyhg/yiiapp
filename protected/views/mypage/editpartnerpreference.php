@@ -114,9 +114,21 @@
 					</div>
 					<div class="info">
 					<?php $records = Religion::model()->findAll("active = 1");
-  
 		$list = CHtml::listData($records, 'religionId', 'name');
 		echo CHtml::dropDownList('religion',null,$list,array('empty' => 'Religion','class'=>'validate[required] wid160')); ?>
+		<?php $records = Religion::model()->findAll("active = 1");
+  
+		$list = CHtml::listData($records, 'religionId', 'name');
+		echo CHtml::dropDownList('religion',$user->userpersonaldetails->religionId,$list,array('empty' => 'Religion','class'=>'validate[required] wid160','ajax' => array(
+                        'type'=>'POST',
+                        'url'=>CController::createUrl('Ajax/updateCaste'), 
+                        'dataType'=>'json',
+                        'data'=>array('religionId'=>'js:this.value'),  
+                        'success'=>'function(data) {
+                            $("#caste").html(data.dropDownCastes);
+                        }',
+            ))); ?>
+		
 					</div>
 				</li>
 				<li>

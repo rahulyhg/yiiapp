@@ -110,7 +110,7 @@ class ContactController extends Controller
 	{
 		if(isset($_GET['id']))
 		{
-			$user = Users::model()->findByAttributes(array('marryId'=>$_GET['id']));
+			$user = Users::model()->with('horoscopes')->findByAttributes(array('marryId'=>$_GET['id']));
 		
 				if(isset($user->name))
 				{

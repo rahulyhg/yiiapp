@@ -126,6 +126,22 @@ class AjaxController extends Controller
 		
 	}
 	
+	public function actionUpdateCastes()
+	{
+		//Castes
+            $records = Caste::model()->findAll('religionId=:religionId and active=1', array(':religionId'=>(int) $_POST['religionId']));
+            $list = CHtml::listData($records, 'casteId', 'name');
+            $dropDownCastes = ""; 
+            foreach($list as $value=>$name)
+                $dropDownCastes .= CHtml::tag('option', array('value'=>$value),CHtml::encode($name),true);
+ 
+            // return data (JSON formatted)
+            echo CJSON::encode(array(
+              'dropDownCastes'=>$dropDownCastes,
+            ));
+		
+	}
+	
 	
 	public function actionUpdatePlaces()
 	{

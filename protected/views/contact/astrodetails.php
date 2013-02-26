@@ -26,9 +26,11 @@
 			<section class="subContnr">
 				<ul class="accOverview pmB10">
 					<li class="mT15">
-						<div class="grahanila">
-							
-						</div>
+						<?php if(isset($astro->horoscopeFile)) {?>
+							<div>
+							<img id="imgSrc" name="imgSrc" alt="" src="<?php echo Utilities::getHoroscope($user->marryId, $astro->horoscopeFile);?>">
+							</div>
+							<?php } ?>
 					</li>
 					<li class="mT15">
 						<div class="leftC">Zodiac sign</div>
@@ -39,6 +41,17 @@
 					?></span>
 						</div>
 					</li>
+					<li>
+				<div class="leftC">Date </div>
+				<div class="rightC">
+					<strong>:</strong> <span><?php 
+					if(isset($astro->dob))
+					{
+						echo $astro->dob; 
+					}
+					?></span>
+				</div>
+			</li>
 					<li>
 						<div class="leftC">Birth sign</div>
 						<div class="rightC">
@@ -56,36 +69,79 @@
 							<strong>:</strong> <span><?php  if(isset($astro->dosham)) echo $chova[$astro->dosham]; ?></span>
 						</div>
 					</li>
-				</ul>
-				<ul class="accOverview pmB10">
-					<li>
-						<div class="refHead">
-							<div class="headT"><?php echo $model->name."'s"?> astro preference</div> 
-						</div>
-					</li>
-					<!--  <li>
-						<div class="leftC">Zodiac sign</div>
-						<div class="rightC">
-							<strong>:</strong> <span>Cancer</span>
-						</div>
-					</li>
-					 -->
-					<li>
-						<div class="leftC">Birth sign</div>
-						<div class="rightC">
-							<strong>:</strong> <span><?php if(isset($partner->star) && !empty($partner->star))
+						<li>
+				<div class="leftC">Country of birth</div>
+				<div class="rightC">
+					<strong>:</strong> <span><?php 
+					if(isset($astro->country))
 					{
-						echo Utilities::getValueForIds(new SignsMaster(),$partner->star,'signId');
+						$country = Country::model()->findbyPk($astro->country);
+						echo $country->name; 
 					}
 					?></span>
-						</div>
-					</li>
-					<li>
-						<div class="leftC">Chovvadosham</div>
-						<div class="rightC">
-							<strong>:</strong> <span><?php if(isset($partner->dosham)) echo $chova[$partner->dosham]; ?></span>
-						</div>
-					</li>
+				</div>
+			</li>
+			<li>
+				<div class="leftC">State of birth</div>
+				<div class="rightC">
+					<strong>:</strong> <span><?php 
+					if(isset($astro->state))
+					{
+						$state = States::model()->findbyPk($astro->state);
+						echo $state->name; 
+					}
+					?></span>
+				</div>
+			</li>
+			<li>
+				<div class="leftC">City of birth</div>
+				<div class="rightC">
+					<strong>:</strong> <span><?php 
+					if(isset($astro->city))
+					{
+						echo $astro->city; 
+					}
+					?></span>
+				</div>
+			</li>
+			<li>
+				<div class="leftC">Time</div>
+				<div class="rightC">
+					<strong>:</strong> <span><?php 
+					if(isset($astro->time))
+					{
+						echo $astro->time; 
+					}
+					?></span>
+				</div>
+			</li>
+			<li>
+				<div class="leftC">Language</div>
+				<div class="rightC">
+					<strong>:</strong> <span><?php 
+					if(isset($astro->motherTounge))
+					{
+						$lang = Languages::model()->findbyPk($astro->motherTounge);
+						if(isset($lang))
+						echo $lang->name; 
+					}
+					?></span>
+				</div>
+			</li>
+			<li>
+				<div class="leftC">Chovvadosham</div>
+				<div class="rightC">
+				<?php $chova = Utilities::getChova() ?>
+					<strong>:</strong> <span><?php  if(isset($astro->dosham)) echo $chova[$astro->dosham]; ?></span>
+				</div>
+			</li>
+			<li>
+				<div class="leftC">Sudha</div>
+				<div class="rightC">
+				<?php $sudha = Utilities::getSudham() ?>
+					<strong>:</strong> <span><?php  if(isset($astro->sudham)) echo $sudha[$astro->sudham]; ?></span>
+				</div>
+			</li>
 				</ul>
 				
 			</section>

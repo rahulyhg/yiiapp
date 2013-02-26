@@ -175,8 +175,19 @@
 					$rel = null;
 					?>
 					<?php $records = Religion::model()->findAll("active = 1");
-							$list = CHtml::listData($records, 'religionId', 'name');
-							echo CHtml::dropDownList('religion',null,$list,array('empty' => 'Religion','class'=>'wid160','options' => array($rel=>array('selected'=>true)))); ?>
+  
+					$list = CHtml::listData($records, 'religionId', 'name');
+					echo CHtml::dropDownList('religion',$rel,$list,array('empty' => 'Religion','class'=>'validate[required] wid160','ajax' => array(
+			                        'type'=>'POST',
+                        'url'=>CController::createUrl('Ajax/updateCastes'), 
+                        'dataType'=>'json',
+                        'data'=>array('religionId'=>'js:this.value'),  
+                        'success'=>'function(data) {
+                            $("#caste").html(data.dropDownCastes);
+                        }',
+            ))); ?>
+				
+							
 					</div>
 				</li>
 				<li>
@@ -185,10 +196,13 @@
 					</div>
 					<div class="info" id="letters">
 					<?php 
+					$condition ="";
+					if(isset($partner->religion))
+					$condition .= "religionId = {$partner->religion} AND ";
 					if(isset($partner->caste))
-					$records = Caste::model()->findAll(array('condition'=> "casteId NOT IN({$partner->caste})"));
+					$records = Caste::model()->findAll(array('condition'=> $condition."casteId NOT IN({$partner->caste})"));
 					else
-					$records = Caste::model()->findAll("active = 1");
+					$records = Caste::model()->findAll(array('condition'=> $condition." active = 1"));
 							$list = CHtml::listData($records, 'casteId', 'name');
 							echo CHtml::dropDownList('caste',null,$list,array('class'=>'left ar','multiple'=>'multiple')); ?>
 							<div class="ar-btn">
@@ -264,11 +278,11 @@
 							$egg = false;
 						if(isset($partner->eatingHabits))
 						{
-							$maritalStatus = explode(",", $partner->eatingHabits);
-							$veg = in_array(0,$maritalStatus);
-							$non = in_array(1,$maritalStatus);
-							$egg = in_array(2,$maritalStatus);
-							$all = in_array(3,$maritalStatus);
+							$eat = explode(",", $partner->eatingHabits);
+							$veg = in_array(0,$eat);
+							$non = in_array(1,$eat);
+							$egg = in_array(2,$eat);
+							$all = in_array(3,$eat);
 						}
 						?>
 						
@@ -298,11 +312,11 @@
 							$reg = false;
 						if(isset($partner->drinkingHabits))
 						{
-							$maritalStatus = explode(",", $partner->drinkingHabits);
-							$non = in_array(0,$maritalStatus);
-							$reg = in_array(1,$maritalStatus);
-							$light = in_array(2,$maritalStatus);
-							$any = in_array(3,$maritalStatus);
+							$drink = explode(",", $partner->drinkingHabits);
+							$non = in_array(0,$drink);
+							$reg = in_array(1,$drink);
+							$light = in_array(2,$drink);
+							$any = in_array(3,$drink);
 						}
 						?>
 					<div class="info">
@@ -329,13 +343,13 @@
 							$light = false;
 							$non = false;
 							$reg = false;
-						if(isset($searchItem->smokingHabits))
+						if(isset($partner->smokingHabits))
 						{
-							$maritalStatus = explode(",", $partner->smokingHabits);
-							$non = in_array(0,$maritalStatus);
-							$reg = in_array(1,$maritalStatus);
-							$light = in_array(2,$maritalStatus);
-							$any = in_array(3,$maritalStatus);
+							$smoke = explode(",", $partner->smokingHabits);
+							$non = in_array(0,$smoke);
+							$reg = in_array(1,$smoke);
+							$light = in_array(2,$smoke);
+							$any = in_array(3,$smoke);
 						}
 						?>
 					<div class="info">
