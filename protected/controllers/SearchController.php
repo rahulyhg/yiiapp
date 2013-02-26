@@ -1140,11 +1140,11 @@ class SearchController extends Controller
 				
 				if(!isset($user))
 				{
-					$this->render('index',array('tab'=>'tab4','error'=> '*******NO RESULTS FOUND******,Please try again'));
+					$this->render('index',array('tab'=>'tab4','error'=> 'Right now, we cannot find a suitable match for you. Keep on searching with other criteria'));
 				}
 				else {
 						
-					$this->render('regular',array('tab'=>'tab4','error'=> '*******NO RESULTS FOUND******,Please try again'));
+					$this->render('regular',array('tab'=>'tab4','error'=> 'Right now, we cannot find a suitable match for you. Keep on searching with other criteria'));
 				} 
 			}
 		}

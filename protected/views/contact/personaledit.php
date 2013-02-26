@@ -33,67 +33,108 @@ $heightArray = Utilities::getHeights()
 			<div class="title">Country Living In</div>
 			<div class="info">
 			<?php $records = Country::model()->findAll("active = 1");
-			$list = CHtml::listData($records, 'countryId', 'name');
-			echo CHtml::dropDownList('country',null,$list,array('empty' => 'Country','class'=>'validate[required] wid200','options' => array($user->userpersonaldetails->countryId =>array('selected'=>true)))); ?>
-
+		$list = CHtml::listData($records, 'countryId', 'name');
+		echo CHtml::dropDownList('country',$user->userpersonaldetails->countryId,$list,array('empty' => 'Country','class'=>'validate[required] width60','ajax' => array(
+                        'type'=>'POST',
+                        'url'=>CController::createUrl('Ajax/updateState'), 
+                        'dataType'=>'json',
+                        'data'=>array('countryId'=>'js:this.value'),  
+                        'success'=>'function(data) {
+                            $("#state").html(data.dropDownStates);
+                        }',
+            )
+		
+		)); ?>
 			</div>
 		</li>
 		<li>
 			<div class="title">Residing State</div>
 			<div class="info">
 			<?php
-			$records = States::model()->findAll("active = 1");
-			$list = CHtml::listData($records, 'stateId', 'name');
-			echo CHtml::dropDownList('state',$user->userpersonaldetails->stateId,$list,array('empty' => 'State','class'=>'validate[required] wid200')); ?>
+
+		$records = States::model()->findAll("active = 1");
+		$list = CHtml::listData($records, 'stateId', 'name');
+		echo CHtml::dropDownList('state',$user->userpersonaldetails->stateId,$list,array('empty' => 'State','class'=>'validate[required] wid150','ajax' => array(
+                        'type'=>'POST',
+                        'url'=>CController::createUrl('Ajax/updateDistrict'), 
+                        'dataType'=>'json',
+                        'data'=>array('stateId'=>'js:this.value'),  
+                        'success'=>'function(data) {
+                            $("#district").html(data.dropDownDist);
+                        }',
+            ))); ?>
 			</div>
 		</li>
 		<li>
 			<div class="title">Residing District</div>
 			<div class="info">
 			<?php
-			$records = Districts::model()->findAll("active = 1");
-			$list = CHtml::listData($records, 'districtId', 'name');
-			echo CHtml::dropDownList('district',$user->userpersonaldetails->districtId,$list,array('prompt' => 'District','class'=>'validate[required] wid200')); ?>
+			echo CHtml::dropDownList('district',$user->userpersonaldetails->districtId,array(),array('prompt' => 'District','class'=>'validate[required] wid150','ajax' => array(
+                        'type'=>'POST',
+                        'url'=>CController::createUrl('Ajax/updatePlaces'), 
+                        'dataType'=>'json',
+                        'data'=>array('districtId'=>'js:this.value'),  
+                        'success'=>'function(data) {
+                            $("#place").html(data.dropDownDist);
+                        }',
+            ))); ?>
+            
 			</div>
 		</li>
 		<li>
 			<div class="title">Residing Corporation / Panchayath</div>
 			<div class="info">
 			<?php
-			$records = Places::model()->findAll("active = 1");
-			$list = CHtml::listData($records, 'placeId', 'name');
-			echo CHtml::dropDownList('place',$user->userpersonaldetails->placeId,$list,array('prompt' => 'Places','class'=>'validate[required] wid200')); ?>
+			echo CHtml::dropDownList('place',null,array(),array('prompt' => 'Places','class'=>'wid150')); ?>
 			</div>
 		</li>
 		<li>
+		<?php if(isset($user->physicaldetails->heightId))
+				$height = $user->physicaldetails->heightId;
+				else 
+				$height = null;
+		
+		?>
 			<div class="title">Height in Cm</div>
 			<div class="info">
-			<?php echo CHtml::dropDownList('height',$user->physicaldetails->heightId,Utilities::getHeights(),array('empty' => 'Height','class'=>'validate[required] wid200')); ?>
+			<?php echo CHtml::dropDownList('height',$height,Utilities::getHeights(),array('empty' => 'Height','class'=>'validate[required] wid200')); ?>
 			</div>
 		</li>
 		<li>
+		<?php if(isset($user->physicaldetails->weight))
+			$weight = $user->physicaldetails->weight;
+			else 
+			$weight = null;
+		
+		?>
 			<div class="title">Weight in Kg</div>
 			<div class="info">
-			<?php echo CHtml::dropDownList('weight',$user->physicaldetails->weight,Utilities::getWeight(),array('empty' => 'Weight in Kg','class'=>'validate[required] wid200')); ?>
+			<?php echo CHtml::dropDownList('weight',$weight,Utilities::getWeight(),array('empty' => 'Weight in Kg','class'=>'validate[required] wid200')); ?>
 			</div>
 		</li>
 		<li>
 			<div class="title">Body Type</div>
+			<?php
+			if(isset($user->physicaldetails->bodyType)) 
+			$body = $user->physicaldetails->bodyType;
+			else
+			$body = null;
+			?>
 			<div class="info">
 				<div class="radio mR14">
-					<input type="radio" name="bodyType" <?php if($user->physicaldetails->bodyType == '0') {?> checked="checked" <?php } ?>
+					<input type="radio" name="bodyType" <?php if($body == '0') {?> checked="checked" <?php } ?>
 						class="validate[required] radio" value="0"> <span>Average</span>
 				</div>
 				<div class="radio mR14">
-					<input type="radio" name="bodyType" <?php if($user->physicaldetails->bodyType == '1') {?> checked="checked" <?php } ?>
+					<input type="radio" name="bodyType" <?php if($body == '1') {?> checked="checked" <?php } ?>
 						class="validate[required] radio" value="1"> <span>Athletic </span>
 				</div>
 				<div class="radio mR14">
-					<input type="radio" name="bodyType" <?php if($user->physicaldetails->bodyType == '2') {?> checked="checked" <?php } ?>
+					<input type="radio" name="bodyType" <?php if($body == '2') {?> checked="checked" <?php } ?>
 						class="validate[required] radio" value="2"> <span>Slim</span>
 				</div>
 				<div class="radio mR14">
-					<input type="radio" name="bodyType" <?php if($user->physicaldetails->bodyType == '3') {?> checked="checked" <?php } ?>
+					<input type="radio" name="bodyType" <?php if($body == '3') {?> checked="checked" <?php } ?>
 						class="validate[required] radio" value="3"><span>Heavy</span>
 				</div>
 
@@ -102,24 +143,31 @@ $heightArray = Utilities::getHeights()
 		<li>
 			<div class="title">Complexion</div>
 			<div class="info">
+			<?php 
+			if(isset($user->physicaldetails->complexion))
+			$comp = $user->physicaldetails->complexion ;
+			else
+			$comp = null;
+			
+			?>
 				<div class="radio mR14">
-					<input type="radio" name="complexion" class="validate[required]" <?php if($user->physicaldetails->complexion == '0') {?> checked="checked" <?php } ?>
+					<input type="radio" name="complexion" class="validate[required]" <?php if($comp == '0') {?> checked="checked" <?php } ?>
 						value="0"><span>Very Fair</span>
 				</div>
 				<div class="radio mR14">
-					<input type="radio" name="complexion" class="validate[required]" <?php if($user->physicaldetails->complexion == '1') {?> checked="checked" <?php } ?>
+					<input type="radio" name="complexion" class="validate[required]" <?php if($comp == '1') {?> checked="checked" <?php } ?>
 						value="1"> <span>Fair </span>
 				</div>
 				<div class="radio mR14">
-					<input type="radio" name="complexion" class="validate[required]" <?php if($user->physicaldetails->complexion == '2') {?> checked="checked" <?php } ?>
+					<input type="radio" name="complexion" class="validate[required]" <?php if($comp == '2') {?> checked="checked" <?php } ?>
 						value="2"> <span>Wheatish </span>
 				</div>
 				<div class="radio mR14">
-					<input type="radio" name="complexion" class="validate[required]" <?php if($user->physicaldetails->complexion == '3') {?> checked="checked" <?php } ?>
+					<input type="radio" name="complexion" class="validate[required]" <?php if($comp == '3') {?> checked="checked" <?php } ?>
 						value="3"> <span>Wheatish brown</span>
 				</div>
 				<div class="radio mR14">
-					<input type="radio" name="complexion" class="validate[required]" <?php if($user->physicaldetails->complexion == '4') {?> checked="checked" <?php } ?>
+					<input type="radio" name="complexion" class="validate[required]" <?php if($comp == '4') {?> checked="checked" <?php } ?>
 						value="4"> <span>Dark</span>
 				</div>
 			</div>
@@ -127,12 +175,19 @@ $heightArray = Utilities::getHeights()
 		<li>
 			<div class="title">Physical Status</div>
 			<div class="info">
+			<?php 
+			if(isset($user->physicaldetails->physicalStatus))
+			$phy = $user->physicaldetails->physicalStatus;
+			else 
+			$phy = null;
+			
+			?>
 				<div class="radio mR14">
-					<input type="radio" name="physical" class="validate[required]" <?php if($user->physicaldetails->physicalStatus == '0') {?> checked="checked" <?php } ?>
+					<input type="radio" name="physical" class="validate[required]" <?php if($phy == '0') {?> checked="checked" <?php } ?>
 						value="0"><span>Normal</span>
 				</div>
 				<div class="radio mR14">
-					<input type="radio" name="physical" class="validate[required]" <?php if($user->physicaldetails->physicalStatus == '1') {?> checked="checked" <?php } ?>
+					<input type="radio" name="physical" class="validate[required]" <?php if($phy == '1') {?> checked="checked" <?php } ?>
 						value="1">
 				</div>
 			</div>
@@ -141,10 +196,13 @@ $heightArray = Utilities::getHeights()
 			<div class="title">Education</div>
 			<div class="info">
 			<?php
-
+			if(isset($user->educations->education))
+			$edu = $user->educations->education;
+			else
+			$edu = null;
 			$records = EducationMaster::model()->findAll("active = 1");
 			$list = CHtml::listData($records, 'educationId', 'name');
-			echo CHtml::dropDownList('education',$user->educations->education,$list,array('empty' => 'Education','class'=>'validate[required] wid200')); ?>
+			echo CHtml::dropDownList('education',$edu ,$list,array('empty' => 'Education','class'=>'validate[required] wid200')); ?>
 
 			</div>
 		</li>
@@ -152,39 +210,48 @@ $heightArray = Utilities::getHeights()
 			<div class="title">Occupation</div>
 			<div class="info">
 			<?php
-
+			if(isset($user->educations->occupation))
+			$occup = $user->educations->occupation;
+			else
+			$occup = null;
 			$records = OccupationMaster::model()->findAll("active = 1");
 			$list = CHtml::listData($records, 'occupationId', 'name');
-			echo CHtml::dropDownList('occupation',$user->educations->occupation,$list,array('empty' => 'Occupation','class'=>'validate[required] wid200')); ?>
+			echo CHtml::dropDownList('occupation',$occup ,$list,array('empty' => 'Occupation','class'=>'validate[required] wid200')); ?>
 
 			</div>
 		</li>
 		<li>
 			<div class="title">Employed In</div>
 			<div class="info">
-
+				<?php 
+				
+				if(isset($user->educations->employedIn))
+				$empy = $user->educations->employedIn;
+				else 
+				$empy = null;				
+				?>
 				<div class="radio mR14">
-					<input type="radio" name="employed" class="validate[required]" <?php if($user->educations->employedIn == '0') {?> checked="checked" <?php } ?> 
+					<input type="radio" name="employed" class="validate[required]" <?php if($empy== '0') {?> checked="checked" <?php } ?> 
 						value="0" /><span>Government </span>
 				</div>
 				<div class="radio mR14">
-					<input type="radio" name="employed" class="validate[required]" <?php if($user->educations->employedIn == '1') {?> checked="checked" <?php } ?>
+					<input type="radio" name="employed" class="validate[required]" <?php if($empy== '1') {?> checked="checked" <?php } ?>
 						value="1" /> <span>Private </span>
 				</div>
 				<div class="radio mR14">
-					<input type="radio" name="employed" class="validate[required]" <?php if($user->educations->employedIn == '2') {?> checked="checked" <?php } ?>
+					<input type="radio" name="employed" class="validate[required]" <?php if($empy== '2') {?> checked="checked" <?php } ?>
 						value="2" /> <span>Business</span>
 				</div>
 				<div class="radio mR14">
-					<input type="radio" name="employed" class="validate[required]" <?php if($user->educations->employedIn == '3') {?> checked="checked" <?php } ?>
+					<input type="radio" name="employed" class="validate[required]" <?php if($empy== '3') {?> checked="checked" <?php } ?>
 						value="3" /> <span>Defence</span>
 				</div>
 				<div class="radio mR14">
-					<input type="radio" name="employed" class="validate[required]" <?php if($user->educations->employedIn == '4') {?> checked="checked" <?php } ?>
+					<input type="radio" name="employed" class="validate[required]" <?php if($empy== '4') {?> checked="checked" <?php } ?>
 						value="4" /><span>Self Employed</span>
 				</div>
 				<div class="radio mR14">
-					<input type="radio" name="employed" class="validate[required]" <?php if($user->educations->employedIn == '5') {?> checked="checked" <?php } ?>
+					<input type="radio" name="employed" class="validate[required]" <?php if($empy== '5') {?> checked="checked" <?php } ?>
 						value="5" /><span>NRI</span>
 				</div>
 			</div>
@@ -192,119 +259,184 @@ $heightArray = Utilities::getHeights()
 		<li>
 			<div class="title">Income</div>
 			<div class="info">
-			<?php echo CHtml::dropDownList('income',$user->educations->yearlyIncome,Utilities::getAnnualIncome(),array('empty' => 'Income','class'=>'wid200')); ?>
+			<?php if(isset($user->educations->yearlyIncome))
+				$income = $user->educations->yearlyIncome;
+				else 
+				$income = null;
+			
+			?>
+			<?php echo CHtml::dropDownList('income',$income ,Utilities::getAnnualIncome(),array('empty' => 'Income','class'=>'wid200')); ?>
 			</div>
 		</li>
 		<li>
 			<div class="title">Food</div>
 			<div class="info">
-
+				<?php 
+				if(isset($user->habits->food))
+				$food = $user->habits->food;
+				else 
+				$food = null;
+				?>
 				<div class="radio mR14">
-					<input type="radio" name="food" value="0" <?php if($user->habits->food == '0') {?> checked="checked" <?php } ?> /> <span>Vegetarian </span>
+					<input type="radio" name="food" value="0" <?php if($food  == '0') {?> checked="checked" <?php } ?> /> <span>Vegetarian </span>
 				</div>
 				<div class="radio mR14">
-					<input type="radio" name="food" value="1" <?php if($user->habits->food == '1') {?> checked="checked" <?php } ?> /> <span>Non-Vegetarian </span>
+					<input type="radio" name="food" value="1" <?php if($food  == '1') {?> checked="checked" <?php } ?> /> <span>Non-Vegetarian </span>
 				</div>
 				<div class="radio mR14">
-					<input type="radio" name="food" value="2" <?php if($user->habits->food == '2') {?> checked="checked" <?php } ?> /> <span>Eggetarian</span>
+					<input type="radio" name="food" value="2" <?php if($food  == '2') {?> checked="checked" <?php } ?> /> <span>Eggetarian</span>
 				</div>
 			</div>
 		</li>
 		<li>
 			<div class="title">Smoking</div>
 			<div class="info">
-
+				<?php 
+				if(isset($user->habits->smoking))
+				$smoke = $user->habits->smoking ;
+				else
+				$smoke = null;
+				
+				?>
 				<div class="radio mR14">
-					<input type="radio" name="smoke" value="0" <?php if($user->habits->smoking == '0') {?> checked="checked" <?php } ?> /> <span>No </span>
+					<input type="radio" name="smoke" value="0" <?php if($smoke == '0') {?> checked="checked" <?php } ?> /> <span>No </span>
 				</div>
 				<div class="radio mR14">
-					<input type="radio" name="smoke" value="1" <?php if($user->habits->smoking == '1') {?> checked="checked" <?php } ?> /> <span>Occasionally </span>
+					<input type="radio" name="smoke" value="1" <?php if($smoke == '1') {?> checked="checked" <?php } ?> /> <span>Occasionally </span>
 				</div>
 				<div class="radio mR14">
-					<input type="radio" name="smoke" value="2" <?php if($user->habits->smoking == '2') {?> checked="checked" <?php } ?> /><span>Yes</span>
+					<input type="radio" name="smoke" value="2" <?php if($smoke == '2') {?> checked="checked" <?php } ?> /><span>Yes</span>
 				</div>
 			</div>
 		</li>
 		<li>
 			<div class="title">Drinking</div>
 			<div class="info">
+			<?php 
+			if(isset($user->habits->drinking))
+			$drink = $user->habits->drinking;
+			else 
+			$drink = null;
+			
+			?>
 				<div class="radio mR14">
-					<input type="radio" name="drink" value="0" <?php if($user->habits->drinking == '0') {?> checked="checked" <?php } ?> /> <span>No </span>
+					<input type="radio" name="drink" value="0" <?php if($drink == '0') {?> checked="checked" <?php } ?> /> <span>No </span>
 				</div>
 				<div class="radio mR14">
-					<input type="radio" name="drink" value="1" <?php if($user->habits->drinking == '1') {?> checked="checked" <?php } ?> /> <span>Occasionally </span>
+					<input type="radio" name="drink" value="1" <?php if($drink == '1') {?> checked="checked" <?php } ?> /> <span>Occasionally </span>
 				</div>
 				<div class="radio mR14">
-					<input type="radio" name="drink" value="2" <?php if($user->habits->drinking == '2') {?> checked="checked" <?php } ?>  /> <span>Yes</span>
+					<input type="radio" name="drink" value="2" <?php if($drink == '2') {?> checked="checked" <?php } ?>  /> <span>Yes</span>
 				</div>
 			</div>
 		</li>
 		<li>
 			<div class="title">Family Status</div>
 			<div class="info">
+			<?php 
+			if(isset($user->familyprofiles->familyStatus))
+			$familySt = $user->familyprofiles->familyStatus;
+			else 
+			$familySt = null;
+			?>
 				<div class="radio mR14"> familyprofiles
-				<input type="radio" name="status" value="0" <?php if($user->familyprofiles->familyStatus == '0') {?> checked="checked" <?php } ?>   /> <span>Lower middle class
+				<input type="radio" name="status" value="0" <?php if($familySt == '0') {?> checked="checked" <?php } ?>   /> <span>Lower middle class
 				</span>
 			</div>
 			<div class="radio mR14">
-				<input type="radio" name="status" value="1" <?php if($user->familyprofiles->familyStatus == '1') {?> checked="checked" <?php } ?>/> <span>Middle class </span>
+				<input type="radio" name="status" value="1" <?php if($familySt == '1') {?> checked="checked" <?php } ?>/> <span>Middle class </span>
 			</div>
 			<div class="radio mR14">
-				<input type="radio" name="status" value="2" <?php if($user->familyprofiles->familyStatus == '2') {?> checked="checked" <?php } ?>/> <span> Upper middle
+				<input type="radio" name="status" value="2" <?php if($familySt == '2') {?> checked="checked" <?php } ?>/> <span> Upper middle
 					class</span>
 			</div>
 			<div class="radio mR14">
-				<input type="radio" name="status" value="3" <?php if($user->familyprofiles->familyStatus == '3') {?> checked="checked" <?php } ?> /><span>Rich</span>
+				<input type="radio" name="status" value="3" <?php if($familySt == '3') {?> checked="checked" <?php } ?> /><span>Rich</span>
 			</div>
 			<div class="radio mR14">
-				<input type="radio" name="status" value="4" <?php if($user->familyprofiles->familyStatus == '4') {?> checked="checked" <?php } ?> /> <span>Affluent </span>
+				<input type="radio" name="status" value="4" <?php if($familySt == '4') {?> checked="checked" <?php } ?> /> <span>Affluent </span>
 			</div>
 			</div>
 		</li>
 		<li>
 			<div class="title">Family Type</div>
 			<div class="info">
+			<?php 
+			if(isset($user->familyprofiles->familyType))
+			$familyType = $user->familyprofiles->familyType;
+			else
+			$familyType = null;
+			?>
 				<div class="radio mR14">
-				<input type="radio" name="type" value="0" <?php if($user->familyprofiles->familyType == '0') {?> checked="checked" <?php } ?> /><span>Joint </span>
+				<input type="radio" name="type" value="0" <?php if($familyType == '0') {?> checked="checked" <?php } ?> /><span>Joint </span>
 			</div>
 			<div class="radio mR14">
-				<input type="radio" name="type" value="1" <?php if($user->familyprofiles->familyType == '1') {?> checked="checked" <?php } ?> /><span>Nuclear </span>
+				<input type="radio" name="type" value="1" <?php if($familyType == '1') {?> checked="checked" <?php } ?> /><span>Nuclear </span>
 			</div>
 			</div>
 		</li>
 		<li>
 			<div class="title">Family Values</div>
 			<div class="info">
+			<?php 
+			if(isset($user->familyprofiles->familyValues))
+			$familVal = $user->familyprofiles->familyValues;
+			else 
+			$familVal = null;
+			?>
 				<div class="radio mR14">
-				<input type="radio" name="familyValues" value="0" <?php if($user->familyprofiles->familyValues == '0') {?> checked="checked" <?php } ?> /> <span>Orthodox </span>
+				<input type="radio" name="familyValues" value="0" <?php if($familVal == '0') {?> checked="checked" <?php } ?> /> <span>Orthodox </span>
 			</div>
 			<div class="radio mR14">
-				<input type="radio" name="familyValues" value="1" <?php if($user->familyprofiles->familyValues == '1') {?> checked="checked" <?php } ?>  />  <span>Traditional </span>
+				<input type="radio" name="familyValues" value="1" <?php if($familVal == '1') {?> checked="checked" <?php } ?>  />  <span>Traditional </span>
 			</div>
 			<div class="radio mR14">
-				<input type="radio" name="familyValues" value="2" <?php if($user->familyprofiles->familyValues == '2') {?> checked="checked" <?php } ?>  />  <span>Moderate </span>
+				<input type="radio" name="familyValues" value="2" <?php if($familVal == '2') {?> checked="checked" <?php } ?>  />  <span>Moderate </span>
 			</div>
 			<div class="radio mR14">
-				<input type="radio" name="familyValues" value="3" <?php if($user->familyprofiles->familyValues == '3') {?> checked="checked" <?php } ?>  />  <span>Liberal </span>
+				<input type="radio" name="familyValues" value="3" <?php if($familVal == '3') {?> checked="checked" <?php } ?>  />  <span>Liberal </span>
 			</div>
 			</div>
 		</li>
 		<li>
 			<div class="title">Brothers</div>
+			<?php 
+			if(isset($user->familyprofiles->brothers))
+			$bro = $user->familyprofiles->brothers;
+			else
+			$bro = null;
+			
+			if(isset($user->familyprofiles->brotherMarried))
+			$broM = $user->familyprofiles->brotherMarried;
+			else 
+			$broM = null;
+			
+			?>
 			<div class="info">
-				<?php echo CHtml::dropDownList('brothers',$user->familyprofiles->brothers,Utilities::getBrotherCount(),array('class'=>'wid50')); ?>
+				<?php echo CHtml::dropDownList('brothers',$bro,Utilities::getBrotherCount(),array('class'=>'wid50')); ?>
 				<div class="married">
-					<span class="text">Married</span> <?php echo CHtml::dropDownList('brothersMarry',$user->familyprofiles->brotherMarried,Utilities::getBrotherCount(),array('class'=>'wid50')); ?>
+					<span class="text">Married</span> <?php echo CHtml::dropDownList('brothersMarry',$broM,Utilities::getBrotherCount(),array('class'=>'wid50')); ?>
 				</div>
 			</div>
 		</li>
 		<li>
+		<?php 
+		if(isset($user->familyprofiles->sisters))
+		$sis = $user->familyprofiles->sisters;
+		else 
+		$sis =null;
+		
+		if(isset($user->familyprofiles->SisterMarried))
+		$sisM = $user->familyprofiles->SisterMarried;
+		else
+		$sisM = null;
+		?>
 			<div class="title">Sisters</div>
 			<div class="info">
-				<?php echo CHtml::dropDownList('sisters',$user->familyprofiles->sisters,Utilities::getBrotherCount(),array('class'=>'wid50')); ?>
+				<?php echo CHtml::dropDownList('sisters',$sis ,Utilities::getBrotherCount(),array('class'=>'wid50')); ?>
 				<div class="married">
 					<span class="text">Married</span>
-					<?php echo CHtml::dropDownList('sistersMarry',$user->familyprofiles->SisterMarried,Utilities::getBrotherCount(),array('class'=>'wid50')); ?>
+					<?php echo CHtml::dropDownList('sistersMarry',$sisM,Utilities::getBrotherCount(),array('class'=>'wid50')); ?>
 				</div>
 			</div>
 		</li>
@@ -882,7 +1014,7 @@ $heightArray = Utilities::getHeights()
 			<div class="info">
 				<textarea 	name="familyDesc" rows="2" cols="20" 
 				placeholder="Please give details about your family, background etc. Limit it to 100 words to get maximum results. Do not write your contact details here. If you do so, your ID will be rejected by our automated system.">
-				<?php echo $user->familyprofiles->familyDesc ?>
+				<?php if(isset($user->familyprofiles->familyDesc))echo $user->familyprofiles->familyDesc ?>
 				</textarea>
 			</div>
 		</li>
@@ -891,7 +1023,7 @@ $heightArray = Utilities::getHeights()
 			<div class="info">
 				<textarea rows="2" cols="20" name="myDesc" class="validate[required]" 
 				placeholder="Enter your personal details, qualification, profession, interests etc. Do not write your contact details here. If you do so, your ID will be rejected by our automated system.">
-				<?php echo $user->familyprofiles->userDesc ?>
+				<?php if(isset($user->familyprofiles->userDesc))echo $user->familyprofiles->userDesc ?>
 				
 				</textarea>
 			</div>
