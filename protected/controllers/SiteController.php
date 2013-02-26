@@ -28,6 +28,8 @@ class SiteController extends Controller
         		return true;
         		if($action->id == 'error')
         		return true;
+        		if($action->id == 'popup')
+        		return true;
                 $user = Yii::app()->session->get('user');
                 if(isset($user)) {
                         $this->redirect(array('/mypage'));

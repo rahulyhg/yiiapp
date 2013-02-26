@@ -11,6 +11,19 @@
 					<li>
 
 						<p class="tCenter">
+						<?php if($action == 'login'){?>
+							<?php if($module == 'document'){?>
+							The document you are trying to view is protected from public views. To view the details, please log in to you marrydoor.com account.
+							<?php }elseif($module == 'album'){?>
+							The album you are trying to view is protected from public views. To view the details, please log in to you marrydoor.com account.
+							<?php }elseif($module == 'contact'){?>
+							The contact you are trying to view is protected from public views. To view the details, please log in to you marrydoor.com account.
+							<?php }elseif($module == 'reference'){?>
+							The reference you are trying to view is protected from public views. To view the details, please log in to you marrydoor.com account.
+							<?php }elseif($module == 'astro'){?>
+							The astro you are trying to view is protected from public views. To view the details, please log in to you marrydoor.com account.
+							<?php }?>
+						<?php }else{?>
 						<?php if($module == 'document'){?>
 							The document you are trying to view is protected. In order to see the documents, please send a request to the user.
 							<?php }elseif($module == 'album'){?>
@@ -22,16 +35,34 @@
 							<?php }elseif($module == 'astro'){?>
 							The astro you are trying to view is protected. In order to see the astro, please send a request to the user.
 							<?php }?>
+						<?php }?>
 						</p>
 						<div class="unlock"></div>
+						<?php if($action == 'login'){ ?>
+						<p class="tCenter">
+							To get access to view this 
+							<?php if($module == 'document'){?>
+							documents
+							<?php }elseif($module == 'contact'){?>
+							contact
+							<?php }elseif($module == 'reference'){?>
+							reference
+							<?php }elseif($module == 'astro'){?>
+							astro
+							<?php }elseif($module == 'album'){?>
+							album
+							<?php }?>
+							, login now.
+						</p>
+						<?php }?>
 						<div class="visitorBtnC">
 						<?php if($action == 'request'){?>
 							<input type="submit" name="sendRequest" id="sendRequest" value="Send Request" class="type2b" />
 							<?php }elseif($action == 'login'){ ?>
-							<a href="<?php echo Utilities::createAbsoluteUrl('site','popuplogin',array()); ?>"><input type="button" name="sendRequest" id="sendRequest" value="Login" class="type2b" /></a>
-							<input type="button" name="newmember" id="newmember" value="I am not a member yet" class="type2b" onclick="javascript:redirectUser('<?php echo Utilities::createAbsoluteUrl('site','index') ?>');" />
-						<?php }elseif($action == 'subscribe'){ ?>
-						<input type="button" name="sendRequest" id="sendRequest" value="Subscribe Now" class="type2b" onclick="javascript:redirectUser('<?php echo Utilities::createAbsoluteUrl('payment','index') ?>');" />
+							<a href="<?php echo Utilities::createAbsoluteUrl('site','popuplogin',array()); ?>" class="visitCnt" >Login Now</a>
+							<a href="#" class="visitCnt" onclick="javascript:redirectUser('<?php echo Utilities::createAbsoluteUrl('site','index',array()); ?>');">I am not a member yet</a>
+							<?php }elseif($action == 'subscribe'){ ?>
+							<a href="#" class="visitCnt" onclick="javascript:redirectUser('<?php echo Utilities::createAbsoluteUrl('payment','index') ?>');">Subscribe Now</a>
 						<?php }?>
 						</div>
 				</ul>

@@ -476,3 +476,6 @@ LEFT JOIN places PL1 ON UP1.placeId = PL1.placeId
 
 LEFT JOIN photos SP ON (RE.senderId = SP.userId AND SP.profileImage = 1)
 LEFT JOIN photos RP ON (RE.receiverId = RP.userId AND RP.profileImage = 1);
+
+-- Table for Notifications
+create table notifications(notificationId BIGINT UNIQUE NOT NULL AUTO_INCREMENT, userId BIGINT NOT NULL,  notification TEXT, notificationType ENUM('album', 'family', 'documents','astro','reference','contact','password','subscribe','recharge','system'),status TINYINT NOT NULL DEFAULT 0,createdate datetime NOT NULL, PRIMARY KEY(notificationId), FOREIGN KEY (userId) REFERENCES users(userId))ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;

@@ -111,81 +111,48 @@ $user = Yii::app()->session->get('user');
 			<ul class="myPd">
 				<li>
 					<?php 
-						$settings = Utilities::getUserPrivacySettings($model->userId);
+						/*$settings = Utilities::getUserPrivacySettings($model->userId);
 						$contactSetting = Utilities::getUserPrivacyStatus($settings,'contact');
 						$docSetting = Utilities::getUserPrivacyStatus($settings,'documents');
 						$astroSetting = Utilities::getUserPrivacyStatus($settings,'astro');
 						$albumSetting = Utilities::getUserPrivacyStatus($settings,'album');
 						$familySetting = Utilities::getUserPrivacyStatus($settings,'family');
-						$referenceSetting = Utilities::getUserPrivacyStatus($settings,'reference');
+						$referenceSetting = Utilities::getUserPrivacyStatus($settings,'reference');*/
 					?>
 					<div class="butCo mL0">
-						<?php if($contactSetting == 'all'){ ?>
-						<a href="/contact/details/id/<?php echo $model->marryId ?>" id="requestWindow" >Contact</a>
-						<?php  }elseif($contactSetting == 'subscribers'){ 
+							<?php 
 							if($user->userType == 1){  ?>
 									<a href="/contact/details/id/<?php echo $model->marryId ?>" id="requestWindow" >Contact</a>
 							<?php }else{?>
-								<a id="requestWindow" href="<?php echo Utilities::createAbsoluteUrl('user','popup',array('action'=>'subscribe','module'=>'contact','profileId'=>$model->userId)); ?>">Contact</a>
+								<a id="requestWindow" href="<?php echo Utilities::createAbsoluteUrl('site','popup',array('action'=>'subscribe','module'=>'contact','profileId'=>$model->userId)); ?>">Contact</a>
 							<?php }?>
-						<?php }?>
 					</div>
 					<div class="butCo">
-						<?php if($docSetting == 'all'){?>
-							<a href="<?php echo Utilities::createAbsoluteUrl('album','document',array('mId'=>$model->marryId,'wType'=>'popup')); ?>" id="requestWindow" >Document </a>
-						<?php }elseif($docSetting == 'subscribers'){
+						<?php 
 						if($user->userType == 1){  ?>
 							<a href="<?php echo Utilities::createAbsoluteUrl('album','document',array('mId'=>$model->marryId,'wType'=>'popup')); ?>" id="requestWindow" >Document </a>
 						<?php }else{?>
-							<a id="requestWindow" href="<?php echo Utilities::createAbsoluteUrl('user','popup',array('action'=>'subscribe','module'=>'document','profileId'=>$model->userId)); ?>">Document</a>
+							<a id="requestWindow" href="<?php echo Utilities::createAbsoluteUrl('site','popup',array('action'=>'subscribe','module'=>'document','profileId'=>$model->userId)); ?>">Document</a>
 						<?php }
-						}
 						?>
 					</div>
 					<div class="butCo">
-						<?php if($referenceSetting == 'all'){?>
-							<a href="/contact/referencedetails/id/<?php echo $model->marryId ?>" id="requestWindow" >Reference </a>
-						<?php }elseif($referenceSetting == 'subscribers'){
+						<?php 
 						if($user->userType == 1){  ?>
 							<a href="/contact/referencedetails/id/<?php echo $model->marryId ?>" id="requestWindow" >Reference </a>
 						<?php }else{?>
-							<a id="requestWindow" href="<?php echo Utilities::createAbsoluteUrl('user','popup',array('action'=>'subscribe','module'=>'reference','profileId'=>$model->userId)); ?>">Reference</a>
+							<a id="requestWindow" href="<?php echo Utilities::createAbsoluteUrl('site','popup',array('action'=>'subscribe','module'=>'reference','profileId'=>$model->userId)); ?>">Reference</a>
 						<?php }
-						}
 						?>
 					</div>
 					<div class="butCo">
-						<?php if($familySetting == 'all'){?>
 						<a id="requestWindow" href="<?php echo Utilities::createAbsoluteUrl('album','family',array('mId'=>$model->marryId,'wType'=>'popup')); ?>">Family album</a>
-						<?php }elseif($familySetting == 'subscribers'){  
-							if($user->userType == 1){  ?>
-								<a id="requestWindow" href="<?php echo Utilities::createAbsoluteUrl('album','family',array('mId'=>$model->marryId,'wType'=>'popup')); ?>">Family album</a>
-							<?php }else{ ?>
-									<a id="requestWindow" href="<?php echo Utilities::createAbsoluteUrl('user','popup',array('action'=>'subscribe','module'=>'album','profileId'=>$model->userId)); ?>">Family album</a>
-							<?php }
-					 } ?>
 					</div>
 					<div class="butCo">
-					<?php if($albumSetting == 'all'){?>
 						<a id="requestWindow" href="<?php echo Utilities::createAbsoluteUrl('album','view',array('mId'=>$model->marryId,'wType'=>'popup')); ?>">Personal album</a>
-					<?php }elseif($albumSetting == 'subscribers'){  
-							if($user->userType == 1){  ?>
-								<a id="requestWindow" href="<?php echo Utilities::createAbsoluteUrl('album','view',array('mId'=>$model->marryId,'wType'=>'popup')); ?>">Personal album</a>
-							<?php }else{ ?>
-									<a id="requestWindow" href="<?php echo Utilities::createAbsoluteUrl('user','popup',array('action'=>'subscribe','module'=>'album','profileId'=>$model->userId)); ?>">Personal album</a>
-							<?php }
-					 } ?>
 					</div>
 					<div class="butCo">
-							<?php if($astroSetting == 'all'){?>
 								<a href="/contact/astrodetails/id/<?php echo $model->marryId ?>" id="astroDetails" >Astro Details</a>
-							<?php }elseif($astroSetting == 'subscribers'){
-								if($user->userType == 1){  ?>
-									<a href="/contact/astrodetails/id/<?php echo $model->marryId ?>" id="astroDetails" >Astro Details</a>
-								<?php }else{ ?>
-									<a id="requestWindow" href="<?php echo Utilities::createAbsoluteUrl('user','popup',array('action'=>'subscribe','module'=>'astro','profileId'=>$model->userId)); ?>">Astro Details</a>
-								<?php }?>
-							<?php }?>	
 					</div>
 				</li>
 			</ul>

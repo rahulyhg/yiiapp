@@ -137,17 +137,7 @@ class AlbumController extends Controller
 					$url = Utilities::createAbsoluteUrl('site','index');
 				}
 			}else*/
-			if($albumSetting == 'subscribers'){ 
-				if($loggedUser->userType == 1){
-					$flag = true;
-				}else{
-					$flag = false;
-					$url = Utilities::createAbsoluteUrl('request','popup',array('action'=>'subscribe','module'=>'album','profileId'=>$user->userId));
-				}
-			}elseif($albumSetting == 'all'){
-				$flag = true;
-			}
-			if($flag){
+
 				// set user id in session to avoid set in form hidden
 				Yii::app()->session->add('profileUserId',$user->userId);
 				$photo = new Photos();
@@ -181,10 +171,7 @@ class AlbumController extends Controller
 				}
 				$photosList = $photo->findAll('userId='.$user->userId);
 				$this->render('view',array('photosList' => $photosList,'user' => $user,'windowType'=>$windowType));
-			}else{
-				Yii::app()->redirect($url);
-				Yii::app()->end;
-			}
+
 		}else{
 			$message = Yii::t('error','invalidRequest');
 			$this->render('view',array('message' => $message));
