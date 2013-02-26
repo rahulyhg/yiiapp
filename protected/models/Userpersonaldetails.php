@@ -25,7 +25,6 @@
  * @property Country $country
  * @property States $state
  * @property Districts $district
- * @property Places $place
  */
 class Userpersonaldetails extends CActiveRecord
 {
@@ -78,7 +77,6 @@ class Userpersonaldetails extends CActiveRecord
 			'country' => array(self::BELONGS_TO, 'Country', 'countryId'),
 			'state' => array(self::BELONGS_TO, 'States', 'stateId'),
 			'district' => array(self::BELONGS_TO, 'Districts', 'districtId'),
-			'place' => array(self::BELONGS_TO, 'Places', 'placeId'),
 		);
 	}
 

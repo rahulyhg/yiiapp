@@ -34,7 +34,7 @@ $heightArray = Utilities::getHeights()
 			<div class="info">
 			<?php $records = Country::model()->findAll("active = 1");
 		$list = CHtml::listData($records, 'countryId', 'name');
-		echo CHtml::dropDownList('country',$user->userpersonaldetails->countryId,$list,array('empty' => 'Country','class'=>'validate[required] width60','ajax' => array(
+		echo CHtml::dropDownList('country',$user->userpersonaldetails->countryId,$list,array('empty' => 'Country','class'=>'validate[required] wid150','ajax' => array(
                         'type'=>'POST',
                         'url'=>CController::createUrl('Ajax/updateState'), 
                         'dataType'=>'json',
@@ -339,7 +339,7 @@ $heightArray = Utilities::getHeights()
 			else 
 			$familySt = null;
 			?>
-				<div class="radio mR14"> familyprofiles
+				<div class="radio mR14">
 				<input type="radio" name="status" value="0" <?php if($familySt == '0') {?> checked="checked" <?php } ?>   /> <span>Lower middle class
 				</span>
 			</div>
