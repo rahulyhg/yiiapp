@@ -31,8 +31,7 @@ countryId BIGINT NOT NULL DEFAULT 0, stateId BIGINT NOT NULL DEFAULT 0,
  FOREIGN KEY(religionId) REFERENCES religion(religionId),
  FOREIGN KEY(countryId) REFERENCES country(countryId),
  FOREIGN KEY(stateId) REFERENCES states(stateId),
- FOREIGN KEY(districtId) REFERENCES districts(districtId),
- FOREIGN KEY(placeId) REFERENCES places(placeId)
+ FOREIGN KEY(districtId) REFERENCES districts(districtId)
  )ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;
 
 -- --------Table for userContactDetails--------------
