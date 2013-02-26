@@ -554,10 +554,15 @@ class SearchController extends Controller
 			if(isset($_POST['profile']))
 			{
 				foreach ($_POST['profile'] as $value) {
-					if($value == 'p')
+					if($value == 'p') {
 					$condition .= " AND photo IS NOT NULL ";
-					else if ($value == 'h')
+					$searchText.= "with photo";
+					
+					}
+					else if ($value == 'h') {
 					$condition .= " AND horoscope IS NOT NULL ";
+					$searchText.= "with horoscope";
+					}
 				}
 			}
 		

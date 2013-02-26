@@ -42,11 +42,11 @@
 				</div>
 				<div class="selC">
 					<span>Age</span>
-					<?php echo CHtml::dropDownList('ageFrom',null,Utilities::getAge(),array('class'=>'validate[gfuncCall[hidePromp]]  wid50')); ?>
+					<?php echo CHtml::dropDownList('ageFrom',null,Utilities::getAge(),array('prompt'=>'Age','class'=>'validate[gfuncCall[hidePromp]]  wid50')); ?>
 				</div>
 				<div class="selC">
 					<span>to</span>
-					<?php echo CHtml::dropDownList('ageTo',null,Utilities::getAge(),array('class'=>'validate[gfuncCall[checkAgeLimit]] wid50')); ?>
+					<?php echo CHtml::dropDownList('ageTo',null,Utilities::getAge(),array('prompt'=>'Age','class'=>'validate[gfuncCall[checkAgeLimit]] wid50')); ?>
 				</div>
 				<div class="selC">
 					<span>Religion</span>
@@ -238,7 +238,7 @@
 						</div>
 						<div class="info">
 							<div class="check wid220">
-								<input type="checkbox" value="P" name="profile[]"><span>Only With Photo</span>
+								<input type="checkbox" value="p" name="profile[]"><span>Only With Photo</span>
 							</div>
 							<div class="check ">
 								<input type="checkbox" value="h" name="profile[]"><span>Only With horoscope</span>
