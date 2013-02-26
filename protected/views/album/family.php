@@ -1,4 +1,3 @@
-
 <?php if(!empty($photosList)){ ?>
 <script language="javascript">
 var myImg_<?php echo $user->userId ?> = new Array()
@@ -70,6 +69,17 @@ window.onload=loadImg_<?php echo $user->userId; ?>;
 						<img width="450" height="480" id="imgSrc_<?php echo $user->userId ?>" name="imgSrc_<?php echo $user->userId ?> src="<?php echo Utilities::getAlbumImage($user->marryId,$profileImage);?>" alt="<?php echo $user->name;?>" />
 					</div>
 				</div>
+			</section>
+		</div>
+<?php }?>
+<?php }else{?>
+	<div class="subContent">
+			<section class="subHead">
+				<h1 ><?php echo $user->name;?> <?php echo $user->marryId?></h1>
+				<h5>Viewing album</h5>
+			</section>
+			<section class="subContnr">
+				No albums available at the moment.
 			</section>
 		</div>
 <?php }?>
