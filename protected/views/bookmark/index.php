@@ -138,6 +138,7 @@ $(document).ready(function() {
 		
 		
 	$('.fir').click(function (){
+		$('input:checkbox').removeAttr('checked');
 		$('.nex').show();
 		$('.fir').hide();
 		$('.last').show();
@@ -161,6 +162,7 @@ $(document).ready(function() {
 		});
 
 	$('.pre').click(function (){
+		$('input:checkbox').removeAttr('checked');
 		$('.nex').show();
 		$('.last').show();
 		currentPage = parseInt($("input[name='currentPage']").val());
@@ -180,6 +182,7 @@ $(document).ready(function() {
 	});
 
 	$('.nex').click(function (){
+		$('input:checkbox').removeAttr('checked');
 		$('.pre').show();
 		$('.fir').show();
 		
@@ -206,6 +209,7 @@ $(document).ready(function() {
 	});
 
 	$('.last').click(function (){
+		$('input:checkbox').removeAttr('checked');
 		$('.pre').show();
 		$('.nex').hide();
 		$('.fir').show();

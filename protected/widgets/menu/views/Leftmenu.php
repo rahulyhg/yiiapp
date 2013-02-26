@@ -11,7 +11,7 @@
     <aside class="left-bar-container">
 		<ul class="left-bar-data">
             <li>
-				<a href="<?php echo Utilities::createAbsoluteUrl('mypage','album',array()); ?>"><img src="<?php echo Utilities::getProfileImage($user->marryId,$image) ?>" alt="" /></a>
+				<a href="<?php echo Utilities::createAbsoluteUrl('mypage','album',array()); ?>"><img width="75" height="75" src="<?php echo Utilities::getProfileImage($user->marryId,$image) ?>" alt="" /></a>
 				<a href="<?php echo Utilities::createAbsoluteUrl('mypage','',array()); ?>" class="pName"><?php echo $user->name?></a>
 			</li>
         </ul>

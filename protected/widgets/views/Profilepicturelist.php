@@ -47,7 +47,7 @@ window.onload=loadImg_<?php echo $userId; ?>;
 
 </script>
 <div class="image-contnr">
-<a href="<?php echo Utilities::getProfileImage($marryId,$profileImage);?>" rel="lightbox[roadtrip_<?php echo $userId ?>]"><img id="imgSrc_<?php echo $userId ?>" name="imgSrc_<?php echo $userId ?>" alt="" src="<?php echo Utilities::getProfileImage($marryId,$profileImage);?>"></a>
+<a href="<?php echo Utilities::getProfileImage($marryId,$profileImage);?>" rel="lightbox[roadtrip_<?php echo $userId ?>]"><img id="imgSrc_<?php echo $userId ?>" name="imgSrc_<?php echo $userId ?>" height="117" width="93" alt="" src="<?php echo Utilities::getProfileImage($marryId,$profileImage);?>"></a>
 <div class="img-controls">
 	<a class="prev" href="javascript:void(0);" onClick="prev_<?php echo $userId ?>();"></a>
 	<div class="numbers">
@@ -65,10 +65,19 @@ foreach($photosList as $photo){
 if($photo->imageName != $profileImage){
 	?>
 <a href="<?php echo Utilities::getProfileImage($marryId,$photo->imageName);?>" rel="lightbox[roadtrip_<?php echo $userId ?>]">image #1</a>
+
 <?php } }?>
 </div>
 <?php }else{?>
 <div class="image-contnr">
-	<a href="#"><img id="imgSrc" name="imgSrc" alt="" src="<?php echo Utilities::getProfileImage($marryId,'');?>"></a>
+	<a href="#"><img id="imgSrc" height="117" width="93" name="imgSrc" alt="" src="<?php echo Utilities::getProfileImage($marryId,'');?>"></a>
+<div class="img-controls">
+	<a class="prev" href="javascript:void(0);"></a>
+	<div class="numbers">
+		<span id="slideCount">0</span> of<span> 0 </span>
+	</div>
+	<a class="next" href="javascript:void(0);"></a>
+</div>
+	
 </div>
 <?php }?>

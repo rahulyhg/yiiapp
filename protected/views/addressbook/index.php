@@ -115,8 +115,8 @@
         </div>
          <?php if(isset($users)){ ?>
         <div class="pagination-contnr">
-            <div class="select-contnr"><input type="checkbox" /> Select All</div>
-            <a href="#">Remove Addresbook</a>
+        	<div class="select-contnr"><input type="checkbox" class="selection" name="selection" /> Select All</div>
+            <a id="rmv-large1" href="#">Remove Addressbook</a>
             <?php if(isset($totalPage) && intval($totalPage) > 1) { ?>
             <ul class="pagination">
                 <li><span class="fir"><a href="#">First</a></span></li>
@@ -149,6 +149,7 @@ $(document).ready(function() {
 		
 		
 	$('.fir').click(function (){
+		$('input:checkbox').removeAttr('checked');
 		$('.nex').show();
 		$('.fir').hide();
 		$('.last').show();
@@ -172,6 +173,7 @@ $(document).ready(function() {
 		});
 
 	$('.pre').click(function (){
+		$('input:checkbox').removeAttr('checked');
 		$('.nex').show();
 		$('.last').show();
 		currentPage = parseInt($("input[name='currentPage']").val());
@@ -191,6 +193,7 @@ $(document).ready(function() {
 	});
 
 	$('.nex').click(function (){
+		$('input:checkbox').removeAttr('checked');
 		$('.pre').show();
 		$('.fir').show();
 		
@@ -217,6 +220,7 @@ $(document).ready(function() {
 	});
 
 	$('.last').click(function (){
+		$('input:checkbox').removeAttr('checked');
 		$('.pre').show();
 		$('.nex').hide();
 		$('.fir').show();
@@ -255,18 +259,19 @@ $(document).ready(function() {
 		$('.selection').attr("checked",false);
 		 });
 	 
-	 $('#rmv-large').click(function (){
+	 $('[id^=rmv-large]').click(function (){
 		 var  allVal= [];
 		 if($("input:checkbox[name=userId]:checked").length == 0)
 		 {
 			alert('Please select any one of profile to remove');
 			return false;
-		 }		 
+		 }
 		 $("input:checkbox[name=userId]:checked").each(function(){
-			 allVal.push($(this).val());
+			 if($(this).parent('div').parent('div').css('display') == 'block'){
+				 allVal.push($(this).val());
+				 }
 		 });
-	alert(allVal);
-		 //removeAllBookMark(allVal); 
+		  removeAllBookMark(allVal); 
 	 });
 		 //		
 

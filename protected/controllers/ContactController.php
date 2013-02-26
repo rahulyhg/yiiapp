@@ -25,7 +25,6 @@ class ContactController extends Controller
 					if(isset($loggedUser->addressBook)){
 						$userBook = Addressbook::model()->findByAttributes(array('userID' => $usersList->userId));
 						$arrayList = explode(",",$userBook->visitedId);
-						
 						if(!in_array($user->userId,$arrayList)){
 						$arrayList[] = $user->userId;
 						$visitedId = implode(",", $arrayList);
@@ -71,14 +70,13 @@ class ContactController extends Controller
 				if(isset($user->name))
 				{
 					$loggedUser = Yii::app()->session->get('user');
+					$loggedUser->addressBook = Addressbook::model()->findByAttributes(array('userID' => $loggedUser->userId));
 					if(isset($loggedUser->addressBook)){
 						$arrayList = explode(",",$loggedUser->addressBook->visitedId);
-						if(!in_array($user->userId,$arrayList)){
-						$arrayList[] = $user->userId;
-						$visitedId = implode(",", $arrayList);
+						$arr = array_merge($arrayList, array($user->userId));
+						$visitedId = implode(",", $arr);
 						$loggedUser->addressBook->visitedId = $visitedId ;
 						$loggedUser->addressBook->save();
-						}
 					}
 					else {
 						$addressbook = new Addressbook();
