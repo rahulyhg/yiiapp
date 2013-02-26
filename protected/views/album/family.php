@@ -71,7 +71,6 @@ window.onload=loadImg_<?php echo $user->userId; ?>;
 				</div>
 			</section>
 		</div>
-<?php }?>
 <?php }else{?>
 	<div class="subContent">
 			<section class="subHead">
