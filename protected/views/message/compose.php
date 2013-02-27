@@ -1,6 +1,6 @@
 <div class="subContent">
 			<section class="subHead">
-				<h1 class="width100">Message to Biju George</h1>
+				<h1 class="width100">Message to <?php echo $receiver->name; ?></h1>
 			</section>
 			<section class="subContnr">
 		<ul>
@@ -10,7 +10,7 @@
 		<?php 
                }else{?>
 		<form name="frmMessage" id="frmMessage" method="post" action="<?php echo Utilities::createAbsoluteUrl('message','compose',array()); ?>">
-			<input type = "hidden" name="receiverId" id="receiverId" value="<?php echo $receiverId; ?>" />
+			<input type = "hidden" name="receiverId" id="receiverId" value="<?php echo $receiver->userId; ?>" />
 			<li>
 				<textarea type="text" placeholder="Type your message here.." name="message" id="message" ></textarea>
 			</li>

@@ -1,6 +1,4 @@
-
 <?php
-
 class MessageController extends Controller
 {
 	 public function beforeAction()
@@ -115,6 +113,8 @@ class MessageController extends Controller
 	{
 		$user = Yii::app()->session->get('user');
 		$receiverId = isset($_REQUEST['receiverId']) ? $_REQUEST['receiverId']:0;
+		$userObj = new Users();
+		$receiver = $userObj->find("userId=".$receiverId);
 		if(isset($_POST['message']) && $_POST['message'] != ""){
 			$msg = trim($_POST['message']);
 			$receiverId = isset($_REQUEST['receiverId']) ? $_REQUEST['receiverId']:0;
@@ -131,7 +131,7 @@ class MessageController extends Controller
 			}
 		}
 		$this->layout= '//layouts/popup';
-		$this->render('compose',array('message'=>$success,'receiverId'=>$receiverId));
+		$this->render('compose',array('message'=>$success,'receiverId'=>$receiverId,'receiver'=>$receiver));
 	}		
 	// Uncomment the following methods and override them if needed
 	/*
