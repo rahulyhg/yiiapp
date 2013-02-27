@@ -43,7 +43,7 @@ class Utilities
  {
 
   $yearNow = self::currentYear();
-  $yearFrom = $yearNow - 59;
+  $yearFrom = $yearNow - 55;
   $yearTo = $yearNow - 18;
   $arrYears = array();
 
@@ -82,7 +82,7 @@ class Utilities
  public static function getAge()
  {
   $days = array();
-     foreach( range(18,50) as $day){
+     foreach( range(18,55) as $day){
    $days[$day] = $day;
      }
      return $days; 
@@ -512,6 +512,7 @@ class Utilities
  	}
 	if(isset($parenterPrefObj->maritalStatus))
 	{
+		if($parenterPrefObj->maritalStatus != 4)
 		$condition .= " AND maritalStatus = {$parenterPrefObj->maritalStatus}";
 	}
 	/*
@@ -521,6 +522,7 @@ class Utilities
 	}*/
 	if(isset($parenterPrefObj->physicalStatus))
 	{
+		if($parenterPrefObj->physicalStatus != 2)
 		$condition .= " AND physicalStatus = {$parenterPrefObj->physicalStatus}";
 	}
  	
@@ -530,7 +532,7 @@ class Utilities
 	}
  	if(isset($parenterPrefObj->caste))
 	{
-		$condition .= " AND FIND_IN_SET('{$parenterPrefObj->caste}',caste)";
+		$condition .= " AND casteId IN ($parenterPrefObj->caste)";
 	}
  	/*if(isset($parenterPrefObj->subcaste))
 	{
@@ -540,50 +542,59 @@ class Utilities
 	
  	if(isset($parenterPrefObj->dosham))
 	{
+		if($parenterPrefObj->dosham == 1)
 		$condition .= " AND dosham = {$parenterPrefObj->dosham}";
+		else
+		$condition .= " AND (dosham = {$parenterPrefObj->dosham} OR dosham IS NULL)";
+		
+		
 	
 	}
  	if(isset($parenterPrefObj->sudham))
 	{
+		if($parenterPrefObj->sudham == 0)
 		$condition .= " AND sudham = {$parenterPrefObj->sudham}";
+		else
+		$condition .= " AND (sudham = {$parenterPrefObj->sudham}  OR sudham IS NULL)";
+		
 	}
  	if(isset($parenterPrefObj->eatingHabits))
 	{
-		
-		$condition .= " AND FIND_IN_SET('{$parenterPrefObj->eatingHabits}',food)";
+		if($parenterPrefObj->eatingHabits != 3)
+		$condition .= " AND food IN ($parenterPrefObj->eatingHabits)";
 	}
  	if(isset($parenterPrefObj->drinkingHabits))
 	{
-		
-		$condition .= " AND FIND_IN_SET('{$parenterPrefObj->drinkingHabits}',drinking)";
+		if($parenterPrefObj->drinkingHabits != 3)
+		$condition .= " AND drinking IN ($parenterPrefObj->drinkingHabits)";
 	}
 		if(isset($parenterPrefObj->smokingHabits))
 	{
-	
-		$condition .= " AND FIND_IN_SET('{$parenterPrefObj->smokingHabits}',smoking)";
+		if($parenterPrefObj->smokingHabits != 3)
+		$condition .= " AND smoking IN ($parenterPrefObj->smokingHabits)";
 	}
  	if(isset($parenterPrefObj->languages))
 	{
 		
-		$condition .= " AND FIND_IN_SET('{$parenterPrefObj->languages}',languages)";
+		$condition .= " AND motherTounge IN ($parenterPrefObj->languages)";
 	}
  if(isset($parenterPrefObj->countries))
 	{
 	
-		$condition .= " AND FIND_IN_SET('{$parenterPrefObj->countries}',countryId)";
+		$condition .= " AND countryId IN ($parenterPrefObj->countries)";
 	}
  if(isset($parenterPrefObj->states))
 	{
 		
-		$condition .= " AND FIND_IN_SET('{$parenterPrefObj->states}',stateId)";
+		$condition .= " AND stateId IN ($parenterPrefObj->states)";
 	}
  if(isset($parenterPrefObj->districts))
 	{
-		$condition .= " AND FIND_IN_SET('{$parenterPrefObj->districts}',districtId)";
+		$condition .= " AND districtId IN ($parenterPrefObj->districts)";
 	}	
 	if(isset($parenterPrefObj->places))
 	{
-		$condition .= " AND FIND_IN_SET('{$parenterPrefObj->places}',placeId)";
+		$condition .= " AND placeId IN ($parenterPrefObj->places)";
 	}	
 	/*
 	if(isset($parenterPrefObj->citizenship))
@@ -594,12 +605,7 @@ class Utilities
 	if(isset($parenterPrefObj->occupation))
 	{
 		
-		$condition .= " AND FIND_IN_SET('{$parenterPrefObj->occupation}',occupationId)";
-	}	
-	
-	if(isset($parenterPrefObj->annualIncome))
-	{
-		$condition .= " AND annualIncome = {$parenterPrefObj->annualIncome}";
+		$condition .= " AND occupationId IN ($parenterPrefObj->occupation)";
 	}	
  	return $condition;
  }

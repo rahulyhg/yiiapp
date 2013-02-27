@@ -316,7 +316,7 @@ DROP VIEW IF EXISTS view_users;
 CREATE VIEW view_users AS SELECT U.*, FLOOR( DATEDIFF( CURRENT_DATE, U.dob) /365 ) as age,UC.mobileNo,UC.landLine,UC.alternativeNo,UC.facebookUrl,UC.skypeId,UC.googleIM,UC.yahooIM,UC.visibility,
 UP.casteId as casteId,C.name as caste,UP.religionId as religionId, R.name as religion,UP.countryId,CO.name as country,UP.stateId,S.name as state,UP.districtId,D.name as district,UP.placeId as placeId, PL.name as place,UP.mobilePhone,UP.landPhone,UP.intercasteable,UP.createdBy,UP.maritalStatus,
 P.heightId,P.weight,P.bodyType,P.complexion,P.physicalstatus,PB.profileIDs as profileBlocked,FP.userDesc as userDesc,
-H.dosham as dosham,H.sudham as sudham,H.horoscopeFile as horoscope,HA.food,HA.smoking,HA.drinking,HI.languages,PH.imageName as photo,
+H.dosham as dosham,H.sudham as sudham,H.horoscopeFile as horoscope,H.astrodate as star,HA.food,HA.smoking,HA.drinking,HI.languages,PH.imageName as photo,
 EL.educationId as educationId,EM.name as educationName,EL.occupationId as occupationId,OM.name as occupationName,EL.yearlyIncome as annualIncome
 FROM users U
 LEFT JOIN usercontactdetails UC ON U.userId = UC.userId
@@ -400,12 +400,12 @@ DROP VIEW IF EXISTS view_interests;
 
 CREATE VIEW view_interests AS SELECT I.*, SU.userId as senderUserId, SU.marryId as senderMarryId,SU.emailId as senderEmailId, SU.name as senderName, FLOOR( DATEDIFF( CURRENT_DATE, SU.dob) /365 ) as senderAge,
 SU.gender senderGender, SU.motherTounge as senderMotherTounge, SU.userType as senderUserType,
-UP.casteId as senderCasteId,C.name as senderCaste,UP.religionId as senderReligionId, R.name as senderReligion,UP.countryId,CO.name as senderCountry,UP.stateId,S.name as senderState,UP.distictId,D.name as senderDistrict,UP.placeId as senderPlaceId, PL.name as senderPlace,
+UP.casteId as senderCasteId,C.name as senderCaste,UP.religionId as senderReligionId, R.name as senderReligion,UP.countryId,CO.name as senderCountry,UP.stateId,S.name as senderState,UP.districtId,D.name as senderDistrict,UP.placeId as senderPlaceId, PL.name as senderPlace,
 P.heightId as senderHeightId,P.weight as senderWeight,P.bodyType as senderBodyType,P.complexion as senderComplexion,P.physicalstatus as senderPhysicalStatus,
 
 RU.userId as receiverUserId, RU.marryId as receiverMarryId,RU.emailId as receiverEmailId, RU.name as receiverName, FLOOR( DATEDIFF( CURRENT_DATE, RU.dob) /365 ) as receiverAge,
 RU.gender receiverGender, RU.motherTounge as receiverMotherTounge, RU.userType as receiverUserType,
-UP1.casteId as receiverCasteId,C1.name as receiverCaste,UP1.religionId as receiverReligionId, R1.name as receiverReligion,UP1.countryId as receiverCountryId,CO1.name as receiverCountry,UP1.stateId as receiverStateId,S1.name as receiverState,UP1.distictId as receiverDistictId,D1.name as receiverDistrict,UP1.placeId as receiverPlaceId, PL1.name as receiverPlace,
+UP1.casteId as receiverCasteId,C1.name as receiverCaste,UP1.religionId as receiverReligionId, R1.name as receiverReligion,UP1.countryId as receiverCountryId,CO1.name as receiverCountry,UP1.stateId as receiverStateId,S1.name as receiverState,UP1.districtId as receiverDistictId,D1.name as receiverDistrict,UP1.placeId as receiverPlaceId, PL1.name as receiverPlace,
 P1.heightId as receiverHeightId,P1.weight as receiverWeight,P1.bodyType as receiverBodyType,P1.complexion as receiverComplexion,P1.physicalstatus as receiverPhysicalStatus,
 SP.photoId as senderPhotoId, SP.imageName as senderImageName, RP.photoId as receiverPhotoId, RP.imageName as receiverImageName
 FROM interests I
@@ -416,7 +416,7 @@ LEFT JOIN caste C ON UP.casteId = C.casteId
 LEFT JOIN religion R ON UP.religionId = R.religionId
 LEFT JOIN country CO ON UP.countryId = CO.countryId
 LEFT JOIN states S ON UP.stateId = S.stateId
-LEFT JOIN districts D ON UP.distictId = D.districtId
+LEFT JOIN districts D ON UP.districtId = D.districtId
 LEFT JOIN places PL ON UP.placeId = PL.placeId
 
 JOIN users RU ON I.receiverId = RU.userId
@@ -427,7 +427,7 @@ LEFT JOIN caste C1 ON UP1.casteId = C1.casteId
 LEFT JOIN religion R1 ON UP1.religionId = R1.religionId
 LEFT JOIN country CO1 ON UP1.countryId = CO1.countryId
 LEFT JOIN states S1 ON UP1.stateId = S1.stateId
-LEFT JOIN districts D1 ON UP1.distictId = D1.districtId
+LEFT JOIN districts D1 ON UP1.districtId = D1.districtId
 LEFT JOIN places PL1 ON UP1.placeId = PL1.placeId
 
 LEFT JOIN photos SP ON (I.senderId = SP.userId AND SP.profileImage = 1)

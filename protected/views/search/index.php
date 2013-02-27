@@ -136,18 +136,18 @@
 							Marital status 
 						</div>
 						<div class="info">
-							<div class="check wid110">
+							<div class="check">
 								
 								<input type="checkbox" id="status"  value="0" name="status[]" ><span>Unmarried </span>
 							</div>
-							<div class="check wid110">
+							<div class="check">
 							<input type="checkbox" id="status1"  value="1" name="status[]" >	
 								<span>Widower </span>
 							</div>
-							<div class="check wid110">
+							<div class="check">
 								<input type="checkbox" id="status2"  value="2" name="status[]" ><span>Divorced </span>
 							</div>
-							<div class="check ">
+							<div class="check">
 								<input type="checkbox" value="3" id="status3"  name="status[]"  ><span>Awaiting divorce </span>
 							</div>
 						</div>
@@ -177,7 +177,7 @@
 						<div class="info">
 							<?php $records = Caste::model()->findAll("active = 1");
 							$list = CHtml::listData($records, 'casteId', 'name');
-						    echo CHtml::dropDownList('rcaste',null,$list,array('class'=>'left ar','multiple'=>'multiple')); ?>
+						    echo CHtml::dropDownList('rcaste',null,array(),array('class'=>'left ar','multiple'=>'multiple')); ?>
 							<div class="ar-btn">
 							<input class="add type2" value="Add" onclick="return add('rcaste','rcaste1')" type="button">
 							<input class="remove type2" value="Remove" onclick="return add('rcaste1','rcaste')" type="button">
@@ -242,10 +242,10 @@
 						</div>
 						<div class="info">
 							<div class="check wid220">
-								<input type="checkbox" id="profile1" value="p" name="profile[]"><span>Only With Photo</span>
+								<input type="checkbox" value="p" name="profile[]"><span>Only With Photo</span>
 							</div>
 							<div class="check ">
-								<input type="checkbox" id="profile" value="h" name="profile[]"><span>Only With horoscope</span>
+								<input type="checkbox" value="h" name="profile[]"><span>Only With horoscope</span>
 							</div>
 						</div>
 					</li>
@@ -295,11 +295,11 @@
 							Height 
 						</div>
 						<div class="info">
-						<?php echo CHtml::dropDownList('heightFrom',null,Utilities::getHeights(),array('prompt'=>'Height','class'=>'validate[gfuncCall[hidePromp]] wid120')); ?>
+						<?php echo CHtml::dropDownList('heightFrom',null,Utilities::getHeights(),array('prompt'=>'Height','id'=>'heightFrom1','class'=>'validate[gfuncCall[hidePromp]] wid120')); ?>
 							
 							<div class="married">
 								<span class="text">to</span>
-							<?php echo CHtml::dropDownList('heightTo',null,Utilities::getHeights(),array('prompt'=>'Height','class'=>'validate[gcondRequired[heightStart],funcCall[checkHeightLimit]] wid120')); ?>
+							<?php echo CHtml::dropDownList('heightTo',null,Utilities::getHeights(),array('prompt'=>'Height','class'=>'validate[funcCall[checkAHeightLimit]] wid120')); ?>
 							</div>
 						</div>
 					</li>
@@ -308,7 +308,7 @@
 							Physical status 
 						</div>
 						<div class="info">
-							<div class="radio wid110">
+							<div class="radio wid150">
 								<input type="radio" name="pstatus" value="N"><span>Doesn't matter</span>
 							</div>
 							<div class="radio wid110">
@@ -324,13 +324,13 @@
 							Marital status 
 						</div>
 						<div class="info">
-							<div class="check wid110">
+							<div class="check">
 								<input type="checkbox" name="status[]" value="0" /><span>Unmarried </span>
 							</div>
-							<div class="check wid110">
+							<div class="check">
 								<input type="checkbox" name="status[]" value="1" /><span>Widower </span>
 							</div>
-							<div class="check wid110">
+							<div class="check">
 								<input type="checkbox" name="status[]" value="2" /><span>Divorced </span>
 							</div>
 							<div class="check">
@@ -383,9 +383,20 @@
 							Residing state 
 						</div>
 						<div class="info">
-						<?php $records = States::model()->findAll("active = 1");
+						
+						<?php
+
+		$records = States::model()->findAll("active = 1");
 		$list = CHtml::listData($records, 'stateId', 'name');
-		echo CHtml::dropDownList('state',null,$list,array('empty' => 'State','class'=>'wid150')); ?>
+		echo CHtml::dropDownList('state',null,$list,array('empty' => 'State','class'=>'wid150','ajax' => array(
+                        'type'=>'POST',
+                        'url'=>CController::createUrl('Ajax/updateDistrict'), 
+                        'dataType'=>'json',
+                        'data'=>array('stateId'=>'js:this.value'),  
+                        'success'=>'function(data) {
+                            $("#district").html(data.dropDownDist);
+                        }',
+            ))); ?>
 						</div>
 					</li>
 					<li>
@@ -393,10 +404,11 @@
 							Residing district
 						</div>
 						<div class="info">
-<?php $records = Districts::model()->findAll("active = 1");
+		<?php $records = Districts::model()->findAll("active = 1");
 		$list = CHtml::listData($records, 'districtId', 'name');
-		echo CHtml::dropDownList('district',null,$list,array('empty' => 'District','class'=>'wid150')); ?>						</div>
+		echo CHtml::dropDownList('district',null,array(),array('empty' => 'District','class'=>'wid150')); ?>						</div>
 					</li>
+				<!-- 	
 					<li>
 						<div class="title">
 							Resident status
@@ -422,6 +434,7 @@
 							</div>
 						</div>
 					</li>
+					 -->
 				</ul>
 				<ul>
 					<li>
@@ -432,9 +445,18 @@
 							Religion
 						</div>
 						<div class="info">
-						<?php $records = Religion::model()->findAll("active = 1");
+						
+		<?php $records = Religion::model()->findAll("active = 1");
 		$list = CHtml::listData($records, 'religionId', 'name');
-		echo CHtml::dropDownList('religion',null,$list,array('empty' => 'Religion','class'=>'wid150')); ?>
+		echo CHtml::dropDownList('religion',null,$list,array('empty' => 'Religion','class'=>'width120','id'=>'aReligion','ajax' => array(
+                        'type'=>'POST',
+                        'url'=>CController::createUrl('Ajax/updateCastes'), 
+                        'dataType'=>'json',
+                        'data'=>array('religionId'=>'js:this.value'),  
+                        'success'=>'function(data) {
+                            $("#acaste").html(data.dropDownCastes);
+                        }',
+            ))); ?>
 						</div>
 					</li>
 					<li>
@@ -462,10 +484,15 @@
 							Education
 						</div>
 						<div class="info">
-						                        <?php $records = EducationMaster::model()->findAll("active = 1");
+						     <?php 
+						    $records = EducationMaster::model()->findAll("active=1");
 							$list = CHtml::listData($records, 'educationId', 'name');
-						    echo CHtml::dropDownList('education',null,$list,array('class'=>'wid150','multiple'=>'multiple')); ?>
-						
+						    echo CHtml::dropDownList('education',null,$list,array('class'=>'left ar','multiple'=>'multiple')); ?>
+						<div class="ar-btn">
+							<input class="add type2" value="Add" onclick="return add('education','aeducation1')" type="button">
+							<input class="remove type2" value="Remove" onclick="return add('aeducation1','education')"type="button">
+						</div>
+							<select class="right ar" id="aeducation1" name="education1[]" multiple="multiple"></select>
 						</div>
 					</li>
 					<li>
@@ -489,10 +516,10 @@
 							Annual Income is Rs:
 						</div>
 						<div class="info">
-							<?php echo CHtml::dropDownList('income',null,Utilities::getAnnualIncome(),array('empty' => 'Income','class'=>'wid120')); ?>
+							<?php echo CHtml::dropDownList('incomeFrom',null,Utilities::getAnnualIncome(),array('empty' => 'Income','class'=>'wid120')); ?>
 							<div class="married">
 								<span class="text">to</span>
-								<?php echo CHtml::dropDownList('income',null,Utilities::getAnnualIncome(),array('empty' => 'Income','class'=>'wid120')); ?>
+								<?php echo CHtml::dropDownList('incomeTo',null,Utilities::getAnnualIncome(),array('empty' => 'Income','class'=>'wid120')); ?>
 							</div>
 						</div>
 					</li>
@@ -506,8 +533,8 @@
 							Star
 						</div>
 						<div class="info">
-						<?php $records = SignsMaster::model()->findAll("active = 1");
-							$list = CHtml::listData($records, 'signId', 'name');
+						<?php $records = AstrodateMaster::model()->findAll("active = 1");
+							$list = CHtml::listData($records, 'astrodateId', 'name');
 						    echo CHtml::dropDownList('star',null,$list,array('class'=>'left ar','multiple'=>'multiple')); ?>
 									
 							<div class="ar-btn">
@@ -614,6 +641,7 @@
 					</li>
 				</ul>
 				<ul>
+				<!-- 
 					<li>
 						<h3>Keywords</h3>
 					</li>
@@ -628,6 +656,7 @@
 							<input type="text" name="keyword" class="wid180" />
 						</div>
 					</li>
+					 -->
 					<li>
 						<div class="title">
 							Show profile
@@ -635,9 +664,6 @@
 						<div class="info">
 							<div class="check wid220">
 								<input type="checkbox" name="profile[]" value="p" /> <span>Only With Photo</span>
-							</div>
-							<div class="check ">
-								<input type="checkbox" name="profile[]" value="h" /><span>Only With horoscope</span>
 							</div>
 						</div>
 					</li>
@@ -734,6 +760,20 @@ function checkHeightLimit(field, rules, i, options){
 		return "Select proper height limit";
 	}
 }
+
+function checkAHeightLimit(field, rules, i, options){
+	if (field.val()) {
+
+		if(!$('#heightFrom1').val())
+			return "Select proper height limit";
+
+		var start = parseInt($('#heightFrom1').val());
+		
+		if( parseInt(field.val()) <= start)
+		return "Select proper height limit";
+	}
+}
+
 
 </script>      
       

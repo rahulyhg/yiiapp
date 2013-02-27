@@ -26,34 +26,43 @@
         <ul class="accOverview mT12">
 			<li class="mB10">
 				<div class="radC">
-				<input type="radio" value="M" name="gender" />
+				<input type="radio" class="validate[required]"  value="M" name="gender" />
 					<span>Male</span>
 				</div>
 				<div class="radC">
-					<input type="radio" value="F" name="gender" />
+					<input type="radio" value="F" name="gender" class="validate[required]"  />
 					<span>Female</span>
 				</div>
 				<div class="selC">
 					<span>Age</span>
-					<?php echo CHtml::dropDownList('ageFrom',null,Utilities::getAge(),array('class'=>'wid50')); ?>
+					<?php echo CHtml::dropDownList('ageFrom',null,Utilities::getAge(),array('prompt'=>'Age','class'=>'validate[gfuncCall[hidePromp]]  wid50')); ?>
 				</div>
 				<div class="selC">
 					<span>to</span>
-					<?php echo CHtml::dropDownList('ageTo',null,Utilities::getAge(),array('class'=>'wid50')); ?>
+					<?php echo CHtml::dropDownList('ageTo',null,Utilities::getAge(),array('prompt'=>'Age','class'=>'validate[gfuncCall[checkAgeLimit]] wid50')); ?>
 				</div>
 				<div class="selC">
 					<span>Religion</span>
 					<?php $records = Religion::model()->findAll("active = 1");
 		$list = CHtml::listData($records, 'religionId', 'name');
-		echo CHtml::dropDownList('religion',null,$list,array('empty' => 'Religion','class'=>'wid130')); ?>
+		echo CHtml::dropDownList('religion',null,$list,array('empty' => 'Religion','class'=>'width120','id'=>'qReligion','ajax' => array(
+                        'type'=>'POST',
+                        'url'=>CController::createUrl('Ajax/updateCaste'), 
+                        'dataType'=>'json',
+                        'data'=>array('religionId'=>'js:this.value'),  
+                        'success'=>'function(data) {
+                            $("#qCaste").html(data.dropDownCastes);
+                        }',
+            ))); ?>
+					
 				</div>
 				<div class="selC">
 					<span>Cast</span>
 					<?php $records = Caste::model()->findAll("active = 1");
 		$list = CHtml::listData($records, 'casteId', 'name');
-		echo CHtml::dropDownList('caste',null,$list,array('empty' => 'Caste','class'=>'wid130')); ?>
+		echo CHtml::dropDownList('caste',null,$list,array('empty' => 'Caste','id'=>'qCaste','class'=>'wid120')); ?>
 				</div>
-				<a href="javascript:quickSearch.submit();" class="type2 no-marg">Search</a>
+				<input type="submit" value="Search" class="type5 no-marg" />
 			</li>
 		</ul>
 		</form>
@@ -73,10 +82,6 @@
 				<a id="tab4" href="#" class="type3">Search by ID</a>
 			</li>
 		</ul>
-			<?php 
-	if(isset($error))
-	echo $error;
-	?>        
 		
 		<div id="tab1_data" class="tab-data" style="display: block;">
 		
@@ -89,10 +94,10 @@
 						</div>
 						<div class="info">
 							<div class="radio mR14 wid80">
-								<input type="radio" value="M" <?php if($searchItem->gender == 'M'){?> checked="checked" <?php }?> name="gender"> <span>Male</span>
+								<input type="radio" value="M" class="validate[required]"  <?php if($searchItem->gender == 'M'){?> checked="checked" <?php }?> name="gender"> <span>Male</span>
 							</div>
 							<div class="radio">
-								<input type="radio" value="F" <?php if($searchItem->gender == 'F'){?> checked="checked" <?php }?> name="gender"><span>Female</span>
+								<input type="radio" value="F" class="validate[required]"  <?php if($searchItem->gender == 'F'){?> checked="checked" <?php }?> name="gender"><span>Female</span>
 							</div>
 						</div>
 					</li>
@@ -102,10 +107,10 @@
 						</div>
 						<div class="info">
 						
-						<?php echo CHtml::dropDownList('ageFrom',null,Utilities::getAge(),array('class'=>'wid50','options' => array($searchItem->ageFrom =>array('selected'=>true)))); ?>
+						<?php echo CHtml::dropDownList('ageFrom',null,Utilities::getAge(),array('prompt'=>'Age','class'=>'validate[gfuncCall[hidePromp]] wid50','options' => array($searchItem->ageFrom =>array('selected'=>true)))); ?>
 							<div class="married">
 								<span class="text">to</span>
-							<?php echo CHtml::dropDownList('ageTo',null,Utilities::getAge(),array('class'=>'wid50','options' => array($searchItem->ageTo =>array('selected'=>true)))); ?>
+							<?php echo CHtml::dropDownList('ageTo',null,Utilities::getAge(),array('prompt'=>'Age','class'=>'validate[gfuncCall[checkAgeLimit]] wid50','options' => array($searchItem->ageTo =>array('selected'=>true)))); ?>
 								<span class="text">years</span>
 							</div>
 						</div>
@@ -115,11 +120,11 @@
 							Height 
 						</div>
 						<div class="info">
-						<?php echo CHtml::dropDownList('heightFrom',null,Utilities::getHeights(),array('class'=>'wid120','options' => array($searchItem->heightFrom =>array('selected'=>true)))); ?>
+						<?php echo CHtml::dropDownList('heightFrom',null,Utilities::getHeights(),array('prompt'=>'Height','class'=>'validate[gfuncCall[hidePromp]] wid120','options' => array($searchItem->heightFrom =>array('selected'=>true)))); ?>
 							
 							<div class="married">
 								<span class="text">to</span>
-								<?php echo CHtml::dropDownList('heightTo',null,Utilities::getHeights(),array('class'=>'wid120','options' => array($searchItem->heightTo =>array('selected'=>true)))); ?>
+								<?php echo CHtml::dropDownList('heightTo',null,Utilities::getHeights(),array('prompt'=>'Height','class'=>'validate[gcondRequired[heightStart],funcCall[checkHeightLimit]] wid120','options' => array($searchItem->heightTo =>array('selected'=>true)))); ?>
 							</div>
 						</div>
 					</li>
@@ -144,18 +149,18 @@
 						}
 						?>
 						<div class="info">
-							<div class="check wid110">
+							<div class="check">
 								
 								<input type="checkbox" value="0" <?php if($unMarry != false ) {?> checked="checked" <?php } ?> name="status[]"><span>Unmarried </span>
 							</div>
-							<div class="check wid110">
+							<div class="check">
 							<input type="checkbox" value="1" <?php if($widower != false ) {?> checked="checked" <?php } ?> name="status[]">	
 								<span>Widower </span>
 							</div>
-							<div class="check wid110">
+							<div class="check">
 								<input type="checkbox" <?php if($divorce != false ) {?> checked="checked" <?php } ?>  value="2" name="status[]"><span>Divorced </span>
 							</div>
-							<div class="check ">
+							<div class="check">
 								<input type="checkbox" value="3" <?php if($adivorce != false ) {?> checked="checked" <?php } ?>   name="status[]"><span>Awaiting divorce </span>
 							</div>
 						</div>
@@ -166,9 +171,16 @@
 						</div>
 						<div class="info">
 						<?php $records = Religion::model()->findAll("active = 1");
-							$list = CHtml::listData($records, 'religionId', 'name');
-							echo CHtml::dropDownList('religion',null,$list,array('empty' => 'Religion','class'=>'wid150','options' => array($searchItem->religion => array('selected'=>true)))); ?>
-												
+		$list = CHtml::listData($records, 'religionId', 'name');
+		echo CHtml::dropDownList('religion',null,$list,array('empty' => 'Religion','class'=>'width120','id'=>'rReligion','ajax' => array(
+                        'type'=>'POST',
+                        'url'=>CController::createUrl('Ajax/updateCastes'), 
+                        'dataType'=>'json',
+                        'data'=>array('religionId'=>'js:this.value'),  
+                        'success'=>'function(data) {
+                            $("#rcaste").html(data.dropDownCastes);
+                        }',
+            ))); ?>
 						</div>
 					</li>
 					<li>
@@ -298,6 +310,7 @@
 							</div>
 						</div>
 					</li>
+					<!-- 
 					<li>
 						<div class="title">
 							Don't show
@@ -331,10 +344,11 @@
 							</div>
 						</div>
 					</li>
+					 -->
 					<li>
 						<div class="buttonContnr2 mT20">
-							<a class="type4" id="rsearchButton" href="#">Save Search</a>
-							<a class="type4" href="javascript:regularSearch.submit();" >Search</a>
+							<a class="type4" id="rsearchButton">Save Search</a>
+							<input type="submit" value="Search" class="type4" />
 							<div class="saveSbox" id="rsaveBox" style="display:none">
 							<div class="tarrow"></div>
 							<div class="cont wid140">
@@ -342,7 +356,7 @@
 									<span>Save Your Search</span>
 								</div>
 								<div class="row">
-									<input type="text" id="searchName" <?php if(isset($searchItem->searchName)) {?> value="<?php echo $searchItem->searchName?>" <?php } ?>  name="searchName" placeholder="Mysearch1" />
+									<input type="text" id="rsearchName" <?php if(isset($searchItem->searchName)) {?> value="<?php echo $searchItem->searchName?>" <?php } ?>  name="searchName" placeholder="Mysearch1" />
 								</div>
 								<div class="row" id="rsearchSubmit" >
 									<a class="type5" href="#">Save </a>
@@ -366,10 +380,10 @@
 						</div>
 						<div class="info">
 							<div class="radio mR14 wid80">
-								<input type="radio" name="gender" <?php if($searchItem->gender == 'M'){?> checked="checked" <?php }?> value="M"><span>Male</span>
+								<input type="radio" name="gender" class="validate[required]" <?php if($searchItem->gender == 'M'){?> checked="checked" <?php }?> value="M"><span>Male</span>
 							</div>
 							<div class="radio">
-								<input type="radio" name="gender" <?php if($searchItem->gender == 'F'){?> checked="checked" <?php }?>  value="F"><span>Female</span>
+								<input type="radio" name="gender" class="validate[required]" <?php if($searchItem->gender == 'F'){?> checked="checked" <?php }?>  value="F"><span>Female</span>
 							</div>
 						</div>
 					</li>
@@ -378,10 +392,10 @@
 							Age 
 						</div>
 						<div class="info">
-						<?php echo CHtml::dropDownList('ageFrom',null,Utilities::getAge(),array('class'=>'wid50','options' => array($searchItem->ageFrom =>array('selected'=>true)))); ?>
+						<?php echo CHtml::dropDownList('ageFrom',null,Utilities::getAge(),array('prompt'=>'Age','class'=>'validate[gfuncCall[hidePromp]] wid50','options' => array($searchItem->ageFrom =>array('selected'=>true)))); ?>
 							<div class="married">
 								<span class="text">to</span>
-							<?php echo CHtml::dropDownList('ageTo',null,Utilities::getAge(),array('class'=>'wid50','options' => array($searchItem->ageTo =>array('selected'=>true)))); ?>
+							<?php echo CHtml::dropDownList('ageTo',null,Utilities::getAge(),array('prompt'=>'Age','class'=>'validate[gfuncCall[checkAgeLimit]]  wid50','options' => array($searchItem->ageTo =>array('selected'=>true)))); ?>
 								<span class="text">years</span>
 							</div>
 						</div>
@@ -391,11 +405,11 @@
 							Height 
 						</div>
 						<div class="info">
-						<?php echo CHtml::dropDownList('heightFrom',null,Utilities::getHeights(),array('class'=>'wid120','options' =>array($searchItem->heightFrom =>array('selected'=>true)))); ?>
+						<?php echo CHtml::dropDownList('heightFrom',null,Utilities::getHeights(),array('prompt'=>'Height','id'=>'heightFrom1','class'=>'validate[gfuncCall[hidePromp]] wid120','options' =>array($searchItem->heightFrom =>array('selected'=>true)))); ?>
 							
 							<div class="married">
 								<span class="text">to</span>
-							<?php echo CHtml::dropDownList('heightTo',null,Utilities::getHeights(),array('class'=>'wid120','options' =>array($searchItem->heightTo =>array('selected'=>true)))); ?>
+							<?php echo CHtml::dropDownList('heightTo',null,Utilities::getHeights(),array('prompt'=>'Height','class'=>'validate[funcCall[checkAHeightLimit]]  wid120','options' =>array($searchItem->heightTo =>array('selected'=>true)))); ?>
 							</div>
 						</div>
 					</li>
@@ -437,18 +451,18 @@
 						}
 						?>
 						<div class="info">
-							<div class="check wid110">
+							<div class="check">
 								
 								<input type="checkbox" value="0" <?php if($unMarry != false ) {?> checked="checked" <?php } ?> name="status[]"><span>Unmarried </span>
 							</div>
-							<div class="check wid110">
+							<div class="check">
 							<input type="checkbox" value="1" <?php if($widower != false ) {?> checked="checked" <?php } ?> name="status[]">	
 								<span>Widower </span>
 							</div>
-							<div class="check wid110">
+							<div class="check">
 								<input type="checkbox" <?php if($divorce != false ) {?> checked="checked" <?php } ?>  value="2" name="status[]"><span>Divorced </span>
 							</div>
-							<div class="check ">
+							<div class="check">
 								<input type="checkbox" value="3" <?php if($adivorce != false ) {?> checked="checked" <?php } ?>   name="status[]"><span>Awaiting divorce </span>
 							</div>
 						</div>
@@ -520,9 +534,20 @@
 							Residing state 
 						</div>
 						<div class="info">
-						<?php $records = States::model()->findAll("active = 1");
+						
+						<?php
+
+		$records = States::model()->findAll("active = 1");
 		$list = CHtml::listData($records, 'stateId', 'name');
-		echo CHtml::dropDownList('state',null,$list,array('empty' => 'State','class'=>'wid150','options' => array($searchItem->state =>array('selected'=>true)))); ?>
+		echo CHtml::dropDownList('state',$searchItem->state,$list,array('empty' => 'State','class'=>'wid150','ajax' => array(
+                        'type'=>'POST',
+                        'url'=>CController::createUrl('Ajax/updateDistrict'), 
+                        'dataType'=>'json',
+                        'data'=>array('stateId'=>'js:this.value'),  
+                        'success'=>'function(data) {
+                            $("#district").html(data.dropDownDist);
+                        }',
+            ))); ?>
 						</div>
 					</li>
 					<li>
@@ -573,7 +598,15 @@
 						<div class="info">
 						<?php $records = Religion::model()->findAll("active = 1");
 		$list = CHtml::listData($records, 'religionId', 'name');
-		echo CHtml::dropDownList('religion',null,$list,array('empty' => 'Religion','class'=>'wid150','options' => array($searchItem->religion => array('selected'=>true)))); ?>
+		echo CHtml::dropDownList('religion',null,$list,array('empty' => 'Religion','class'=>'width120','id'=>'aReligion','ajax' => array(
+                        'type'=>'POST',
+                        'url'=>CController::createUrl('Ajax/updateCastes'), 
+                        'dataType'=>'json',
+                        'data'=>array('religionId'=>'js:this.value'),  
+                        'success'=>'function(data) {
+                            $("#acaste").html(data.dropDownCastes);
+                        }',
+            ))); ?>
 						</div>
 					</li>
 					<li>
@@ -845,6 +878,7 @@
 					</li>
 				</ul>
 				<ul>
+				<!-- 
 					<li>
 						<h3>Keywords</h3>
 					</li>
@@ -859,6 +893,7 @@
 							<input type="text" name="keyword" value="<?php echo $searchItem->horoscope?>"class="wid180" />
 						</div>
 					</li>
+				 -->	
 					<li>
 						<div class="title">
 							Show profile
@@ -872,6 +907,7 @@
 							</div>
 						</div>
 					</li>
+					<!--  
 					<li>
 						<div class="title">
 							Don't show
@@ -906,10 +942,11 @@
 							</div>
 						</div>
 					</li>
+					 -->
 					<li>
 						<div class="buttonContnr2 mT20">
-							<a class="type4" id="searchButtons" href="#">Save Search</a>
-							<a class="type4" href="javascript:advanceSearch.submit();"  href="#">Search</a>
+							<a class="type4" id="searchButtons">Save Search</a>
+								<input type="submit" value="Search" class="type4" />	
 							<div class="saveSbox" id="advsave" style="display:none">
 							<div class="tarrow"></div>
 							<div class="cont wid140">
@@ -917,7 +954,7 @@
 									<span>Save Your Search</span>
 								</div>
 								<div class="row">
-									<input type="text" <?php if(isset($searchItem->searchName)) {?> value="<?php echo $searchItem->searchName?>" <?php } ?> name="searchName" placeholder="Mysearch1" />
+									<input type="text"  id="searchName" <?php if(isset($searchItem->searchName)) {?> value="<?php echo $searchItem->searchName?>" <?php } ?> name="searchName" placeholder="Mysearch1" />
 								</div>
 								<div class="row" id="advSearch">
 									<a class="type5" href="#">Save </a>
@@ -936,7 +973,7 @@
 				<div class="sec">
 				<form id="keywordSearch"  name="keywordSearch" method="post"  action="/search/keyword">
 					<div class="text"> Enter a Keyword</div>
-					<input type="text" name="keyword" id="keyword" />
+					<input type="text" name="keyword" id="keyword" placeholder="Eg: f,24 or male,28 or name" />
 					<a href="javascript:keywordSearch.submit();" class="type3 wid100">Search</a>
 					<a  href="javascript:keywordSearch.reset();" class="type3">Reset</a>
 				</form>	
@@ -964,18 +1001,29 @@
  <script type="text/javascript">
 $(document).ready(function() {
 
+
+	$("#advanceSearch").validationEngine('attach');
+	$("#regularSearch").validationEngine('attach');
+	$("#quickSearch").validationEngine('attach');
+	
 	$('#rsearchButton').click(function() {	
 	  	$('#rsaveBox').show();
 	  	$('#rsearchButton').hide();
+	  	$('#rsearchName').focus();
 	  	
 	});
 
 	$('#rsearchSubmit').click(function() {
 		$("#regularSearch").attr("action","/search/save");
+		if($('#rsearchName').val().length == 0)
+		{
+		$('#rsearchName').validationEngine('showPrompt', 'Please enter name to save search', 'error', true);
+		return false;
+		}
 		$('<input>').attr({
 		    type: 'hidden',
 		    name: 'searchName',
-		    value: $('#searchName').val(),
+		    value: $('#rsearchName').val(),
 		}).appendTo('#regularSearch');
 		$("#regularSearch").submit();
 		$('#rsaveBox').hide();
@@ -983,6 +1031,11 @@ $(document).ready(function() {
 
 	$('#advSearch').click(function() {
 	$("#advanceSearch").attr("action","/search/save");
+	if($('#searchName').val().length == 0)
+	{
+	$('#searchName').validationEngine('showPrompt', 'Please enter name to save search', 'error', true);
+	return false;
+	}
 	$('<input>').attr({
 	    type: 'hidden',
 	    name: 'searchName',
@@ -995,10 +1048,58 @@ $(document).ready(function() {
 	$('#searchButtons').click(function() {	
 		$('#advsave').show();
 		$('#searchButtons').hide();
+		$('#searchName').focus();
 			
 	});
 	
 });
+
+function checkAgeLimit(field, rules, i, options){
+	if (field.val()) {
+
+		if(!$('#ageFrom').val())
+			return "Select proper age limit";
+
+		var start = parseInt($('#ageFrom').val());
+		
+		if( parseInt(field.val()) <= start)
+		return "Select proper age limit";
+	}
+}
+
+function hidePromp(field, rules, i, options){
+	if (field.val()) {
+		$("#advanceSearch").validationEngine('hide');
+		$("#regularSearch").validationEngine('hide');
+		$("#quickSearch").validationEngine('hide');
+		
+	}
+}
+function checkHeightLimit(field, rules, i, options){
+	if (field.val()) {
+
+		if(!$('#heightFrom').val())
+			return "Select proper height limit";
+
+		var start = parseInt($('#heightFrom').val());
+		
+		if( parseInt(field.val()) <= start)
+		return "Select proper height limit";
+	}
+}
+
+function checkAHeightLimit(field, rules, i, options){
+	if (field.val()) {
+
+		if(!$('#heightFrom1').val())
+			return "Select proper height limit";
+
+		var start = parseInt($('#heightFrom1').val());
+		
+		if( parseInt(field.val()) <= start)
+		return "Select proper height limit";
+	}
+}
 
 
 </script>      

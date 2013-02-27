@@ -384,8 +384,9 @@ $drink= Utilities::getDrink();
 				</li>
 				<li>
 					<div class="leftCtn">Annual Income</div>
+					<?php $ann = Utilities::getAnnualIncome();?>
 					<div class="rightCtn">
-						<strong>:</strong> <span><?php if(isset($model->educations->yearlyIncome))echo $model->educations->yearlyIncome.'000'?></span>
+						<strong>:</strong> <span><?php if(isset($model->educations->yearlyIncome) && $model->educations->yearlyIncome > 0 )echo $ann[$model->educations->yearlyIncome];?></span>
 					</div>
 				</li>
 			</ul>

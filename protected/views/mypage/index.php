@@ -96,7 +96,7 @@
 		</div>
 		<?php }?>
 		 <?php 
-		    if(isset($profileUpdates)){
+		    if(isset($profileUpdates) && sizeof($profileUpdates) > 0 ){
 		  ?>
 		<h1>Recent Updates</h1>
         <article class="section width100">
@@ -111,7 +111,7 @@
 				 }
  			?>
 				 </div>
-				<a href="#"><img src="<?php echo Utilities::getProfileImage($value->marryId,$value->photo->imageName);?>" alt="<?php echo $value->name;?>" title="<?php echo $value->name;?>" /></a>
+				<a href="#"><img src="<?php echo Utilities::getProfileImage($value->marryId,$value->marryId.'.jpg');?>" alt="<?php echo $value->name;?>" title="<?php echo $value->name;?>" /></a>
 				<div class="recDet">
 					<div class="recList"><?php if(isset($value->userpersonaldetails->religion))echo $value->userpersonaldetails->religion->name ;?> , <?php if(isset($value->userpersonaldetails->caste))echo $value->userpersonaldetails->caste->name ;?></div>
 					<div class="recList"><?php echo Utilities::getAgeFromDateofBirth($value->dob); ?> Years - <?php if(isset($value->physicaldetails->heightId))echo $heightArray[$value->physicaldetails->heightId];  ?></div>

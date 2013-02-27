@@ -64,8 +64,8 @@
                             <div class="info">: <?php if(isset($value->physicaldetails->heightId))echo $heightArray[$value->physicaldetails->heightId]; ?> </div>
                         </li>
                         <li>
-                            <div class="title">Place</div>
-                            <div class="info">: <?php if(isset($value->userpersonaldetails->place))echo $value->userpersonaldetails->place->name ?> </div>
+                            <div class="title">District</div>
+                            <div class="info">: <?php if(isset($value->userpersonaldetails->district))echo $value->userpersonaldetails->district->name ?> </div>
                         </li>
                         <li>
                             <div class="title">State</div>
@@ -155,8 +155,8 @@
                             <div class="info">: <?php if(isset($value->physicaldetails->heightId))echo $heightArray[$value->physicaldetails->heightId];  ?></div>
                         </li>
                         <li>
-                            <div class="title">Place</div>
-                            <div class="info">: <?php if(isset($value->userpersonaldetails->place))echo $value->userpersonaldetails->place->name ?> </div>
+                            <div class="title">District</div>
+                            <div class="info">: <?php if(isset($value->userpersonaldetails->district))echo $value->userpersonaldetails->district->name ?> </div>
                         </li>
                         <li>
                             <div class="title">State</div>

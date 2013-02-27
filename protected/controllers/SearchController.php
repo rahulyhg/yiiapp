@@ -72,7 +72,7 @@ class SearchController extends Controller
 				
 			}
 			else {
-				$this->render('regular');
+				$this->render('regular',array('tab'=>'tab1'));
 			}
 		}
 	}
@@ -263,13 +263,10 @@ class SearchController extends Controller
 			$profile = implode(",", $_POST['profile']);
 			$saveSearch->showprofile = $profile;
 		}
-		if(isset($_POST['show']))
-		{
-			$show = implode(",", $_POST['show']);
-			$saveSearch->showTo = $show;
-		}
+		
 		
 		$saveSearch->userId = $user->userId;
+		if(isset($user->saveSearch))
 		$user->saveSearch->deleteAll();
 		$user->saveSearch = $saveSearch;
 		$user->saveSearch->save();
@@ -517,35 +514,37 @@ class SearchController extends Controller
 			if(!empty($_POST['caste1']))
 			{
 			$caste  = implode(",",$_POST['caste1']);
-			$condition .= " AND FIND_IN_SET('{$caste}',casteId)";
+			$condition .= " AND casteId IN ({$caste})";
 			$searchText.= "Caste as ". Utilities::getValueForIds(new Caste(), $caste, 'casteId')." , ";
 			}
 			
 			if(isset($_POST['status']))
 			{
+				$mArray = Utilities::getMaritalStatus();
 				$mstatus = implode(",",$_POST['status']);
-				$condition .= " AND FIND_IN_SET('{$mstatus}',maritalStatus)";
+				$condition .= " AND maritalStatus IN ({$mstatus})";
+				$searchText.= "Marital status as ". $mArray[$mstatus];
 				//maritalStatus 	
 			}
 		
 			if(isset($_POST['language1']) && !empty($_POST['language1']))
 			{
 			$language = implode(",",$_POST['language1']);
-			$condition .= " AND FIND_IN_SET('{$language}',motherTounge)";
+			$condition .= " AND motherTounge IN ($language)";
 			$searchText.= "Mother tounge as". Utilities::getValueForIds(new Languages(), $language, 'languageId')." , ";
 			}
 			
 			if(!empty($_POST['education1']))
 			{
 				$education = implode(",", $_POST['education1']);
-				$condition .= " AND FIND_IN_SET('{$education}',educationId)";
+				$condition .= " AND educationId IN ({$education})";
 				$searchText.= "Education as". Utilities::getValueForIds(new EducationMaster(), $education, 'educationId')." , ";
 			}
 			
 			if(!empty($_POST['country1']))
 			{
 				$country = implode(",", $_POST['country1']);
-				$condition .= " AND FIND_IN_SET('{$country}',countryId)";
+				$condition .= " AND countryId IN ({$country})";
 				$searchText.= "Country as ". Utilities::getValueForIds(new Country(), $country, 'countryId')." , ";
 			}
 		
@@ -810,7 +809,7 @@ class SearchController extends Controller
 		$ageFrom = $_POST['ageFrom'];
 		$ageTo = $_POST['ageTo'];
 		
-		$condition = " AND age BETWEEN {$ageFrom} AND {$ageTo}";
+		$condition .= " AND age BETWEEN {$ageFrom} AND {$ageTo}";
 		$searchText.= "age between {$ageFrom} and {$ageTo}, "; 
 		}
 		
@@ -864,8 +863,7 @@ class SearchController extends Controller
 		if(isset($_POST['language1']) && !empty($_POST['language1']))
 		{
 		$language = implode(",",$_POST['language1']);
-		$condition .= " AND FIND_IN_SET('{$language}',languages)";
-		
+		$condition .= " AND motherTounge IN ($language)";
 		$searchText.= "Mother tounge as". Utilities::getValueForIds(new Languages(), $language, 'languageId')." , ";
 		
 		}
@@ -874,7 +872,7 @@ class SearchController extends Controller
 		if(isset($_POST['caste1']) && !empty($_POST['caste1']))
 		{
 		$caste = implode(",",$_POST['caste1']);
-		$condition .= " AND FIND_IN_SET('{$caste}',casteId) ";
+		$condition .= " AND casteId IN ({$caste})";
 		$searchText.= "Caste as ". Utilities::getValueForIds(new Caste(), $caste, 'casteId')." , ";
 		
 		}
@@ -901,7 +899,7 @@ class SearchController extends Controller
 		if(isset($_POST['country1']))
 		{
 			$country = implode(",", $_POST['country1']);
-			$condition .= " AND FIND_IN_SET('{$country}',countryId)";
+			$condition .= " AND countryId IN ({$country})";
 			$searchText.= "Country as ". Utilities::getValueForIds(new Country(), $country, 'countryId')." , ";
 			
 		}
@@ -919,7 +917,7 @@ class SearchController extends Controller
 		if(isset($_POST['education1']))
 		{
 			$education = implode(",", $_POST['education1']);
-			$condition .= " AND FIND_IN_SET('{$education}',educationId)";
+			$condition .= " AND educationId IN ({$education})";
 			
 			$searchText.= "Education as ". Utilities::getValueForIds(new EducationMaster(), $education, 'educationId')." , ";
 			
@@ -928,9 +926,9 @@ class SearchController extends Controller
 		if(isset($_POST['occupation1']))
 		{
 			$occupation = implode(",", $_POST['occupation1']);
-			$condition .= " AND FIND_IN_SET('{$occupation}',occupationId)";
+			$condition .= " AND occupationId IN ($occupation)";
 			
-			$searchText.= "Education as ". Utilities::getValueForIds(new OccupationMaster(), $occupation, 'occupationId')." , ";
+			$searchText.= "Occupation as ". Utilities::getValueForIds(new OccupationMaster(), $occupation, 'occupationId')." , ";
 		}
 		
 		if(isset($_POST['incomeFrom']) && !empty($_POST['incomeFrom']) && isset($_POST['incomeTo']) && !empty($_POST['incomeTo']))
@@ -942,38 +940,43 @@ class SearchController extends Controller
 		if(isset($_POST['star1']))
 		{
 			$stars = implode(",", $_POST['star1']);
-			$condition .= " AND FIND_IN_SET('{$stars}',star)";
-			$searchText.= "Stars as ". Utilities::getValueForIds(new SignsMaster(), $stars, 'signId')." , ";
+			$condition .= " AND star IN ({$stars})";
+			$searchText.= "Stars as ". Utilities::getValueForIds(new AstrodateMaster(), $stars, 'astrodateId')." , ";
 		}
 		
 		
 		if(isset($_POST['sudha']))
 		{
-			$sudha = implode(",", $_POST['sudha']);
-			$condition .= " AND FIND_IN_SET('{$sudha}',sudham)";
-			$searchText.= "Sudha Jathakam as ".Utilities::getArrayValues(Utilities::getSudham(), $sudha) ;
+			if($_POST['sudha'] != 2)
+			$condition .= " AND sudham = {$_POST['sudha']} ";
+			$searchText.= "Sudha Jathakam as ".Utilities::getArrayValues(Utilities::getSudham(), $_POST['sudha']) ;
 		}
 		
 		
 		if(isset($_POST['chova']))
 		{
-			$chova = implode(",", $_POST['chova']);
-			$condition .= " AND FIND_IN_SET('{$chova}',dosham)";
-			$searchText.= "Chovva Dosham as ".Utilities::getArrayValues(Utilities::getChova(), $chova) ;
+			if($_POST['chova'] != 2);
+			$condition .= " AND dosham = {$_POST['chova']}";
+			
+			$searchText.= "Chovva Dosham as ".Utilities::getArrayValues(Utilities::getChova(), $_POST['chova']) ;
 		}
 		
 		if(isset($_POST['eat']))
 		{
+			if(!in_array(3, $_POST['eat'])) {
 			$eat = implode(",", $_POST['eat']);
-			$condition .= " AND FIND_IN_SET('{$eat}',eatingHabits)";
+			$condition .= " AND food IN ($eat)";
+			}
 			$searchText.= "Eating habits as ".Utilities::getArrayValues(Utilities::getFood(), $eat);
 		}
 		
 		if(isset($_POST['drink']))
 		{
 			//drinkingHabits
+			if(!in_array(3, $_POST['drink'])) {
 			$drink = implode(",", $_POST['drink']);
-			$condition .= " AND FIND_IN_SET('{$drink}',drinkingHabits)";
+			$condition .= " AND drinking IN ($drink)";
+			}
 			$searchText.= "Drinking habits as ".Utilities::getArrayValues(Utilities::getDrink(), $drink) ;
 			
 		}
@@ -981,9 +984,10 @@ class SearchController extends Controller
 		if(isset($_POST['smoke']))
 		{
 			//smokingHabits
+			if(!in_array(3, $_POST['smoke'] )){
 			$smoke = implode(",", $_POST['smoke']);
-			$condition .= " AND FIND_IN_SET('{$smoke}',smokingHabits)";
-			
+			$condition .= " AND smoking IN ($smoke)";
+			}
 			$searchText.= "Smoking habits as ".Utilities::getArrayValues(Utilities::getSmoke(), $smoke) ;
 		}
 		

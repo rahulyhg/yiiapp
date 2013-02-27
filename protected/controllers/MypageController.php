@@ -29,9 +29,11 @@ class MypageController extends Controller
 	public function actionIndex()
 	{
 		$user = Yii::app()->session->get('user');
+		$user = Users::model()->with('horoscopes','partnerpreferences','userpersonaldetails','familyprofiles','physicaldetails','educations','hobies')->findbyPk($user->userId);
 		//$condition = "userId in ($userIds)";	
 		$scondition = "FIND_IN_SET('{$user->userId}',profileIDs)";
 		$profileBlock = ProfileBlock::model()->findAll(array('condition'=>$scondition));
+		$profileUpdatedUsers = null;
 		
 		$blockId = array();
 		foreach ($profileBlock as $key => $value) {
@@ -57,18 +59,24 @@ class MypageController extends Controller
 			$ruserId[] = $value->senderId;
 		}
 		}
+		
 		if(sizeof($suserId) > 0 || sizeof($ruserId) > 0 )
 		{
-			
+			$profileIds = array();
 			$intersetUserIds = array_merge($suserId,$ruserId);
 			$userList = implode(",", $intersetUserIds);
-			$scondition = " userId in ({$userList}) AND userId != {$user->userId} ";
-			if(isset($blockIdList) && sizeof($blockId) > 0 )
-			$scondition .= " AND userId NOT IN({$blockIdList})"; 
-			$profileUpdatedUsers = Users::model()->with(array(
-			'profileUpdates' => array('order'=> 'statusTime DESC' ),)
-			)->findAll(array('condition'=>$scondition));
+			$scondition = " userId in ({$userList})";
+			$profileUpdated = ProfileUpdates::model()->findAll(array('condition'=>$scondition));
+			foreach ($profileUpdated as $key => $value) {
+			$profileIds[] = $value->userId;
+				}
+			$profileIdLists = implode(",", $profileIds);
 			
+			if(isset($profileIds) && sizeof($profileIds) > 0 ) {
+			$condition = "userId IN({$profileIdLists})"; 
+			
+			$profileUpdatedUsers = Users::model()->findAll(array('condition'=>$condition));
+			}
 		}
 		
 		
@@ -109,7 +117,8 @@ class MypageController extends Controller
 				{
 				$totalUser = sizeof($normalUser);
 				$totalPage = ceil($totalUser/10);
-				$this->render('index',array('highlight'=>$highLightUser,'normal'=>$normalUser,'totalUser'=>$totalUser,'totalPage' => $totalPage,'profileUpdates'=>$profileUpdatedUsers));
+				//$this->render('index',array('highlight'=>$highLightUser,'normal'=>$normalUser,'totalUser'=>$totalUser,'totalPage' => $totalPage,'profileUpdates'=>$profileUpdatedUsers));
+				$this->render('index');
 				}
 				
 			}
