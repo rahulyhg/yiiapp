@@ -141,7 +141,7 @@ class InterestController extends Controller
 					   $query = "update interests set status = 2 where interestId = {$selectedIds}";
 					   break;
 				case  'delete':
-					   $query = "delete from interests  where interestId = {$selectedIds}";
+					   $query = "delete from interests  where interestId in({$selectedIds})";
 					   break;
 				case  'cancel':
 					   $query = "delete from interests  where senderId = {$user->userId} and interestId = {$selectedIds}";

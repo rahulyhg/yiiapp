@@ -131,9 +131,9 @@ $heightArray = Utilities::getHeights(); ?>
 				<?php }else{?>
 				<li>
 					<input type="checkbox" class="reqCheck" value="<?php echo $accept['interestId']; ?>" />
-					<a href="<?php echo Utilities::createAbsoluteUrl('search','byid',array('id'=>$accept['senderMarryId'])); ?>"><img src="<?php echo Utilities::getProfileImage($accept['receiverMarryId'],$accept['receiverImageName']); ?>" alt="" /></a>
+					<a href="<?php echo Utilities::createAbsoluteUrl('search','byid',array('id'=>$accept['senderMarryId'])); ?>"><img src="<?php echo Utilities::getProfileImage($accept['senderMarryId'],$accept['senderImageName']); ?>" alt="" /></a>
 					<div class="int_head">
-						<a href="<?php echo Utilities::createAbsoluteUrl('search','byid',array('id'=>$accept['senderMarryId'])); ?>" ><?php echo $accept['receiverName']; ?></a>
+						<a href="<?php echo Utilities::createAbsoluteUrl('search','byid',array('id'=>$accept['senderMarryId'])); ?>" ><?php echo $accept['senderName']; ?></a>
 						<span>(<?php if($accept['receiverId'] == $user->userId){ echo 'You'; } else{
 						 if($accept['receiverGender'] == 'M')
 							echo 'He';
