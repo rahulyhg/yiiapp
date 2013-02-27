@@ -178,7 +178,7 @@ $heightArray = Utilities::getHeights(); ?>
 					<input type="checkbox" class="reqCheck" value="<?php echo $decline['interestId']; ?>" />
 					<a href="<?php echo Utilities::createAbsoluteUrl('search','byid',array('id'=>$decline['senderMarryId'])); ?>"><img src="<?php echo Utilities::getProfileImage($decline['senderrMarryId'],$decline['senderImageName']); ?>" alt="" /></a>
 					<div class="int_head">
-						<a href="<?php echo Utilities::createAbsoluteUrl('search','byid',array('id'=>$decline['receiverMarryId'])); ?>" ><?php echo $decline['senderName']; ?></a>
+						<a href="<?php echo Utilities::createAbsoluteUrl('search','byid',array('id'=>$decline['senderMarryId'])); ?>" ><?php echo $decline['senderName']; ?></a>
 						<span>(<?php if($decline['senderId'] == $user->userId){ echo 'You'; } else{
 						 if($decline['senderGender'] == 'M')
 							echo 'He';

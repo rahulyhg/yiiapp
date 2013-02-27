@@ -146,10 +146,11 @@
 				<a href="<?php echo Utilities::createAbsoluteUrl('interest','sent',array()); ?>" class="headLink ">Interest </a>
 				<div class="dataCont">
 				<?php 
+					$sendInterest = $user->interestSender(array('condition'=>'status = 0'));
 					$receiveInterest = $user->interestReceiver(array('condition'=>'status = 0'));
 					$declinedInterest = $user->interestReceiver(array('condition'=>'status = 2'));
 				?>
-					<div class="row"><a href="<?php echo Utilities::createAbsoluteUrl('interest','sent',array('selectedTab'=>'sent'))?>" class="innLink">Sent <?php echo count($user->interestSender); ?></a></div>
+					<div class="row"><a href="<?php echo Utilities::createAbsoluteUrl('interest','sent',array('selectedTab'=>'sent'))?>" class="innLink">Sent <?php echo count($sendInterest); ?></a></div>
 					<div class="row"><a href="<?php echo Utilities::createAbsoluteUrl('interest','sent',array('selectedTab'=>'received'))?>" class="innLink">Recieved <?php echo count($receiveInterest); ?></a></div>
 					<div class="row"><a href="<?php echo Utilities::createAbsoluteUrl('interest','sent',array('selectedTab'=>'declined'))?>" class="innLink">Declined <?php echo count($declinedInterest); ?></a></div>
 				</div>
