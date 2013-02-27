@@ -25,15 +25,15 @@
 							<?php }?>
 						<?php }else{?>
 						<?php if($module == 'document'){?>
-							The document you are trying to view is protected. In order to see the documents, please subscribe to the user.
+							The document you are trying to view is protected. In order to see the documents, please subscribe.
 							<?php }elseif($module == 'album'){?>
-							The album you are trying to view is protected. In order to see the albums, please subscribe to the user.
+							The album you are trying to view is protected. In order to see the albums, please subscribe.
 							<?php }elseif($module == 'contact'){?>
-							The contact you are trying to view is protected. In order to see the contacts, please subscribe to the user.
+							The contact you are trying to view is protected. In order to see the contacts, please subscribe.
 							<?php }elseif($module == 'reference'){?>
-							The reference you are trying to view is protected. In order to see the references, please subscribe to the user.
+							The reference you are trying to view is protected. In order to see the references, please subscribe.
 							<?php }elseif($module == 'astro'){?>
-							The astro you are trying to view is protected. In order to see the astro, please subscribe to the user.
+							The astro you are trying to view is protected. In order to see the astro, please subscribe.
 							<?php }?>
 						<?php }?>
 						</p>

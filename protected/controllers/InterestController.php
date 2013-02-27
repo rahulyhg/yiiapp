@@ -158,7 +158,7 @@ class InterestController extends Controller
 		$received = $command->queryAll();
 		
 		// express interest
-		$sql = "SELECT * FROM view_interests WHERE senderId = {$user->userId}";
+		$sql = "SELECT * FROM view_interests WHERE senderId = {$user->userId} and status = 0";
 		$command=Yii::app()->db->createCommand($sql);
 		$sent = $command->queryAll();
 		

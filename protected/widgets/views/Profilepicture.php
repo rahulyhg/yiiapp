@@ -49,8 +49,12 @@ window.onload=loadImg_<?php echo $userId; ?>;
 		<span class="ppCinn">Change profile picture</span>
 		<img id="imgSrc_<?php echo $userId ?>" width="180" height="230" name="imgSrc_<?php echo $userId ?>" alt="" src="">
 	</a>
-<?php }else{?>
-	<img id="imgSrc_<?php echo $userId ?>" width="180" height="230" name="imgSrc_<?php echo $userId ?>" alt="" src="">
+<?php }else{
+	if(isset($user)) {?>
+	<a id="requestWindow" href="<?php echo Utilities::createAbsoluteUrl('album','view',array('mId'=>$marryId,'wType'=>'popup')); ?>"><img id="imgSrc_<?php echo $userId ?>" width="180" height="230" name="imgSrc_<?php echo $userId ?>" alt="" src=""></a>
+	<?php }else{?>
+		<a id="requestWindow" href="<?php echo Utilities::createAbsoluteUrl('site','popup',array('action'=>'login','module'=>'album','profileId'=>$userId)); ?>"><img id="imgSrc_<?php echo $userId ?>" width="180" height="230" name="imgSrc_<?php echo $userId ?>" alt="" src=""> </a>
+	<?php }?>
 <?php }?>	
 	<ul class="noC">
 		<li><a href="javascript:void(0);" class="prevs" onClick="prev_<?php echo $userId ?>();" ></a></li>
@@ -60,6 +64,6 @@ window.onload=loadImg_<?php echo $userId; ?>;
 				
 <?php }else{?>
 <div class="image-contnrs">
-	<a href="#"><img id="imgSrc" width="180" height="230" name="imgSrc" alt="" src="<?php echo Utilities::getProfileImage($marryId,'');?>"></a>
+	<img id="imgSrc" width="180" height="230" name="imgSrc" alt="" src="<?php echo Utilities::getProfileImage($marryId,'');?>">
 </div>
 <?php }?>

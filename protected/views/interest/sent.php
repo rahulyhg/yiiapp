@@ -55,9 +55,9 @@ $heightArray = Utilities::getHeights(); ?>
 				<?php foreach($received as $receive):?>  
 				<li>
 					<input type="checkbox" class="reqCheck" value="<?php echo $receive['interestId']; ?>" />
-					<a href="#"><img src="<?php echo Utilities::getProfileImage($receive['senderMarryId'],$receive['senderImageName']); ?>" alt="" /></a>
+					<a href="<?php echo Utilities::createAbsoluteUrl('search','byid',array('id'=>$receive['senderMarryId'])); ?>"><img src="<?php echo Utilities::getProfileImage($receive['senderMarryId'],$receive['senderImageName']); ?>" alt="" /></a>
 					<div class="int_head">
-						<a href="#" ><?php echo $receive['senderName']; ?></a>
+						<a href="<?php echo Utilities::createAbsoluteUrl('search','byid',array('id'=>$receive['senderMarryId'])); ?>" ><?php echo $receive['senderName']; ?></a>
 						<span>(Expressed interest on <?php echo $receive['sendDate']; ?>)</span>
 					</div> 
 					<div class="pDetails"><?php if(isset($receive['senderReligion']))echo $receive['senderReligion'] ;?>, <?php if(isset($receive['senderCaste']))echo $receive['senderCaste'] ;?>, <?php echo Utilities::getAgeFromDateofBirth($receive['senderAge']); ?> Years - <?php if(isset($receive['senderHeightId']))echo $heightArray[$receive['senderHeightId']]; ?></div>
@@ -79,9 +79,9 @@ $heightArray = Utilities::getHeights(); ?>
 				<?php foreach($sent as $send):?>  
 				<li>
 					<input type="checkbox" class="reqCheck" value="<?php echo $send['interestId']; ?>" />
-					<a href="#"><img src="<?php echo Utilities::getProfileImage($send['receiverMarryId'],$send['receiverImageName']); ?>" alt="" /></a>
+					<a href="<?php echo Utilities::createAbsoluteUrl('search','byid',array('id'=>$send['receiverMarryId'])); ?>"><img src="<?php echo Utilities::getProfileImage($send['receiverMarryId'],$send['receiverImageName']); ?>" alt="" /></a>
 					<div class="int_head">
-						<a href="#" ><?php echo $send['receiverName']; ?></a>
+						<a href="<?php echo Utilities::createAbsoluteUrl('search','byid',array('id'=>$send['receiverMarryId'])); ?>" ><?php echo $send['receiverName']; ?></a>
 						<span>(You expressed interest on <?php echo $send['sendDate']; ?>)</span>
 					</div> 
 					<div class="pDetails"><?php if(isset($send['receiverReligion']))echo $send['receiverReligion'] ;?>, <?php if(isset($send['receiverCaste']))echo $send['receiverCaste'] ;?>, <?php echo Utilities::getAgeFromDateofBirth($send['receiverAge']); ?> Years - <?php if(isset($send['receiverHeightId']))echo $heightArray[$send['receiverHeightId']]; ?></div>
@@ -98,21 +98,21 @@ $heightArray = Utilities::getHeights(); ?>
 			<!-- sent end here -->
 			<!-- accepted starts here -->
 			<ul id="tab3_data" class="tab-data" <?php if($tab == 'accepted'){ ?> style="display: block;"<?php }else{ ?> style="display: none;" <?php }?>>
-				<li>
+				<!--  <li>
 					<div class="optns">
 						<div class="option_cont">
 							<a href="#">Accepted by me</a> |
 							<a href="#">Accepted you</a> 
 						</div>
 					</div>
-				</li>
+				</li>-->
 				<?php if(!empty($accepted)):?>
 				<?php foreach($accepted as $accept):?>  
 				<li>
 					<input type="checkbox" class="reqCheck" value="<?php echo $accept['interestId']; ?>" />
-					<a href="#"><img src="<?php echo Utilities::getProfileImage($accept['receiverMarryId'],$accept['receiverImageName']); ?>" alt="" /></a>
+					<a href="<?php echo Utilities::createAbsoluteUrl('search','byid',array('id'=>$accept['receiverMarryId'])); ?>"><img src="<?php echo Utilities::getProfileImage($accept['receiverMarryId'],$accept['receiverImageName']); ?>" alt="" /></a>
 					<div class="int_head">
-						<a href="#" ><?php echo $accept['receiverName']; ?></a>
+						<a href="<?php echo Utilities::createAbsoluteUrl('search','byid',array('id'=>$accept['receiverMarryId'])); ?>" ><?php echo $accept['receiverName']; ?></a>
 						<span>(<?php if($accept['receiverId'] == $user->userId){ echo 'You'; } else{
 						 if($accept['receiverGender'] == 'M')
 							echo 'He';
@@ -138,21 +138,22 @@ $heightArray = Utilities::getHeights(); ?>
 			<!-- accepted ends here -->
 			<!-- declined starts here -->
 			<ul id="tab4_data" class="tab-data" <?php if($tab == 'declined'){ ?> style="display: block;"<?php }else{ ?> style="display: none;" <?php }?>>
-				<li>
+				<!--  <li>
 					<div class="optns">
 						<div class="option_cont">
 							<a href="#">By You</a> |
 							<a href="#">Sent to You</a> 
 						</div>
 					</div>
-				</li>
+				</li>-->
 				<?php if(!empty($declined)):?>
 				<?php foreach($declined as $decline):?>  
+				<?php if($decline['senderId'] == $user->userId){?>
 				<li>
 					<input type="checkbox" class="reqCheck" value="<?php echo $decline['interestId']; ?>" />
-					<a href="#"><img src="<?php echo Utilities::getProfileImage($decline['receiverMarryId'],$decline['receiverImageName']); ?>" alt="" /></a>
+					<a href="<?php echo Utilities::createAbsoluteUrl('search','byid',array('id'=>$decline['receiverMarryId'])); ?>"><img src="<?php echo Utilities::getProfileImage($decline['receiverMarryId'],$decline['receiverImageName']); ?>" alt="" /></a>
 					<div class="int_head">
-						<a href="#" ><?php echo $decline['receiverName']; ?></a>
+						<a href="<?php echo Utilities::createAbsoluteUrl('search','byid',array('id'=>$decline['receiverMarryId'])); ?>" ><?php echo $decline['receiverName']; ?></a>
 						<span>(<?php if($decline['senderId'] == $user->userId){ echo 'You'; } else{
 						 if($decline['receiverGender'] == 'M')
 							echo 'He';
@@ -172,6 +173,32 @@ $heightArray = Utilities::getHeights(); ?>
 						}?> declined her interest on<?php echo $decline['sendDate']; ?></div>
 					<?php }?>
 				</li>
+				<?php }else{?>
+					<li>
+					<input type="checkbox" class="reqCheck" value="<?php echo $decline['interestId']; ?>" />
+					<a href="<?php echo Utilities::createAbsoluteUrl('search','byid',array('id'=>$decline['senderMarryId'])); ?>"><img src="<?php echo Utilities::getProfileImage($decline['senderrMarryId'],$decline['senderImageName']); ?>" alt="" /></a>
+					<div class="int_head">
+						<a href="<?php echo Utilities::createAbsoluteUrl('search','byid',array('id'=>$decline['receiverMarryId'])); ?>" ><?php echo $decline['senderName']; ?></a>
+						<span>(<?php if($decline['senderId'] == $user->userId){ echo 'You'; } else{
+						 if($decline['senderGender'] == 'M')
+							echo 'He';
+							else echo 'She';
+						}?> expressed interest on <?php echo $decline['sendDate']; ?>)</span>
+					</div> 
+					<div class="pDetails"><?php if(isset($decline['receiverReligion']))echo $decline['receiverReligion'] ;?>, <?php if(isset($decline['receiverCaste']))echo $decline['receiverCaste'] ;?>, <?php echo Utilities::getAgeFromDateofBirth($decline['receiverAge']); ?> Years - <?php if(isset($decline['receiverHeightId']))echo $heightArray[$decline['receiverHeightId']]; ?></div>
+					<div class="pDetails"><?php if(isset($decline['receiverPlace']))echo $decline['receiverPlace'] ;?>, <?php if(isset($decline['receiverState']))echo $decline['receiverState'] ;?>, <?php if(isset($decline['receiverCountry']))echo $decline['receiverCountry'] ;?></div>
+					<?php if($decline['receiverId'] == $user->userId){?>
+					<div class="pAction">You declined her interest on<?php echo $decline['sendDate']; ?></div>
+					<a href="#" class="type6 decline" onclick="doInterestAction(<?php echo $decline['interestId']; ?>,'accept','declined');">Accept interest</a>
+					<?php }else{?>
+						<div class="pAction"><?php if($decline['receiverId'] == $user->userId){ echo 'You'; } else{
+						 if($decline['receiverGender'] == 'M')
+							echo 'He';
+							else echo 'She';
+						}?> declined her interest on<?php echo $decline['sendDate']; ?></div>
+					<?php }?>
+				</li>
+				<?php }?>
 				<?php endforeach;?>  
 				<?php else:?> 
 				<li>
