@@ -108,6 +108,7 @@ $heightArray = Utilities::getHeights(); ?>
 				</li>-->
 				<?php if(!empty($accepted)):?>
 				<?php foreach($accepted as $accept):?>  
+				<?php if($accept['senderId'] == $user->userId){?>
 				<li>
 					<input type="checkbox" class="reqCheck" value="<?php echo $accept['interestId']; ?>" />
 					<a href="<?php echo Utilities::createAbsoluteUrl('search','byid',array('id'=>$accept['receiverMarryId'])); ?>"><img src="<?php echo Utilities::getProfileImage($accept['receiverMarryId'],$accept['receiverImageName']); ?>" alt="" /></a>
@@ -127,7 +128,32 @@ $heightArray = Utilities::getHeights(); ?>
 					<a href="#" class="type6 decline" onclick="doInterestAction(<?php echo $accept['interestId']; ?>,'cancel','accepted');">Cancel my request</a>
 					<?php }?>
 				</li>
+				<?php }else{?>
+				<li>
+					<input type="checkbox" class="reqCheck" value="<?php echo $accept['interestId']; ?>" />
+					<a href="<?php echo Utilities::createAbsoluteUrl('search','byid',array('id'=>$accept['senderMarryId'])); ?>"><img src="<?php echo Utilities::getProfileImage($accept['receiverMarryId'],$accept['receiverImageName']); ?>" alt="" /></a>
+					<div class="int_head">
+						<a href="<?php echo Utilities::createAbsoluteUrl('search','byid',array('id'=>$accept['senderMarryId'])); ?>" ><?php echo $accept['receiverName']; ?></a>
+						<span>(<?php if($accept['receiverId'] == $user->userId){ echo 'You'; } else{
+						 if($accept['receiverGender'] == 'M')
+							echo 'He';
+							else echo 'She';
+						}?>	accepted <?php if($accept['senderId'] == $user->userId){ echo 'your'; } else{
+							if($accept['receiverGender'] == 'M')
+							echo 'his';
+							else echo 'her';
+						}
+						?> interest on <?php echo $accept['sendDate']; ?>)</span>
+					</div> 
+					<div class="pDetails"><?php if(isset($accept['receiverReligion']))echo $accept['receiverReligion'] ;?>, <?php if(isset($accept['receiverCaste']))echo $accept['receiverCaste'] ;?>, <?php echo Utilities::getAgeFromDateofBirth($accept['receiverAge']); ?> Years - <?php if(isset($accept['receiverHeightId']))echo $heightArray[$accept['receiverHeightId']]; ?></div>
+					<div class="pDetails"><?php if(isset($accept['receiverPlace']))echo $accept['receiverPlace'] ;?>, <?php if(isset($accept['receiverState']))echo $accept['receiverState'] ;?>, <?php if(isset($accept['receiverCountry']))echo $accept['receiverCountry'] ;?></div>
+					<?php if($accept['receiverId'] == $user->userId){?>
+					<a href="#" class="type6 decline" onclick="doInterestAction(<?php echo $accept['interestId']; ?>,'decline','accepted');">Decline</a>
+					<?php }else{?>
+					<a href="#" class="type6 decline" onclick="doInterestAction(<?php echo $accept['interestId']; ?>,'cancel','accepted');">Cancel my request</a>
+					<?php }?>
 				</li>
+				<?php }?>
 				<?php endforeach;?>  
 				<?php else:?> 
 				<li>
