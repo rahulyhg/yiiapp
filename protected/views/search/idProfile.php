@@ -34,6 +34,8 @@ $user = Yii::app()->session->get('user');
  	$blocked[] =  $user->profileBlock->profileIDs;
  }
  
+	 $isInterest = $user->interestSender(array('condition'=>"receiverId = {$model->userId}"));
+	 $isMessage = $user->messageSender(array('condition'=>"receiverId = {$model->userId}"));
  
   	}
  ?>
@@ -183,14 +185,22 @@ $user = Yii::app()->session->get('user');
 		</div>
 		<?php  
 		if(isset($user)){
-			$isInterest = $user->interestSender(array('condition'=>"receiverId = {$model->userId}"));
- 			$isMessage = $user->messageSender(array('condition'=>"receiverId = {$model->userId}"));
+			
  
 		?>	
 		<div class="optBtnC">
-			
-			<a id="<?php echo $model->userId ?>" href="#">Express Interest</a>
-			<a id="<?php echo $model->userId ?>"  href="#">Send Message</a>
+			<?php if(!isset($isInterest) || empty($isInterest)) {?>
+			<span class="expressInterest"><a href="#" id="<?php echo $model->userId ?>"  class="global">Express Interest</a></span>
+			<?php }?>
+			<?php 
+			 if(!isset($isMessage) || empty($isMessage)) {
+				 if($user->userType == 1){  ?>
+					<a id="<?php echo $model->userId ?>"  href="<?php echo Utilities::createAbsoluteUrl('message','compose',array('receiverId'=>$model->userId)); ?>" class="composeMessage">Send Message</a>
+					<?php }else{?>
+					<a id="requestWindow" href="<?php echo Utilities::createAbsoluteUrl('site','popup',array('action'=>'subscribe','module'=>'message','profileId'=>$model->userId)); ?>">Send Message</a>
+				<?php 
+				}
+			}?>
 			<?php if(!in_array($model->userId, $bookMarked)) {?>
 	                    <span id="bookmark"><a href="#" id="<?php echo $model->userId ?>"  class="global">Bookmark</a></span>
                     <?php }?>
@@ -552,8 +562,18 @@ $drink= Utilities::getDrink();
 		?>	
 		<div class="optBtnC">
 			
-			<a id="<?php echo $model->userId ?>" href="#">Express Interest</a>
-			<a id="<?php echo $model->userId ?>"  href="#">Send Message</a>
+			<?php if(!isset($isInterest) || empty($isInterest)) {?>
+			<span class="expressInterest"><a href="#" id="<?php echo $model->userId ?>"  class="global">Express Interest</a></span>
+			<?php }?>
+			<?php 
+			 if(!isset($isMessage) || empty($isMessage)) {
+				 if($user->userType == 1){  ?>
+					<a id="<?php echo $model->userId ?>"  href="<?php echo Utilities::createAbsoluteUrl('message','compose',array('receiverId'=>$model->userId)); ?>" class="composeMessage">Send Message</a>
+					<?php }else{?>
+					<a id="requestWindow" href="<?php echo Utilities::createAbsoluteUrl('site','popup',array('action'=>'subscribe','module'=>'message','profileId'=>$model->userId)); ?>">Send Message</a>
+				<?php 
+				}
+			}?>
 			<?php if(!in_array($model->userId, $bookMarked)) {?>  
                     <span id="bookmark1"><a href="#" id="<?php echo $model->userId ?>"  class="global">Bookmark</a></span>
                     <?php }?>
@@ -577,7 +597,9 @@ $(document).ready(function() {
 	$("#astroDetails").colorbox({iframe:true, width:"860", height:"900",overlayClose: false});
 	
 	//$(".albumWindow").colorbox({iframe:true, width:"860", height:"900",overlayClose: false});
-	$('[id^=requestWindow]').colorbox({iframe:true, width:"860", height:"900",overlayClose: false});	
+	$('[id^=requestWindow]').colorbox({iframe:true, width:"860", height:"900",overlayClose: false});
+	$(".composeMessage").colorbox({iframe:true, width:"860", height:"620",overlayClose: false});
+		
 });
 
 
@@ -615,7 +637,24 @@ $("span[id^='blocked']").click(function (){
 
 }); 
   
+//express interest individually
 
+$('.expressInterest').click(function (e){
+	  e.preventDefault();
+	 var userId = $(this).find('a').attr('id');
+	 $.ajax({
+	        url: "/interest/insert",  
+	        type: "POST",
+	        dataType:'json',
+	        data:{'userId':userId},   
+	        cache: false,
+	        success: function (html) {
+		        if(html == true)  
+		        	$('#'+userId).hide();	         
+	        }       
+	    });
+
+});
 </script> 
  
    

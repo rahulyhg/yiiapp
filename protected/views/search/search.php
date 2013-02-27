@@ -183,11 +183,17 @@
                     <a href="#" id="<?php echo $value->userId ?>"  class="global">Bookmark</a>
                     </div>
    <?php }?>
-<?php if(!isset($isMessage) || empty($isMessage)) {?>
-<div id="message">
-                    <a href="<?php echo Utilities::createAbsoluteUrl('message','compose',array('receiverId'=>$value->userId)); ?>"  class="sendMessage" id="<?php echo $value->userId ?>" >Send Message</a>
-                    </div>
-                    <?php }
+<?php if(!isset($isMessage) || empty($isMessage)) {
+	
+	?>
+	<div id="message">
+	<?php if($user->userType == 1){?>
+      <a href="<?php echo Utilities::createAbsoluteUrl('message','compose',array('receiverId'=>$value->userId)); ?>"  class="sendMessage" id="<?php echo $value->userId ?>" >Send Message</a>
+      <?php }else{?>
+      <a class="sendMessage" href="<?php echo Utilities::createAbsoluteUrl('site','popup',array('action'=>'subscribe','module'=>'message','profileId'=>$value->userId)); ?>">Send Message</a>
+      <?php }?>
+    </div>
+        <?php }
   	}
   	?>
                 </div>

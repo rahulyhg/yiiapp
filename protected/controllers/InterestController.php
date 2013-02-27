@@ -19,8 +19,8 @@ class InterestController extends Controller
        		if(isset($_POST['userId']))
        		{
        			$user = Yii::app()->session->get('user');
-       			if(!isset($user->interests))
-				{
+       			$isInterest = $user->interestSender(array('condition'=>"receiverId = {$_POST['userId']}"));
+       			if(!isset($isInterest) || empty($isInterest)) {
 					$interest = new Interests();
 		       		$interest->senderId =  $user->userId;
 		       		$interest->receiverId =  $_POST['userId'];
@@ -42,11 +42,14 @@ class InterestController extends Controller
 				{
 					if(!empty($userIds)){
 						foreach($userIds as $userId){
-							$interest = new Interests();
-				       		$interest->senderId =  $user->userId;
-				       		$interest->receiverId =  $userId;
-				       		$interest->sendDate = new CDbExpression('NOW()');
-				       		$interest->save();
+							$isInterest = $user->interestSender(array('condition'=>"receiverId = {$userId}"));
+							if(!isset($isInterest) || empty($isInterest)) {
+								$interest = new Interests();
+					       		$interest->senderId =  $user->userId;
+					       		$interest->receiverId =  $userId;
+					       		$interest->sendDate = new CDbExpression('NOW()');
+					       		$interest->save();
+							}
 						}
 					}
 		       		echo json_encode(TRUE);
