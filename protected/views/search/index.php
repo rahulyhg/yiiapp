@@ -242,7 +242,7 @@
 						</div>
 						<div class="info">
 							<div class="check wid220">
-								<input type="checkbox" id="profile1" value="P" name="profile[]"><span>Only With Photo</span>
+								<input type="checkbox" id="profile1" value="p" name="profile[]"><span>Only With Photo</span>
 							</div>
 							<div class="check ">
 								<input type="checkbox" id="profile" value="h" name="profile[]"><span>Only With horoscope</span>

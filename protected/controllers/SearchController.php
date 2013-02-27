@@ -699,7 +699,7 @@ class SearchController extends Controller
 				$condition = " gender = '{$gender}' and active = 1";
 			}
 				
-			if(isset($_POST['ageFrom']) && isset($_POST['ageTo']))
+			if(!empty($_POST['ageFrom']) && !empty($_POST['ageTo']))
 			{
 					
 				if(isset($_POST['ageFrom']))

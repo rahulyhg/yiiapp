@@ -482,6 +482,7 @@ class ContactController extends Controller
 	public function actionPersonaledit()
 	{
 		$user = Yii::app()->session->get('user');
+		$user = Users::model()->with('horoscopes','userpersonaldetails','familyprofiles','physicaldetails','educations','hobies')->findbyPk($user->userId);	
 		$this->layout= '//layouts/popup';
 		$this->render('personaledit');
 	}
