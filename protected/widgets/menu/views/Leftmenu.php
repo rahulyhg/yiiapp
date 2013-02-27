@@ -120,7 +120,7 @@
 				?>
 					<div class="row"><a href="<?php echo Utilities::createAbsoluteUrl('message','',array()); ?>" class="innLink">Inbox <?php echo count($inbox); ?></a></div>
 					<div class="row"><a href="<?php echo Utilities::createAbsoluteUrl('message','sent',array()); ?>" class="innLink">Outbox <?php echo count($outbox); ?></a></div>
-					<div class="row"><a href="<?php echo Utilities::createAbsoluteUrl('message','acknowledgement',array()); ?>" class="innLink">Delivery aknowledgement <?php echo count($acknowledge); ?></a></div>
+					<!--  <div class="row"><a href="<?php echo Utilities::createAbsoluteUrl('message','acknowledgement',array()); ?>" class="innLink">Delivery aknowledgement <?php echo count($acknowledge); ?></a></div>-->
 				</div>
 			</li>
         </ul>

@@ -38,9 +38,9 @@
 				<li id="tab2"> 
 					<a id="tab2" href="#" <?php if($page == 'outbox'){ ?>class="select " <?php }?>>Outbox</a>
 				</li>
-				<li id="tab3">
+				<!--  <li id="tab3">
 					<a id="tab3" href="#" <?php if($page == 'acknowledgement'){ ?>class="select " <?php }?> style="width: 166px;">Delivery acknowledgement</a>
-				</li>
+				</li>-->
 			</ul>
 			<!--  inbox starts here -->
 			<ul id="tab1_data" class="tab-data" <?php if($page == 'inbox'){ ?> style="display: block;" <?php }else{ ?> style="display: none;" <?php }?>>
@@ -48,9 +48,9 @@
 				<?php foreach($inbox as $inmessage):?>     
 				<li <?php if($inmessage['status'] == 0){ ?>class="unread" <?php }?>>
 					<input type="checkbox" class="msgCheck" value="<?php echo $inmessage['messageId']; ?>" />
-					<a href="#"><img src="<?php echo Utilities::getProfileImage($inmessage['senderMarryId'],$inmessage['senderImageName']); ?>" alt="" /></a>
-					<a href="<?php echo Utilities::createAbsoluteUrl('message','conversation',array('senderId'=>$inmessage['senderId'])); ?>" class="user_name"><?php echo $inmessage['senderName']; ?></a>
-					<div class="user_message"><?php echo $inmessage['message']; ?></div>
+					<a href="<?php echo Utilities::createAbsoluteUrl('search','byid',array('id'=>$inmessage['senderMarryId'])); ?>" target="_blank"><img src="<?php echo Utilities::getProfileImage($inmessage['senderMarryId'],$inmessage['senderImageName']); ?>" alt="" /></a>
+					<a href="<?php echo Utilities::createAbsoluteUrl('search','byid',array('id'=>$inmessage['senderMarryId'])); ?>" target="_blank" class="user_name"><?php echo $inmessage['senderName']; ?></a>
+					<a href="<?php echo Utilities::createAbsoluteUrl('message','conversation',array('senderId'=>$inmessage['senderId'])); ?>"><div class="user_message"><?php echo $inmessage['message']; ?></div></a>
 					<div class="msge_data">
 						<a href="#" class="close" onclick="deleteMessage(<?php echo $inmessage['messageId']; ?>,'inbox');"></a>
 						<div class="date"><?php echo $inmessage['sendDate']; ?></div>
@@ -70,9 +70,9 @@
 				<?php foreach($outbox as $outmessage):?>
 				<li <?php if($outmessage['status'] == 0){ ?>class="unread" <?php }?>>
 					<input type="checkbox" class="msgCheck" value="<?php echo $outmessage['messageId']; ?>" />
-					<a href="#"><img src="<?php echo Utilities::getProfileImage($outmessage['receiverMarryId'],$outmessage['receiverImageName']); ?>" alt="" /></a>
-					<a href="<?php echo Utilities::createAbsoluteUrl('message','conversation',array('senderId'=>$outmessage['senderId'])); ?>" class="user_name"><?php echo $outmessage['receiverName']; ?></a>
-					<div class="sent_message"><?php echo $outmessage['message']; ?></div>
+					<a href="<?php echo Utilities::createAbsoluteUrl('search','byid',array('id'=>$outmessage['receiverMarryId'])); ?>" target="_blank"><img src="<?php echo Utilities::getProfileImage($outmessage['receiverMarryId'],$outmessage['receiverImageName']); ?>" alt="" /></a>
+					<a href="<?php echo Utilities::createAbsoluteUrl('search','byid',array('id'=>$outmessage['receiverMarryId'])); ?>" target="_blank" class="user_name"><?php echo $outmessage['receiverName']; ?></a>
+					<a href="<?php echo Utilities::createAbsoluteUrl('message','conversation',array('senderId'=>$outmessage['receiverId'])); ?>"><div class="sent_message"><?php echo $outmessage['message']; ?></div></a>
 					<div class="msge_data">
 						<a href="#" class="close" onclick="deleteMessage(<?php echo $outmessage['messageId']; ?>,'outbox');"></a>
 						<div class="date"><?php echo $outmessage['sendDate']; ?></div>
