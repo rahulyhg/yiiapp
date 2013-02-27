@@ -528,7 +528,7 @@ a.sendMessage:hover{
     float: left;
     background: #fff;
     border: 1px solid #e7cefa;
-    font:normal 13px/15px arial,helvetica,sans-serif;
+    font:normal 12px/15px arial,helvetica,sans-serif;
     color: #666;
     padding-left: 6px;
 }
@@ -539,7 +539,7 @@ a.sendMessage:hover{
     float: left;
     background: #fff;
     border: 1px solid #e7cefa;
-    font:normal 13px/15px arial,helvetica,sans-serif;
+    font:normal 12px/15px arial,helvetica,sans-serif;
     color: #666;
     padding-left: 6px;
 }
@@ -549,7 +549,7 @@ a.sendMessage:hover{
     background-color: #fff;
     border: 1px solid #E7CEFA;
     color: #666;
-    font:normal 13px/15px arial,helvetica,sans-serif;
+    font:normal 12px/15px arial,helvetica,sans-serif;
     margin: 0 .5% 0 0;
     padding: 2px;
 }
@@ -631,7 +631,7 @@ a.sendMessage:hover{
     min-height: 10px;
     float: left;
     color: #666;
-    font:normal 13px/15px arial,helvetica,sans-serif;
+    font:normal 12px/15px arial,helvetica,sans-serif;
 }
 .basic-search ul.search-data li .right input[type="text"]{
     width:80%;
@@ -639,7 +639,7 @@ a.sendMessage:hover{
     float: left;
     background: #fff;
     border: 1px solid #c7c9cb;
-    font:normal 13px/15px arial,helvetica,sans-serif;
+    font:normal 12px/15px arial,helvetica,sans-serif;
     color: #666;
     padding-left: 6px;
 }
@@ -647,7 +647,7 @@ a.sendMessage:hover{
     background-color: #fff;
     border: 1px solid #c7c9cb;
     color: #666;
-    font:normal 13px/15px arial,helvetica,sans-serif;
+    font:normal 12px/15px arial,helvetica,sans-serif;
     margin: 0 .5% 0 0;
     padding: 2px;
     float: left;
@@ -749,7 +749,7 @@ article.section ul li .info{
     min-height: 10px;
     float: left;
     color: #666;
-    font: normal 13px/15px arial,helvetica,sans-serif;
+    font: normal 12px/15px arial,helvetica,sans-serif;
 }
 article.section ul li .inputData{
     float: left;
@@ -769,7 +769,7 @@ article.section ul li .info select{
     background-color: #fff;
     border: 1px solid #c7c9cb;
     color: #666;
-    font: 13px/15px arial,helvetica,sans-serif;
+    font: 12px/15px arial,helvetica,sans-serif;
     margin: 0 0 0 0;
     padding: 2px;
     float: left;
@@ -814,7 +814,7 @@ article.section ul li .info .perM{
     float: left;
     margin:3px 0 0;
     color: #c7c8ca;
-    font: normal 13px/14px helvetica,arial,sans-serif;
+    font: normal 12px/14px helvetica,arial,sans-serif;
 }
 article.section ul li .info .check{
     min-height: 20px;
@@ -838,6 +838,7 @@ article.section ul li .info .check span{
     float: left;
     margin: 0 0 0 4px;
     line-height: 14px;
+    width: 152px;
 }
 .check{
     min-height: 20px;
@@ -860,7 +861,7 @@ article.section ul li .info .ar{
     margin:0 0;
     padding: 5px;
     color: #939393;
-    font: normal 13px/14px helvetica,arial,sans-serif;
+    font: normal 12px/14px helvetica,arial,sans-serif;
     overflow: hidden !important;
 }
 article.section ul li .info .ar option{
@@ -883,7 +884,7 @@ article.section ul li .info .special{
     min-height: 10px;
     float: left;
     color: #666;
-    font: normal 13px/15px arial,helvetica,sans-serif;
+    font: normal 12px/15px arial,helvetica,sans-serif;
     margin: 0 10px 5px 0;
 }
 article.section ul li .inner-row{
@@ -891,7 +892,7 @@ article.section ul li .inner-row{
     min-height: 10px;
     float: left;
     color: #666;
-    font: normal 13px/15px arial,helvetica,sans-serif;
+    font: normal 12px/15px arial,helvetica,sans-serif;
     margin: 0 0 11px 0;
 }
 article.section ul li .info input[type="text"]{
@@ -901,7 +902,7 @@ article.section ul li .info input[type="text"]{
     border: 1px solid #E7E8E9;
     float: left;
     color: #666;
-    font: normal 13px/15px arial,helvetica,sans-serif;
+    font: normal 12px/15px arial,helvetica,sans-serif;
     margin: 0 12px 0 0;
 }
 article.section ul li .buttonContnr{
@@ -1327,7 +1328,7 @@ article.section ul li .info .checked{
 .data-contnr3 .selC{
     color: #666;
     font:normal 13px/18px arial,helvetica,sans-serif;
-    margin: 0 10px 0 0;
+    margin: 0 4px 0 0;
     float: left;
 }
 .data-contnr3 .selC select {
@@ -1335,7 +1336,7 @@ article.section ul li .info .checked{
     border: 1px solid #C7C9CB;
     color: #666;
     float: left;
-    font: 13px/15px arial,helvetica,sans-serif;
+    font: 12px/15px arial,helvetica,sans-serif;
     margin: 0;
     padding: 2px;
 }
@@ -1450,7 +1451,7 @@ article.section ul li .info .checked{
     border: 1px solid #C7C9CB;
     color: #666;
     float: left;
-    font: 13px/15px arial,helvetica,sans-serif;
+    font: 12px/15px arial,helvetica,sans-serif;
     margin: 0;
     padding: 2px;
 }
@@ -1584,7 +1585,7 @@ article.section ul li .info .checked{
     width: 10px;
     height: 12px;
     background: url("http://marrydoor.com/images/marrydoor.png") no-repeat -38px 0;
-    margin-top: 2px;
+    margin-top:4px;
 }
 .mainPro .noC li a.prevs:hover{
     background-position: -38px -18px;
@@ -1593,7 +1594,7 @@ article.section ul li .info .checked{
     width: 10px;
     height: 12px;
     background: url("http://marrydoor.com/images/marrydoor.png") no-repeat -60px 0;
-    margin-top: 2px;
+    margin-top:4px;
 }
 .mainPro .noC li a.nexts:hover{
     background-position: -60px -18px;
@@ -1643,8 +1644,11 @@ article.section ul li .info .checked{
 .butCo{
     min-height: 10px;
     float: left;
-    margin:16px 0 0 5px;
+    margin:16px 0 0 4px;
     font-size: 12px;
+}
+.butCo:first-child{
+    margin-left: 0;
 }
 .editContr{
     width: 690px;
@@ -1965,7 +1969,7 @@ article.section ul li .info .checked{
     width: 100%;
 }
 .tab-data .profile li .last-view {
-    font: normal 13px/15px arial,helvetica,sans-serif;
+    font: normal 12px/15px arial,helvetica,sans-serif;
     color: #999999;
     float: left;
     width: 100%;

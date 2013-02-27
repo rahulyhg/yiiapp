@@ -527,9 +527,9 @@ body{
     border: none 0 !important;
 }
 .type2:hover{
-    background: #7c51a1;
-    color: #f1effa;
-    text-decoration: none !important;
+    background:#7c51a1 !important;
+    color:#f1effa !important;
+    text-decoration:none !important;
 }
 .type2b{
     width:65px;
@@ -577,6 +577,7 @@ body{
     text-align: center;
     text-decoration: none;
 	padding: 0 10px !important;
+	border: 0 !important;
 }
 .type4:hover{
     background: #7c51a1;
@@ -593,6 +594,7 @@ body{
     text-align: center;
     text-decoration: none;
 	padding: 0 12px !important;
+	border: 0 !important;
 }
 .type5:hover{
     background: #7c51a1;
@@ -661,11 +663,12 @@ body{
     height: 28px;
     margin:19px 10% 0 0;
     text-align: center;
-    text-decoration: none;
+    text-decoration: none !important;
 }
 .next:hover{
     background: #7c51a1;
     color: #f1effa;
+	text-decoration: none !important;
 }
 .upload{
 	width: 260px;
@@ -689,7 +692,7 @@ input[type="text"] {
     background: none repeat scroll 0 0 #FFFFFF;
     border: 1px solid #E7E8E9;
     color: #666;
-    font: 13px/15px arial,helvetica,sans-serif;
+    font: 12px/15px arial,helvetica,sans-serif;
 	padding-left: 4px;
 }
 
@@ -697,7 +700,7 @@ select {
     background-color: #FFFFFF;
     border: 1px solid #E7E8E9;
     color: #666;
-    font: 13px/15px arial,helvetica,sans-serif;
+    font: 12px/15px arial,helvetica,sans-serif;
     margin: 0;
     padding: 2px;
 }
@@ -705,7 +708,7 @@ textarea {
     background-color: #FFFFFF;
     border: 1px solid #E7E8E9;
     color: #666;
-    font: 13px/15px arial,helvetica,sans-serif;
+    font: 12px/15px arial,helvetica,sans-serif;
     padding: 5px;
 }
 h1{
@@ -957,7 +960,7 @@ h5{
     float: left;
     line-height: 16px;
 	color: #666;
-    font: 13px/15px arial,helvetica,sans-serif;
+    font: 12px/15px arial,helvetica,sans-serif;
 }
 .radio .useRs{
     float: left;
@@ -1086,7 +1089,7 @@ h5{
     background: none repeat scroll 0 0 #FFFFFF;
     border: 1px solid #E7E8E9;
     color: #666;
-    font: 13px/15px arial,helvetica,sans-serif;
+    font: 12px/15px arial,helvetica,sans-serif;
     height: 21px;
     margin: 2px 0 7px 0 ;
     padding-left: 4px;
@@ -1119,10 +1122,11 @@ h5{
     padding:0 !important;
 }
 .left-bar-container .left-bar-data li .pName{
+	width: 120px;
     float: left;
     font: bold 13px/14px arial,helvetica,sans-serif;
     color:#7C51A1;
-    margin:30px 0 0 6px !important;
+    margin:30px 0 0 4px !important;
 	padding: 0 !important;
 }
 .left-bar-container .left-bar-data li .uNot{
@@ -1170,7 +1174,7 @@ h5{
     background: none repeat scroll 0 0 #FFFFFF;
     border: 1px solid #E7E8E9;
     color: #666;
-    font: 13px/15px arial,helvetica,sans-serif;
+    font: 12px/15px arial,helvetica,sans-serif;
     height: 21px;
     padding-left: 4px;
     width:175px;
@@ -1449,7 +1453,7 @@ h5{
 }
 .header .welcome-message{
     width: 50%;
-    font: normal 13px/15px arial,helvetica,sans-serif;
+    font: normal 12px/15px arial,helvetica,sans-serif;
     color: #666;
     text-align:right;
     float: right;
@@ -1462,7 +1466,7 @@ h5{
 .header .search-container{
     width: 417px;
     height: 40px;
-    font: normal 13px/15px arial,helvetica,sans-serif;
+    font: normal 12px/15px arial,helvetica,sans-serif;
     color: #666;
     float: right;
     margin: 24px 0 0 0;
@@ -1471,7 +1475,7 @@ h5{
 .header .search-container input[type="text"]{
     width: 165px;
     height: 21px;
-    font: normal 13px/15px arial,helvetica,sans-serif;
+    font: normal 12px/15px arial,helvetica,sans-serif;
     color: #666;
     margin: 0 5px 0 0;
     padding-left: 4px;
@@ -1483,7 +1487,7 @@ h5{
 }
 .header .user-login{
     width:439px;
-    font: normal 13px/15px arial,helvetica,sans-serif;
+    font: normal 12px/15px arial,helvetica,sans-serif;
     color: #666;
     float: right;
     margin:6px 0 0 0;
@@ -1492,7 +1496,7 @@ h5{
 }
 .header .user-login .login-contnr{
     width:181px;
-    font: normal 13px/15px arial,helvetica,sans-serif;
+    font: normal 12px/15px arial,helvetica,sans-serif;
     color: #666;
     float: left;
     margin:0 0 0 4px;
@@ -1508,14 +1512,14 @@ h5{
     width: 100%;
     float: left;
     text-align: left;
-    font: normal 13px/15px arial,helvetica,sans-serif;
+    font: normal 12px/15px arial,helvetica,sans-serif;
     color: #666;
     margin-bottom:3px;
 }
 .header .user-login .login-contnr a{
     float: left;
     text-align: left;
-    font: normal 13px/15px arial,helvetica,sans-serif;
+    font: normal 12px/15px arial,helvetica,sans-serif;
     color: #408ef8;
     margin-top: 5px;
 }
@@ -1660,7 +1664,7 @@ h5{
 }
 .header .breadcrumb a{
     height: 20px;
-    font: normal 13px/15px arial,helvetica,sans-serif;
+    font: normal 12px/15px arial,helvetica,sans-serif;
     color: #666;
     float: left;
     text-decoration: none;
@@ -1671,7 +1675,7 @@ h5{
 }
 .header .breadcrumb span{
     height: 20px;
-    font: bold 13px/15px arial,helvetica,sans-serif;
+    font: bold 12px/15px arial,helvetica,sans-serif;
     color: #666;
     float: left;
     text-decoration: none;
@@ -1762,7 +1766,7 @@ h5{
 	background: url("http://marrydoor.com/images/marrydoor.png") no-repeat -638px -65px;
 	left: 2px;
 	top: -21px;
-	font:bold 13px/15px tahoma,arial,helvetica,sans-serif;
+	font:bold 12px/15px tahoma,arial,helvetica,sans-serif;
     color: #fff;
 	text-align: center;
 	display: none;
@@ -2141,24 +2145,24 @@ h5{
 
 
 .saveSbox{
-	width: 220px;
-    padding:10px;
+	background: none repeat scroll 0 0 #FFFFFF;
+    border: 1px solid #C7C9CB;
+    box-shadow: 0 0 6px -2px #666666;
+    left: -85px;
+    padding: 10px;
     position: absolute;
-    left: 10px;
-    top:26px;
-    border: 1px solid #c7c9cb;
-    background: #fff;
-    box-shadow: 0 0 6px -2px #666;
     text-align: left;
+    top: -123px;
+    width: 220px;
     z-index: 777;
 }
 .saveSbox .tarrow{
-    width:22px;
+    background: url("../images/marrydoor.png") no-repeat scroll -790px -1px transparent;
+    bottom: -13px;
     height: 14px;
-    position: absolute;
     left: 44%;
-    top:-14px;
-    background:transparent url("../images/marrydoor.png") no-repeat -735px 0px;
+    position: absolute;
+    width: 22px;
 }
 .saveSbox .cont{
     float: left;
