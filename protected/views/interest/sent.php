@@ -170,7 +170,12 @@ $heightArray = Utilities::getHeights(); ?>
 						 if($decline['receiverGender'] == 'M')
 							echo 'He';
 							else echo 'She';
-						}?> declined her interest on<?php echo $decline['sendDate']; ?></div>
+						}?> declined <?php if($decline['senderId'] == $user->userId){ echo 'your'; } else{
+							if($decline['receiverGender'] == 'M')
+							echo 'his';
+							else echo 'her';
+						}
+						?> interest on<?php echo $decline['sendDate']; ?></div>
 					<?php }?>
 				</li>
 				<?php }else{?>
@@ -192,10 +197,15 @@ $heightArray = Utilities::getHeights(); ?>
 					<a href="#" class="type6 decline" onclick="doInterestAction(<?php echo $decline['interestId']; ?>,'accept','declined');">Accept interest</a>
 					<?php }else{?>
 						<div class="pAction"><?php if($decline['receiverId'] == $user->userId){ echo 'You'; } else{
-						 if($decline['receiverGender'] == 'M')
+						 if($decline['senderGender'] == 'M')
 							echo 'He';
 							else echo 'She';
-						}?> declined her interest on<?php echo $decline['sendDate']; ?></div>
+						}?> declined <?php if($decline['receiverId'] == $user->userId){ echo 'your'; } else{
+							if($decline['senderGender'] == 'M')
+							echo 'his';
+							else echo 'her';
+						}
+						?> interest on<?php echo $decline['sendDate']; ?></div>
 					<?php }?>
 				</li>
 				<?php }?>
