@@ -49,12 +49,13 @@
 				<li <?php if($inmessage['status'] == 0){ ?>class="unread" <?php }?>>
 					<input type="checkbox" class="msgCheck" value="<?php echo $inmessage['messageId']; ?>" />
 					<a href="<?php echo Utilities::createAbsoluteUrl('search','byid',array('id'=>$inmessage['senderMarryId'])); ?>" target="_blank"><img src="<?php echo Utilities::getProfileImage($inmessage['senderMarryId'],$inmessage['senderImageName']); ?>" alt="" /></a>
-					<a href="<?php echo Utilities::createAbsoluteUrl('search','byid',array('id'=>$inmessage['senderMarryId'])); ?>" target="_blank" class="user_name"><?php echo $inmessage['senderName']; ?></a>
+					<a href="<?php echo Utilities::createAbsoluteUrl('message','conversation',array('senderId'=>$inmessage['senderId'])); ?>" class="user_name"><?php echo $inmessage['senderName']; ?></a>
 					<a href="<?php echo Utilities::createAbsoluteUrl('message','conversation',array('senderId'=>$inmessage['senderId'])); ?>"><div class="user_message"><?php echo $inmessage['message']; ?></div></a>
 					<div class="msge_data">
 						<a href="#" class="close" onclick="deleteMessage(<?php echo $inmessage['messageId']; ?>,'inbox');"></a>
 						<div class="date"><?php echo $inmessage['sendDate']; ?></div>
 					</div>
+					<a href="<?php echo Utilities::createAbsoluteUrl('message','conversation',array('senderId'=>$inmessage['senderId'])); ?>">Replay</a>
 				</li>
 				<?php endforeach;?>  
 				<?php else:?> 
@@ -71,12 +72,13 @@
 				<li <?php if($outmessage['status'] == 0){ ?>class="unread" <?php }?>>
 					<input type="checkbox" class="msgCheck" value="<?php echo $outmessage['messageId']; ?>" />
 					<a href="<?php echo Utilities::createAbsoluteUrl('search','byid',array('id'=>$outmessage['receiverMarryId'])); ?>" target="_blank"><img src="<?php echo Utilities::getProfileImage($outmessage['receiverMarryId'],$outmessage['receiverImageName']); ?>" alt="" /></a>
-					<a href="<?php echo Utilities::createAbsoluteUrl('search','byid',array('id'=>$outmessage['receiverMarryId'])); ?>" target="_blank" class="user_name"><?php echo $outmessage['receiverName']; ?></a>
+					<a href="<?php echo Utilities::createAbsoluteUrl('message','conversation',array('senderId'=>$outmessage['receiverId'])); ?>" class="user_name"><?php echo $outmessage['receiverName']; ?></a>
 					<a href="<?php echo Utilities::createAbsoluteUrl('message','conversation',array('senderId'=>$outmessage['receiverId'])); ?>"><div class="sent_message"><?php echo $outmessage['message']; ?></div></a>
 					<div class="msge_data">
 						<a href="#" class="close" onclick="deleteMessage(<?php echo $outmessage['messageId']; ?>,'outbox');"></a>
 						<div class="date"><?php echo $outmessage['sendDate']; ?></div>
 					</div>
+					<a href="<?php echo Utilities::createAbsoluteUrl('message','conversation',array('senderId'=>$outmessage['receiverId'])); ?>">Replay</a>
 				</li>
 			<?php endforeach;?>
 			<?php else:?> 

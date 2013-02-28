@@ -41,8 +41,8 @@
 				<?php foreach($messages as $message):?> 
 				<li>
 					<input type="checkbox" class="msgCheck" value="<?php echo $message['messageId']; ?>" />
-					<a href="#"><img src="<?php echo Utilities::getProfileImage($message['senderMarryId'],$message['senderImageName']); ?>" alt="" /></a>
-					<a href="#" class="user_name"><?php echo $message['senderName']; ?></a>
+					<a href="<?php echo Utilities::createAbsoluteUrl('search','byid',array('id'=>$message['senderMarryId'])); ?>" target="_blank"><img src="<?php echo Utilities::getProfileImage($message['senderMarryId'],$message['senderImageName']); ?>" alt="" /></a>
+					<a href="<?php echo Utilities::createAbsoluteUrl('search','byid',array('id'=>$message['senderMarryId'])); ?>" target="_blank" class="user_name"><?php echo $message['senderName']; ?></a>
 					<div class="<?php if($user->userId == $message['senderId']) {?>sent_message<?php } else { ?>recvd_message <?php }?>"><?php echo $message['message']; ?></div>
 					<div class="msge_data">
 						<a href="#" class="close" onclick="deleteMessage(<?php echo $message['messageId']; ?>);"></a>
