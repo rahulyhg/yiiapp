@@ -80,7 +80,7 @@ function checkCoupon(field, rules, i, options){
 	var email = false;		
 	$.ajax({
 	type: 'POST',
-	url: '/ajax/recoupon',
+	url: '/ajax/coupon',
 	dataType: 'json',
 	cache: false,
 	success: function(availability) {
