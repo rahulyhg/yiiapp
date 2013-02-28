@@ -1,6 +1,5 @@
 <?php if(!empty($photosList)){ ?>
 <script language="javascript">
-
 var myImg_<?php echo $userId ?> = new Array()
 <?php 
 $j=0;
@@ -13,33 +12,33 @@ foreach($photosList as $photo){
 <?php $j++;
  } ?>
 
-var i = 0;
-
+var i_<?php echo $userId; ?> = 0;
+var count_<?php echo $userId; ?> = <?php echo count($photosList); ?>
 // Create function to load image
 function loadImg_<?php echo $userId; ?>(){
-  document.imgSrc_<?php echo $userId; ?>.src =  myImg_<?php echo $userId; ?>[i];
+  document.imgSrc_<?php echo $userId; ?>.src =  myImg_<?php echo $userId; ?>[i_<?php echo $userId; ?>];
 }
 
 // Create link function to switch image backward
 function prev_<?php echo $userId ?>(){
-  if(i<1){
-    var l = i
-  } else {
-    var l = i-=1;
-  }
-  document.imgSrc_<?php echo $userId ?>.src =  myImg_<?php echo $userId ?>[l];
-  document.getElementById("slideCount_<?php echo $userId ?>").innerHTML = i+1;
+	if(i_<?php echo $userId; ?><1){
+	     i_<?php echo $userId; ?> = 0;
+	  } else {
+	     i_<?php echo $userId; ?> = i_<?php echo $userId; ?>-1;
+	  }
+  document.imgSrc_<?php echo $userId ?>.src =  myImg_<?php echo $userId ?>[i_<?php echo $userId; ?>];
+  document.getElementById("slideCount_<?php echo $userId ?>").innerHTML = i_<?php echo $userId; ?>+1;
 }
 
 // Create link function to switch image forward
 function next_<?php echo $userId ?>(){
-  if(i>2){
-    var l = i
-  } else {
-    var l = i+=1;
-  }
-  document.imgSrc_<?php echo $userId ?>.src =  myImg_<?php echo $userId ?>[l];
-  document.getElementById("slideCount_<?php echo $userId ?>").innerHTML = i+1;
+	if(i_<?php echo $userId; ?>>count_<?php echo $userId; ?>-2){
+	     i_<?php echo $userId; ?> = count_<?php echo $userId; ?>-1;
+	  } else {
+	     i_<?php echo $userId; ?> = i_<?php echo $userId; ?>+1;
+	  }
+  document.imgSrc_<?php echo $userId ?>.src =  myImg_<?php echo $userId ?>[i_<?php echo $userId; ?>];
+  document.getElementById("slideCount_<?php echo $userId ?>").innerHTML = i_<?php echo $userId; ?>+1;
 }
 
 // Load function after page loads
