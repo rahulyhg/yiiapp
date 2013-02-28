@@ -24,15 +24,15 @@ class MessageController extends Controller
 			}
 			Utilities::executeRawQuery($query);
 		}
-		$sql = "SELECT * FROM view_messages WHERE receiverId = {$user->userId} and (status = 0 or status =1)";
+		$sql = "SELECT * FROM view_messages WHERE receiverId = {$user->userId} and (status = 0 or status =1) order by messageId desc";
 		$command=Yii::app()->db->createCommand($sql);
 		$inbox = $command->queryAll();
 		
-		$sql = "SELECT * FROM view_messages WHERE senderId = {$user->userId}";
+		$sql = "SELECT * FROM view_messages WHERE senderId = {$user->userId} order by messageId desc";
 		$command=Yii::app()->db->createCommand($sql);
 		$outbox = $command->queryAll();
 		
-		$sql = "SELECT * FROM view_messages WHERE receiverId = {$user->userId} and status = 2";
+		$sql = "SELECT * FROM view_messages WHERE receiverId = {$user->userId} and status = 2 order by messageId desc";
 		$command=Yii::app()->db->createCommand($sql);
 		$ackowledge = $command->queryAll();
 		$this->render('index',array('inbox'=>$inbox,'outbox'=>$outbox,'ackowledge'=>$ackowledge,'page'=>'inbox'));
@@ -41,15 +41,15 @@ class MessageController extends Controller
 	public function actionSent()
 	{
 		$user = Yii::app()->session->get('user');
-		$sql = "SELECT * FROM view_messages WHERE receiverId = {$user->userId} and (status = 0 or status =1)";
+		$sql = "SELECT * FROM view_messages WHERE receiverId = {$user->userId} and (status = 0 or status =1) order by messageId desc";
 		$command=Yii::app()->db->createCommand($sql);
 		$inbox = $command->queryAll();
 		
-		$sql = "SELECT * FROM view_messages WHERE senderId = {$user->userId}";
+		$sql = "SELECT * FROM view_messages WHERE senderId = {$user->userId} order by messageId desc";
 		$command=Yii::app()->db->createCommand($sql);
 		$outbox = $command->queryAll();
 		
-		$sql = "SELECT * FROM view_messages WHERE receiverId = {$user->userId} and status = 2";
+		$sql = "SELECT * FROM view_messages WHERE receiverId = {$user->userId} and status = 2 order by messageId desc";
 		$command=Yii::app()->db->createCommand($sql);
 		$ackowledge = $command->queryAll();
 		
@@ -60,15 +60,15 @@ class MessageController extends Controller
 	public function actionAcknowledgement()
 	{
 		$user = Yii::app()->session->get('user');
-		$sql = "SELECT * FROM view_messages WHERE receiverId = {$user->userId} and (status = 0 or status =1)";
+		$sql = "SELECT * FROM view_messages WHERE receiverId = {$user->userId} and (status = 0 or status =1) order by messageId desc";
 		$command=Yii::app()->db->createCommand($sql);
 		$inbox = $command->queryAll();
 		
-		$sql = "SELECT * FROM view_messages WHERE senderId = {$user->userId}";
+		$sql = "SELECT * FROM view_messages WHERE senderId = {$user->userId} order by messageId desc";
 		$command=Yii::app()->db->createCommand($sql);
 		$outbox = $command->queryAll();
 		
-		$sql = "SELECT * FROM view_messages WHERE receiverId = {$user->userId} and status = 2";
+		$sql = "SELECT * FROM view_messages WHERE receiverId = {$user->userId} and status = 2 order by messageId desc";
 		$command=Yii::app()->db->createCommand($sql);
 		$ackowledge = $command->queryAll();
 		
@@ -103,7 +103,7 @@ class MessageController extends Controller
 			}
 		}
 		
-		$sql = "SELECT * FROM view_messages WHERE (receiverId = {$user->userId} and senderId = {$senderId}) or (receiverId = {$senderId} and senderId = {$user->userId}) and status !=0 order by messageId asc";
+		$sql = "SELECT * FROM view_messages WHERE (receiverId = {$user->userId} and senderId = {$senderId}) or (receiverId = {$senderId} and senderId = {$user->userId}) and status !=0 order by messageId desc";
 		$command=Yii::app()->db->createCommand($sql);
 		$messages = $command->queryAll();
 		$this->render('conversation',array('messages'=>$messages,'user'=>$user,'senderId'=>$senderId));
