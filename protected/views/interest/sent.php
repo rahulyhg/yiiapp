@@ -23,7 +23,7 @@ $heightArray = Utilities::getHeights(); ?>
         <div class="interstTab">
 			<div class="edit-option">
 				<div class="check">
-					<input type="checkbox" onclick="toggleChecked(this.checked)" />
+					<input type="checkbox" onclick="toggleChecked(this.checked)" class="reqCheck" value="0" />
 					<span>Sellect All</span>
 				</div>
 				<div class="check">
@@ -36,16 +36,16 @@ $heightArray = Utilities::getHeights(); ?>
 			<input type = "hidden" name="action" id="action" value="" />
 			</form>
 			<ul class="tab-head">
-				<li id="tab1">
+				<li id="tab1" onclick="javascript:setSelectedTab('received');">
 					<a id="tab1" href="#" <?php if($tab == 'received'){ ?>class="select" <?php }?>>Received</a>
 				</li>
-				<li id="tab2"> 
+				<li id="tab2" onclick="javascript:setSelectedTab('sent');"> 
 					<a id="tab2" href="#" <?php if($tab == 'sent'){ ?>class="select" <?php }?> >Sent</a>
 				</li>
-				<li id="tab3">
+				<li id="tab3" onclick="javascript:setSelectedTab('accepted');">
 					<a id="tab3" href="#" <?php if($tab == 'accepted'){ ?>class="select" <?php }?> >Accepted</a>
 				</li>
-				<li id="tab4">
+				<li id="tab4" onclick="javascript:setSelectedTab('declined');">
 					<a id="tab4" href="#" <?php if($tab == 'declined'){ ?>class="select" <?php }?> >Declined</a>
 				</li>
 			</ul>
@@ -207,7 +207,7 @@ $heightArray = Utilities::getHeights(); ?>
 				<?php }else{?>
 					<li>
 					<input type="checkbox" class="reqCheck" value="<?php echo $decline['interestId']; ?>" />
-					<a href="<?php echo Utilities::createAbsoluteUrl('search','byid',array('id'=>$decline['senderMarryId'])); ?>"><img src="<?php echo Utilities::getProfileImage($decline['senderrMarryId'],$decline['senderImageName']); ?>" alt="" /></a>
+					<a href="<?php echo Utilities::createAbsoluteUrl('search','byid',array('id'=>$decline['senderMarryId'])); ?>"><img src="<?php echo Utilities::getProfileImage($decline['senderMarryId'],$decline['senderImageName']); ?>" alt="" /></a>
 					<div class="int_head">
 						<a href="<?php echo Utilities::createAbsoluteUrl('search','byid',array('id'=>$decline['senderMarryId'])); ?>" ><?php echo $decline['senderName']; ?></a>
 						<span>(<?php if($decline['senderId'] == $user->userId){ echo 'You'; } else{
@@ -247,7 +247,7 @@ $heightArray = Utilities::getHeights(); ?>
 		<div class="interstTab">
 			<div class="edit-option">
 				<div class="check">
-					<input type="checkbox" onclick="toggleChecked(this.checked)" />
+					<input type="checkbox" onclick="toggleChecked(this.checked)" class="reqCheck" value="0" />
 					<span>Sellect All</span>
 				</div>
 				<div class="check">
@@ -286,6 +286,10 @@ $heightArray = Utilities::getHeights(); ?>
 		$('#action').val(action);
 		$('#selectedTab').val(tab);
    	 	$('#frmInterest').submit();
+	}
+
+	function setSelectedTab(tab){
+		$('#selectedTab').val(tab);
 	}
     </script>
 <?php $this->widget('application.widgets.menu.Rightmenu'); ?>

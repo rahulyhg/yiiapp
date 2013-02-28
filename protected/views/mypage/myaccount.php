@@ -66,7 +66,7 @@
 				<div class="leftC">Interest received </div>
 				<div class="rightC">
 					<strong>:</strong> <?php
-			$receiveInterest = $user->interestReceiver(array('condition'=>'status = 0'));
+			$receiveInterest = $user->interestReceiver(array('condition'=>'status = 0 and receiverStatus = 0'));
 				if(isset($receiveInterest))
 				echo count($receiveInterest);
 		?>
@@ -76,16 +76,16 @@
 				<div class="leftC">Interest sent</div>
 				<div class="rightC">
 					<strong>:</strong> <?php 
-			$sent = $user->interestSender(array('condition'=>'status != 3'));
+			$sent = $user->interestSender(array('condition'=>'status != 3 and senderStatus = 0'));
 		if(isset($sent)) echo count($sent);?>
 				</div>
 			</li>
 			<li>
-				<div class="leftC">Interest Decliened by you</div>
+				<div class="leftC">Interest Declined by you</div>
 				<div class="rightC">
 					<strong>:</strong> <?php 
 			
-			$sendInterest = $user->interestReceiver(array('condition'=>'status= 2'));
+			$sendInterest = $user->interestReceiver(array('condition'=>'status= 2 and receiverStatus = 0'));
 			if(isset($sendInterest))
 			echo count($sendInterest);
 		
@@ -93,30 +93,30 @@
 				</div>
 			</li>
 			<li>
-				<div class="leftC">Interest Decliened your</div>
+				<div class="leftC">Interest Declined your</div>
 				<div class="rightC">
 					<strong>:</strong> <?php 
-				$decline = $user->interestReceiver(array('condition'=>'status = 1'));
+				$decline = $user->interestReceiver(array('condition'=>'status = 1 and senderStatus'));
 				if(isset($decline))
 				echo count($decline);
 		?>
 				</div>
 			</li>
 				<?php 
-					$inbox = $user->messageReceiver(array('condition'=>'status = 0 or status = 1'));
-					$outbox = $user->messageSender(array('condition'=>'senderId = '.$user->userId));
+					$inbox = $user->messageReceiver(array('condition'=>'receiverStatus = 0'));
+					$outbox = $user->messageSender(array('condition'=>'senderId = '.$user->userId.' and senderStatus = 0'));
 				?>
 				
 			<li>
 				<div class="leftC">Message sent	</div>
 				<div class="rightC">
-					<strong>:</strong> <?php echo count($inbox); ?>
+					<strong>:</strong> <?php echo count($outbox); ?>
 				</div>
 			</li>
 			<li>
-				<div class="leftC">Message recived </div>
+				<div class="leftC">Message received </div>
 				<div class="rightC">
-					<strong>:</strong> <?php echo count($outbox); ?>
+					<strong>:</strong> <?php echo count($inbox); ?>
 				</div>
 			</li>
 			<!-- 

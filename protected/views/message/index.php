@@ -20,7 +20,7 @@
         <div class="interstTab">
 			<div class="edit-option">
 				<div class="check">
-					<input type="checkbox" onclick="toggleChecked(this.checked)" />
+					<input type="checkbox" onclick="toggleChecked(this.checked)" class="msgCheck" value="0" />
 					<span>Sellect All</span>
 				</div>
 				<div class="check">
@@ -30,12 +30,13 @@
 			<form name="frmMessage" id="frmMessage" method="post" action="<?php echo Utilities::createAbsoluteUrl('message','index',array()); ?>">
 			<input type = "hidden" name="selectedIds" id="selectedIds" value="" />
 			<input type = "hidden" name="selectedTab" id="selectedTab" value="" />
+			<input type = "hidden" name="action" id="action" value="" />
 			</form>
 			<ul class="tab-head">
-				<li id="tab1">
+				<li id="tab1" onclick="javascript:setSelectedTab('inbox');">
 					<a id="tab1" href="#" <?php if($page == 'inbox'){ ?>class="select " <?php }?>>Inbox</a>
 				</li>
-				<li id="tab2"> 
+				<li id="tab2" onclick="javascript:setSelectedTab('outbox');"> 
 					<a id="tab2" href="#" <?php if($page == 'outbox'){ ?>class="select " <?php }?>>Outbox</a>
 				</li>
 				<!--  <li id="tab3">
@@ -113,7 +114,7 @@
 		<div class="interstTab">
 			<div class="edit-option">
 				<div class="check">
-					<input type="checkbox" onclick="toggleChecked(this.checked)" />
+					<input type="checkbox" onclick="toggleChecked(this.checked)" class="msgCheck" value="0" />
 					<span>Sellect All</span>
 				</div>
 				<div class="check">
@@ -142,6 +143,7 @@
 	     }else{
 		    
 		     $('#selectedIds').val(allVals);
+		     $('#action').val('delete');
 	    	 $('#frmMessage').submit();
 	     }
 	}
@@ -149,7 +151,12 @@
 	function deleteMessage(messageId,tab){
 		$('#selectedIds').val(messageId);
 		$('#selectedTab').val(tab);
+		$('#action').val('delete');
    	 	$('#frmMessage').submit();
+	}
+
+	function setSelectedTab(tab){
+		$('#selectedTab').val(tab);
 	}
     </script>
       <?php $this->widget('application.widgets.menu.Rightmenu'); ?>

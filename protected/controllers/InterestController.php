@@ -124,7 +124,6 @@ class InterestController extends Controller
 		$action = (isset($_REQUEST['action'])) ? $_REQUEST['action'] : "";
 		$selectedIds = (isset($_REQUEST['selectedIds'])) ? $_REQUEST['selectedIds'] : "";
 		$selectedTab = (isset($_REQUEST['selectedTab'])) ? $_REQUEST['selectedTab'] : "received";
-		//var_dump($_REQUEST);die;
 		if($action != "" and $selectedIds != ""){
 			/*
 				interest status
@@ -133,42 +132,51 @@ class InterestController extends Controller
 				2 - declined the interest
 				
 			*/
+			if($selectedTab == '')$selectedTab = 'received';
 			switch($action){
 				case  'accept':
-					   $query = "update interests set status = 1 where interestId = {$selectedIds}";
+					   $query = "update interests set status = 1 where interestId = {$selectedIds} and receiverId={$user->userId}";
 					   break;
 				case  'decline':
-					   $query = "update interests set status = 2 where interestId = {$selectedIds}";
+					   $query = "update interests set status = 2 where interestId = {$selectedIds} and receiverId={$user->userId}";
 					   break;
 				case  'delete':
-					   $query = "delete from interests  where interestId in({$selectedIds})";
+						if($selectedTab == 'sent'){
+							$query = "update interests set senderStatus = 1  where interestId in({$selectedIds}) and senderId={$user->userId}";
+						}elseif($selectedTab == 'received'){
+							$query = "update interests set receiverStatus = 1  where interestId in({$selectedIds}) and receiverId={$user->userId}";
+						}elseif($selectedTab == 'accepted'){
+							$query = "update interests set receiverStatus = 1  where interestId in({$selectedIds}) and receiverId={$user->userId}";
+						}elseif($selectedTab == 'declined'){
+							$query = "update interests set receiverStatus = 1  where interestId in({$selectedIds}) and receiverId={$user->userId}";
+						}
 					   break;
 				case  'cancel':
 					   $query = "delete from interests  where senderId = {$user->userId} and interestId = {$selectedIds}";
 					   break;
 				default:
-					  $query = "update interests set status = 2 where interestId = {$selectedIds}";
+					  $query = "update interests set status = 2 where interestId = {$selectedIds} and receiverId={$user->userId}";
 					   break;
 			}
 			Utilities::executeRawQuery($query);
 		}
 		//received interests
-		$sql = "SELECT * FROM view_interests WHERE receiverId = {$user->userId} and status = 0";
+		$sql = "SELECT * FROM view_interests WHERE receiverId = {$user->userId} and status = 0 and receiverStatus = 0";
 		$command=Yii::app()->db->createCommand($sql);
 		$received = $command->queryAll();
 		
 		// express interest
-		$sql = "SELECT * FROM view_interests WHERE senderId = {$user->userId} and status = 0";
+		$sql = "SELECT * FROM view_interests WHERE senderId = {$user->userId} and status = 0 and senderStatus = 0";
 		$command=Yii::app()->db->createCommand($sql);
 		$sent = $command->queryAll();
 		
 		// accepted interest
-		$sql = "SELECT * FROM view_interests WHERE (receiverId = {$user->userId} or senderId = {$user->userId}) and status = 1";
+		$sql = "SELECT * FROM view_interests WHERE (receiverId = {$user->userId} or senderId = {$user->userId}) and status = 1 and receiverStatus = 0";
 		$command=Yii::app()->db->createCommand($sql);
 		$accepted = $command->queryAll();
 		
 		// declined intrests
-		$sql = "SELECT * FROM view_interests WHERE (receiverId = {$user->userId} or senderId = {$user->userId}) and status = 2";
+		$sql = "SELECT * FROM view_interests WHERE (receiverId = {$user->userId} or senderId = {$user->userId}) and status = 2 and receiverStatus = 0";
 		$command=Yii::app()->db->createCommand($sql);
 		$declined = $command->queryAll();
 		
