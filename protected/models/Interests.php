@@ -10,6 +10,8 @@
  * @property integer $status
  * @property string $sendDate
  * @property string $statusChange
+ * @property integer $senderStatus
+ * @property integer $receiverStatus
  *
  * The followings are the available model relations:
  * @property Users $sender
@@ -43,12 +45,12 @@ class Interests extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('status', 'numerical', 'integerOnly'=>true),
+			array('status, senderStatus, receiverStatus', 'numerical', 'integerOnly'=>true),
 			array('senderId, receiverId', 'length', 'max'=>20),
 			array('sendDate, statusChange', 'safe'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('interestId, senderId, receiverId, status, sendDate, statusChange', 'safe', 'on'=>'search'),
+			array('interestId, senderId, receiverId, status, sendDate, statusChange, senderStatus, receiverStatus', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -77,6 +79,8 @@ class Interests extends CActiveRecord
 			'status' => 'Status',
 			'sendDate' => 'Send Date',
 			'statusChange' => 'Status Change',
+			'senderStatus' => 'Sender Status',
+			'receiverStatus' => 'Receiver Status',
 		);
 	}
 
@@ -97,6 +101,8 @@ class Interests extends CActiveRecord
 		$criteria->compare('status',$this->status);
 		$criteria->compare('sendDate',$this->sendDate,true);
 		$criteria->compare('statusChange',$this->statusChange,true);
+		$criteria->compare('senderStatus',$this->senderStatus);
+		$criteria->compare('receiverStatus',$this->receiverStatus);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
