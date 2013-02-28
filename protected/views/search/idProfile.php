@@ -193,14 +193,15 @@ $user = Yii::app()->session->get('user');
 			<span class="expressInterest"><a href="#" id="<?php echo $model->userId ?>"  class="global">Express Interest</a></span>
 			<?php }?>
 			<?php 
-			 if(!isset($isMessage) || empty($isMessage)) {
+			// if(!isset($isMessage) || empty($isMessage)) {
 				 if($user->userType == 1){  ?>
 					<a id="<?php echo $model->userId ?>"  href="<?php echo Utilities::createAbsoluteUrl('message','compose',array('receiverId'=>$model->userId)); ?>" class="composeMessage">Send Message</a>
 					<?php }else{?>
 					<a id="requestWindow" href="<?php echo Utilities::createAbsoluteUrl('site','popup',array('action'=>'subscribe','module'=>'message','profileId'=>$model->userId)); ?>">Send Message</a>
 				<?php 
 				}
-			}?>
+			//}
+			?>
 			<?php if(!in_array($model->userId, $bookMarked)) {?>
 	                    <span id="bookmark"><a href="#" id="<?php echo $model->userId ?>"  class="global">Bookmark</a></span>
                     <?php }?>
@@ -567,14 +568,15 @@ $drink= Utilities::getDrink();
 			<span class="expressInterest"><a href="#" id="<?php echo $model->userId ?>"  class="global">Express Interest</a></span>
 			<?php }?>
 			<?php 
-			 if(!isset($isMessage) || empty($isMessage)) {
+			 //if(!isset($isMessage) || empty($isMessage)) {
 				 if($user->userType == 1){  ?>
 					<a id="<?php echo $model->userId ?>"  href="<?php echo Utilities::createAbsoluteUrl('message','compose',array('receiverId'=>$model->userId)); ?>" class="composeMessage">Send Message</a>
 					<?php }else{?>
 					<a id="requestWindow" href="<?php echo Utilities::createAbsoluteUrl('site','popup',array('action'=>'subscribe','module'=>'message','profileId'=>$model->userId)); ?>">Send Message</a>
 				<?php 
 				}
-			}?>
+			//}
+			?>
 			<?php if(!in_array($model->userId, $bookMarked)) {?>  
                     <span id="bookmark1"><a href="#" id="<?php echo $model->userId ?>"  class="global">Bookmark</a></span>
                     <?php }?>
