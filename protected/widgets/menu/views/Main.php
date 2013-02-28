@@ -36,8 +36,8 @@
 				<div class="sub" style="display:none">
 					<div class="arrow"></div>
 					<div class="data wid140">
-						<a class="width100" href="<?php echo Utilities::createAbsoluteUrl('message','index')?>">Received Message</a>
-						<a class="width100" href="<?php echo Utilities::createAbsoluteUrl('message','sent')?>">Sent Message</a>
+						<a class="width100" href="<?php echo Utilities::createAbsoluteUrl('message','index',array('selectedTab'=>'inbox'))?>">Received Message</a>
+						<a class="width100" href="<?php echo Utilities::createAbsoluteUrl('message','index',array('selectedTab'=>'outbox'))?>">Sent Message</a>
 						<div class="dividr"></div>
 						<a class="width100" href="<?php echo Utilities::createAbsoluteUrl('interest','sent',array('selectedTab'=>'received'))?>">Received Interest</a>
 						<a class="width100" href="<?php echo Utilities::createAbsoluteUrl('interest','sent',array('selectedTab'=>'sent'))?>">Sent Interest</a>
