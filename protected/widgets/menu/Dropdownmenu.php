@@ -30,20 +30,21 @@ class Dropdownmenu extends CWidget
         $nUser = Users::model()->with('shortlist')->findbyPk($user->userId);
 		$shortList = 0;
 		$notifiyShort = array();
+		/*
 		if(isset($nUser->shortlist))
 		{
 		$condition = "status =0 AND userId IN ({$shortList}) AND notificationType ('album', 'family', 'documents','astro','reference','contact')";
 		$shortList = $nUser->shortlist->profileID;
 		$notifiyShort = Notifications::model()->findAll(array('condition'=>$condition,'order'=> 'createdate DESC' ));
 		}
-		
+		*/
 		//'album', 'family', 'documents','astro','reference','contact','password','subscribe','recharge','system'
 		
 		$usercondition = "status = 0 AND notificationType in ('password','subscribe','recharge','system')";
 		$userNotification = $user->notification(array('condition'=>$usercondition,'order'=> 'createdate DESC' ));
 		
-		if(sizeof($userNotification) > 0 || sizeof($notifiyShort) > 0)
-		$this->notifications = array_merge($userNotification,$notifiyShort);
+		if(sizeof($userNotification))
+		$this->notifications = $userNotification;
 
         
         

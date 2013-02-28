@@ -46,31 +46,6 @@ $(document).ready(function(){
         });
     });
 });
-//notification tab
-$(function(){
-    $('.noti_contnr > .notifications > a').live('click',function(){
-        $('.noti_contnr > .notifications > a').each(function(){
-           $(this).removeClass();
-        });
-        $(this).addClass('select');
-        var tabid = $(this).attr('id');
-        
-        $('.notiTabData').each(function(){
-           $(this).hide();
-        })
-        $('#'+tabid+'_notif').show();
-        return false;
-    });
-    $(document).mouseup(function(){
-        $('.noti_contnr > .notiTabData').each(function(){
-            $(this).hide();
-        });
-	$('.noti_contnr > .notifications > a').each(function(){
-	    $(this).removeClass('select');
-        });
-    });
-});	
-
 // remap jQuery to $
 (function($){})(window.jQuery);
 /* trigger when page is ready */
@@ -140,6 +115,28 @@ $(function(){
         });
         $(this).addClass('select');
         var tabid = $(this).attr('id');
+        
+        if(tabid == 'tab2')
+        {        	
+        	var  allVal= [];
+        	$("input:hidden[name=userId]").each(function(){
+   				 allVal.push($(this).val());
+   				 });
+        	
+        	 $.ajax({
+                type: "POST",
+                url: "/Ajax/notify",
+                'data':{'userId':allVal},
+                'dataType':'json',
+                dataType: "json",
+                success: function(data) {
+                	
+                }
+            });
+            
+        }
+        
+
         
         $('.notiTabData').each(function(){
            $(this).hide();

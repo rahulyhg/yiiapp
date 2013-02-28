@@ -116,24 +116,13 @@ $heightArray = Utilities::getHeights();
 					
 				
 				<li>
-				<div <?php if($index > 9) {?>id="notification<?php echo $index?>" <?php }?> >
 					<a target="_blank" href="#"><img width="75" height="75" src="<?php echo Utilities::getProfileImageForId($value->userId) ?>" alt="" /></a>
+					<input name="userId" type="hidden" value="<?php echo $value->notificationId?>" />
 					<a target="_blank" class="user_name" href="<?php echo '/search/byid/id/'.$value->marryId ?>"><?php echo $value->name?></a>
 					<div class="user_message"><?php echo $value->notification?>. (<?php echo $value->createdate?>)</div>
-				</div>
 				</li>
-				<?php if($index > 9 && $show == true) { 
-					$show = false;	
-					?>
-				<li>
-				<div id="hideNotification" class="hideNotification">
-					<p class="notiFoot">
-					<a href="#">Click</a>
-					to view all notifications.
-					</p>
-				</div>	
-               </li>
-               <?php }
+				
+               <?php 
 					$index++;
 					}?>
 				</ul>
@@ -184,11 +173,3 @@ $heightArray = Utilities::getHeights();
 			</ul>
 			
 		</div>
-
-
-<script type="text/javascript">
-   $(document).ready(function() {
-	$("div[id^='notification']").hide();
-   });
-
-</script>
