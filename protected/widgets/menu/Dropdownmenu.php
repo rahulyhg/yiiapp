@@ -43,7 +43,7 @@ class Dropdownmenu extends CWidget
 		$userNotification = $user->notification(array('condition'=>$usercondition,'order'=> 'createdate DESC' ));
 		
 		if(sizeof($userNotification) > 0 || sizeof($notifiyShort) > 0)
-		$notifications = array_merge($userNotification,$notifiyShort);
+		$this->notifications = array_merge($userNotification,$notifiyShort);
 
         
         

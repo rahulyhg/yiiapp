@@ -120,6 +120,7 @@ class Users extends CActiveRecord
 			'saveSearch' => array(self::HAS_ONE, 'Savesearch', 'userId'),
 			'requestSender' => array(self::HAS_MANY, 'Requests', 'senderId'),
 			'requestReceiver' => array(self::HAS_MANY, 'Requests', 'receiverId'),
+			'notification' => array(self::HAS_MANY, 'Notifications', 'userId'),
 		);
 	}
 

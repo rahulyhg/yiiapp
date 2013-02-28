@@ -15,7 +15,7 @@ $heightArray = Utilities::getHeights();
 				<?php }
 				if(isset($notifications ) && sizeof($notifications ) > 0 ) {?>
 				<a href="#" id="tab2" class="noti">
-					<div class="count" style="display:block" > <?php echo count($notification)?></div>
+					<div class="count" style="display:block" > <?php echo count($notifications)?></div>
 				</a>
 				<?php } else { ?>
 				<a href="#" id="tab2" class="noti">
@@ -106,44 +106,39 @@ $heightArray = Utilities::getHeights();
 				</li>
 				<?php } ?>
 			</ul>
+				<?php if(isset($notifications ) && sizeof($notifications ) > 0 ) { 
+					$show = true;
+					?>
 			<ul class="notiTabData" id="tab2_notif">
-				<?php if(isset($notifications ) && sizeof($notifications ) > 0 ) {
-				
+				<?php 
+					 $index = 0;
 					foreach ($notifications  as $value) {	?>
 					
+				
 				<li>
-					<a href="#"><img alt="" src="./images/user/biju.jpg"></a>
-					<a class="user_name" href="#">Biju George</a>
-					<div class="user_message">You have successfully subscribed on 07-07-12. Your validity will end on 06-08-12.</div>
+				<div <?php if($index > 9) {?>id="notification<?php echo $index?>" <?php }?> >
+					<a target="_blank" href="#"><img width="75" height="75" src="<?php echo Utilities::getProfileImageForId($value->userId) ?>" alt="" /></a>
+					<a target="_blank" class="user_name" href="<?php echo '/search/byid/id/'.$value->marryId ?>"><?php echo $value->name?></a>
+					<div class="user_message"><?php echo $value->notification?>. (<?php echo $value->createdate?>)</div>
+				</div>
 				</li>
-				<?php }?>
+				<?php if($index > 9 && $show == true) { 
+					$show = false;	
+					?>
 				<li>
-					<a href="#"><img alt="" src="./images/user/biju.jpg"></a>
-					<a class="user_name" href="#">Biju George</a>
-					<div class="user_message">You have successfully subscribed on 07-07-12. Your validity will end on 06-08-12.</div>
-				</li>
-				<li>
-					<a href="#"><img alt="" src="./images/user/biju.jpg"></a>
-					<a class="user_name" href="#">Biju George</a>
-					<div class="user_message">You have successfully subscribed on 07-07-12. Your validity will end on 06-08-12.</div>
-				</li>
-				<li>
-					<a href="#"><img alt="" src="./images/user/biju.jpg"></a>
-					<a class="user_name" href="#">Biju George</a>
-					<div class="user_message">You have successfully subscribed on 07-07-12. Your validity will end on 06-08-12.</div>
-				</li>
-				<li>
-					<a href="#"><img alt="" src="./images/user/biju.jpg"></a>
-					<a class="user_name" href="#">Biju George</a>
-					<div class="user_message">You have successfully subscribed on 07-07-12. Your validity will end on 06-08-12.</div>
-				</li>
-				<li>
-					<p class="notiFoot"><a href="#">Click</a> to view all notifications.</p>
-				</li>
-				<?php 
-					
+				<div id="hideNotification" class="hideNotification">
+					<p class="notiFoot">
+					<a href="#">Click</a>
+					to view all notifications.
+					</p>
+				</div>	
+               </li>
+               <?php }
+					$index++;
 					}?>
-			</ul>
+				</ul>
+				<?php 
+					}?>
 			<ul class="notiTabData" id="tab3_notif">
 				<?php if(count($dVisitors) > 0){ ?>
 				<li>
@@ -189,3 +184,11 @@ $heightArray = Utilities::getHeights();
 			</ul>
 			
 		</div>
+
+
+<script type="text/javascript">
+   $(document).ready(function() {
+	$("div[id^='notification']").hide();
+   });
+
+</script>

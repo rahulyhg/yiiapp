@@ -244,5 +244,15 @@ class AjaxController extends Controller
 
 	}
 	
+	public function actionNotify()
+	{
+		if(isset($_POST['userId']) && !empty($_POST['userId'])) {
+			$userIds = explode(",", $_POST['userId']);
+		// remove the unwanted records from table
+		$query = "update notifications set status = 1 where userId in ({$userIds})";
+		Utilities::executeRawQuery($query);
+		}
+	}
+	
 	
 }

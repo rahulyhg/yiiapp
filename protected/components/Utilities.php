@@ -331,6 +331,30 @@ class Utilities
 		}
 	}
 	
+		public static function getProfileImageForId($userId){
+		if(isset($userId)){
+			$user = Users::model()->findbyPk($userId);
+			if(isset($user))
+			{
+				$profileImage = $user->photos(array('condition'=>'profileImage = 1'));
+			 	if(count($profileImage) > 0){
+			 		$image = $profileImage[0]->imageName;
+			 	}else{
+			 		$image = '';
+			 	}
+			}
+			if($image != '')			
+			$file = Yii::app()->params['mediaUrl']."/profile/".$user->marryId."/".$image;
+			if (@file_get_contents($file)){
+				return $file;
+			}else{
+				return Yii::app()->params['mediaUrl']."/profile/noimage.jpg";
+			}
+		}else{
+			return Yii::app()->params['mediaUrl']."/profile/noimage.jpg";
+		}
+	}
+	
 	public static function getHoroscope($marryId,$imageName){
 		if($imageName != ''){
 			$file = Yii::app()->params['mediaUrl']."/horoscope/".$marryId."/".$imageName;

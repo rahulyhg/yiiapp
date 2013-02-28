@@ -6,6 +6,8 @@
  * The followings are the available columns in table 'notifications':
  * @property string $notificationId
  * @property string $userId
+ * @property string $name
+ * @property string $marryId
  * @property string $notification
  * @property string $notificationType
  * @property integer $status
@@ -44,11 +46,13 @@ class Notifications extends CActiveRecord
 		return array(
 			array('status', 'numerical', 'integerOnly'=>true),
 			array('userId', 'length', 'max'=>20),
+			array('name', 'length', 'max'=>250),
+			array('marryId', 'length', 'max'=>100),
 			array('notificationType', 'length', 'max'=>9),
 			array('notification, createdate', 'safe'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('notificationId, userId, notification, notificationType, status, createdate', 'safe', 'on'=>'search'),
+			array('notificationId, userId, name, marryId, notification, notificationType, status, createdate', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -72,6 +76,8 @@ class Notifications extends CActiveRecord
 		return array(
 			'notificationId' => 'Notification',
 			'userId' => 'User',
+			'name' => 'Name',
+			'marryId' => 'Marry',
 			'notification' => 'Notification',
 			'notificationType' => 'Notification Type',
 			'status' => 'Status',
@@ -92,6 +98,8 @@ class Notifications extends CActiveRecord
 
 		$criteria->compare('notificationId',$this->notificationId,true);
 		$criteria->compare('userId',$this->userId,true);
+		$criteria->compare('name',$this->name,true);
+		$criteria->compare('marryId',$this->marryId,true);
 		$criteria->compare('notification',$this->notification,true);
 		$criteria->compare('notificationType',$this->notificationType,true);
 		$criteria->compare('status',$this->status);
