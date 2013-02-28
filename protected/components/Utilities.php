@@ -851,5 +851,44 @@ class Utilities
 		$reqTypes = array('1' =>'Documents','2'=>'Album','3'=>'Family Album','4'=>'Astro','5'=>'Contact','6'=>'Reference');
 		return $reqTypes[$type];
 	}
+	
+ public static function getNotificationMessage($value){
+ 	//'album', 'family', 'documents','astro','reference','contact','password','subscribe','recharge','system'
+    	switch($value){
+    		case 'album':
+    		return 'Album has been updated';
+    		break;
+    		case 'family':
+    		return 'Family album has been updated';
+    		break;
+    		case 'documents':
+    		return 'Documents has been updated';
+    		break;
+    		case 'astro':
+    		return 'Astro details has been updated';
+    		break;
+    		case 'reference':
+    		return 'Reference details has been updated';
+    		break;
+    		case 'contact':
+    		return 'Contact details hass been updated';
+    		break;
+    		case 'password':
+    		return 'User password has been changed';
+    		break;
+    		case 'subscribe':
+    		return 'Congrats,You have been subscribed to marrydoor';
+    		break;
+    		case 'recharge':
+    		return 'Congrats,You have recharge succesfully';
+    		break;
+    		case 'system':
+    		return 'Notifications';
+    		break;
+    		default:
+  			return "User profile has been updated";
+    	}
+    }
+	
   
 }

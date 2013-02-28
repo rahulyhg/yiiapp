@@ -386,14 +386,14 @@
 				 }
 		 });
 
-		 alert(allVal); 
+		 addBookmark(allVal); 
 		  
 	 });
 
 	 
-	 $('#bookmark').click(function (){
+	 $('[id^=rBookmark]').click(function (){
 		 var userId = $(this).find('a').attr('id');
-
+		 var bookId = $(this).attr('id');
 		 $.ajax({
 		        url: "/bookmark/add",  
 		        type: "POST",
@@ -401,8 +401,8 @@
 		        data:{'userId':userId},   
 		        cache: false,
 		        success: function (html) {
-			        if(html == true)  
-		        	$('#bookmark').hide();	         
+		        	if(html == true)  
+				    $('#'+bookId).hide();	         
 		        }       
 		    });
 	 

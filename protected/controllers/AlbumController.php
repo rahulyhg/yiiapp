@@ -95,6 +95,18 @@ class AlbumController extends Controller
 						$album->imageName = $fileName;
 						$album->description = $description;
 						$album->save();
+						
+						$notification = new Notifications();
+						$notification->userId = $user->userId;
+						$notification->name = $user->name;
+						$notification->marryId = $user->marryId;
+						$notification->notificationType = 'album';
+						$notification->notification = Utilities::getNotificationMessage('album');
+						$notification->status = 0;
+						$notification->createdate = new CDbExpression('NOW()');
+						$notification->save();
+						
+						
 						$message = "Photo has been uploaded successfully!";
 					}else{
 						$message = "There was an error uploading the file, please try again!";

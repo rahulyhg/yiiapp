@@ -206,6 +206,17 @@ class ContactController extends Controller
 				}
 		}
 		
+			$notification = new Notifications();
+			$notification->userId = $user->userId;
+			$notification->name = $user->name;
+			$notification->marryId = $user->marryId;
+			$notification->notificationType = 'contact';
+			$notification->notification = Utilities::getNotificationMessage('contact');
+			$notification->status = 0;
+			$notification->createdate = new CDbExpression('NOW()');
+			$notification->save();
+						
+		
 		}
 		$this->layout= '//layouts/popup';
 		$this->render('detailsedit');
@@ -387,9 +398,19 @@ class ContactController extends Controller
 		
 		$success= false;
 		
-		if(isset($_POST) && !empty($_POST))
+		if(isset($_POST) && !empty($_POST)){
 		$success = true;
+		$notification = new Notifications();
+		$notification->userId = $user->userId;
+		$notification->name = $user->name;
+		$notification->marryId = $user->marryId;
+		$notification->notificationType = 'reference';
+		$notification->notification = Utilities::getNotificationMessage('reference');
+		$notification->status = 0;
+		$notification->createdate = new CDbExpression('NOW()');
+		$notification->save();
 		
+		}
 		$this->render('referenceedit',array('success'=>$success));
 	}
 	
@@ -451,6 +472,17 @@ class ContactController extends Controller
 		
 		$user->horoscopes = $horoscope;
 		$user->horoscopes->save();
+		
+		$notification = new Notifications();
+		$notification->userId = $user->userId;
+		$notification->name = $user->name;
+		$notification->marryId = $user->marryId;
+		$notification->notificationType = 'astro';
+		$notification->notification = Utilities::getNotificationMessage('astro');
+		$notification->status = 0;
+		$notification->createdate = new CDbExpression('NOW()');
+		$notification->save();
+		
 		
 		if(isset($_POST['astro']))
 		{
@@ -636,6 +668,20 @@ class ContactController extends Controller
 			$userHobby->languageOther= $_POST['otherLanguage'];
 		}
 		$userHobby->save();
+		
+		
+		$notification = new Notifications();
+		$notification->userId = $user->userId;
+		$notification->name = $user->name;
+		$notification->marryId = $user->marryId;
+		$notification->notificationType = 'contact';
+		$notification->notification = Utilities::getNotificationMessage('contact');
+		$notification->status = 0;
+		$notification->createdate = new CDbExpression('NOW()');
+		$notification->save();
+		
+		
+		
 		
 		$this->layout= '//layouts/popup';
 		$this->render('personaledit',array('update'=>true));

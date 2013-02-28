@@ -360,6 +360,18 @@ class MypageController extends Controller
 				}
 		}
 		
+		$notification = new Notifications();
+		$notification->userId = $user->userId;
+		$notification->name = $user->name;
+		$notification->marryId = $user->marryId;
+		$notification->notificationType = 'contact';
+		$notification->notification = Utilities::getNotificationMessage('contact');
+		$notification->status = 0;
+		$notification->createdate = new CDbExpression('NOW()');
+		$notification->save();
+		
+		
+		
 		$this->forward('contact');
 		}
 		
@@ -672,6 +684,20 @@ public function actionEditdocument()
 						$documents->documentType = $documentType;
 						$documents->active = 2;   // temperory record
 						$documents->save();
+						
+						$notification = new Notifications();
+						$notification->userId = $user->userId;
+						$notification->name = $user->name;
+						$notification->marryId = $user->marryId;
+						$notification->notificationType = 'documents';
+						$notification->notification = Utilities::getNotificationMessage('documents');
+						$notification->status = 0;
+						$notification->createdate = new CDbExpression('NOW()');
+						$notification->save();
+						
+		
+						
+						
 					}else{
 						echo "There was an error uploading the file, please try again!";
 					}				
@@ -756,6 +782,17 @@ public function actionEditdocument()
 						$photos->photorelation = trim($_POST['photoRelation_'.$i]);
 						$photos->active = 2;  //temp record
 						$photos->save();
+						
+		$notification = new Notifications();
+		$notification->userId = $user->userId;
+		$notification->name = $user->name;
+		$notification->marryId = $user->marryId;
+		$notification->notificationType = 'album';
+		$notification->notification = Utilities::getNotificationMessage('album');
+		$notification->status = 0;
+		$notification->createdate = new CDbExpression('NOW()');
+		$notification->save();
+		
 						
 					}else{
 						echo "There was an error uploading the file, please try again!";
@@ -848,6 +885,9 @@ public function actionEditdocument()
 							$photos->profileImage = 1;
 						}
 						$photos->save();
+						
+						
+						
 						
 					}else{
 						echo "There was an error uploading the file, please try again!";
@@ -1022,6 +1062,18 @@ public function actionChange()
 						$userLogged[0]->loggedOut = new CDbExpression('NOW()');
 						$userLogged[0]->save();
 					}
+					
+							$notification = new Notifications();
+							$notification->userId = $user->userId;
+							$notification->name = $user->name;
+							$notification->marryId = $user->marryId;
+							$notification->notificationType = 'password';
+							$notification->notification = Utilities::getNotificationMessage('password');
+							$notification->status = 0;
+							$notification->createdate = new CDbExpression('NOW()');
+							$notification->save();
+										
+					
 					Yii::app()->user->logout();
 					Yii::app()->session->clear();
 					Yii::app()->session->destroy();
@@ -1195,6 +1247,17 @@ public function actionFamilyphotoupload()
 						$photos->active = 2;  //temp record
 						$photos->save();
 						
+		$notification = new Notifications();
+		$notification->userId = $user->userId;
+		$notification->name = $user->name;
+		$notification->marryId = $user->marryId;
+		$notification->notificationType = 'family';
+		$notification->notification = Utilities::getNotificationMessage('family');
+		$notification->status = 0;
+		$notification->createdate = new CDbExpression('NOW()');
+		$notification->save();
+		
+						
 					}else{
 						echo "There was an error uploading the file, please try again!";
 					}				
@@ -1299,6 +1362,19 @@ public function actionFamilyphotoupload()
 						$documents->documentType = $documentType;
 						$documents->active = 2;   // temperory record
 						$documents->save();
+						
+					
+					$notification = new Notifications();
+					$notification->userId = $user->userId;
+					$notification->name = $user->name;
+					$notification->marryId = $user->marryId;
+					$notification->notificationType = 'documents';
+					$notification->notification = Utilities::getNotificationMessage('documents');
+					$notification->status = 0;
+					$notification->createdate = new CDbExpression('NOW()');
+					$notification->save();
+						
+						
 					}else{
 						echo "There was an error uploading the file, please try again!";
 					}				

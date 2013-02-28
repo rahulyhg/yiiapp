@@ -151,7 +151,7 @@ $heightArray = Utilities::getHeights();
 				<li>
 					<div class="leftCtn">Body Type / Complexion</div>
 					<div class="rightCtn">
-						<strong>:</strong> <span><?php if(isset($user->physicaldetails->bodyType))echo $bodyType[$user->physicaldetails->bodyType].'/'?><?php if(isset($user->physicaldetails->complexion))echo $bodyType[$user->physicaldetails->complexion]?></span>
+						<strong>:</strong> <span><?php if(isset($user->physicaldetails->bodyType))echo $bodyType[$user->physicaldetails->bodyType].'/'?><?php if(isset($user->physicaldetails->complexion))echo $bodyColor[$user->physicaldetails->complexion]?></span>
 					</div>
 				</li>
 				<li>

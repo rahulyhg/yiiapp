@@ -260,7 +260,7 @@ $user = Yii::app()->session->get('user');
 				<li>
 					<div class="leftCtn">Body Type / Complexion</div>
 					<div class="rightCtn">
-						<strong>:</strong> <span><?php if(isset($model->physicaldetails->bodyType))echo $bodyType[$model->physicaldetails->bodyType].'/'?><?php if(isset($model->physicaldetails->complexion))echo $bodyType[$model->physicaldetails->complexion]?></span>
+						<strong>:</strong> <span><?php if(isset($model->physicaldetails->bodyType))echo $bodyType[$model->physicaldetails->bodyType].'/'?><?php if(isset($model->physicaldetails->complexion))echo $bodyColor[$model->physicaldetails->complexion]?></span>
 					</div>
 				</li>
 				<li>

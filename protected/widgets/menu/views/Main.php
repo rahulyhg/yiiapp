@@ -58,7 +58,7 @@
 				<div class="sub wid270" style="display:none">
 					<div class="arrow"></div>
 					<?php $user = Yii::app()->session->get('user');
-					$user = Users::model()->with('saveSearch','horoscopes','partnerpreferences','userpersonaldetails','familyprofiles','physicaldetails','educations','hobies')->findbyPk($user->userId);
+					$user = Users::model()->findbyPk($user->userId);
 					Yii::app()->session->add('user',$user);
 					if(isset($user->saveSearch)) {
 					?>

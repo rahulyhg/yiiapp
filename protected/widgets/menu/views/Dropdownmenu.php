@@ -5,13 +5,23 @@ $heightArray = Utilities::getHeights();
 			<div class="notifications">
 				<?php if(count($dInterests) > 0){?>
 				<a href="#" id="tab1" class="like">
-					<div class="count"><?php echo count($dInterests);?></div>
+			<div class="count" style="display: block"><?php echo count($dInterests);?></div>
 				</a>
-				<?php }?>
+				<?php } else { ?>
+				<a href="#" id="tab1" class="like">
+					<div class="count">No interests</div>
+				</a>
+				
+				<?php }
+				if(isset($notifications ) && sizeof($notifications ) > 0 ) {?>
 				<a href="#" id="tab2" class="noti">
-					<div class="count">68</div>
+					<div class="count" style="display:block" > <?php echo count($notification)?></div>
 				</a>
-				<?php if(count($dVisitors) > 0){ ?>
+				<?php } else { ?>
+				<a href="#" id="tab2" class="noti">
+					<div class="count">No notifications</div>
+				</a>
+				<?php } if(count($dVisitors) > 0){ ?>
 				<a href="#" id="tab3" class="people_select">
 					<div class="count"><?php echo count($dVisitors);?></div>
 				</a>
@@ -26,7 +36,7 @@ $heightArray = Utilities::getHeights();
 				</a>
 				<?php }?>
 				<a href="#" id="tab5" class="lock">
-					<div class="count">68</div>
+					<div class="count"></div>
 				</a>
 			</div>
 			<ul class="notiTabData" id="tab1_notif">
@@ -97,11 +107,16 @@ $heightArray = Utilities::getHeights();
 				<?php } ?>
 			</ul>
 			<ul class="notiTabData" id="tab2_notif">
+				<?php if(isset($notifications ) && sizeof($notifications ) > 0 ) {
+				
+					foreach ($notifications  as $value) {	?>
+					
 				<li>
 					<a href="#"><img alt="" src="./images/user/biju.jpg"></a>
 					<a class="user_name" href="#">Biju George</a>
 					<div class="user_message">You have successfully subscribed on 07-07-12. Your validity will end on 06-08-12.</div>
 				</li>
+				<?php }?>
 				<li>
 					<a href="#"><img alt="" src="./images/user/biju.jpg"></a>
 					<a class="user_name" href="#">Biju George</a>
@@ -125,6 +140,9 @@ $heightArray = Utilities::getHeights();
 				<li>
 					<p class="notiFoot"><a href="#">Click</a> to view all notifications.</p>
 				</li>
+				<?php 
+					
+					}?>
 			</ul>
 			<ul class="notiTabData" id="tab3_notif">
 				<?php if(count($dVisitors) > 0){ ?>
@@ -169,65 +187,5 @@ $heightArray = Utilities::getHeights();
 					<p class="notiFoot"><a href="<?php echo Utilities::createAbsoluteUrl('message','index')?>">Click here</a> to read all messages.</p>
 				</li>
 			</ul>
-			<ul class="notiTabData" id="tab5_notif">
-				<li>
-					<a href="#"><img alt="" src="./images/user/nayana.jpg"></a>
-					<div class="int_head">
-						<a href="#">Biju George</a>
-						<span>(Recieved on 15th Augest 2012)</span>
-					</div> 
-					<div class="pDetails">Chrishtian, R.c., 29 Years - 5' 4'', 167 cm</div>
-					<div class="pDetails">Ankamaly, Kerala, India</div>
-					<div class="pAction">Album access request</div>
-					<a class="type7 accept" href="#">Accept</a>
-					<a class="type7 decline" href="#">Decline</a>
-				</li>
-				<li>
-					<a href="#"><img alt="" src="./images/user/anu.jpg"></a>
-					<div class="int_head">
-						<a href="#">Biju George</a>
-						<span>(Accepted on 15th Augest 2012)</span>
-					</div> 
-					<div class="pDetails">Chrishtian, R.c., 29 Years - 5' 4'', 167 cm</div>
-					<div class="pDetails">Ankamaly, Kerala, India</div>
-					<div class="pAction">Document request accepted</div>
-					<a class="type7 decline" href="#">View documents</a>
-				</li>
-				<li>
-					<a href="#"><img alt="" src="./images/user/priya.jpg"></a>
-					<div class="int_head">
-						<a href="#">Biju George</a>
-						<span>(Declined on 15th Augest 2012)</span>
-					</div> 
-					<div class="pDetails">Chrishtian, R.c., 29 Years - 5' 4'', 167 cm</div>
-					<div class="pDetails">Ankamaly, Kerala, India</div>
-					<div class="pAction">Your contact access request Declined</div>
-				</li>
-				<li>
-					<a href="#"><img alt="" src="./images/user/athira.jpg"></a>
-					<div class="int_head">
-						<a href="#">Biju George</a>
-						<span>(Recieved on 15th Augest 2012)</span>
-					</div> 
-					<div class="pDetails">Chrishtian, R.c., 29 Years - 5' 4'', 167 cm</div>
-					<div class="pDetails">Ankamaly, Kerala, India</div>
-					<div class="pAction">Album access request</div>
-					<a class="type7 accept" href="#">Accept</a>
-					<a class="type7 decline" href="#">Decline</a>
-				</li>
-				<li>
-					<a href="#"><img alt="" src="./images/user/anu.jpg"></a>
-					<div class="int_head">
-						<a href="#">Biju George</a>
-						<span>(Accepted on 15th Augest 2012)</span>
-					</div> 
-					<div class="pDetails">Chrishtian, R.c., 29 Years - 5' 4'', 167 cm</div>
-					<div class="pDetails">Ankamaly, Kerala, India</div>
-					<div class="pAction">Document request accepted</div>
-					<a class="type7 decline" href="#">View documents</a>
-				</li>
-				<li>
-					<p class="notiFoot">You have recieved 7 more requests. <a href="#">Click to see more</a></p>
-				</li>
-			</ul>
+			
 		</div>
