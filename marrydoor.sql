@@ -478,3 +478,7 @@ LEFT JOIN photos RP ON (RE.receiverId = RP.userId AND RP.profileImage = 1);
 
 -- Table for Notifications
 create table notifications(notificationId BIGINT UNIQUE NOT NULL AUTO_INCREMENT, userId BIGINT NOT NULL, name VARCHAR(250),marryId VARCHAR(100), notification TEXT, notificationType ENUM('album', 'family', 'documents','astro','reference','contact','password','subscribe','recharge','system'),status TINYINT NOT NULL DEFAULT 0,createdate datetime NOT NULL, PRIMARY KEY(notificationId), FOREIGN KEY (userId) REFERENCES users(userId))ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;
+
+-- Table for inviting friends
+
+create table invitations(id BIGINT UNIQUE NOT NULL AUTO_INCREMENT, userId BIGINT NOT NULL, email text,status TINYINT NOT NULL DEFAULT 0,createdate datetime NOT NULL, PRIMARY KEY(id), FOREIGN KEY (userId) REFERENCES users(userId))ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;

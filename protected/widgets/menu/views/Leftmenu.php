@@ -161,8 +161,34 @@
 				<div class="mdAddT1 mT12">Want to invite a friend to </div>
 				<div class="mdAddT2">marrydoor ?</div>
 				<h5>Key in e-mail ids separated by comma</h5>
-				<input type="text" placeholder="Friends Email ID" />
-				<a href="#" class="type2 no-marg">Invite</a>
+				<input type="text" name="emails" id="emails" placeholder="Friends Email ID" />
+				<div id="inviitation"> <a href="#" class="type2 no-marg">Invite</a></div>
 			</li>
         </ul>
     </aside>
+
+    
+    <script type="text/javascript">
+   
+	$("#inviitation").click(function(){
+		if($("#emails").val()) {
+
+			 $.ajax({
+		            type: "POST",
+		            url: "/Ajax/updateInvitation",
+		            'data':{'email': $("#emails").val()},
+		            'dataType':'json',
+		            dataType: "json",
+		            success: function(data) {
+		            	if(data)
+		            		$("#emails").val('');
+		            }
+		        });
+			
+		}
+		return false;
+	});
+   
+
+</script>
+    

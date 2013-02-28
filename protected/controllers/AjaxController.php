@@ -254,5 +254,19 @@ class AjaxController extends Controller
 		}
 	}
 	
+	public function actionUpdateInvitation()
+	{
+		$user = Yii::app()->session->get('user');
+		if(isset($_POST['email']) && !empty($_POST['email'])) {
+			
+			$invite = new Invitations();
+			$invite->userId =  $user->userId;
+			$invite->email = $_POST['email'];
+			$invite->status = 0;
+			$invite->createdate = new CDbExpression('NOW()');
+			$invite->save(); 
+			echo json_encode(TRUE);
+		}
+	}
 	
 }
