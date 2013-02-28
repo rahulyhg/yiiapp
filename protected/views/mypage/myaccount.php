@@ -63,7 +63,7 @@
 				</div>
 			</li>
 			<li>
-				<div class="leftC">Interest resived </div>
+				<div class="leftC">Interest received </div>
 				<div class="rightC">
 					<strong>:</strong> <?php
 			$receiveInterest = $user->interestReceiver(array('condition'=>'status = 0'));
@@ -102,16 +102,21 @@
 		?>
 				</div>
 			</li>
+				<?php 
+					$inbox = $user->messageReceiver(array('condition'=>'status = 0 or status = 1'));
+					$outbox = $user->messageSender(array('condition'=>'senderId = '.$user->userId));
+				?>
+				
 			<li>
 				<div class="leftC">Message sent	</div>
 				<div class="rightC">
-					<strong>:</strong> 12
+					<strong>:</strong> <?php echo count($inbox); ?>
 				</div>
 			</li>
 			<li>
 				<div class="leftC">Message recived </div>
 				<div class="rightC">
-					<strong>:</strong> 12
+					<strong>:</strong> <?php echo count($outbox); ?>
 				</div>
 			</li>
 			<!-- 
