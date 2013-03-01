@@ -15,7 +15,8 @@ class ShortlistController extends Controller
 	
 	public function actionIndex()
 	{
-		$usersList = Yii::app()->session->get('user');
+		$user = Yii::app()->session->get('user');
+		$usersList = Users::model()->findbyPk($user->userId);
 		if(isset($usersList->shortlist)){
 		$userShort = $usersList->shortlist;
 		$condition = "userId in ($userShort->profileID)";
@@ -53,8 +54,15 @@ class ShortlistController extends Controller
 				{
 					$profileIds = explode(",", $usersList->shortlist->profileID);
 					$arr = array_diff($profileIds, array($_POST['userId']));
+					if(sizeof($arr) > 0 ){
 					$usersList->shortlist->profileID = implode(",", $arr);
 					$usersList->shortlist->save();
+					}
+					else
+					{
+						$usersList->shortlist->delete();
+						$usersList->shortlist = null;
+					}
 					echo json_encode(TRUE);
 					Yii::app()->end();
 				}
@@ -82,7 +90,7 @@ class ShortlistController extends Controller
 					}
 					else
 					{
-						$usersList->shortlist->deleteAll();
+						$usersList->shortlist->delete();
 						$usersList->shortlist = null;
 					}
 					echo json_encode(TRUE);

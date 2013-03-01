@@ -64,7 +64,7 @@ class SearchController extends Controller
 				$search = Savesearch::model()->findByAttributes(array('userId'=>$user->userId,'searchName'=>$searchName));
 				if(isset($search) && $search->searchName == $searchName)
 				{
-					$user->saveSearch->deleteAll();
+					$user->saveSearch->delete();
 					$this->render('regular',array('tab'=>'tab1'));
 				}
 				else
@@ -267,7 +267,7 @@ class SearchController extends Controller
 		
 		$saveSearch->userId = $user->userId;
 		if(isset($user->saveSearch))
-		$user->saveSearch->deleteAll();
+		$user->saveSearch->delete();
 		$user->saveSearch = $saveSearch;
 		$user->saveSearch->save();
 		$this->render('regular',array('tab'=>'tab1'));

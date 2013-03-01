@@ -60,7 +60,7 @@ public function actionRemove()
 					}
 					else
 					{
-						$usersList->bookmark->deleteAll();
+						$usersList->bookmark->delete();
 						$usersList->bookmark = null;
 					}
 					echo json_encode(TRUE);
@@ -90,7 +90,7 @@ public function actionRemove()
 					}
 					else
 					{
-						$usersList->bookmark->deleteAll();
+						$usersList->bookmark->delete();
 						$usersList->bookmark = null;
 					}
 					echo json_encode(TRUE);

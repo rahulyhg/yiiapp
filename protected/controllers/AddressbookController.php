@@ -62,7 +62,7 @@ class AddressbookController extends Controller
 					}
 					else
 					{
-						$usersList->addressBook->deleteAll();
+						$usersList->addressBook->delete();
 						$usersList->addressBook = null;
 					}
 					echo json_encode(TRUE);
@@ -92,7 +92,7 @@ class AddressbookController extends Controller
 					}
 					else
 					{
-						$usersList->addressBook->deleteAll();
+						$usersList->addressBook->delete();
 						$usersList->addressBook = null;
 					}
 					echo json_encode(TRUE);
