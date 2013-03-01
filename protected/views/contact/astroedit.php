@@ -4,7 +4,10 @@
 			</section>
 			<?php 
 			$user = Yii::app()->session->get('user');
-		$astro = $user->horoscopes;
+			if(isset($user->horoscopes))
+			$astro = $user->horoscopes;
+			else
+			$astro = new Horoscopes();
 		?>
 			<section class="subContnr">
 			<form id="userHoro" enctype="multipart/form-data" name="userHoro" method="post"  action="/contact/astroedit">

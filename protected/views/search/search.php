@@ -179,8 +179,8 @@
                  <div id="interest" class="expressInterest">   <a href="#" id="<?php echo $value->userId ?>"  class="global">Express Interest</a></div>
    <?php }?>
 	<?php if(!in_array($value->userId, $bookMarked)) {?>  
-<div id="bookmark"> 
-                    <a href="#" id="<?php echo $value->userId ?>"  class="global">Bookmark</a>
+		<div id="<?php echo 'rBookmark'.$value->userId ?>"> 
+                    <a id="<?php echo $value->userId ?>"  class="global">Bookmark</a>
                     </div>
    <?php }?>
 <?php if(!isset($isMessage) || empty($isMessage)) {
@@ -421,7 +421,8 @@
 		        cache: false,
 		        success: function (html) {
 			        if(html == true)  
-			        	$('#'+userId).hide();	         
+			        	$('#'+userId).hide();	
+			        	$('#'+userId).focus();         
 		        }       
 		    });
 	 
@@ -497,7 +498,10 @@
 	        dataType:'json',        
 	        data: {"userId":userIds},        
 	        cache: false,
-	        success: function (html) {}  
+	        success: function (html) {
+	        	 $('[id^=rBookmark]').hide();
+	        	 $('#exBookmark').hide();
+		        }  
 	    });
 	}
 

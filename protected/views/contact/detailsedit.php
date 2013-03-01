@@ -11,7 +11,7 @@
 							<div class="title">
 								Communication Address 
 							</div>
-								<?php $address = Address::model()->findAll(array('condition'=> "userId = {$user->userId} and addresType = 1"));
+								<?php $address = Address::model()->findAll(array('condition'=> "userId = {$user->userId} and addresType = 0"));
 								$caddress = new Address();
 								if(isset($address) && isset($address[0]))
 								$caddress = $address[0];
@@ -68,7 +68,7 @@
 							<div class="title">
 								Permanent Address
 							</div>
-							<?php $address = Address::model()->findAll(array('condition'=> "userId = {$user->userId} and addresType = 0"));
+							<?php $address = Address::model()->findAll(array('condition'=> "userId = {$user->userId} and addresType = 1"));
 							$paddress = new Address();
 							if(isset($address) && isset($address[0]))
 							$paddress = $address[0];
@@ -141,7 +141,7 @@
 								Facebook URL
 							</div>
 							<div class="info">
-											<input type="text" value="<?php echo $user->usercontactdetails->facebookUrl?>"
+											<input type="text" value="<?php if(isset($user->usercontactdetails->facebookUrl)) echo $user->usercontactdetails->facebookUrl?>"
 							name="facebook" id="facebook" /> 
 
 							</div>
@@ -151,7 +151,7 @@
 								Skype
 							</div>
 							<div class="info">
-								<input value="<?php echo $user->usercontactdetails->skypeId ?>"
+								<input value="<?php if(isset($user->usercontactdetails->skypeId)) echo $user->usercontactdetails->skypeId ?>"
 							type="text" name="skype" id="skype" /> 
 							</div>
 						</li>
@@ -160,7 +160,7 @@
 								Google IM
 							</div>
 							<div class="info">
-								<input value="<?php echo $user->usercontactdetails->googleIM?>"
+								<input value="<?php if(isset($user->usercontactdetails->googleIM)) echo $user->usercontactdetails->googleIM?>"
 							type="text" name="google" id="google" /> 
 							</div>
 						</li>
@@ -169,7 +169,7 @@
 								Yahoo IM
 							</div>
 							<div class="info">
-								<input value="<?php echo $user->usercontactdetails->yahooIM ?>"
+								<input value="<?php  if(isset($user->usercontactdetails->yahooIM))  echo $user->usercontactdetails->yahooIM ?>"
 							type="text" name="yahoo" id="yahoo" />
 							</div>
 						</li>
