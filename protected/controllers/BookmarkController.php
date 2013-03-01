@@ -153,7 +153,7 @@ public function actionAddAll()
 		else {
 				$bookMark = new Bookmark();
 				$bookMark->userID = $usersList->userId;
-				$bookMark->profileIDs = explode(",",$_POST['userId']);
+				$bookMark->profileIDs = implode(",",$_POST['userId']);
 				$bookMark->save();
 			}
 		echo json_encode(TRUE);

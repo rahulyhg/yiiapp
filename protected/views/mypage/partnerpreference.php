@@ -80,8 +80,7 @@
 				<div class="leftC">Cast</div>
 				<div class="rightC">
 					: <?php if(isset($user->partnerpreferences->caste)) {
-					$caste = Caste::model()->findByPk($user->partnerpreferences->caste);
-					echo $caste->name;
+					echo Utilities::getValueForIds(new Caste(),$user->partnerpreferences->caste,'casteId');	
 					}
 						?>
 				</div>

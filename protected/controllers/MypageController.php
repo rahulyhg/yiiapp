@@ -80,7 +80,7 @@ class MypageController extends Controller
 		}
 		
 		
-		if(isset($user->partnerpreferences))
+		if(false)
 		{
 			$condition  = Utilities::getPartnerPreference($user->partnerpreferences);
 			$usersV = ViewUsers::model()->findAll(array('condition'=>$condition,

@@ -110,7 +110,7 @@
         <?php if(isset($user)) {?>
             <div class="select-contnr"><input type="checkbox" class="selection" name="selection" /> Select All</div>
             <a id="exInterest" class="expressInterests" href="#">Express Interest</a>
-            <a id="exBookmark" href="#">Bookmark</a>
+            <a id="exBookmark">Bookmark</a>
             
            <?php } if(isset($totalPage) && intval($totalPage) > 1) { ?>
             <ul class="pagination">
@@ -205,7 +205,7 @@
         <?php if(isset($user)) {?>
             <div class="select-contnr"><input type="checkbox" class="selection" name="selection" />Select All</div>
             <a id="exInterest" class="expressInterests" href="#">Express Interest</a>
-            <a id="exBookmark" href="#">Bookmark</a>
+            <a id="exBookmark" >Bookmark</a>
              <?php } if(isset($totalPage) && intval($totalPage) > 1) { ?>
             <ul class="pagination">
                 <li><span class="fir"><a href="#">First</a></span></li>
@@ -500,7 +500,7 @@
 	        cache: false,
 	        success: function (html) {
 	        	 $('[id^=rBookmark]').hide();
-	        	 $('#exBookmark').hide();
+	        	 $('[id^=exBookmark]').hide();
 		        }  
 	    });
 	}
