@@ -14,14 +14,73 @@
 *  @version <Revision>
 */
 ?>
-<?php $this->widget('application.widgets.menu.Leftmenu'); ?> 
+<?php $this->widget('application.widgets.menu.Leftmenu'); 
+$user = Yii::app()->session->get('user');
+ if(isset($user->bookmark))
+ {
+ 	$bookMarked = explode(",",$user->bookmark->profileIDs);
+ }
 
-	<?php if(isset($highlight) || isset($normal) ||isset($profileUpdates)) { ?> 
+ $heightArray = Utilities::getHeights();
+ ?> 
+ 	
+
+	<?php 
 	
-	<section class="data-contnr2">
-		<h1>My Page</h1>
-		<?php if(isset($highlight)) {?> 
-		<div class="mT40 content-section highPro">
+	//if(isset($highlight) || isset($normal) ||isset($profileUpdates)) { 
+	if(sizeof($highlight) > 0  || sizeof($normal) > 0) { 
+	?> 
+	
+	<section class="data-contnr3">
+	<h1>My Page</h1>
+	
+	    <form id="quickSearch"  name="quickSearch" method="post"  action="/search/quick">
+        <ul class="accOverview mT12">
+			<li class="mB10">
+				<div class="radC">
+				<input type="radio" class="validate[required]"  value="M" name="gender" />
+					<span>Male</span>
+				</div>
+				<div class="radC">
+					<input type="radio" value="F" name="gender" class="validate[required]"  />
+					<span>Female</span>
+				</div>
+				<div class="selC">
+					<span>Age</span>
+					<?php echo CHtml::dropDownList('ageFrom',null,Utilities::getAge(),array('prompt'=>'Age','class'=>'validate[gfuncCall[hidePromp]]  wid50')); ?>
+				</div>
+				<div class="selC">
+					<span>to</span>
+					<?php echo CHtml::dropDownList('ageTo',null,Utilities::getAge(),array('prompt'=>'Age','class'=>'validate[gfuncCall[checkAgeLimit]] wid50')); ?>
+				</div>
+				<div class="selC">
+					<span>Religion</span>
+					<?php $records = Religion::model()->findAll("active = 1");
+		$list = CHtml::listData($records, 'religionId', 'name');
+		echo CHtml::dropDownList('religion',null,$list,array('empty' => 'Religion','class'=>'width120','id'=>'qReligion','ajax' => array(
+                        'type'=>'POST',
+                        'url'=>CController::createUrl('Ajax/updateCaste'), 
+                        'dataType'=>'json',
+                        'data'=>array('religionId'=>'js:this.value'),  
+                        'success'=>'function(data) {
+                            $("#qCaste").html(data.dropDownCastes);
+                        }',
+            ))); ?>
+					
+				</div>
+				<div class="selC">
+					<span>Cast</span>
+					<?php $records = Caste::model()->findAll("active = 1");
+		$list = CHtml::listData($records, 'casteId', 'name');
+		echo CHtml::dropDownList('caste',null,$list,array('empty' => 'Caste','id'=>'qCaste','class'=>'wid120')); ?>
+				</div>
+				<input type="submit" value="Search" class="type5 no-marg" />
+			</li>
+		</ul>
+		</form>
+	
+		<?php if(isset($highlight) && sizeof($highlight) > 0) {?> 
+		<div class="content-section highPro">
 			<div class="headBtn">
 				<div class="hText">Highlighted Profiles</div>
 				 <?php $user = Yii::app()->session->get('user');?>
@@ -35,145 +94,115 @@
 			  foreach ($highlight as $value) { 
   			?>
 			<!-- highlighted profiles -->
-			<div class="profileR">
-				<?php $this->widget('application.widgets.Profilepicture',array('userId'=>$value->userId,'marryId'=>$value->marryId)); ?> 
-				<div class="profile-detail">
-					<ul class="details-contnrs">
+			<div <?php if($index > 1) echo "id='high{$index}'";?> class="profile">
+				<?php $this->widget('application.widgets.Profilepicturelist',array('userId'=>$value->userId,'marryId'=>$value->marryId)); ?> 
+				<div class="profile-details">
+					<ul class="details-contnr">
 						<li>
-							<a href="<?php echo '/search/byid/id/'.$value->marryId ?>" class="color" ><?php echo $value->name; echo '( '.$value->marryId.' )' ;?>)</a>
-						</li>
-						<li>
-							<?php if(isset($value->userpersonaldetails->religion))echo $value->userpersonaldetails->religion->name ;?> , <?php if(isset($value->userpersonaldetails->caste))echo $value->userpersonaldetails->caste->name ;?>
-						</li>
-						<li>
-							<?php echo Utilities::getAgeFromDateofBirth($value->dob); ?> Years 
-						</li>
-						<li>
-							<?php if(isset($value->physicaldetails->heightId))echo $heightArray[$value->physicaldetails->heightId]; ?>
-						</li>
-						<li>
-							<?php if(isset($value->userpersonaldetails->place))echo $value->userpersonaldetails->place->name ?>
-						</li>
-						<li>
-							<?php if(isset($value->educations->education))echo $value->educations->education->name?>
-						</li>
-						<li>
-							<?php if(isset($value->educations->occupation))echo $value->educations->occupation->name ?>
-						</li>
+                            <div class="title">Name</div>
+                            <div class="info">: <a target="_blank"  href="<?php echo 'byid?id='.$value->marryId ?>" class="color" ><?php echo $value->name; echo '( '.$value->marryId.' )' ;?></a></div>
+                        </li>
+                        <li>
+                            <div class="title">Religion / Cast </div>
+                            <div class="info">: <?php if(isset($value->userpersonaldetails->religion))echo $value->userpersonaldetails->religion->name ;?> , <?php if(isset($value->userpersonaldetails->caste))echo $value->userpersonaldetails->caste->name ;?> </div>
+                        </li>
+                        <li>
+                            <div class="title">Age</div>
+                            <div class="info">: <?php echo Utilities::getAgeFromDateofBirth($value->dob); ?>Years </div>
+                        </li>
+                        <li>
+                            <div class="title">Height</div>
+                            <div class="info">: <?php if(isset($value->physicaldetails->heightId))echo $heightArray[$value->physicaldetails->heightId]; ?> </div>
+                        </li>
+                        <li>
+                            <div class="title">District</div>
+                            <div class="info">: <?php if(isset($value->userpersonaldetails->district))echo $value->userpersonaldetails->district->name ?> </div>
+                        </li>
+                        <li>
+                            <div class="title">State</div>
+                            <div class="info">: <?php if(isset($value->userpersonaldetails->state))echo $value->userpersonaldetails->state->name ?></div>
+                        </li>
+                        <li>
+                            <div class="title">Country</div>
+                            <div class="info">: <?php if(isset($value->userpersonaldetails->country))echo $value->userpersonaldetails->country->name?></div>
+                        </li>
 					</ul>
 					<a href="<?php echo '/search/byid/id/'.$value->marryId ?>" target="_blank"  class="view-full">View Full Profile</a>
 				</div>
-				             <?php 
- 
-			 $isInterest = $user->interestSender(array('condition'=>"receiverId = {$value->userId}"));
-			 $isBookMarked = $user->bookmark(array('condition'=>"FIND_IN_SET('{$value->userId}',profileIDs)")); 
-			 $isMessage = $user->messageSender(array('condition'=>"receiverId = {$value->userId}"));
-			 if(!isset($isInterest) || empty($isInterest)) {
-			 ?>
-				<div class="button-contnr">
-					<a class="globals" href="#" id="<?php echo $value->userId ?>">Express Interest</a>
-				</div>
-			<?php }?>
-			<?php if(!isset($isBookMarked) || empty($isBookMarked)) {?> 
-				<div class="button-contnr">
-					<a class="globals" href="#" id="<?php echo $value->userId ?>">Bookmark</a>
-				</div>
-			<?php }?>
-			<?php if(!isset($isMessage) || empty($isMessage)) {?>
-				<div class="button-contnr">
-					<a class="globals" href="#" id="<?php echo $value->userId ?>">Send Message</a>
-				</div>
-			<?php }?>
+	  <div class="button-contnr">
+                <?php 
+ if(isset($user)){
+ 	 
+ if(!isset($isInterest) || empty($isInterest)) {
+ ?>
+                 <div id="interest"><a href="#" id="<?php echo $value->userId ?>"  class="global">Express Interest</a></div>
+                   <?php }?>
+					<?php if(!in_array($value->userId, $bookMarked)) {?>  
+                    
+                    <div id="bookmark"><a href="#" id="<?php echo $value->userId ?>"  class="global">Bookmark</a></div>
+                    <?php }?>
+<?php if(!isset($isMessage) || empty($isMessage)) {?>
+                    <div id="message"><a href="<?php echo Utilities::createAbsoluteUrl('message','compose',array('receiverId'=>$value->userId)); ?>"  class="sendMessage" id="<?php echo $value->userId ?>">Send Message</a></div>
+                   <?php }
+  } ?>   
+                </div>
 			</div>
 			 <?php $index++; ?>
 			<!-- highlighted profile ends here -->
 			<?php }?>
 			<?php if(sizeof($highlight) > 2 ) {?>
-			<div class="footBtn">
+			<div id="right" class="footBtn">
 				<a class="viewM " href="#">View More Highlighted Profiles</a>
 			</div>
 			<?php } ?>
 		</div>
 		<?php }?>
-		 <?php 
-		    if(isset($profileUpdates) && sizeof($profileUpdates) > 0 ){
-		  ?>
-		<h1>Recent Updates</h1>
-        <article class="section width100">
-			   <?php $heightArray = Utilities::getHeights();
-    			foreach ($profileUpdates as $value) { ?>
-			<div class="recentUpdates">
-				<div class="recH"><a href="<?php echo 'byid?id='.$value->marryId ?>"><?php echo $value->name;?></a>
-				<?php $isInterest = $user->interestSender(array('condition'=>"receiverId = {$value->userId}"));
-				if(isset($isInterest->sendDate)){?>
-				 (You expressed interest <?php  echo Utilities::getHumanTime($value->profileUpdates->statusTime) ?>)
-				<?php 
-				 }
- 			?>
-				 </div>
-				<a href="#"><img src="<?php echo Utilities::getProfileImage($value->marryId,$value->marryId.'.jpg');?>" alt="<?php echo $value->name;?>" title="<?php echo $value->name;?>" /></a>
-				<div class="recDet">
-					<div class="recList"><?php if(isset($value->userpersonaldetails->religion))echo $value->userpersonaldetails->religion->name ;?> , <?php if(isset($value->userpersonaldetails->caste))echo $value->userpersonaldetails->caste->name ;?></div>
-					<div class="recList"><?php echo Utilities::getAgeFromDateofBirth($value->dob); ?> Years - <?php if(isset($value->physicaldetails->heightId))echo $heightArray[$value->physicaldetails->heightId];  ?></div>
-					<div class="recList"><?php if(isset($value->userpersonaldetails->place))echo $value->userpersonaldetails->place->name ?>, <?php if(isset($value->userpersonaldetails->state))echo $value->userpersonaldetails->state->name ?>, <?php if(isset($value->userpersonaldetails->country))echo $value->userpersonaldetails->country->name ?></div>
-					<?php if(isset($value->profileUpdates->profile) && $value->profileUpdates->profile == 'album' ) {?>
-					<div class="upDet">Updated 5 photos in her album</div>
-					<?php }?>
-				</div>
-				<?php if(isset($value->profileUpdates->profile) && $value->profileUpdates->profile == 'album' ) {?>
-				<div class="upPhoto">
-					<a href="#"><img src="./images/user/athira.jpg" alt="" /></a>
-					<a href="#"><img src="./images/user/priya.jpg" alt="" /></a>
-					<a href="#"><img src="./images/user/nayana.jpg" alt="" /></a>
-					<a href="#"><img src="./images/user/rans.jpg" alt="" /></a>
-				</div>
-				<?php }?>
-				<div class="footN">
-					<div class="updated"><?php echo Utilities::getHumanTime($value->profileUpdates->statusTime) ?> ago</div>
-				</div>
-			</div>
-			<?php } ?>
 		
-            <a class="viewM mT5" href="#">View More Feeds..</a>
-		</article>
-		<?php } ?>
-	</section>
-	<!-- right menu -->
-	<?php $this->widget('application.widgets.menu.Rightmenu'); ?> 
-	<!-- right menu ends -->
+
+	
 <?php 
-  if(isset($normal)) {
+  if(isset($normal) && sizeof($normal) > 0 ) {
  ?>
-    <section class="data-contnr3 floatR">
+   
 
         <div class="page-content-head">Latest Matches for you</div>
-        <div class="pagination-contnr">
-            <div class="select-contnr"><input type="checkbox" /> Select All</div>
-            <a href="#">Express Interest</a>
-            <a href="#">Bookmark</a>
+         <div class="pagination-contnr">
+        <?php if(isset($user)) {?>
+            <div class="select-contnr"><input type="checkbox" class="selection" name="selection" /> Select All</div>
+            <a id="exInterest" class="expressInterests" href="#">Express Interest</a>
+            <a id="exBookmark">Bookmark</a>
+            
+           <?php } if(isset($totalPage) && intval($totalPage) > 1) { ?>
             <ul class="pagination">
-                <li><a href="#">First</a></li>
-                <li><a href="#">Next</a></li>
-                <li><a href="#">Previous</a></li>
-                <li><a href="#">Last</a></li>
+                <li><span class="fir"><a href="#">First</a></span></li>
+                <li><span class="nex"><a href="#">Next</a></span></li>
+                <li><span class="pre"><a href="#">Previous</a></span></li>
+                <li><span class="last"><a href="#">Last</a></span></li>
             </ul>
+            <input type="hidden" value="<?php echo $totalPage?>" name="totalPage" />
+          <input type="hidden" value="1" name="currentPage" />
+          <input type="hidden" value="<?php echo $totalUser ?>" name="user" />
+          <input type="hidden" value="1" name="firstPage" />
+           <input type="hidden" value="<?php echo $totalPage?>" name="lastPage" />
+                 <?php } ?>       
+          
         </div>
         <div class="content-section">
         <?php 
   $index1 = 1;
   foreach ($normal as $value) { ?>
-            <div class="profile">
+            <div  id="<?php echo 'normal'.$index1?>" class="profile" <?php if(intval($totalPage) > 1 && $index1 > 10 ) {?> style="display:none" <?php }?>>
                 <div class="check-contnr"><input type="checkbox" /> Select</div>
-                <?php $this->widget('application.widgets.Profilepicture',array('userId'=>$value->userId,'marryId'=>$value->marryId)); ?>
+                <?php $this->widget('application.widgets.Profilepicturelist',array('userId'=>$value->userId,'marryId'=>$value->marryId)); ?>
                 <div class="profile-details">
                     <ul class="details-contnr">
-                        <li>
+                       <li>
                             <div class="title">Name</div>
-                            <div class="info">: <a href="<?php echo 'byid?id='.$value->marryId ?>" class="color" ><?php echo $value->name; echo '( '.$value->marryId.' )' ;?></a></div>
+                            <div class="info">: <a target="_blank" href="<?php echo 'byid?id='.$value->marryId ?>" class="color" ><?php echo $value->name; echo '( '.$value->marryId.' )' ;?></a></div>
                         </li>
                         <li>
                             <div class="title">Religion / Cast </div>
-                            <div class="info">: <?php if(isset($value->userpersonaldetails->religion))echo $value->userpersonaldetails->religion->name ;?> , <?php if(isset($value->userpersonaldetails->caste))echo $value->userpersonaldetails->caste->name ;?></div>
+                            <div class="info">: <?php if(isset($value->userpersonaldetails->religion))echo $value->userpersonaldetails->religion->name ;?> , <?php if(isset($value->userpersonaldetails->caste))echo $value->userpersonaldetails->caste->name ;?> </div>
                         </li>
                         <li>
                             <div class="title">Age</div>
@@ -184,36 +213,47 @@
                             <div class="info">: <?php if(isset($value->physicaldetails->heightId))echo $heightArray[$value->physicaldetails->heightId];  ?></div>
                         </li>
                         <li>
-                            <div class="title">Place</div>
-                            <div class="info">: <?php if(isset($value->userpersonaldetails->place))echo $value->userpersonaldetails->place->name ?>, <?php if(isset($value->userpersonaldetails->state))echo $value->userpersonaldetails->state->name ?>, <?php if(isset($value->userpersonaldetails->country))echo $value->userpersonaldetails->country->name ?></div>
+                            <div class="title">District</div>
+                            <div class="info">: <?php if(isset($value->userpersonaldetails->district))echo $value->userpersonaldetails->district->name ?> </div>
                         </li>
                         <li>
-                            <div class="title">Education</div>
-                            <div class="info">: <?php if(isset($value->educations->education))echo $value->educations->education->name ?></div>
+                            <div class="title">State</div>
+                            <div class="info">: <?php if(isset($value->userpersonaldetails->state))echo $value->userpersonaldetails->state->name ?> </div>
                         </li>
                         <li>
-                            <div class="title">Occupation</div>
-                            <div class="info">: <?php if(isset($value->educations->occupation))echo $value->educations->occupation->name ?></div>
+                            <div class="title">Country</div>
+                            <div class="info">: <?php if(isset($value->userpersonaldetails->country))echo $value->userpersonaldetails->country->name ?> </div>
                         </li>
                     </ul>
                     <a class="view-full" target="_blank"  href="<?php echo '/search/byid/id/'.$value->marryId ?>">View Full Profile</a>
                 </div>
                 <div class="button-contnr">
-                 <?php 
- 
+                <?php 
+ if(isset($user)) {
  $isInterest = $user->interestSender(array('condition'=>"receiverId = {$value->userId}"));
- $isBookMarked = $user->bookmark(array('condition'=>"FIND_IN_SET('{$value->userId}',profileIDs)")); 
  $isMessage = $user->messageSender(array('condition'=>"receiverId = {$value->userId}"));
  if(!isset($isInterest) || empty($isInterest)) {
  ?>
-                    <a href="#" id="<?php echo $value->userId ?>" class="global">Express Interest</a>
- <?php }?>
-<?php if(!isset($isBookMarked) || empty($isBookMarked)) {?>                   
-                    <a href="#"  id="<?php echo $value->userId ?>" class="global">Bookmark</a>
-                    <?php }?>
-<?php if(!isset($isMessage) || empty($isMessage)) {?>
-                    <a href="#" id="<?php echo $value->userId ?>" class="global">Send Message</a>
-  <?php } ?> 
+                 <div id="interest" class="expressInterest">   <a href="#" id="<?php echo $value->userId ?>"  class="global">Express Interest</a></div>
+   <?php }?>
+	<?php if(!in_array($value->userId, $bookMarked)) {?>  
+		<div id="<?php echo 'rBookmark'.$value->userId ?>"> 
+                    <a id="<?php echo $value->userId ?>"  class="global">Bookmark</a>
+                    </div>
+   <?php }?>
+<?php if(!isset($isMessage) || empty($isMessage)) {
+	
+	?>
+	<div id="message">
+	<?php if($user->userType == 1){?>
+      <a href="<?php echo Utilities::createAbsoluteUrl('message','compose',array('receiverId'=>$value->userId)); ?>"  class="sendMessage" id="<?php echo $value->userId ?>" >Send Message</a>
+      <?php }else{?>
+      <a class="sendMessage" href="<?php echo Utilities::createAbsoluteUrl('site','popup',array('action'=>'subscribe','module'=>'message','profileId'=>$value->userId)); ?>">Send Message</a>
+      <?php }?>
+    </div>
+        <?php }
+  	}
+  	?>
                 </div>
             </div>
             <?php 
@@ -222,15 +262,19 @@
            
         </div>
         <div class="pagination-contnr">
-            <div class="select-contnr"><input type="checkbox" /> Select All</div>
-            <a href="#">Express Interest</a>
-            <a href="#">Bookmark</a>
+        <?php if(isset($user)) {?>
+            <div class="select-contnr"><input type="checkbox" class="selection" name="selection" />Select All</div>
+            <a id="exInterest" class="expressInterests" href="#">Express Interest</a>
+            <a id="exBookmark" >Bookmark</a>
+             <?php } if(isset($totalPage) && intval($totalPage) > 1) { ?>
             <ul class="pagination">
-                <li><a href="#">First</a></li>
-                <li><a href="#">Next</a></li>
-                <li><a href="#">Previous</a></li>
-                <li><a href="#">Last</a></li>
+                <li><span class="fir"><a href="#">First</a></span></li>
+                <li><span class="nex"><a href="#">Next</a></span></li>
+                <li><span class="pre"><a href="#">Previous</a></span></li>
+                <li><span class="last"><a href="#">Last</a></span></li>
             </ul>
+                 <?php } ?>       
+          
         </div>
     </section> 
     <?php }
@@ -308,3 +352,288 @@
     </section>
     <?php }?>
     
+    
+    
+     <script type="text/javascript">
+
+   $(document).ready(function() {
+
+	
+	$("div[id^='high']").hide();
+	
+
+	$('#right').click(function(){
+		
+		if($('div#right a').text() == 'Hide')
+		{
+			$('div#right a').text("View More Highligted Profiles");
+			$("div[id^='high']").hide("slow").fadeOut("slow");
+
+		}
+		else{
+		$('div#right a').text("Hide");
+		$("div[id^='high']").show("slow").fadeIn("slow");
+
+		}
+		})
+	
+	$('.exp-sub').click(function(){
+		var userId = $(this).attr('id');
+		if(setInterest(userId))
+		{
+		$(this).hide();
+		}
+
+		});	
+
+	   
+	var totalPage = parseInt($("input[name='totalPage']").val());
+	var totalUser = parseInt($("input[name='user']").val());
+	var currentPage = parseInt($("input[name='currentPage']").val());
+	var lastPage = parseInt($("input[name='lastPage']").val());
+	var firstPage = parseInt($("input[name='firstPage']").val());
+	
+		
+		
+	$('.fir').click(function (){
+		$('.nex').show();
+		$('.fir').hide();
+		$('.last').show();
+		currentPage = parseInt($("input[name='currentPage']").val());
+		if(currentPage == 1)
+		{
+			return;
+		}
+		$('.pre').hide();
+		$('div[id^="normal"]').hide();
+		var example = 10;
+		for (var i= 1; i <= example; i++)
+		{
+			if( example <= totalUser)
+			{	
+				$('div#normal'+i).show();
+			}
+		}
+		$("input[name='currentPage']").val("1");
+		
+		});
+
+	$('.pre').click(function (){
+		$('.nex').show();
+		$('.last').show();
+		currentPage = parseInt($("input[name='currentPage']").val());
+		if(currentPage == 1)
+		{
+			return;
+		}	
+		$('div[id^="normal"]').hide();
+		currentPage = currentPage - 1;
+		var index = currentPage * 10;
+		for (var i = index - 9;  i <=  index; i++)
+		{
+			$('div#normal'+i).show();
+		}
+		
+		$("input[name='currentPage']").val(currentPage);
+	});
+
+	$('.nex').click(function (){
+		$('.pre').show();
+		$('.fir').show();
+		
+		currentPage = parseInt($("input[name='currentPage']").val());
+		lastPage = parseInt($("input[name='lastPage']").val());
+		if(currentPage == lastPage )
+		{
+			return;
+		}	
+		$('div[id^="normal"]').hide();
+		var index = currentPage * 10;
+		currentPage = currentPage + 1;
+		
+		for (var i = index+1 ;  i <= currentPage * 10 ; i++)
+		{
+			if(i <= totalUser){
+			$('div#normal'+i).show();
+			}
+		}
+		
+		$("input[name='currentPage']").val(currentPage);
+	
+			
+	});
+
+	$('.last').click(function (){
+		$('.pre').show();
+		$('.nex').hide();
+		$('.fir').show();
+		$('.last').hide();
+		currentPage = parseInt($("input[name='currentPage']").val());
+		lastPage = parseInt($("input[name='lastPage']").val());
+		
+		if(lastPage == currentPage)
+		{
+			return;
+		}	
+		$('div[id^="normal"]').hide();
+		var index = lastPage -1 ;
+		for (var i = (index * 10) + 1;  i <= totalUser; i++)
+		{
+			$('div#normal'+i).show();
+		}
+	
+		$("input[name='currentPage']").val(lastPage);
+		
+	});
+
+	 //check for selection all button
+	 $('.selection').change(function () {
+
+		 if($(this).attr("checked")){
+			 $('input:checkbox').attr('checked','checked');
+		}else{ 
+			$('input:checkbox').removeAttr('checked');
+		}
+		 
+	 }); 	
+	 
+	//if anyone of the checkbox is clicked then uncheck the select all
+	 $('.case').change(function () {
+		$('.selection').attr("checked",false);
+		 });
+
+	 //if checkall is selected then append all userid
+	 $('#exBookmark').click(function (){
+		 var  allVal= [];
+		 if($("input:checkbox[name=userId]:checked").length == 0)
+		 {
+			alert('Please select any one of profile to remove');
+			return false;
+		 }		 
+		 $("input:checkbox[name=userId]:checked").each(function(){
+			 if($(this).parent('div').parent('div').css('display') == 'block'){
+				 allVal.push($(this).val());
+				 }
+		 });
+
+		 addBookmark(allVal); 
+		  
+	 });
+
+	 
+	 $('[id^=rBookmark]').click(function (){
+		 var userId = $(this).find('a').attr('id');
+		 var bookId = $(this).attr('id');
+		 $.ajax({
+		        url: "/bookmark/add",  
+		        type: "POST",
+		        dataType:'json',
+		        data:{'userId':userId},   
+		        cache: false,
+		        success: function (html) {
+		        	if(html == true)  
+				    $('#'+bookId).hide();	         
+		        }       
+		    });
+	 
+	 });
+
+	 // express interest individually
+	 
+	  $('.expressInterest').click(function (e){
+		  e.preventDefault();
+		 var userId = $(this).find('a').attr('id');
+		 $.ajax({
+		        url: "/interest/insert",  
+		        type: "POST",
+		        dataType:'json',
+		        data:{'userId':userId},   
+		        cache: false,
+		        success: function (html) {
+			        if(html == true)  
+			        	$('#'+userId).hide();	
+			        	$('#'+userId).focus();         
+		        }       
+		    });
+	 
+	 });
+
+	//express interest in bulk
+		 $('.expressInterests').click(function (e){
+			 e.preventDefault();
+			 var  allVal= [];
+			 if($("input:checkbox[name=userId]:checked").length == 0)
+			 {
+				alert('Please select any one of profile to express your interest');
+				return false;
+			 }		 
+			 $("input:checkbox[name=userId]:checked").each(function(){
+				 if($(this).parent('div').parent('div').css('display') == 'block'){
+					 allVal.push($(this).val());
+					 }
+			 });
+
+			 //alert(allVal);
+			 $.ajax({
+			        url: "/interest/insertall",  
+			        type: "POST",
+			        dataType:'json',
+			        data:{'userIds':allVal},   
+			        cache: false,
+			        success: function (html) {
+				        if(html == true)  
+				        $.each( allVal, function( key, value ) {
+				        	$('#'+value).hide();
+				        	//$('.expressInterests').hide();
+				        });	         
+			        }       
+			    }); 
+			  
+		 });
+
+	 // open the send message popup
+	 $(".sendMessage").colorbox({iframe:true, width:"860", height:"620",overlayClose: false});
+	 
+   });
+
+
+
+   
+ function setInterest(userId) {
+     
+    //generate the parameter for the php script
+   
+    $.ajax({
+        url: "/interest/insert",  
+        type: "POST",        
+        data: {"userId":userId},     
+        cache: false,
+        success: function (response) {  
+            //hide the progress bar
+           return true; 
+                   
+        },       
+        error: function (){
+            return false;
+        }
+    });
+}
+
+ function addBookmark(userIds) {
+     
+	    //generate the parameter for the php script
+	 $.ajax({
+	        url: "/bookmark/addAll",  
+	        type: "POST",
+	        dataType:'json',        
+	        data: {"userId":userIds},        
+	        cache: false,
+	        success: function (html) {
+	        	 $('[id^=rBookmark]').hide();
+	        	 $('[id^=exBookmark]').hide();
+		        }  
+	    });
+	}
+
+ 
+ </script>

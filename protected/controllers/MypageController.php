@@ -29,7 +29,9 @@ class MypageController extends Controller
 	public function actionIndex()
 	{
 		$user = Yii::app()->session->get('user');
-		$user = Users::model()->with('horoscopes','partnerpreferences','userpersonaldetails','familyprofiles','physicaldetails','educations','hobies')->findbyPk($user->userId);
+		$user = Users::model()->findbyPk($user->userId);
+		
+		/*
 		//$condition = "userId in ($userIds)";	
 		$scondition = "FIND_IN_SET('{$user->userId}',profileIDs)";
 		$profileBlock = ProfileBlock::model()->findAll(array('condition'=>$scondition));
@@ -78,9 +80,9 @@ class MypageController extends Controller
 			$profileUpdatedUsers = Users::model()->findAll(array('condition'=>$condition));
 			}
 		}
+		*/
 		
-		
-		if(false)
+		if(isset($user->partnerpreferences))
 		{
 			$condition  = Utilities::getPartnerPreference($user->partnerpreferences);
 			$usersV = ViewUsers::model()->findAll(array('condition'=>$condition,
@@ -113,12 +115,12 @@ class MypageController extends Controller
 					else
 					$normalUser[] = $value;
 				}
-				if(sizeof($normalUser) > 0)
+				if(sizeof($normalUser) > 0 || sizeof($highLightUser) > 0)
 				{
 				$totalUser = sizeof($normalUser);
 				$totalPage = ceil($totalUser/10);
-				//$this->render('index',array('highlight'=>$highLightUser,'normal'=>$normalUser,'totalUser'=>$totalUser,'totalPage' => $totalPage,'profileUpdates'=>$profileUpdatedUsers));
-				$this->render('index');
+				$this->render('index',array('highlight'=>$highLightUser,'normal'=>$normalUser,'totalUser'=>$totalUser,'totalPage' => $totalPage));
+				//$this->render('index');
 				}
 				
 			}
