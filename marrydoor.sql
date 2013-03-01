@@ -1,5 +1,5 @@
 
-USE `domianfo_marrydoor`;
+USE `dileepgm_marrydoor`;
 
 -- ---------- Table for users --------------- 
 
@@ -126,88 +126,6 @@ create table shortlist(shortlistId BIGINT UNIQUE NOT NULL AUTO_INCREMENT, userID
 -- --table for profileViews---
 create table profileviews(profileViewId BIGINT UNIQUE NOT NULL AUTO_INCREMENT, userID BIGINT NOT NULL, visitedId BIGINT NOT NULL,counter INT NOT NULL DEFAULT 0,visitTime DATETIME NOT NULL DEFAULT '0000-00-00 00:00:00' , PRIMARY KEY(profileViewId),FOREIGN KEY (userID) REFERENCES users(userId),FOREIGN KEY (visitedId) REFERENCES users(userId))ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;
 
--- --table for country
-
-create table country(countryId BIGINT UNIQUE NOT NULL AUTO_INCREMENT, name VARCHAR(250) NOT NULL, active BIGINT NOT NULL DEFAULT 1, PRIMARY KEY(countryId))ENGINE=InnoDB DEFAULT CHARSET=utf8;	
-
--- -table for states----
-
-create table states(stateId BIGINT UNIQUE NOT NULL AUTO_INCREMENT, countryId BIGINT NOT NULL, name VARCHAR(250) NOT NULL, active BIGINT NOT NULL DEFAULT 1, PRIMARY KEY(stateId), FOREIGN KEY (countryId) REFERENCES country(countryId))ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- -table for districts---
-
-
-create table districts(districtId BIGINT UNIQUE NOT NULL AUTO_INCREMENT, stateId BIGINT NOT NULL, name VARCHAR(250) NOT NULL, active BIGINT NOT NULL DEFAULT 1, PRIMARY KEY(districtId), FOREIGN KEY (stateId) REFERENCES states(stateId))ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- -table for places---
-
-create table places(placeId BIGINT UNIQUE NOT NULL AUTO_INCREMENT, districtId BIGINT NOT NULL, name VARCHAR(250) NOT NULL, type BIGINT NOT NULL DEFAULT 0, active BIGINT NOT NULL DEFAULT 1, PRIMARY KEY(placeId), FOREIGN KEY (districtId) REFERENCES districts(districtId))ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- -table for languages--
-
-create table languages(languageId BIGINT UNIQUE NOT NULL AUTO_INCREMENT, name VARCHAR(250) NOT NULL, active BIGINT NOT NULL DEFAULT 1, PRIMARY KEY(languageId))ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- -table for religion---
-
-create table religion(religionId BIGINT UNIQUE NOT NULL AUTO_INCREMENT, name VARCHAR(250) NOT NULL, active BIGINT NOT NULL DEFAULT 1, PRIMARY KEY(religionId))ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- -table for caste----
-
-create table caste(casteId BIGINT UNIQUE NOT NULL AUTO_INCREMENT, religionId BIGINT NOT NULL, name VARCHAR(250) NOT NULL, active BIGINT NOT NULL DEFAULT 1, PRIMARY KEY(casteId), FOREIGN KEY (religionId) REFERENCES religion(religionId))ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- -table for sub caste----
-
-create table subcaste(subcasteId BIGINT UNIQUE NOT NULL AUTO_INCREMENT,casteId BIGINT NOT NULL, name VARCHAR(250) NOT NULL, active BIGINT NOT NULL DEFAULT 1, PRIMARY KEY(subcasteId), FOREIGN KEY (casteId) REFERENCES caste(casteId))ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
-
--- -table for education_master---
-
-create table education_master(educationId BIGINT UNIQUE NOT NULL AUTO_INCREMENT, name VARCHAR(250) NOT NULL, active BIGINT NOT NULL DEFAULT 1, PRIMARY KEY(educationId))ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
-
-
--- --table for occupation_master---
-
-create table occupation_master(occupationId BIGINT UNIQUE NOT NULL AUTO_INCREMENT, name VARCHAR(250) NOT NULL, active BIGINT NOT NULL DEFAULT 1, PRIMARY KEY(occupationId))ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- --table for hobies_master---
-
-create table hobies_master(hobiesId BIGINT UNIQUE NOT NULL AUTO_INCREMENT, name VARCHAR(250) NOT NULL, active BIGINT NOT NULL DEFAULT 1, PRIMARY KEY(hobiesId))ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
-
--- ---table for interests_master---
-
-create table interests_master(interestId BIGINT UNIQUE NOT NULL AUTO_INCREMENT, name VARCHAR(250) NOT NULL, active BIGINT NOT NULL DEFAULT 1, PRIMARY KEY(interestId))ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- -table for musics_master---
-
-create table musics_master(musicId BIGINT UNIQUE NOT NULL AUTO_INCREMENT, name VARCHAR(250) NOT NULL, active BIGINT NOT NULL DEFAULT 1, PRIMARY KEY(musicId))ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- -table for reading_master----
-
-create table reading_master(musicId BIGINT UNIQUE NOT NULL AUTO_INCREMENT, name VARCHAR(250) NOT NULL, active BIGINT NOT NULL DEFAULT 1, PRIMARY KEY(musicId))ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- -table for movies_master---
-
-create table movies_master(moviesId BIGINT UNIQUE NOT NULL AUTO_INCREMENT, name VARCHAR(250) NOT NULL, active BIGINT NOT NULL DEFAULT 1, PRIMARY KEY(moviesId))ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- -table for activities_master---
-
-create table activities_master(activitiesId BIGINT UNIQUE NOT NULL AUTO_INCREMENT, name VARCHAR(250) NOT NULL, active BIGINT NOT NULL DEFAULT 1, PRIMARY KEY(activitiesId))ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- -tables for cuisines_master---
-
-create table cuisines_master(cuisineId BIGINT UNIQUE NOT NULL AUTO_INCREMENT, name VARCHAR(250) NOT NULL, active BIGINT NOT NULL DEFAULT 1, PRIMARY KEY(cuisineId))ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- tables for signs_master---
-
-create table signs_master(signId BIGINT UNIQUE NOT NULL AUTO_INCREMENT, name VARCHAR(250) NOT NULL, image VARCHAR(250) NOT NULL, active BIGINT NOT NULL DEFAULT 1, PRIMARY KEY(signId))ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
-
--- -table for astrodate_master---
-
-create table astrodate_master(astrodateId BIGINT UNIQUE NOT NULL AUTO_INCREMENT, name VARCHAR(250) NOT NULL, active BIGINT NOT NULL DEFAULT 1, PRIMARY KEY(astrodateId))ENGINE=InnoDB  DEFAULT CHARSET=utf8;
-
 
 -- -table for admin_users---
 
@@ -226,14 +144,6 @@ create table coupon(id BIGINT UNIQUE NOT NULL AUTO_INCREMENT, couponCode VARCHAR
 create table coupon_logs(id BIGINT UNIQUE NOT NULL AUTO_INCREMENT, adminUserId INT(10) NOT NULL, batchNo INT(10) UNIQUE NOT NULL, creationTime DATETIME NOT NULL, PRIMARY KEY(id))ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;
 
 
--- -table for bodyType_master--
-
-create table bodytype_master(id BIGINT UNIQUE NOT NULL AUTO_INCREMENT, name VARCHAR(250) NOT NULL, active BIGINT NOT NULL DEFAULT 1, PRIMARY KEY(id))ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;
-
-
--- -table for complexion_master--
-
-create table complexion_master(id BIGINT UNIQUE NOT NULL AUTO_INCREMENT, name VARCHAR(250) NOT NULL, active BIGINT NOT NULL DEFAULT 1, PRIMARY KEY(id))ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;
 
 -- table for privacy
 create table privacy (id BIGINT UNIQUE NOT NULL AUTO_INCREMENT, userId BIGINT NOT NULL,items ENUM('album', 'family', 'documents','astro','reference','contact'),privacy SET('all', 'subscribers', 'member', 'request'), PRIMARY KEY(id),FOREIGN KEY (userId) REFERENCES users(userId))ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;
