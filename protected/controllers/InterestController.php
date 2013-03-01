@@ -159,7 +159,78 @@ class InterestController extends Controller
 					   break;
 			}
 			Utilities::executeRawQuery($query);
+			
+			
+			
+			if($action == 'accept')
+			{
+				
+				$interest = Interests::model()->findByPk($selectedIds);
+				//short list, mutual acceptance
+
+				
+				//add sender id to receiver short list
+				if(isset($user->shortlist))
+				{
+					if(isset($user->shortlist->profileID ))
+					{
+						$profileIds = explode(",", $user->shortlist->profileID);
+						$arr = array_merge($profileIds,array($interest->senderId));
+						if(sizeof($arr) > 0 ){
+							$user->shortlist->profileID = implode(",", $arr);
+							$user->shortlist->save();
+						}
+						else
+						{
+							$short = new Shortlist();
+							$short->userID = $user->userId;
+							$short->profileID = $interest->senderId;
+							$short->save();
+						}
+					}
+
+				}else
+				{
+					$short = new Shortlist();
+					$short->userID = $user->userId;;
+					$short->profileID = $interest->senderId;
+					$short->save();
+				}
+
+				$shortusers = Users::model()->findByPk($interest->senderId);
+				//make shortlist -- add receiver id in senders short list	
+				if(isset($shortusers->shortlist))
+				{
+					if(isset($shortusers->shortlist->profileID ))
+					{
+						$profileIds = explode(",", $shortusers->shortlist->profileID);
+						$arr = array_merge($profileIds,array($user->userId));
+						if(sizeof($arr) > 0 ){
+							$shortusers->shortlist->profileID = implode(",", $arr);
+							$shortusers->shortlist->save();
+						}
+						else
+						{
+							$short = new Shortlist();
+							$short->userID = $shortusers->userId;
+							$short->profileID = $user->userId;
+							$short->save();
+						}
+					}
+
+				}else
+				{
+					$short = new Shortlist();
+					$short->userID = $shortusers->userId;
+					$short->profileID = $user->userId;
+					$short->save();
+				}
+					
+
+			}
+
 		}
+			
 		//received interests
 		$sql = "SELECT * FROM view_interests WHERE receiverId = {$user->userId} and status = 0 and receiverStatus = 0";
 		$command=Yii::app()->db->createCommand($sql);
@@ -204,8 +275,7 @@ class InterestController extends Controller
 		}
 		
 		
-		$userIds = implode(",", $userId);
-		$condition = "userId in ($userIds)";
+		
 		$users = ViewUsers::model()->findAll(array('condition'=>$condition,'order'=> 'createdOn DESC' ));
 		$this->render('accept',array('user'=>$users,'interest'=>$userInterest));
 		}

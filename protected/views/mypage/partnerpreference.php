@@ -46,8 +46,9 @@
 			</li>
 			<li>
 				<div class="leftC">Have Children </div>
+				<?php $child = Utilities::getChildren()?>
 				<div class="rightC">
-					: <?php if(isset($user->partnerpreferences->haveChildren))echo $user->partnerpreferences->haveChildren;?>
+					: <?php if(isset($user->partnerpreferences->haveChildren))echo $child[$user->partnerpreferences->haveChildren];?>
 				</div>
 			</li>
 			<li>
@@ -101,7 +102,7 @@
 				<div class="rightC">
 					:<?php if(isset($user->partnerpreferences->star))
 					
-					echo Utilities::getValueForIds(new SignsMaster(),$user->partnerpreferences->star,'signId');
+					echo Utilities::getValueForIds(new AstrodateMaster(),$user->partnerpreferences->star,'astrodateId');
 					?>  
 				</div>
 			</li>

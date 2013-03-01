@@ -72,4 +72,14 @@ window.onload=loadImg_<?php echo $user->userId; ?>;
 				</div>
 			</section>
 		</div>
+<?php }else{?>
+	<div class="subContent">
+			<section class="subHead">
+				<h1 ><?php echo $user->name;?> <?php echo $user->marryId?></h1>
+				<h5>Viewing Document</h5>
+			</section>
+			<section class="subContnr">
+				No documents available at the moment.
+			</section>
+		</div>
 <?php }?>

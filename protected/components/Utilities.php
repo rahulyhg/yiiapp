@@ -198,6 +198,11 @@ class Utilities
 	{
 		return array('0'=>'Non-smoker','1'=> 'Occasinoaly','2'=>'Smoker','3'=>"Doesn't matter");
 	} 
+	
+	public static function getChildren()
+	{
+		return array('0'=>"Doesn't matter",'1'=>"Yes. living together",'2'=>"Yes. not living together",'3'=>"No" );
+	}
 
  public static function getYears()
  {

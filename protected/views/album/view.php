@@ -79,11 +79,13 @@ window.onload=loadImg_<?php echo $user->userId; ?>;
 					<a href="#"><img src="<?php echo Utilities::getProfileImage($user->marryId,$photo->imageName);?>" alt="" onclick="set_<?php echo $user->userId ?>(this.src);" /></a>
 				<?php }?>
 				</div>
+				<!-- 
 				<div class="btns">
 					<a href="javascript:void(0);" class="type5" onclick="javascript:expressInterest();">Express Interest</a>
 					<a href="javascript:void(0);" class="type5" onclick="javascript:bookmark();">Bookmark</a>
 					<a href="<?php echo Utilities::createAbsoluteUrl('message','compose',array('wType'=>'popup')) ?>" class="type5">Send Message</a>
 				</div>
+				 -->
 				<div class="photoCont">
 					<div class="photoWrap">
 						<a class="prevs" href="javascript:void(0);" onclick="prev_<?php echo $user->userId ?>();"></a>

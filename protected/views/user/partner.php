@@ -121,7 +121,7 @@
 		$list = CHtml::listData($records, 'religionId', 'name');
 		echo CHtml::dropDownList('religion',null,$list,array('empty' => 'Religion','class'=>'validate[required] wid160','ajax' => array(
                         'type'=>'POST',
-                        'url'=>CController::createUrl('Ajax/updateCaste'), 
+                        'url'=>CController::createUrl('Ajax/updateCastes'), 
                         'dataType'=>'json',
                         'data'=>array('religionId'=>'js:this.value'),  
                         'success'=>'function(data) {

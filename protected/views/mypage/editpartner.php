@@ -245,8 +245,8 @@
 					
 					<div class="info">
 						<?php 
-							if(isset($parnter->star))
-							$records = AstrodateMaster::model()->findAll(array('condition'=> "astrodateId NOT IN({$parnter->star})"));
+							if(isset($partner->star))
+							$records = AstrodateMaster::model()->findAll(array('condition'=> "astrodateId NOT IN({$partner->star})"));
 						    else
 						   $records = AstrodateMaster::model()->findAll("active = 1");
 						
@@ -258,8 +258,8 @@
 							<input class="remove type2" value="Remove" onclick="return add('star1','star')" "type="button">
 							</div>
 							<?php 
-							if(isset($parnter->star))
-							$records = AstrodateMaster::model()->findAll(array('condition'=> "astrodateId NOT IN({$parnter->star})"));
+							if(isset($partner->star))
+							$records = AstrodateMaster::model()->findAll(array('condition'=> "astrodateId IN({$partner->star})"));
 						    else
 						   $records = array();
 							$list = CHtml::listData($records, 'astrodateId', 'name');
@@ -595,7 +595,7 @@
 					</div>
 					<div class="info">
 						<textarea class="validate[maxSize[250]]" name="partnerDesc"  placeholder="Describe your expectations and what you're looking for in a partner.">
-						<?php if(isset($partner->partnerDescription)) echo trim($partner->partnerDescription);?>
+						<?php if(isset($partner->partnerDescription)) {$str = ltrim($partner->partnerDescription); echo $str;}?>
 						</textarea>																				   
 					</div>
 				</li>

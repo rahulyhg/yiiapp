@@ -190,7 +190,7 @@ $user = Yii::app()->session->get('user');
 		?>	
 		<div class="optBtnC">
 			<?php if(!isset($isInterest) || empty($isInterest)) {?>
-			<span class="expressInterest"><a href="#" id="<?php echo $model->userId ?>"  class="global">Express Interest</a></span>
+			<span id="expressInterest" class="expressInterest"><a href="#" id="<?php echo $model->userId ?>"  class="global">Express Interest</a></span>
 			<?php }?>
 			<?php 
 			// if(!isset($isMessage) || empty($isMessage)) {
@@ -414,13 +414,14 @@ $drink= Utilities::getDrink();
 						<strong>:</strong> <span><?php if(isset($model->familyprofiles->familyValues))echo $familyStatus[$model->familyprofiles->familyValues]?></span>
 					</div>
 				</li>
-				
+			<!-- 	
 				<li class="mT10">
 					<div class="leftCtn">Family album</div>
 					<div class="rightCtn">
 						<strong>:</strong> <span><a href="#">View my family album (5 Photos)</a></span>
 					</div>
 				</li>
+				 -->
 			</ul>
 			<ul class="detSec width50">
 				
@@ -565,7 +566,7 @@ $drink= Utilities::getDrink();
 		<div class="optBtnC">
 			
 			<?php if(!isset($isInterest) || empty($isInterest)) {?>
-			<span class="expressInterest"><a href="#" id="<?php echo $model->userId ?>"  class="global">Express Interest</a></span>
+			<span id="expressInterest" class="expressInterest"><a href="#" id="<?php echo $model->userId ?>"  class="global">Express Interest</a></span>
 			<?php }?>
 			<?php 
 			 //if(!isset($isMessage) || empty($isMessage)) {
@@ -652,8 +653,8 @@ $('.expressInterest').click(function (e){
 	        data:{'userId':userId},   
 	        cache: false,
 	        success: function (html) {
-		        if(html == true)  
-		        	$('#'+userId).hide();	         
+		        if(html == true)
+		        	$("span[id^='expressInterest']").hide();	         
 	        }       
 	    });
 
