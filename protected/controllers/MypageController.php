@@ -1429,4 +1429,16 @@ public function actionFamilyphotoupload()
 		$this->layout= '//layouts/popup';
 		$this->render('documentupload',array('documents'=>$documentList,'user'=>$user,'documentsettings'=>$settings));
 	}
+	
+	public function actionVisitors(){
+		$user = Yii::app()->session->get('user');
+		$sql = "SELECT * FROM view_profile WHERE visitedId = {$user->userId}  and counter = 1 order by profileViewId desc";
+		$command=Yii::app()->db->createCommand($sql);
+		$recentVisitors = $command->queryAll();
+		$sql = "SELECT * FROM view_profile WHERE visitedId = {$user->userId}  and counter > 1 order by profileViewId desc";
+		
+		$command=Yii::app()->db->createCommand($sql);
+		$moreVisited = $command->queryAll();
+		$this->render('visitors',array('recentVisitors'=>$recentVisitors,'moreVisited'=>$moreVisited));
+	}
 }

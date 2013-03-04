@@ -50,7 +50,7 @@ class Interests extends CActiveRecord
 			array('sendDate, statusChange', 'safe'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('interestId, senderId, receiverId, status, sendDate, statusChange, senderStatus, receiverStatus', 'safe', 'on'=>'search'),
+			array('interestId, senderId, receiverId, status, sendDate, statusChange, senderStatus, receiverStatus, viewStatus', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -81,6 +81,7 @@ class Interests extends CActiveRecord
 			'statusChange' => 'Status Change',
 			'senderStatus' => 'Sender Status',
 			'receiverStatus' => 'Receiver Status',
+			'viewStatus' => 'viewStatus',
 		);
 	}
 
@@ -103,7 +104,7 @@ class Interests extends CActiveRecord
 		$criteria->compare('statusChange',$this->statusChange,true);
 		$criteria->compare('senderStatus',$this->senderStatus);
 		$criteria->compare('receiverStatus',$this->receiverStatus);
-
+		$criteria->compare('viewStatus',$this->viewStatus);
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
 		));

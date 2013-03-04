@@ -269,4 +269,36 @@ class AjaxController extends Controller
 		}
 	}
 	
+	public function actionUpdatetopmenu()
+	{
+		$user = Yii::app()->session->get('user');
+		$tab = isset($_POST['tab'])?$_POST['tab']:"";
+		if($tab != ""){
+			switch($tab){
+				case 'tab1':
+					$query = "update interests set viewStatus = 1 where receiverId = {$user->userId} and viewStatus = 0";
+					break;
+				case 'tab2':
+					$query = "";
+					break;
+				case 'tab3':
+					$query = "update profileviews set status = 1 where userId = {$user->userId} and status = 0";
+					break;
+				case 'tab4':
+					$query = "update messages set status = 1 where receiverId = {$user->userId} and status = 0";
+					break;
+				case 'tab5':
+					$query = "";
+					break;
+			}
+		}
+		if($query != ""){
+			Utilities::executeRawQuery($query);
+			echo true;
+			die;
+		}else{
+			echo false;
+			die;
+		}
+	}
 }

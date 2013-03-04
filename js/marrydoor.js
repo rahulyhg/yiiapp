@@ -136,12 +136,24 @@ $(function(){
             
         }
         
-
-        
         $('.notiTabData').each(function(){
            $(this).hide();
         })
         $('#'+tabid+'_notif').show();
+        
+      //make the ajax call to update the status
+        $.ajax({
+	        url: "/Ajax/updatetopmenu",  
+	        type: "POST",
+	        dataType:'json',
+	        data:{'tab':tabid},   
+	        cache: false,
+	        success: function (html) {
+		        if(html == true)
+		        	$("#"+tabid+"_count").hide();	         
+	        }       
+	    });
+        
         return false;
     });
     $(document).mouseup(function(){

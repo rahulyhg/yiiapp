@@ -392,3 +392,7 @@ create table notifications(notificationId BIGINT UNIQUE NOT NULL AUTO_INCREMENT,
 -- Table for inviting friends
 
 create table invitations(id BIGINT UNIQUE NOT NULL AUTO_INCREMENT, userId BIGINT NOT NULL, email text,status TINYINT NOT NULL DEFAULT 0,createdate datetime NOT NULL, PRIMARY KEY(id), FOREIGN KEY (userId) REFERENCES users(userId))ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;
+
+ALTER TABLE  profileviews ADD  status TINYINT NOT NULL AFTER  counter;
+
+ALTER TABLE  interests ADD  viewStatus TINYINT NOT NULL AFTER  receiverStatus;

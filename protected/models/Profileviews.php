@@ -47,7 +47,7 @@ class Profileviews extends CActiveRecord
 			array('visitTime', 'safe'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('profileViewId, userID, visitedId, counter, visitTime', 'safe', 'on'=>'search'),
+			array('profileViewId, userID, visitedId, counter, status, visitTime', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -74,6 +74,7 @@ class Profileviews extends CActiveRecord
 			'userID' => 'User',
 			'visitedId' => 'Visited',
 			'counter' => 'Counter',
+			'status' => 'Status',
 			'visitTime' => 'Visit Time',
 		);
 	}
@@ -93,6 +94,7 @@ class Profileviews extends CActiveRecord
 		$criteria->compare('userID',$this->userID,true);
 		$criteria->compare('visitedId',$this->visitedId,true);
 		$criteria->compare('counter',$this->counter);
+		$criteria->compare('status',$this->status);
 		$criteria->compare('visitTime',$this->visitTime,true);
 
 		return new CActiveDataProvider($this, array(

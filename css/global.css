@@ -1741,7 +1741,7 @@ h5{
 	z-index: 7;
 }
 .noti_contnr .notifications{
-	width: 164px;
+	/*width: 164px;*/
 	height: 32px;
 	float: left;
 	margin-left: 98px;
