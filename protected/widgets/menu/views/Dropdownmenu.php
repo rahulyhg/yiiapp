@@ -149,12 +149,14 @@ $heightArray = Utilities::getHeights();
 							No notifications found
 						</li>
 					<?php 
-					}
-					}
-					?>
+					}?>
 					<li>
 						<p class="notiFoot"><a href="<?php echo Utilities::createAbsoluteUrl('user','notification') ?>">Click here</a> to view all notifications</p>
 					</li>
+					<?php 
+					}
+					?>
+					
 				</ul>
 			<ul class="notiTabData" id="tab3_notif">
 				<?php if($user->userType != 1){?>
