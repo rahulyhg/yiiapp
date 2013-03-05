@@ -31,6 +31,7 @@
     </header>
     <!-- header ends -->
     <!-- content -->
+     <div class="ajax-progress"></div>
 	<?php echo $content; ?>
 	<!-- content ends -->
 </div>

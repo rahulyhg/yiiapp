@@ -19,6 +19,8 @@ class MypageController extends Controller
 	public function beforeAction(CAction $action)
 	{
 		$user = Yii::app()->session->get('user');
+		$user = Users::model()->findbyPk($user->userId);
+		Yii::app()->session->add('user',$user);
 		if(!isset($user)) {
 			$this->redirect(Yii::app()->user->loginUrl);
 			return false;

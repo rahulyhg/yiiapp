@@ -54,7 +54,11 @@
                         'type'=>'POST',
                         'url'=>CController::createUrl('Ajax/updateCaste'), 
                         'dataType'=>'json',
-                        'data'=>array('religionId'=>'js:this.value'),  
+                        'data'=>array('religionId'=>'js:this.value'),
+								'beforeSend' => 'function(){
+						      $(".ajax-progress").show();}',  
+						  'complete'=> 'function(){
+      $(".ajax-progress").hide();}',
                         'success'=>'function(data) {
                             $("#uCaste").html(data.dropDownCastes);
                         }',
@@ -78,7 +82,11 @@
                         'type'=>'POST',
                         'url'=>CController::createUrl('Ajax/updateState'), 
                         'dataType'=>'json',
-                        'data'=>array('countryId'=>'js:this.value'),  
+                        'data'=>array('countryId'=>'js:this.value'), 
+			'beforeSend' => 'function(){
+						      $(".ajax-progress").show();}',  
+						  'complete'=> 'function(){
+      $(".ajax-progress").hide();}', 
                         'success'=>'function(data) {
                             $("#state").html(data.dropDownStates);
                         }',
@@ -216,7 +224,7 @@
 				<div class="right">
 				<?php $records = States::model()->findAll("active = 1");
 		$list = CHtml::listData($records, 'stateId', 'name');
-		echo CHtml::dropDownList('state',null,$list,array('empty' => 'State','class'=>'validate[groupRequired[search1]] width90','ajax' => array(
+		echo CHtml::dropDownList('state',null,$list,array('empty' => 'State','id'=>'sstate','class'=>'validate[groupRequired[search1]] width90','ajax' => array(
                         'type'=>'POST',
                         'url'=>CController::createUrl('Ajax/updateDistrict'), 
                         'dataType'=>'json',
