@@ -20,8 +20,8 @@ $heightArray = Utilities::getHeights();
 				<?php }?>
 				</a>
 				<a href="#" id="tab4" class="message">
-				<?php if(count($dMessages) > 0){ ?>
-					<div class="count" style="display:block" id="tab4_count"><?php echo count($dMessages);?></div>
+				<?php if($dMessagesCount > 0){ ?>
+					<div class="count" style="display:block" id="tab4_count"><?php echo $dMessagesCount;?></div>
 				<?php }?>
 				</a>
 				<!--  <a href="#" id="tab5" class="lock">
@@ -99,7 +99,10 @@ $heightArray = Utilities::getHeights();
 				endforeach;?>  
 				<?php else:?> 
 				<li>
-					No interests found!
+					No new interests found!
+				</li>
+				<li>
+					<p class="notiFoot"><a href="<?php echo Utilities::createAbsoluteUrl('interest','sent',array('selectedTab'=>'received'))?>">Click to see more</a></p>
 				</li>
 				<?php endif;?>		
 				<?php if(count($dInterests) > 5){ ?>
@@ -107,6 +110,7 @@ $heightArray = Utilities::getHeights();
 					<p class="notiFoot">You have recieved <?php echo count($dInterests) - 5; ?> more interests. <a href="<?php echo Utilities::createAbsoluteUrl('interest','sent',array('selectedTab'=>'received'))?>">Click to see more</a></p>
 				</li>
 				<?php } } ?>
+				
 			</ul>
 			<ul class="notiTabData" id="tab2_notif">
 			<?php if($user->userType != 1){?>
@@ -139,9 +143,18 @@ $heightArray = Utilities::getHeights();
                <?php 
 					$index++;
 					}?>
-					<?php }
+					<?php }else{
+						?>
+						<li class="cDefalt">
+							No notifications found
+						</li>
+					<?php 
+					}
 					}
 					?>
+					<li>
+						<p class="notiFoot"><a href="<?php echo Utilities::createAbsoluteUrl('user','notification') ?>">Click here</a> to view all notifications</p>
+					</li>
 				</ul>
 			<ul class="notiTabData" id="tab3_notif">
 				<?php if($user->userType != 1){?>
@@ -162,21 +175,34 @@ $heightArray = Utilities::getHeights();
 					<p class="notiFoot">You have <?php echo count($dVisitors); ?> new visitors</p>
 				</li>
 				<?php }?>
-				<?php if(!empty($dVisitors)): ?>
+				<?php if(!empty($dVisitors)){ ?>
 				<li class="cDefalt">
 				<?php foreach($dVisitors as $visitor): ?>
 					<div class="vistrNot">
-						<img alt="" src="<?php echo Utilities::getProfileImage($visitor['marryId'],$visitor['imageName']); ?>">
+						<a href="<?php echo Utilities::createAbsoluteUrl('search','byid',array('id'=>$visitor['marryId'])) ?>" target="_blank"><img alt="" src="<?php echo Utilities::getProfileImage($visitor['marryId'],$visitor['imageName']); ?>"></a>
 					</div>
 				<?php endforeach; ?>
 				</li>
-				<?php else: ?>
+				<?php } else{ 
+					if(!empty($dMostVisitors)){?>
+					<li class="cDefalt">
+					<?php 
+						foreach($dMostVisitors as $visitor){ ?>
+							<div class="vistrNot">
+								<a href="<?php echo Utilities::createAbsoluteUrl('search','byid',array('id'=>$visitor['marryId'])) ?>" target="_blank"><img alt="" src="<?php echo Utilities::getProfileImage($visitor['marryId'],$visitor['imageName']); ?>"></a>
+							</div>
+					<?php 
+						}?>
+						</li>
+						<?php 
+					}else{
+					?>
 				<li class="cDefalt">
 						No visitors found
 				</li>
-				<?php endif; ?>
+				<?php } } ?>
 				<li>
-					<p class="notiFoot"><a href="<?php echo Utilities::createAbsoluteUrl('mypage','visitors') ?>">Click here</a> to view all visitors</p>
+					<p class="notiFoot"><a href="<?php echo Utilities::createAbsoluteUrl('visitor','index') ?>">Click here</a> to view all visitors</p>
 				</li>
 				<?php }?>
 			</ul>
@@ -196,12 +222,12 @@ $heightArray = Utilities::getHeights();
 				<?php }else{?>
 				<?php if(!empty($dMessages)): ?>
 			<?php foreach($dMessages as $message): ?>
-				<li class="unread">
-					<a href="#"><img alt="" src="<?php echo Utilities::getProfileImage($message['senderMarryId'],$message['senderImageName']); ?>"></a>
+				<li class="unread" id="<?php echo $message['messageId']; ?>">
+					<a href="<?php echo Utilities::createAbsoluteUrl('search','byid',array('id'=>$message['senderMarryId']))?>" target="_blank"><img alt="" src="<?php echo Utilities::getProfileImage($message['senderMarryId'],$message['senderImageName']); ?>"></a>
 					<a class="user_name" href="<?php echo Utilities::createAbsoluteUrl('message','conversation',array('senderId'=>$message['senderId'])); ?>"><?php echo $message['senderName']; ?></a>
 					<div class="user_message"><?php echo $message['message']; ?></div>
 					<div class="msge_data">
-						<a class="close" href="onclick="deleteMessage(<?php echo $message['messageId']; ?>,'inbox');""></a>
+						<a class="close" href="#" onclick="deleteMessage(<?php echo $message['messageId']; ?>,'inbox');"></a>
 						<div class="date"><?php echo $message['sendDate']; ?></div>
 					</div>
 				</li>
@@ -217,3 +243,19 @@ $heightArray = Utilities::getHeights();
 			</ul>
 			
 		</div>
+<script type="text/javascript">
+function deleteMessage(messageId){
+	//make the ajax call to update the status
+    $.ajax({
+        url: "/Ajax/deletemessage",  
+        type: "POST",
+        dataType:'json',
+        data:{'messageId':messageId},   
+        cache: false,
+        success: function (html) {
+	        if(html == true)
+	        	$("#"+messageId).hide();	         
+        }       
+    });
+}
+</script>

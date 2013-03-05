@@ -33,7 +33,11 @@ class VisitorController extends Controller
 		$command=Yii::app()->db->createCommand($sql1);
 		$visitors = $command->queryAll();
 		
-		$this->render('index',array('users'=>$users,'visitors'=>$visitors,'weekly'=>$weekVisitor[0],'today'=>$todayVisitor[0]));
+		$sql1 = "SELECT * FROM view_profile WHERE visitedId = {$user->userId}";
+		$command=Yii::app()->db->createCommand($sql1);
+		$totalVisitors = count($command->queryAll());
+		
+		$this->render('index',array('users'=>$users,'visitors'=>$visitors,'weekly'=>$weekVisitor[0],'today'=>$todayVisitor[0],'totalVisitors'=>$totalVisitors));
 	}
 	
 }

@@ -282,7 +282,7 @@ class AjaxController extends Controller
 					$query = "";
 					break;
 				case 'tab3':
-					$query = "update profileviews set status = 1 where userId = {$user->userId} and status = 0";
+					$query = "update profileviews set status = 1 where visitedId = {$user->userId} and status = 0";
 					break;
 				case 'tab4':
 					$query = "update messages set status = 1 where receiverId = {$user->userId} and status = 0";
@@ -293,6 +293,21 @@ class AjaxController extends Controller
 			}
 		}
 		if($query != ""){
+			Utilities::executeRawQuery($query);
+			echo true;
+			die;
+		}else{
+			echo false;
+			die;
+		}
+	}
+	
+	public function actionDeletemessage()
+	{
+		$user = Yii::app()->session->get('user');
+		$messageId = isset($_POST['messageId'])?$_POST['messageId']:0;
+		if($messageId != 0){
+			$query = "update messages set receiverStatus = 1 where receiverId = {$user->userId}";
 			Utilities::executeRawQuery($query);
 			echo true;
 			die;

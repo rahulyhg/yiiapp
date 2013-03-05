@@ -57,7 +57,7 @@
             <?php } ?>
 			
 			<div class="visitorBtnC">
-				<span class="visitCnt">Total Visitors: 1725</span>
+				<span class="visitCnt">Total Visitors: <?php echo $totalVisitors; ?></span>
 				<span class="visitCnt">Previous Week Visitors: <?php echo $weekly['num']; ?></span>
 				<span class="visitCnt">Todays Visitors: <?php echo $today['num']; ?></span>
 			</div>

@@ -15,6 +15,8 @@ class Dropdownmenu extends CWidget
 	public $dMessages = array();
 	public $dRequests = array();
 	public $notifications = array();
+	public $dMessagesCount;
+	public $dMostVisitors = array();
 	
 	
 	
@@ -56,10 +58,20 @@ class Dropdownmenu extends CWidget
 		$command=Yii::app()->db->createCommand($sql);
 		$this->dVisitors = $command->queryAll();
 		
-		$sql = "SELECT * FROM view_messages WHERE receiverId = {$user->userId} and status = 0 and receiverStatus = 0 order by messageId desc limit 5";
+		$sql = "SELECT * FROM view_messages WHERE receiverId = {$user->userId} and receiverStatus = 0 order by messageId desc limit 5";
 		$command=Yii::app()->db->createCommand($sql);
 		$this->dMessages = $command->queryAll();
-		$this->renderFile(dirname(__FILE__)  . DIRECTORY_SEPARATOR . 'views' . DIRECTORY_SEPARATOR .'Dropdownmenu.php', array('dInterests'=>$this->dInterests,'dVisitors'=>$this->dVisitors,'dMessages'=>$this->dMessages,'notifications'=>$this->notifications));
+		
+		// message count
+		$sql = "SELECT * FROM view_messages WHERE receiverId = {$user->userId} and status = 0 and receiverStatus = 0 order by messageId desc limit 5";
+		$command=Yii::app()->db->createCommand($sql);
+		$this->dMessagesCount = count($command->queryAll());
+		
+		$sql = "SELECT * FROM view_profile WHERE visitedId = {$user->userId} order by counter desc limit 10";
+		$command=Yii::app()->db->createCommand($sql);
+		$this->dMostVisitors = $command->queryAll();
+		
+		$this->renderFile(dirname(__FILE__)  . DIRECTORY_SEPARATOR . 'views' . DIRECTORY_SEPARATOR .'Dropdownmenu.php', array('dInterests'=>$this->dInterests,'dVisitors'=>$this->dVisitors,'dMessages'=>$this->dMessages,'notifications'=>$this->notifications,'dMessagesCount'=>$this->dMessagesCount,'dMostVisitors'=>$this->dMostVisitors));
     }
 }
 
