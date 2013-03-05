@@ -13,9 +13,9 @@
 						</p>
 						<p>
 							We help you find your perfect partner to begin this wonderful journey together called marriage.
-							Marrydoor has the right blend of tradition and technology to make your soul search a delightful
+							Marrydoor has the right blend of tradition and technology to make your Soul-mate search a delightful
 							and hassle free experience. Marrydoor, a business division of the renowned Loloos Technolab Private Ltd,
-							is the meeting place for Indian matchmakers across the world.
+							is the meeting place for Indians across the world.
 							Through our excellent database and other online tools we promise a superior match-making experience.
 						</p>
 						<p>

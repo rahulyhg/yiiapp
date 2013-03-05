@@ -65,7 +65,7 @@
 							<strong>How will my profile appear to other users? What information will be displayed?</strong>
 						</p>
 						<p>
-							User can decide what info can be seen. Up on request we can let others see. We can also make public. Subscribers can see contact details. We recommend displaying details on request. For females by default we will make it up on request. 
+							User can decide what info can be seen. Up on request we can let others see. We can also make the information public. Subscribers can see contact details. We recommend displaying details on request. For females by default we will make it up on request. 
 						</p>
 						<p>
 							<strong>Can I use the same e-mail ID for registering multiple times?</strong>
@@ -81,7 +81,7 @@
 							<strong>How to highlight my profile?</strong>
 						</p>
 						<p>
-							Go to my page and click on the highlight button, Enter the 15 digit number pin the marked field. ( Approach your nearest retailer to get the pin), Now your profile is highlighted.
+							Go to my page and click on the highlight button, Enter the 15 digit number pin the marked field. (Approach your nearest retailer to get the pin), Now your profile is highlighted.
 						</p>
 						<p>
 							<strong>What is express interest</strong>
@@ -108,13 +108,13 @@
 							Go to the candidate's profile and click the message option, Enter the message in the marked field and click the send button, The person will receive your message instantly 
 						</p>
 						<p><strong>How can I upload photos? </strong></p>
-						<p>Go to my page. Click album. You can set one pic as profile pic. Any image format. </p>
+						<p>Go to my page. Click album. You can set one pic as profile pic. Any format is acceptable. </p>
 						<p><strong>How many photos can I upload?</strong></p>
-						<p>You can add maximum5 pictures in my album, family, document. </p>
+						<p>You can add maximum of 5 photos in my album, family, document. </p>
 						<p><strong>How can I protect my photos?</strong></p>
-						<p>You can protect your pictures by making choosing 'show pictures upon request'.</p>
+						<p>You can protect your pictures by choosing 'show pictures upon request'.</p>
 						<p><strong>How do I delete photos?</strong></p>
-						<p>Login to MD. Put the curser over image and you can delete options. </p>
+						<p>Login to MD. Put the cursor over image and you can access the delete photo options. </p>
 						<p><strong>What is request photo?</strong></p>
 						<p>This feature will help you to send a request to a user to add his/her photo if he/she has not added one earlier. Request a photo option can be also used to get the image of candidate. </p>
 						<p><h3>My Document</h3> </p>

@@ -13,7 +13,7 @@
 )); ?>
 		<?php echo $form->errorSummary($model); ?>
 		
-			<li>All Fields are mandatory</li>
+			<li>All fields are mandatory</li>
 			<li>
 				<div class="left"><?php echo $form->labelEx($model,'name'); ?></div>
 				<div class="right">
@@ -310,7 +310,6 @@
 				Access key details of other users<br />
 				Contact candidates directly  <br />
 				View horoscope of members <br />
-				Message candidates directly
 			</p>
 			<div class="divider"> </div>
 			<div class="subNow">Subscribe Now</div>

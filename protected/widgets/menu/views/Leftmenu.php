@@ -66,9 +66,9 @@
 				</div>
 			</li>
 			<li><a href="<?php echo Utilities::createAbsoluteUrl('mypage','album',array()); ?>" class="headLink">My Album</a></li>
-            <li><a href="<?php echo Utilities::createAbsoluteUrl('mypage','familyalbum',array()); ?>" class="headLink">My Family album</a></li>
-            <li><a href="<?php echo Utilities::createAbsoluteUrl('mypage','astro',array()); ?>" class="headLink">My Astro details</a></li>
-            <li><a href="<?php echo Utilities::createAbsoluteUrl('mypage','partnerpreference')?>" class="headLink">My Partner preference</a></li>
+            <li><a href="<?php echo Utilities::createAbsoluteUrl('mypage','familyalbum',array()); ?>" class="headLink">My Family Album</a></li>
+            <li><a href="<?php echo Utilities::createAbsoluteUrl('mypage','astro',array()); ?>" class="headLink">My Astro Details</a></li>
+            <li><a href="<?php echo Utilities::createAbsoluteUrl('mypage','partnerpreference')?>" class="headLink">My Partner Preference</a></li>
 			<li>
 				<a href="<?php echo Utilities::createAbsoluteUrl('mypage','reference',array()); ?>" class="headLink">My Reference</a>
 				<a class="infoB" href="javascript:void(0)">?</a>
@@ -78,7 +78,7 @@
 					<p>My reference is where you can add the references of people who can vouch for your character. You can add teachers and important people in your locality as your references. </p>
 				</div>
 			</li>
-            <li><a href="<?php echo Utilities::createAbsoluteUrl('mypage','contact',array()); ?>" class="headLink">My Contact details</a></li>
+            <li><a href="<?php echo Utilities::createAbsoluteUrl('mypage','contact',array()); ?>" class="headLink">My Contact Details</a></li>
             <li>
 				<a href="<?php echo Utilities::createAbsoluteUrl('mypage','shortlist',array()); ?>" class="headLink">My Shortlists</a>
 				<a class="infoB" href="javascript:void(0)">?</a>

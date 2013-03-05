@@ -95,10 +95,10 @@ $heightArray = Utilities::getHeights();
 				<a href="<?php echo Utilities::createAbsoluteUrl('contact','referenceedit'); ?>" id="referenceEdit">Reference (Edit)</a>
 			</div>
 			<div class="butCo">
-				<a href="<?php echo Utilities::createAbsoluteUrl('mypage','editfamilyphoto'); ?>" id="familyphotoUpload">Family album (Edit)</a>
+				<a href="<?php echo Utilities::createAbsoluteUrl('mypage','editfamilyphoto'); ?>" id="familyphotoUpload">Family Album (Edit)</a>
 			</div>
 			<div class="butCo">
-				<a href="<?php echo Utilities::createAbsoluteUrl('mypage','editprofilephoto'); ?>" id="photoUpload">Personal album (Edit)</a>
+				<a href="<?php echo Utilities::createAbsoluteUrl('mypage','editprofilephoto'); ?>" id="photoUpload">Personal Album (Edit)</a>
 			</div>
 			<div class="butCo">
 				<a href="<?php echo Utilities::createAbsoluteUrl('contact','astroedit'); ?>" id="astroEdit">Astro Details (Edit)</a>
@@ -334,7 +334,7 @@ $drink= Utilities::getDrink();
 		</div>
 		<div class="editContr">
 			<a href="<?php echo Utilities::createAbsoluteUrl('contact','personaledit'); ?>" class="edit" id="personalEdit">Edit</a>
-			<div class="hText">About my family</div>
+			<div class="hText">About My Family</div>
 			<p ><?php if(isset($user->familyprofiles->familyDesc))echo $user->familyprofiles->familyDesc?>.</p>
 		</div>
 		<?php $partner = $user->partnerpreferences; ?>
@@ -450,7 +450,7 @@ $drink= Utilities::getDrink();
 		</div>
 		<div class="editContr">
 			<a href="<?php echo Utilities::createAbsoluteUrl('contact','personaledit'); ?>" class="edit" id="personalEdit">Edit</a>
-			<div class="hText">About my partner</div>
+			<div class="hText">About My Partner</div>
 			<p><?php if(isset($partner->partnerDescription))echo $partner->partnerDescription; ?></p>
 		</div>
     </section>

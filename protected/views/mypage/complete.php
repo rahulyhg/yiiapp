@@ -19,7 +19,7 @@
 		<ul class="accOverview pB15">
 			<li><h1 class="pTB15 tCenter">Complete Your Profile</h1></li>
 			<li>
-				<p class="tCenter">Take a few minutes to complete your profile. Users with complete profiles are 40 times more likely to receive better responses.</p>
+				<p class="tCenter">Take a few minutes to complete your profile. Users with completed profiles are 40 times more likely to receive better responses.</p>
 			</li>
 			<li>
 				<div class="proGraph">

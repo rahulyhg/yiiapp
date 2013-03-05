@@ -61,7 +61,7 @@
 					
 				</div>
 				<div class="selC">
-					<span>Cast</span>
+					<span>Caste</span>
 					<?php $records = Caste::model()->findAll("active = 1");
 		$list = CHtml::listData($records, 'casteId', 'name');
 		echo CHtml::dropDownList('caste',null,$list,array('empty' => 'Caste','id'=>'qCaste','class'=>'wid120')); ?>
@@ -71,7 +71,7 @@
 		</ul>
 		</form>
 		<h1 class="mTB12">Search your life partner</h1>
-        <p>Choose the search options applicable to find the best results. Make use of the basic/advanced/keyword or search by ID options to get the best results.  </p>
+        <p>Choose the search options applicable to find the best results.  </p>
 		<ul class="tab-head">
 			<li id="tab1">
 				<a id="tab1" href="#" class="select ">Basic Search</a>
@@ -138,7 +138,7 @@
 						<div class="info">
 							<div class="check">
 								
-								<input type="checkbox" id="status"  value="0" name="status[]" ><span>Unmarried </span>
+								<input type="checkbox" id="status"  value="0" name="status[]" ><span>Single </span>
 							</div>
 							<div class="check">
 							<input type="checkbox" id="status1"  value="1" name="status[]" >	
@@ -172,7 +172,7 @@
 					</li>
 					<li>
 						<div class="title">
-							Cast
+							Caste
 						</div>
 						<div class="info">
 							<?php $records = Caste::model()->findAll("active = 1");
@@ -325,7 +325,7 @@
 						</div>
 						<div class="info">
 							<div class="check">
-								<input type="checkbox" name="status[]" value="0" /><span>Unmarried </span>
+								<input type="checkbox" name="status[]" value="0" /><span>Single </span>
 							</div>
 							<div class="check">
 								<input type="checkbox" name="status[]" value="1" /><span>Widower </span>
@@ -363,7 +363,7 @@
 					</li>
 					<li>
 						<div class="title">
-							Country Living In 
+							Country of residence 
 						</div>
 						<div class="info">
 								<?php $records = Country::model()->findAll("active = 1");
@@ -380,7 +380,7 @@
 					</li>
 					<li>
 						<div class="title">
-							Residing state 
+							Residing State 
 						</div>
 						<div class="info">
 						
@@ -401,7 +401,7 @@
 					</li>
 					<li>
 						<div class="title">
-							Residing district
+							Residing District
 						</div>
 						<div class="info">
 		<?php $records = Districts::model()->findAll("active = 1");
@@ -438,7 +438,7 @@
 				</ul>
 				<ul>
 					<li>
-						<h3>Cast and religion</h3>
+						<h3>Caste and religion</h3>
 					</li>
 					<li>
 						<div class="title">
@@ -461,7 +461,7 @@
 					</li>
 					<li>
 						<div class="title">
-							Cast
+							Caste
 						</div>
 						<div class="info">
 								<?php $records = Caste::model()->findAll("active = 1");
@@ -591,10 +591,10 @@
 								<input type="checkbox" name="eat[]" value="3" /><span>Any</span>
 							</div>
 							<div class="check ">
-								<input type="checkbox" name="eat[]" value="0" /> <span>Vegitarian </span>
+								<input type="checkbox" name="eat[]" value="0" /> <span>Vegetarian </span>
 							</div>
 							<div class="check ">
-								<input type="checkbox" name="eat[]" value="1" /><span>Non Vegitarian</span>
+								<input type="checkbox" name="eat[]" value="1" /><span>Non-vegetarian</span>
 							</div>
 							<div class="check ">
 								<input type="checkbox" name="eat[]" value="2" /><span>Eggetarian </span>
