@@ -170,7 +170,7 @@ insert into astrodate_master(name) values ("Aswathi"), ("Bharani"),("Karthika"),
 
 ("Punartham") , ("Pooyam") , ("Ayilyam"), ("Magam"), ("Pooram"), ("Uthram"),("Atham"), ("Chithira"), ("Chothi"), ("Vishakham"), ("Anizham"), ("Ketta"), 
 
-("Moolam"), ("Thiruvonam"), ("Avittam"), ("Chadayam"), ("Pooruttathi"), ("Uthirattathi"), ("Revathi");
+("Moolam"), ("Thiruvonam"), ("Avittam"), ("Chadayam"), ("Pooruttathi"), ("Uthirattathi"), ("Revathi"),("Pooradam");
 
 
 -- religion table
