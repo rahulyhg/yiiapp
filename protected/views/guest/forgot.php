@@ -35,7 +35,7 @@
 				<?php } else {?>
 					<li>
 						<p class="tCenter">
-							Submit your resisted E-mail Id.
+							Submit your registered E-mail Id.
 						</p>
 						<p class="tCenter">
 							We will mail your password to your registered E-mail Id. 
