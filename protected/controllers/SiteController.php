@@ -145,6 +145,7 @@ class SiteController extends Controller
 		$user = Yii::app()->session->get('user');
 		 $user = Users::model()->findbyPk($user->userId);
 		Yii::app()->getDb()->createCommand("SET time_zone='+05:30'")->execute();
+		if(isset($user))
 		$userLogged = $user->userloggeddetails(array('order'=>'loggedIn DESC','limit'=>1));
 		if(isset($userLogged) && sizeof($userLogged) > 0)
 		{		
@@ -164,7 +165,6 @@ class SiteController extends Controller
 		$profileId = isset($_REQUEST['profileId']) ? $_REQUEST['profileId'] : 0;
 		$action = isset($_REQUEST['action']) ? $_REQUEST['action'] : '';
 		$module = isset($_REQUEST['module']) ? $_REQUEST['module'] : '';
-	
 		$this->layout= '//layouts/popup';
 		$this->render('popup',array('profileId'=>$profileId,'action'=>$action,'module'=>$module));
 	}
