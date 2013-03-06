@@ -150,9 +150,9 @@ $heightArray = Utilities::getHeights();
 						</li>
 					<?php 
 					}?>
-					<li>
+					<!--<li>
 						<p class="notiFoot"><a href="<?php echo Utilities::createAbsoluteUrl('user','notification') ?>">Click here</a> to view all notifications</p>
-					</li>
+					</li>-->
 					<?php 
 					}
 					?>
