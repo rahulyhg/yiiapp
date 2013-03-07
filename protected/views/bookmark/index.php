@@ -56,7 +56,7 @@
                     <ul class="details-contnr">
                         <li>
                             <div class="title">Name</div>
-                            <div class="info">: <a target="_blank" href="<?php echo '/search/byid/id/'.$value->marryId ?>" class="color" ><?php echo $value->name; echo '( '.$value->marryId.' )' ;?></a></div>
+                            <div class="info">: <a target="_blank" href="<?php echo '/search/byid/id/'.$value->marryId ?>" class="color" ><?php echo $value->name;?></a></div>
                         </li>
                         <li>
                             <div class="title">Religion / Cast </div>

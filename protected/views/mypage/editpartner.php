@@ -595,7 +595,7 @@
 					</div>
 					<div class="info">
 						<textarea class="validate[maxSize[250]]" name="partnerDesc"  placeholder="Describe your expectations and what you're looking for in a partner.">
-						<?php if(isset($partner->partnerDescription)) {$str = ltrim($partner->partnerDescription); echo $str;}?>
+						<?php if(isset($partner->partnerDescription)) echo trim($partner->partnerDescription);?>
 						</textarea>																				   
 					</div>
 				</li>

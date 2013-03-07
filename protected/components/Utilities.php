@@ -641,7 +641,6 @@ class Utilities
  
 	public static function getTimeDuration($time)
 	{
-			$str = "2013-02-20 04:52:46";
 			$currentDate = new DateTime('now');
 			$date = new DateTime($time);
 			$balance = $date->diff($currentDate);
@@ -653,7 +652,7 @@ class Utilities
 			$minutes = $balance->format('%I');
 			
 			if($days > 0)
-			$strTimeSpent = date('F d Y', $time);
+			$strTimeSpent = date('F d Y', strtotime($time));
 			elseif($days == 0 && $hours > 0 )
 			$strTimeSpent = "{$hours} hours ago";		
 			elseif($days == 0 && $hours == 0)
