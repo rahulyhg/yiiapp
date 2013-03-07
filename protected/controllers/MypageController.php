@@ -268,7 +268,18 @@ class MypageController extends Controller
 	{
 		$user = Yii::app()->session->get('user');
 		$userPersonal = $user->userpersonaldetails;
-		$contact = $user->usercontactdetails;
+		
+		
+		if(isset($user->usercontactdetails))
+		{
+			$contact = $user->usercontactdetails;
+		}
+		else
+		{
+			$contact = new Usercontactdetails();
+			$contact->userId = $user->userId;
+		}
+		
 		if(isset($_POST['mobile'])){
 		if(isset($_POST['mobile']))
 		$userPersonal->mobilePhone = $_POST['mobile'];
