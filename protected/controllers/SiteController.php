@@ -114,7 +114,7 @@ class SiteController extends Controller
 					$user->active = 1;
 					$user->save();
 				}
-				
+				Yii::app()->getDb()->createCommand("SET time_zone='+05:30'")->execute();
 				$userloggeddetails = new Userloggeddetails();
 				$userloggeddetails->userId = $user->userId;
 				$userloggeddetails->loggedIn = new CDbExpression('NOW()');
