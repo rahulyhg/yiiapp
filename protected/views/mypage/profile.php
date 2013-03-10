@@ -244,10 +244,17 @@ $drink= Utilities::getDrink();
 						<strong>:</strong> <span><?php if(isset($user->userpersonaldetails->district))echo $user->userpersonaldetails->district->name ?></span>
 					</div>
 				</li>
+				<?php 
+				if(isset($user->userpersonaldetails->placeId))
+					$place = Places::model()->findbyPk($user->userpersonaldetails->placeId);
+				else
+				$place = new Places();	
+					
+					?>
 				<li>
 					<div class="leftCtn">Place</div>
 					<div class="rightCtn">
-						<strong>:</strong> <span><?php if(isset($user->userpersonaldetails->place))echo $user->userpersonaldetails->place->name ?></span>
+						<strong>:</strong> <span><?php echo $place->name ?></span>
 					</div>
 				</li>
 				

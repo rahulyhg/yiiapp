@@ -105,7 +105,7 @@
          <?php if(isset($users)){ ?>
         <div class="pagination-contnr">
             <div class="select-contnr"><input type="checkbox" /> Select All</div>
-             <a id="rmv-large" href="#">Remove Bookmark</a>
+             <a id="rmv-large1" href="#">Remove Bookmark</a>
             <?php if(isset($totalPage) && intval($totalPage) > 1) { ?>
             <ul class="pagination">
                 <li><span class="fir"><a href="#">First</a></span></li>
@@ -248,7 +248,7 @@ $(document).ready(function() {
 		$('.selection').attr("checked",false);
 		 });
 	 
-	 $('#rmv-large').click(function (){
+	 $('[id^=rmv-large]').click(function (){
 		 var  allVal= [];
 		 if($("input:checkbox[name=userId]:checked").length == 0)
 		 {

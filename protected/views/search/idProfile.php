@@ -73,9 +73,9 @@ $user = Yii::app()->session->get('user');
 					</div>
 				</li>
 				<li>
-					<div class="leftCt">Place</div>
+					<div class="leftCt">District</div>
 					<div class="rightCt">
-						<strong>:</strong> <span><?php if(isset($model->userpersonaldetails->place))echo $model->userpersonaldetails->place->name ?>, <?php if(isset($model->userpersonaldetails->state))echo $model->userpersonaldetails->state->name ?>, <?php if(isset($model->userpersonaldetails->country))echo $model->userpersonaldetails->country->name ?></span>
+						<strong>:</strong> <span><?php if(isset($model->userpersonaldetails->district))echo $model->userpersonaldetails->district->name ?></span>
 					</div>
 				</li>
 				<li>
@@ -351,10 +351,17 @@ $drink= Utilities::getDrink();
 						<strong>:</strong> <span><?php if(isset($model->userpersonaldetails->district))echo $model->userpersonaldetails->district->name ?></span>
 					</div>
 				</li>
+				<?php 
+				if(isset($model->userpersonaldetails->placeId))
+					$place = Places::model()->findbyPk($model->userpersonaldetails->placeId);
+				else
+				$place = new Places();	
+					
+					?>
 				<li>
-					<div class="leftCtn">City</div>
+					<div class="leftCtn">Place</div>
 					<div class="rightCtn">
-						<strong>:</strong> <span><?php if(isset($model->userpersonaldetails->place))echo $model->userpersonaldetails->place->name ?></span>
+						<strong>:</strong> <span><?php echo $place->name ?></span>
 					</div>
 				</li>
 				
