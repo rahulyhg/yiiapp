@@ -1182,7 +1182,7 @@ public function actionChange()
 				if($user->userId == $userId){
 					$photos->updateAll(array('profileImage'=>0),'userId='.$userId);  // unset the existing
 					$photos->updateAll(array('profileImage'=>1),'photoId='.$photoId);  // set the new image
-					$this->redirect(Yii::app()->params['homeUrl']."/mypage/album");
+					$this->redirect(Yii::app()->params['homeUrl']."/mypage/photoupload");
 					Yii::app()->end();
 				}
 			}elseif(isset($_GET['r']) && $_GET['r'] == 'deleteimage'){   // delete the image
