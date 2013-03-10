@@ -77,25 +77,25 @@
 			<li>
 				<div class="leftC">Facebook URL</div>
 				<div class="rightC">
-					<strong>:</strong> <span><a href="#" class="color mR10"><?php echo $user->usercontactdetails->facebookUrl?></a>   </span>
+					<strong>:</strong> <span><a href="#" class="color mR10"><?php if(isset($user->usercontactdetails->facebookUrl)) echo $user->usercontactdetails->facebookUrl?></a>   </span>
 				</div>
 			</li>
 			<li>
 				<div class="leftC">Skype</div>
 				<div class="rightC">
-					<strong>:</strong> <span><a href="#" class="color mR10"><?php echo $user->usercontactdetails->skypeId ?></a>   </span>
+					<strong>:</strong> <span><a href="#" class="color mR10"><?php if(isset($user->usercontactdetails->skypeId)) echo $user->usercontactdetails->skypeId ?></a>   </span>
 				</div>
 			</li>
 			<li>
 				<div class="leftC">Google IM</div>
 				<div class="rightC">
-					<strong>:</strong> <span><a href="#" class="color mR10"><?php echo $user->usercontactdetails->googleIM?></a>   </span>
+					<strong>:</strong> <span><a href="#" class="color mR10"><?php  if(isset($user->usercontactdetails->googleIM)) echo $user->usercontactdetails->googleIM?></a>   </span>
 				</div>
 			</li>
 			<li>
 				<div class="leftC">Yahoo IM</div>
 				<div class="rightC">
-					<strong>:</strong> <span><a href="#" class="color mR10"><?php echo $user->usercontactdetails->yahooIM ?></a>   </span>
+					<strong>:</strong> <span><a href="#" class="color mR10"><?php if(isset($user->usercontactdetails->yahooIM)) echo $user->usercontactdetails->yahooIM ?></a>   </span>
 				</div>
 			</li>
 			

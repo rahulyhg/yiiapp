@@ -18,7 +18,17 @@
 ?>
 
 
-<?php $this->widget('application.widgets.menu.Leftmenu'); ?>
+<?php $this->widget('application.widgets.menu.Leftmenu'); 
+$user = Yii::app()->session->get('user');
+$bookMarked = array();
+  	if(isset($user)) {
+ if(isset($user->bookmark))
+ {
+ 	$bookMarked = explode(",",$user->bookmark->profileIDs);
+ }
+  	}
+
+?>
 
 	   <section class="data-contnr3">
           <div class="page-head">My Address Book</div>
@@ -98,13 +108,19 @@
                     <a href="#" id="<?php echo $value->userId ?>"  class="global bookPad">Remove</a>
                     </div>
                     <?php if(!isset($isMessage) || empty($isMessage)) {?>
-                    <div id="message">
-                    <a href="#" id="<?php echo $value->userId ?>"  class="global bookPad">Send Message</a>
-                    </div>
+                   <div id="message">
+	<?php if($user->userType == 1){?>
+      <a href="<?php echo Utilities::createAbsoluteUrl('message','compose',array('receiverId'=>$value->userId)); ?>"  class="sendMessage" id="<?php echo $value->userId ?>" >Send Message</a>
+      <?php }else{?>
+      <a class="sendMessage" href="<?php echo Utilities::createAbsoluteUrl('site','popup',array('action'=>'subscribe','module'=>'message','profileId'=>$value->userId)); ?>">Send Message</a>
+      <?php }?>
+    </div>
                     <?php }?>
-                    <div id="interest">
-                    <a href="#" id="<?php echo $value->userId ?>"  class="global bookPad">Decline Interest</a>
-                     </div>
+                    <?php if(!in_array($value->userId, $bookMarked)) {?>
+			<div id="<?php echo 'bookmark'.$value->userId ?>">
+				<a id="<?php echo $value->userId ?>" class="global">Bookmark</a>
+			</div>
+			<?php }?>
                 </div>
             </div>
     
@@ -293,7 +309,22 @@ $(document).ready(function() {
 	 });
 });
 
+$('[id^=bookmark]').click(function (){
+	 var userId = $(this).find('a').attr('id');
+	 var bookId = $(this).attr('id');
+	 $.ajax({
+	        url: "/bookmark/add",  
+	        type: "POST",
+	        dataType:'json',
+	        data:{'userId':userId},   
+	        cache: false,
+	        success: function (html) {
+	        	if(html == true)  
+			    $('#'+bookId).hide();	         
+	        }       
+	    });
 
+});
 
 function removeAllBookMark(userIds) {
     

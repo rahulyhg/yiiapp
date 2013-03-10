@@ -64,7 +64,7 @@
 								<div class="inner-row">
 									<div class="inputCl">
 										<div class="inputH">Contact Number</div>
-										<input type="text" value="<?php if(isset($value->referPostcode))echo $value->referPostcode?>" name="<?php echo 'pin'.$index?>" id="<?php echo 'pin'.$index?>" placeholder="Pin Code" class="validate[custom[onlyNumberSp],minSize[10],maxSize[12]]"  />
+										<input type="text" value="<?php if(isset($value->referPostcode))echo $value->referPostcode?>" name="<?php echo 'pin'.$index?>" id="<?php echo 'pin'.$index?>" placeholder="Contact Number" class="validate[custom[onlyNumberSp],minSize[10],maxSize[12]]"  />
 									</div>
 								</div>
 								<div class="inner-row">
@@ -181,8 +181,8 @@
 								</div>
 								<div class="inner-row">
 									<div class="inputCl">
-										<div class="inputH">Pincode</div>
-										<input type="text" value="<?php if(isset($value->referPostcode))echo $value->referPostcode?>" name="<?php echo 'pin'.$index?>" id="<?php echo 'pin'.$index?>" placeholder="Pin Code" class="validate[custom[onlyNumberSp],minSize[10],maxSize[12]]"  />
+										<div class="inputH">Contact Number</div>
+										<input type="text" value="<?php if(isset($value->referPostcode))echo $value->referPostcode?>" name="<?php echo 'pin'.$index?>" id="<?php echo 'pin'.$index?>" placeholder="Contact Number" class="validate[custom[onlyNumberSp],minSize[10],maxSize[12]]"  />
 									</div>
 								</div>
 								<div class="inner-row">

@@ -396,3 +396,5 @@ create table invitations(id BIGINT UNIQUE NOT NULL AUTO_INCREMENT, userId BIGINT
 ALTER TABLE  profileviews ADD  status TINYINT NOT NULL AFTER  counter;
 
 ALTER TABLE  interests ADD  viewStatus TINYINT NOT NULL AFTER  receiverStatus;
+
+alter table reference change referPostcode referPostcode bigint (15)  NOT NULL; 

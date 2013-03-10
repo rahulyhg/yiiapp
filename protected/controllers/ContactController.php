@@ -132,8 +132,14 @@ class ContactController extends Controller
 		$userPersonal->save();	
 			
 		
-		$caddress = $user->addresses(array('condition'=>'addresType=1'));
+		$caddress = $user->addresses(array('condition'=>'addresType=0'));
+		if(isset($caddress) && sizeof($caddress) > 0)
 		$address = $caddress[0]; 
+		else {
+			$address = new Address();
+			$address->userId = $user->userId;
+			$address->addresType = 0;
+		}
 		//communication address
 		if(isset($_POST['house1']))
 		$address->houseName = $_POST['house1'];
@@ -153,8 +159,14 @@ class ContactController extends Controller
 		$address->country  = $_POST['housecountry1'];
 		$address->save();
 		
-		$address = $user->addresses(array('condition'=>'addresType=0'));
-		$paddress = $address[0];
+		$peraddress = $user->addresses(array('condition'=>'addresType=1'));
+		if(isset($peraddress ) && sizeof($peraddress ) > 0)
+		$paddress = $peraddress [0]; 
+		else {
+			$paddress = new Address();
+			$paddress->userId = $user->userId;
+			$paddress->addresType = 1;
+		}
 		//permanent address
 		if(isset($_POST['house']))
 		$paddress->houseName = $_POST['house'];
@@ -189,7 +201,7 @@ class ContactController extends Controller
 		$contact->yahooIM = $_POST['yahoo'];
 		$contact->save();
 		
-		
+		/*
 		if(isset($_POST['pcontact']))
 		{
 				$privacy =  $user->privacy(array('condition'=>"items='contact'"));
@@ -205,6 +217,7 @@ class ContactController extends Controller
 				$privacy->save();	
 				}
 		}
+		*/
 		
 			$notification = new Notifications();
 			$notification->userId = $user->userId;
@@ -232,6 +245,7 @@ class ContactController extends Controller
 	public function actionReferenceedit()
 	{
 		$user = Yii::app()->session->get('user');
+		if(isset($_POST) && !empty($_POST)) {
 		$referenceList = $user->references;
 		if(isset($referenceList) && isset($referenceList[0]))
 		{
@@ -275,8 +289,7 @@ class ContactController extends Controller
 						!empty($reference->referPostOffice)|| !empty($reference->referCity)||	!empty($reference->referState)||
 						!empty($reference->referEmail)||	!empty($reference->referOccupation))
 						{
-							$user->references = $reference;
-							$user->references->save(); 
+							$reference->save();
 						}
 
 		if(isset($referenceList) && isset($referenceList[1]))
@@ -321,9 +334,7 @@ class ContactController extends Controller
 						!empty($reference1->referEmail)||	!empty($reference1->referOccupation))
 						
 						{
-								$user->references = $reference1;
-							$user->references->save();
-		
+								$reference1->save();
 						}
 		
 		
@@ -369,14 +380,13 @@ class ContactController extends Controller
 						!empty($reference2->referPostOffice)|| !empty($reference2->referCity)||	!empty($reference2->referState)||
 						!empty($reference2->referEmail)||	!empty($reference2->referOccupation))
 						{
-							$user->references = $reference2;
-							$user->references->save();
+							$reference2->save();
 						}
 		
 		
 		
 		
-		
+		/*
 		if(isset($_POST['reference']))
 		{
 				
@@ -393,6 +403,8 @@ class ContactController extends Controller
 				$privacy->privacy = $_POST['reference'];
 				$privacy->save();	
 				}
+		}
+		*/
 		}
 		$this->layout= '//layouts/popup';
 		

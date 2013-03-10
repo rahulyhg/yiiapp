@@ -56,7 +56,7 @@
 				</div>
 			</li>
 			<li>
-				<div class="leftC">Reference ID</div>
+				<div class="leftC">Marrydoor PIN</div>
 				<div class="rightC">
 					<strong>:</strong> <span><?php echo $value->couponcode; ?> </span>
 				</div>
