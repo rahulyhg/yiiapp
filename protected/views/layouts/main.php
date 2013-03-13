@@ -42,5 +42,17 @@
 <!-- social icons -->
 <?php $this->widget('application.widgets.Social'); ?>
 <!-- social icons ends -->
+
+<script type="text/javascript">
+$(document).ready(function(){
+    $(document).bind("contextmenu",function(e){
+        return false;
+    });
+});
+
+</script>
+
+
+
 </body>
 </html>

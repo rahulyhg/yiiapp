@@ -37,5 +37,15 @@
 		<?php $this->widget('application.widgets.PopupFooter'); ?>
 	</div>
 </div>
+<script type="text/javascript">
+$(document).ready(function(){
+    $(document).bind("contextmenu",function(e){
+        return false;
+    });
+});
+
+</script>
+
+
 </body>
 </html>
