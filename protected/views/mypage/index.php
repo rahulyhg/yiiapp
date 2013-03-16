@@ -16,6 +16,7 @@
 ?>
 <?php $this->widget('application.widgets.menu.Leftmenu'); 
 $user = Yii::app()->session->get('user');
+$bookMarked = array();
  if(isset($user->bookmark))
  {
  	$bookMarked = explode(",",$user->bookmark->profileIDs);
@@ -27,8 +28,7 @@ $user = Yii::app()->session->get('user');
 
 	<?php 
 	
-	//if(isset($highlight) || isset($normal) ||isset($profileUpdates)) { 
-	if(sizeof($highlight) > 0  || sizeof($normal) > 0) { 
+	if((isset($highlight) && sizeof($highlight) > 0 ) || (isset($normal) && sizeof($normal) > 0 ) ) { 
 	?> 
 	
 	<section class="data-contnr3">
@@ -305,38 +305,47 @@ $user = Yii::app()->session->get('user');
 			<a href="/mypage/profile" class="upload">Update My Profile</a>
 		</div>
         <h1 class="width100 mTB12">Quick Search</h1>
-        <form id="quickSearch"  name="quickSearch" method="post"  action="/search/quick">
+         <form id="quickSearch"  name="quickSearch" method="post"  action="/search/quick">
         <ul class="accOverview mT12">
 			<li class="mB10">
 				<div class="radC">
-				<input type="radio" value="M" name="gender" />
+				<input type="radio" class="validate[required]"  value="M" name="gender" />
 					<span>Male</span>
 				</div>
 				<div class="radC">
-					<input type="radio" value="F" name="gender" />
+					<input type="radio" value="F" name="gender" class="validate[required]"  />
 					<span>Female</span>
 				</div>
 				<div class="selC">
 					<span>Age</span>
-					<?php echo CHtml::dropDownList('ageFrom',null,Utilities::getAge(),array('class'=>'wid50')); ?>
+					<?php echo CHtml::dropDownList('ageFrom',null,Utilities::getAge(),array('prompt'=>'Age','class'=>'validate[gfuncCall[hidePromp]]  wid50')); ?>
 				</div>
 				<div class="selC">
 					<span>to</span>
-					<?php echo CHtml::dropDownList('ageTo',null,Utilities::getAge(),array('class'=>'wid50')); ?>
+					<?php echo CHtml::dropDownList('ageTo',null,Utilities::getAge(),array('prompt'=>'Age','class'=>'validate[gfuncCall[checkAgeLimit]] wid50')); ?>
 				</div>
 				<div class="selC">
 					<span>Religion</span>
 					<?php $records = Religion::model()->findAll("active = 1");
 		$list = CHtml::listData($records, 'religionId', 'name');
-		echo CHtml::dropDownList('religion',null,$list,array('empty' => 'Religion','class'=>'wid130')); ?>
+		echo CHtml::dropDownList('religion',null,$list,array('empty' => 'Religion','class'=>'width120','id'=>'qReligion','ajax' => array(
+                        'type'=>'POST',
+                        'url'=>CController::createUrl('Ajax/updateCaste'), 
+                        'dataType'=>'json',
+                        'data'=>array('religionId'=>'js:this.value'),  
+                        'success'=>'function(data) {
+                            $("#qCaste").html(data.dropDownCastes);
+                        }',
+            ))); ?>
+					
 				</div>
 				<div class="selC">
 					<span>Cast</span>
 					<?php $records = Caste::model()->findAll("active = 1");
 		$list = CHtml::listData($records, 'casteId', 'name');
-		echo CHtml::dropDownList('caste',null,$list,array('empty' => 'Caste','class'=>'wid130')); ?>
+		echo CHtml::dropDownList('caste',null,$list,array('empty' => 'Caste','id'=>'qCaste','class'=>'wid120')); ?>
 				</div>
-				<a href="javascript:quickSearch.submit();" class="type2 no-marg">Search</a>
+				<input type="submit" value="Search" class="type5 no-marg" />
 			</li>
 		</ul>
 		</form>
@@ -358,6 +367,8 @@ $user = Yii::app()->session->get('user');
 
    $(document).ready(function() {
 
+	$("#quickSearch").validationEngine('attach');
+	
 	
 	$("div[id^='high']").hide();
 	
