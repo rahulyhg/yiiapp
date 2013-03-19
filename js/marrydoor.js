@@ -118,19 +118,12 @@ $(function(){
         
         if(tabid == 'tab2')
         {        	
-        	var  allVal= [];
-        	$("input:hidden[name=userId]").each(function(){
-   				 allVal.push($(this).val());
-   				 });
-        	
         	 $.ajax({
                 type: "POST",
                 url: "/Ajax/notify",
-                'data':{'userId':allVal},
-                'dataType':'json',
                 dataType: "json",
                 success: function(data) {
-                	
+                	$('#tab2_count').hide();
                 }
             });
             
